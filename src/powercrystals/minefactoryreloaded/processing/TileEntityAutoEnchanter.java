@@ -45,7 +45,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implemen
 	@Override
 	public int getEnergyStoredMax()
 	{
-		return 64000;
+		return 16000;
 	}
 
 	@Override

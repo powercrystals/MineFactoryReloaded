@@ -805,7 +805,7 @@ public class MineFactoryReloadedCore
 				} );
 		
 		// chronotyper
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(conveyorBlock, 16, 1), new Object[]
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(conveyorBlock, 1, 16), new Object[]
 				{
 					"UUU",
 					"RIR",
