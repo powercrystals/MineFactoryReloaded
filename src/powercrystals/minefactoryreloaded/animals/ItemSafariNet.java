@@ -37,15 +37,15 @@ public class ItemSafariNet extends ItemFactory
 		return var2;
 	}
 
-    @SideOnly(Side.CLIENT)
-    public int getIconFromDamageForRenderPass(int damage, int pass)
-    {
-        if(damage == 0) return iconIndex + 3;
-        else if(pass == 0) return iconIndex;
-        else if(pass == 1) return iconIndex + 1;
-        else if(pass == 2) return iconIndex + 2;
-        else return 255;
-    }
+	@SideOnly(Side.CLIENT)
+	public int getIconFromDamageForRenderPass(int damage, int pass)
+	{
+		if(damage == 0) return iconIndex + 3;
+		else if(pass == 0) return iconIndex;
+		else if(pass == 1) return iconIndex + 1;
+		else if(pass == 2) return iconIndex + 2;
+		else return 255;
+	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -60,15 +60,32 @@ public class ItemSafariNet extends ItemFactory
 		return 3;
 	}
 
-    @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack stack, int pass)
-    {
-    	if(stack.getItemDamage() == 0) return 16777215;
-        EntityEggInfo egg = (EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(stack.getItemDamage()));
-        if(pass == 2) return egg.secondaryColor;
-        else if(pass == 1) return egg.primaryColor;
-        return 16777215;
-    }
+	@SideOnly(Side.CLIENT)
+	public int getColorFromItemStack(ItemStack stack, int pass)
+	{
+		if(stack.getItemDamage() == 0)
+		{
+			return 16777215;
+		}
+		EntityEggInfo egg = (EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(stack.getItemDamage()));
+		
+		if(egg == null)
+		{
+			return 16777215;
+		}
+		else if(pass == 2)
+		{
+			return egg.secondaryColor;
+		}
+		else if(pass == 1)
+		{
+			return egg.primaryColor;
+		}
+		else
+		{
+			return 16777215;
+		}
+	}
 	
 	@Override
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float xOffset, float yOffset, float zOffset)
