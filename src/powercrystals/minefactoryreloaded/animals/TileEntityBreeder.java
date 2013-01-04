@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.core.UtilInventory;
 
 public class TileEntityBreeder extends TileEntityFactoryInventory
 {
@@ -40,7 +41,7 @@ public class TileEntityBreeder extends TileEntityFactoryInventory
 	@Override
 	protected boolean activateMachine()
 	{
-		int stackIndex = findFirstStack(Item.wheat.shiftedIndex, 0);
+		int stackIndex = UtilInventory.findFirstStack(this, Item.wheat.shiftedIndex, 0);
 		if(stackIndex < 0)
 		{
 			return false;

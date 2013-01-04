@@ -3,10 +3,9 @@ package powercrystals.minefactoryreloaded.api;
 import java.util.List;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import powercrystals.minefactoryreloaded.animals.TileEntityRancher;
 
 /**
  * @author PowerCrystals
@@ -26,5 +25,5 @@ public interface IFactoryRanchable
 	 * @param rancher The rancher instance doing the ranching. Used to access the Rancher's inventory when milking cows, for example.
 	 * @return A list of drops.
 	 */
-	public List<ItemStack> ranch(World world, EntityLiving entity, TileEntityRancher rancher);
+	public List<ItemStack> ranch(World world, EntityLiving entity, IInventory rancher);
 }

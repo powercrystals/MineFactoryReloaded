@@ -44,7 +44,7 @@ public class ItemSafariNet extends ItemFactory
         else if(pass == 0) return iconIndex;
         else if(pass == 1) return iconIndex + 1;
         else if(pass == 2) return iconIndex + 2;
-        else return 0;
+        else return 255;
     }
 	
 	@Override

@@ -23,6 +23,7 @@ public class UtilInventory
 {
 	public static void dropStack(TileEntityFactory from, ItemStack s)
 	{
+		s = s.copy();
 		if(from.worldObj.isRemote || s.stackSize <= 0)
 		{
 			return;
@@ -242,4 +243,18 @@ public class UtilInventory
 		return ((IInventory)te);
 	}
 
+
+	
+	public static int findFirstStack(IInventory inv, int itemId, int itemDamage)
+	{
+		for(int i = 0; i < inv.getSizeInventory(); i++)
+		{
+			ItemStack s = inv.getStackInSlot(i);
+			if(s != null && s.itemID == itemId && s.getItemDamage() == itemDamage)
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
 }

@@ -5,7 +5,7 @@ import codechicken.nei.MultiItemRange;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 
-public class NEI implements IConfigureNEI
+public class NEIMFRConfig implements IConfigureNEI
 {
 
 	@Override

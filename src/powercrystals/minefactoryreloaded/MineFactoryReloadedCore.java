@@ -124,7 +124,7 @@ public class MineFactoryReloadedCore
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.0.0";
+	public static final String version = "1.4.6R2.0.1";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
 	public static final String terrainTexture = textureFolder + "terrain_0.png";
@@ -569,15 +569,15 @@ public class MineFactoryReloadedCore
 					Character.valueOf('S'), Block.stone,
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(syringeEmptyItem, 2), new Object[]
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(syringeEmptyItem, 1), new Object[]
 				{
 					"PRP",
 					"P P",
 					" I ",
 					Character.valueOf('P'), plasticSheetItem,
-					Character.valueOf('R'), rubberBarItem,
+					Character.valueOf('R'), "itemRubber",
 					Character.valueOf('I'), Item.ingotIron,
-				} );
+				} ));
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(syringeHealthItem), new Object[] { syringeEmptyItem, Item.appleRed });
 		GameRegistry.addShapelessRecipe(new ItemStack(syringeGrowthItem), new Object[] { syringeEmptyItem, Item.goldenCarrot });

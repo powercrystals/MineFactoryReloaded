@@ -6,10 +6,10 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import powercrystals.minefactoryreloaded.animals.TileEntityRancher;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 
 public class RanchableSheep implements IFactoryRanchable
@@ -21,7 +21,7 @@ public class RanchableSheep implements IFactoryRanchable
 	}
 
 	@Override
-	public List<ItemStack> ranch(World world, EntityLiving entity, TileEntityRancher rancher)
+	public List<ItemStack> ranch(World world, EntityLiving entity, IInventory rancher)
 	{
 		EntitySheep s = (EntitySheep)entity;
 		

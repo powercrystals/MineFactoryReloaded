@@ -128,19 +128,6 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactoryPowere
 		nbttagcompound.setTag("Items", nbttaglist);
 	}
 	
-	public int findFirstStack(int itemId, int itemDamage)
-	{
-		for(int i = 0; i < getSizeInventory(); i++)
-		{
-			ItemStack s = getStackInSlot(i);
-			if(s != null && s.itemID == itemId && s.getItemDamage() == itemDamage)
-			{
-				return i;
-			}
-		}
-		return -1;
-	}
-	
 	@Override
 	public ItemStack getStackInSlotOnClosing(int var1)
 	{
