@@ -270,12 +270,12 @@ public class MineFactoryReloadedCore
 		plasticSheetItem = (new ItemFactory(plasticSheetItemId.getInt())).setIconIndex(7).setItemName("plasticSheetItem");
 		rawPlasticItem = (new ItemFactory(rawPlasticItemId.getInt())).setIconIndex(8).setItemName("rawPlasticItem");
 		rubberBarItem = (new ItemFactory(rubberBarItemId.getInt())).setIconIndex(9).setItemName("rubberBarItem");
-		sewageBucketItem = (new ItemFactory(sewageBucketItemId.getInt())).setIconIndex(10).setItemName("sewageBucketItem").setMaxStackSize(1);
-		sludgeBucketItem = (new ItemFactory(sludgeBucketItemId.getInt())).setIconIndex(11).setItemName("sludgeBucketItem").setMaxStackSize(1);
-		mobEssenceBucketItem = (new ItemFactory(mobEssenceBucketItemId.getInt())).setIconIndex(12).setItemName("mobEssenceBucketItem").setMaxStackSize(1);
+		sewageBucketItem = (new ItemFactory(sewageBucketItemId.getInt())).setIconIndex(10).setItemName("sewageBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		sludgeBucketItem = (new ItemFactory(sludgeBucketItemId.getInt())).setIconIndex(11).setItemName("sludgeBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		mobEssenceBucketItem = (new ItemFactory(mobEssenceBucketItemId.getInt())).setIconIndex(12).setItemName("mobEssenceBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setIconIndex(13).setItemName("syringeEmptyItem").setMaxStackSize(1);
-		syringeHealthItem = (new ItemHealthSyringe()).setIconIndex(14).setItemName("syringeHealthItem");
-		syringeGrowthItem = (new ItemGrowthSyringe()).setIconIndex(15).setItemName("syringeGrowthItem");
+		syringeHealthItem = (new ItemHealthSyringe()).setIconIndex(14).setItemName("syringeHealthItem").setContainerItem(syringeEmptyItem);
+		syringeGrowthItem = (new ItemGrowthSyringe()).setIconIndex(15).setItemName("syringeGrowthItem").setContainerItem(syringeEmptyItem);
 		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setIconIndex(16).setItemName("rawRubberItem");
 		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setIconIndex(17).setItemName("factoryMachineBlock");
 		safariNetItem = (new ItemSafariNet()).setIconIndex(18).setItemName("safariNetItem");
