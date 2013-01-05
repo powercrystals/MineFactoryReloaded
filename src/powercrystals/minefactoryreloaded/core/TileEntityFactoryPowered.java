@@ -80,12 +80,15 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 			_isAddedToIC2EnergyNet = true;
 		}
 		
-		getPowerProvider().update(this);
-		
-		if(_energyStored < getEnergyStoredMax() && getPowerProvider().useEnergy(1, 100, false) > 0)
+		if(getPowerProvider() != null)
 		{
-			int mjGained = (int)(getPowerProvider().useEnergy(1, 100, true));
-			_energyStored += mjGained * energyPerMJ;
+			getPowerProvider().update(this);
+			
+			if(_energyStored < getEnergyStoredMax() && getPowerProvider().useEnergy(1, 100, false) > 0)
+			{
+				int mjGained = (int)(getPowerProvider().useEnergy(1, 100, true));
+				_energyStored += mjGained * energyPerMJ;
+			}
 		}
 		
 		if(_idleTicks > 0)
