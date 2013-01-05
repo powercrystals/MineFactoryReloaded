@@ -1,10 +1,10 @@
 package powercrystals.minefactoryreloaded.processing;
 
 import buildcraft.core.IMachine;
-import powercrystals.minefactoryreloaded.core.Area;
-import powercrystals.minefactoryreloaded.core.BlockPosition;
+import powercrystals.core.position.Area;
+import powercrystals.core.position.BlockPosition;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
-import powercrystals.minefactoryreloaded.core.UtilInventory;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -43,7 +43,7 @@ public class TileEntityFisher extends TileEntityFactoryPowered implements IMachi
 		
 		if(getWorkDone() > getWorkMax())
 		{
-			UtilInventory.dropStack(this, new ItemStack(Item.fishRaw));
+			MFRUtil.dropStack(this, new ItemStack(Item.fishRaw));
 			setWorkDone(0);
 		}
 		return true;

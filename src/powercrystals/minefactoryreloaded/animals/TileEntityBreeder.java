@@ -6,9 +6,9 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.Item;
 
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
-import powercrystals.minefactoryreloaded.core.UtilInventory;
 
 public class TileEntityBreeder extends TileEntityFactoryInventory
 {

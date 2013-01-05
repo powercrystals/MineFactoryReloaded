@@ -1,8 +1,9 @@
 package powercrystals.minefactoryreloaded.core;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
+import powercrystals.core.net.PacketWrapper;
+import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.net.PacketWrapper;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;

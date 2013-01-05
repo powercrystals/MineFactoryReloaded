@@ -5,10 +5,10 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-import powercrystals.minefactoryreloaded.core.BlockPosition;
+import powercrystals.core.position.BlockPosition;
+import powercrystals.core.util.Util;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
-import powercrystals.minefactoryreloaded.core.Util;
-import powercrystals.minefactoryreloaded.core.UtilInventory;
 
 
 public class TileEntityBlockBreaker extends TileEntityFactoryPowered
@@ -31,7 +31,7 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 			List<ItemStack> drops = b.getBlockDropped(worldObj, bp.x, bp.y, bp.z, worldObj.getBlockMetadata(bp.x, bp.y, bp.z), 0);
 			for(ItemStack s : drops)
 			{
-				UtilInventory.dropStack(this, s);
+				MFRUtil.dropStack(this, s);
 			}
 			worldObj.setBlockWithNotify(bp.x, bp.y, bp.z, 0);
 			return true;

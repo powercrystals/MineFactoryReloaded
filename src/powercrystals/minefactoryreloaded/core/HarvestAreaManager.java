@@ -1,7 +1,7 @@
 package powercrystals.minefactoryreloaded.core;
 
-import powercrystals.minefactoryreloaded.core.Area;
-import powercrystals.minefactoryreloaded.core.BlockPosition;
+import powercrystals.core.position.Area;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
 import net.minecraftforge.common.ForgeDirection;
 

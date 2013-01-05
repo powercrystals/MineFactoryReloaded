@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 
-import powercrystals.minefactoryreloaded.core.BlockPosition;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 

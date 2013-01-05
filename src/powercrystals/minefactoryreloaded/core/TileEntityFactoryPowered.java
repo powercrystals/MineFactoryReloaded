@@ -108,7 +108,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 			}
 		}
 
-		UtilLiquid.pumpLiquid(getTank(), this);
+		MFRUtil.pumpLiquid(getTank(), this);
 	}
 	
 	@Override

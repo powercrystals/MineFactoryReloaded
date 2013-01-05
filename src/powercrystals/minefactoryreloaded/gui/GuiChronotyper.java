@@ -2,9 +2,9 @@ package powercrystals.minefactoryreloaded.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import cpw.mods.fml.common.network.PacketDispatcher;
+import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
-import powercrystals.minefactoryreloaded.net.PacketWrapper;
 
 public class GuiChronotyper extends GuiFactoryPowered
 {

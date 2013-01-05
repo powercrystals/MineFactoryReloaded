@@ -1,9 +1,10 @@
 package powercrystals.minefactoryreloaded.processing;
 
+import powercrystals.core.position.IRotateableTile;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.core.IRotateableTile;
+import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityConveyor extends TileEntity implements IRotateableTile
 {
@@ -160,5 +161,11 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile
 	public boolean canRotate()
 	{
 		return true;
+	}
+
+	@Override
+	public ForgeDirection getDirectionFacing() 
+	{
+		return ForgeDirection.UNKNOWN;
 	}
 }

@@ -3,9 +3,9 @@ package powercrystals.minefactoryreloaded.plants;
 import java.util.HashMap;
 import java.util.Map;
 
+import powercrystals.core.position.Area;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
-import powercrystals.minefactoryreloaded.core.Area;
-import powercrystals.minefactoryreloaded.core.BlockPosition;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 

@@ -8,8 +8,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
-import powercrystals.minefactoryreloaded.core.UtilInventory;
 
 public class TileEntityCollector extends TileEntityFactory
 {

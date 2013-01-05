@@ -9,11 +9,11 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import buildcraft.core.IMachine;
+import powercrystals.core.position.Area;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.Area;
-import powercrystals.minefactoryreloaded.core.BlockPosition;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
-import powercrystals.minefactoryreloaded.core.UtilLiquid;
 
 public class TileEntitySewer extends TileEntityFactory implements IMachine
 {
@@ -47,7 +47,7 @@ public class TileEntitySewer extends TileEntityFactory implements IMachine
 	{
 		super.updateEntity();
 		_tick++;
-		UtilLiquid.pumpLiquid(_tank, this);
+		MFRUtil.pumpLiquid(_tank, this);
 		
 		if(_tick >= 127)
 		{

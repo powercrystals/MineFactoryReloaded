@@ -16,9 +16,10 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import powercrystals.core.position.IRotateableTile;
+import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.IRotateableTile;
-import powercrystals.minefactoryreloaded.core.Util;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 
 public class BlockConveyor extends BlockContainer
 {
@@ -298,7 +299,7 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, int par6, float par7, float par8, float par9)
 	{
-		if(Util.isHoldingWrench(entityplayer))
+		if(MFRUtil.isHoldingWrench(entityplayer))
 		{
 			TileEntity te = world.getBlockTileEntity(i, j, k);
 			if(te != null && te instanceof IRotateableTile)

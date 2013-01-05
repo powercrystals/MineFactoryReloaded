@@ -18,8 +18,8 @@ import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
-import powercrystals.minefactoryreloaded.core.UtilInventory;
 
 public class TileEntityGrinder extends TileEntityFactoryPowered implements IMachine
 {
@@ -93,7 +93,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements IMach
 				ItemStack s = e.getCurrentItemOrArmor(slot);
 				if(s != null && s.hasTagCompound())
 				{
-					UtilInventory.dropStack(this, s);
+					MFRUtil.dropStack(this, s);
 					foundMob = true;
 				}
 			}
@@ -103,11 +103,11 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements IMach
 				List<ItemStack> drops = r.grind(worldObj, e, getRandom());
 				if(drops.size() == 1)
 				{
-					UtilInventory.dropStack(this, drops.get(0));
+					MFRUtil.dropStack(this, drops.get(0));
 				}
 				else
 				{
-					UtilInventory.dropStack(this, drops.get(_rand.nextInt(drops.size())));
+					MFRUtil.dropStack(this, drops.get(_rand.nextInt(drops.size())));
 				}
 				
 				foundMob = true;

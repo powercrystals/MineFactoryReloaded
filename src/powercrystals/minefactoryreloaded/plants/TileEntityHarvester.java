@@ -8,15 +8,14 @@ import java.util.Random;
 
 import buildcraft.core.IMachine;
 
+import powercrystals.core.position.Area;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
-import powercrystals.minefactoryreloaded.core.Area;
-import powercrystals.minefactoryreloaded.core.BlockPosition;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
-import powercrystals.minefactoryreloaded.core.UtilInventory;
-import powercrystals.minefactoryreloaded.core.UtilLiquid;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -87,7 +86,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements IMa
 	@Override
 	public boolean activateMachine()
 	{
-		UtilLiquid.pumpLiquid(_tank, this);
+		MFRUtil.pumpLiquid(_tank, this);
 		
 		int harvestedBlockId = 0;
 		int harvestedBlockMetadata = 0;
@@ -113,7 +112,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements IMa
 		{
 			for(ItemStack dropStack : drops)
 			{
-				UtilInventory.dropStack(this, dropStack);
+				MFRUtil.dropStack(this, dropStack);
 			}
 		}
 		

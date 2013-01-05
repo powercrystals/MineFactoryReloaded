@@ -2,8 +2,8 @@ package powercrystals.minefactoryreloaded.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import cpw.mods.fml.common.network.PacketDispatcher;
+import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 
 public class GuiHarvester extends GuiFactoryPowered

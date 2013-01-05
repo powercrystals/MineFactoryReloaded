@@ -6,8 +6,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import powercrystals.core.render.TextureLiquidStillFX;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
-import powercrystals.minefactoryreloaded.render.TextureLiquidStillFX;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.TextureFXManager;

@@ -6,10 +6,10 @@ import java.util.Random;
 
 import net.minecraft.item.ItemStack;
 
+import powercrystals.core.position.Area;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
-import powercrystals.minefactoryreloaded.core.Area;
-import powercrystals.minefactoryreloaded.core.BlockPosition;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 

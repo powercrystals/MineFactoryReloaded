@@ -112,7 +112,7 @@ public class BlockFactoryMachine extends BlockContainer implements IPipeConnecti
 			{
 				return false;
 			}
-			if(Util.isHoldingWrench(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
+			if(MFRUtil.isHoldingWrench(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
 			{
 				((TileEntityFactory)te).rotate();
 				world.markBlockForUpdate(x, y, z);

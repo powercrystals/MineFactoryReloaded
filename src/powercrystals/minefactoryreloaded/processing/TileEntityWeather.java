@@ -1,8 +1,7 @@
 package powercrystals.minefactoryreloaded.processing;
 
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
-import powercrystals.minefactoryreloaded.core.UtilInventory;
-import powercrystals.minefactoryreloaded.core.UtilLiquid;
 
 import buildcraft.core.IMachine;
 
@@ -59,7 +58,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements IMach
 	@Override
 	public boolean activateMachine()
 	{
-		UtilLiquid.pumpLiquid(_tank, this);
+		MFRUtil.pumpLiquid(_tank, this);
 		
 		if(worldObj.getWorldInfo().isRaining() && canSeeSky())
 		{
@@ -80,7 +79,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements IMach
 				}
 				else
 				{
-					UtilInventory.dropStack(this, new ItemStack(Item.snowball));
+					MFRUtil.dropStack(this, new ItemStack(Item.snowball));
 				}
 			}
 			return true;

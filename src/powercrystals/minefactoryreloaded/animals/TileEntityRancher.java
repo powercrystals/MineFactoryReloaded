@@ -9,9 +9,8 @@ import buildcraft.core.IMachine;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
-import powercrystals.minefactoryreloaded.core.UtilInventory;
-import powercrystals.minefactoryreloaded.core.UtilLiquid;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -67,7 +66,7 @@ public class TileEntityRancher extends TileEntityFactoryInventory implements IMa
 	@Override
 	public boolean activateMachine()
 	{
-		UtilLiquid.pumpLiquid(_tank, this);
+		MFRUtil.pumpLiquid(_tank, this);
 		
 		boolean didDrop = false;
 		
@@ -79,7 +78,7 @@ public class TileEntityRancher extends TileEntityFactoryInventory implements IMa
 			{
 				if (o instanceof EntityItem)
 				{
-					UtilInventory.dropStack(this, ((EntityItem)o).func_92014_d());
+					MFRUtil.dropStack(this, ((EntityItem)o).func_92014_d());
 				}
 				continue;
 			}
@@ -101,7 +100,7 @@ public class TileEntityRancher extends TileEntityFactoryInventory implements IMa
 							continue;
 						}
 						
-						UtilInventory.dropStack(this, s);
+						MFRUtil.dropStack(this, s);
 						didDrop = true;
 					}
 					if(didDrop)

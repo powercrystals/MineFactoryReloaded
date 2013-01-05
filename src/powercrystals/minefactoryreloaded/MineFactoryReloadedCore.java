@@ -29,6 +29,8 @@ import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import powercrystals.core.updater.IUpdateableMod;
+import powercrystals.core.updater.UpdateManager;
 import powercrystals.minefactoryreloaded.animals.ItemGrowthSyringe;
 import powercrystals.minefactoryreloaded.animals.ItemHealthSyringe;
 import powercrystals.minefactoryreloaded.animals.ItemSafariNet;
@@ -112,19 +114,23 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = "MFReloaded", name = "Minefactory Reloaded", version = MineFactoryReloadedCore.version, dependencies = "after:BuildCraft|Core;after:BuildCraft|Factory;after:BuildCraft|Energy;after:BuildCraft|Builders;after:BuildCraft|Transport;after:IC2")
+@Mod(modid = MineFactoryReloadedCore.modId, name = MineFactoryReloadedCore.modName, version = MineFactoryReloadedCore.version,
+dependencies = "after:BuildCraft|Core;after:BuildCraft|Factory;after:BuildCraft|Energy;after:BuildCraft|Builders;after:BuildCraft|Transport;after:IC2;required-after:PowerCrystalsCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false,
 clientPacketHandlerSpec = @SidedPacketHandler(channels = { MineFactoryReloadedCore.modId }, packetHandler = ClientPacketHandler.class),
 serverPacketHandlerSpec = @SidedPacketHandler(channels = { MineFactoryReloadedCore.modId }, packetHandler = ServerPacketHandler.class),
 connectionHandler = ConnectionHandler.class)
-public class MineFactoryReloadedCore
+public class MineFactoryReloadedCore implements IUpdateableMod
 {
 	@SidedProxy(clientSide = "powercrystals.minefactoryreloaded.net.ClientProxy", serverSide = "powercrystals.minefactoryreloaded.net.CommonProxy")
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.0.1";
+	public static final String version = "1.4.6R2.0.2RC1";
+	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
 	public static final String terrainTexture = textureFolder + "terrain_0.png";
@@ -327,6 +333,8 @@ public class MineFactoryReloadedCore
 		{
 			GameRegistry.registerWorldGenerator(new MineFactoryReloadedWorldGen());
 		}
+		
+		TickRegistry.registerScheduledTickHandler(new UpdateManager(this), Side.CLIENT);
 	}
 	
 	@PostInit
@@ -854,5 +862,29 @@ public class MineFactoryReloadedCore
         			Character.valueOf('S'), plasticSheetItem,
         			Character.valueOf('D'), Block.railDetector
         		} );
+	}
+
+	@Override
+	public String getModId()
+	{
+		return modId;
+	}
+
+	@Override
+	public String getModName()
+	{
+		return modName;
+	}
+
+	@Override
+	public String getModFolder()
+	{
+		return "MineFactoryReloaded";
+	}
+
+	@Override
+	public String getModVersion()
+	{
+		return version;
 	}
 }
