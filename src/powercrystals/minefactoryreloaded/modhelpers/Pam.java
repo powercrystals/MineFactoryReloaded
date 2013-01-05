@@ -175,11 +175,11 @@ public class Pam
 		}
 	}
 	
-	public class HarvestablePamsPerennial implements IFactoryHarvestable
+	public class HarvestablePams implements IFactoryHarvestable
 	{
 		private int _sourceId;
 		
-		public HarvestablePamsPerennial(int sourceId)
+		public HarvestablePams(int sourceId)
 		{
 			_sourceId = sourceId;
 		}
@@ -211,12 +211,29 @@ public class Pam
 		@Override
 		public void preHarvest(World world, int x, int y, int z)
 		{
+			if(world.getBlockMetadata(x, y, z) > 7)
+			{
+				world.setBlockMetadata(x, y, z, 7);
+			}
 		}
 
 		@Override
 		public void postHarvest(World world, int x, int y, int z)
 		{
-			world.setBlockAndMetadataWithNotify(x, y, z, _sourceId, 0);
+		}
+	}
+	
+	public class HarvestablePamsPerennial extends HarvestablePams
+	{
+		public HarvestablePamsPerennial(int sourceId)
+		{
+			super(sourceId);
+		}
+
+		@Override
+		public void postHarvest(World world, int x, int y, int z)
+		{
+			world.setBlockAndMetadataWithNotify(x, y, z, getSourceId(), 0);
 		}
 	}
 }

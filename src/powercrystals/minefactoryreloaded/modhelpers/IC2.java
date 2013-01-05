@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.modhelpers;
 
-import java.lang.reflect.Method;
 import java.util.Random;
 
 import cpw.mods.fml.common.Mod;
@@ -9,6 +8,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSapling;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -40,11 +40,7 @@ public class IC2
 				if(rubberSapling != null)
 				{
 					FarmingRegistry.registerPlantable(new PlantableStandard(rubberSapling.itemID, rubberSapling.itemID));
-
-					Class<?> rubberSaplingBlock = Class.forName("ic2.core.block.BlockRubSapling");
-					Method fertilize = rubberSaplingBlock.getMethod("c", new Class[] { World.class, int.class, int.class, int.class, Random.class }); // "growTree", "World"
-					FertilizableIC2RubberTree frt = new IC2().new FertilizableIC2RubberTree(rubberSapling.itemID, fertilize);
-					FarmingRegistry.registerFertilizable(frt);
+					FarmingRegistry.registerFertilizable(new IC2().new FertilizableIC2RubberTree(rubberSapling.itemID));
 				}
 				if(rubberLeaves != null)
 				{
@@ -71,12 +67,10 @@ public class IC2
 	public class FertilizableIC2RubberTree implements IFactoryFertilizable
 	{
 		private int _saplingId;
-		private Method _fertilizeMethod;
 		
-		public FertilizableIC2RubberTree(int blockId, Method fertilizeMethod)
+		public FertilizableIC2RubberTree(int blockId)
 		{
 			_saplingId = blockId;
-			_fertilizeMethod = fertilizeMethod;
 		}
 		
 		@Override
@@ -96,7 +90,7 @@ public class IC2
 		{
 			try
 			{
-				_fertilizeMethod.invoke(Block.blocksList[_saplingId], world, x, y, z, world.rand);
+				((BlockSapling)Block.blocksList[_saplingId]).growTree(world, x, y, z, rand);
 			}
 			catch (Exception e)
 			{
