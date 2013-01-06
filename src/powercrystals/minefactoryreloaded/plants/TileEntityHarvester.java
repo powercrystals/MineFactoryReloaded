@@ -109,10 +109,10 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements IMa
 		harvestedBlockMetadata = worldObj.getBlockMetadata(targetCoords.x, targetCoords.y, targetCoords.z);
 		
 		IFactoryHarvestable harvestable = harvestables.get(new Integer(harvestedBlockId));
-
-		harvestable.preHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
 		List<ItemStack> drops = harvestable.getDrops(worldObj, _rand, _settings, targetCoords.x, targetCoords.y, targetCoords.z);
+
+		harvestable.preHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 
 		if(drops != null)
 		{

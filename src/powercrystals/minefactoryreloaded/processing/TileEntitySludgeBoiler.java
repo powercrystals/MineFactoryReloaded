@@ -126,8 +126,8 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		if(resource.itemID != MineFactoryReloadedCore.sludgeItem.shiftedIndex)
-		{;
+		if(resource == null || (resource.itemID != MineFactoryReloadedCore.sludgeItem.shiftedIndex))
+		{
 			return 0;
 		}
 		else
@@ -139,7 +139,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		if(resource.itemID != MineFactoryReloadedCore.sludgeItem.shiftedIndex)
+		if(resource == null || (resource.itemID != MineFactoryReloadedCore.sludgeItem.shiftedIndex))
 		{
 			return 0;
 		}
@@ -170,7 +170,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
-		if(type.itemID == MineFactoryReloadedCore.sludgeItemId.getInt())
+		if(type != null && type.itemID == MineFactoryReloadedCore.sludgeItem.shiftedIndex)
 		{
 			return _tank;
 		}

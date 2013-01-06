@@ -80,7 +80,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		if(resource.itemID != MineFactoryReloadedCore.sewageItem.shiftedIndex)
+		if(resource == null || (resource.itemID != MineFactoryReloadedCore.sewageItem.shiftedIndex))
 		{
 			return 0;
 		}
@@ -93,7 +93,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		if(resource.itemID != MineFactoryReloadedCore.sewageItem.shiftedIndex)
+		if(resource == null || (resource.itemID != MineFactoryReloadedCore.sewageItem.shiftedIndex))
 		{
 			return 0;
 		}
@@ -124,7 +124,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
-		if(type.itemID == MineFactoryReloadedCore.sewageItem.shiftedIndex)
+		if(type != null && type.itemID == MineFactoryReloadedCore.sewageItem.shiftedIndex)
 		{
 			return _tank;
 		}
