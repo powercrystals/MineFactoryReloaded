@@ -118,6 +118,10 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 				setIsActive(false);
 			}
 		}
+		else
+		{
+			setIsActive(false);
+		}
 
 		if(pumpLiquid())
 		{
