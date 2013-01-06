@@ -60,6 +60,12 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements IMa
 	}
 	
 	@Override
+	protected boolean pumpLiquid()
+	{
+		return true;
+	}
+	
+	@Override
 	public ILiquidTank getTank()
 	{
 		return _tank;

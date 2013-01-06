@@ -68,6 +68,11 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	
 	public abstract String getInvName();
 	
+	protected boolean pumpLiquid()
+	{
+		return false;
+	}
+	
 	@Override
 	public void updateEntity()
 	{
@@ -108,7 +113,10 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 			}
 		}
 
-		MFRUtil.pumpLiquid(getTank(), this);
+		if(pumpLiquid())
+		{
+			MFRUtil.pumpLiquid(getTank(), this);
+		}
 	}
 	
 	@Override

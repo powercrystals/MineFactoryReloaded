@@ -46,6 +46,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements IMach
 	{
 		return _rand;
 	}
+	
+	@Override
+	protected boolean pumpLiquid()
+	{
+		return true;
+	}
 
 	@Override
 	public int getEnergyStoredMax()
