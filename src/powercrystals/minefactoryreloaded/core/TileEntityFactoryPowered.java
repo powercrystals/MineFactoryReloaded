@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.core;
 
+import powercrystals.core.util.Util;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
@@ -62,6 +63,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 			_powerProvider = PowerFramework.currentFramework.createPowerProvider();
 			_powerProvider.configure(25, 10, 10, 1, 1000);
 		}
+		setIsActive(false);
 	}
 	
 	// local methods
@@ -99,6 +101,10 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 		if(_idleTicks > 0)
 		{
 			_idleTicks--;
+		}
+		else if(Util.isRedstonePowered(this))
+		{
+			setIdleTicks(getIdleTicksMax());
 		}
 		else if(_energyStored >= _energyActivation)
 		{

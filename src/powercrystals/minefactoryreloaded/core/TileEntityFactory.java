@@ -120,7 +120,7 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	
 	public void setIsActive(boolean isActive)
 	{
-		if(!worldObj.isRemote && _isActive != isActive)
+		if(worldObj != null && !worldObj.isRemote && _isActive != isActive)
 		{
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(), getDescriptionPacket());
