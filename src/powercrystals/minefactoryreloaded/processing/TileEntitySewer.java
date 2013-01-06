@@ -49,7 +49,7 @@ public class TileEntitySewer extends TileEntityFactory implements IMachine
 		_tick++;
 		MFRUtil.pumpLiquid(_tank, this);
 		
-		if(_tick >= 127)
+		if(_tick >= 31)
 		{
 			_tick = 0;
 			List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _harvestArea.toAxisAlignedBB());
@@ -57,7 +57,7 @@ public class TileEntitySewer extends TileEntityFactory implements IMachine
 			{
 				if(o != null && o instanceof EntityAnimal)
 				{
-					_tank.fill(new LiquidStack(MineFactoryReloadedCore.sewageItem, 100), true);
+					_tank.fill(new LiquidStack(MineFactoryReloadedCore.sewageItem, 25), true);
 					return;
 				}
 			}
