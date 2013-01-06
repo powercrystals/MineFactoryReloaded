@@ -171,6 +171,11 @@ public class BlockConveyor extends BlockContainer
 				setEntityVelocity(entity, 0.0D, 0.0D, -0.1D);
 			}
 		}
+		
+		if(entity instanceof EntityLiving)
+		{
+			((EntityLiving)entity).fallDistance = 0;
+		}
 	}
 	
 	@Override
