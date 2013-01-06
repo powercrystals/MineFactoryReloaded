@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.modhelpers;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import cpw.mods.fml.common.Mod;
@@ -37,6 +39,7 @@ public class IC2
 				ItemStack rubberSapling = (ItemStack)ic2Items.getField("rubberSapling").get(null);
 				ItemStack rubberLeaves = (ItemStack)ic2Items.getField("rubberLeaves").get(null);
 				ItemStack rubberWood = (ItemStack)ic2Items.getField("rubberWood").get(null);
+				ItemStack stickyResin = (ItemStack)ic2Items.getField("resin").get(null);
 				if(rubberSapling != null)
 				{
 					FarmingRegistry.registerPlantable(new PlantableStandard(rubberSapling.itemID, rubberSapling.itemID));
@@ -48,7 +51,7 @@ public class IC2
 				}
 				if(rubberWood != null)
 				{
-					FarmingRegistry.registerHarvestable(new HarvestableStandard(rubberWood.itemID, HarvestType.Tree));
+					FarmingRegistry.registerHarvestable(new IC2().new HarvestableIC2RubberWood(rubberWood.itemID, HarvestType.Tree, stickyResin.itemID));
 				}
 				
 				ItemStack fertilizer = (ItemStack)ic2Items.getField("fertilizer").get(null);
@@ -99,5 +102,29 @@ public class IC2
 			return world.getBlockId(x, y, z) != _saplingId;
 		}
 		
+	}
+	
+	public class HarvestableIC2RubberWood extends HarvestableStandard
+	{
+		private int _resinId;
+		
+		public HarvestableIC2RubberWood(int sourceId, HarvestType harvestType, int resinId)
+		{
+			super(sourceId, harvestType);
+			_resinId = resinId;
+		}
+		
+		@Override
+		public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
+		{
+			List<ItemStack> drops = super.getDrops(world, rand, harvesterSettings, x, y, z);
+			int md = world.getBlockMetadata(x, y, z);
+			if(md >= 2 && md <= 5)
+			{
+				drops.add(new ItemStack(_resinId, 1, 0));
+			}
+			
+			return drops;
+		}
 	}
 }

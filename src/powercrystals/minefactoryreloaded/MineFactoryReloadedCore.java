@@ -561,6 +561,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		OreDictionary.registerOre("woodRubber", rubberWoodBlock);
 		
 		FurnaceRecipes.smelting().addSmelting(rawRubberItem.shiftedIndex, 0, new ItemStack(rubberBarItem), 0.1F);
+		FurnaceRecipes.smelting().addSmelting(rubberWoodBlock.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.1F);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 3, 3), new ItemStack(rubberWoodBlock));
 		
 		GameRegistry.addRecipe(new ItemStack(plasticSheetItem, 4), new Object[]
 				{
