@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -32,6 +34,11 @@ public class RP2
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
+		if(!Loader.isModLoaded("RedPowerWorld"))
+		{
+			FMLLog.warning("RedPowerWorld missing - MFR RedPower2 Compat not loading");
+			return;
+		}
 		try
 		{
 			Class<?> modClass = Class.forName("com.eloraam.redpower.RedPowerWorld");

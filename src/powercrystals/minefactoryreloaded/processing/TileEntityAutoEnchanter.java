@@ -121,6 +121,12 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implemen
 	{
 		return 2;
 	}
+	
+	@Override
+	public int getInventoryStackLimit()
+	{
+		return 1;
+	}
 
 	@Override
 	public int getStartInventorySide(ForgeDirection side)

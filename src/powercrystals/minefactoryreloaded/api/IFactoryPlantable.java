@@ -61,6 +61,7 @@ public interface IFactoryPlantable
 	 * @param x The destination X coordinate.
 	 * @param y The destination Y coordinate.
 	 * @param z The destination Z coordinate.
+	 * @param stack The stack being planted.
 	 */
-	public void postPlant(World world, int x, int y, int z);
+	public void postPlant(World world, int x, int y, int z, ItemStack stack);
 }

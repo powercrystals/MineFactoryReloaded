@@ -65,8 +65,8 @@ public class TileEntityPlanter extends TileEntityFactoryInventory
 				worldObj.setBlockAndMetadataWithNotify(bp.x, bp.y, bp.z,
 						plantable.getPlantedBlockId(worldObj, bp.x, bp.y, bp.z, availableStack),
 						plantable.getPlantedBlockMetadata(worldObj, bp.x, bp.y, bp.z, availableStack));
+				plantable.postPlant(worldObj, bp.x, bp.y, bp.z, availableStack);
 				decrStackSize(stackIndex, 1);
-				plantable.postPlant(worldObj, bp.x, bp.y, bp.z);
 				return true;
 			}
 		}

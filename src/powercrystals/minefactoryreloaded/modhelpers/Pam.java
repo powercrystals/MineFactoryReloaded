@@ -18,6 +18,8 @@ import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.farmables.HarvestableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.PlantableCropPlant;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -32,6 +34,12 @@ public class Pam
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
+		if(!Loader.isModLoaded("PamHCBase"))
+		{
+			FMLLog.warning("Pam's HC base missing - MFR Pam Compat not loading");
+			return;
+		}
+		
 		instance = new Pam();
 		
 		try
@@ -132,7 +140,7 @@ public class Pam
 		}
 
 		@Override
-		public void postPlant(World world, int x, int y, int z)
+		public void postPlant(World world, int x, int y, int z, ItemStack stack)
 		{
 		}
 	}

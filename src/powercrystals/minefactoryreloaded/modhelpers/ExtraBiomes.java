@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -34,6 +36,12 @@ public class ExtraBiomes
 	@Init
 	public static void load(FMLInitializationEvent ev)
 	{
+		if(!Loader.isModLoaded("ExtrabiomesXL"))
+		{
+			FMLLog.warning("ExtraBiomesXL missing - MFR ExtraBiomesXL Compat not loading");
+			return;
+		}
+		
 		_harvestRegistries = new HashMap<String, HarvestType>();
 		_harvestRegistries.put("CATTAIL", HarvestType.Normal);
 		_harvestRegistries.put("FLOWER", HarvestType.Normal);

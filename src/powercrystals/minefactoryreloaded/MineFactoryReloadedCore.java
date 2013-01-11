@@ -129,7 +129,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.0.3";
+	public static final String version = "1.4.6R2.0.4";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -540,17 +540,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	
 	public LiquidStack getLiquidStackFromLiquidItem(ItemStack s)
 	{
-		if(s.itemID == milkItem.shiftedIndex)
+		if(LiquidContainerRegistry.isLiquid(s))
 		{
-			return LiquidDictionary.getLiquid("milk", LiquidContainerRegistry.BUCKET_VOLUME);
-		}
-		else if(s.itemID == sludgeItem.shiftedIndex)
-		{
-			return LiquidDictionary.getLiquid("sludge", LiquidContainerRegistry.BUCKET_VOLUME);
-		}
-		else if(s.itemID == mobEssenceItem.shiftedIndex)
-		{
-			return LiquidDictionary.getLiquid("mobEssence", LiquidContainerRegistry.BUCKET_VOLUME);
+			return new LiquidStack(s.itemID, LiquidContainerRegistry.BUCKET_VOLUME, s.getItemDamage());
 		}
 		return null;
 	}
@@ -742,7 +734,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// sewer
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 10), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock, 4, 10), new Object[]
 				{
 					"GGG",
 					"BUB",

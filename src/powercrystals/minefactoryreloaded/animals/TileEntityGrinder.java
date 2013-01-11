@@ -7,6 +7,7 @@ import java.util.Random;
 
 import buildcraft.core.IMachine;
 
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -86,6 +87,10 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements IMach
 		for(Object o : entities)
 		{
 			if(o instanceof EntityPlayer)
+			{
+				continue;
+			}
+			if(o instanceof EntityAgeable && ((EntityAgeable)o).getGrowingAge() < 0)
 			{
 				continue;
 			}

@@ -4,6 +4,8 @@ import net.minecraft.item.Item;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.farmables.FertilizerStandard;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -16,6 +18,11 @@ public class Forestry
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
+		if(!Loader.isModLoaded("Forestry"))
+		{
+			FMLLog.warning("Forestry missing - MFR Forestry Compat not loading");
+			return;
+		}
 		try
 		{
 			Item fertilizer = (Item)Class.forName("forestry.core.config.ForestryItem").getField("fertilizerCompound").get(null);

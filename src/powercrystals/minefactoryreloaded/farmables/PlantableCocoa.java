@@ -58,7 +58,7 @@ public class PlantableCocoa implements IFactoryPlantable
 	}
 
 	@Override
-	public void postPlant(World world, int x, int y, int z)
+	public void postPlant(World world, int x, int y, int z, ItemStack stack)
 	{
 		int blockDirection = 4; // NORTH
 		if (isJungleLog(world, x-1, y, z))

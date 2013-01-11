@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import com.google.common.collect.ImmutableMap;
+
 import buildcraft.core.IMachine;
 
 import powercrystals.core.position.Area;
@@ -110,7 +112,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements IMa
 		
 		IFactoryHarvestable harvestable = harvestables.get(new Integer(harvestedBlockId));
 		
-		List<ItemStack> drops = harvestable.getDrops(worldObj, _rand, _settings, targetCoords.x, targetCoords.y, targetCoords.z);
+		List<ItemStack> drops = harvestable.getDrops(worldObj, _rand, ImmutableMap.copyOf(_settings), targetCoords.x, targetCoords.y, targetCoords.z);
 
 		harvestable.preHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 
