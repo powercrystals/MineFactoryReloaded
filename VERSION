@@ -1,1 +1,1 @@
-1.4.6R2.0.4 Yet more minor fixes; also API upgrades that I was asked for
+1.4.6R2.0.5 Fixed rancher milking not working if Forestry was installed, BlockBreaker connects to item pipes and plays sound on block break
