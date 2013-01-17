@@ -78,7 +78,6 @@ public class BlockConveyor extends BlockContainer
 		
 		if(isUphill)
 		{
-			System.out.println("Entity collided at " + entity.posX + ", " + entity.posY + ", " + entity.posZ);
 			yVelocity = 0.25D;
 		}
 		
