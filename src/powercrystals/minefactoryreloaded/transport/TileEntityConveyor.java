@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.processing;
+package powercrystals.minefactoryreloaded.transport;
 
 import powercrystals.core.position.IRotateableTile;
 import net.minecraft.block.Block;

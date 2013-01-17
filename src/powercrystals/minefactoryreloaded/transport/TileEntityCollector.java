@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.processing;
+package powercrystals.minefactoryreloaded.transport;
 
 import java.util.Map;
 import java.util.Map.Entry;
