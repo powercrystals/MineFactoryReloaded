@@ -62,6 +62,8 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implemen
 	public void setTargetLevel(int targetLevel)
 	{
 		_targetLevel = targetLevel;
+		if(_targetLevel > 30) _targetLevel = 30;
+		if(_targetLevel < 1) _targetLevel = 1;
 		if(getWorkDone() >= getWorkMax())
 		{
 			activateMachine();
