@@ -59,118 +59,64 @@ public class BlockConveyor extends BlockContainer
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity)
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if(!(entity instanceof EntityItem) && !(entity instanceof EntityLiving))
-		{
-			return;
-		}
-		if(Util.isRedstonePowered(world.getBlockTileEntity(i, j, k)))
+		if(!(entity instanceof EntityItem) && !(entity instanceof EntityLiving) || Util.isRedstonePowered(world.getBlockTileEntity(x, y, z)))
 		{
 			return;
 		}
 		
-		int md = world.getBlockMetadata(i, j, k);
-		if(md == 4)
+		double xVelocity = 0;
+		double yVelocity = 0;
+		double zVelocity = 0;
+		
+		int md = world.getBlockMetadata(x, y, z);
+		
+		int horizDirection = md & 0x03;
+		boolean isUphill = (md & 0x04) != 0;
+		boolean isDownhill = (md & 0x08) != 0;
+		
+		if(isUphill)
 		{
-			setEntityVelocity(entity, 0.1D, 0.2D, 0.0D);
+			System.out.println("Entity collided at " + entity.posX + ", " + entity.posY + ", " + entity.posZ);
+			yVelocity = 0.25D;
+		}
+		
+		if(isUphill || isDownhill)
+		{
 			entity.onGround = false;
 		}
-		else if(md == 5)
+		
+		
+		if(horizDirection == 0)
 		{
-			setEntityVelocity(entity, 0.0D, 0.2D, 0.1D);
-			entity.onGround = false;
+			xVelocity = 0.1D;
 		}
-		else if(md == 6)
+		else if(horizDirection == 1)
 		{
-			setEntityVelocity(entity, -0.1D, 0.2D, 0.0D);
-			entity.onGround = false;
+			zVelocity = 0.1D;
 		}
-		else if(md == 7)
+		else if(horizDirection == 2)
 		{
-			setEntityVelocity(entity, 0.0D, 0.2D, -0.1D);
-			entity.onGround = false;
+			xVelocity = -0.1D;
 		}
-		else if(md == 8)
+		else if(horizDirection == 3)
 		{
-			setEntityVelocity(entity, 0.1D, 0.0D, 0.0D);
-			entity.onGround = false;
+			zVelocity = -0.1D;
 		}
-		else if(md == 9)
+		
+		if(horizDirection == 0 || horizDirection == 2)
 		{
-			setEntityVelocity(entity, 0.0D, 0.0D, 0.1D);
-			entity.onGround = false;
+			if(entity.posZ > z + 0.55D) zVelocity = -0.1D;
+			else if(entity.posZ < z + 0.45D) zVelocity = 0.1D;
 		}
-		else if(md == 10)
+		else if(horizDirection == 1 || horizDirection == 3)
 		{
-			setEntityVelocity(entity, -0.1D, 0.0D, 0.0D);
-			entity.onGround = false;
+			if(entity.posX > x + 0.55D) xVelocity = -0.1D;
+			else if(entity.posX < x + 0.45D) xVelocity = 0.1D;
 		}
-		else if(md == 11)
-		{
-			setEntityVelocity(entity, 0.0D, 0.0D, -0.1D);
-			entity.onGround = false;
-		}
-		else if(md == 0)
-		{
-			if(entity.posZ > (double)k + 0.55D)
-			{
-				setEntityVelocity(entity, 0.05D, 0.0D, -0.05D);
-			}
-			else if(entity.posZ < (double)k + 0.45D)
-			{
-				setEntityVelocity(entity, 0.05D, 0.0D, 0.05D);
-			}
-			else
-			{
-				setEntityVelocity(entity, 0.1D, 0.0D, 0.0D);
-			}
-		}
-		else if(md == 1)
-		{
-			if(entity.posX > (double)i + 0.55D)
-			{
-				setEntityVelocity(entity, -0.05D, 0.0D, 0.05D);
-			}
-			else if(entity.posX < (double)i + 0.45D)
-			{
-				setEntityVelocity(entity, 0.05D, 0.0D, 0.05D);
-			}
-			else
-			{
-				setEntityVelocity(entity, 0.0D, 0.0D, 0.1D);
-			}
-		}
-		else if(md == 2)
-		{
-			if(entity.posZ > (double)k + 0.55D)
-			{
-				setEntityVelocity(entity, -0.05D, 0.0D, -0.05D);
-			}
-			else if(entity.posZ < (double)k + 0.45D)
-			{
-				setEntityVelocity(entity, -0.05D, 0.0D, 0.05D);
-			}
-			else
-			{
-				setEntityVelocity(entity, -0.1D, 0.0D, 0.0D);
-			}
-		}
-		else if(md == 3)
-		{
-			if(entity.posX > (double)i + 0.55D)
-			{
-				setEntityVelocity(entity, -0.05D, 0.0D, -0.05D);
-			}
-			else if(entity.posX < (double)i + 0.45D)
-			{
-				setEntityVelocity(entity, 0.05D, 0.0D, -0.05D);
-			}
-			else
-			{
-				setEntityVelocity(entity, 0.0D, 0.0D, -0.1D);
-			}
-		}
+		
+		setEntityVelocity(entity, xVelocity, yVelocity, zVelocity);
 		
 		if(entity instanceof EntityLiving)
 		{
@@ -179,9 +125,9 @@ public class BlockConveyor extends BlockContainer
 	}
 	
 	@Override
-	public int getBlockTexture(IBlockAccess iblockaccess, int i, int j, int k, int l)
+	public int getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side)
 	{
-		TileEntity te = iblockaccess.getBlockTileEntity(i, j, k);
+		TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileEntityConveyor)
 		{
 			if(Util.isRedstonePowered(te))
@@ -207,41 +153,24 @@ public class BlockConveyor extends BlockContainer
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k)
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
-		int l = world.getBlockMetadata(i, j, k);
-		float f = 0.2F;
-		float f1 = 0.2F;
-		if(l == 0 || l == 2)
+		int md = world.getBlockMetadata(x, y, z);
+
+		if((md & 0x0C) == 0)
 		{
-			f = 0.05F;
-			f1 = 0.05F;
+			return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool(x + 0.05F, y, z + 0.05F, (x + 1) - 0.05F, y + 0.1F, z + 1 - 0.05F);
 		}
-		else if(l == 1 || l == 3)
+		else
 		{
-			f = 0.05F;
-			f1 = 0.05F;
+			return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool(x + 0.2F, y, z + 0.2F, (x + 1) - 0.2F, y + 0.1F, z + 1 - 0.2F);
 		}
-		return AxisAlignedBB.getBoundingBox((float)i + f, j, (float)k + f1, (float)(i + 1) - f, (float)j + 0.1F, (float)(k + 1) - f1);
 	}
 
 	@Override
-	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int i, int j, int k)
+	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)
 	{
-		int l = world.getBlockMetadata(i, j, k);
-		float f = 0.2F;
-		float f1 = 0.2F;
-		if(l == 0 || l == 2)
-		{
-			f = 0.05F;
-			f1 = 0.05F;
-		}
-		else if(l == 1 || l == 3)
-		{
-			f = 0.05F;
-			f1 = 0.05F;
-		}
-		return AxisAlignedBB.getBoundingBox((float)i + f, j, (float)k + f1, (float)(i + 1) - f, (float)j + 0.1F, (float)(k + 1) - f1);
+		return getCollisionBoundingBoxFromPool(world, x, y, z);
 	}
 
 	@Override

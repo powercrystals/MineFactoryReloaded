@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityConveyor extends TileEntity implements IRotateableTile
-{
+{	
 	@Override
 	public void rotate()
 	{
