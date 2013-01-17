@@ -260,7 +260,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorTexture);
 		machineBlock = new BlockFactoryMachine(machineBlockId.getInt(), 0);
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
-		rubberLeavesBlock = new BlockRubberLeaves(rubberLeavesBlockId.getInt(), 30);
+		rubberLeavesBlock = new BlockRubberLeaves(rubberLeavesBlockId.getInt());
 		rubberSaplingBlock = new BlockRubberSapling(rubberSaplingBlockId.getInt(), 15);
 		railDropoffCargoBlock = new BlockRailCargoDropoff(railDropoffCargoBlockId.getInt(), 44);
 		railPickupCargoBlock = new BlockRailCargoPickup(railPickupCargoBlockId.getInt(), 45);

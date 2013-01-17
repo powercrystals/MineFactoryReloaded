@@ -18,9 +18,9 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
 public class BlockRubberLeaves extends BlockLeaves
 {
-	public BlockRubberLeaves(int id, int fastIndex)
+	public BlockRubberLeaves(int id)
 	{
-		super(id, fastIndex);
+		super(id, 30);
 		setHardness(0.2F);
 		setLightOpacity(1);
 		setStepSound(soundGrassFootstep);
@@ -39,6 +39,13 @@ public class BlockRubberLeaves extends BlockLeaves
 	public String getTextureFile()
 	{
 		return MineFactoryReloadedCore.terrainTexture;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBlockTexture(IBlockAccess world, int x, int y, int z, int side)
+	{
+		return Block.leaves.graphicsLevel ? 30 : 31;
 	}
 	
 	@Override
