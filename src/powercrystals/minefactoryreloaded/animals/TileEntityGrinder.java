@@ -49,7 +49,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements IMach
 	}
 	
 	@Override
-	protected boolean pumpLiquid()
+	protected boolean shouldPumpLiquid()
 	{
 		return true;
 	}

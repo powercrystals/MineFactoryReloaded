@@ -70,7 +70,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	
 	public abstract String getInvName();
 	
-	protected boolean pumpLiquid()
+	protected boolean shouldPumpLiquid()
 	{
 		return false;
 	}
@@ -79,6 +79,13 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	public void updateEntity()
 	{
 		super.updateEntity();
+		
+		if(worldObj.isRemote)
+		{
+			return;
+		}
+		
+		boolean hadPower = false;
 		
 		if(_addToNetOnNextTick)
 		{
@@ -108,22 +115,16 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 		}
 		else if(_energyStored >= _energyActivation)
 		{
+			hadPower = true;
 			if(activateMachine())
 			{
 				_energyStored -= _energyActivation;
-				setIsActive(true);
-			}
-			else
-			{
-				setIsActive(false);
 			}
 		}
-		else
-		{
-			setIsActive(false);
-		}
+		
+		setIsActive(hadPower);
 
-		if(pumpLiquid())
+		if(shouldPumpLiquid())
 		{
 			MFRUtil.pumpLiquid(getTank(), this);
 		}

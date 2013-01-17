@@ -40,7 +40,7 @@ public class TileEntityRancher extends TileEntityFactoryInventory implements IMa
 	}
 	
 	@Override
-	protected boolean pumpLiquid()
+	protected boolean shouldPumpLiquid()
 	{
 		return true;
 	}
