@@ -21,6 +21,11 @@ public class TileEntityCollector extends TileEntityFactory
 	
 	public void addToChests(EntityItem i)
 	{
+		if(i.isDead)
+		{
+			return;
+		}
+		
 		ItemStack s = i.func_92014_d();
 		Map<ForgeDirection, IInventory> chests = UtilInventory.findChests(worldObj, xCoord, yCoord, zCoord);
 		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())

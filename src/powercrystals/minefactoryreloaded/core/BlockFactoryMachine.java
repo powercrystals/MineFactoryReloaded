@@ -194,6 +194,10 @@ label0:
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
+		if(world.isRemote)
+		{
+			return;
+		}
 		int md = world.getBlockMetadata(x, y, z);
 		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Collector))
 		{
