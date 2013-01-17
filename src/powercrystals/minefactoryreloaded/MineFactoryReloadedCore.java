@@ -557,6 +557,22 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 3, 3), new ItemStack(rubberWoodBlock));
 		
+		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 4), new Object[]
+				{
+					"R",
+					"S",
+					Character.valueOf('R'), rawRubberItem,
+					Character.valueOf('S'), Item.stick
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(Block.pistonStickyBase, 4), new Object[]
+				{
+					"R",
+					"P",
+					Character.valueOf('R'), rawRubberItem,
+					Character.valueOf('P'), Block.pistonBase
+				} );
+		
 		GameRegistry.addRecipe(new ItemStack(plasticSheetItem, 4), new Object[]
 				{
 					"##",
