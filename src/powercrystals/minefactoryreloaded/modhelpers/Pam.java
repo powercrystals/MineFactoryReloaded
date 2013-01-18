@@ -17,7 +17,9 @@ import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.farmables.HarvestableCropPlant;
+import powercrystals.minefactoryreloaded.farmables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.PlantableCropPlant;
+import powercrystals.minefactoryreloaded.farmables.PlantableStandard;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -25,7 +27,10 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "MFReloaded|CompatPamsHarvestCraft", name = "MFR Compat: HarvestCraft", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:PamHCCorn;after:PamHCCotton;after:PamHCCucumber;after:PamHCLettuce;after:PamHCOnion;after:PamHCPeanut;after:PamHCRice;after:PamHCStrawberry;after:PamHCTomato")
+@Mod(modid = "MFReloaded|CompatPams", name = "MFR Compat: Pam's Mods", version = MineFactoryReloadedCore.version,
+dependencies = "after:MFReloaded;after:PamHCBean;after:PamHCBellpepper;after:PamHCBlueberry;after:PamHCChilipepper;after:PamHCCorn;after:PamHCCotton;after:PamHCCucumber;"
+ + "after:PamHCGrape;after:PamHCLettuce;after:PamHCOnion;after:PamHCPeanut;after:PamHCRice;after:PamHCStrawberry;after:PamHCTomato;after:PamHCWhitemushroom;"
+ + "after:PamWeeeFlowers;after:PamHCBase")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Pam
 {
@@ -34,26 +39,108 @@ public class Pam
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
-		if(!Loader.isModLoaded("PamHCBase"))
-		{
-			FMLLog.warning("Pam's HC base missing - MFR Pam Compat not loading");
-			return;
-		}
-		
 		instance = new Pam();
 		
+		if(!Loader.isModLoaded("PamHCBase"))
+		{
+			FMLLog.warning("Pam's HC base missing - MFR Pam HC Compat not loading");
+		}
+		else
+		{
+			registerPamMod("Bean", "bean.PamHCBean", "bean.BlockPamBeanCrop", "beanseedItem", "pambeanCrop", false);
+			registerPamMod("Bellpepper", "bellpepper.PamHCBellpepper", "bellpepper.BlockPamBellpepperCrop", "bellpepperseedItem", "pambellpepperCrop", true);
+			registerPamMod("Blueberry", "blueberry.PamHCBlueberry", "blueberry.BlockPamBlueberryCrop", "blueberryseedItem", "pamblueberryCrop", true);
+			registerPamMod("Chilipepper", "chilipepper.PamHCChilipepper", "chilipepper.BlockPamChilipepperCrop", "chilipepperseedItem", "pamchilipepperCrop", true);
+			registerPamMod("Corn", "corn.PamHCCorn", "corn.BlockPamCornCrop", "cornseedItem", "pamcornCrop", false);
+			registerPamMod("Cotton", "cotton.PamHCCotton", "cotton.BlockPamCottonCrop", "cottonseedItem", "pamcottonCrop", true);
+			registerPamMod("Grape", "grape.PamHCGrape", "grape.BlockPamGrapeCrop", "grapeseedItem", "pamgrapeCrop", true);
+			registerPamMod("Cucumber", "cucumber.PamHCCucumber", "cucumber.BlockPamCucumberCrop", "cucumberseedItem", "pamcucumberCrop", true);
+			registerPamMod("Lettuce", "lettuce.PamHCLettuce", "lettuce.BlockPamLettuceCrop", "lettuceseedItem", "pamlettuceCrop", false);
+			registerPamMod("Onion", "onion.PamHCOnion", "onion.BlockPamOnionCrop", "onionseedItem", "pamonionCrop", false);
+			registerPamMod("Peanut", "peanut.PamHCPeanut", "peanut.BlockPamPeanutCrop", "peanutseedItem", "pampeanutCrop", true);
+			registerPamMod("Strawberry", "strawberry.PamHCStrawberry", "strawberry.BlockPamStrawberryCrop", "strawberryseedItem", "pamstrawberryCrop", false);
+			registerPamMod("Tomato", "tomato.PamHCTomato", "tomato.BlockPamTomatoCrop", "tomatoseedItem", "pamtomatoCrop", true);
+			
+			// rice and white mushroom need different plantable
+			registerPamRice();
+			registerPamWhiteMushroom();
+		}
+		
+		if(!Loader.isModLoaded("PamWeeeFlowers"))
+		{
+			FMLLog.warning("Pam's Weee! Flowers missing - MFR Pam Weee! Flowers Compat not loading");
+		}
+		else
+		{
+			String[] flowers = { "White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime", "Pink", "LightGrey", "DarkGrey", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
+			
+			try
+			{
+				Class<?> mod = Class.forName("pamsmods.common.weeeflowers.PamWeeeFlowers");
+				
+				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)mod.getField("pamFlower").get(null)).blockID, HarvestType.Normal));
+				
+				for(String flower : flowers)
+				{
+					int seedId = ((Item)mod.getField(flower.toLowerCase() + "flowerseedItem").get(null)).shiftedIndex;
+					int blockId = ((Block)mod.getField("pam" + flower.toLowerCase() + "flowerCrop").get(null)).blockID;
+					Method fertilize = Class.forName("pamsmods.common.weeeflowers.BlockPam" + flower + "FlowerCrop").getMethod("fertilize", World.class, int.class, int.class, int.class);
+					
+					FarmingRegistry.registerPlantable(new PlantableStandard(seedId, blockId));
+					FarmingRegistry.registerHarvestable(new HarvestableStandard(blockId, HarvestType.Normal));
+					FarmingRegistry.registerFertilizable(instance.new FertilizablePams(blockId, fertilize));
+				}
+			}
+			catch(ClassNotFoundException x)
+			{
+				FMLLog.warning("Unable to load Pam support for Weee! Flowers even though HarvestCraft base was present");
+			}
+			catch(Exception x)
+			{
+				x.printStackTrace();
+			}
+		}
+	}
+	
+	private static void registerPamMod(String modName, String modClass, String cropBlockClass, String itemField, String blockField, boolean isPerennial)
+	{
 		try
 		{
-			registerPamMod("corn.PamHCCorn", "corn.BlockPamCornCrop", "cornseedItem", "pamcornCrop", false);
-			registerPamMod("cotton.PamHCCotton", "cotton.BlockPamCottonCrop", "cottonseedItem", "pamcottonCrop", true);
-			registerPamMod("cucumber.PamHCCucumber", "cucumber.BlockPamCucumberCrop", "cucumberseedItem", "pamcucumberCrop", true);
-			registerPamMod("lettuce.PamHCLettuce", "lettuce.BlockPamLettuceCrop", "lettuceseedItem", "pamlettuceCrop", false);
-			registerPamMod("onion.PamHCOnion", "onion.BlockPamOnionCrop", "onionseedItem", "pamonionCrop", false);
-			registerPamMod("peanut.PamHCPeanut", "peanut.BlockPamPeanutCrop", "peanutseedItem", "pampeanutCrop", true);
-			registerPamMod("strawberry.PamHCStrawberry", "strawberry.BlockPamStrawberryCrop", "strawberryseedItem", "pamstrawberryCrop", false);
-			registerPamMod("tomato.PamHCTomato", "tomato.BlockPamTomatoCrop", "tomatoseedItem", "pamtomatoCrop", true);
+			Class<?> mod;
+			int blockId;
+			int seedId;
 			
-			// rice needs different plantable
+			mod = Class.forName("pamsmods.common.harvestcraft." + modClass);
+			blockId = ((Block)mod.getField(blockField).get(null)).blockID;
+			seedId = ((Item)mod.getField(itemField).get(null)).shiftedIndex;
+			FarmingRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
+			
+			if(isPerennial)
+			{
+				FarmingRegistry.registerHarvestable(instance.new HarvestablePamsPerennial(blockId));
+			}
+			else
+			{
+				FarmingRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
+			}
+			
+			FarmingRegistry.registerFertilizable(instance.new FertilizablePams(blockId,
+					Class.forName("pamsmods.common.harvestcraft." + cropBlockClass).getMethod("fertilize", World.class, int.class, int.class, int.class)));
+		}
+		catch(ClassNotFoundException x)
+		{
+			FMLLog.warning("Unable to load Pam support for %s even though HarvestCraft base was present", modName);
+		}
+		catch(Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	private static void registerPamRice()
+	{
+		try
+		{
 			Class<?> mod;
 			int blockId;
 			int seedId;
@@ -68,35 +155,89 @@ public class Pam
 			FarmingRegistry.registerFertilizable(instance.new FertilizablePams(blockId,
 					Class.forName("pamsmods.common.harvestcraft.rice.BlockPamRiceCrop").getMethod("fertilize", World.class, int.class, int.class, int.class)));
 		}
-		catch (Exception x)
+		catch(ClassNotFoundException x)
+		{
+			FMLLog.warning("Unable to load Pam support for Rice even though HarvestCraft base was present");
+		}
+		catch(Exception x)
 		{
 			x.printStackTrace();
 		}
 	}
+
 	
-	private static void registerPamMod(String modClass, String cropBlockClass, String itemField, String blockField, boolean isPerennial)
-			throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException
+	private static void registerPamWhiteMushroom()
 	{
-		Class<?> mod;
-		int blockId;
-		int seedId;
-		
-		mod = Class.forName("pamsmods.common.harvestcraft." + modClass);
-		blockId = ((Block)mod.getField(blockField).get(null)).blockID;
-		seedId = ((Item)mod.getField(itemField).get(null)).shiftedIndex;
-		FarmingRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
-		
-		if(isPerennial)
+		try
 		{
-			FarmingRegistry.registerHarvestable(instance.new HarvestablePamsPerennial(blockId));
-		}
-		else
-		{
+			Class<?> mod;
+			int blockId;
+			int seedId;
+			
+			mod = Class.forName("pamsmods.common.harvestcraft.whitemushroom.PamHCWhitemushroom");
+			blockId = ((Block)mod.getField("pamwhitemushroomCrop").get(null)).blockID;
+			seedId = ((Item)mod.getField("whitemushroomseedItem").get(null)).shiftedIndex;
+			FarmingRegistry.registerPlantable(instance.new PlantablePamWhiteMushroom(blockId, seedId));
+			
 			FarmingRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
+			
+			FarmingRegistry.registerFertilizable(instance.new FertilizablePams(blockId,
+					Class.forName("pamsmods.common.harvestcraft.whitemushroom.BlockPamWhitemushroomCrop").getMethod("fertilize", World.class, int.class, int.class, int.class)));
+		}
+		catch(ClassNotFoundException x)
+		{
+			FMLLog.warning("Unable to load Pam support for WhiteMushroom even though HarvestCraft base was present");
+			x.printStackTrace();
+		}
+		catch(Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	public class PlantablePamWhiteMushroom implements IFactoryPlantable
+	{
+		private int _blockId;
+		private int _itemId;
+		
+		public PlantablePamWhiteMushroom(int blockId, int itemId)
+		{
+			_blockId = blockId;
+			_itemId = itemId;
 		}
 		
-		FarmingRegistry.registerFertilizable(instance.new FertilizablePams(blockId,
-				Class.forName("pamsmods.common.harvestcraft." + cropBlockClass).getMethod("fertilize", World.class, int.class, int.class, int.class)));
+		@Override
+		public int getSourceId()
+		{
+			return _itemId;
+		}
+
+		@Override
+		public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack)
+		{
+			return _blockId;
+		}
+
+		@Override
+		public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack)
+		{
+			return 0;
+		}
+
+		@Override
+		public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack)
+		{
+			return world.getBlockId(x, y - 1, z) == Block.wood.blockID && world.getBlockId(x, y, z) == 0;
+		}
+
+		@Override
+		public void prePlant(World world, int x, int y, int z, ItemStack stack)
+		{
+		}
+
+		@Override
+		public void postPlant(World world, int x, int y, int z, ItemStack stack)
+		{
+		}
 	}
 	
 	public class PlantablePamRice implements IFactoryPlantable
@@ -131,7 +272,7 @@ public class Pam
 		@Override
 		public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack)
 		{
-			return world.getBlockId(x, y - 1, z) == Block.waterStill.blockID;
+			return world.getBlockId(x, y - 1, z) == Block.waterStill.blockID && world.getBlockId(x, y, z) == 0;
 		}
 
 		@Override
