@@ -19,7 +19,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	
 	public TileEntityComposter()
 	{
-		super(80);
+		super(40);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 	}
 	

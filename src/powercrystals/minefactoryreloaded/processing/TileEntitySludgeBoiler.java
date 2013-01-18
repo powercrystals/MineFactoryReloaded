@@ -40,7 +40,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	
 	public TileEntitySludgeBoiler()
 	{
-		super(80);
+		super(40);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		
 		_rand = new Random();

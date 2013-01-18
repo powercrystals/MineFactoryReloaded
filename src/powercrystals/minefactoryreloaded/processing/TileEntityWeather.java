@@ -21,7 +21,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements IMach
 	
 	public TileEntityWeather()
 	{
-		super(80);
+		super(40);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 	}
 	

@@ -18,7 +18,7 @@ public class TileEntityVet extends TileEntityFactoryInventory
 	
 	public TileEntityVet()
 	{
-		super(1280);
+		super(320);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 	}
 

@@ -20,7 +20,7 @@ public class TileEntityPlanter extends TileEntityFactoryInventory
 	
 	public TileEntityPlanter() 
 	{
-		super(320);
+		super(160);
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 		_areaManager.setOverrideDirection(ForgeDirection.UP);
 	}

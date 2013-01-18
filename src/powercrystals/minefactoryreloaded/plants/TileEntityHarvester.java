@@ -44,7 +44,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements IMa
 	
 	public TileEntityHarvester()
 	{
-		super(320);
+		super(240);
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		_settings = new HashMap<String, Boolean>();

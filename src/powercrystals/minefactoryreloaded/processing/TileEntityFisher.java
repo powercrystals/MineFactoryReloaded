@@ -16,7 +16,7 @@ public class TileEntityFisher extends TileEntityFactoryPowered implements IMachi
 {
 	public TileEntityFisher()
 	{
-		super(80);
+		super(20);
 	}
 	
 	@Override

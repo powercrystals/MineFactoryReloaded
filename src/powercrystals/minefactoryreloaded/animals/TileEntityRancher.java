@@ -34,7 +34,7 @@ public class TileEntityRancher extends TileEntityFactoryInventory implements IMa
 	
 	public TileEntityRancher()
 	{
-		super(640);
+		super(320);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 	}
