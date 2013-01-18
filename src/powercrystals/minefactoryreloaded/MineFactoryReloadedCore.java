@@ -279,7 +279,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		sewageBucketItem = (new ItemFactory(sewageBucketItemId.getInt())).setIconIndex(10).setItemName("sewageBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		sludgeBucketItem = (new ItemFactory(sludgeBucketItemId.getInt())).setIconIndex(11).setItemName("sludgeBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		mobEssenceBucketItem = (new ItemFactory(mobEssenceBucketItemId.getInt())).setIconIndex(12).setItemName("mobEssenceBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setIconIndex(13).setItemName("syringeEmptyItem").setMaxStackSize(1);
+		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setIconIndex(13).setItemName("syringeEmptyItem");
 		syringeHealthItem = (new ItemHealthSyringe()).setIconIndex(14).setItemName("syringeHealthItem").setContainerItem(syringeEmptyItem);
 		syringeGrowthItem = (new ItemGrowthSyringe()).setIconIndex(15).setItemName("syringeGrowthItem").setContainerItem(syringeEmptyItem);
 		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setIconIndex(16).setItemName("rawRubberItem");

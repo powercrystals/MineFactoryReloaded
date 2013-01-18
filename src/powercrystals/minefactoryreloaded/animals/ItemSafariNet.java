@@ -113,7 +113,7 @@ public class ItemSafariNet extends ItemFactory
 
 			if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + var12, (double)z + 0.5D) != null)
 			{
-				--itemstack.stackSize;
+				itemstack.setItemDamage(0);
 			}
 
 			return true;
