@@ -15,6 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRubberLeaves extends BlockLeaves
 {
@@ -26,6 +27,7 @@ public class BlockRubberLeaves extends BlockLeaves
 		setStepSound(soundGrassFootstep);
 		setBlockName("mfrRubberLeaves");
 		setRequiresSelfNotify();
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

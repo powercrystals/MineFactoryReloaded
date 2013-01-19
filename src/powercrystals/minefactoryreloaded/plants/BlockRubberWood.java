@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRubberWood extends BlockLog
 {
@@ -18,6 +19,7 @@ public class BlockRubberWood extends BlockLog
 		setStepSound(soundWoodFootstep);
 		setBlockName("mfRubberWood");
 		setRequiresSelfNotify();
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override

@@ -31,6 +31,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import buildcraft.api.transport.IPipeConnection;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockFactoryMachine extends BlockContainer implements IPipeConnection
 {
@@ -40,6 +41,7 @@ public class BlockFactoryMachine extends BlockContainer implements IPipeConnecti
 		setBlockName("blockFactoryMachine");
 		setHardness(0.5F);
 		setStepSound(soundMetalFootstep);
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override

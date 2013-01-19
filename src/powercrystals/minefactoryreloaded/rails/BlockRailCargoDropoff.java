@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRailCargoDropoff extends BlockRail
 {
@@ -21,6 +22,7 @@ public class BlockRailCargoDropoff extends BlockRail
 		setBlockName("cargoDropoffRail");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override
