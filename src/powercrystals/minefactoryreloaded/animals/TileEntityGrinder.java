@@ -37,7 +37,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements IMach
 	
 	public TileEntityGrinder()
 	{
-		super(1600);
+		super(3200);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		_rand = new Random();
