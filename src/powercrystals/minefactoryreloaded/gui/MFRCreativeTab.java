@@ -14,6 +14,7 @@ public class MFRCreativeTab extends CreativeTabs {
     public MFRCreativeTab(String label, ItemStack icon) {
         super(label);
         this.label = label;
+        this.icon = icon;
     }
 
     @Override
