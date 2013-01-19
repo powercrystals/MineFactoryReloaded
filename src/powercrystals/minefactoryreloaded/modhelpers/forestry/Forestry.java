@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.modhelpers;
+package powercrystals.minefactoryreloaded.modhelpers.forestry;
 
 import net.minecraft.item.Item;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
