@@ -129,7 +129,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.0.6RC3";
+	public static final String version = "1.4.6R2.0.6";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -466,10 +466,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		}));
 		FarmingRegistry.registerGrindable(new GrindableStandard(EntityZombie.class, new ItemStack(Item.rottenFlesh)));
 		
-		FarmingRegistry.registerSludgeDrop(50, null);
-		FarmingRegistry.registerSludgeDrop(20, new ItemStack(Block.sand));
+		FarmingRegistry.registerSludgeDrop(25, new ItemStack(Block.sand));
 		FarmingRegistry.registerSludgeDrop(20, new ItemStack(Block.dirt));
-		FarmingRegistry.registerSludgeDrop(10, new ItemStack(Block.blockClay));
+		FarmingRegistry.registerSludgeDrop(15, new ItemStack(Block.blockClay));
 		FarmingRegistry.registerSludgeDrop(1, new ItemStack(Block.slowSand));
 		
 		registerRecipes();

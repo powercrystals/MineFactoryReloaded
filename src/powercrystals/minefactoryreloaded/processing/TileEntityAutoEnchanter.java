@@ -85,7 +85,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implemen
 			setWorkDone(0);
 			return false;
 		}
-		if(s.getItem().getItemEnchantability() == 0)
+		if(s.getItem().getItemEnchantability() == 0 || s.hasTagCompound())
 		{
 			setInventorySlotContents(0, null);
 			setInventorySlotContents(1, s);

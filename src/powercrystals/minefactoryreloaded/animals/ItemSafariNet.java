@@ -122,7 +122,7 @@ public class ItemSafariNet extends ItemFactory
 
 	private static Entity spawnCreature(World world, int mobId, double x, double y, double z)
 	{
-		if (!EntityList.entityEggs.containsKey(Integer.valueOf(mobId)))
+		if(!EntityList.entityEggs.containsKey(Integer.valueOf(mobId)))
 		{
 			return null;
 		}

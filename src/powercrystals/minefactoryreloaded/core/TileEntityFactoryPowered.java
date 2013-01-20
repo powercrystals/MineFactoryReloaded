@@ -80,6 +80,8 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	{
 		super.updateEntity();
 		
+		_energyStored = Math.min(_energyStored, getEnergyStoredMax());
+		
 		if(worldObj.isRemote)
 		{
 			return;
