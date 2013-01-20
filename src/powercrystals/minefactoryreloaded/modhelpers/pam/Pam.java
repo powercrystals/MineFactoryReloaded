@@ -34,19 +34,19 @@ public class Pam
 		}
 		else
 		{
-			registerPamMod("Bean", "bean.PamHCBean", "bean.BlockPamBeanCrop", "beanseedItem", "pambeanCrop", false);
-			registerPamMod("Bellpepper", "bellpepper.PamHCBellpepper", "bellpepper.BlockPamBellpepperCrop", "bellpepperseedItem", "pambellpepperCrop", true);
-			registerPamMod("Blueberry", "blueberry.PamHCBlueberry", "blueberry.BlockPamBlueberryCrop", "blueberryseedItem", "pamblueberryCrop", true);
-			registerPamMod("Chilipepper", "chilipepper.PamHCChilipepper", "chilipepper.BlockPamChilipepperCrop", "chilipepperseedItem", "pamchilipepperCrop", true);
-			registerPamMod("Corn", "corn.PamHCCorn", "corn.BlockPamCornCrop", "cornseedItem", "pamcornCrop", false);
-			registerPamMod("Cotton", "cotton.PamHCCotton", "cotton.BlockPamCottonCrop", "cottonseedItem", "pamcottonCrop", true);
-			registerPamMod("Grape", "grape.PamHCGrape", "grape.BlockPamGrapeCrop", "grapeseedItem", "pamgrapeCrop", true);
-			registerPamMod("Cucumber", "cucumber.PamHCCucumber", "cucumber.BlockPamCucumberCrop", "cucumberseedItem", "pamcucumberCrop", true);
-			registerPamMod("Lettuce", "lettuce.PamHCLettuce", "lettuce.BlockPamLettuceCrop", "lettuceseedItem", "pamlettuceCrop", false);
-			registerPamMod("Onion", "onion.PamHCOnion", "onion.BlockPamOnionCrop", "onionseedItem", "pamonionCrop", false);
-			registerPamMod("Peanut", "peanut.PamHCPeanut", "peanut.BlockPamPeanutCrop", "peanutseedItem", "pampeanutCrop", true);
-			registerPamMod("Strawberry", "strawberry.PamHCStrawberry", "strawberry.BlockPamStrawberryCrop", "strawberryseedItem", "pamstrawberryCrop", false);
-			registerPamMod("Tomato", "tomato.PamHCTomato", "tomato.BlockPamTomatoCrop", "tomatoseedItem", "pamtomatoCrop", true);
+			registerPamMod("Bean", false, false);
+			registerPamMod("Bellpepper", true, false);
+			registerPamMod("Blueberry", true, true);
+			registerPamMod("Chilipepper", true, false);
+			registerPamMod("Corn", false, false);
+			registerPamMod("Cotton", true, true);
+			registerPamMod("Grape", true, true);
+			registerPamMod("Cucumber", true, false);
+			registerPamMod("Lettuce", false, false);
+			registerPamMod("Onion", false, false);
+			registerPamMod("Peanut", true, false);
+			registerPamMod("Strawberry", false, true);
+			registerPamMod("Tomato", true, false);
 			
 			// rice and white mushroom need different plantable
 			registerPamRice();
@@ -89,30 +89,38 @@ public class Pam
 		}
 	}
 	
-	private static void registerPamMod(String modName, String modClass, String cropBlockClass, String itemField, String blockField, boolean isPerennial)
+	private static void registerPamMod(String modName, boolean isPerennial, boolean hasWild)
 	{
 		try
 		{
 			Class<?> mod;
-			int blockId;
+			int blockIdCrop;
+			int blockIdWild;
 			int seedId;
 			
-			mod = Class.forName("pamsmods.common.harvestcraft." + modClass);
-			blockId = ((Block)mod.getField(blockField).get(null)).blockID;
-			seedId = ((Item)mod.getField(itemField).get(null)).shiftedIndex;
-			FarmingRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
+			mod = Class.forName("pamsmods.common.harvestcraft." + modName.toLowerCase() + ".PamHC" + modName);
+			blockIdCrop = ((Block)mod.getField("pam" + modName.toLowerCase() + "Crop").get(null)).blockID;
+			seedId = ((Item)mod.getField(modName.toLowerCase() + "seedItem").get(null)).shiftedIndex;
+			
+			FarmingRegistry.registerPlantable(new PlantableCropPlant(seedId, blockIdCrop));
+			
+			if(hasWild)
+			{
+				blockIdWild = ((Block)mod.getField("pam" + modName.toLowerCase() + "Wild").get(null)).blockID;
+				FarmingRegistry.registerHarvestable(new HarvestableStandard(blockIdWild, HarvestType.Normal));
+			}
 			
 			if(isPerennial)
 			{
-				FarmingRegistry.registerHarvestable(new HarvestablePamsPerennial(blockId));
+				FarmingRegistry.registerHarvestable(new HarvestablePamsPerennial(blockIdCrop));
 			}
 			else
 			{
-				FarmingRegistry.registerHarvestable(new HarvestablePams(blockId));
+				FarmingRegistry.registerHarvestable(new HarvestablePams(blockIdCrop));
 			}
 			
-			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockId,
-					Class.forName("pamsmods.common.harvestcraft." + cropBlockClass).getMethod("fertilize", World.class, int.class, int.class, int.class)));
+			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockIdCrop,
+					Class.forName("pamsmods.common.harvestcraft." + modName.toLowerCase() + ".BlockPam" + modName + "Crop").getMethod("fertilize", World.class, int.class, int.class, int.class)));
 		}
 		catch(ClassNotFoundException x)
 		{
@@ -129,17 +137,17 @@ public class Pam
 		try
 		{
 			Class<?> mod;
-			int blockId;
+			int blockIdCrop;
 			int seedId;
 			
 			mod = Class.forName("pamsmods.common.harvestcraft.rice.PamHCRice");
-			blockId = ((Block)mod.getField("pamriceCrop").get(null)).blockID;
+			blockIdCrop = ((Block)mod.getField("pamriceCrop").get(null)).blockID;
 			seedId = ((Item)mod.getField("riceseedItem").get(null)).shiftedIndex;
-			FarmingRegistry.registerPlantable(new PlantablePamRice(blockId, seedId));
+			FarmingRegistry.registerPlantable(new PlantablePamRice(blockIdCrop, seedId));
 			
-			FarmingRegistry.registerHarvestable(new HarvestablePams(blockId));
+			FarmingRegistry.registerHarvestable(new HarvestablePams(blockIdCrop));
 			
-			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockId,
+			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockIdCrop,
 					Class.forName("pamsmods.common.harvestcraft.rice.BlockPamRiceCrop").getMethod("fertilize", World.class, int.class, int.class, int.class)));
 		}
 		catch(ClassNotFoundException x)
@@ -158,17 +166,20 @@ public class Pam
 		try
 		{
 			Class<?> mod;
-			int blockId;
+			int blockIdCrop;
+			int blockIdWild;
 			int seedId;
 			
 			mod = Class.forName("pamsmods.common.harvestcraft.whitemushroom.PamHCWhitemushroom");
-			blockId = ((Block)mod.getField("pamwhitemushroomCrop").get(null)).blockID;
+			blockIdCrop = ((Block)mod.getField("pamwhitemushroomCrop").get(null)).blockID;
+			blockIdWild = ((Block)mod.getField("pamwhitemushroomWild").get(null)).blockID;
 			seedId = ((Item)mod.getField("whitemushroomseedItem").get(null)).shiftedIndex;
-			FarmingRegistry.registerPlantable(new PlantablePamWhiteMushroom(blockId, seedId));
+			FarmingRegistry.registerPlantable(new PlantablePamWhiteMushroom(blockIdCrop, seedId));
+
+			FarmingRegistry.registerHarvestable(new HarvestableStandard(blockIdWild, HarvestType.Normal));
+			FarmingRegistry.registerHarvestable(new HarvestablePams(blockIdCrop));
 			
-			FarmingRegistry.registerHarvestable(new HarvestablePams(blockId));
-			
-			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockId,
+			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockIdCrop,
 					Class.forName("pamsmods.common.harvestcraft.whitemushroom.BlockPamWhitemushroomCrop").getMethod("fertilize", World.class, int.class, int.class, int.class)));
 		}
 		catch(ClassNotFoundException x)

@@ -13,52 +13,25 @@ public class FertilizableGrass implements IFactoryFertilizable
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		return fertilizerType == FertilizerType.GrowPlant;
+		return fertilizerType == FertilizerType.GrowPlant && world.getBlockId(x, y + 1, z) == 0;
 	}
 
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		if (!world.isRemote)
+		if(rand.nextInt(6) != 0)
 		{
-			label133:
-
-			for (int var12 = 0; var12 < 128; ++var12)
+			if(Block.tallGrass.canBlockStay(world, x, y + 1, z))
 			{
-				int xTemp = x;
-				int yTemp = y + 1;
-				int zTemp = z;
-
-				for (int var16 = 0; var16 < var12 / 16; ++var16)
-				{
-					xTemp += rand.nextInt(3) - 1;
-					yTemp += (rand.nextInt(3) - 1) * rand.nextInt(3) / 2;
-					zTemp += rand.nextInt(3) - 1;
-
-					if (world.getBlockId(xTemp, yTemp - 1, zTemp) != Block.grass.blockID || world.isBlockNormalCube(xTemp, yTemp, zTemp))
-					{
-						continue label133;
-					}
-				}
-
-				if (world.getBlockId(xTemp, yTemp, zTemp) == 0)
-				{
-					if (rand.nextInt(10) != 0)
-					{
-						if (Block.tallGrass.canBlockStay(world, xTemp, yTemp, zTemp))
-						{
-							world.setBlockAndMetadataWithNotify(xTemp, yTemp, zTemp, Block.tallGrass.blockID, 1);
-						}
-					}
-					else
-					{
-						ForgeHooks.plantGrass(world, xTemp, yTemp, zTemp);
-					}
-				}
+				world.setBlockAndMetadataWithNotify(x, y + 1, z, Block.tallGrass.blockID, 1);
 			}
 		}
+		else
+		{
+			ForgeHooks.plantGrass(world, x, y + 1, z);
+		}
 
-		return true;
+		return world.getBlockId(x, y + 1, z) != 0;
 	}
 
 	@Override
