@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRailPassengerPickup extends BlockRail
 {
@@ -19,6 +20,7 @@ public class BlockRailPassengerPickup extends BlockRail
 		setBlockName("passengerPickupRail");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override

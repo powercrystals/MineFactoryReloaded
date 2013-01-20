@@ -13,6 +13,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRailCargoPickup extends BlockRail
 {
@@ -22,6 +23,7 @@ public class BlockRailCargoPickup extends BlockRail
 		setBlockName("cargoPickupRail");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override

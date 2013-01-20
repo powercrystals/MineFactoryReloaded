@@ -8,6 +8,7 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRailPassengerDropoff extends BlockRail
 {
@@ -17,6 +18,7 @@ public class BlockRailPassengerDropoff extends BlockRail
 		setBlockName("passengerDropoffRail");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override

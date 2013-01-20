@@ -20,6 +20,7 @@ import powercrystals.core.position.IRotateableTile;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockConveyor extends BlockContainer
 {
@@ -30,6 +31,7 @@ public class BlockConveyor extends BlockContainer
 		setBlockName("factoryConveyor");
 		setBlockBounds(0.0F, 0.0F, 0.0F, 0.1F, 0.1F, 0.1F);
 		setRequiresSelfNotify();
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override

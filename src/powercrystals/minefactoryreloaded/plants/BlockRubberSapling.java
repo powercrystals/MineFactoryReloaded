@@ -6,6 +6,7 @@ import net.minecraft.block.BlockSapling;
 import net.minecraft.world.World;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRubberSapling extends BlockSapling
 {
@@ -16,6 +17,7 @@ public class BlockRubberSapling extends BlockSapling
 		setStepSound(soundGrassFootstep);
 		setBlockName("sapling");
 		setRequiresSelfNotify();
+                setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override
