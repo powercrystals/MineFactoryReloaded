@@ -8,10 +8,8 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.farmables.HarvestableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.PlantableCropPlant;
-import powercrystals.minefactoryreloaded.farmables.PlantableStandard;
 import powercrystals.minefactoryreloaded.modhelpers.FertilizableCropReflection;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -75,8 +73,8 @@ public class Pam
 					int blockId = ((Block)mod.getField("pam" + flower.toLowerCase() + "flowerCrop").get(null)).blockID;
 					Method fertilize = Class.forName("pamsmods.common.weeeflowers.BlockPam" + flower + "FlowerCrop").getMethod("fertilize", World.class, int.class, int.class, int.class);
 					
-					FarmingRegistry.registerPlantable(new PlantableStandard(seedId, blockId));
-					FarmingRegistry.registerHarvestable(new HarvestableStandard(blockId, HarvestType.Normal));
+					FarmingRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
+					FarmingRegistry.registerHarvestable(new HarvestablePams(blockId));
 					FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
 				}
 			}
@@ -110,7 +108,7 @@ public class Pam
 			}
 			else
 			{
-				FarmingRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
+				FarmingRegistry.registerHarvestable(new HarvestablePams(blockId));
 			}
 			
 			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockId,
@@ -139,7 +137,7 @@ public class Pam
 			seedId = ((Item)mod.getField("riceseedItem").get(null)).shiftedIndex;
 			FarmingRegistry.registerPlantable(new PlantablePamRice(blockId, seedId));
 			
-			FarmingRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
+			FarmingRegistry.registerHarvestable(new HarvestablePams(blockId));
 			
 			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockId,
 					Class.forName("pamsmods.common.harvestcraft.rice.BlockPamRiceCrop").getMethod("fertilize", World.class, int.class, int.class, int.class)));
@@ -168,7 +166,7 @@ public class Pam
 			seedId = ((Item)mod.getField("whitemushroomseedItem").get(null)).shiftedIndex;
 			FarmingRegistry.registerPlantable(new PlantablePamWhiteMushroom(blockId, seedId));
 			
-			FarmingRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
+			FarmingRegistry.registerHarvestable(new HarvestablePams(blockId));
 			
 			FarmingRegistry.registerFertilizable(new FertilizableCropReflection(blockId,
 					Class.forName("pamsmods.common.harvestcraft.whitemushroom.BlockPamWhitemushroomCrop").getMethod("fertilize", World.class, int.class, int.class, int.class)));
