@@ -85,8 +85,6 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 			return;
 		}
 		
-		boolean hadPower = false;
-		
 		if(_addToNetOnNextTick)
 		{
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
@@ -105,6 +103,8 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 			}
 		}
 		
+		setIsActive(_energyStored >= _energyActivation);
+		
 		if(_idleTicks > 0)
 		{
 			_idleTicks--;
@@ -115,14 +115,11 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 		}
 		else if(_energyStored >= _energyActivation)
 		{
-			hadPower = true;
 			if(activateMachine())
 			{
 				_energyStored -= _energyActivation;
 			}
 		}
-		
-		setIsActive(hadPower);
 
 		if(shouldPumpLiquid())
 		{
