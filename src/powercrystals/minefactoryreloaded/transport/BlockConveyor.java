@@ -31,7 +31,7 @@ public class BlockConveyor extends BlockContainer
 		setBlockName("factoryConveyor");
 		setBlockBounds(0.0F, 0.0F, 0.0F, 0.1F, 0.1F, 0.1F);
 		setRequiresSelfNotify();
-                setCreativeTab(MFRCreativeTab.tab);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override

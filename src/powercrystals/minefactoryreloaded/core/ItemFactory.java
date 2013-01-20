@@ -9,7 +9,7 @@ public class ItemFactory extends Item
 	public ItemFactory(int i)
 	{
 		super(i);
-                setCreativeTab(MFRCreativeTab.tab);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override

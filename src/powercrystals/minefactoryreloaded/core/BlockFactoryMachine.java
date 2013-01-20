@@ -41,7 +41,7 @@ public class BlockFactoryMachine extends BlockContainer implements IPipeConnecti
 		setBlockName("blockFactoryMachine");
 		setHardness(0.5F);
 		setStepSound(soundMetalFootstep);
-                setCreativeTab(MFRCreativeTab.tab);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override

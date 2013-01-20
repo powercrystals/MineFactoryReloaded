@@ -27,15 +27,15 @@ public class BlockRubberLeaves extends BlockLeaves
 		setStepSound(soundGrassFootstep);
 		setBlockName("mfrRubberLeaves");
 		setRequiresSelfNotify();
-                setCreativeTab(MFRCreativeTab.tab);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-        par3List.add(new ItemStack(par1, 1, 0));
-    }
+	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+	{
+		par3List.add(new ItemStack(par1, 1, 0));
+	}
 	
 	@Override
 	public String getTextureFile()
@@ -65,18 +65,18 @@ public class BlockRubberLeaves extends BlockLeaves
 	@Override
 	public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
 	{
-        if (!par1World.isRemote)
-        {
-            ArrayList<ItemStack> items = getBlockDropped(par1World, par2, par3, par4, par5, par7);
+		if (!par1World.isRemote)
+		{
+			ArrayList<ItemStack> items = getBlockDropped(par1World, par2, par3, par4, par5, par7);
 
-            for (ItemStack item : items)
-            {
-                if (par1World.rand.nextFloat() <= par6)
-                {
-                    this.dropBlockAsItem_do(par1World, par2, par3, par4, item);
-                }
-            }
-        }
+			for (ItemStack item : items)
+			{
+				if (par1World.rand.nextFloat() <= par6)
+				{
+					this.dropBlockAsItem_do(par1World, par2, par3, par4, item);
+				}
+			}
+		}
 	}
 	
 	@Override

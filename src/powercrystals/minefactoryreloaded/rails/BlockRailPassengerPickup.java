@@ -20,7 +20,7 @@ public class BlockRailPassengerPickup extends BlockRail
 		setBlockName("passengerPickupRail");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
-                setCreativeTab(MFRCreativeTab.tab);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override
@@ -61,6 +61,6 @@ public class BlockRailPassengerPickup extends BlockRail
 	@Override
 	public String getTextureFile()
 	{
-        return MineFactoryReloadedCore.terrainTexture;
+		return MineFactoryReloadedCore.terrainTexture;
 	}
 }

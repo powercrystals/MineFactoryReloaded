@@ -1,34 +1,27 @@
 package powercrystals.minefactoryreloaded.gui;
 
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
-public class MFRCreativeTab extends CreativeTabs {
+public class MFRCreativeTab extends CreativeTabs
+{
+	public static final MFRCreativeTab tab = new MFRCreativeTab("MineFactory Reloaded");
 
-    public static final MFRCreativeTab tab = new MFRCreativeTab("Minefactory Reloaded", new ItemStack(MineFactoryReloadedCore.conveyorBlock));
-    //-------------------
-    private String label;
-    private ItemStack icon;
+	public MFRCreativeTab(String label)
+	{
+		super(label);
+	}
 
-    public MFRCreativeTab(String label, ItemStack icon) {
-        super(label);
-        this.label = label;
-        this.icon = icon;
-    }
+	@Override
+	public ItemStack getIconItemStack()
+	{
+		return new ItemStack(MineFactoryReloadedCore.conveyorBlock);
+	}
 
-    @Override
-    public ItemStack getIconItemStack() {
-        return icon;
-    }
-
-    @Override
-    public String getTabLabel() {
-        return this.label;
-    }
-
-    @Override
-    public String getTranslatedTabLabel() {
-        return this.getTabLabel();
-    }
+	@Override
+	public String getTranslatedTabLabel()
+	{
+		return this.getTabLabel();
+	}
 }

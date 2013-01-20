@@ -22,7 +22,7 @@ public class BlockRailCargoDropoff extends BlockRail
 		setBlockName("cargoDropoffRail");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
-                setCreativeTab(MFRCreativeTab.tab);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override
@@ -65,6 +65,6 @@ public class BlockRailCargoDropoff extends BlockRail
 	@Override
 	public String getTextureFile()
 	{
-        return MineFactoryReloadedCore.terrainTexture;
+		return MineFactoryReloadedCore.terrainTexture;
 	}
 }

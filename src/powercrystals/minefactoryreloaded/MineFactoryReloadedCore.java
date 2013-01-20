@@ -129,7 +129,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.0.6RC2";
+	public static final String version = "1.4.6R2.0.6RC3";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -521,10 +521,10 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		treeSearchMaxVertical.comment = "When searching for parts of a tree, how far up to search";
 		verticalHarvestSearchMaxVertical = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.StackingBlockMaxVertical", 3);
 		verticalHarvestSearchMaxVertical.comment = "How far upward to search for members of \"stacking\" blocks, like cactus and sugarcane";
-        passengerRailSearchMaxVertical = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.PassengerRailMaxVertical", 2);
-        passengerRailSearchMaxVertical.comment = "When searching for players or dropoff locations, how far up to search";
-        passengerRailSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.PassengerRailMaxHorizontal", 3);
-        passengerRailSearchMaxHorizontal.comment = "When searching for players or dropoff locations, how far out to the sides (radius) to search";
+		passengerRailSearchMaxVertical = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.PassengerRailMaxVertical", 2);
+		passengerRailSearchMaxVertical.comment = "When searching for players or dropoff locations, how far up to search";
+		passengerRailSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.PassengerRailMaxHorizontal", 3);
+		passengerRailSearchMaxHorizontal.comment = "When searching for players or dropoff locations, how far out to the sides (radius) to search";
 		rubberTreeWorldGen = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTree", true);
 		rubberTreeWorldGen.comment = "Whether or not to generate rubber trees during map generation";
 		enableBonemealFertilizing = c.get(Configuration.CATEGORY_GENERAL, "Fertilizer.EnableBonemeal", false);
@@ -833,45 +833,45 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} ));
 		
 
-        GameRegistry.addRecipe(new ItemStack(railPickupCargoBlock, 2), new Object[]
-        		{
-        			" C ",
-        			"SDS",
-        			"SSS",
-        			Character.valueOf('C'), Block.chest,
-        			Character.valueOf('S'), plasticSheetItem,
-        			Character.valueOf('D'), Block.railDetector
-        		} );
-        
-        GameRegistry.addRecipe(new ItemStack(railDropoffCargoBlock, 2), new Object[]
-        		{
-        			"SSS",
-        			"SDS",
-        			" C ",
-        			Character.valueOf('C'), Block.chest,
-        			Character.valueOf('S'), plasticSheetItem,
-        			Character.valueOf('D'), Block.railDetector
-        		} );
-        
-        GameRegistry.addRecipe(new ItemStack(railPickupPassengerBlock, 3), new Object[]
-        		{
-        			" L ",
-        			"SDS",
-        			"SSS",
-        			Character.valueOf('L'), Block.blockLapis,
-        			Character.valueOf('S'), plasticSheetItem,
-        			Character.valueOf('D'), Block.railDetector
-        		} );
-        
-        GameRegistry.addRecipe(new ItemStack(railDropoffPassengerBlock, 3), new Object[]
-        		{
-        			"SSS",
-        			"SDS",
-        			" L ",
-        			Character.valueOf('L'), Block.blockLapis,
-        			Character.valueOf('S'), plasticSheetItem,
-        			Character.valueOf('D'), Block.railDetector
-        		} );
+		GameRegistry.addRecipe(new ItemStack(railPickupCargoBlock, 2), new Object[]
+				{
+					" C ",
+					"SDS",
+					"SSS",
+					Character.valueOf('C'), Block.chest,
+					Character.valueOf('S'), plasticSheetItem,
+					Character.valueOf('D'), Block.railDetector
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(railDropoffCargoBlock, 2), new Object[]
+				{
+					"SSS",
+					"SDS",
+					" C ",
+					Character.valueOf('C'), Block.chest,
+					Character.valueOf('S'), plasticSheetItem,
+					Character.valueOf('D'), Block.railDetector
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(railPickupPassengerBlock, 3), new Object[]
+				{
+					" L ",
+					"SDS",
+					"SSS",
+					Character.valueOf('L'), Block.blockLapis,
+					Character.valueOf('S'), plasticSheetItem,
+					Character.valueOf('D'), Block.railDetector
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(railDropoffPassengerBlock, 3), new Object[]
+				{
+					"SSS",
+					"SDS",
+					" L ",
+					Character.valueOf('L'), Block.blockLapis,
+					Character.valueOf('S'), plasticSheetItem,
+					Character.valueOf('D'), Block.railDetector
+				} );
 	}
 
 	@Override

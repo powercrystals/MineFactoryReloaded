@@ -17,7 +17,7 @@ public class BlockRubberSapling extends BlockSapling
 		setStepSound(soundGrassFootstep);
 		setBlockName("sapling");
 		setRequiresSelfNotify();
-                setCreativeTab(MFRCreativeTab.tab);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override
