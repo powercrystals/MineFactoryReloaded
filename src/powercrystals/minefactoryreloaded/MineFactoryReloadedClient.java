@@ -8,9 +8,12 @@ import javax.imageio.ImageIO;
 
 import powercrystals.core.render.TextureLiquidStillFX;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
+import powercrystals.minefactoryreloaded.render.RendererConveyor;
+import powercrystals.minefactoryreloaded.render.RendererFactoryGlassPane;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.TextureFXManager;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 import net.minecraft.client.texturepacks.TexturePackList;
@@ -21,6 +24,8 @@ import net.minecraftforge.client.MinecraftForgeClient;
 public class MineFactoryReloadedClient
 {	
 	private static MineFactoryReloadedClient instance;
+	
+	private static String[] colorNames = { "White", "Orange", "Magenta", "Light Blue", "Yellow", "Lime", "Pink", "Gray", "Light Gray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
 
 	public MineFactoryReloadedClient()
 	{
@@ -33,12 +38,15 @@ public class MineFactoryReloadedClient
 		return instance;
 	}
 	
-	public int renderId = 1000;
+	public static int renderIdConveyor = 1000;
+	public static int renderIdFactoryGlassPane = 1001;
 
 	private void load()
 	{
 		MinecraftForgeClient.preloadTexture(MineFactoryReloadedCore.terrainTexture);
 		MinecraftForgeClient.preloadTexture(MineFactoryReloadedCore.itemTexture);
+		MinecraftForgeClient.preloadTexture(MineFactoryReloadedCore.machine0Texture);
+		MinecraftForgeClient.preloadTexture(MineFactoryReloadedCore.machine1Texture);
 
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Planter)), "Planter");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Fisher)), "Fisher");
@@ -85,6 +93,13 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(MineFactoryReloadedCore.rawRubberItem, "Rubber");
 		LanguageRegistry.addName(MineFactoryReloadedCore.machineBaseItem, "Factory Machine Block");
 		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetItem, "Safari Net");
+		
+		for(int i = 0; i < 16; i++)
+		{
+			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryGlassBlock, 1, i), colorNames[i] + " Stained Glass");
+			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryGlassPaneBlock, 1, i), colorNames[i] + " Stained Glass Pane");
+			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 1, i), colorNames[i] + " Ceramic Dye");
+		}
 
 		if(MineFactoryReloadedCore.animateBlockFaces.getBoolean(true))
 		{
@@ -104,6 +119,12 @@ public class MineFactoryReloadedClient
 			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(4, MineFactoryReloadedCore.itemTexture, 106, 106, 52, 52, 45, 45)); // sewage
 			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(5, MineFactoryReloadedCore.itemTexture, 0, 0, 100, 128, 0, 0)); // essence
 		}
+		
+		renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
+		renderIdFactoryGlassPane = RenderingRegistry.getNextAvailableRenderId();
+		
+		RenderingRegistry.registerBlockHandler(renderIdConveyor, new RendererConveyor());
+		RenderingRegistry.registerBlockHandler(renderIdFactoryGlassPane, new RendererFactoryGlassPane());
 	}
 	
 	private void registerMachineAnimation(Machine machine, String animation)

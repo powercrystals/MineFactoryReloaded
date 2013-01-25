@@ -44,6 +44,11 @@ import powercrystals.minefactoryreloaded.core.BlockFactoryMachine;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
 import powercrystals.minefactoryreloaded.core.ItemFactoryHammer;
 import powercrystals.minefactoryreloaded.core.ItemFactoryMachine;
+import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlass;
+import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
+import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
+import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
+import powercrystals.minefactoryreloaded.decorative.ItemCeramicDye;
 import powercrystals.minefactoryreloaded.farmables.FertilizableCocoa;
 import powercrystals.minefactoryreloaded.farmables.FertilizableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.FertilizableGiantMushroom;
@@ -95,11 +100,9 @@ import powercrystals.minefactoryreloaded.rails.BlockRailCargoDropoff;
 import powercrystals.minefactoryreloaded.rails.BlockRailCargoPickup;
 import powercrystals.minefactoryreloaded.rails.BlockRailPassengerDropoff;
 import powercrystals.minefactoryreloaded.rails.BlockRailPassengerPickup;
-import powercrystals.minefactoryreloaded.render.RendererConveyor;
 import powercrystals.minefactoryreloaded.transport.BlockConveyor;
 import powercrystals.minefactoryreloaded.transport.TileEntityCollector;
 import powercrystals.minefactoryreloaded.transport.TileEntityConveyor;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -141,7 +144,12 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static final String guiFolder = textureFolder + "gui/";
 	
 	public static Block machineBlock;
+	
 	public static Block conveyorBlock;
+	
+	public static Block factoryGlassBlock;
+	public static Block factoryGlassPaneBlock;
+	
 	public static Block rubberWoodBlock;
 	public static Block rubberLeavesBlock;
 	public static Block rubberSaplingBlock;
@@ -171,6 +179,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item rawRubberItem;
 	public static Item machineBaseItem;
 	public static Item safariNetItem;
+	public static Item ceramicDyeItem;
 
 	public static int conveyorTexture = 12;
 	public static int conveyorOffTexture = 13;
@@ -182,7 +191,12 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 
 	// Config
 	public static Property machineBlockId;
+	
 	public static Property conveyorBlockId;
+	
+	public static Property factoryGlassBlockId;
+	public static Property factoryGlassPaneBlockId;
+	
 	public static Property rubberWoodBlockId;
 	public static Property rubberLeavesBlockId;
 	public static Property rubberSaplingBlockId;
@@ -210,6 +224,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property rawRubberItemId;
 	public static Property machineBaseItemId;
 	public static Property safariNetItemId;
+	public static Property ceramicDyeId;
 
 	public static Property animateBlockFaces;
 	public static Property treeSearchMaxVertical;
@@ -261,6 +276,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorTexture);
 		machineBlock = new BlockFactoryMachine(machineBlockId.getInt(), 0);
+		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt(), 16);
+		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt(), 16, 32);
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
 		rubberLeavesBlock = new BlockRubberLeaves(rubberLeavesBlockId.getInt());
 		rubberSaplingBlock = new BlockRubberSapling(rubberSaplingBlockId.getInt(), 15);
@@ -287,10 +304,12 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setIconIndex(16).setItemName("rawRubberItem");
 		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setIconIndex(17).setItemName("factoryMachineBlock");
 		safariNetItem = (new ItemSafariNet()).setIconIndex(18).setItemName("safariNetItem");
-		
+		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setIconIndex(22).setItemName("ceramicDyeItem");
 
 		GameRegistry.registerBlock(machineBlock, ItemFactoryMachine.class, "blockMachine");
 		GameRegistry.registerBlock(conveyorBlock, "blockConveyor");
+		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
+		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
 		GameRegistry.registerBlock(rubberWoodBlock, "blockRubberWood");
 		GameRegistry.registerBlock(rubberLeavesBlock, "blockRubberLeaves");
 		GameRegistry.registerBlock(rubberSaplingBlock, "blockRubberSapling");
@@ -327,9 +346,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		proxy.load();
 		
 		NetworkRegistry.instance().registerGuiHandler(this, new MFRGUIHandler());
-		
-		renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(renderIdConveyor, new RendererConveyor());
 		
 		if(rubberTreeWorldGen.getBoolean(true))
 		{
@@ -489,6 +505,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		railPickupCargoBlockId = c.getBlock("ID.CargoRailPickupBlock", 3126);
 		railDropoffPassengerBlockId = c.getBlock("ID.PassengerRailDropoffBlock", 3127);
 		railPickupPassengerBlockId = c.getBlock("ID.PassengerRailPickupBlock", 3128);
+		factoryGlassBlockId = c.getBlock("ID.StainedGlass", 3129);
+		factoryGlassPaneBlockId = c.getBlock("ID.StainedGlassPane", 3130);
 
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
@@ -508,6 +526,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		rawRubberItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.RawRubber", 12002);
 		machineBaseItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MachineBlock", 12003);
 		safariNetItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNet", 12004);
+		ceramicDyeId = c.getItem(Configuration.CATEGORY_ITEM, "ID.CeramicDye", 12005);
 
 		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
 		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";

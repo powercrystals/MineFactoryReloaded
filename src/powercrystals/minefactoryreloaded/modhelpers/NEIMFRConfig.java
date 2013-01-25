@@ -24,10 +24,12 @@ public class NEIMFRConfig implements IConfigureNEI
 	private void addSubSet()
 	{
 		MultiItemRange subTypes = new MultiItemRange();
-		int blockID = MineFactoryReloadedCore.machineBlock.blockID;
 		for (int i = 0; i <= 15; i++)
 		{
-			subTypes.add(blockID, i, i);
+			subTypes.add(MineFactoryReloadedCore.machineBlock.blockID, i, i);
+			subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.shiftedIndex, i, i);
+			subTypes.add(MineFactoryReloadedCore.factoryGlassBlock.blockID, i, i);
+			subTypes.add(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, i, i);
 		}
 		
 		subTypes.add(MineFactoryReloadedCore.conveyorBlock.blockID, 0, 0);

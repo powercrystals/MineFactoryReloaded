@@ -30,7 +30,7 @@ public class RendererConveyor implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId()
 	{
-		return MineFactoryReloadedClient.instance().renderId;
+		return MineFactoryReloadedClient.renderIdConveyor;
 	}
 	
 	private void renderConveyorWorld(RenderBlocks renderblocks, IBlockAccess iblockaccess, int blockX, int blockY, int blockZ, Block block, int renderId)
