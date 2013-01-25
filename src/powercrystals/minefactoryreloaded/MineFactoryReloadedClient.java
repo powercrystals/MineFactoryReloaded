@@ -129,7 +129,7 @@ public class MineFactoryReloadedClient
 	
 	private void registerMachineAnimation(Machine machine, String animation)
 	{
-		registerAnimation(MineFactoryReloadedCore.machineMetadataMappings.get(machine) * 16 + 2, animation, MineFactoryReloadedCore.terrainTexture);
+		registerAnimation(MineFactoryReloadedCore.machineMetadataMappings.get(machine) * 16 + 2, animation, MineFactoryReloadedCore.machine0Texture);
 	}
 	
 	private void registerAnimation(int index, String animation, String targetTexture)
