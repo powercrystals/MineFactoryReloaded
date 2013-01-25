@@ -129,11 +129,13 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.0.8";
+	public static final String version = "1.4.6R2.1.0B1";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
 	public static final String terrainTexture = textureFolder + "terrain_0.png";
+	public static final String machine0Texture = textureFolder + "machine_0.png";
+	public static final String machine1Texture = textureFolder + "machine_1.png";
 	public static final String itemTexture = textureFolder + "items_0.png";
 	public static final String animationFolder = textureFolder + "animations/";
 	public static final String guiFolder = textureFolder + "gui/";

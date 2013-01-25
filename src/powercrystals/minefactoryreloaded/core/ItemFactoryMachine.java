@@ -11,8 +11,6 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
 
 public class ItemFactoryMachine extends ItemBlock
 {
-	private static int highestMachineMeta = 15;
-	
 	public ItemFactoryMachine(int i)
 	{
 		super(i);
@@ -23,7 +21,7 @@ public class ItemFactoryMachine extends ItemBlock
 	@Override
 	public int getIconFromDamage(int i)
 	{
-		return Math.min(i, highestMachineMeta);
+		return Math.min(i, 15);
 	}
 	
 	@Override
@@ -36,11 +34,6 @@ public class ItemFactoryMachine extends ItemBlock
 	public String getItemNameIS(ItemStack itemstack)
 	{
 		int md = itemstack.getItemDamage();
-		if(md > highestMachineMeta)
-		{
-			// return highest meta entry
-			return "factoryChronotyperItem";
-		}
 		
 		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Planter)) return "factoryPlanterItem";
 		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Fisher)) return "factoryFisherItem";

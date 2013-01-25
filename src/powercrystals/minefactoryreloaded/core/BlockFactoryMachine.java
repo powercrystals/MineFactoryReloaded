@@ -35,9 +35,9 @@ import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockFactoryMachine extends BlockContainer implements IPipeConnection
 {
-	public BlockFactoryMachine(int i, int j)
+	public BlockFactoryMachine(int blockId, int textureIndex)
 	{
-		super(i, j, Material.clay);
+		super(blockId, textureIndex, Material.clay);
 		setBlockName("blockFactoryMachine");
 		setHardness(0.5F);
 		setStepSound(soundMetalFootstep);
@@ -57,17 +57,17 @@ public class BlockFactoryMachine extends BlockContainer implements IPipeConnecti
 	}
 
 	@Override
-	public int getBlockTextureFromSideAndMetadata(int i, int j)
+	public int getBlockTextureFromSideAndMetadata(int side, int meta)
 	{
-		if(i > 1)
+		if(side > 1)
 		{
-			i += 2;
-			if(i > 5)
+			side += 2;
+			if(side > 5)
 			{
-				i -= 4;
+				side -= 4;
 			}
 		}
-		return j * 16 + i;
+		return meta * 16 + side;
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class BlockFactoryMachine extends BlockContainer implements IPipeConnecti
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World var1)
+	public TileEntity createNewTileEntity(World world)
 	{
 		return null;
 	}
@@ -129,9 +129,9 @@ public class BlockFactoryMachine extends BlockContainer implements IPipeConnecti
 	}
 
 	@Override
-	public void breakBlock(World world, int i, int j, int k, int par5, int par6)
+	public void breakBlock(World world, int x, int y, int z, int par5, int par6)
 	{
-		TileEntity te = world.getBlockTileEntity(i, j, k);
+		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof IInventory)
 		{
 		
@@ -159,7 +159,7 @@ label0:
 						i1 = itemstack.stackSize;
 					}
 					itemstack.stackSize -= i1;
-					EntityItem entityitem = new EntityItem(world, (float)i + f, (float)j + f1, (float)k + f2, new ItemStack(itemstack.itemID, i1, itemstack.getItemDamage()));
+					EntityItem entityitem = new EntityItem(world, (float)x + f, (float)y + f1, (float)z + f2, new ItemStack(itemstack.itemID, i1, itemstack.getItemDamage()));
 					float f3 = 0.05F;
 					entityitem.motionX = (float)world.rand.nextGaussian() * f3;
 					entityitem.motionY = (float)world.rand.nextGaussian() * f3 + 0.2F;
@@ -174,7 +174,7 @@ label0:
 			((TileEntityFactoryPowered)te).onBlockBroken();
 		}
 
-		super.breakBlock(world, i, j, k, par5, par6);
+		super.breakBlock(world, x, y, z, par5, par6);
 	}
 	
 	@Override
@@ -227,7 +227,7 @@ label0:
 	@Override
 	public String getTextureFile()
 	{
-		return MineFactoryReloadedCore.terrainTexture;
+		return MineFactoryReloadedCore.machine0Texture;
 	}
 	
 }
