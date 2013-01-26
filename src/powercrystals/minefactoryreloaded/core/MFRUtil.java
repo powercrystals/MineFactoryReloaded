@@ -9,6 +9,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
@@ -53,6 +54,25 @@ public class MFRUtil
 		}
 	}
 	
+	public static void dropStackDirected(TileEntityFactory from, ItemStack s, ForgeDirection towards)
+	{
+		s = s.copy();
+		BlockPosition bp = new BlockPosition(from.xCoord, from.yCoord, from.zCoord);
+		bp.orientation = towards;
+		bp.moveForwards(1);
+		TileEntity te = from.worldObj.getBlockTileEntity(bp.x, bp.y, bp.z);
+		if(te != null && te instanceof IPipeEntry && ((IPipeEntry)te).acceptItems())
+		{
+			((IPipeEntry)te).entityEntering(s, towards);
+			return;
+		}
+		
+		if(s.stackSize > 0)
+		{
+			dropStackOnGround(s, BlockPosition.fromFactoryTile(from), from.worldObj, towards);
+		}
+	}
+	
 	public static void dropStack(TileEntityFactory from, ItemStack s)
 	{
 		s = s.copy();
@@ -91,53 +111,58 @@ public class MFRUtil
 		
 		if(s.stackSize > 0)
 		{
-			float dropOffsetX = 0.0F;
-			float dropOffsetY = 0.0F;
-			float dropOffsetZ = 0.0F;
-			
-			switch(from.getDropDirection())
-			{
-				case UNKNOWN:
-				case UP:
-					dropOffsetX = 0.5F;
-					dropOffsetY = 1.5F;
-					dropOffsetZ = 0.5F;
-					break;
-				case DOWN:
-					dropOffsetX = 0.5F;
-					dropOffsetY = -0.5F;
-					dropOffsetZ = 0.5F;
-					break;
-				case NORTH:
-					dropOffsetX = 0.5F;
-					dropOffsetY = 0.5F;
-					dropOffsetZ = -0.5F;
-					break;
-				case SOUTH:
-					dropOffsetX = 0.5F;
-					dropOffsetY = 0.5F;
-					dropOffsetZ = 1.5F;
-					break;
-				case EAST:
-					dropOffsetX = 1.5F;
-					dropOffsetY = 0.5F;
-					dropOffsetZ = 0.5F;
-					break;
-				case WEST:
-					dropOffsetX = -0.5F;
-					dropOffsetY = 0.5F;
-					dropOffsetZ = 0.5F;
-					break;
-				default:
-					break;
-					
-			}
-			
-			EntityItem entityitem = new EntityItem(from.worldObj, from.xCoord + dropOffsetX, from.yCoord + dropOffsetY, from.zCoord + dropOffsetZ, s);
-			entityitem.motionX = 0.0D;
-			entityitem.motionY = 0.3D;
-			entityitem.motionZ = 0.0D;
-			from.worldObj.spawnEntityInWorld(entityitem);
+			dropStackOnGround(s, BlockPosition.fromFactoryTile(from), from.worldObj, from.getDropDirection());
 		}
+	}
+	
+	private static void dropStackOnGround(ItemStack stack, BlockPosition from, World world, ForgeDirection towards)
+	{
+		float dropOffsetX = 0.0F;
+		float dropOffsetY = 0.0F;
+		float dropOffsetZ = 0.0F;
+		
+		switch(towards)
+		{
+			case UNKNOWN:
+			case UP:
+				dropOffsetX = 0.5F;
+				dropOffsetY = 1.5F;
+				dropOffsetZ = 0.5F;
+				break;
+			case DOWN:
+				dropOffsetX = 0.5F;
+				dropOffsetY = -0.5F;
+				dropOffsetZ = 0.5F;
+				break;
+			case NORTH:
+				dropOffsetX = 0.5F;
+				dropOffsetY = 0.5F;
+				dropOffsetZ = -0.5F;
+				break;
+			case SOUTH:
+				dropOffsetX = 0.5F;
+				dropOffsetY = 0.5F;
+				dropOffsetZ = 1.5F;
+				break;
+			case EAST:
+				dropOffsetX = 1.5F;
+				dropOffsetY = 0.5F;
+				dropOffsetZ = 0.5F;
+				break;
+			case WEST:
+				dropOffsetX = -0.5F;
+				dropOffsetY = 0.5F;
+				dropOffsetZ = 0.5F;
+				break;
+			default:
+				break;
+				
+		}
+		
+		EntityItem entityitem = new EntityItem(world, from.x + dropOffsetX, from.y + dropOffsetY, from.z + dropOffsetZ, stack);
+		entityitem.motionX = 0.0D;
+		entityitem.motionY = 0.3D;
+		entityitem.motionZ = 0.0D;
+		world.spawnEntityInWorld(entityitem);
 	}
 }

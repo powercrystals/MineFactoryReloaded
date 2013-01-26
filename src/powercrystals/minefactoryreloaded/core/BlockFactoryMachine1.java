@@ -6,6 +6,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
 import powercrystals.minefactoryreloaded.processing.TileEntityLavaFabricator;
 import powercrystals.minefactoryreloaded.processing.TileEntityOilFabricator;
+import powercrystals.minefactoryreloaded.transport.TileEntityEjector;
 
 public class BlockFactoryMachine1 extends BlockFactoryMachine
 {
@@ -18,6 +19,7 @@ public class BlockFactoryMachine1 extends BlockFactoryMachine
 	@Override
 	public TileEntity createNewTileEntity(World world, int md)
 	{
+		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.Ejector)) return new TileEntityEjector();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LavaFabricator)) return new TileEntityLavaFabricator();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator)) return new TileEntityOilFabricator();
 		return null;

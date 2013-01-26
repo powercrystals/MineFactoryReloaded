@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.core.util.Util;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
@@ -210,7 +211,7 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public int getRenderType()
 	{
-		return MineFactoryReloadedCore.renderIdConveyor;
+		return MineFactoryReloadedClient.renderIdConveyor;
 	}
 
 	@Override

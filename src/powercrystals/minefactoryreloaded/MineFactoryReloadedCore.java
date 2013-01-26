@@ -108,6 +108,7 @@ import powercrystals.minefactoryreloaded.rails.BlockRailPassengerPickup;
 import powercrystals.minefactoryreloaded.transport.BlockConveyor;
 import powercrystals.minefactoryreloaded.transport.TileEntityCollector;
 import powercrystals.minefactoryreloaded.transport.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.transport.TileEntityEjector;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -187,14 +188,12 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item safariNetItem;
 	public static Item ceramicDyeItem;
 
-	public static int conveyorTexture = 12;
-	public static int conveyorOffTexture = 13;
-	public static int conveyorStillOffTexture = 14;
+	public static int conveyorTexture = 0;
+	public static int conveyorOffTexture = 1;
+	public static int conveyorStillOffTexture = 2;
 
 	public static Map<MineFactoryReloadedCore.Machine, Integer> machine0MetadataMappings = new HashMap<Machine, Integer>();
 	public static Map<MineFactoryReloadedCore.Machine, Integer> machine1MetadataMappings = new HashMap<Machine, Integer>();
-	
-	public static int renderIdConveyor;
 
 	// Config
 	public static Property machineBlock0Id;
@@ -357,7 +356,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityGrinder.class, "factoryGrinder");
 		GameRegistry.registerTileEntity(TileEntityAutoEnchanter.class, "factoryEnchanter");
 		GameRegistry.registerTileEntity(TileEntityChronotyper.class, "factoryChronotyper");
-		
+
+		GameRegistry.registerTileEntity(TileEntityEjector.class, "factoryEjector");
 		GameRegistry.registerTileEntity(TileEntityLavaFabricator.class, "factoryLavaFabricator");
 		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
 
