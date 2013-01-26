@@ -89,7 +89,10 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 		
 		if(_addToNetOnNextTick)
 		{
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			if(!worldObj.isRemote)
+			{
+				MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			}
 			_addToNetOnNextTick = false;
 			_isAddedToIC2EnergyNet = true;
 		}
@@ -144,8 +147,11 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	{
 		if(_isAddedToIC2EnergyNet)
 		{
+			if(!worldObj.isRemote)
+			{
+				MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+			}
 			_isAddedToIC2EnergyNet = false;
-			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 		}
 		super.invalidate();
 	}
@@ -278,8 +284,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	 */
 	public int injectEnergy(Direction directionFrom, int amount)
 	{
-		int maxEnergyInjectable = (getEnergyStoredMax() - _energyStored) / energyPerEU;
-		int euInjected = Math.min(maxEnergyInjectable, amount);
+		int euInjected = Math.min(demandsEnergy(), amount);
 		_energyStored += euInjected * energyPerEU;
 		return amount - euInjected;
 	}
