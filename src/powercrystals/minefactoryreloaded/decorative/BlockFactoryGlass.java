@@ -12,6 +12,7 @@ public class BlockFactoryGlass extends BlockGlass
 	{
 		super(blockId, whiteTexture, Material.glass, false);
 		this.setCreativeTab(CreativeTabs.tabDecorations);
+		setBlockName("factoryGlassBlock");
 	}
 	
     public int getRenderBlockPass()

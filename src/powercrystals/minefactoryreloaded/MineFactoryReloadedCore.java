@@ -132,7 +132,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.1.0B1";
+	public static final String version = "1.4.6R2.1.0B2";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -892,6 +892,13 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('S'), plasticSheetItem,
 					Character.valueOf('D'), Block.railDetector
 				} );
+		
+		for(int i = 0; i < 16; i++)
+		{
+			GameRegistry.addShapelessRecipe(new ItemStack(ceramicDyeItem, 4, i), new ItemStack(Item.clay), new ItemStack(Item.dyePowder, 1, 15 - i));
+			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassBlock, 1, i), new ItemStack(Block.glass), new ItemStack(ceramicDyeItem, 1, i));
+			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassPaneBlock, 1, i), new ItemStack(Block.thinGlass), new ItemStack(ceramicDyeItem, 1, i));
+		}
 	}
 
 	@Override

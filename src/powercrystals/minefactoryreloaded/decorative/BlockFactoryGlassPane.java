@@ -5,12 +5,15 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 
 public class BlockFactoryGlassPane extends BlockPane
 {
 	public BlockFactoryGlassPane(int blockId, int whiteTexture, int whiteSideTexture)
 	{
 		super(blockId, whiteTexture, whiteSideTexture, Material.glass, false);
+		this.setCreativeTab(CreativeTabs.tabDecorations);
+		setBlockName("factoryGlassPaneBlock");
 	}
 	
 	@Override

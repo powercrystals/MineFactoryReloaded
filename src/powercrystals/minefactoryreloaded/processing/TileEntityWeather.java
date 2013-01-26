@@ -73,7 +73,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements IMach
 			if(getWorkDone() >= getWorkMax())
 			{
 				setWorkDone(0);
-				if(worldObj.getWorldChunkManager().getTemperatureAtHeight(bgb.getFloatTemperature(), worldObj.getPrecipitationHeight(this.xCoord, this.zCoord)) >= 0.15F)
+				if(bgb.getFloatTemperature() >= 0.15F)
 				{
 					_tank.fill(new LiquidStack(Block.waterStill.blockID, LiquidContainerRegistry.BUCKET_VOLUME), true);
 				}
