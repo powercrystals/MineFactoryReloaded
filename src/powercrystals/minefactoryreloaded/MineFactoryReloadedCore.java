@@ -25,6 +25,7 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.liquids.LiquidContainerData;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
+import net.minecraftforge.liquids.LiquidDictionary.LiquidRegisterEvent;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -41,9 +42,11 @@ import powercrystals.minefactoryreloaded.animals.TileEntityRancher;
 import powercrystals.minefactoryreloaded.animals.TileEntityVet;
 import powercrystals.minefactoryreloaded.api.*;
 import powercrystals.minefactoryreloaded.core.BlockFactoryMachine0;
+import powercrystals.minefactoryreloaded.core.BlockFactoryMachine1;
+import powercrystals.minefactoryreloaded.core.ItemBlockFactoryMachine1;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
 import powercrystals.minefactoryreloaded.core.ItemFactoryHammer;
-import powercrystals.minefactoryreloaded.core.ItemFactoryMachine;
+import powercrystals.minefactoryreloaded.core.ItemBlockFactoryMachine0;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
@@ -93,6 +96,8 @@ import powercrystals.minefactoryreloaded.processing.TileEntityBlockBreaker;
 import powercrystals.minefactoryreloaded.processing.TileEntityComposter;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityFisher;
+import powercrystals.minefactoryreloaded.processing.TileEntityLavaFabricator;
+import powercrystals.minefactoryreloaded.processing.TileEntityOilFabricator;
 import powercrystals.minefactoryreloaded.processing.TileEntitySewer;
 import powercrystals.minefactoryreloaded.processing.TileEntitySludgeBoiler;
 import powercrystals.minefactoryreloaded.processing.TileEntityWeather;
@@ -132,7 +137,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.1.0B2";
+	public static final String version = "1.4.6R2.1.0B3";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -242,6 +247,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property passengerRailSearchMaxVertical;
 
 	private static MineFactoryReloadedCore instance;
+	
+	public static int oilLiquidId = -1;
 
 	public static MineFactoryReloadedCore instance()
 	{
@@ -276,8 +283,17 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machine0MetadataMappings.put(Machine.Enchanter, 14);
 		machine0MetadataMappings.put(Machine.Chronotyper, 15);
 
+		machine1MetadataMappings.put(Machine.Ejector, 0);
+		machine1MetadataMappings.put(Machine.ItemRouter, 1);
+		machine1MetadataMappings.put(Machine.LiquidRouter, 2);
+		machine1MetadataMappings.put(Machine.DeepStorageUnit, 3);
+		machine1MetadataMappings.put(Machine.LiquiCrafter, 4);
+		machine1MetadataMappings.put(Machine.LavaFabricator, 5);
+		machine1MetadataMappings.put(Machine.OilFabricator, 6);
+
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorTexture);
-		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt(), 0);
+		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt());
+		machineBlock1 = new BlockFactoryMachine1(machineBlock1Id.getInt());
 		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt(), 16);
 		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt(), 16, 32);
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
@@ -308,7 +324,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		safariNetItem = (new ItemSafariNet()).setIconIndex(18).setItemName("safariNetItem");
 		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setIconIndex(22).setItemName("ceramicDyeItem");
 
-		GameRegistry.registerBlock(machineBlock0, ItemFactoryMachine.class, "blockMachine");
+		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
+		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
 		GameRegistry.registerBlock(conveyorBlock, "blockConveyor");
 		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
 		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
@@ -340,6 +357,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityGrinder.class, "factoryGrinder");
 		GameRegistry.registerTileEntity(TileEntityAutoEnchanter.class, "factoryEnchanter");
 		GameRegistry.registerTileEntity(TileEntityChronotyper.class, "factoryChronotyper");
+		
+		GameRegistry.registerTileEntity(TileEntityLavaFabricator.class, "factoryLavaFabricator");
+		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
 
 		MinecraftForge.EVENT_BUS.register(instance);
 
@@ -352,6 +372,11 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		if(rubberTreeWorldGen.getBoolean(true))
 		{
 			GameRegistry.registerWorldGenerator(new MineFactoryReloadedWorldGen());
+		}
+		
+		if(LiquidDictionary.getLiquids().get("Oil") != null)
+		{
+			oilLiquidId = LiquidDictionary.getLiquids().get("Oil").itemID;
 		}
 		
 		TickRegistry.registerScheduledTickHandler(new UpdateManager(this), Side.CLIENT);
@@ -390,6 +415,14 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				{
 					b.entityPlayer.inventory.mainInventory[b.entityPlayer.inventory.currentItem] = null;
 				}
+			}
+		}
+		else if(oilLiquidId == -1 && e instanceof LiquidRegisterEvent)
+		{
+			LiquidRegisterEvent l = (LiquidRegisterEvent)e;
+			if(l.Name.equals("Oil"))
+			{
+				oilLiquidId = l.Liquid.itemID;
 			}
 		}
 	}
@@ -509,7 +542,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		railPickupPassengerBlockId = c.getBlock("ID.PassengerRailPickupBlock", 3128);
 		factoryGlassBlockId = c.getBlock("ID.StainedGlass", 3129);
 		factoryGlassPaneBlockId = c.getBlock("ID.StainedGlassPane", 3130);
-		machineBlock1Id = c.getBlock("ID.MachineBlock", 3131);
+		machineBlock1Id = c.getBlock("ID.MachineBlock1", 3131);
 
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
@@ -558,7 +591,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 
 	public enum Machine
 	{
-		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper
+		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper,
+		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator
 	}
 	
 	public LiquidStack getLiquidStackFromLiquidItem(ItemStack s)

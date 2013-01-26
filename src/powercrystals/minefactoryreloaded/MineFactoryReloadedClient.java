@@ -105,14 +105,16 @@ public class MineFactoryReloadedClient
 		{
 			registerAnimation(MineFactoryReloadedCore.conveyorTexture, MineFactoryReloadedCore.animationFolder + "Conveyor.png", MineFactoryReloadedCore.terrainTexture);
 			
-			registerMachineAnimation(Machine.Harvester, MineFactoryReloadedCore.animationFolder + "Harvester.png");
-			registerMachineAnimation(Machine.Rancher, MineFactoryReloadedCore.animationFolder + "Rancher.png");
-			registerMachineAnimation(Machine.Breaker, MineFactoryReloadedCore.animationFolder + "BlockBreaker.png");
-			registerMachineAnimation(Machine.Fertilizer, MineFactoryReloadedCore.animationFolder + "Fertilizer.png");
-			registerMachineAnimation(Machine.Vet, MineFactoryReloadedCore.animationFolder + "Vet.png");
-			registerMachineAnimation(Machine.Breeder, MineFactoryReloadedCore.animationFolder + "Breeder.png");
-			registerMachineAnimation(Machine.Grinder, MineFactoryReloadedCore.animationFolder + "Mobgrinder.png");
-			registerMachineAnimation(Machine.Chronotyper, MineFactoryReloadedCore.animationFolder + "Chronotyper.png");
+			registerMachine0Animation(Machine.Harvester, "Harvester.png");
+			registerMachine0Animation(Machine.Rancher, "Rancher.png");
+			registerMachine0Animation(Machine.Breaker, "BlockBreaker.png");
+			registerMachine0Animation(Machine.Fertilizer, "Fertilizer.png");
+			registerMachine0Animation(Machine.Vet, "Vet.png");
+			registerMachine0Animation(Machine.Breeder, "Breeder.png");
+			registerMachine0Animation(Machine.Grinder, "Mobgrinder.png");
+			registerMachine0Animation(Machine.Chronotyper, "Chronotyper.png");
+			
+			registerMachine1Animation(Machine.OilFabricator, "OilFabricator.png");
 			
 			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(2, MineFactoryReloadedCore.itemTexture, 240, 255, 240, 255, 230, 245)); // milk
 			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(3, MineFactoryReloadedCore.itemTexture, 20, 20, 20, 20, 32, 32)); // sludge
@@ -127,9 +129,14 @@ public class MineFactoryReloadedClient
 		RenderingRegistry.registerBlockHandler(renderIdFactoryGlassPane, new RendererFactoryGlassPane());
 	}
 	
-	private void registerMachineAnimation(Machine machine, String animation)
+	private void registerMachine0Animation(Machine machine, String animation)
 	{
-		registerAnimation(MineFactoryReloadedCore.machine0MetadataMappings.get(machine) * 16 + 2, animation, MineFactoryReloadedCore.machine0Texture);
+		registerAnimation(MineFactoryReloadedCore.machine0MetadataMappings.get(machine) * 16 + 2, MineFactoryReloadedCore.animationFolder + animation, MineFactoryReloadedCore.machine0Texture);
+	}
+	
+	private void registerMachine1Animation(Machine machine, String animation)
+	{
+		registerAnimation(MineFactoryReloadedCore.machine1MetadataMappings.get(machine) * 16 + 2, MineFactoryReloadedCore.animationFolder + animation, MineFactoryReloadedCore.machine1Texture);
 	}
 	
 	private void registerAnimation(int index, String animation, String targetTexture)

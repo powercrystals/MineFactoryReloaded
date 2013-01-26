@@ -9,9 +9,9 @@ import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
 
-public class ItemFactoryMachine extends ItemBlock
+public class ItemBlockFactoryMachine0 extends ItemBlock
 {
-	public ItemFactoryMachine(int i)
+	public ItemBlockFactoryMachine0(int i)
 	{
 		super(i);
 		setMaxDamage(0);
