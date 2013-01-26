@@ -48,22 +48,22 @@ public class MineFactoryReloadedClient
 		MinecraftForgeClient.preloadTexture(MineFactoryReloadedCore.machine0Texture);
 		MinecraftForgeClient.preloadTexture(MineFactoryReloadedCore.machine1Texture);
 
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Planter)), "Planter");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Fisher)), "Fisher");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Harvester)), "Harvester");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Rancher)), "Rancher");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Fertilizer)), "Fertilizer");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Vet)), "Veterinary Station");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Collector)), "Item Collector");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Breaker)), "Block Breaker");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Weather)), "Weather Collector");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Boiler)), "Sludge Boiler");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Sewer)), "Sewage Collector");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Composter)), "Composter");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Breeder)), "Breeder");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Grinder)), "Grinder");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Enchanter)), "Auto-Enchanter");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock, 1, MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Chronotyper)), "Chronotyper");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Planter)), "Planter");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Fisher)), "Fisher");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Harvester)), "Harvester");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Rancher)), "Rancher");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Fertilizer)), "Fertilizer");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Vet)), "Veterinary Station");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Collector)), "Item Collector");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Breaker)), "Block Breaker");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Weather)), "Weather Collector");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Boiler)), "Sludge Boiler");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Sewer)), "Sewage Collector");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Composter)), "Composter");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Breeder)), "Breeder");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Grinder)), "Grinder");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Enchanter)), "Auto-Enchanter");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Chronotyper)), "Chronotyper");
 
 		LanguageRegistry.addName(MineFactoryReloadedCore.conveyorBlock, "Conveyor Belt");
 		LanguageRegistry.addName(MineFactoryReloadedCore.rubberWoodBlock, "Rubber Wood");
@@ -129,7 +129,7 @@ public class MineFactoryReloadedClient
 	
 	private void registerMachineAnimation(Machine machine, String animation)
 	{
-		registerAnimation(MineFactoryReloadedCore.machineMetadataMappings.get(machine) * 16 + 2, animation, MineFactoryReloadedCore.machine0Texture);
+		registerAnimation(MineFactoryReloadedCore.machine0MetadataMappings.get(machine) * 16 + 2, animation, MineFactoryReloadedCore.machine0Texture);
 	}
 	
 	private void registerAnimation(int index, String animation, String targetTexture)

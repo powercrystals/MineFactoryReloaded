@@ -33,9 +33,9 @@ import net.minecraftforge.common.ForgeDirection;
 import buildcraft.api.transport.IPipeConnection;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
-public class BlockFactoryMachine extends BlockContainer implements IPipeConnection
+public class BlockFactoryMachine0 extends BlockContainer implements IPipeConnection
 {
-	public BlockFactoryMachine(int blockId, int textureIndex)
+	public BlockFactoryMachine0(int blockId, int textureIndex)
 	{
 		super(blockId, textureIndex, Material.clay);
 		setBlockName("blockFactoryMachine");
@@ -85,22 +85,22 @@ public class BlockFactoryMachine extends BlockContainer implements IPipeConnecti
 	@Override
 	public TileEntity createNewTileEntity(World world, int md)
 	{
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Planter)) return new TileEntityPlanter();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Fisher)) return new TileEntityFisher();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Harvester)) return new TileEntityHarvester();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Rancher)) return new TileEntityRancher();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Fertilizer)) return new TileEntityFertilizer();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Vet)) return new TileEntityVet();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Collector)) return new TileEntityCollector();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Breaker)) return new TileEntityBlockBreaker();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Weather)) return new TileEntityWeather();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Boiler)) return new TileEntitySludgeBoiler();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Sewer)) return new TileEntitySewer();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Composter)) return new TileEntityComposter();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Breeder)) return new TileEntityBreeder();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Grinder)) return new TileEntityGrinder();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Enchanter)) return new TileEntityAutoEnchanter();
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Chronotyper)) return new TileEntityChronotyper();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Planter)) return new TileEntityPlanter();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Fisher)) return new TileEntityFisher();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Harvester)) return new TileEntityHarvester();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Rancher)) return new TileEntityRancher();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Fertilizer)) return new TileEntityFertilizer();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Vet)) return new TileEntityVet();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Collector)) return new TileEntityCollector();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Breaker)) return new TileEntityBlockBreaker();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Weather)) return new TileEntityWeather();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Boiler)) return new TileEntitySludgeBoiler();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Sewer)) return new TileEntitySewer();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Composter)) return new TileEntityComposter();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Breeder)) return new TileEntityBreeder();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Grinder)) return new TileEntityGrinder();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Enchanter)) return new TileEntityAutoEnchanter();
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Chronotyper)) return new TileEntityChronotyper();
 		return null;
 	}
 
@@ -201,7 +201,7 @@ label0:
 			return;
 		}
 		int md = world.getBlockMetadata(x, y, z);
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Collector))
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Collector))
 		{
 			TileEntity te = world.getBlockTileEntity(x, y, z);
 			if(te != null && te instanceof TileEntityCollector && entity instanceof EntityItem)

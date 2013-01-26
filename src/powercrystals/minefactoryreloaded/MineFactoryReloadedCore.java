@@ -40,7 +40,7 @@ import powercrystals.minefactoryreloaded.animals.TileEntityGrinder;
 import powercrystals.minefactoryreloaded.animals.TileEntityRancher;
 import powercrystals.minefactoryreloaded.animals.TileEntityVet;
 import powercrystals.minefactoryreloaded.api.*;
-import powercrystals.minefactoryreloaded.core.BlockFactoryMachine;
+import powercrystals.minefactoryreloaded.core.BlockFactoryMachine0;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
 import powercrystals.minefactoryreloaded.core.ItemFactoryHammer;
 import powercrystals.minefactoryreloaded.core.ItemFactoryMachine;
@@ -143,7 +143,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static final String animationFolder = textureFolder + "animations/";
 	public static final String guiFolder = textureFolder + "gui/";
 	
-	public static Block machineBlock;
+	public static Block machineBlock0;
+	public static Block machineBlock1;
 	
 	public static Block conveyorBlock;
 	
@@ -185,12 +186,14 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static int conveyorOffTexture = 13;
 	public static int conveyorStillOffTexture = 14;
 
-	public static Map<MineFactoryReloadedCore.Machine, Integer> machineMetadataMappings;
+	public static Map<MineFactoryReloadedCore.Machine, Integer> machine0MetadataMappings = new HashMap<Machine, Integer>();
+	public static Map<MineFactoryReloadedCore.Machine, Integer> machine1MetadataMappings = new HashMap<Machine, Integer>();
 	
 	public static int renderIdConveyor;
 
 	// Config
-	public static Property machineBlockId;
+	public static Property machineBlock0Id;
+	public static Property machineBlock1Id;
 	
 	public static Property conveyorBlockId;
 	
@@ -256,26 +259,25 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	{
 		instance = this;
 
-		machineMetadataMappings = new HashMap<Machine, Integer>();
-		machineMetadataMappings.put(Machine.Planter, 0);
-		machineMetadataMappings.put(Machine.Fisher, 1);
-		machineMetadataMappings.put(Machine.Harvester, 2);
-		machineMetadataMappings.put(Machine.Rancher, 3);
-		machineMetadataMappings.put(Machine.Fertilizer, 4);
-		machineMetadataMappings.put(Machine.Vet, 5);
-		machineMetadataMappings.put(Machine.Collector, 6);
-		machineMetadataMappings.put(Machine.Breaker, 7);
-		machineMetadataMappings.put(Machine.Weather, 8);
-		machineMetadataMappings.put(Machine.Boiler, 9);
-		machineMetadataMappings.put(Machine.Sewer, 10);
-		machineMetadataMappings.put(Machine.Composter, 11);
-		machineMetadataMappings.put(Machine.Breeder, 12);
-		machineMetadataMappings.put(Machine.Grinder, 13);
-		machineMetadataMappings.put(Machine.Enchanter, 14);
-		machineMetadataMappings.put(Machine.Chronotyper, 15);
+		machine0MetadataMappings.put(Machine.Planter, 0);
+		machine0MetadataMappings.put(Machine.Fisher, 1);
+		machine0MetadataMappings.put(Machine.Harvester, 2);
+		machine0MetadataMappings.put(Machine.Rancher, 3);
+		machine0MetadataMappings.put(Machine.Fertilizer, 4);
+		machine0MetadataMappings.put(Machine.Vet, 5);
+		machine0MetadataMappings.put(Machine.Collector, 6);
+		machine0MetadataMappings.put(Machine.Breaker, 7);
+		machine0MetadataMappings.put(Machine.Weather, 8);
+		machine0MetadataMappings.put(Machine.Boiler, 9);
+		machine0MetadataMappings.put(Machine.Sewer, 10);
+		machine0MetadataMappings.put(Machine.Composter, 11);
+		machine0MetadataMappings.put(Machine.Breeder, 12);
+		machine0MetadataMappings.put(Machine.Grinder, 13);
+		machine0MetadataMappings.put(Machine.Enchanter, 14);
+		machine0MetadataMappings.put(Machine.Chronotyper, 15);
 
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorTexture);
-		machineBlock = new BlockFactoryMachine(machineBlockId.getInt(), 0);
+		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt(), 0);
 		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt(), 16);
 		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt(), 16, 32);
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
@@ -306,7 +308,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		safariNetItem = (new ItemSafariNet()).setIconIndex(18).setItemName("safariNetItem");
 		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setIconIndex(22).setItemName("ceramicDyeItem");
 
-		GameRegistry.registerBlock(machineBlock, ItemFactoryMachine.class, "blockMachine");
+		GameRegistry.registerBlock(machineBlock0, ItemFactoryMachine.class, "blockMachine");
 		GameRegistry.registerBlock(conveyorBlock, "blockConveyor");
 		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
 		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
@@ -496,7 +498,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	{
 		Configuration c = new Configuration(configFile);
 		c.load();
-		machineBlockId = c.getBlock("ID.MachineBlock", 3120);
+		machineBlock0Id = c.getBlock("ID.MachineBlock", 3120);
 		conveyorBlockId = c.getBlock("ID.ConveyorBlock", 3121);
 		rubberWoodBlockId = c.getBlock("ID.RubberWood", 3122);
 		rubberLeavesBlockId = c.getBlock("ID.RubberLeaves", 3123);
@@ -507,6 +509,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		railPickupPassengerBlockId = c.getBlock("ID.PassengerRailPickupBlock", 3128);
 		factoryGlassBlockId = c.getBlock("ID.StainedGlass", 3129);
 		factoryGlassPaneBlockId = c.getBlock("ID.StainedGlassPane", 3130);
+		machineBlock1Id = c.getBlock("ID.MachineBlock", 3131);
 
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
@@ -651,7 +654,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// planter
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 0), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 0), new Object[]
 				{
 					"GGG",
 					"CPC",
@@ -663,7 +666,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// fisher
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 1), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 1), new Object[]
 				{
 					"GGG",
 					"RRR",
@@ -675,7 +678,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// harvester
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 2), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 2), new Object[]
 				{
 					"GGG",
 					"SXS",
@@ -687,7 +690,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// rancher
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 3), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 3), new Object[]
 				{
 					"GGG",
 					"SBS",
@@ -699,7 +702,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// fertilizer
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 4), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 4), new Object[]
 				{
 					"GGG",
 					"LBL",
@@ -711,7 +714,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// vet
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 5), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 5), new Object[]
 				{
 					"GGG",
 					"SSS",
@@ -723,7 +726,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// collector
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 6), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 6), new Object[]
 				{
 					"GGG",
 					" C ",
@@ -734,7 +737,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// breaker
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 7), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 7), new Object[]
 				{
 					"GGG",
 					"PHS",
@@ -747,7 +750,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// weather
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 8), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 8), new Object[]
 				{
 					"GGG",
 					"BBB",
@@ -759,7 +762,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// boiler
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 9), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 9), new Object[]
 				{
 					"GGG",
 					"FFF",
@@ -770,7 +773,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// sewer
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 4, 10), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 4, 10), new Object[]
 				{
 					"GGG",
 					"BUB",
@@ -782,7 +785,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// composter
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 11), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 11), new Object[]
 				{
 					"GGG",
 					"PFP",
@@ -794,7 +797,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// breeder
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 12), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 12), new Object[]
 				{
 					"GGG",
 					"CAC",
@@ -807,7 +810,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// grinder
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 13), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 13), new Object[]
 				{
 					"GGG",
 					"BSP",
@@ -820,7 +823,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// enchanter
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 14), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 14), new Object[]
 				{
 					"GGG",
 					"BBB",
@@ -832,7 +835,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// chronotyper
-		GameRegistry.addRecipe(new ItemStack(machineBlock, 1, 15), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 15), new Object[]
 				{
 					"GGG",
 					"EEE",

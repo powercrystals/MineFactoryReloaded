@@ -35,22 +35,22 @@ public class ItemFactoryMachine extends ItemBlock
 	{
 		int md = itemstack.getItemDamage();
 		
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Planter)) return "factoryPlanterItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Fisher)) return "factoryFisherItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Harvester)) return "factoryHarvesterItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Rancher)) return "factoryRancherItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Fertilizer)) return "factoryFertilizerItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Vet)) return "factoryVetItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Collector)) return "factoryCollectorItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Breaker)) return "factoryBlockBreakerItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Weather)) return "factoryWeatherItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Boiler)) return "factorySludgeBoilerItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Sewer)) return "factorySewerItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Composter)) return "factoryComposterItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Breeder)) return "factoryBreederItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Grinder)) return "factoryGrinderItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Enchanter)) return "factoryEnchanterItem";
-		if(md == MineFactoryReloadedCore.machineMetadataMappings.get(Machine.Chronotyper)) return "factoryChronotyperItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Planter)) return "factoryPlanterItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Fisher)) return "factoryFisherItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Harvester)) return "factoryHarvesterItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Rancher)) return "factoryRancherItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Fertilizer)) return "factoryFertilizerItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Vet)) return "factoryVetItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Collector)) return "factoryCollectorItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Breaker)) return "factoryBlockBreakerItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Weather)) return "factoryWeatherItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Boiler)) return "factorySludgeBoilerItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Sewer)) return "factorySewerItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Composter)) return "factoryComposterItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Breeder)) return "factoryBreederItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Grinder)) return "factoryGrinderItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Enchanter)) return "factoryEnchanterItem";
+		if(md == MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Chronotyper)) return "factoryChronotyperItem";
 		return "Invalid";
 	}
 	
@@ -60,7 +60,7 @@ public class ItemFactoryMachine extends ItemBlock
 	{
 		for(int i = 0; i < 16; i++)
 		{
-			par3List.add(new ItemStack(MineFactoryReloadedCore.machineBlock.blockID, 1, i));
+			par3List.add(new ItemStack(MineFactoryReloadedCore.machineBlock0.blockID, 1, i));
 		}
 	}
 }
