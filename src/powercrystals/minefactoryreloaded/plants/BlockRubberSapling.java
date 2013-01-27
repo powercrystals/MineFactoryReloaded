@@ -10,9 +10,9 @@ import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRubberSapling extends BlockSapling
 {
-	public BlockRubberSapling(int id, int index)
+	public BlockRubberSapling(int id)
 	{
-		super(id, index);
+		super(id, 3);
 		setHardness(0.0F);
 		setStepSound(soundGrassFootstep);
 		setBlockName("sapling");

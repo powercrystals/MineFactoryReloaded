@@ -14,7 +14,7 @@ public class BlockRubberWood extends BlockLog
 	public BlockRubberWood(int id)
 	{
 		super(id);
-		blockIndexInTexture = 28;
+		blockIndexInTexture = 4;
 		setHardness(2.0F);
 		setStepSound(soundWoodFootstep);
 		setBlockName("mfRubberWood");

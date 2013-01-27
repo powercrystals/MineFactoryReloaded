@@ -21,7 +21,7 @@ public class BlockRubberLeaves extends BlockLeaves
 {
 	public BlockRubberLeaves(int id)
 	{
-		super(id, 30);
+		super(id, 6);
 		setHardness(0.2F);
 		setLightOpacity(1);
 		setStepSound(soundGrassFootstep);

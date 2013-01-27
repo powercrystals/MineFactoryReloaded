@@ -297,11 +297,11 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt(), 16, 32);
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
 		rubberLeavesBlock = new BlockRubberLeaves(rubberLeavesBlockId.getInt());
-		rubberSaplingBlock = new BlockRubberSapling(rubberSaplingBlockId.getInt(), 15);
-		railDropoffCargoBlock = new BlockRailCargoDropoff(railDropoffCargoBlockId.getInt(), 44);
-		railPickupCargoBlock = new BlockRailCargoPickup(railPickupCargoBlockId.getInt(), 45);
-		railDropoffPassengerBlock = new BlockRailPassengerDropoff(railDropoffPassengerBlockId.getInt(), 46);
-		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt(), 47);
+		rubberSaplingBlock = new BlockRubberSapling(rubberSaplingBlockId.getInt());
+		railDropoffCargoBlock = new BlockRailCargoDropoff(railDropoffCargoBlockId.getInt(), 8);
+		railPickupCargoBlock = new BlockRailCargoPickup(railPickupCargoBlockId.getInt(), 9);
+		railDropoffPassengerBlock = new BlockRailPassengerDropoff(railDropoffPassengerBlockId.getInt(), 10);
+		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt(), 11);
 
 		factoryHammerItem = (new ItemFactoryHammer(hammerItemId.getInt())).setIconIndex(0).setItemName("factoryHammer").setMaxStackSize(1);
 		milkItem = (new ItemFactory(milkItemId.getInt())).setIconIndex(2).setItemName("milkItem");
