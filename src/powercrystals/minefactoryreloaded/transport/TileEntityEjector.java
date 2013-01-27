@@ -17,11 +17,6 @@ public class TileEntityEjector extends TileEntityFactory
 {
 	private boolean _lastRedstoneState;
 	
-	public TileEntityEjector()
-	{
-		
-	}
-	
 	@Override
 	public void updateEntity()
 	{
@@ -36,7 +31,11 @@ public class TileEntityEjector extends TileEntityFactory
 			Map<ForgeDirection, IInventory> chests = UtilInventory.findChests(worldObj, xCoord, yCoord, zCoord);
 			for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 			{
-				System.out.println("Found chest at " + chest.getKey());
+				if(chest.getKey() == getDirectionFacing())
+				{
+					continue;
+				}
+				
 				IInventory inventory = chest.getValue();
 				ForgeDirection toSide = chest.getKey();
 				
@@ -49,14 +48,11 @@ public class TileEntityEjector extends TileEntityFactory
 					invEnd = invStart + ((ISidedInventory)inventory).getSizeInventorySide(toSide.getOpposite());
 				}
 				
-				System.out.println("Inventory starting at " + invStart + " and going to " + invEnd);
-				
 				for(int i = invStart; i < invEnd; i++)
 				{
 					ItemStack targetStack = inventory.getStackInSlot(i);
 					if(targetStack != null)
 					{
-						System.out.println("Found non-null stack in slot " + i + ", " + targetStack.stackSize + " of " + targetStack.itemID);
 						ItemStack output = targetStack.copy();
 						output.stackSize = 1;
 						MFRUtil.dropStackDirected(this, output, this.getDirectionFacing());
@@ -72,19 +68,9 @@ public class TileEntityEjector extends TileEntityFactory
 						}
 						return;
 					}
-					else
-					{
-						System.out.println("Found null stack in slot " + i);
-					}
 				}
 			}
 		}
 		_lastRedstoneState = redstoneState;
-	}
-	
-	@Override
-	public boolean canRotate()
-	{
-		return true;
 	}
 }

@@ -61,7 +61,11 @@ public class MFRUtil
 		bp.orientation = towards;
 		bp.moveForwards(1);
 		TileEntity te = from.worldObj.getBlockTileEntity(bp.x, bp.y, bp.z);
-		if(te != null && te instanceof IPipeEntry && ((IPipeEntry)te).acceptItems())
+		if(te != null && te instanceof IInventory)
+		{
+			UtilInventory.addToInventory((IInventory)te, towards, s);
+		}
+		else if(te != null && te instanceof IPipeEntry && ((IPipeEntry)te).acceptItems())
 		{
 			((IPipeEntry)te).entityEntering(s, towards);
 			return;
