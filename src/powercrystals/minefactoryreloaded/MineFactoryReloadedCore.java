@@ -108,8 +108,10 @@ import powercrystals.minefactoryreloaded.rails.BlockRailPassengerPickup;
 import powercrystals.minefactoryreloaded.transport.BlockConveyor;
 import powercrystals.minefactoryreloaded.transport.TileEntityCollector;
 import powercrystals.minefactoryreloaded.transport.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.transport.TileEntityEjector;
 import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
+import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -139,7 +141,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.1.0B3";
+	public static final String version = "1.4.6R2.1.0B4";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -360,6 +362,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 
 		GameRegistry.registerTileEntity(TileEntityEjector.class, "factoryEjector");
 		GameRegistry.registerTileEntity(TileEntityItemRouter.class, "factoryItemRouter");
+		GameRegistry.registerTileEntity(TileEntityLiquidRouter.class, "factoryLiquidRouter");
+		GameRegistry.registerTileEntity(TileEntityDeepStorageUnit.class, "factoryDeepStorageUnit");
 		GameRegistry.registerTileEntity(TileEntityLavaFabricator.class, "factoryLavaFabricator");
 		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
 

@@ -8,7 +8,9 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
+import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
+import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class MFRGUIHandler implements IGuiHandler
@@ -41,6 +43,14 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new ContainerItemRouter((TileEntityItemRouter)te, player.inventory);
 		}
+		else if(te instanceof TileEntityLiquidRouter)
+		{
+			return new ContainerLiquidRouter((TileEntityLiquidRouter)te, player.inventory);
+		}
+		else if(te instanceof TileEntityDeepStorageUnit)
+		{
+			return new ContainerDeepStorageUnit((TileEntityDeepStorageUnit)te, player.inventory);
+		}
 		return null;
 	}
 
@@ -71,6 +81,14 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityItemRouter)
 		{
 			return new GuiItemRouter(new ContainerItemRouter((TileEntityItemRouter)te, player.inventory), (TileEntityItemRouter)te);
+		}
+		else if(te instanceof TileEntityLiquidRouter)
+		{
+			return new GuiLiquidRouter(new ContainerLiquidRouter((TileEntityLiquidRouter)te, player.inventory), (TileEntityLiquidRouter)te);
+		}
+		else if(te instanceof TileEntityDeepStorageUnit)
+		{
+			return new GuiDeepStorageUnit(new ContainerDeepStorageUnit((TileEntityDeepStorageUnit)te, player.inventory), (TileEntityDeepStorageUnit)te);
 		}
 		return null;
 	}

@@ -12,6 +12,7 @@ import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
+import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -55,6 +56,18 @@ public class ServerPacketHandler implements IPacketHandler
 			if(te instanceof TileEntityChronotyper)
 			{
 				((TileEntityChronotyper)te).setMoveOld(!((TileEntityChronotyper)te).getMoveOld());
+			}
+		}
+		else if(packetType == PacketWrapper.PacketIdDSUButton) // client -> server: toggle DSU output side
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityDeepStorageUnit)
+			{
+				int side = (Integer)packetReadout[3];
+				((TileEntityDeepStorageUnit)te).setSideIsOutput(side, (!((TileEntityDeepStorageUnit)te).getIsSideOutput(side)));
 			}
 		}
 	}
