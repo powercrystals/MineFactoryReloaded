@@ -291,7 +291,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machine1MetadataMappings.put(Machine.LavaFabricator, 5);
 		machine1MetadataMappings.put(Machine.OilFabricator, 6);
 
-		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorTexture);
+		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorOffTexture);
 		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt());
 		machineBlock1 = new BlockFactoryMachine1(machineBlock1Id.getInt());
 		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt(), 16);

@@ -63,7 +63,15 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Breeder)), "Breeder");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Grinder)), "Grinder");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Enchanter)), "Auto-Enchanter");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Chronotyper)), "Chronotyper");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock0, 1, MineFactoryReloadedCore.machine0MetadataMappings.get(Machine.Chronotyper)), "Chronotyper");;
+		
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.Ejector)), "Ejector");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.ItemRouter)), "Item Router");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LiquidRouter)), "Liquid Router");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.DeepStorageUnit)), "Deep Storage Unit");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LiquiCrafter)), "Ejector");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LavaFabricator)), "Lava Fabricator");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator)), "Oil Fabricator");
 
 		LanguageRegistry.addName(MineFactoryReloadedCore.conveyorBlock, "Conveyor Belt");
 		LanguageRegistry.addName(MineFactoryReloadedCore.rubberWoodBlock, "Rubber Wood");

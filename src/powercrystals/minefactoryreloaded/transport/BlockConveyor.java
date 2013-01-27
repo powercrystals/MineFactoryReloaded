@@ -25,9 +25,9 @@ import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockConveyor extends BlockContainer
 {
-	public BlockConveyor(int i, int j)
+	public BlockConveyor(int id, int texture)
 	{
-		super(i, j, Material.circuits);
+		super(id, texture, Material.circuits);
 		setHardness(0.5F);
 		setBlockName("factoryConveyor");
 		setBlockBounds(0.0F, 0.0F, 0.0F, 0.1F, 0.1F, 0.1F);
@@ -145,12 +145,12 @@ public class BlockConveyor extends BlockContainer
 			}
 			else
 			{
-				return blockIndexInTexture;
+				return MineFactoryReloadedCore.conveyorTexture;
 			}
 		}
 		else
 		{
-			return blockIndexInTexture;
+			return MineFactoryReloadedCore.conveyorTexture;
 		}
 	}
 
