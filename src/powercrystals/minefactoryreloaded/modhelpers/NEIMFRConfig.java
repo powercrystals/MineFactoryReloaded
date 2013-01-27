@@ -27,8 +27,17 @@ public class NEIMFRConfig implements IConfigureNEI
 		for (int i = 0; i <= 15; i++)
 		{
 			subTypes.add(MineFactoryReloadedCore.machineBlock0.blockID, i, i);
+		}
+		for (int i = 0; i <= 15; i++)
+		{
 			subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.shiftedIndex, i, i);
+		}
+		for (int i = 0; i <= 15; i++)
+		{
 			subTypes.add(MineFactoryReloadedCore.factoryGlassBlock.blockID, i, i);
+		}
+		for (int i = 0; i <= 15; i++)
+		{
 			subTypes.add(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, i, i);
 		}
 		

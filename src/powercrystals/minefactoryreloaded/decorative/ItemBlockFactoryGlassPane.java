@@ -33,7 +33,7 @@ public class ItemBlockFactoryGlassPane extends ItemBlock
 
     public String getItemNameIS(ItemStack stack)
     {
-        return "factoryGlassItem." + ItemDye.dyeColorNames[BlockCloth.getBlockFromDye(stack.getItemDamage())];
+        return "factoryGlassPaneItem." + ItemDye.dyeColorNames[BlockCloth.getBlockFromDye(stack.getItemDamage())];
     }
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
