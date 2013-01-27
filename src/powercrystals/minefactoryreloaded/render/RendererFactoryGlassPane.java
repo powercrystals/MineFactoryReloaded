@@ -49,8 +49,8 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
         int var66;
 
         var68 = world.getBlockMetadata(x, y, z);
-        var65 = pane.getBlockTextureFromSideAndMetadata(0, var68);
-        var66 = pane.getBlockSideTextureFromMetadata(var68);
+        var65 = renderer.overrideBlockTexture >= 0 ? renderer.overrideBlockTexture : pane.getBlockTextureFromSideAndMetadata(0, var68);
+        var66 = renderer.overrideBlockTexture >= 0 ? renderer.overrideBlockTexture : pane.getBlockSideTextureFromMetadata(var68);
 
         var68 = (var65 & 15) << 4;
         int var15 = var65 & 240;

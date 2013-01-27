@@ -108,7 +108,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 			}
 		}
 		
-		setIsActive(_energyStored >= _energyActivation);
+		setIsActive(_energyStored >= _energyActivation * 2);
 		
 		if(_idleTicks > 0)
 		{

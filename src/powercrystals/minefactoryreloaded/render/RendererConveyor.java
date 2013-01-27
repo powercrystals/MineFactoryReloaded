@@ -37,7 +37,7 @@ public class RendererConveyor implements ISimpleBlockRenderingHandler
 	{
 		Tessellator tessellator = Tessellator.instance;
 		int conveyorMetadata = iblockaccess.getBlockMetadata(blockX, blockY, blockZ);
-		int conveyorTextureIndex = block.getBlockTexture(iblockaccess, blockX, blockY, blockZ, 0);
+		int conveyorTextureIndex = renderblocks.overrideBlockTexture >= 0 ? renderblocks.overrideBlockTexture : block.getBlockTexture(iblockaccess, blockX, blockY, blockZ, 0);
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(iblockaccess, blockX, blockY, blockZ));
 		tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
 		int l1 = (conveyorTextureIndex & 0xf) << 4;

@@ -14,6 +14,8 @@ public class BlockFactoryGlassPane extends BlockPane
 		super(blockId, whiteTexture, whiteSideTexture, Material.glass, false);
 		this.setCreativeTab(CreativeTabs.tabDecorations);
 		setBlockName("factoryGlassPaneBlock");
+		setHardness(0.3F);
+		setStepSound(soundGlassFootstep);
 	}
 	
 	@Override

@@ -13,6 +13,8 @@ public class BlockFactoryGlass extends BlockGlass
 		super(blockId, whiteTexture, Material.glass, false);
 		this.setCreativeTab(CreativeTabs.tabDecorations);
 		setBlockName("factoryGlassBlock");
+		setHardness(0.3F);
+		setStepSound(soundGlassFootstep);
 	}
 	
     public int getRenderBlockPass()
