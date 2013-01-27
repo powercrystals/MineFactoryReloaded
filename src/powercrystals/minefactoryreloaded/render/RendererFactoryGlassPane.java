@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.render;
 
+import org.lwjgl.opengl.GL11;
+
 import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -23,6 +25,7 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 		
         int var5 = world.getHeight();
         Tessellator var6 = Tessellator.instance;
+        GL11.glEnable(GL11.GL_CULL_FACE);
         var6.setBrightness(pane.getMixedBrightnessForBlock(world, x, y, z));
         float var7 = 1.0F;
         int var8 = pane.colorMultiplier(world, x, y, z);
