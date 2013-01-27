@@ -109,6 +109,7 @@ import powercrystals.minefactoryreloaded.transport.BlockConveyor;
 import powercrystals.minefactoryreloaded.transport.TileEntityCollector;
 import powercrystals.minefactoryreloaded.transport.TileEntityConveyor;
 import powercrystals.minefactoryreloaded.transport.TileEntityEjector;
+import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -358,6 +359,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityChronotyper.class, "factoryChronotyper");
 
 		GameRegistry.registerTileEntity(TileEntityEjector.class, "factoryEjector");
+		GameRegistry.registerTileEntity(TileEntityItemRouter.class, "factoryItemRouter");
 		GameRegistry.registerTileEntity(TileEntityLavaFabricator.class, "factoryLavaFabricator");
 		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
 

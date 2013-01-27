@@ -63,7 +63,7 @@ public class MFRUtil
 		TileEntity te = from.worldObj.getBlockTileEntity(bp.x, bp.y, bp.z);
 		if(te != null && te instanceof IInventory)
 		{
-			UtilInventory.addToInventory((IInventory)te, towards, s);
+			s.stackSize = UtilInventory.addToInventory((IInventory)te, towards, s);
 		}
 		else if(te != null && te instanceof IPipeEntry && ((IPipeEntry)te).acceptItems())
 		{
@@ -135,7 +135,7 @@ public class MFRUtil
 				break;
 			case DOWN:
 				dropOffsetX = 0.5F;
-				dropOffsetY = -0.5F;
+				dropOffsetY = -0.75F;
 				dropOffsetZ = 0.5F;
 				break;
 			case NORTH:
@@ -165,7 +165,7 @@ public class MFRUtil
 		
 		EntityItem entityitem = new EntityItem(world, from.x + dropOffsetX, from.y + dropOffsetY, from.z + dropOffsetZ, stack);
 		entityitem.motionX = 0.0D;
-		entityitem.motionY = 0.3D;
+		if(towards != ForgeDirection.DOWN) entityitem.motionY = 0.3D;
 		entityitem.motionZ = 0.0D;
 		world.spawnEntityInWorld(entityitem);
 	}

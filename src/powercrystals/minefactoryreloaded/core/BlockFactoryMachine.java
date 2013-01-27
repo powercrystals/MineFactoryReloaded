@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.core;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
@@ -74,7 +75,7 @@ public abstract class BlockFactoryMachine extends BlockContainer
 			world.markBlockForUpdate(x, y, z);
 			return true;
 		}
-		else if(te instanceof TileEntityFactoryPowered)
+		else if(te instanceof TileEntityFactoryPowered || te instanceof TileEntityItemRouter)
 		{
 			entityplayer.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
 			return true;

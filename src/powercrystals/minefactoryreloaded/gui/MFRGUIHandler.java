@@ -8,6 +8,7 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
+import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class MFRGUIHandler implements IGuiHandler
@@ -20,11 +21,11 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new ContainerAutoEnchanter(((TileEntityAutoEnchanter)te), player.inventory);
 		}
-		if(te instanceof TileEntityHarvester)
+		else if(te instanceof TileEntityHarvester)
 		{
 			return new ContainerHarvester(((TileEntityHarvester)te), player.inventory);
 		}
-		if(te instanceof TileEntityChronotyper)
+		else if(te instanceof TileEntityChronotyper)
 		{
 			return new ContainerChronotyper(((TileEntityChronotyper)te), player.inventory);
 		}
@@ -35,6 +36,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityFactoryPowered)
 		{
 			return new ContainerFactoryPowered((TileEntityFactoryPowered)te, player.inventory);
+		}
+		else if(te instanceof TileEntityItemRouter)
+		{
+			return new ContainerItemRouter((TileEntityItemRouter)te, player.inventory);
 		}
 		return null;
 	}
@@ -47,7 +52,7 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new GuiAutoEnchanter(new ContainerAutoEnchanter((TileEntityAutoEnchanter)te, player.inventory), (TileEntityAutoEnchanter)te);
 		}
-		if(te instanceof TileEntityChronotyper)
+		else if(te instanceof TileEntityChronotyper)
 		{
 			return new GuiChronotyper(new ContainerChronotyper((TileEntityChronotyper)te, player.inventory), (TileEntityChronotyper)te);
 		}
@@ -62,6 +67,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityFactoryPowered)
 		{
 			return new GuiFactoryPowered(new ContainerFactoryPowered((TileEntityFactoryPowered)te, player.inventory), (TileEntityFactoryPowered)te);
+		}
+		else if(te instanceof TileEntityItemRouter)
+		{
+			return new GuiItemRouter(new ContainerItemRouter((TileEntityItemRouter)te, player.inventory), (TileEntityItemRouter)te);
 		}
 		return null;
 	}
