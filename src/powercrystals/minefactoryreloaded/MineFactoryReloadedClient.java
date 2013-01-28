@@ -73,7 +73,8 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LavaFabricator)), "Lava Fabricator");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator)), "Oil Fabricator");
 
-		LanguageRegistry.addName(MineFactoryReloadedCore.conveyorBlock, "Conveyor Belt");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, 16), "Conveyor Belt");
+		
 		LanguageRegistry.addName(MineFactoryReloadedCore.rubberWoodBlock, "Rubber Wood");
 		LanguageRegistry.addName(MineFactoryReloadedCore.rubberLeavesBlock, "Rubber Leaves");
 		LanguageRegistry.addName(MineFactoryReloadedCore.rubberSaplingBlock, "Rubber Sapling");
@@ -107,11 +108,28 @@ public class MineFactoryReloadedClient
 			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryGlassBlock, 1, i), colorNames[i] + " Stained Glass");
 			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryGlassPaneBlock, 1, i), colorNames[i] + " Stained Glass Pane");
 			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 1, i), colorNames[i] + " Ceramic Dye");
+			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, i), colorNames[i] + " Conveyor Belt");
 		}
 
 		if(MineFactoryReloadedCore.animateBlockFaces.getBoolean(true))
 		{
 			registerAnimation(MineFactoryReloadedCore.conveyorTexture, MineFactoryReloadedCore.animationFolder + "Conveyor.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(48, MineFactoryReloadedCore.animationFolder + "Conveyor-White.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(49, MineFactoryReloadedCore.animationFolder + "Conveyor-Orange.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(50, MineFactoryReloadedCore.animationFolder + "Conveyor-Magenta.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(51, MineFactoryReloadedCore.animationFolder + "Conveyor-LightBlue.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(52, MineFactoryReloadedCore.animationFolder + "Conveyor-Yellow.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(53, MineFactoryReloadedCore.animationFolder + "Conveyor-Lime.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(54, MineFactoryReloadedCore.animationFolder + "Conveyor-Pink.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(55, MineFactoryReloadedCore.animationFolder + "Conveyor-Gray.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(56, MineFactoryReloadedCore.animationFolder + "Conveyor-LightGray.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(57, MineFactoryReloadedCore.animationFolder + "Conveyor-Cyan.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(58, MineFactoryReloadedCore.animationFolder + "Conveyor-Purple.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(59, MineFactoryReloadedCore.animationFolder + "Conveyor-Blue.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(60, MineFactoryReloadedCore.animationFolder + "Conveyor-Brown.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(61, MineFactoryReloadedCore.animationFolder + "Conveyor-Green.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(62, MineFactoryReloadedCore.animationFolder + "Conveyor-Red.png", MineFactoryReloadedCore.terrainTexture);
+			registerAnimation(63, MineFactoryReloadedCore.animationFolder + "Conveyor-Black.png", MineFactoryReloadedCore.terrainTexture);
 			
 			registerMachine0Animation(Machine.Harvester, "Harvester.png");
 			registerMachine0Animation(Machine.Rancher, "Rancher.png");

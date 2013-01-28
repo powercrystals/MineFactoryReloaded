@@ -1,13 +1,41 @@
 package powercrystals.minefactoryreloaded.transport;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.block.Block;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityConveyor extends TileEntity implements IRotateableTile
-{	
+{
+	private int _dye = -1;
+	
+	public int getDyeColor()
+	{
+		return _dye;
+	}
+	
+	public void setDyeColor(int dye)
+	{
+		if(worldObj != null && !worldObj.isRemote && _dye != dye)
+		{
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(), getDescriptionPacket());
+		}
+		_dye = dye;
+	}
+	
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		return PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye });
+	}
+	
 	@Override
 	public void rotate()
 	{
@@ -167,5 +195,24 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile
 	public ForgeDirection getDirectionFacing() 
 	{
 		return ForgeDirection.UNKNOWN;
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbtTagCompound)
+	{
+		super.writeToNBT(nbtTagCompound);
+		
+		nbtTagCompound.setInteger("dyeColor", _dye);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbtTagCompound)
+	{
+		super.readFromNBT(nbtTagCompound);
+		
+		if(nbtTagCompound.hasKey("dyeColor"))
+		{
+			_dye = nbtTagCompound.getInteger("dyeColor");
+		}
 	}
 }

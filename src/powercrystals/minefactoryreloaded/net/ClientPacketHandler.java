@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
+import powercrystals.minefactoryreloaded.transport.TileEntityConveyor;
 
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
@@ -34,6 +35,18 @@ public class ClientPacketHandler implements IPacketHandler
 				TileEntityFactory tef = (TileEntityFactory) te;
 				tef.rotateDirectlyTo((Integer)packetReadout[3]);
 				tef.setIsActive((Boolean)packetReadout[4]);
+			}
+		}
+		else if (packetType == PacketWrapper.PacketIdConveyorDescription) // server -> client; server propagating conveyor color
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if (te instanceof TileEntityConveyor)
+			{
+				TileEntityConveyor tec = (TileEntityConveyor) te;
+				tec.setDyeColor((Integer)packetReadout[3]);
 			}
 		}
 	}

@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class BlockFactoryGlass extends BlockGlass
 {
-
 	public BlockFactoryGlass(int blockId, int whiteTexture)
 	{
 		super(blockId, whiteTexture, Material.glass, false);

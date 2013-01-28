@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.transport;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
@@ -8,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -132,11 +134,12 @@ public class BlockConveyor extends BlockContainer
 		TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileEntityConveyor)
 		{
+			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
 			if(Util.isRedstonePowered(te))
 			{
 				if(MineFactoryReloadedCore.animateBlockFaces.getBoolean(true))
 				{
-					return MineFactoryReloadedCore.conveyorOffTexture;
+					return dyeColor == -1 ? MineFactoryReloadedCore.conveyorOffTexture : 64 + dyeColor;
 				}
 				else
 				{
@@ -145,7 +148,7 @@ public class BlockConveyor extends BlockContainer
 			}
 			else
 			{
-				return MineFactoryReloadedCore.conveyorTexture;
+				return dyeColor == -1 ? MineFactoryReloadedCore.conveyorTexture : 48 + dyeColor;
 			}
 		}
 		else
@@ -279,5 +282,26 @@ public class BlockConveyor extends BlockContainer
 	public TileEntity createNewTileEntity(World var1)
 	{
 		return new TileEntityConveyor();
+	}
+	
+	@Override
+	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
+	{
+		return new ArrayList<ItemStack>();
+	}
+	
+	@Override
+	public void breakBlock(World world, int x, int y, int z, int par5, int meta)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		int dyeColor = 16;
+		if(te != null && te instanceof TileEntityConveyor)
+		{
+			dyeColor = ((TileEntityConveyor)te).getDyeColor();
+			if(dyeColor == -1) dyeColor = 16;
+		}
+		
+		dropBlockAsItem_do(world, x, y, z, new ItemStack(blockID, 1, dyeColor));
+		super.breakBlock(world, x, y, z, par5, meta);
 	}
 }

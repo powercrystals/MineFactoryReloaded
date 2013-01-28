@@ -106,6 +106,7 @@ import powercrystals.minefactoryreloaded.rails.BlockRailCargoPickup;
 import powercrystals.minefactoryreloaded.rails.BlockRailPassengerDropoff;
 import powercrystals.minefactoryreloaded.rails.BlockRailPassengerPickup;
 import powercrystals.minefactoryreloaded.transport.BlockConveyor;
+import powercrystals.minefactoryreloaded.transport.ItemBlockConveyor;
 import powercrystals.minefactoryreloaded.transport.TileEntityCollector;
 import powercrystals.minefactoryreloaded.transport.TileEntityConveyor;
 import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
@@ -141,7 +142,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.1.0B4";
+	public static final String version = "1.4.6R2.1.0B5";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -328,7 +329,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 
 		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
 		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
-		GameRegistry.registerBlock(conveyorBlock, "blockConveyor");
+		GameRegistry.registerBlock(conveyorBlock, ItemBlockConveyor.class, "blockConveyor");
 		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
 		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
 		GameRegistry.registerBlock(rubberWoodBlock, "blockRubberWood");
@@ -664,7 +665,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.addShapelessRecipe(new ItemStack(syringeHealthItem), new Object[] { syringeEmptyItem, Item.appleRed });
 		GameRegistry.addShapelessRecipe(new ItemStack(syringeGrowthItem), new Object[] { syringeEmptyItem, Item.goldenCarrot });
 		
-		GameRegistry.addRecipe(new ItemStack(fertilizerItem, 6), new Object[]
+		GameRegistry.addRecipe(new ItemStack(fertilizerItem, 16), new Object[]
 				{
 					"WBW",
 					"STS",
@@ -886,7 +887,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('M'), machineBaseItem,
 				} );
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(conveyorBlock, 16), new Object[]
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(conveyorBlock, 16, 16), new Object[]
 				{
 					"UUU",
 					"RIR",
@@ -941,6 +942,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 			GameRegistry.addShapelessRecipe(new ItemStack(ceramicDyeItem, 4, i), new ItemStack(Item.clay), new ItemStack(Item.dyePowder, 1, 15 - i));
 			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassBlock, 1, i), new ItemStack(Block.glass), new ItemStack(ceramicDyeItem, 1, i));
 			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassPaneBlock, 1, i), new ItemStack(Block.thinGlass), new ItemStack(ceramicDyeItem, 1, i));
+			GameRegistry.addShapelessRecipe(new ItemStack(conveyorBlock, 1, i), new ItemStack(conveyorBlock, 1, 16), new ItemStack(ceramicDyeItem, 1, i));
 		}
 	}
 

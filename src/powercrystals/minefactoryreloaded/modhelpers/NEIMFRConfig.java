@@ -41,7 +41,11 @@ public class NEIMFRConfig implements IConfigureNEI
 			subTypes.add(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, i, i);
 		}
 		
-		subTypes.add(MineFactoryReloadedCore.conveyorBlock.blockID, 0, 0);
+		for (int i = 0; i <= 16; i++)
+		{
+			subTypes.add(MineFactoryReloadedCore.conveyorBlock.blockID, 0, 0);
+		}
+		
 		subTypes.add(MineFactoryReloadedCore.rubberWoodBlock.blockID, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.rubberLeavesBlock.blockID, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.rubberSaplingBlock.blockID, 0, 0);
