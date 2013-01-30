@@ -4,6 +4,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.net.Packets;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
@@ -33,7 +34,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile
 	@Override
 	public Packet getDescriptionPacket()
 	{
-		return PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye });
+		return PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye });
 	}
 	
 	@Override

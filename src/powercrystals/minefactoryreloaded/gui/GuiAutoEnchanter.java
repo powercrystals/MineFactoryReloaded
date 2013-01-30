@@ -8,6 +8,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 
 public class GuiAutoEnchanter extends GuiFactoryInventory
@@ -69,7 +70,7 @@ public class GuiAutoEnchanter extends GuiFactoryInventory
 			if(_enchanter.getTargetLevel() < 30)
 			{
 				_enchanter.setTargetLevel(_enchanter.getTargetLevel() + 1);
-				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdEnchanterButton,
+				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdEnchanterButton,
 						new Object[] { _enchanter.xCoord, _enchanter.yCoord, _enchanter.zCoord, 1 }));
 			}
 		}
@@ -78,7 +79,7 @@ public class GuiAutoEnchanter extends GuiFactoryInventory
 			if(_enchanter.getTargetLevel() > 1)
 			{
 				_enchanter.setTargetLevel(_enchanter.getTargetLevel() - 1);
-				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdEnchanterButton,
+				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdEnchanterButton,
 						new Object[] { _enchanter.xCoord, _enchanter.yCoord, _enchanter.zCoord, -1 }));
 			}
 		}

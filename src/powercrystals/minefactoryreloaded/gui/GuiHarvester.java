@@ -4,6 +4,7 @@ import net.minecraft.client.gui.GuiButton;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 
 public class GuiHarvester extends GuiFactoryPowered
@@ -64,17 +65,17 @@ public class GuiHarvester extends GuiFactoryPowered
 	{
 		if(button.id == 1)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdHarvesterButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdHarvesterButton,
 					new Object[] { _harvester.xCoord, _harvester.yCoord, _harvester.zCoord, "silkTouch", getNewSettingValue("silkTouch") }));
 		}
 		else if(button.id == 2)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdHarvesterButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdHarvesterButton,
 					new Object[] { _harvester.xCoord, _harvester.yCoord, _harvester.zCoord, "harvestSmallMushrooms", getNewSettingValue("harvestSmallMushrooms") }));
 		}
 		else if(button.id == 3)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdHarvesterButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdHarvesterButton,
 					new Object[] { _harvester.xCoord, _harvester.yCoord, _harvester.zCoord, "harvestJungleWood", getNewSettingValue("harvestJungleWood") }));
 		}
 	}

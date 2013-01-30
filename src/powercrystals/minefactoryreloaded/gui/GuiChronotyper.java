@@ -5,6 +5,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
+import powercrystals.minefactoryreloaded.net.Packets;
 
 public class GuiChronotyper extends GuiFactoryPowered
 {
@@ -43,7 +44,7 @@ public class GuiChronotyper extends GuiFactoryPowered
 	{
 		if(button.id == 1)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdChronotyperButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdChronotyperButton,
 					new Object[] { _chronotyper.xCoord, _chronotyper.yCoord, _chronotyper.zCoord }));
 		}
 	}

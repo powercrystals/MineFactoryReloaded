@@ -6,6 +6,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -103,7 +104,7 @@ public class GuiDeepStorageUnit extends GuiContainer
 	{
 		if(button.id > 0 && button.id <= 6)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdDSUButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdDSUButton,
 					new Object[] { _dsu.xCoord, _dsu.yCoord, _dsu.zCoord, button.id - 1 }));
 		}
 	}

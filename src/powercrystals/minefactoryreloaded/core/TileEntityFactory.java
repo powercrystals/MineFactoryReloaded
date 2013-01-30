@@ -4,6 +4,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.net.Packets;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
@@ -132,7 +133,7 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	public Packet getDescriptionPacket()
 	{
 		Object[] toSend = {xCoord, yCoord, zCoord, _forwardDirection.ordinal(), _isActive};
-		return PacketWrapper.createPacket(MineFactoryReloadedCore.modId, PacketWrapper.PacketIdTileDescription, toSend);
+		return PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdTileDescription, toSend);
 	}
 	
 	@Override
