@@ -50,7 +50,7 @@ public class ItemBlockFactoryMachine1 extends ItemBlock
 	{
 		for(int i = 0; i < 7; i++)
 		{
-			par3List.add(new ItemStack(MineFactoryReloadedCore.machineBlock0.blockID, 1, i));
+			par3List.add(new ItemStack(MineFactoryReloadedCore.machineBlock1.blockID, 1, i));
 		}
 	}
 }
