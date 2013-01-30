@@ -27,14 +27,14 @@ public class RanchableMooshroom implements IFactoryRanchable {
 	{
 		List<ItemStack> drops = new LinkedList<ItemStack>();
 		
-		int bowlIndex = UtilInventory.findFirstStack(rancher, Item.bowlEmpty.shiftedIndex, 0);
+		int bowlIndex = UtilInventory.findFirstStack(rancher, Item.bowlEmpty.itemID, 0);
 		if(bowlIndex >= 0)
 		{
 			drops.add(new ItemStack(Item.bowlSoup));
 			rancher.decrStackSize(bowlIndex, 1);
 		}
 		
-		int bucketIndex = UtilInventory.findFirstStack(rancher, Item.bucketEmpty.shiftedIndex, 0);
+		int bucketIndex = UtilInventory.findFirstStack(rancher, Item.bucketEmpty.itemID, 0);
 		if(bucketIndex >= 0)
 		{
 			drops.add(new ItemStack(Item.bucketMilk));

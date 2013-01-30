@@ -15,9 +15,9 @@ public class ContainerChronotyper extends ContainerFactoryPowered
 	}
 
 	@Override
-	public void updateCraftingResults()
+	public void detectAndSendChanges()
 	{
-		super.updateCraftingResults();
+		super.detectAndSendChanges();
 		for(int i = 0; i < crafters.size(); i++)
 		{
 			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 100, _chronotyper.getMoveOld() ? 1 : 0);

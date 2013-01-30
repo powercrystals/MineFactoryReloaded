@@ -12,7 +12,7 @@ public class PlantableNetherWart implements IFactoryPlantable
 	@Override
 	public int getSourceId()
 	{
-		return Item.netherStalkSeeds.shiftedIndex;
+		return Item.netherStalkSeeds.itemID;
 	}
 
 	@Override

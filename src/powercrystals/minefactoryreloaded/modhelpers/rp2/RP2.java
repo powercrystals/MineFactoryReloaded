@@ -40,7 +40,7 @@ public class RP2
 			int blockIdPlants = ((Block)modClass.getField("blockPlants").get(null)).blockID;
 			int blockIdCrops = ((Block)modClass.getField("blockCrops").get(null)).blockID;
 			
-			int itemCropSeedId = ((Item)modClass.getField("itemSeeds").get(null)).shiftedIndex;
+			int itemCropSeedId = ((Item)modClass.getField("itemSeeds").get(null)).itemID;
 			
 			Method fertilizeMethod = Class.forName("com.eloraam.redpower.world.BlockCustomFlower").getMethod("growTree", World.class, int.class, int.class, int.class);
 			

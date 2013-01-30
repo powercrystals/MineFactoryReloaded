@@ -84,7 +84,7 @@ public class TileEntityRancher extends TileEntityFactoryInventory implements IMa
 			{
 				if (o instanceof EntityItem)
 				{
-					MFRUtil.dropStack(this, ((EntityItem)o).func_92014_d());
+					MFRUtil.dropStack(this, ((EntityItem)o).getEntityItem());
 				}
 				continue;
 			}

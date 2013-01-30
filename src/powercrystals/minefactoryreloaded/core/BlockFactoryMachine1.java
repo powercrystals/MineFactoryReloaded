@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
 import powercrystals.minefactoryreloaded.processing.TileEntityLavaFabricator;
+import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
 import powercrystals.minefactoryreloaded.processing.TileEntityOilFabricator;
 import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.transport.TileEntityEjector;
@@ -29,6 +30,7 @@ public class BlockFactoryMachine1 extends BlockFactoryMachine
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.ItemRouter)) return new TileEntityItemRouter();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LiquidRouter)) return new TileEntityLiquidRouter();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.DeepStorageUnit)) return new TileEntityDeepStorageUnit();
+		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LiquiCrafter)) return new TileEntityLiquiCrafter();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LavaFabricator)) return new TileEntityLavaFabricator();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator)) return new TileEntityOilFabricator();
 		return null;
@@ -63,7 +65,7 @@ public class BlockFactoryMachine1 extends BlockFactoryMachine
 			TileEntity te = world.getBlockTileEntity(x, y, z);
 			if(te != null && te instanceof TileEntityItemRouter && entity instanceof EntityItem)
 			{
-				if(((TileEntityItemRouter)te).routeItem(((EntityItem)entity).func_92014_d()))
+				if(((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()))
 				{
 					entity.setDead();
 				}

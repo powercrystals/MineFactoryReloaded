@@ -97,6 +97,7 @@ import powercrystals.minefactoryreloaded.processing.TileEntityComposter;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityFisher;
 import powercrystals.minefactoryreloaded.processing.TileEntityLavaFabricator;
+import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
 import powercrystals.minefactoryreloaded.processing.TileEntityOilFabricator;
 import powercrystals.minefactoryreloaded.processing.TileEntitySewer;
 import powercrystals.minefactoryreloaded.processing.TileEntitySludgeBoiler;
@@ -365,6 +366,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityItemRouter.class, "factoryItemRouter");
 		GameRegistry.registerTileEntity(TileEntityLiquidRouter.class, "factoryLiquidRouter");
 		GameRegistry.registerTileEntity(TileEntityDeepStorageUnit.class, "factoryDeepStorageUnit");
+		GameRegistry.registerTileEntity(TileEntityLiquiCrafter.class, "factoryLiquiCrafter");
 		GameRegistry.registerTileEntity(TileEntityLavaFabricator.class, "factoryLavaFabricator");
 		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
 
@@ -437,15 +439,15 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	private void registerFarmables()
 	{
 		FarmingRegistry.registerPlantable(new PlantableStandard(Block.sapling.blockID, Block.sapling.blockID));
-		FarmingRegistry.registerPlantable(new PlantableStandard(Item.reed.shiftedIndex, Block.reed.blockID));
+		FarmingRegistry.registerPlantable(new PlantableStandard(Item.reed.itemID, Block.reed.blockID));
 		FarmingRegistry.registerPlantable(new PlantableStandard(Block.cactus.blockID, Block.cactus.blockID));
-		FarmingRegistry.registerPlantable(new PlantableStandard(Item.pumpkinSeeds.shiftedIndex, Block.pumpkinStem.blockID));
-		FarmingRegistry.registerPlantable(new PlantableStandard(Item.melonSeeds.shiftedIndex, Block.melonStem.blockID));
+		FarmingRegistry.registerPlantable(new PlantableStandard(Item.pumpkinSeeds.itemID, Block.pumpkinStem.blockID));
+		FarmingRegistry.registerPlantable(new PlantableStandard(Item.melonSeeds.itemID, Block.melonStem.blockID));
 		FarmingRegistry.registerPlantable(new PlantableStandard(Block.mushroomBrown.blockID, Block.mushroomBrown.blockID));
 		FarmingRegistry.registerPlantable(new PlantableStandard(Block.mushroomRed.blockID, Block.mushroomRed.blockID));
-		FarmingRegistry.registerPlantable(new PlantableCropPlant(Item.seeds.shiftedIndex, Block.crops.blockID));
-		FarmingRegistry.registerPlantable(new PlantableCropPlant(Item.carrot.shiftedIndex, Block.carrot.blockID));
-		FarmingRegistry.registerPlantable(new PlantableCropPlant(Item.potato.shiftedIndex, Block.potato.blockID));
+		FarmingRegistry.registerPlantable(new PlantableCropPlant(Item.seeds.itemID, Block.crops.blockID));
+		FarmingRegistry.registerPlantable(new PlantableCropPlant(Item.carrot.itemID, Block.carrot.blockID));
+		FarmingRegistry.registerPlantable(new PlantableCropPlant(Item.potato.itemID, Block.potato.blockID));
 		FarmingRegistry.registerPlantable(new PlantableNetherWart());
 		FarmingRegistry.registerPlantable(new PlantableCocoa());
 		FarmingRegistry.registerPlantable(new PlantableStandard(rubberSaplingBlock.blockID, rubberSaplingBlock.blockID));
@@ -485,10 +487,10 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		FarmingRegistry.registerFertilizable(new FertilizableGrass());
 		FarmingRegistry.registerFertilizable(new FertilizableRubberSapling());
 
-		FarmingRegistry.registerFertilizer(new FertilizerStandard(fertilizerItem.shiftedIndex, 0));
+		FarmingRegistry.registerFertilizer(new FertilizerStandard(fertilizerItem.itemID, 0));
 		if(enableBonemealFertilizing.getBoolean(false))
 		{
-			FarmingRegistry.registerFertilizer(new FertilizerStandard(Item.dyePowder.shiftedIndex, 15));
+			FarmingRegistry.registerFertilizer(new FertilizerStandard(Item.dyePowder.itemID, 15));
 		}
 
 		FarmingRegistry.registerRanchable(new RanchableCow());
@@ -616,7 +618,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		OreDictionary.registerOre("itemRubber", rubberBarItem);
 		OreDictionary.registerOre("woodRubber", rubberWoodBlock);
 		
-		FurnaceRecipes.smelting().addSmelting(rawRubberItem.shiftedIndex, 0, new ItemStack(rubberBarItem), 0.1F);
+		FurnaceRecipes.smelting().addSmelting(rawRubberItem.itemID, 0, new ItemStack(rubberBarItem), 0.1F);
 		FurnaceRecipes.smelting().addSmelting(rubberWoodBlock.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.1F);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 3, 3), new ItemStack(rubberWoodBlock));

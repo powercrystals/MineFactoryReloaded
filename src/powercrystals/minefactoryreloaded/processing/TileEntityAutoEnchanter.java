@@ -173,7 +173,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implemen
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		if(resource == null || (resource.itemID != MineFactoryReloadedCore.mobEssenceItem.shiftedIndex))
+		if(resource == null || (resource.itemID != MineFactoryReloadedCore.mobEssenceItem.itemID))
 		{
 			return 0;
 		}
@@ -184,7 +184,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implemen
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		if(resource == null || (resource.itemID != MineFactoryReloadedCore.mobEssenceItem.shiftedIndex))
+		if(resource == null || (resource.itemID != MineFactoryReloadedCore.mobEssenceItem.itemID))
 		{
 			return 0;
 		}
@@ -213,7 +213,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implemen
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
-		if(type != null && type.itemID == MineFactoryReloadedCore.mobEssenceItem.shiftedIndex)
+		if(type != null && type.itemID == MineFactoryReloadedCore.mobEssenceItem.itemID)
 		{
 			return _tank;
 		}

@@ -26,7 +26,7 @@ public class TileEntityCollector extends TileEntityFactory
 			return;
 		}
 		
-		ItemStack s = i.func_92014_d();
+		ItemStack s = i.getEntityItem();
 		Map<ForgeDirection, IInventory> chests = UtilInventory.findChests(worldObj, xCoord, yCoord, zCoord);
 		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 		{

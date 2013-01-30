@@ -19,7 +19,7 @@ public class ItemHealthSyringe extends ItemFactory
 		if (e.getHealth() < e.getMaxHealth())
 		{
 			e.heal(2);
-			s.itemID = MineFactoryReloadedCore.syringeEmptyItem.shiftedIndex;
+			s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
 			
 			return true;
 		}

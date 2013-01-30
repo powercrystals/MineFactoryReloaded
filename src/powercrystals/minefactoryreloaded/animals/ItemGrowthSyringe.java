@@ -20,7 +20,7 @@ public class ItemGrowthSyringe extends ItemFactory
 		if (e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0)
 		{
 			((EntityAgeable)e).setGrowingAge(0);
-			s.itemID = MineFactoryReloadedCore.syringeEmptyItem.shiftedIndex;
+			s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
 			
 			return true;
 		}

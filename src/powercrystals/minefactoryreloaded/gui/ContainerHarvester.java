@@ -12,9 +12,9 @@ public class ContainerHarvester extends ContainerFactoryPowered
 	}
 
 	@Override
-	public void updateCraftingResults()
+	public void detectAndSendChanges()
 	{
-		super.updateCraftingResults();
+		super.detectAndSendChanges();
 		
 		for(int i = 0; i < crafters.size(); i++)
 		{

@@ -39,7 +39,7 @@ public class ClientPacketHandler implements IPacketHandler
 		}
 		else if (packetType == PacketWrapper.PacketIdConveyorDescription) // server -> client; server propagating conveyor color
 		{
-			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class };
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);

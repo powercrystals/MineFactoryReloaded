@@ -14,5 +14,4 @@ public class TileEntityLavaFabricator extends TileEntityLiquidFabricator
 	{
 		return "Lava Fabricator";
 	}
-
 }

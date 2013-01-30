@@ -90,9 +90,9 @@ public class ContainerDeepStorageUnit extends Container
 	}
 	
 	@Override
-	public void updateCraftingResults()
+	public void detectAndSendChanges()
 	{
-		super.updateCraftingResults();
+		super.detectAndSendChanges();
 		for(int i = 0; i < crafters.size(); i++)
 		{
 			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 0, _dsu.getIsSideOutput(0) ? 1 : 0);

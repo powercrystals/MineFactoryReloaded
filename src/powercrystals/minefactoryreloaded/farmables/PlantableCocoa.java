@@ -13,7 +13,7 @@ public class PlantableCocoa implements IFactoryPlantable
 	@Override
 	public int getSourceId()
 	{
-		return Item.dyePowder.shiftedIndex;
+		return Item.dyePowder.itemID;
 	}
 
 	@Override

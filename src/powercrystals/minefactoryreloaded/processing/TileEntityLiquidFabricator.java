@@ -1,12 +1,13 @@
 package powercrystals.minefactoryreloaded.processing;
 
+import buildcraft.core.IMachine;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowered
+public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowered implements IMachine
 {
 	private int _liquidId;
 	private int _liquidFabPerTick;
@@ -68,5 +69,29 @@ public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowere
 	protected boolean shouldPumpLiquid()
 	{
 		return true;
+	}
+
+	@Override
+	public boolean isActive()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean manageLiquids()
+	{
+		return true;
+	}
+
+	@Override
+	public boolean manageSolids()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean allowActions()
+	{
+		return false;
 	}
 }

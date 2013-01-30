@@ -69,7 +69,7 @@ public class Pam
 				
 				for(String flower : flowers)
 				{
-					int seedId = ((Item)mod.getField(flower.toLowerCase() + "flowerseedItem").get(null)).shiftedIndex;
+					int seedId = ((Item)mod.getField(flower.toLowerCase() + "flowerseedItem").get(null)).itemID;
 					int blockId = ((Block)mod.getField("pam" + flower.toLowerCase() + "flowerCrop").get(null)).blockID;
 					Method fertilize = Class.forName("pamsmods.common.weeeflowers.BlockPam" + flower + "FlowerCrop").getMethod("fertilize", World.class, int.class, int.class, int.class);
 					
@@ -100,7 +100,7 @@ public class Pam
 			
 			mod = Class.forName("pamsmods.common.harvestcraft." + modName.toLowerCase() + ".PamHC" + modName);
 			blockIdCrop = ((Block)mod.getField("pam" + modName.toLowerCase() + "Crop").get(null)).blockID;
-			seedId = ((Item)mod.getField(modName.toLowerCase() + "seedItem").get(null)).shiftedIndex;
+			seedId = ((Item)mod.getField(modName.toLowerCase() + "seedItem").get(null)).itemID;
 			
 			FarmingRegistry.registerPlantable(new PlantableCropPlant(seedId, blockIdCrop));
 			
@@ -142,7 +142,7 @@ public class Pam
 			
 			mod = Class.forName("pamsmods.common.harvestcraft.rice.PamHCRice");
 			blockIdCrop = ((Block)mod.getField("pamriceCrop").get(null)).blockID;
-			seedId = ((Item)mod.getField("riceseedItem").get(null)).shiftedIndex;
+			seedId = ((Item)mod.getField("riceseedItem").get(null)).itemID;
 			FarmingRegistry.registerPlantable(new PlantablePamRice(blockIdCrop, seedId));
 			
 			FarmingRegistry.registerHarvestable(new HarvestablePams(blockIdCrop));
@@ -173,7 +173,7 @@ public class Pam
 			mod = Class.forName("pamsmods.common.harvestcraft.whitemushroom.PamHCWhitemushroom");
 			blockIdCrop = ((Block)mod.getField("pamwhitemushroomCrop").get(null)).blockID;
 			blockIdWild = ((Block)mod.getField("pamwhitemushroomWild").get(null)).blockID;
-			seedId = ((Item)mod.getField("whitemushroomseedItem").get(null)).shiftedIndex;
+			seedId = ((Item)mod.getField("whitemushroomseedItem").get(null)).itemID;
 			FarmingRegistry.registerPlantable(new PlantablePamWhiteMushroom(blockIdCrop, seedId));
 
 			FarmingRegistry.registerHarvestable(new HarvestableStandard(blockIdWild, HarvestType.Normal));

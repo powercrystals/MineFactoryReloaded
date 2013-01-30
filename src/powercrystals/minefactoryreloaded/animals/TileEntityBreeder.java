@@ -41,7 +41,7 @@ public class TileEntityBreeder extends TileEntityFactoryInventory
 	@Override
 	protected boolean activateMachine()
 	{
-		int stackIndex = UtilInventory.findFirstStack(this, Item.wheat.shiftedIndex, 0);
+		int stackIndex = UtilInventory.findFirstStack(this, Item.wheat.itemID, 0);
 		if(stackIndex < 0)
 		{
 			return false;

@@ -30,7 +30,7 @@ public class NEIMFRConfig implements IConfigureNEI
 		}
 		for (int i = 0; i <= 15; i++)
 		{
-			subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.shiftedIndex, i, i);
+			subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.itemID, i, i);
 		}
 		for (int i = 0; i <= 15; i++)
 		{

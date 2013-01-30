@@ -56,10 +56,10 @@ public class TileEntityVet extends TileEntityFactoryInventory
 				for(int i = 0; i < getSizeInventory(); i++)
 				{
 					ItemStack s = getStackInSlot(i);
-					if(s != null && s.itemID == MineFactoryReloadedCore.syringeHealthItem.shiftedIndex)
+					if(s != null && s.itemID == MineFactoryReloadedCore.syringeHealthItem.itemID)
 					{
 						e.heal(2);
-						s.itemID = MineFactoryReloadedCore.syringeEmptyItem.shiftedIndex;
+						s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
 						
 						return true;
 					}
@@ -70,10 +70,10 @@ public class TileEntityVet extends TileEntityFactoryInventory
 				for(int i = 0; i < getSizeInventory(); i++)
 				{
 					ItemStack s = getStackInSlot(i);
-					if(s != null && s.itemID == MineFactoryReloadedCore.syringeGrowthItem.shiftedIndex)
+					if(s != null && s.itemID == MineFactoryReloadedCore.syringeGrowthItem.itemID)
 					{
 						((EntityAgeable)e).setGrowingAge(0);
-						s.itemID = MineFactoryReloadedCore.syringeEmptyItem.shiftedIndex;
+						s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
 						
 						return true;
 					}

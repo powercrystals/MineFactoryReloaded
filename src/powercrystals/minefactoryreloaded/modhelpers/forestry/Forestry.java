@@ -28,7 +28,7 @@ public class Forestry
 			Item fertilizer = (Item)Class.forName("forestry.core.config.ForestryItem").getField("fertilizerCompound").get(null);
 			if(fertilizer != null)
 			{
-				FarmingRegistry.registerFertilizer(new FertilizerStandard(fertilizer.shiftedIndex, 0));
+				FarmingRegistry.registerFertilizer(new FertilizerStandard(fertilizer.itemID, 0));
 			}
 		}
 		catch (Exception x)
