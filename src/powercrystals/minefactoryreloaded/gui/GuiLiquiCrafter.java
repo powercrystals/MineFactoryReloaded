@@ -29,8 +29,8 @@ public class GuiLiquiCrafter extends GuiContainer
 	{
 		fontRenderer.drawString(_crafter.getInvName(), 8, 6, 4210752);
 		fontRenderer.drawString("Template", 67, 27, 4210752);
-		fontRenderer.drawString("Output", 128, 28, 4210752);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+		fontRenderer.drawString("Output", 128, 26, 4210752);
+		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 95 + 2, 4210752);
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		for(int i = 0; i < 9; i++)
@@ -44,6 +44,13 @@ public class GuiLiquiCrafter extends GuiContainer
 			{
 				drawTank(l.itemID, l.itemMeta, l.amount * 33 / _crafter.getTanks(ForgeDirection.UNKNOWN)[i].getCapacity(), i);
 			}
+		}
+		
+		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "liquicrafter.png");
+		this.mc.renderEngine.bindTexture(texture);	
+		for (int i=0; i<8; i++) {
+			int x = (8 + (i * 18));
+			this.drawTexturedModalRect(x, 128, 176, 0, 16, 33);
 		}
 	}
 	
