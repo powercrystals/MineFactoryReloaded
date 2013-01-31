@@ -32,11 +32,6 @@ public class GuiFactoryPowered extends GuiContainer
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 		
 		drawBars();
-		
-		if(_tePowered.getTank() != null)
-		{
-			this.drawTexturedModalRect(124, 15, 176, 0, 16, 60);
-		}
 	}
 
 	@Override
@@ -121,6 +116,8 @@ public class GuiFactoryPowered extends GuiContainer
 	
 			drawTexturedModalRect(124, 75 - x - vertOffset, liquidTexX * 16, liquidTexY * 16 + (16 - x), 16, 16 - (16 - x));
 			vertOffset = vertOffset + 16;
+			
+			this.drawTexturedModalRect(124, 15, 176, 0, 16, 60);
 		}
 	}
 }

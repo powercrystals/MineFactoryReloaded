@@ -11,15 +11,6 @@ public class GuiFactoryInventory extends GuiFactoryPowered
 	{
 		super(container, tileentity);
 	}
-	
-	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
-	{
-		if(_tePowered.getTank() != null)
-		{
-			this.drawTexturedModalRect(124, 15, 176, 0, 16, 60);
-		}
-	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float mouseX, int mouseY, int gameTicks)
