@@ -20,7 +20,7 @@ public class ContainerItemRouter extends Container
 		{
 			for(int j = 0; j < 9; j++)
 			{
-				addSlotToContainer(new Slot(_router, j + i * 9, 8 + j * 18, 20 + i * 18));
+				addSlotToContainer(new SlotFilter(_router, j + i * 9, 8 + j * 18, 20 + i * 18));
 			}
 		}
 	}

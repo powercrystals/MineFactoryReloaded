@@ -18,7 +18,7 @@ public class ContainerLiquidRouter extends Container
 		_router = router;
 		for(int i = 0; i < 6; i++)
 		{
-			addSlotToContainer(new Slot(_router, i, 8 + i * 18, 20));
+			addSlotToContainer(new SlotFilter(_router, i, 8 + i * 18, 20));
 		}
 	}
 	

@@ -196,6 +196,11 @@ inv:	for(int i = 0; i < 9; i++)
 			_inventory[10].stackSize += _inventory[9].stackSize;
 		}
 	}
+	
+	private void calculateOutput()
+	{
+		_inventory[9] = findMatchingRecipe();
+	}
 
 	@Override
 	public int getSizeInventory()
@@ -218,6 +223,7 @@ inv:	for(int i = 0; i < 9; i++)
 			{
 				ItemStack itemstack = _inventory[slot];
 				_inventory[slot] = null;
+				if(slot < 9) calculateOutput();
 				return itemstack;
 			}
 			ItemStack itemstack1 = _inventory[slot].splitStack(size);
@@ -225,6 +231,7 @@ inv:	for(int i = 0; i < 9; i++)
 			{
 				_inventory[slot] = null;
 			}
+			if(slot < 9) calculateOutput();
 			return itemstack1;
 		}
 		else
@@ -243,10 +250,7 @@ inv:	for(int i = 0; i < 9; i++)
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
 		_inventory[slot] = stack;
-		if(slot < 9)
-		{
-			_inventory[9] = findMatchingRecipe();
-		}
+		if(slot < 9) calculateOutput();
 	}
 
 	@Override

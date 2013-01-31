@@ -33,7 +33,7 @@ public class ContainerLiquiCrafter extends Container
 			}
 		}
 
-		addSlotToContainer(new Slot(_crafter, 9, 80, 38));
+		addSlotToContainer(new SlotViewOnly(_crafter, 9, 80, 38));
 		addSlotToContainer(new SlotRemoveOnly(_crafter, 10, 134, 38));
 		
 		for(int i = 0; i < 2; i++)
