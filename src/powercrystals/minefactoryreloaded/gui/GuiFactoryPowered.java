@@ -116,6 +116,8 @@ public class GuiFactoryPowered extends GuiContainer
 	
 			drawTexturedModalRect(124, 75 - x - vertOffset, liquidTexX * 16, liquidTexY * 16 + (16 - x), 16, 16 - (16 - x));
 			vertOffset = vertOffset + 16;
+			
+			this.drawTexturedModalRect(124, 15, 176, 0, 16, 60);
 		}
 	}
 }

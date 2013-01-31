@@ -29,8 +29,8 @@ public class GuiLiquiCrafter extends GuiContainer
 	{
 		fontRenderer.drawString(_crafter.getInvName(), 8, 6, 4210752);
 		fontRenderer.drawString("Template", 67, 27, 4210752);
-		fontRenderer.drawString("Output", 128, 28, 4210752);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+		fontRenderer.drawString("Output", 128, 26, 4210752);
+		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 137 + 2, 4210752);
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		for(int i = 0; i < 9; i++)
@@ -45,6 +45,32 @@ public class GuiLiquiCrafter extends GuiContainer
 				drawTank(l.itemID, l.itemMeta, l.amount * 33 / _crafter.getTanks(ForgeDirection.UNKNOWN)[i].getCapacity(), i);
 			}
 		}
+		
+		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "liquicrafter.png");
+		this.mc.renderEngine.bindTexture(texture);
+		for (int i=0; i<8; i++) {
+			switch (i)
+			{
+				case 0:
+					this.drawTexturedModalRect(6 - 56, 10, 232, 0, 16, 33);
+				case 1:
+					this.drawTexturedModalRect(24 - 56, 10, 232, 0, 16, 33);
+				case 2:
+					this.drawTexturedModalRect(42 - 56, 10, 232, 0, 16, 33);
+				case 3:
+					this.drawTexturedModalRect(6 - 56, 45, 232, 0, 16, 33);
+				case 4:
+					this.drawTexturedModalRect(24 - 56, 45, 232, 0, 16, 33);
+				case 5:
+					this.drawTexturedModalRect(42 - 56, 45, 232, 0, 16, 33);
+				case 6:
+					this.drawTexturedModalRect(6 - 56, 80, 232, 0, 16, 33);
+				case 7:
+					this.drawTexturedModalRect(24 - 56, 80, 232, 0, 16, 33);
+				case 8:
+					this.drawTexturedModalRect(42 - 56, 80, 232, 0, 16, 33);
+			}
+		}
 	}
 	
 	@Override
@@ -55,7 +81,7 @@ public class GuiLiquiCrafter extends GuiContainer
 		this.mc.renderEngine.bindTexture(texture);
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
-		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+		this.drawTexturedModalRect(x - 56, y, 0, 0, xSize + 56, ySize);
 	}
 	
 	private void drawTank(int liquidId, int liquidMeta, int level, int tankIndex)
@@ -100,8 +126,19 @@ public class GuiLiquiCrafter extends GuiContainer
 				x = level;
 				level = 0;
 			}
-	
-			drawTexturedModalRect(8 + 18 * tankIndex, 161 - x - vertOffset, liquidTexX * 16, liquidTexY * 16 + (16 - x), 16, 16 - (16 - x));
+			int xIndex = 0;
+			int yCoord = 0;
+			if (tankIndex < 3) {
+				xIndex = tankIndex;
+				yCoord = 43;
+			} else if (tankIndex >= 3 && tankIndex <= 5) {
+				xIndex = tankIndex - 3;
+				yCoord = 78;
+			} else {
+				xIndex = tankIndex - 6;
+				yCoord = 113;
+			}
+			drawTexturedModalRect(8 - 58 + 18 * xIndex, yCoord - x - vertOffset, liquidTexX * 16, liquidTexY * 16 + (16 - x), 16, 16 - (16 - x));
 			vertOffset = vertOffset + 16;
 		}
 	}
