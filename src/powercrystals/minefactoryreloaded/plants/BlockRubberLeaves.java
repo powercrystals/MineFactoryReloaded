@@ -47,7 +47,7 @@ public class BlockRubberLeaves extends BlockLeaves
 	@SideOnly(Side.CLIENT)
 	public int getBlockTexture(IBlockAccess world, int x, int y, int z, int side)
 	{
-		return Block.leaves.graphicsLevel ? 30 : 31;
+		return Block.leaves.graphicsLevel ? 6 : 7;
 	}
 	
 	@Override

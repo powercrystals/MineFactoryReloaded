@@ -26,7 +26,7 @@ public class BlockRubberWood extends BlockLog
 	public int getBlockTextureFromSideAndMetadata(int par1, int par2)
 	{
 		int var3 = par2 & 12;
-		return var3 == 0 && (par1 == 1 || par1 == 0) ? 29 : (var3 == 4 && (par1 == 5 || par1 == 4) ? 29 : (var3 == 8 && (par1 == 2 || par1 == 3) ? 29 : 28));
+		return var3 == 0 && (par1 == 1 || par1 == 0) ? 5 : (var3 == 4 && (par1 == 5 || par1 == 4) ? 5 : (var3 == 8 && (par1 == 2 || par1 == 3) ? 5 : 4));
 	}
 	
 	@Override
