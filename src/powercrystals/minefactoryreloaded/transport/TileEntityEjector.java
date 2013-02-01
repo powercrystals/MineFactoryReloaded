@@ -29,7 +29,7 @@ public class TileEntityEjector extends TileEntityFactory
 		if(redstoneState && !_lastRedstoneState)
 		{
 			Map<ForgeDirection, IInventory> chests = UtilInventory.findChests(worldObj, xCoord, yCoord, zCoord);
-			for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
+inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 			{
 				if(chest.getKey() == getDirectionFacing())
 				{
@@ -66,7 +66,7 @@ public class TileEntityEjector extends TileEntityFactory
 							newStack.stackSize--;
 							inventory.setInventorySlotContents(i, newStack);
 						}
-						return;
+						break inv;
 					}
 				}
 			}
