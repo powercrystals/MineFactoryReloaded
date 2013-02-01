@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.transport;
+package powercrystals.minefactoryreloaded.processing;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,7 +13,8 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactory;
 
 public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInventory, ISidedInventory
 {
-	private ItemStack[] _inventory = new ItemStack[2];
+	// in, in, out
+	private ItemStack[] _inventory = new ItemStack[3];
 	private boolean[] _isSideOutput = new boolean[] { false, false, true, true, true, true };
 	
 	private int _storedQuantity;
@@ -49,25 +50,40 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 		{
 			return;
 		}
-		if(_inventory[1] == null && _storedQuantity > 0)
+		if(_inventory[2] == null && _storedQuantity > 0)
 		{
-			_inventory[1] = new ItemStack(_storedId, Math.min(_storedQuantity, 64), _storedMeta);
-			_storedQuantity -= _inventory[1].stackSize;
+			_inventory[2] = new ItemStack(_storedId, Math.min(_storedQuantity, 64), _storedMeta);
+			_storedQuantity -= _inventory[2].stackSize;
 		}
-		if(_inventory[0] != null)
+		checkInput(0);
+		checkInput(1);
+	}
+	
+	private void checkInput(int slot)
+	{
+		if(_inventory[slot] != null)
 		{
 			if(_storedQuantity == 0)
 			{
-				_storedId = _inventory[0].itemID;
-				_storedMeta = _inventory[0].getItemDamage();
-				_storedQuantity = _inventory[0].stackSize;
-				_inventory[0] = null;
+				_storedId = _inventory[slot].itemID;
+				_storedMeta = _inventory[slot].getItemDamage();
+				_storedQuantity = _inventory[slot].stackSize;
+				_inventory[slot] = null;
 			}
-			else if(_inventory[0].itemID == _storedId && _inventory[0].getItemDamage() == _storedMeta)
+			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta)
 			{
-				_storedQuantity += _inventory[0].stackSize;
-				_inventory[0] = null;
+				if(_inventory[slot].getMaxStackSize() > 1)
+				{
+					_storedQuantity += (_inventory[slot].stackSize - 1);
+					_inventory[slot].stackSize = 1;
+				}
 			}
+		}
+		
+		if(_inventory[slot] == null && _storedQuantity > 1 && _inventory[2] != null && _inventory[2].getMaxStackSize() > 1)
+		{
+			_inventory[slot] = new ItemStack(_storedId, 1, _storedMeta);
+			_storedQuantity--;
 		}
 	}
 	
@@ -156,7 +172,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
-		return 1;
+		return _isSideOutput[side.ordinal()] ? 1 : 2;
 	}
 	
 	@Override

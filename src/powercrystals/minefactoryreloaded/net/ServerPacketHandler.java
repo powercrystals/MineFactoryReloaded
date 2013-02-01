@@ -12,7 +12,7 @@ import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
-import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
+import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 

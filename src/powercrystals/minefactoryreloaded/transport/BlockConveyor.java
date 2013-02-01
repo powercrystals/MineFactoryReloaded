@@ -291,7 +291,7 @@ public class BlockConveyor extends BlockContainer
 	}
 	
 	@Override
-	public void breakBlock(World world, int x, int y, int z, int par5, int meta)
+	public void breakBlock(World world, int x, int y, int z, int blockId, int meta)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		int dyeColor = 16;
@@ -302,6 +302,6 @@ public class BlockConveyor extends BlockContainer
 		}
 		
 		dropBlockAsItem_do(world, x, y, z, new ItemStack(blockID, 1, dyeColor));
-		super.breakBlock(world, x, y, z, par5, meta);
+		super.breakBlock(world, x, y, z, blockId, meta);
 	}
 }

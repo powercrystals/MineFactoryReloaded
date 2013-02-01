@@ -7,7 +7,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.net.Packets;
-import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
+import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;

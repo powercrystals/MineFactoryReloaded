@@ -2,8 +2,8 @@ package powercrystals.minefactoryreloaded.core;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
-import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
 import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
 import net.minecraft.block.BlockContainer;

@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.minefactoryreloaded.transport.TileEntityDeepStorageUnit;
+import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -18,8 +18,9 @@ public class ContainerDeepStorageUnit extends Container
 	public ContainerDeepStorageUnit(TileEntityDeepStorageUnit dsu, InventoryPlayer inventoryPlayer)
 	{
 		_dsu = dsu;
-		addSlotToContainer(new Slot(dsu, 0, 152, 16));
-		addSlotToContainer(new SlotRemoveOnly(dsu, 1, 152, 49));
+		addSlotToContainer(new Slot(dsu, 0, 134, 16));
+		addSlotToContainer(new Slot(dsu, 1, 152, 16));
+		addSlotToContainer(new SlotRemoveOnly(dsu, 2, 152, 49));
 		
 		bindPlayerInventory(inventoryPlayer);
 	}
