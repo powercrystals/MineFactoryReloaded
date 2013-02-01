@@ -119,7 +119,7 @@ public abstract class BlockFactoryMachine extends BlockContainer
 	}
 
 	@Override
-	public void breakBlock(World world, int x, int y, int z, int par5, int par6)
+	public void breakBlock(World world, int x, int y, int z, int blockId, int meta)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof IInventory)
@@ -164,7 +164,7 @@ label0:
 			((TileEntityFactoryPowered)te).onBlockBroken();
 		}
 
-		super.breakBlock(world, x, y, z, par5, par6);
+		super.breakBlock(world, x, y, z, blockId, meta);
 	}
 
 	@Override

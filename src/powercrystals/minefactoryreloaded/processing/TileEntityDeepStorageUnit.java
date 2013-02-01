@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.processing;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -36,10 +34,29 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 		return _storedQuantity;
 	}
 	
-	@SideOnly(Side.CLIENT)
 	public void setQuantity(int quantity)
 	{
 		_storedQuantity = quantity;
+	}
+	
+	public int getId()
+	{
+		return _storedId;
+	}
+	
+	public void setId(int id)
+	{
+		_storedId = id;
+	}
+	
+	public int getMeta()
+	{
+		return _storedMeta;
+	}
+	
+	public void setMeta(int meta)
+	{
+		_storedMeta = meta;
 	}
 
 	@Override
@@ -90,7 +107,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 	@Override
 	public int getSizeInventory()
 	{
-		return 2;
+		return 3;
 	}
 
 	@Override

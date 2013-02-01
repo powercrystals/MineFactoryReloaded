@@ -1,7 +1,11 @@
 package powercrystals.minefactoryreloaded.core;
 
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -72,6 +76,58 @@ public class BlockFactoryMachine1 extends BlockFactoryMachine
 			}
 		}
 		super.onEntityCollidedWithBlock(world, x, y, z, entity);
+	}
+	
+	@Override
+	public int quantityDropped(int meta, int fortune, Random random)
+	{
+		return meta != MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.DeepStorageUnit) ? 1 : 0;
+	}
+	
+	@Override
+	public void breakBlock(World world, int x, int y, int z, int blockId, int meta)
+	{
+		if(meta != MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.DeepStorageUnit))
+		{
+			super.breakBlock(world, x, y, z, blockId, meta);
+		}
+		else
+		{	
+			ItemStack s = new ItemStack(blockId, 1, meta);
+			TileEntity te = world.getBlockTileEntity(x, y, z);
+			if(te != null && te instanceof TileEntityDeepStorageUnit && ((TileEntityDeepStorageUnit)te).getQuantity() > 0)
+			{
+				TileEntityDeepStorageUnit dsu = (TileEntityDeepStorageUnit)te;
+				NBTTagCompound c = new NBTTagCompound();
+				int storedId = dsu.getId();
+				int storedMeta = dsu.getMeta();
+				int storedQuantity = dsu.getQuantity();
+				
+				for(int i = 0; i < 3; i++)
+				{
+					ItemStack inv = dsu.getStackInSlot(i);
+					if(inv != null)
+					{
+						if(inv.itemID == storedId && inv.getItemDamage() == storedMeta)
+						{
+							storedQuantity += inv.stackSize;
+						}
+						else
+						{
+							dropBlockAsItem_do(world, x, y, z, inv.copy());
+						}
+					}
+				}
+
+				c.setInteger("storedId", storedId);
+				c.setInteger("storedMeta", storedMeta);
+				c.setInteger("storedQuantity", storedQuantity);
+				s.setTagCompound(c);
+			}
+
+			dropBlockAsItem_do(world, x, y, z, s);
+			world.removeBlockTileEntity(x, y, z);
+		}
 	}
 
 	@Override

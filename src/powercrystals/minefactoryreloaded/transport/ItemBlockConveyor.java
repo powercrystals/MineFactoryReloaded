@@ -56,5 +56,4 @@ public class ItemBlockConveyor extends ItemBlock
 		}
 		return false;
 	}
-	
 }
