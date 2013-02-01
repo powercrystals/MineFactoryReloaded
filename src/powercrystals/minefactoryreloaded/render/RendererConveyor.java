@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RendererConveyor implements ISimpleBlockRenderingHandler
@@ -30,7 +30,7 @@ public class RendererConveyor implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId()
 	{
-		return MineFactoryReloadedClient.renderIdConveyor;
+		return MineFactoryReloadedCore.renderIdConveyor;
 	}
 	
 	private void renderConveyorWorld(RenderBlocks renderblocks, IBlockAccess iblockaccess, int blockX, int blockY, int blockZ, Block block, int renderId)

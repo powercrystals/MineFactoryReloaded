@@ -58,14 +58,14 @@ public class ContainerDeepStorageUnit extends Container
 			ItemStack stackInSlot = slotObject.getStack();
 			stack = stackInSlot.copy();
 			
-			if(slot < 2)
+			if(slot < 3)
 			{
-				if(!mergeItemStack(stackInSlot, 2, inventorySlots.size(), true))
+				if(!mergeItemStack(stackInSlot, 3, inventorySlots.size(), true))
 				{
 					return null;
 				}
 			}
-			else if(!mergeItemStack(stackInSlot, 0, 1, false))
+			else if(!mergeItemStack(stackInSlot, 0, 2, false))
 			{
 				return null;
 			}

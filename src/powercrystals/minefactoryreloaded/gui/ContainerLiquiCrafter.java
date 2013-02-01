@@ -111,8 +111,45 @@ public class ContainerLiquiCrafter extends Container
 	}
 	
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
+	public ItemStack transferStackInSlot(EntityPlayer player, int slot)
 	{
-		return null;
+		ItemStack stack = null;
+		Slot slotObject = (Slot) inventorySlots.get(slot);
+
+		if(slotObject != null && slotObject.getHasStack())
+		{
+			ItemStack stackInSlot = slotObject.getStack();
+			stack = stackInSlot.copy();
+			
+			if(slot < 9 || (slot > 9 && slot < 29))
+			{
+				if(!mergeItemStack(stackInSlot, 29, inventorySlots.size(), true))
+				{
+					return null;
+				}
+			}
+			else if(slot != 9 && !mergeItemStack(stackInSlot, 11, 18, false))
+			{
+				return null;
+			}
+			
+			if(stackInSlot.stackSize == 0)
+			{
+				slotObject.putStack(null);
+			}
+			else
+			{
+				slotObject.onSlotChanged();
+			}
+			
+			if(stackInSlot.stackSize == stack.stackSize)
+			{
+				return null;
+			}
+			
+			slotObject.onPickupFromSlot(player, stackInSlot);
+		}
+
+		return stack;
 	}
 }

@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.render;
 
 import org.lwjgl.opengl.GL11;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
@@ -465,6 +465,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId()
 	{
-		return MineFactoryReloadedClient.renderIdFactoryGlassPane;
+		return MineFactoryReloadedCore.renderIdFactoryGlassPane;
 	}
 }
