@@ -44,20 +44,20 @@ public class BlockConveyor extends BlockContainer
 		{
 			return;
 		}
-		int l = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-		if(l == 0)
+		int facing = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+		if(facing == 0)
 		{
 			world.setBlockMetadataWithNotify(x, y, z, 1);
 		}
-		if(l == 1)
+		if(facing == 1)
 		{
 			world.setBlockMetadataWithNotify(x, y, z, 2);
 		}
-		if(l == 2)
+		if(facing == 2)
 		{
 			world.setBlockMetadataWithNotify(x, y, z, 3);
 		}
-		if(l == 3)
+		if(facing == 3)
 		{
 			world.setBlockMetadataWithNotify(x, y, z, 0);
 		}

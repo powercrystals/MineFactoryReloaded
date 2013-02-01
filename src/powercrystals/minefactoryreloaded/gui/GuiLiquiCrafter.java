@@ -48,7 +48,8 @@ public class GuiLiquiCrafter extends GuiContainer
 		
 		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "liquicrafter.png");
 		this.mc.renderEngine.bindTexture(texture);
-		for (int i=0; i<8; i++) {
+		for(int i=0; i<8; i++)
+		{
 			switch (i)
 			{
 				case 0:
@@ -128,13 +129,18 @@ public class GuiLiquiCrafter extends GuiContainer
 			}
 			int xIndex = 0;
 			int yCoord = 0;
-			if (tankIndex < 3) {
+			if(tankIndex < 3)
+			{
 				xIndex = tankIndex;
 				yCoord = 43;
-			} else if (tankIndex >= 3 && tankIndex <= 5) {
+			}
+			else if (tankIndex >= 3 && tankIndex <= 5)
+			{
 				xIndex = tankIndex - 3;
 				yCoord = 78;
-			} else {
+			}
+			else
+			{
 				xIndex = tankIndex - 6;
 				yCoord = 113;
 			}

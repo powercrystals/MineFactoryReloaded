@@ -8,11 +8,13 @@ import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
 import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -50,6 +52,36 @@ public abstract class BlockFactoryMachine extends BlockContainer
 			}
 		}
 		return meta * 16 + side;
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity)
+	{
+		if(entity == null)
+		{
+			return;
+		}
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
+		{
+			int facing = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+			if(facing == 0)
+			{
+				((TileEntityFactory)te).rotateDirectlyTo(3);
+			}
+			else if(facing == 1)
+			{
+				((TileEntityFactory)te).rotateDirectlyTo(4);
+			}
+			else if(facing == 2)
+			{
+				((TileEntityFactory)te).rotateDirectlyTo(2);
+			}
+			else if(facing == 3)
+			{
+				((TileEntityFactory)te).rotateDirectlyTo(5);
+			}
+		}
 	}
 
 	@Override
