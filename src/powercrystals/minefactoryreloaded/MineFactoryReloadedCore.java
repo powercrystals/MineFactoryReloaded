@@ -154,6 +154,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static final String animationFolder = textureFolder + "animations/";
 	public static final String guiFolder = textureFolder + "gui/";
 	
+	public static int renderIdConveyor = 1000;
+	public static int renderIdFactoryGlassPane = 1001;
+	
 	public static Block machineBlock0;
 	public static Block machineBlock1;
 	

@@ -214,7 +214,7 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public int getRenderType()
 	{
-		return MineFactoryReloadedClient.renderIdConveyor;
+		return MineFactoryReloadedCore.renderIdConveyor;
 	}
 
 	@Override

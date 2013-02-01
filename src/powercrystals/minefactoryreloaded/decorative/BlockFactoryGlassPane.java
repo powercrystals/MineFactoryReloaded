@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.decorative;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
@@ -42,7 +41,7 @@ public class BlockFactoryGlassPane extends BlockPane
     @Override
     public int getRenderType()
     {
-    	return MineFactoryReloadedClient.renderIdFactoryGlassPane;
+    	return MineFactoryReloadedCore.renderIdFactoryGlassPane;
     }
     
 	@Override

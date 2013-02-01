@@ -37,9 +37,6 @@ public class MineFactoryReloadedClient
 	{
 		return instance;
 	}
-	
-	public static int renderIdConveyor = 1000;
-	public static int renderIdFactoryGlassPane = 1001;
 
 	private void load()
 	{
@@ -148,11 +145,11 @@ public class MineFactoryReloadedClient
 			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(5, MineFactoryReloadedCore.itemTexture, 0, 0, 100, 128, 0, 0)); // essence
 		}
 		
-		renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
-		renderIdFactoryGlassPane = RenderingRegistry.getNextAvailableRenderId();
+		MineFactoryReloadedCore.renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
+		MineFactoryReloadedCore.renderIdFactoryGlassPane = RenderingRegistry.getNextAvailableRenderId();
 		
-		RenderingRegistry.registerBlockHandler(renderIdConveyor, new RendererConveyor());
-		RenderingRegistry.registerBlockHandler(renderIdFactoryGlassPane, new RendererFactoryGlassPane());
+		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdConveyor, new RendererConveyor());
+		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlassPane, new RendererFactoryGlassPane());
 	}
 	
 	private void registerMachine0Animation(Machine machine, String animation)
