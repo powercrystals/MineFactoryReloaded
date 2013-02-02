@@ -773,7 +773,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// collector
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 6), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock0, 8, 6), new Object[]
 				{
 					"GGG",
 					" C ",
@@ -892,6 +892,99 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('P'), new ItemStack(Item.dyePowder, 1, 5),
 					Character.valueOf('M'), machineBaseItem,
 				} );
+		
+		// ejector
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 2, 0), new Object[]
+				{
+					"GGG",
+					" D ",
+					"RMR",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('D'), Block.dispenser,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('M'), machineBaseItem,
+				} );
+		
+		// itemrouter
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 1), new Object[]
+				{
+					"GGG",
+					"RCR",
+					" M ",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('C'), Block.chest,
+					Character.valueOf('R'), Item.redstoneRepeater,
+					Character.valueOf('M'), machineBaseItem,
+				} );
+		
+		// liquidrouter
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 2), new Object[]
+				{
+					"GGG",
+					"RBR",
+					"BMB",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('B'), Item.bucketEmpty,
+					Character.valueOf('R'), Item.redstoneRepeater,
+					Character.valueOf('M'), machineBaseItem,
+				} );
+		
+		// DSU
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 3), new Object[]
+				{
+					"GGG",
+					"PPP",
+					"EME",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('P'), Item.enderPearl,
+					Character.valueOf('E'), Item.eyeOfEnder,
+					Character.valueOf('M'), machineBaseItem,
+				} );
+		
+		// liquicrafter
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 4), new Object[]
+				{
+					"GGG",
+					"BWB",
+					"FMF",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('B'), Item.bucketEmpty,
+					Character.valueOf('W'), Block.workbench,
+					Character.valueOf('F'), Item.itemFrame,
+					Character.valueOf('M'), machineBaseItem,
+				} );
+		
+		// lava fab
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 5), new Object[]
+				{
+					"GGG",
+					"OBO",
+					"CMC",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('O'), Block.obsidian,
+					Character.valueOf('B'), Item.blazeRod,
+					Character.valueOf('C'), Item.magmaCream,
+					Character.valueOf('M'), machineBaseItem,
+				} );
+		
+		// oil fab
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 6), new Object[]
+				{
+					"GGG",
+					"OTO",
+					"OMO",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('O'), Block.obsidian,
+					Character.valueOf('T'), Block.tnt,
+					Character.valueOf('M'), machineBaseItem,
+				} );
+		
+		
+		
+		
+		
+		
+		
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(conveyorBlock, 16, 16), new Object[]
 				{
