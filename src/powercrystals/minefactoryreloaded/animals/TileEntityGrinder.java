@@ -116,7 +116,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements IMach
 				{
 					MFRUtil.dropStack(this, drops.get(0));
 				}
-				else
+				else if(drops.size() > 1)
 				{
 					MFRUtil.dropStack(this, drops.get(_rand.nextInt(drops.size())));
 				}
