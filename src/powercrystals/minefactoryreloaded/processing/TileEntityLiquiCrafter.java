@@ -37,7 +37,6 @@ public class TileEntityLiquiCrafter extends TileEntityFactory implements IInvent
 		public int found;
 	}
 	
-	
 	private LiquidTank[] _tanks = new LiquidTank[9];
 	
 	//0-8 craft grid, 9 craft grid output, 10 output, 11-28 resources
@@ -47,7 +46,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactory implements IInvent
 	{
 		for(int i = 0; i < 9; i++)
 		{
-			_tanks[i] = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
+			_tanks[i] = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 10);
 		}
 	}
 	
@@ -55,7 +54,12 @@ public class TileEntityLiquiCrafter extends TileEntityFactory implements IInvent
 	public void updateEntity()
 	{
 		super.updateEntity();
-		if(!worldObj.isRemote && _inventory[9] != null && (_inventory[10] == null || _inventory[10].stackSize < _inventory[9].getMaxStackSize()))
+		if(!worldObj.isRemote &&
+				_inventory[9] != null &&
+				(_inventory[10] == null ||
+					(_inventory[10].stackSize + _inventory[9].stackSize <= _inventory[9].getMaxStackSize() &&
+					_inventory[9].itemID == _inventory[10].itemID &&
+					_inventory[9].getItemDamage() == _inventory[10].getItemDamage())))
 		{
 			checkResources();
 		}
@@ -103,9 +107,16 @@ inv:	for(int i = 0; i < 9; i++)
 			{
 				for(ItemResourceTracker t : requiredItems)
 				{
-					if(t.id == _inventory[i].itemID && t.meta == _inventory[i].getItemDamage())
+					if(t.id == _inventory[i].itemID && (t.meta == _inventory[i].getItemDamage() || _inventory[i].getItem().isDamageable()))
 					{
-						t.found += _inventory[i].stackSize;
+						if(!_inventory[i].getItem().hasContainerItem())
+						{
+							t.found += _inventory[i].stackSize;
+						}
+						else
+						{
+							t.found += 1;
+						}
 						break;
 					}
 				}
@@ -142,10 +153,27 @@ inv:	for(int i = 0; i < 9; i++)
 			{
 				for(ItemResourceTracker t : requiredItems)
 				{
-					if(t.id == _inventory[i].itemID && t.meta == _inventory[i].getItemDamage())
+					if(t.id == _inventory[i].itemID && (t.meta == _inventory[i].getItemDamage() || _inventory[i].getItem().isDamageable()))
 					{
-						int use = Math.min(t.required, _inventory[i].stackSize);
-						_inventory[i].stackSize -= use;
+						int use;
+						if(_inventory[i].getItem().hasContainerItem())
+						{
+							use = 1;
+							ItemStack container = _inventory[i].getItem().getContainerItemStack(_inventory[i]);
+							if(container.isItemStackDamageable() && container.getItemDamage() > container.getMaxDamage())
+							{
+								_inventory[i] = null;
+							}
+							else
+							{
+								_inventory[i] = container;
+							}
+						}
+						else
+						{
+							use = Math.min(t.required, _inventory[i].stackSize);
+							_inventory[i].stackSize -= use;
+						}
 						t.required -= use;
 						
 						if(_inventory[i].stackSize == 0)
