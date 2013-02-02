@@ -45,7 +45,7 @@ public class Pam
 			registerPamMod("Lettuce", false, false);
 			registerPamMod("Onion", false, false);
 			registerPamMod("Peanut", true, false);
-			registerPamMod("Strawberry", false, true);
+			registerPamMod("Strawberry", true, true);
 			registerPamMod("Tomato", true, false);
 			
 			// rice and white mushroom need different plantable
