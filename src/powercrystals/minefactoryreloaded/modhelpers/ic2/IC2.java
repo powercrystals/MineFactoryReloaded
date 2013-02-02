@@ -38,6 +38,9 @@ public class IC2
 				ItemStack rubberLeaves = (ItemStack)ic2Items.getField("rubberLeaves").get(null);
 				ItemStack rubberWood = (ItemStack)ic2Items.getField("rubberWood").get(null);
 				ItemStack stickyResin = (ItemStack)ic2Items.getField("resin").get(null);
+				
+				ItemStack crop = (ItemStack)ic2Items.getField("crop").get(null);
+				
 				if(rubberSapling != null)
 				{
 					FarmingRegistry.registerPlantable(new PlantableStandard(rubberSapling.itemID, rubberSapling.itemID));
@@ -57,6 +60,8 @@ public class IC2
 				{
 					FarmingRegistry.registerFertilizer(new FertilizerStandard(fertilizer.itemID, fertilizer.getItemDamage()));
 				}
+				
+				FarmingRegistry.registerHarvestable(new HarvestableIC2Crop(crop.itemID));
 			}
 		}
 		catch (Exception x)

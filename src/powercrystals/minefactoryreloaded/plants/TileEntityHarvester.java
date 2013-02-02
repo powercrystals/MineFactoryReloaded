@@ -124,12 +124,15 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements IMa
 			}
 		}
 		
-		if(MineFactoryReloadedCore.playSounds.getBoolean(true))
+		if(harvestable.breakBlock())
 		{
-			worldObj.playAuxSFXAtEntity(null, 2001, targetCoords.x, targetCoords.y, targetCoords.z, harvestedBlockId + (harvestedBlockMetadata << 12));
+			if(MineFactoryReloadedCore.playSounds.getBoolean(true))
+			{
+				worldObj.playAuxSFXAtEntity(null, 2001, targetCoords.x, targetCoords.y, targetCoords.z, harvestedBlockId + (harvestedBlockMetadata << 12));
+			}
+			worldObj.setBlockWithNotify(targetCoords.x, targetCoords.y, targetCoords.z, 0);
 		}
 		
-		worldObj.setBlockWithNotify(targetCoords.x, targetCoords.y, targetCoords.z, 0);
 		harvestable.postHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
 		_tank.fill(new LiquidStack(MineFactoryReloadedCore.sludgeItem, 10), true);

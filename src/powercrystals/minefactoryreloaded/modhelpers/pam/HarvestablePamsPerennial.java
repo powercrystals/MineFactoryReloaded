@@ -8,10 +8,16 @@ public class HarvestablePamsPerennial extends HarvestablePams
 	{
 		super(sourceId);
 	}
+	
+	@Override
+	public boolean breakBlock()
+	{
+		return false;
+	}
 
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{
-		world.setBlockAndMetadataWithNotify(x, y, z, getSourceId(), 0);
+		world.setBlockMetadataWithNotify(x, y, z, 0);
 	}
 }

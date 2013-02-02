@@ -30,6 +30,12 @@ public class HarvestablePams implements IFactoryHarvestable
 	{
 		return HarvestType.Normal;
 	}
+	
+	@Override
+	public boolean breakBlock()
+	{
+		return true;
+	}
 
 	@Override
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)

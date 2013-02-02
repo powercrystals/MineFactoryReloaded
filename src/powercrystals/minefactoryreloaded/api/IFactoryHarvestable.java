@@ -18,10 +18,17 @@ public interface IFactoryHarvestable
 	 * @return The block ID this harvestable instance is managing.
 	 */
 	public int getSourceId();
+	
 	/**
 	 * @return The type of harvest the Harvester should perform on this block.
 	 */
 	public HarvestType getHarvestType();
+	
+	
+	/**
+	 * @return Whether or not the Harvester should break the block when harvesting. If false, no changes will be performed by the Harvester itself.
+	 */
+	public boolean breakBlock();
 
 	/**
 	 * @param world The world this block is in.
