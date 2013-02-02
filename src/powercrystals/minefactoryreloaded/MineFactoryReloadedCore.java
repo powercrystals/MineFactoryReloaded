@@ -462,6 +462,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.plantRed.blockID, HarvestType.Normal));
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.plantYellow.blockID, HarvestType.Normal));
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.tallGrass.blockID, HarvestType.Normal));
+		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.deadBush.blockID, HarvestType.Normal));
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.mushroomCapBrown.blockID, HarvestType.Tree));
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.mushroomCapRed.blockID, HarvestType.Tree));
 		FarmingRegistry.registerHarvestable(new HarvestableMushroom(Block.mushroomBrown.blockID));
