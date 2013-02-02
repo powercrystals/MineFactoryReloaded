@@ -69,7 +69,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 		}
 		if(_inventory[2] == null && _storedQuantity > 0)
 		{
-			_inventory[2] = new ItemStack(_storedId, Math.min(_storedQuantity, 64), _storedMeta);
+			_inventory[2] = new ItemStack(_storedId, Math.min(_storedQuantity, new ItemStack(_storedId, 1, _storedMeta).getMaxStackSize()), _storedMeta);
 			_storedQuantity -= _inventory[2].stackSize;
 		}
 		checkInput(0);
@@ -87,12 +87,17 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 				_storedQuantity = _inventory[slot].stackSize;
 				_inventory[slot] = null;
 			}
-			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta)
+			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta && _inventory[slot].getTagCompound() == null)
 			{
 				if(_inventory[slot].getMaxStackSize() > 1)
 				{
 					_storedQuantity += (_inventory[slot].stackSize - 1);
 					_inventory[slot].stackSize = 1;
+				}
+				else
+				{
+					_storedQuantity += _inventory[slot].stackSize;
+					_inventory[slot] = null;
 				}
 			}
 		}
