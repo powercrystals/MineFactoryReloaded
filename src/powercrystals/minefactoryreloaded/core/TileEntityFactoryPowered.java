@@ -110,13 +110,13 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 		
 		setIsActive(_energyStored >= _energyActivation * 2);
 		
-		if(_idleTicks > 0)
-		{
-			_idleTicks--;
-		}
-		else if(Util.isRedstonePowered(this))
+		if(Util.isRedstonePowered(this))
 		{
 			setIdleTicks(getIdleTicksMax());
+		}
+		else if(_idleTicks > 0)
+		{
+			_idleTicks--;
 		}
 		else if(_energyStored >= _energyActivation)
 		{
