@@ -40,6 +40,12 @@ public class TileEntityItemRouter extends TileEntityFactory implements IInventor
 		}
 	}
 	
+	@Override
+	public boolean canRotate()
+	{
+		return false;
+	}
+	
 	public boolean routeItem(ItemStack stack)
 	{
 		List<ForgeDirection> filteredOutputs = new ArrayList<ForgeDirection>();
