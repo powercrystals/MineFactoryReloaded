@@ -64,7 +64,7 @@ public class TileEntityChronotyper extends TileEntityFactoryPowered
 	@Override
 	public int getEnergyStoredMax()
 	{
-		return 96000;
+		return 16000;
 	}
 
 	@Override
