@@ -143,7 +143,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.1.0B9";
+	public static final String version = "1.4.6R2.1.0RC1";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -625,6 +625,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		FurnaceRecipes.smelting().addSmelting(rawRubberItem.itemID, 0, new ItemStack(rubberBarItem), 0.1F);
 		FurnaceRecipes.smelting().addSmelting(rubberWoodBlock.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.1F);
 		
+		GameRegistry.registerFuelHandler(new MineFactoryReloadedFuelHandler());
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 3, 3), new ItemStack(rubberWoodBlock));
 		
 		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 4), new Object[]
@@ -930,7 +932,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// DSU
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 3), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 4, 3), new Object[]
 				{
 					"GGG",
 					"PPP",
