@@ -229,11 +229,16 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	{
 		super.readFromNBT(nbttagcompound);
 		
-		_energyStored = nbttagcompound.getInteger("energyStored");
-		_workDone = nbttagcompound.getInteger("workDone");
+		_energyStored = Math.min(nbttagcompound.getInteger("energyStored"), getEnergyStoredMax());
+		_workDone = Math.min(nbttagcompound.getInteger("workDone"), getWorkMax());
 		if(getTank() != null)
 		{
 			((LiquidTank)getTank()).setLiquid(new LiquidStack(nbttagcompound.getInteger("tankItemId"), nbttagcompound.getInteger("tankAmount"), nbttagcompound.getInteger("tankItemMeta")));
+
+			if(getTank().getLiquid() != null && getTank().getLiquid().amount > getTank().getCapacity())
+			{
+				getTank().getLiquid().amount = getTank().getCapacity();
+			}
 		}
 	}
 	
