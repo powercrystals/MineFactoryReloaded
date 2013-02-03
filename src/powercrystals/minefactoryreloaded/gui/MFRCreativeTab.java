@@ -16,7 +16,7 @@ public class MFRCreativeTab extends CreativeTabs
 	@Override
 	public ItemStack getIconItemStack()
 	{
-		return new ItemStack(MineFactoryReloadedCore.conveyorBlock);
+		return new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, 16);
 	}
 
 	@Override

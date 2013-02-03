@@ -121,7 +121,13 @@ public class ContainerDeepStorageUnit extends Container
 		if(var == 4) _dsu.setSideIsOutput(4, value == 1);
 		if(var == 5) _dsu.setSideIsOutput(5, value == 1);
 		
-		if(var == 100) _tempQuantity = value;
+		if(var == 100) _tempQuantity = upcastShort(value);
 		if(var == 101) _dsu.setQuantity(_tempQuantity | (value << 16));
+	}
+	
+	private int upcastShort(int value)
+	{
+		if(value < 0) value += 65536;
+		return value;
 	}
 }

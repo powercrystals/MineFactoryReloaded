@@ -67,10 +67,16 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 		{
 			return;
 		}
-		if(_inventory[2] == null && _storedQuantity > 0)
+		if((_inventory[2] == null) && _storedQuantity > 0)
 		{
 			_inventory[2] = new ItemStack(_storedId, Math.min(_storedQuantity, new ItemStack(_storedId, 1, _storedMeta).getMaxStackSize()), _storedMeta);
 			_storedQuantity -= _inventory[2].stackSize;
+		}
+		else if(_inventory[2] != null && _inventory[2].stackSize < _inventory[2].getMaxStackSize() && _inventory[2].itemID == _storedId && _inventory[2].getItemDamage() == _storedMeta  && _storedQuantity > 0)
+		{
+			int amount = Math.min(_inventory[2].getMaxStackSize() - _inventory[2].stackSize, _storedQuantity);
+			_inventory[2].stackSize += amount;
+			_storedQuantity -= amount;
 		}
 		checkInput(0);
 		checkInput(1);
@@ -87,7 +93,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 				_storedQuantity = _inventory[slot].stackSize;
 				_inventory[slot] = null;
 			}
-			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta && _inventory[slot].getTagCompound() == null)
+			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta && _inventory[slot].getTagCompound() == null && Integer.MAX_VALUE - _inventory[slot].stackSize > _storedQuantity)
 			{
 				if(_inventory[slot].getMaxStackSize() > 1)
 				{
@@ -188,7 +194,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
-		return _isSideOutput[side.ordinal()] ? 1 : 0;
+		return _isSideOutput[side.ordinal()] ? 2 : 0;
 	}
 
 	@Override
