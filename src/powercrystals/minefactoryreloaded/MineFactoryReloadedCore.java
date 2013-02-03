@@ -896,7 +896,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 				} );
 		
 		// ejector
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 2, 0), new Object[]
+		GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 0), new Object[]
 				{
 					"GGG",
 					" D ",
