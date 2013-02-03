@@ -126,10 +126,14 @@ public abstract class BlockFactoryMachine extends BlockContainer
 		{
 		
 			IInventory inventory = ((IInventory)te);
-label0:
-			for(int l = 0; l < inventory.getSizeInventory(); l++)
+inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 			{
-				ItemStack itemstack = inventory.getStackInSlot(l);
+				if(i == 9 && te instanceof TileEntityLiquiCrafter)
+				{
+					continue;
+				}
+				
+				ItemStack itemstack = inventory.getStackInSlot(i);
 				if(itemstack == null)
 				{
 					continue;
@@ -141,7 +145,7 @@ label0:
 				{
 					if(itemstack.stackSize <= 0)
 					{
-						continue label0;
+						continue inv;
 					}
 					int i1 = world.rand.nextInt(21) + 10;
 					if(i1 > itemstack.stackSize)

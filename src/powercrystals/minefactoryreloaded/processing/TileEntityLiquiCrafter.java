@@ -17,11 +17,14 @@ import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
 import powercrystals.minefactoryreloaded.transport.RemoteInventoryCrafting;
 
 public class TileEntityLiquiCrafter extends TileEntityFactory implements IInventory, ISidedInventory, ITankContainer
 {
+	private boolean _lastRedstoneState;
+	
 	private class ItemResourceTracker
 	{
 		public ItemResourceTracker(int id, int meta, int required)
@@ -54,15 +57,22 @@ public class TileEntityLiquiCrafter extends TileEntityFactory implements IInvent
 	public void updateEntity()
 	{
 		super.updateEntity();
-		if(!worldObj.isRemote &&
-				_inventory[9] != null &&
-				(_inventory[10] == null ||
-					(_inventory[10].stackSize + _inventory[9].stackSize <= _inventory[9].getMaxStackSize() &&
-					_inventory[9].itemID == _inventory[10].itemID &&
-					_inventory[9].getItemDamage() == _inventory[10].getItemDamage())))
+		
+		boolean redstoneState = Util.isRedstonePowered(this);
+		if(redstoneState && !_lastRedstoneState)
 		{
-			checkResources();
+			if(!worldObj.isRemote &&
+					_inventory[9] != null &&
+					(_inventory[10] == null ||
+						(_inventory[10].stackSize + _inventory[9].stackSize <= _inventory[9].getMaxStackSize() &&
+						_inventory[9].itemID == _inventory[10].itemID &&
+						_inventory[9].getItemDamage() == _inventory[10].getItemDamage())))
+			{
+				checkResources();
+			}
 		}
+		
+		_lastRedstoneState = redstoneState;
 	}
 	
 	private void checkResources()
