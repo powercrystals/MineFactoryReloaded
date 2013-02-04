@@ -58,6 +58,12 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 	{
 		_storedMeta = meta;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return false;
+	}
 
 	@Override
 	public void updateEntity()
