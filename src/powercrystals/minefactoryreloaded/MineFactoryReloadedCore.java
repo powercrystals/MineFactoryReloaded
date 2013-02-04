@@ -534,7 +534,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		FarmingRegistry.registerSludgeDrop(25, new ItemStack(Block.sand));
 		FarmingRegistry.registerSludgeDrop(20, new ItemStack(Block.dirt));
-		FarmingRegistry.registerSludgeDrop(15, new ItemStack(Block.blockClay));
+		FarmingRegistry.registerSludgeDrop(15, new ItemStack(Item.clay, 4));
 		FarmingRegistry.registerSludgeDrop(1, new ItemStack(Block.slowSand));
 		
 		registerRecipes();
