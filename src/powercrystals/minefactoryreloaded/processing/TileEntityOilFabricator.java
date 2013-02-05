@@ -6,7 +6,7 @@ public class TileEntityOilFabricator extends TileEntityLiquidFabricator
 {
 	public TileEntityOilFabricator()
 	{
-		super(MineFactoryReloadedCore.oilLiquidId, 5880, 20);
+		super(MineFactoryReloadedCore.oilLiquidId, 5880, 1);
 	}
 
 	@Override

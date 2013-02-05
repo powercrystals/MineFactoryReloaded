@@ -19,7 +19,7 @@ public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowere
 		super(liquidCostPermB * liquidFabPerTick);
 		_liquidId = liquidId;
 		_liquidFabPerTick = liquidFabPerTick;
-		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
+		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME);
 	}
 	
 	@Override
