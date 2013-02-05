@@ -138,6 +138,9 @@ public class MineFactoryReloadedClient
 			registerMachine0Animation(Machine.Chronotyper, "Chronotyper.png");
 			
 			registerMachine1Animation(Machine.OilFabricator, "OilFabricator.png");
+			registerAnimation(MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator) * 16 + 3, MineFactoryReloadedCore.animationFolder + "OilFabricator.png", MineFactoryReloadedCore.machine1Texture);
+			registerAnimation(MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator) * 16 + 4, MineFactoryReloadedCore.animationFolder + "OilFabricator.png", MineFactoryReloadedCore.machine1Texture);
+			registerAnimation(MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator) * 16 + 5, MineFactoryReloadedCore.animationFolder + "OilFabricator.png", MineFactoryReloadedCore.machine1Texture);
 			
 			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(2, MineFactoryReloadedCore.itemTexture, 240, 255, 240, 255, 230, 245)); // milk
 			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(3, MineFactoryReloadedCore.itemTexture, 20, 20, 20, 20, 32, 32)); // sludge
