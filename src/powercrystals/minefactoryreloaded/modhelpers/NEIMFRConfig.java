@@ -28,6 +28,10 @@ public class NEIMFRConfig implements IConfigureNEI
 		{
 			subTypes.add(MineFactoryReloadedCore.machineBlock0.blockID, i, i);
 		}
+		for (int i = 0; i <= 7; i++)
+		{
+			subTypes.add(MineFactoryReloadedCore.machineBlock1.blockID, i, i);
+		}
 		for (int i = 0; i <= 15; i++)
 		{
 			subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.itemID, i, i);
