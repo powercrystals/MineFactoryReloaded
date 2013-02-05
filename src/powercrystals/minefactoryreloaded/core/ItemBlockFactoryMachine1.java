@@ -87,6 +87,12 @@ public class ItemBlockFactoryMachine1 extends ItemBlock
 				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setId(stack.getTagCompound().getInteger("storedId"));
 				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setMeta(stack.getTagCompound().getInteger("storedMeta"));
 				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setQuantity(stack.getTagCompound().getInteger("storedQuantity"));
+				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setSideIsOutput(0, stack.getTagCompound().getBoolean("side0output"));
+				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setSideIsOutput(1, stack.getTagCompound().getBoolean("side1output"));
+				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setSideIsOutput(2, stack.getTagCompound().getBoolean("side2output"));
+				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setSideIsOutput(3, stack.getTagCompound().getBoolean("side3output"));
+				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setSideIsOutput(4, stack.getTagCompound().getBoolean("side4output"));
+				((TileEntityDeepStorageUnit)world.getBlockTileEntity(x, y, z)).setSideIsOutput(5, stack.getTagCompound().getBoolean("side5output"));
 			}
 			return true;	
 		}

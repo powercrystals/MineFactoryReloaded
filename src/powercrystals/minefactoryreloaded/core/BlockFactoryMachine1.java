@@ -122,6 +122,13 @@ public class BlockFactoryMachine1 extends BlockFactoryMachine
 				c.setInteger("storedId", storedId);
 				c.setInteger("storedMeta", storedMeta);
 				c.setInteger("storedQuantity", storedQuantity);
+				
+				c.setBoolean("side0output", dsu.getIsSideOutput(0));
+				c.setBoolean("side1output", dsu.getIsSideOutput(1));
+				c.setBoolean("side2output", dsu.getIsSideOutput(2));
+				c.setBoolean("side3output", dsu.getIsSideOutput(3));
+				c.setBoolean("side4output", dsu.getIsSideOutput(4));
+				c.setBoolean("side5output", dsu.getIsSideOutput(5));
 				s.setTagCompound(c);
 			}
 
