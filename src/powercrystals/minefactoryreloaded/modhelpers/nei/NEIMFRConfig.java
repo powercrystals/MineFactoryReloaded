@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.modhelpers;
+package powercrystals.minefactoryreloaded.modhelpers.nei;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import codechicken.nei.MultiItemRange;
