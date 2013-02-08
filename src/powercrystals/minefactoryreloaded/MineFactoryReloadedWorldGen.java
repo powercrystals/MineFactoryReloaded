@@ -18,7 +18,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 		int x = chunkX * 16 + random.nextInt(16);
 		int z = chunkZ * 16 + random.nextInt(16);
 		BiomeGenBase b = world.getBiomeGenForCoords(x, z);
-		for (String s : allowedBiomes)
+		for(String s : allowedBiomes)
 		{
 			if(b.biomeName.equals(s))
 			{
