@@ -200,12 +200,14 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
+		if(side.ordinal() > 5) return 0;
 		return _isSideOutput[side.ordinal()] ? 2 : 0;
 	}
 
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
+		if(side.ordinal() > 5) return 0;
 		return _isSideOutput[side.ordinal()] ? 1 : 2;
 	}
 	
