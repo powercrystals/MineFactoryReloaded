@@ -15,7 +15,7 @@ public class GuiHarvester extends GuiFactoryPowered
 	private GuiButton _settingSmallShrooms;
 	private GuiButton _settingJungleWood;
 	
-	private static final String _silkTouchText = "Keep Leaves: ";
+	private static final String _silkTouchText = "Shear Leaves: ";
 	private static final String _smallShroomsText = "Small Shrooms: ";
 	private static final String _jungleWoodText = "Jungle Wood: ";
 	
