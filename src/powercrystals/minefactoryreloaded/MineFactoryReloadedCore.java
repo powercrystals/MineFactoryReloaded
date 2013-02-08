@@ -69,6 +69,7 @@ import powercrystals.minefactoryreloaded.farmables.HarvestableCocoa;
 import powercrystals.minefactoryreloaded.farmables.HarvestableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.HarvestableMushroom;
 import powercrystals.minefactoryreloaded.farmables.HarvestableNetherWart;
+import powercrystals.minefactoryreloaded.farmables.HarvestableShrub;
 import powercrystals.minefactoryreloaded.farmables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.HarvestableStemPlant;
 import powercrystals.minefactoryreloaded.farmables.HarvestableTreeLeaves;
@@ -143,7 +144,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.1.0";
+	public static final String version = "1.4.6R2.1.1";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -249,6 +250,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property verticalHarvestSearchMaxVertical;
 	public static Property rubberTreeWorldGen;
 	public static Property enableBonemealFertilizing;
+	public static Property enableCheapDSU;
 	
 	public static Property passengerRailSearchMaxHorizontal;
 	public static Property passengerRailSearchMaxVertical;
@@ -461,8 +463,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.cactus.blockID, HarvestType.LeaveBottom));
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.plantRed.blockID, HarvestType.Normal));
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.plantYellow.blockID, HarvestType.Normal));
-		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.tallGrass.blockID, HarvestType.Normal));
-		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.deadBush.blockID, HarvestType.Normal));
+		FarmingRegistry.registerHarvestable(new HarvestableShrub(Block.tallGrass.blockID));
+		FarmingRegistry.registerHarvestable(new HarvestableShrub(Block.deadBush.blockID));
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.mushroomCapBrown.blockID, HarvestType.Tree));
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(Block.mushroomCapRed.blockID, HarvestType.Tree));
 		FarmingRegistry.registerHarvestable(new HarvestableMushroom(Block.mushroomBrown.blockID));
@@ -598,6 +600,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		rubberTreeWorldGen.comment = "Whether or not to generate rubber trees during map generation";
 		enableBonemealFertilizing = c.get(Configuration.CATEGORY_GENERAL, "Fertilizer.EnableBonemeal", false);
 		enableBonemealFertilizing.comment = "If true, the fertilizer will use bonemeal as well as MFR fertilizer. Provided for those who want a less work-intensive farm.";
+		enableCheapDSU = c.get(Configuration.CATEGORY_GENERAL, "DSU.EnableCheaperRecipe", false);
+		enableCheapDSU.comment = "If true, DSU can be built out of chests instead of ender pearls.";
 
 		c.save();
 	}
@@ -1044,6 +1048,19 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassBlock, 1, i), new ItemStack(Block.glass), new ItemStack(ceramicDyeItem, 1, i));
 			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassPaneBlock, 1, i), new ItemStack(Block.thinGlass), new ItemStack(ceramicDyeItem, 1, i));
 			GameRegistry.addShapelessRecipe(new ItemStack(conveyorBlock, 1, i), new ItemStack(conveyorBlock, 1, 16), new ItemStack(ceramicDyeItem, 1, i));
+		}
+		
+		if(enableCheapDSU.getBoolean(false))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 3), new Object[]
+					{
+						"GGG",
+						"CCC",
+						"CMC",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('C'), Block.chest,
+						Character.valueOf('M'), machineBaseItem,
+					} );
 		}
 	}
 
