@@ -1,0 +1,164 @@
+[
+{
+  "modid": "MFReloaded",
+  "name": "MineFactory Reloaded",
+  "description": "Automate everything!",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals",
+	"TehKrush",
+    "AtomicStryker",
+	"Feanorith"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+},
+{
+  "modid": "MFReloaded|CompatExtraBiomes",
+  "name": "MFR Compat: ExtraBiomes",
+  "description": "Compatibility addon for ExtraBiomes",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
+  "modid": "MFReloaded|CompatForestry",
+  "name": "MFR Compat: Forestry",
+  "description": "Compatibility addon for Forestry",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
+  "modid": "MFReloaded|CompatIC2",
+  "name": "MFR Compat: IC2",
+  "description": "Compatibility addon for IndustrialCraft2",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
+  "modid": "MFReloaded|CompatPams",
+  "name": "MFR Compat: Pam's Mods",
+  "description": "Compatibility addon for Pam's mods",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
+  "modid": "MFReloaded|CompatRP2",
+  "name": "MFR Compat: RP2",
+  "description": "Compatibility addon for RedPower2",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
+  "modid": "MFReloaded|CompatSoulShards",
+  "name": "MFR Compat: SoulShards",
+  "description": "Compatibility addon for SoulShards",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
+  "modid": "MFReloaded|CompatThaumcraft",
+  "name": "MFR Compat: Thaumcraft",
+  "description": "Compatibility addon for Thaumcraft",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+}
+]
