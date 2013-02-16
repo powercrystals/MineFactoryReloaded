@@ -157,19 +157,16 @@
 		
 		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures">
-				<include name="*.png">
+				<include name="*.png" />
 			</fileset>
 		</copy>
 		
 		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
-			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/animations">
-			</fileset>
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/animations" />
 		</copy>
 		
 		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
-			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/gui">
-				<include name="*.png">
-			</fileset>
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/gui" />
 		</copy>
 	</target>
 
