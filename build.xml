@@ -71,7 +71,7 @@
 		<echo message="Extracting BuildCraft API..." />
 		<unzip src="${download.dir}/BuildCraft-master.zip" dest="${download.dir}"/>
 		<mkdir dir="${mcpsrc.dir}/buildcraft/" />
-		<move file="${download.dir}/BuildCraft-master/common/buildcraft/api" todir="${mcpsrc.dir}/buildcraft/api"/>
+		<move file="${download.dir}/BuildCraft-master/common/buildcraft/api" todir="${mcpsrc.dir}/buildcraft"/>
 		<move file="${download.dir}/BuildCraft-master/common/buildcraft/core/IMachine.java" todir="${mcpsrc.dir}/buildcraft/core"/>
 		
 		<echo message="Extracting IC2 API... " />
