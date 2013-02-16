@@ -79,6 +79,10 @@ public class MFRUtil
 	
 	public static void dropStack(TileEntityFactory from, ItemStack s)
 	{
+		if(s == null)
+		{
+			return;
+		}
 		s = s.copy();
 		if(from.worldObj.isRemote || s.stackSize <= 0)
 		{
