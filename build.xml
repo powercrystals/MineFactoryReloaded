@@ -154,6 +154,23 @@
 		<copy todir="${classes.dir}">
 			<fileset dir="${mcp.dir}/reobf/minecraft"/>
 		</copy>
+		
+		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures">
+				<include name="*.png">
+			</fileset>
+		</copy>
+		
+		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/animations">
+			</fileset>
+		</copy>
+		
+		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/gui">
+				<include name="*.png">
+			</fileset>
+		</copy>
 	</target>
 
 	<target name="build-number-there" if="env.BUILD_NUMBER" >
