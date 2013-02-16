@@ -161,11 +161,11 @@
 			</fileset>
 		</copy>
 		
-		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
+		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures/animations">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/animations" />
 		</copy>
 		
-		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
+		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures/gui">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/gui" />
 		</copy>
 	</target>
