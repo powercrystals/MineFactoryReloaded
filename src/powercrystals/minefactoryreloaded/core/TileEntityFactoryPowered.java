@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.core;
 
+import powercrystals.core.power.PowerProviderAdvanced;
 import powercrystals.core.util.Util;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -13,7 +14,6 @@ import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
-import buildcraft.api.power.PowerFramework;
 
 /*
  * There are three pieces of information tracked - energy, work, and idle ticks.
@@ -58,11 +58,8 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	protected TileEntityFactoryPowered(int energyActivation)
 	{
 		this._energyActivation = energyActivation;
-		if(PowerFramework.currentFramework != null)
-		{
-			_powerProvider = PowerFramework.currentFramework.createPowerProvider();
-			_powerProvider.configure(25, 10, 10, 1, 1000);
-		}
+		_powerProvider = new PowerProviderAdvanced();
+		_powerProvider.configure(25, 10, 10, 1, 1000);
 		setIsActive(false);
 	}
 	
