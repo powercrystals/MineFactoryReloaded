@@ -6,7 +6,7 @@
 	<property name="classes.dir" value="${build.dir}/packaging" />
 	<property name="apiclasses.dir" value="${build.dir}/api-packaging" />
 	<property name="src.dir" value="src" />
-	<property name="forge.buildnum" value="524" />
+	<property name="forge.buildnum" value="527" />
 	<property name="forge.version" value="1.4.7-6.6.1.${forge.buildnum}" />
 	<property name="forge.url" value="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${forge.version}.zip" />
 	<property name="forge.dir" value="${build.dir}/forge" />
@@ -64,8 +64,6 @@
 	</target>
 
 	<target name="extract-dependencies" depends="setup-forge,get-dependencies">
-		<echo message="Extracting PowerCrystalsCore... " />
-		<unzip src="${download.dir}/PowerCrystalsCore-master.zip" dest="${download.dir}"/>
 		<move file="${download.dir}/PowerCrystalsCore-master/src/powercrystals/core" todir="${mcpsrc.dir}/powercrystals/"/>
 		
 		<echo message="Extracting BuildCraft API..." />
@@ -180,7 +178,7 @@
 		<property name="build.number" value="CUSTOM_BUILD" />
 	</target>
 
-	<target name="setup-forge" depends="download-forge,build-number-there,build-number-not-there" unless="forge.already.installed">
+	<target name="setup-forge" depends="download-core,download-forge,build-number-there,build-number-not-there" unless="forge.already.installed">
 
 		<property name="build.full" value="${build.number}" />
 		<unzip dest="${build.dir}">
@@ -194,7 +192,7 @@
 
 		<chmod file="${forge.dir}/install.sh" perm="+x"/>
 
-		<!-- if your building on OSX these 2 should be executable -->
+		<copy file="${download.dir}/PowerCrystalsCore-master/pcc_at.cfg" todir="${forge.dir}/accesstransformers/"/>
 
 		<!-- Install forge -->
 		<delete dir="${mcp.dir}" failonerror="no"/>
@@ -236,6 +234,14 @@
 							 responseDataFile="${download.dir}/minecraftforge-src-${forge.version}.zip">
 			<header name="User-Agent" value="Ant-${ant.version}/${ant.java.version}"/>
 		</getMethod>
+	</target>
+	
+	<target name="download-core" unless="forge-exists">
+		<echo message="Downloading PowerCrystalsCore... " />
+		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
+		
+		<echo message="Extracting PowerCrystalsCore... " />
+		<unzip src="${download.dir}/PowerCrystalsCore-master.zip" dest="${download.dir}"/>
 	</target>
 
 	<target name="download-ant-contrib" unless="should-download-ant-contrib">
