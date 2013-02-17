@@ -144,7 +144,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.1.3B1";
+	public static final String version = "1.4.6R2.1.3RC1";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -254,6 +254,30 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	
 	public static Property passengerRailSearchMaxHorizontal;
 	public static Property passengerRailSearchMaxVertical;
+	
+	public static Property enableMachinePlanter;
+	public static Property enableMachineFisher;
+	public static Property enableMachineHarvester;
+	public static Property enableMachineRancher;
+	public static Property enableMachineFertilizer;
+	public static Property enableMachineVet;
+	public static Property enableMachineCollector;
+	public static Property enableMachineBreaker;
+	public static Property enableMachineWeather;
+	public static Property enableMachineBoiler;
+	public static Property enableMachineSewer;
+	public static Property enableMachineComposter;
+	public static Property enableMachineBreeder;
+	public static Property enableMachineGrinder;
+	public static Property enableMachineEnchanter;
+	public static Property enableMachineChronotyper;
+	public static Property enableMachineEjector;
+	public static Property enableMachineItemRouter;
+	public static Property enableMachineLiquidRouter;
+	public static Property enableMachineDeepStorageUnit;
+	public static Property enableMachineLiquiCrafter;
+	public static Property enableMachineLavaFabricator;
+	public static Property enableMachineOiLFabricator;
 
 	private static MineFactoryReloadedCore instance;
 	
@@ -601,8 +625,33 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		enableBonemealFertilizing = c.get(Configuration.CATEGORY_GENERAL, "Fertilizer.EnableBonemeal", false);
 		enableBonemealFertilizing.comment = "If true, the fertilizer will use bonemeal as well as MFR fertilizer. Provided for those who want a less work-intensive farm.";
 		enableCheapDSU = c.get(Configuration.CATEGORY_GENERAL, "DSU.EnableCheaperRecipe", false);
-		enableCheapDSU.comment = "If true, DSU can be built out of chests instead of ender pearls.";
+		enableCheapDSU.comment = "If true, DSU can be built out of chests instead of ender pearls. Does nothing if the DSU recipe is disabled.";
+		
+		enableMachinePlanter = c.get("MachineEnables", "Planter", true);
+		enableMachineFisher = c.get("MachineEnables", "Fisher", true);
+		enableMachineHarvester = c.get("MachineEnables", "Harvester", true);
+		enableMachineRancher = c.get("MachineEnables", "Rancher", true);
+		enableMachineFertilizer = c.get("MachineEnables", "Fertilizer", true);
+		enableMachineVet = c.get("MachineEnables", "Vet", true);
+		enableMachineCollector = c.get("MachineEnables", "ItemCollector", true);
+		enableMachineBreaker = c.get("MachineEnables", "BlockBreaker", true);
+		enableMachineWeather = c.get("MachineEnables", "WeatherCollector", true);
+		enableMachineBoiler = c.get("MachineEnables", "SludgeBoiler", true);
+		enableMachineSewer = c.get("MachineEnables", "Sewer", true);
+		enableMachineComposter = c.get("MachineEnables", "Composter", true);
+		enableMachineBreeder = c.get("MachineEnables", "Breeder", true);
+		enableMachineGrinder = c.get("MachineEnables", "MobGrinder", true);
+		enableMachineEnchanter = c.get("MachineEnables", "AutoEnchanter", true);
+		enableMachineChronotyper = c.get("MachineEnables", "Chronotyper", true);
+		enableMachineEjector = c.get("MachineEnables", "Ejector", true);
+		enableMachineItemRouter = c.get("MachineEnables", "ItemRouter", true);
+		enableMachineLiquidRouter = c.get("MachineEnables", "LiquidRouter", true);
+		enableMachineDeepStorageUnit = c.get("MachineEnables", "DeepStorageUnit", true);
+		enableMachineLiquiCrafter = c.get("MachineEnables", "LiquiCrafter", true);
+		enableMachineLavaFabricator = c.get("MachineEnables", "LavaFabricator", true);
+		enableMachineOiLFabricator = c.get("MachineEnables", "OilFabricator", true);
 
+		c.addCustomCategoryComment("MachineEnables", "Set to false to disable that machine's recipes. Machines will still work if gotten through other means.");
 		c.save();
 	}
 
@@ -706,287 +755,343 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('S'), Item.stick,
 				} );
 		
-		// planter
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 0), new Object[]
-				{
-					"GGG",
-					"CPC",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('P'), Block.pistonBase,
-					Character.valueOf('C'), Item.flowerPot,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachinePlanter.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 0), new Object[]
+					{
+						"GGG",
+						"CPC",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('P'), Block.pistonBase,
+						Character.valueOf('C'), Item.flowerPot,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// fisher
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 1), new Object[]
-				{
-					"GGG",
-					"RRR",
-					"BMB",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('R'), Item.fishingRod,
-					Character.valueOf('B'), Item.bucketEmpty,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineFisher.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 1), new Object[]
+					{
+						"GGG",
+						"RRR",
+						"BMB",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('R'), Item.fishingRod,
+						Character.valueOf('B'), Item.bucketEmpty,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// harvester
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 2), new Object[]
-				{
-					"GGG",
-					"SXS",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('X'), Item.axeGold,
-					Character.valueOf('S'), Item.shears,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineHarvester.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 2), new Object[]
+					{
+						"GGG",
+						"SXS",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('X'), Item.axeGold,
+						Character.valueOf('S'), Item.shears,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// rancher
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 3), new Object[]
-				{
-					"GGG",
-					"SBS",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('B'), Item.bucketEmpty,
-					Character.valueOf('S'), Item.shears,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineRancher.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 3), new Object[]
+					{
+						"GGG",
+						"SBS",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('B'), Item.bucketEmpty,
+						Character.valueOf('S'), Item.shears,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// fertilizer
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 4), new Object[]
-				{
-					"GGG",
-					"LBL",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('L'), Item.leather,
-					Character.valueOf('B'), Item.glassBottle,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineFertilizer.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 4), new Object[]
+					{
+						"GGG",
+						"LBL",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('L'), Item.leather,
+						Character.valueOf('B'), Item.glassBottle,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// vet
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 5), new Object[]
-				{
-					"GGG",
-					"SSS",
-					"EME",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('E'), Item.spiderEye,
-					Character.valueOf('S'), syringeEmptyItem,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineVet.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 5), new Object[]
+					{
+						"GGG",
+						"SSS",
+						"EME",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('E'), Item.spiderEye,
+						Character.valueOf('S'), syringeEmptyItem,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// collector
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 8, 6), new Object[]
-				{
-					"GGG",
-					" C ",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('C'), Block.chest,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineCollector.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 8, 6), new Object[]
+					{
+						"GGG",
+						" C ",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('C'), Block.chest,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// breaker
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 7), new Object[]
-				{
-					"GGG",
-					"PHS",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('P'), Item.pickaxeGold,
-					Character.valueOf('H'), factoryHammerItem,
-					Character.valueOf('S'), Item.shovelGold,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineBreaker.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 7), new Object[]
+					{
+						"GGG",
+						"PHS",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('P'), Item.pickaxeGold,
+						Character.valueOf('H'), factoryHammerItem,
+						Character.valueOf('S'), Item.shovelGold,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// weather
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 8), new Object[]
-				{
-					"GGG",
-					"BBB",
-					"UMU",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('B'), Block.fenceIron,
-					Character.valueOf('U'), Item.bucketEmpty,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineWeather.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 8), new Object[]
+					{
+						"GGG",
+						"BBB",
+						"UMU",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('B'), Block.fenceIron,
+						Character.valueOf('U'), Item.bucketEmpty,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// boiler
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 9), new Object[]
-				{
-					"GGG",
-					"FFF",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('F'), Block.stoneOvenIdle,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineBoiler.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 9), new Object[]
+					{
+						"GGG",
+						"FFF",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('F'), Block.stoneOvenIdle,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// sewer
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 4, 10), new Object[]
-				{
-					"GGG",
-					"BUB",
-					"BMB",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('B'), Item.brick,
-					Character.valueOf('U'), Item.bucketEmpty,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineSewer.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 4, 10), new Object[]
+					{
+						"GGG",
+						"BUB",
+						"BMB",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('B'), Item.brick,
+						Character.valueOf('U'), Item.bucketEmpty,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// composter
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 11), new Object[]
-				{
-					"GGG",
-					"PFP",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('P'), Block.pistonBase,
-					Character.valueOf('F'), Block.stoneOvenIdle,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineComposter.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 11), new Object[]
+					{
+						"GGG",
+						"PFP",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('P'), Block.pistonBase,
+						Character.valueOf('F'), Block.stoneOvenIdle,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// breeder
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 12), new Object[]
-				{
-					"GGG",
-					"CAC",
-					"PMP",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('P'), new ItemStack(Item.dyePowder, 1, 5),
-					Character.valueOf('C'), Item.goldenCarrot,
-					Character.valueOf('A'), Item.appleGold,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineBreeder.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 12), new Object[]
+					{
+						"GGG",
+						"CAC",
+						"PMP",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('P'), new ItemStack(Item.dyePowder, 1, 5),
+						Character.valueOf('C'), Item.goldenCarrot,
+						Character.valueOf('A'), Item.appleGold,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// grinder
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 13), new Object[]
-				{
-					"GGG",
-					"BSP",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('P'), Block.pistonBase,
-					Character.valueOf('B'), Item.book,
-					Character.valueOf('S'), Item.swordGold,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineGrinder.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 13), new Object[]
+					{
+						"GGG",
+						"BSP",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('P'), Block.pistonBase,
+						Character.valueOf('B'), Item.book,
+						Character.valueOf('S'), Item.swordGold,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// enchanter
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 14), new Object[]
-				{
-					"GGG",
-					"BBB",
-					"DMD",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('B'), Item.book,
-					Character.valueOf('D'), Item.diamond,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineEnchanter.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 14), new Object[]
+					{
+						"GGG",
+						"BBB",
+						"DMD",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('B'), Item.book,
+						Character.valueOf('D'), Item.diamond,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// chronotyper
-		GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 15), new Object[]
-				{
-					"GGG",
-					"EEE",
-					"PMP",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('E'), Item.emerald,
-					Character.valueOf('P'), new ItemStack(Item.dyePowder, 1, 5),
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineChronotyper.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 15), new Object[]
+					{
+						"GGG",
+						"EEE",
+						"PMP",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('E'), Item.emerald,
+						Character.valueOf('P'), new ItemStack(Item.dyePowder, 1, 5),
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// ejector
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 0), new Object[]
-				{
-					"GGG",
-					" D ",
-					"RMR",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('D'), Block.dispenser,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineEjector.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 0), new Object[]
+					{
+						"GGG",
+						" D ",
+						"RMR",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('D'), Block.dispenser,
+						Character.valueOf('R'), Item.redstone,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// itemrouter
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 1), new Object[]
-				{
-					"GGG",
-					"RCR",
-					" M ",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('C'), Block.chest,
-					Character.valueOf('R'), Item.redstoneRepeater,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineItemRouter.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 1), new Object[]
+					{
+						"GGG",
+						"RCR",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('C'), Block.chest,
+						Character.valueOf('R'), Item.redstoneRepeater,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// liquidrouter
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 2), new Object[]
-				{
-					"GGG",
-					"RBR",
-					"BMB",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('B'), Item.bucketEmpty,
-					Character.valueOf('R'), Item.redstoneRepeater,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineLiquidRouter.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 2), new Object[]
+					{
+						"GGG",
+						"RBR",
+						"BMB",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('B'), Item.bucketEmpty,
+						Character.valueOf('R'), Item.redstoneRepeater,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// DSU
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 4, 3), new Object[]
-				{
-					"GGG",
-					"PPP",
-					"EME",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('P'), Item.enderPearl,
-					Character.valueOf('E'), Item.eyeOfEnder,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineDeepStorageUnit.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 4, 3), new Object[]
+					{
+						"GGG",
+						"PPP",
+						"EME",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('P'), Item.enderPearl,
+						Character.valueOf('E'), Item.eyeOfEnder,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+			
+			if(enableCheapDSU.getBoolean(false))
+			{
+				GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 3), new Object[]
+						{
+							"GGG",
+							"CCC",
+							"CMC",
+							Character.valueOf('G'), Item.ingotGold,
+							Character.valueOf('C'), Block.chest,
+							Character.valueOf('M'), machineBaseItem,
+						} );
+			}
+		}
 		
-		// liquicrafter
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 4), new Object[]
-				{
-					"GGG",
-					"BWB",
-					"FMF",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('B'), Item.bucketEmpty,
-					Character.valueOf('W'), Block.workbench,
-					Character.valueOf('F'), Item.itemFrame,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineLiquiCrafter.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 4), new Object[]
+					{
+						"GGG",
+						"BWB",
+						"FMF",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('B'), Item.bucketEmpty,
+						Character.valueOf('W'), Block.workbench,
+						Character.valueOf('F'), Item.itemFrame,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// lava fab
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 5), new Object[]
-				{
-					"GGG",
-					"OBO",
-					"CMC",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('O'), Block.obsidian,
-					Character.valueOf('B'), Item.blazeRod,
-					Character.valueOf('C'), Item.magmaCream,
-					Character.valueOf('M'), machineBaseItem,
-				} );
+		if(enableMachineLavaFabricator.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 5), new Object[]
+					{
+						"GGG",
+						"OBO",
+						"CMC",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('O'), Block.obsidian,
+						Character.valueOf('B'), Item.blazeRod,
+						Character.valueOf('C'), Item.magmaCream,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
-		// oil fab
-		GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 6), new Object[]
-				{
-					"GGG",
-					"OTO",
-					"OMO",
-					Character.valueOf('G'), Item.ingotGold,
-					Character.valueOf('O'), Block.obsidian,
-					Character.valueOf('T'), Block.tnt,
-					Character.valueOf('M'), machineBaseItem,
-				} );
-		
-		
-		
+		if(enableMachineOiLFabricator.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 6), new Object[]
+					{
+						"GGG",
+						"OTO",
+						"OMO",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('O'), Block.obsidian,
+						Character.valueOf('T'), Block.tnt,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
 		
 		
 		
@@ -1048,19 +1153,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassBlock, 1, i), new ItemStack(Block.glass), new ItemStack(ceramicDyeItem, 1, i));
 			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassPaneBlock, 1, i), new ItemStack(Block.thinGlass), new ItemStack(ceramicDyeItem, 1, i));
 			GameRegistry.addShapelessRecipe(new ItemStack(conveyorBlock, 1, i), new ItemStack(conveyorBlock, 1, 16), new ItemStack(ceramicDyeItem, 1, i));
-		}
-		
-		if(enableCheapDSU.getBoolean(false))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 3), new Object[]
-					{
-						"GGG",
-						"CCC",
-						"CMC",
-						Character.valueOf('G'), Item.ingotGold,
-						Character.valueOf('C'), Block.chest,
-						Character.valueOf('M'), machineBaseItem,
-					} );
 		}
 	}
 
