@@ -13,7 +13,7 @@ public interface ISafariNetHandler
 	
 	public void onCapture(NBTTagCompound safariNetTag, Entity capturedEntity);
 	
-	public void onRelease(NBTTagCompound safariNetTag, Entity capturedEntity);
+	public void onRelease(NBTTagCompound safariNetTag, Entity spawnedEntity);
 
 	@SuppressWarnings("rawtypes")
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips);
