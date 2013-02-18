@@ -14,10 +14,10 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.farmables.HarvestableStandard;
-import powercrystals.minefactoryreloaded.farmables.HarvestableTreeLeaves;
-import powercrystals.minefactoryreloaded.farmables.PlantableCropPlant;
-import powercrystals.minefactoryreloaded.farmables.PlantableStandard;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
+import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
+import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 
 @Mod(modid = "MFReloaded|CompatRP2", name = "MFR Compat: RP2", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:RedPowerWorld")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)

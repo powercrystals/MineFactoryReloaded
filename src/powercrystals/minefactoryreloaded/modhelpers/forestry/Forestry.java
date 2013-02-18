@@ -3,7 +3,7 @@ package powercrystals.minefactoryreloaded.modhelpers.forestry;
 import net.minecraft.item.Item;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
-import powercrystals.minefactoryreloaded.farmables.FertilizerStandard;
+import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;

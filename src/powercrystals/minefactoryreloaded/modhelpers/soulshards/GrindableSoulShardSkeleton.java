@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.modhelpers.soulshards;
 
-import powercrystals.minefactoryreloaded.farmables.GrindableSkeleton;
+import powercrystals.minefactoryreloaded.farmables.grindables.GrindableSkeleton;
 
 public class GrindableSoulShardSkeleton extends GrindableSkeleton
 {

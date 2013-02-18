@@ -19,9 +19,9 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.farmables.HarvestableStandard;
-import powercrystals.minefactoryreloaded.farmables.HarvestableTreeLeaves;
-import powercrystals.minefactoryreloaded.farmables.PlantableStandard;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
+import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 
 @Mod(modid = "MFReloaded|CompatExtraBiomes", name = "MFR Compat: ExtraBiomes", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:ExtrabiomesXL")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
