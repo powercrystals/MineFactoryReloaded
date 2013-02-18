@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.animals;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -25,6 +27,26 @@ public class ItemSafariNet extends ItemFactory
 		super(MineFactoryReloadedCore.safariNetItemId.getInt());
 		maxStackSize = 1;
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedTooltips)
+	{
+		if(stack.getTagCompound() == null)
+		{
+			return;
+		}
+		
+		infoList.add(stack.getTagCompound().getString("mobName"));
+		for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
+		{
+			if(handler.validFor().isAssignableFrom((Class<?>)EntityList.stringToClassMapping.get(stack.getTagCompound().getString("mobName"))))
+			{
+				handler.addInformation(stack, player, infoList, advancedTooltips);
+			}
+		}
+	}
 
 	@Override
 	public String getItemDisplayName(ItemStack par1ItemStack)
@@ -43,8 +65,7 @@ public class ItemSafariNet extends ItemFactory
 	@SideOnly(Side.CLIENT)
 	public int getIconFromDamageForRenderPass(int damage, int pass)
 	{
-		if(damage == 0) return iconIndex + 3;
-		else if(pass == 0) return iconIndex;
+		if(pass == 0) return iconIndex;
 		else if(pass == 1) return iconIndex + 1;
 		else if(pass == 2) return iconIndex + 2;
 		else return 255;
@@ -66,11 +87,20 @@ public class ItemSafariNet extends ItemFactory
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int pass)
 	{
-		if(stack.getItemDamage() == 0)
+		if(stack.getItemDamage() == 0 && stack.getTagCompound() == null)
 		{
 			return 16777215;
 		}
-		EntityEggInfo egg = (EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(stack.getItemDamage()));
+		EntityEggInfo egg;
+		
+		if(stack.getItemDamage() != 0)
+		{
+			egg = (EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(stack.getItemDamage()));
+		}
+		else
+		{
+			egg = (EntityEggInfo)EntityList.entityEggs.get((Integer)EntityList.stringToIDMapping.get(stack.getTagCompound().getString("mobName")));
+		}
 		
 		if(egg == null)
 		{
