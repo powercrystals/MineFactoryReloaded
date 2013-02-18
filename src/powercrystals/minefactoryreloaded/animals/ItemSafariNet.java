@@ -153,7 +153,7 @@ public class ItemSafariNet extends ItemFactory
 			}
 			else
 			{
-				if(spawnCreature(world, itemstack.getTagCompound().getString("mobName"), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
+				if(spawnCreature(world, itemstack.getTagCompound(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
 				{
 					itemstack.setTagCompound(null);
 				}
@@ -163,17 +163,26 @@ public class ItemSafariNet extends ItemFactory
 		}
 	}
 
-	private static Entity spawnCreature(World world, String mobName, double x, double y, double z)
+	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
 	{
-		Entity e = EntityList.createEntityByName(mobName, world);
+		Entity e = EntityList.createEntityByName(mobTag.getString("mobName"), world);
 
 		if (e != null)
 		{
-				e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
-				((EntityLiving)e).initCreature();
-				world.spawnEntityInWorld(e);
-				((EntityLiving)e).playLivingSound();
+			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+			((EntityLiving)e).initCreature();
+			
+			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
+			{
+				if(handler.validFor().isAssignableFrom(e.getClass()))
+				{
+					handler.onRelease(mobTag, e);
+				}
 			}
+			
+			world.spawnEntityInWorld(e);
+			((EntityLiving)e).playLivingSound();
+		}
 
 		return e;
 	}
