@@ -123,6 +123,7 @@
 		<delete dir="${classes.dir}" />
 		<delete dir="${mcp.dir}/reobf"/>
 		<delete dir="{$apiclasses.dir}" />
+		<delete dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded" />
 	</target>
 
 	<target name="build" depends="extract-dependencies" unless="already-compiled">
