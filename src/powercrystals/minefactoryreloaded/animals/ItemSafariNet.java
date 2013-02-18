@@ -149,7 +149,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			return true;
 		}
-		if(entity instanceof EntityLiving)
+		if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer))
 		{
 			itemstack.setItemDamage(EntityList.getEntityID(entity));
 			entity.setDead();
