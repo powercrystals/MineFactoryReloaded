@@ -26,7 +26,7 @@ public class WorldGenRubberTree extends WorldGenerator
 		for(int c = 0; c < retries; c++)
 		{
 			int y= world.getActualHeight() - 1;
-			while(world.getBlockId(x, y, z) == 0)
+			while(world.getBlockId(x, y, z) == 0 && y > 0)
 			{
 				y--;
 			}
