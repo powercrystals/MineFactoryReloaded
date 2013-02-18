@@ -129,6 +129,7 @@ public class ItemSafariNet extends ItemFactory
 		}
 		else if(itemstack.getItemDamage() == 0 || itemstack.getTagCompound() == null)
 		{
+			System.out.println("Called use with no entity stored");
 			return true;
 		}
 		else
@@ -146,15 +147,19 @@ public class ItemSafariNet extends ItemFactory
 
 			if(itemstack.getItemDamage() != 0)
 			{
+				System.out.println("Attempting to spawn from damage");
 				if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
 				{
+					System.out.println("Spawn successful");
 					itemstack.setItemDamage(0);
 				}
 			}
 			else
 			{
+				System.out.println("Attempting to spawn from NBT");
 				if(spawnCreature(world, itemstack.getTagCompound(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
 				{
+					System.out.println("Spawn successful");
 					itemstack.setTagCompound(null);
 				}
 			}
@@ -165,7 +170,9 @@ public class ItemSafariNet extends ItemFactory
 
 	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
 	{
+		System.out.println("Spawning entity with name " + mobTag.getString("mobName"));
 		Entity e = EntityList.createEntityByName(mobTag.getString("mobName"), world);
+		System.out.println("Entity null: " + (e == null));
 
 		if (e != null)
 		{
