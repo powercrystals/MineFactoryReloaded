@@ -127,7 +127,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			return true;
 		}
-		else if(itemstack.getItemDamage() == 0 || itemstack.getTagCompound() == null)
+		else if(itemstack.getItemDamage() == 0 && itemstack.getTagCompound() == null)
 		{
 			System.out.println("Called use with no entity stored");
 			return true;
