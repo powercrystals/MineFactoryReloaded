@@ -15,5 +15,6 @@ public interface ISafariNetHandler
 	
 	public void onRelease(NBTTagCompound safariNetTag, Entity capturedEntity);
 
+	@SuppressWarnings("rawtypes")
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips);
 }

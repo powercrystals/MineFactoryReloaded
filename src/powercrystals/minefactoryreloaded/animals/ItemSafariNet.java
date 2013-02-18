@@ -9,10 +9,13 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Facing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
 
 public class ItemSafariNet extends ItemFactory
@@ -94,7 +97,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			return true;
 		}
-		else if(itemstack.getItemDamage() == 0)
+		else if(itemstack.getItemDamage() == 0 || itemstack.getTagCompound() == null)
 		{
 			return true;
 		}
@@ -104,20 +107,45 @@ public class ItemSafariNet extends ItemFactory
 			x += Facing.offsetsXForSide[side];
 			y += Facing.offsetsYForSide[side];
 			z += Facing.offsetsZForSide[side];
-			double var12 = 0.0D;
+			double spawnOffsetY = 0.0D;
 
 			if (side == 1 && Block.blocksList[blockId] != null && Block.blocksList[blockId].getRenderType() == 11)
 			{
-				var12 = 0.5D;
+				spawnOffsetY = 0.5D;
 			}
 
-			if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + var12, (double)z + 0.5D) != null)
+			if(itemstack.getItemDamage() != 0)
 			{
-				itemstack.setItemDamage(0);
+				if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
+				{
+					itemstack.setItemDamage(0);
+				}
+			}
+			else
+			{
+				if(spawnCreature(world, itemstack.getTagCompound().getString("mobName"), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
+				{
+					itemstack.setTagCompound(null);
+				}
 			}
 
 			return true;
 		}
+	}
+
+	private static Entity spawnCreature(World world, String mobName, double x, double y, double z)
+	{
+		Entity e = EntityList.createEntityByName(mobName, world);
+
+		if (e != null)
+		{
+				e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+				((EntityLiving)e).initCreature();
+				world.spawnEntityInWorld(e);
+				((EntityLiving)e).playLivingSound();
+			}
+
+		return e;
 	}
 
 	private static Entity spawnCreature(World world, int mobId, double x, double y, double z)
@@ -145,13 +173,24 @@ public class ItemSafariNet extends ItemFactory
 	@Override
 	public boolean itemInteractionForEntity(ItemStack itemstack, EntityLiving entity)
 	{
-		if(itemstack.getItemDamage() > 0)
+		if(itemstack.getItemDamage() > 0 || itemstack.getTagCompound() != null)
 		{
-			return true;
+			return false;
 		}
 		if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer))
 		{
-			itemstack.setItemDamage(EntityList.getEntityID(entity));
+			NBTTagCompound c = new NBTTagCompound();
+			
+			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
+			{
+				if(handler.validFor().isAssignableFrom(entity.getClass()))
+				{
+					handler.onCapture(c, entity);
+				}
+			}
+
+			c.setString("mobName", (String)EntityList.classToStringMapping.get(entity.getClass()));
+			itemstack.setTagCompound(c);
 			entity.setDead();
 			return true;
 		}
