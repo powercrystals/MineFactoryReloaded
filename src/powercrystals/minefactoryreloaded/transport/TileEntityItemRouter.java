@@ -88,7 +88,7 @@ public class TileEntityItemRouter extends TileEntityFactory implements IInventor
 		{
 			if(_inventory[i] != null)
 			{
-				if(_inventory[i].itemID == stack.itemID && _inventory[i].getItemDamage() == stack.getItemDamage())
+				if(_inventory[i].itemID == stack.itemID && (_inventory[i].getItemDamage() == stack.getItemDamage()) || stack.getItem().isDamageable())
 				{
 					return true;
 				}
