@@ -3,36 +3,35 @@ package powercrystals.minefactoryreloaded.farmables.safarinethandlers;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 
-public class EntityLivingHandler implements ISafariNetHandler
+public class SlimeHandler implements ISafariNetHandler
 {
 	@Override
 	public Class<?> validFor()
 	{
-		return EntityLiving.class;
+		return EntitySlime.class;
 	}
 
 	@Override
 	public void onCapture(NBTTagCompound safariNetTag, Entity capturedEntity)
 	{
-		safariNetTag.setInteger("health", ((EntityLiving)capturedEntity).getHealth());
+		safariNetTag.setInteger("slimeSize", ((EntitySlime)capturedEntity).getSlimeSize());
 	}
 
 	@Override
 	public void onRelease(NBTTagCompound safariNetTag, Entity spawnedEntity)
 	{
-		((EntityLiving)spawnedEntity).setEntityHealth(safariNetTag.getInteger("health"));
+		((EntitySlime)spawnedEntity).setSlimeSize(safariNetTag.getInteger("slimeSize"));
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips)
 	{
-		infoList.add("Health: " + safariNetStack.getTagCompound().getInteger("health"));
 	}
 }
