@@ -83,6 +83,7 @@ import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableCow;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableMooshroom;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableSheep;
+import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityLivingHandler;
 import powercrystals.minefactoryreloaded.gui.MFRGUIHandler;
 import powercrystals.minefactoryreloaded.net.ClientPacketHandler;
 import powercrystals.minefactoryreloaded.net.ConnectionHandler;
@@ -564,6 +565,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		FarmingRegistry.registerSludgeDrop(20, new ItemStack(Block.dirt));
 		FarmingRegistry.registerSludgeDrop(15, new ItemStack(Item.clay, 4));
 		FarmingRegistry.registerSludgeDrop(1, new ItemStack(Block.slowSand));
+		
+		FarmingRegistry.registerSafariNetHandler(new EntityLivingHandler());
 		
 		registerRecipes();
 	}

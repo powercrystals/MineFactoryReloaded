@@ -173,7 +173,7 @@ public class FarmingRegistry
 	 * 
 	 * @param handler The Safari Net handler.
 	 */
-	public void registerSafariNetHandler(ISafariNetHandler handler)
+	public static void registerSafariNetHandler(ISafariNetHandler handler)
 	{
 		try
 		{
