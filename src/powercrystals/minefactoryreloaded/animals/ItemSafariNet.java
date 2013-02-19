@@ -21,6 +21,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
+import powercrystals.minefactoryreloaded.modhelpers.twilightforest.TwilightForest;
 
 public class ItemSafariNet extends ItemFactory
 {
@@ -98,11 +99,11 @@ public class ItemSafariNet extends ItemFactory
 		
 		if(stack.getItemDamage() != 0)
 		{
-			egg = (EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(stack.getItemDamage()));
+			egg = getEgg(stack.getItemDamage());
 		}
 		else
 		{
-			egg = (EntityEggInfo)EntityList.entityEggs.get((Integer)EntityList.stringToIDMapping.get(stack.getTagCompound().getString("mobName")));
+			egg = getEgg((Integer)EntityList.stringToIDMapping.get(stack.getTagCompound().getString("mobName")));
 		}
 		
 		if(egg == null)
@@ -121,6 +122,18 @@ public class ItemSafariNet extends ItemFactory
 		{
 			return 16777215;
 		}
+	}
+	
+	private EntityEggInfo getEgg(int mobId)
+	{
+		EntityEggInfo egg = (EntityEggInfo)EntityList.entityEggs.get(mobId);
+		
+		if(egg == null && TwilightForest.entityEggs != null)
+		{
+			egg = (EntityEggInfo)TwilightForest.entityEggs.get(mobId);
+		}
+		
+		return egg;
 	}
 	
 	@Override
