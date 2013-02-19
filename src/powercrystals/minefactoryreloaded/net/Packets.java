@@ -8,4 +8,5 @@ public final class Packets
 	public static final int PacketIdChronotyperButton = 4;
 	public static final int PacketIdDSUButton = 5;
 	public static final int PacketIdConveyorDescription = 6;
+	public static final int PacketIdAutoJukeboxPlay = 7;
 }

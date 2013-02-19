@@ -1,11 +1,15 @@
 package powercrystals.minefactoryreloaded.decorative;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
+import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.util.Util;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
+import powercrystals.minefactoryreloaded.net.Packets;
 
 public class TileEntityAutoJukebox extends TileEntityFactory implements IInventory
 {
@@ -35,6 +39,8 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 			if(_inventory[0] != null && _inventory[0].getItem() instanceof ItemRecord)
 			{
 				worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1005, xCoord, yCoord, zCoord, _inventory[0].itemID);
+				PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(),
+						PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdAutoJukeboxPlay, new Object[] { xCoord, yCoord, zCoord, _inventory[0].itemID } ));
 			}
 		}
 		
