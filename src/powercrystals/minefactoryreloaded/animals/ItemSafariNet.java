@@ -12,6 +12,8 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagDouble;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.Facing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -171,10 +173,13 @@ public class ItemSafariNet extends ItemFactory
 		{
 			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
 			((EntityLiving)e).initCreature();
+			
+			NBTTagList pos = ((NBTTagCompound)mobTag.getTag("mobData")).getTagList("Pos");
+			((NBTTagDouble)pos.tagAt(0)).data = x;
+			((NBTTagDouble)pos.tagAt(1)).data = y;
+			((NBTTagDouble)pos.tagAt(2)).data = z;
+			
 			e.readFromNBT((NBTTagCompound)mobTag.getTag("mobData"));
-			e.posX = x;
-			e.posY = y;
-			e.posZ = z;
 			
 			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
 			{
