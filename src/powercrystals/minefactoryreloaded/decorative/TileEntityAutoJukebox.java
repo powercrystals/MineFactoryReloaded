@@ -5,6 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -115,5 +117,43 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 	@Override
 	public void closeChest()
 	{
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		NBTTagList nbttaglist = nbttagcompound.getTagList("Items");
+		_inventory = new ItemStack[getSizeInventory()];
+		for(int i = 0; i < nbttaglist.tagCount(); i++)
+		{
+			NBTTagCompound nbttagcompound1 = (NBTTagCompound)nbttaglist.tagAt(i);
+			int j = nbttagcompound1.getByte("Slot") & 0xff;
+			if(j >= 0 && j < _inventory.length)
+			{
+				ItemStack s = new ItemStack(0, 0, 0);
+				s.readFromNBT(nbttagcompound1);
+				_inventory[j] = s;
+			}
+		}
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		NBTTagList nbttaglist = new NBTTagList();
+		for(int i = 0; i < _inventory.length; i++)
+		{
+			if(_inventory[i] != null)
+			{
+				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+				nbttagcompound1.setByte("Slot", (byte)i);
+				_inventory[i].writeToNBT(nbttagcompound1);
+				nbttaglist.appendTag(nbttagcompound1);
+			}
+		}
+
+		nbttagcompound.setTag("Items", nbttaglist);
 	}
 }
