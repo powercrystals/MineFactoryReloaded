@@ -172,6 +172,9 @@ public class ItemSafariNet extends ItemFactory
 			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
 			((EntityLiving)e).initCreature();
 			e.readFromNBT((NBTTagCompound)mobTag.getTag("mobData"));
+			e.posX = x;
+			e.posY = y;
+			e.posZ = z;
 			
 			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
 			{
