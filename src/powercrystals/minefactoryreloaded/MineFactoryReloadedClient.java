@@ -83,10 +83,10 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(MineFactoryReloadedCore.railDropoffPassengerBlock, "Passenger Dropoff Rail");
 
 		LanguageRegistry.addName(MineFactoryReloadedCore.factoryHammerItem, "Precision Sledgehammer");
-		LanguageRegistry.addName(MineFactoryReloadedCore.milkItem, "Spilled Milk");
-		LanguageRegistry.addName(MineFactoryReloadedCore.sludgeItem, "Spilled Sludge");
-		LanguageRegistry.addName(MineFactoryReloadedCore.sewageItem, "Spilled Sewage");
-		LanguageRegistry.addName(MineFactoryReloadedCore.mobEssenceItem, "Spilled Monster Essence");
+		LanguageRegistry.addName(MineFactoryReloadedCore.milkItem, "Milk");
+		LanguageRegistry.addName(MineFactoryReloadedCore.sludgeItem, "Sludge");
+		LanguageRegistry.addName(MineFactoryReloadedCore.sewageItem, "Sewage");
+		LanguageRegistry.addName(MineFactoryReloadedCore.mobEssenceItem, "Monster Essence");
 		LanguageRegistry.addName(MineFactoryReloadedCore.fertilizerItem, "Industrial Fertilizer");
 		LanguageRegistry.addName(MineFactoryReloadedCore.plasticSheetItem, "Plastic Sheets");
 		LanguageRegistry.addName(MineFactoryReloadedCore.rawPlasticItem, "Raw Plastic");
