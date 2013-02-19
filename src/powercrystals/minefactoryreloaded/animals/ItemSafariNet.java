@@ -249,7 +249,7 @@ public class ItemSafariNet extends ItemFactory
 			
 			entity.writeToNBT(c);
 
-			c.setString("id", (String)EntityList.classToStringMapping.get(entity.getClass().getName()));
+			c.setString("id", (String)EntityList.classToStringMapping.get(entity.getClass()));
 			
 			itemstack.setTagCompound(c);
 			entity.setDead();
