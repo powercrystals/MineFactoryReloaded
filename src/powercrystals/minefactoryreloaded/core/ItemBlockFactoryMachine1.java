@@ -72,7 +72,7 @@ public class ItemBlockFactoryMachine1 extends ItemBlock
 	@Override
 	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
 	{
-		for(int i = 0; i < 7; i++)
+		for(int i = 0; i < 8; i++)
 		{
 			par3List.add(new ItemStack(MineFactoryReloadedCore.machineBlock1.blockID, 1, i));
 		}
