@@ -65,8 +65,9 @@ public class ItemSafariNet extends ItemFactory
 	}
 
 	@SideOnly(Side.CLIENT)
-	public int getIconFromDamageForRenderPass(int damage, int pass)
+	public int getIconIndex(ItemStack stack, int pass)
 	{
+		if(stack.getItemDamage() == 0 && stack.getTagCompound() == null) return iconIndex + 3;
 		if(pass == 0) return iconIndex;
 		else if(pass == 1) return iconIndex + 1;
 		else if(pass == 2) return iconIndex + 2;
