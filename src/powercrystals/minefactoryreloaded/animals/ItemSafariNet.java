@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.animals;
 
 import java.util.List;
 
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -41,12 +42,19 @@ public class ItemSafariNet extends ItemFactory
 			return;
 		}
 		
-		infoList.add(stack.getTagCompound().getString("mobName"));
+		infoList.add(stack.getTagCompound().getString("id"));
 		for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
 		{
-			if(handler.validFor().isAssignableFrom((Class<?>)EntityList.stringToClassMapping.get(stack.getTagCompound().getString("mobName"))))
+			try
 			{
-				handler.addInformation(stack, player, infoList, advancedTooltips);
+				if(handler.validFor().isAssignableFrom(Class.forName(stack.getTagCompound().getString("id"))))
+				{
+					handler.addInformation(stack, player, infoList, advancedTooltips);
+				}
+			}
+			catch(ClassNotFoundException e)
+			{
+				FMLLog.warning("MFR Safari Net tried to look up data for a nonexistent mob class %s!", stack.getTagCompound().getString("id"));
 			}
 		}
 	}
@@ -103,7 +111,7 @@ public class ItemSafariNet extends ItemFactory
 		}
 		else
 		{
-			egg = getEgg((Integer)EntityList.stringToIDMapping.get(stack.getTagCompound().getString("mobName")));
+			egg = getEgg((Integer)EntityList.stringToIDMapping.get(stack.getTagCompound().getString("id")));
 		}
 		
 		if(egg == null)
@@ -124,8 +132,12 @@ public class ItemSafariNet extends ItemFactory
 		}
 	}
 	
-	private EntityEggInfo getEgg(int mobId)
+	private EntityEggInfo getEgg(Integer mobId)
 	{
+		if(mobId == null)
+		{
+			return null;
+		}
 		EntityEggInfo egg = (EntityEggInfo)EntityList.entityEggs.get(mobId);
 		
 		if(egg == null && TwilightForest.entityEggs != null)
@@ -181,27 +193,19 @@ public class ItemSafariNet extends ItemFactory
 
 	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
 	{
-		Entity e = EntityList.createEntityByName(mobTag.getString("mobName"), world);
+		NBTTagList pos = mobTag.getTagList("Pos");
+		((NBTTagDouble)pos.tagAt(0)).data = x;
+		((NBTTagDouble)pos.tagAt(1)).data = y;
+		((NBTTagDouble)pos.tagAt(2)).data = z;
+		
+		Entity e = EntityList.createEntityFromNBT(mobTag, world);
 
 		if (e != null)
 		{
 			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
 			((EntityLiving)e).initCreature();
 			
-			NBTTagList pos = ((NBTTagCompound)mobTag.getTag("mobData")).getTagList("Pos");
-			((NBTTagDouble)pos.tagAt(0)).data = x;
-			((NBTTagDouble)pos.tagAt(1)).data = y;
-			((NBTTagDouble)pos.tagAt(2)).data = z;
-			
-			e.readFromNBT((NBTTagCompound)mobTag.getTag("mobData"));
-			
-			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
-			{
-				if(handler.validFor().isAssignableFrom(e.getClass()))
-				{
-					handler.onRelease(mobTag, e);
-				}
-			}
+			e.readFromNBT(mobTag);
 			
 			world.spawnEntityInWorld(e);
 			((EntityLiving)e).playLivingSound();
@@ -242,20 +246,9 @@ public class ItemSafariNet extends ItemFactory
 		if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer))
 		{
 			NBTTagCompound c = new NBTTagCompound();
-			NBTTagCompound mobData = new NBTTagCompound();
 			
-			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
-			{
-				if(handler.validFor().isAssignableFrom(entity.getClass()))
-				{
-					handler.onCapture(c, entity);
-				}
-			}
-			
-			entity.writeToNBT(mobData);
+			entity.writeToNBT(c);
 
-			c.setString("mobName", (String)EntityList.classToStringMapping.get(entity.getClass()));
-			c.setTag("mobData", mobData);
 			itemstack.setTagCompound(c);
 			entity.setDead();
 			return true;
