@@ -11,6 +11,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
+import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.processing.TileEntityLavaFabricator;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
@@ -37,6 +38,7 @@ public class BlockFactoryMachine1 extends BlockFactoryMachine
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LiquiCrafter)) return new TileEntityLiquiCrafter();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LavaFabricator)) return new TileEntityLavaFabricator();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator)) return new TileEntityOilFabricator();
+		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoJukebox)) return new TileEntityAutoJukebox();
 		return null;
 	}
 	

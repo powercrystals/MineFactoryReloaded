@@ -64,6 +64,7 @@ public class ItemBlockFactoryMachine1 extends ItemBlock
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LiquiCrafter)) return "factoryLiquiCrafter";
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LavaFabricator)) return "factoryLavaFabricator";
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator)) return "factoryOilFabricator";
+		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoJukebox)) return "factoryAutoJukebox";
 		return "Invalid";
 	}
 

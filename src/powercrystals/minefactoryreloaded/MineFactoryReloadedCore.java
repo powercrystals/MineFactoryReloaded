@@ -53,6 +53,7 @@ import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemCeramicDye;
+import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCocoa;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableGiantMushroom;
@@ -328,6 +329,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machine1MetadataMappings.put(Machine.LiquiCrafter, 4);
 		machine1MetadataMappings.put(Machine.LavaFabricator, 5);
 		machine1MetadataMappings.put(Machine.OilFabricator, 6);
+		machine1MetadataMappings.put(Machine.AutoJukebox, 7);
 
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorOffTexture);
 		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt());
@@ -403,6 +405,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityLiquiCrafter.class, "factoryLiquiCrafter");
 		GameRegistry.registerTileEntity(TileEntityLavaFabricator.class, "factoryLavaFabricator");
 		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
+		GameRegistry.registerTileEntity(TileEntityAutoJukebox.class, "factoryAutoJukebox");
 
 		MinecraftForge.EVENT_BUS.register(instance);
 
@@ -667,7 +670,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public enum Machine
 	{
 		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper,
-		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator
+		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox
 	}
 	
 	public LiquidStack getLiquidStackFromLiquidItem(ItemStack s)
