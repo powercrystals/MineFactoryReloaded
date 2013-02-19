@@ -171,6 +171,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
 			((EntityLiving)e).initCreature();
+			e.readFromNBT((NBTTagCompound)mobTag.getTag("mobData"));
 			
 			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
 			{
@@ -219,6 +220,7 @@ public class ItemSafariNet extends ItemFactory
 		if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer))
 		{
 			NBTTagCompound c = new NBTTagCompound();
+			NBTTagCompound mobData = new NBTTagCompound();
 			
 			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
 			{
@@ -227,8 +229,11 @@ public class ItemSafariNet extends ItemFactory
 					handler.onCapture(c, entity);
 				}
 			}
+			
+			entity.writeToNBT(mobData);
 
 			c.setString("mobName", (String)EntityList.classToStringMapping.get(entity.getClass()));
+			c.setTag("mobData", mobData);
 			itemstack.setTagCompound(c);
 			entity.setDead();
 			return true;

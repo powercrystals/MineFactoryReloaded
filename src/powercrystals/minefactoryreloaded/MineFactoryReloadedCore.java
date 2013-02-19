@@ -86,9 +86,6 @@ import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableSheep;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityAgeableHandler;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityLivingHandler;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.SheepHandler;
-import powercrystals.minefactoryreloaded.farmables.safarinethandlers.SkeletonHandler;
-import powercrystals.minefactoryreloaded.farmables.safarinethandlers.SlimeHandler;
-import powercrystals.minefactoryreloaded.farmables.safarinethandlers.ZombieHandler;
 import powercrystals.minefactoryreloaded.gui.MFRGUIHandler;
 import powercrystals.minefactoryreloaded.net.ClientPacketHandler;
 import powercrystals.minefactoryreloaded.net.ConnectionHandler;
@@ -574,9 +571,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		FarmingRegistry.registerSafariNetHandler(new EntityLivingHandler());
 		FarmingRegistry.registerSafariNetHandler(new EntityAgeableHandler());
 		FarmingRegistry.registerSafariNetHandler(new SheepHandler());
-		FarmingRegistry.registerSafariNetHandler(new SlimeHandler());
-		FarmingRegistry.registerSafariNetHandler(new SkeletonHandler());
-		FarmingRegistry.registerSafariNetHandler(new ZombieHandler());
 		
 		registerRecipes();
 	}

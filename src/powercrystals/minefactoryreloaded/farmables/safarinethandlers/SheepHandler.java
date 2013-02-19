@@ -22,21 +22,17 @@ public class SheepHandler implements ISafariNetHandler
 	@Override
 	public void onCapture(NBTTagCompound safariNetTag, Entity capturedEntity)
 	{
-		safariNetTag.setInteger("woolColor", ((EntitySheep)capturedEntity).getFleeceColor());
-		safariNetTag.setBoolean("shorn", ((EntitySheep)capturedEntity).getSheared());
 	}
 
 	@Override
 	public void onRelease(NBTTagCompound safariNetTag, Entity spawnedEntity)
 	{
-		((EntitySheep)spawnedEntity).setFleeceColor(safariNetTag.getInteger("woolColor"));
-		((EntitySheep)spawnedEntity).setSheared(safariNetTag.getBoolean("shorn"));
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips)
 	{
-		infoList.add("Wool: " + ItemDye.dyeColorNames[BlockCloth.getBlockFromDye(safariNetStack.getTagCompound().getInteger("woolColor"))]);
+		infoList.add("Wool: " + ItemDye.dyeColorNames[BlockCloth.getBlockFromDye(((NBTTagCompound)safariNetStack.getTagCompound().getTag("mobData")).getByte("Color"))]);
 	}
 }

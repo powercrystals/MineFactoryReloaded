@@ -20,19 +20,17 @@ public class EntityLivingHandler implements ISafariNetHandler
 	@Override
 	public void onCapture(NBTTagCompound safariNetTag, Entity capturedEntity)
 	{
-		safariNetTag.setInteger("health", ((EntityLiving)capturedEntity).getHealth());
 	}
 
 	@Override
 	public void onRelease(NBTTagCompound safariNetTag, Entity spawnedEntity)
 	{
-		((EntityLiving)spawnedEntity).setEntityHealth(safariNetTag.getInteger("health"));
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips)
 	{
-		infoList.add("Health: " + safariNetStack.getTagCompound().getInteger("health"));
+		infoList.add("Health: " + ((NBTTagCompound)safariNetStack.getTagCompound().getTag("mobData")).getShort("Health"));
 	}
 }
