@@ -49,6 +49,11 @@ public class MFRUtil
 				{
 					int filled = ((ITankContainer)tile).fill(adj.orientation.getOpposite(), l, true);
 					tank.drain(filled, true);
+					l.amount -= filled;
+					if(l.amount <= 0)
+					{
+						break;
+					}
 				}
 			}
 		}
