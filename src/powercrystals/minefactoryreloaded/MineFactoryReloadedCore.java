@@ -278,6 +278,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property enableMachineGrinder;
 	public static Property enableMachineEnchanter;
 	public static Property enableMachineChronotyper;
+	
 	public static Property enableMachineEjector;
 	public static Property enableMachineItemRouter;
 	public static Property enableMachineLiquidRouter;
@@ -285,6 +286,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property enableMachineLiquiCrafter;
 	public static Property enableMachineLavaFabricator;
 	public static Property enableMachineOiLFabricator;
+	public static Property enableMachineAutoJukebox;
 
 	private static MineFactoryReloadedCore instance;
 	
@@ -665,6 +667,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		enableMachineLiquiCrafter = c.get("MachineEnables", "LiquiCrafter", true);
 		enableMachineLavaFabricator = c.get("MachineEnables", "LavaFabricator", true);
 		enableMachineOiLFabricator = c.get("MachineEnables", "OilFabricator", true);
+		enableMachineAutoJukebox = c.get("MachineEnables", "AutoJukebox", true);
 
 		c.addCustomCategoryComment("MachineEnables", "Set to false to disable that machine's recipes. Machines will still work if gotten through other means.");
 		c.save();
@@ -1104,6 +1107,19 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 						Character.valueOf('G'), Item.ingotGold,
 						Character.valueOf('O'), Block.obsidian,
 						Character.valueOf('T'), Block.tnt,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
+		
+		if(enableMachineAutoJukebox.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 6), new Object[]
+					{
+						"GGG",
+						" J ",
+						" M ",
+						Character.valueOf('G'), Item.ingotGold,
+						Character.valueOf('J'), Block.jukebox,
 						Character.valueOf('M'), machineBaseItem,
 					} );
 		}
