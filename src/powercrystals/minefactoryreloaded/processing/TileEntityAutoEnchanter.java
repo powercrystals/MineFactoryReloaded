@@ -127,7 +127,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implemen
 	@Override
 	public int getInventoryStackLimit()
 	{
-		return 1;
+		return MineFactoryReloadedCore.enableCompatibleAutoEnchanter.getBoolean(false) ? 64 : 1;
 	}
 
 	@Override

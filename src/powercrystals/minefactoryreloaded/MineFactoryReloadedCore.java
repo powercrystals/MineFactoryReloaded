@@ -259,6 +259,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property enableBonemealFertilizing;
 	public static Property enableCheapDSU;
 	
+	public static Property enableCompatibleAutoEnchanter;
+	
 	public static Property passengerRailSearchMaxHorizontal;
 	public static Property passengerRailSearchMaxVertical;
 	
@@ -643,6 +645,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		enableBonemealFertilizing.comment = "If true, the fertilizer will use bonemeal as well as MFR fertilizer. Provided for those who want a less work-intensive farm.";
 		enableCheapDSU = c.get(Configuration.CATEGORY_GENERAL, "DSU.EnableCheaperRecipe", false);
 		enableCheapDSU.comment = "If true, DSU can be built out of chests instead of ender pearls. Does nothing if the DSU recipe is disabled.";
+		
+		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
+		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
 		
 		enableMachinePlanter = c.get("MachineEnables", "Planter", true);
 		enableMachineFisher = c.get("MachineEnables", "Fisher", true);
