@@ -111,11 +111,11 @@ public class ItemSafariNet extends ItemFactory
 		}
 		else if(pass == 2)
 		{
-			return egg.secondaryColor;
+			return egg.primaryColor;
 		}
 		else if(pass == 1)
 		{
-			return egg.primaryColor;
+			return egg.secondaryColor;
 		}
 		else
 		{
