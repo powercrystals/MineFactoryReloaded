@@ -1118,7 +1118,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		if(enableMachineAutoJukebox.getBoolean(true))
 		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 6), new Object[]
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 7), new Object[]
 					{
 						"GGG",
 						" J ",
