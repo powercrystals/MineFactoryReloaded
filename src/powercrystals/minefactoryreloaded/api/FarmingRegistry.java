@@ -189,4 +189,21 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
+	
+	public static void registerMobEggHandler(IMobEggHandler handler)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerMobEggHandler", ISafariNetHandler.class);
+				reg.invoke(registry, handler);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }

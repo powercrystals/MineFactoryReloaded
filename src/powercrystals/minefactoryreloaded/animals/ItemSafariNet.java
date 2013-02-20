@@ -20,9 +20,9 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.IMobEggHandler;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
-import powercrystals.minefactoryreloaded.modhelpers.twilightforest.TwilightForest;
 
 public class ItemSafariNet extends ItemFactory
 {
@@ -103,16 +103,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			return 16777215;
 		}
-		EntityEggInfo egg;
-		
-		if(stack.getItemDamage() != 0)
-		{
-			egg = getEgg(stack.getItemDamage());
-		}
-		else
-		{
-			egg = getEgg((Integer)EntityList.stringToIDMapping.get(stack.getTagCompound().getString("id")));
-		}
+		EntityEggInfo egg = getEgg(stack);
 		
 		if(egg == null)
 		{
@@ -132,20 +123,23 @@ public class ItemSafariNet extends ItemFactory
 		}
 	}
 	
-	private EntityEggInfo getEgg(Integer mobId)
+	private EntityEggInfo getEgg(ItemStack safariStack)
 	{
-		if(mobId == null)
+		if(safariStack.getTagCompound() == null)
 		{
 			return null;
 		}
-		EntityEggInfo egg = (EntityEggInfo)EntityList.entityEggs.get(mobId);
 		
-		if(egg == null && TwilightForest.entityEggs != null)
+		for(IMobEggHandler handler : MFRRegistry.getModMobEggHandlers())
 		{
-			egg = (EntityEggInfo)TwilightForest.entityEggs.get(mobId);
+			EntityEggInfo egg = handler.getEgg(safariStack);
+			if(egg != null)
+			{
+				return egg;
+			}
 		}
 		
-		return egg;
+		return null;
 	}
 	
 	@Override
@@ -250,6 +244,7 @@ public class ItemSafariNet extends ItemFactory
 			entity.writeToNBT(c);
 
 			c.setString("id", (String)EntityList.classToStringMapping.get(entity.getClass()));
+			c.setString("_class", entity.getClass().getName());
 			
 			itemstack.setTagCompound(c);
 			entity.setDead();

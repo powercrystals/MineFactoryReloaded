@@ -54,6 +54,7 @@ import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemCeramicDye;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
+import powercrystals.minefactoryreloaded.farmables.egghandlers.VanillaEggHandler;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCocoa;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableGiantMushroom;
@@ -574,6 +575,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		FarmingRegistry.registerSafariNetHandler(new EntityLivingHandler());
 		FarmingRegistry.registerSafariNetHandler(new EntityAgeableHandler());
 		FarmingRegistry.registerSafariNetHandler(new SheepHandler());
+		
+		FarmingRegistry.registerMobEggHandler(new VanillaEggHandler());
 		
 		registerRecipes();
 	}
