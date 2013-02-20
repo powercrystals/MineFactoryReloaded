@@ -35,7 +35,7 @@ public class TwilightForest
 		try
 		{
 			entityEggs = (HashMap)Class.forName("twilightforest.entity.TFCreatures").getField("entityEggs").get(null);
-			twilightForestContainer = FMLCommonHandler.instance().findContainerFor(Class.forName("twilightForest.TwilightForestMod").getField("instance").get(null));
+			twilightForestContainer = FMLCommonHandler.instance().findContainerFor(Class.forName("twilightforest.TwilightForestMod").getField("instance").get(null));
 			
 			FarmingRegistry.registerMobEggHandler(new TwilightForestEggHandler());
 		}

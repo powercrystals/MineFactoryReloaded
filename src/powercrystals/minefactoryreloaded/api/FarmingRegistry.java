@@ -197,7 +197,7 @@ public class FarmingRegistry
 			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
 			if(registry != null)
 			{
-				Method reg = registry.getMethod("registerMobEggHandler", ISafariNetHandler.class);
+				Method reg = registry.getMethod("registerMobEggHandler", IMobEggHandler.class);
 				reg.invoke(registry, handler);
 			}
 		}

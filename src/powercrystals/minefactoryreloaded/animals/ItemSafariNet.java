@@ -47,7 +47,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			try
 			{
-				if(handler.validFor().isAssignableFrom(Class.forName(stack.getTagCompound().getString("id"))))
+				if(handler.validFor().isAssignableFrom(Class.forName(stack.getTagCompound().getString("_class"))))
 				{
 					handler.addInformation(stack, player, infoList, advancedTooltips);
 				}
