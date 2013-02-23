@@ -72,6 +72,12 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoJukebox)), "Auto Jukebox");
 
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, 16), "Conveyor Belt");
+
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 0), "Road");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 1), "Road Light");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 2), "Road Light");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 3), "Road Light (Inverted)");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 4), "Road Light (Inverted)");
 		
 		LanguageRegistry.addName(MineFactoryReloadedCore.rubberWoodBlock, "Rubber Wood");
 		LanguageRegistry.addName(MineFactoryReloadedCore.rubberLeavesBlock, "Rubber Leaves");

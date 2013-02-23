@@ -50,6 +50,7 @@ import powercrystals.minefactoryreloaded.core.ItemBlockFactoryMachine0;
 import powercrystals.minefactoryreloaded.core.MineFactoryReloadedFuelHandler;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
+import powercrystals.minefactoryreloaded.decorative.BlockFactoryRoad;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemCeramicDye;
@@ -172,6 +173,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	
 	public static Block factoryGlassBlock;
 	public static Block factoryGlassPaneBlock;
+	public static Block factoryRoadBlock;
 	
 	public static Block rubberWoodBlock;
 	public static Block rubberLeavesBlock;
@@ -219,6 +221,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	
 	public static Property factoryGlassBlockId;
 	public static Property factoryGlassPaneBlockId;
+	public static Property factoryRoadBlockId;
 	
 	public static Property rubberWoodBlockId;
 	public static Property rubberLeavesBlockId;
@@ -341,6 +344,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machineBlock1 = new BlockFactoryMachine1(machineBlock1Id.getInt());
 		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt(), 16);
 		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt(), 16, 32);
+		factoryRoadBlock = new BlockFactoryRoad(factoryRoadBlockId.getInt());
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
 		rubberLeavesBlock = new BlockRubberLeaves(rubberLeavesBlockId.getInt());
 		rubberSaplingBlock = new BlockRubberSapling(rubberSaplingBlockId.getInt());
@@ -374,6 +378,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerBlock(conveyorBlock, ItemBlockConveyor.class, "blockConveyor");
 		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
 		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
+		GameRegistry.registerBlock(factoryRoadBlock, "blockFactoryRoad");
 		GameRegistry.registerBlock(rubberWoodBlock, "blockRubberWood");
 		GameRegistry.registerBlock(rubberLeavesBlock, "blockRubberLeaves");
 		GameRegistry.registerBlock(rubberSaplingBlock, "blockRubberSapling");
