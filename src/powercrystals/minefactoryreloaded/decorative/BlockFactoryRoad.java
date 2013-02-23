@@ -16,6 +16,7 @@ public class BlockFactoryRoad extends Block
 	{
 		super(id, Material.rock);
 		blockIndexInTexture = 12;
+		slipperiness = 0.99F;
 	}
 
 	@Override
@@ -35,8 +36,8 @@ public class BlockFactoryRoad extends Block
 
 	public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
 	{
-		par5Entity.motionX *= 1.5D;
-		par5Entity.motionZ *= 1.5D;
+		par5Entity.motionX *= 1.2D;
+		par5Entity.motionZ *= 1.2D;
 	}
 	
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
