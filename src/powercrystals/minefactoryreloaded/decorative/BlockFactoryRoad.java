@@ -15,7 +15,11 @@ public class BlockFactoryRoad extends Block
 	{
 		super(id, Material.rock);
 		blockIndexInTexture = 12;
-		slipperiness = 0.999F;
+		slipperiness = 0.98F;
+		setHardness(2.0F);
+		setBlockName("factoryRoadBlock");
+		setResistance(25.0F);
+		setStepSound(soundStoneFootstep);
 	}
 
 	@Override
