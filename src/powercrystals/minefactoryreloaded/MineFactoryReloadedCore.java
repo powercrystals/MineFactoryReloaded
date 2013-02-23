@@ -53,6 +53,7 @@ import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryRoad;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
+import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryRoad;
 import powercrystals.minefactoryreloaded.decorative.ItemCeramicDye;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.farmables.egghandlers.VanillaEggHandler;
@@ -378,7 +379,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerBlock(conveyorBlock, ItemBlockConveyor.class, "blockConveyor");
 		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
 		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
-		GameRegistry.registerBlock(factoryRoadBlock, "blockFactoryRoad");
+		GameRegistry.registerBlock(factoryRoadBlock, ItemBlockFactoryRoad.class, "blockFactoryRoad");
 		GameRegistry.registerBlock(rubberWoodBlock, "blockRubberWood");
 		GameRegistry.registerBlock(rubberLeavesBlock, "blockRubberLeaves");
 		GameRegistry.registerBlock(rubberSaplingBlock, "blockRubberSapling");

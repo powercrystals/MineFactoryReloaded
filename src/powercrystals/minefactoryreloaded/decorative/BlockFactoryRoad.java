@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -16,7 +15,7 @@ public class BlockFactoryRoad extends Block
 	{
 		super(id, Material.rock);
 		blockIndexInTexture = 12;
-		slipperiness = 0.99F;
+		slipperiness = 0.999F;
 	}
 
 	@Override
@@ -32,12 +31,6 @@ public class BlockFactoryRoad extends Block
 	{
 		float gap = 0.125F;
 		return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool(x, y, z, x + 1, y + 1 - gap, z + 1);
-	}
-
-	public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
-	{
-		par5Entity.motionX *= 1.2D;
-		par5Entity.motionZ *= 1.2D;
 	}
 	
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
