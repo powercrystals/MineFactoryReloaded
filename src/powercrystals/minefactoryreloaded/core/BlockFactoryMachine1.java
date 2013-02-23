@@ -96,13 +96,13 @@ public class BlockFactoryMachine1 extends BlockFactoryMachine
 		else
 		{	
 			ItemStack s = new ItemStack(blockId, 1, meta);
-			TileEntity te = world.getBlockTileEntity(x, y, z;)
+			TileEntity te = world.getBlockTileEntity(x, y, z);
 			
 			if(te != null && te instanceof TileEntityDeepStorageUnit && ((TileEntityDeepStorageUnit)te).getQuantity() == 0)
 			{
 				for(int i = 0; i < 3; i++)
 				{
-					ItemStack inv = dsu.getStackInSlot(i);
+					ItemStack inv = ((TileEntityDeepStorageUnit)te).getStackInSlot(i);
 					if (inv != null) {
 						dropBlockAsItem_do(world, x, y, z, inv.copy());
 					}
