@@ -606,6 +606,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		factoryGlassBlockId = c.getBlock("ID.StainedGlass", 3129);
 		factoryGlassPaneBlockId = c.getBlock("ID.StainedGlassPane", 3130);
 		machineBlock1Id = c.getBlock("ID.MachineBlock1", 3131);
+		factoryRoadBlockId = c.getBlock("ID.Road", 3132);
 
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
