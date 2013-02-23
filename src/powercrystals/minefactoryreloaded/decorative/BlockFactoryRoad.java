@@ -31,6 +31,11 @@ public class BlockFactoryRoad extends Block
 		return 12;
 	}
 	
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		float gap = 0.125F;
