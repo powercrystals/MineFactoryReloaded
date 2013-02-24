@@ -68,11 +68,15 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 		{
 			return;
 		}
-		else if(_inventory[1] != null && (source.itemID != _inventory[1].itemID || source.getItemDamage() != _inventory[1].getItemDamage()))
+		else if(_inventory[1] == null)
+		{
+			amt = Math.min(getInventoryStackLimit(), source.getMaxStackSize());
+		}
+		else if(source.itemID != _inventory[1].itemID || source.getItemDamage() != _inventory[1].getItemDamage())
 		{
 			return;
 		}
-		else if(_inventory[1] != null && (source.getTagCompound() != null || _inventory[1].getTagCompound() != null))
+		else if(source.getTagCompound() != null || _inventory[1].getTagCompound() != null)
 		{
 			return;
 		}
