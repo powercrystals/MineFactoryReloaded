@@ -69,6 +69,7 @@ public class ClientPacketHandler implements IPacketHandler
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
+			((EntityPlayer)player).worldObj.setBlockMetadata((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2], (Integer)packetReadout[3]);
 			((EntityPlayer)player).worldObj.markBlockForRenderUpdate((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
 		}
 	}

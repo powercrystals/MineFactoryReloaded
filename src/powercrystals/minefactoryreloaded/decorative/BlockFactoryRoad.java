@@ -63,7 +63,7 @@ public class BlockFactoryRoad extends Block
 			{
 				world.setBlockMetadataWithNotify(x, y, z, newMeta);
 				PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.getWorldInfo().getDimension(),
-						PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.RoadBlockUpdate, new Object[] { x, y, z }));
+						PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.RoadBlockUpdate, new Object[] { x, y, z, newMeta }));
 			}
 		}
 	}
