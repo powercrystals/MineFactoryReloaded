@@ -64,11 +64,15 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 	private void moveItemStack(ItemStack source)
 	{
 		int amt = 0;
-		if(source.itemID != _inventory[1].itemID || source.getItemDamage() != _inventory[1].getItemDamage())
+		if(source == null)
 		{
 			return;
 		}
-		else if(source.getTagCompound() != null || _inventory[1].getTagCompound() != null)
+		else if(_inventory[1] != null && (source.itemID != _inventory[1].itemID || source.getItemDamage() != _inventory[1].getItemDamage()))
+		{
+			return;
+		}
+		else if(_inventory[1] != null && (source.getTagCompound() != null || _inventory[1].getTagCompound() != null))
 		{
 			return;
 		}
