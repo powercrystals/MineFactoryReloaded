@@ -1,9 +1,12 @@
 package powercrystals.minefactoryreloaded.decorative;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.net.Packets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
@@ -37,21 +40,30 @@ public class BlockFactoryRoad extends Block
 		{
 			int meta = world.getBlockMetadata(x, y, z);
 			boolean isPowered = Util.isRedstonePowered(world, x, y, z);
+			int newMeta = -1;
+			
 			if(meta == 1 && isPowered)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 2);
+				newMeta = 2;
 			}
 			else if(meta == 2 && !isPowered)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 1);
+				newMeta = 1;
 			}
 			else if(meta == 3 && !isPowered)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 4);
+				newMeta = 4;
 			}
 			else if(meta == 4 && isPowered)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 3);
+				newMeta = 3;
+			}
+			
+			if(newMeta >= 0)
+			{
+				world.setBlockMetadataWithNotify(x, y, z, newMeta);
+				PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.getWorldInfo().getDimension(),
+						PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.RoadBlockUpdate, new Object[] { x, y, z }));
 			}
 		}
 	}

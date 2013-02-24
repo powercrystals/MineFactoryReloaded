@@ -64,5 +64,12 @@ public class ClientPacketHandler implements IPacketHandler
 				Minecraft.getMinecraft().ingameGUI.setRecordPlayingMessage(((ItemRecord)Item.itemsList[(Integer)packetReadout[3]]).recordName);
 			}
 		}
+		else if (packetType == Packets.RoadBlockUpdate) // server -> client; road block light changed
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			((EntityPlayer)player).worldObj.markBlockForRenderUpdate((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+		}
 	}
 }
