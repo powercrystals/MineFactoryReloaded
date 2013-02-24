@@ -47,7 +47,8 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 					output.stackSize = _inventory[0].stackSize;
 					System.out.println("New stack is " + output.stackSize + " of " + output.itemID + ":" + output.getItemDamage());
 				}
-				
+
+				System.out.println("Moving " + output.stackSize + " of " + output.itemID + ":" + output.getItemDamage());
 				moveItemStack(output);
 				if(_inventory[1] != null)
 				{
@@ -56,6 +57,14 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 				else
 				{
 					System.out.println("Inv 1 is null");
+				}
+				if(_inventory[0] != null)
+				{
+					System.out.println("Inv 0 now contains: " + _inventory[0].stackSize + " of " + _inventory[0].itemID + ":" + _inventory[0].getItemDamage());
+				}
+				else
+				{
+					System.out.println("Inv 0 is null");
 				}
 			}
 		}
