@@ -16,6 +16,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
@@ -48,6 +49,24 @@ public class ExtraBiomes
 		_harvestRegistries.put("QUARTERLOG1", HarvestType.Tree);
 		_harvestRegistries.put("QUARTERLOG2", HarvestType.Tree);
 		_harvestRegistries.put("QUARTERLOG3", HarvestType.Tree);
+		
+		MFRRegistry.registerRubberTreeBiome("Autumn Woods");
+		MFRRegistry.registerRubberTreeBiome("Birch Forest");
+		MFRRegistry.registerRubberTreeBiome("Extreme Jungle");
+		MFRRegistry.registerRubberTreeBiome("Forested Hills");
+		MFRRegistry.registerRubberTreeBiome("Forested Island");
+		MFRRegistry.registerRubberTreeBiome("Green Hills");
+		MFRRegistry.registerRubberTreeBiome("Green Swamplands");
+		MFRRegistry.registerRubberTreeBiome("Mini Jungle");
+		MFRRegistry.registerRubberTreeBiome("Mountain Taiga");
+		MFRRegistry.registerRubberTreeBiome("Pine Forest");
+		MFRRegistry.registerRubberTreeBiome("Rainforest");
+		MFRRegistry.registerRubberTreeBiome("Redwood Forest");
+		MFRRegistry.registerRubberTreeBiome("Lush Redwoods");
+		MFRRegistry.registerRubberTreeBiome("Snow Forest");
+		MFRRegistry.registerRubberTreeBiome("Snowy Rainforest");
+		MFRRegistry.registerRubberTreeBiome("Temperate Rainforest");
+		MFRRegistry.registerRubberTreeBiome("Woodlands");
 		
 		try
 		{
