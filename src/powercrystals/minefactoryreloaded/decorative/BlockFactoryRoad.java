@@ -1,8 +1,6 @@
 package powercrystals.minefactoryreloaded.decorative;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -77,11 +75,10 @@ public class BlockFactoryRoad extends Block
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT)
-	public float getBlockBrightness(IBlockAccess world, int x, int y, int z)
+	public int getLightValue(IBlockAccess world, int x, int y, int z)
 	{
 		int meta = world.getBlockMetadata(x, y, z);
-		return meta == 2 || meta == 4 ? 1 : 0;
+		return meta == 2 || meta == 4 ? 15 : 0;
 	}
 	
 	@Override
