@@ -588,6 +588,13 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		FarmingRegistry.registerMobEggHandler(new VanillaEggHandler());
 		
+		MFRRegistry.registerRubberTreeBiome("Swampland");
+		MFRRegistry.registerRubberTreeBiome("Forest");
+		MFRRegistry.registerRubberTreeBiome("Taiga");
+		MFRRegistry.registerRubberTreeBiome("TaigaHills");
+		MFRRegistry.registerRubberTreeBiome("Jungle");
+		MFRRegistry.registerRubberTreeBiome("JungleHills");
+		
 		registerRecipes();
 	}
 

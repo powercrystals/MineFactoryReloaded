@@ -190,6 +190,12 @@ public class FarmingRegistry
 		}
 	}
 	
+	
+	/**
+	 * Registers a mob egg handler, which allows the Safari Net to properly change colors.
+	 * 
+	 * @param handler The mob egg handler
+	 */
 	public static void registerMobEggHandler(IMobEggHandler handler)
 	{
 		try
@@ -199,6 +205,28 @@ public class FarmingRegistry
 			{
 				Method reg = registry.getMethod("registerMobEggHandler", IMobEggHandler.class);
 				reg.invoke(registry, handler);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Allows Rubber Trees to spawn in the specified biome.
+	 * 
+	 * @param biome The biome name.
+	 */
+	public static void registerRubberTreeBiome(String biome)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerRubberTreeBiome", String.class);
+				reg.invoke(registry, biome);
 			}
 		}
 		catch(Exception e)
