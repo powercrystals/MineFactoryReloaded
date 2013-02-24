@@ -1,5 +1,17 @@
 package powercrystals.minefactoryreloaded.modhelpers.xycraft;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
+
 @Mod(modid = "MFReloaded|CompatXycraft", name = "MFR Compat: Xycraft", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:Xycraft")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Xycraft 
@@ -16,18 +28,17 @@ public class Xycraft
 		{
 			Class<?> blockClass = Class.forName("soaryn.xycraft.world.XyCraftWorldBlocks");
 			
-			int CornCropsID = ((Block)modClass.getField("corn").get(null)).blockID;
-			int HenequenCropsID = ((Block)modClass.getField("henequen").get(null)).blockID;
+			int CornCropsID = ((Block)blockClass.getField("corn").get(null)).blockID;
+			int HenequenCropsID = ((Block)blockClass.getField("henequen").get(null)).blockID;
 			
 			Class<?> itemClass = Class.forName("soaryn.xycraft.world.XyCraftWorldItems");
 			
-			int CornCropSeedId = ((Item)modClass.getField("corn").get(null)).itemID;
-			int HenequenCropSeedId = ((Item)modClass.getField("henequen").get(null)).itemID;
+			int CornCropSeedId = ((Item)itemClass.getField("corn").get(null)).itemID;
+			int HenequenCropSeedId = ((Item)itemClass.getField("henequen").get(null)).itemID;
 			
 			FarmingRegistry.registerHarvestable(new HarvestableXycraftCorn(CornCropsID));
-			FarmingRegistry.registerHarvestable(new HarvestableXycraftHennequen(HenequenCropsID));
+			FarmingRegistry.registerHarvestable(new HarvestableHenequen(HenequenCropsID));
 			
-			//FarmingRegistry.registerPlantable(new PlantableStandard(blockIdPlants, blockIdPlants));
 			FarmingRegistry.registerPlantable(new PlantableCropPlant(CornCropSeedId, CornCropsID));
 			FarmingRegistry.registerPlantable(new PlantableCropPlant(HenequenCropSeedId, HenequenCropsID));
 			
