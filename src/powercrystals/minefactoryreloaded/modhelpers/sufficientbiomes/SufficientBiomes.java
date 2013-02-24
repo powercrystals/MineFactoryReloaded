@@ -23,11 +23,11 @@ public class SufficientBiomes
 			return;
 		}
 		
-		MFRRegistry.registerRubberTreeBiome("hollow");
-		MFRRegistry.registerRubberTreeBiome("marsh");
-		MFRRegistry.registerRubberTreeBiome("footHills");
-		MFRRegistry.registerRubberTreeBiome("sandForest");
-		MFRRegistry.registerRubberTreeBiome("prairie");
+		MFRRegistry.registerRubberTreeBiome("Hollow");
+		MFRRegistry.registerRubberTreeBiome("Marsh");
+		MFRRegistry.registerRubberTreeBiome("Foot Hills");
+		MFRRegistry.registerRubberTreeBiome("Sand Forest");
+		MFRRegistry.registerRubberTreeBiome("Prairie Forest");
 		
 	}
 	

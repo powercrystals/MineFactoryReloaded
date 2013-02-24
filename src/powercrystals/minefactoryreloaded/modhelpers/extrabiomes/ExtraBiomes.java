@@ -50,23 +50,23 @@ public class ExtraBiomes
 		_harvestRegistries.put("QUARTERLOG2", HarvestType.Tree);
 		_harvestRegistries.put("QUARTERLOG3", HarvestType.Tree);
 		
-		MFRRegistry.registerRubberTreeBiome("AUTUMNWOODS");
-		MFRRegistry.registerRubberTreeBiome("BIRCHFOREST");
-		MFRRegistry.registerRubberTreeBiome("EXTREMEJUNGLE");
-		MFRRegistry.registerRubberTreeBiome("FORESTEDHILLS");
-		MFRRegistry.registerRubberTreeBiome("FORESTEDISLAND");
-		MFRRegistry.registerRubberTreeBiome("GREENHILLS");
-		MFRRegistry.registerRubberTreeBiome("GREENSWAMP");
-		MFRRegistry.registerRubberTreeBiome("MINIJUNGLE");
-		MFRRegistry.registerRubberTreeBiome("MOUNTAINTAIGA");
-		MFRRegistry.registerRubberTreeBiome("PINEFOREST");
-		MFRRegistry.registerRubberTreeBiome("RAINFOREST");
-		MFRRegistry.registerRubberTreeBiome("REDWOODFOREST");
-		MFRRegistry.registerRubberTreeBiome("REDWOODLUSH");
-		MFRRegistry.registerRubberTreeBiome("SNOWYFOREST");
-		MFRRegistry.registerRubberTreeBiome("SNOWYRAINFOREST");
-		MFRRegistry.registerRubberTreeBiome("TEMPORATERAINFOREST");
-		MFRRegistry.registerRubberTreeBiome("WOODLANDS");
+		MFRRegistry.registerRubberTreeBiome("Autumn Woods");
+		MFRRegistry.registerRubberTreeBiome("Birch Forest");
+		MFRRegistry.registerRubberTreeBiome("Extreme Jungle");
+		MFRRegistry.registerRubberTreeBiome("Forested Hills");
+		MFRRegistry.registerRubberTreeBiome("Forested Island");
+		MFRRegistry.registerRubberTreeBiome("Green Hills");
+		MFRRegistry.registerRubberTreeBiome("Green Swamplands");
+		MFRRegistry.registerRubberTreeBiome("Mini Jungle");
+		MFRRegistry.registerRubberTreeBiome("Mountain Taiga");
+		MFRRegistry.registerRubberTreeBiome("Pine Forest");
+		MFRRegistry.registerRubberTreeBiome("Rainforest");
+		MFRRegistry.registerRubberTreeBiome("Redwood Forest");
+		MFRRegistry.registerRubberTreeBiome("Lush Redwoods");
+		MFRRegistry.registerRubberTreeBiome("Snow Forest");
+		MFRRegistry.registerRubberTreeBiome("Snowy Rainforest");
+		MFRRegistry.registerRubberTreeBiome("Temperate Rainforest");
+		MFRRegistry.registerRubberTreeBiome("Woodlands");
 		
 		try
 		{
