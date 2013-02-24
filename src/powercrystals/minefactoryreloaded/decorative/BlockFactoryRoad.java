@@ -37,13 +37,21 @@ public class BlockFactoryRoad extends Block
 		{
 			int meta = world.getBlockMetadata(x, y, z);
 			boolean isPowered = Util.isRedstonePowered(world, x, y, z);
-			if((meta == 1 || meta == 3) && isPowered)
+			if(meta == 1 && isPowered)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, meta + 1);
+				world.setBlockMetadataWithNotify(x, y, z, 2);
 			}
-			else if((meta == 2 || meta == 4) && !isPowered)
+			else if(meta == 2 && !isPowered)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, meta - 1);
+				world.setBlockMetadataWithNotify(x, y, z, 1);
+			}
+			else if(meta == 3 && !isPowered)
+			{
+				world.setBlockMetadataWithNotify(x, y, z, 4);
+			}
+			else if(meta == 4 && isPowered)
+			{
+				world.setBlockMetadataWithNotify(x, y, z, 3);
 			}
 		}
 	}
