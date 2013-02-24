@@ -40,9 +40,9 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 					output = OreDictionary.getOres(names.get(0)).get(0).copy();
 					output.stackSize = _inventory[0].stackSize;
 				}
+				
+				moveItemStack(output);
 			}
-			
-			moveItemStack(output);
 		}
 	}
 	
