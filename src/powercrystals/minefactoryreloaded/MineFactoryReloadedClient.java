@@ -6,7 +6,6 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import powercrystals.core.render.TextureLiquidStillFX;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
 import powercrystals.minefactoryreloaded.render.RendererConveyor;
 import powercrystals.minefactoryreloaded.render.RendererFactoryGlassPane;
@@ -149,10 +148,10 @@ public class MineFactoryReloadedClient
 			registerAnimation(MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator) * 16 + 4, MineFactoryReloadedCore.animationFolder + "OilFabricator.png", MineFactoryReloadedCore.machine1Texture);
 			registerAnimation(MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator) * 16 + 5, MineFactoryReloadedCore.animationFolder + "OilFabricator.png", MineFactoryReloadedCore.machine1Texture);
 			
-			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(2, MineFactoryReloadedCore.itemTexture, 240, 255, 240, 255, 230, 245)); // milk
-			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(3, MineFactoryReloadedCore.itemTexture, 20, 20, 20, 20, 32, 32)); // sludge
-			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(4, MineFactoryReloadedCore.itemTexture, 106, 106, 52, 52, 45, 45)); // sewage
-			TextureFXManager.instance().addAnimation(new TextureLiquidStillFX(5, MineFactoryReloadedCore.itemTexture, 0, 0, 100, 128, 0, 0)); // essence
+			registerAnimation(2, MineFactoryReloadedCore.animationFolder + "liquids/Milk_Still.png", MineFactoryReloadedCore.itemTexture);
+			registerAnimation(3, MineFactoryReloadedCore.animationFolder + "liquids/Sludge_Still.png", MineFactoryReloadedCore.itemTexture);
+			registerAnimation(4, MineFactoryReloadedCore.animationFolder + "liquids/Sewage_Still.png", MineFactoryReloadedCore.itemTexture);
+			registerAnimation(5, MineFactoryReloadedCore.animationFolder + "liquids/MobEssence_Still.png", MineFactoryReloadedCore.itemTexture);
 		}
 		
 		MineFactoryReloadedCore.renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
