@@ -84,6 +84,7 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 		{
 			amt = Math.min(getInventoryStackLimit(), _inventory[1].getMaxStackSize()) - _inventory[1].stackSize;
 		}
+		amt = Math.min(amt, source.stackSize);
 		
 		if(_inventory[1] == null)
 		{
