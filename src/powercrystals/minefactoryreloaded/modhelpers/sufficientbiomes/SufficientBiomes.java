@@ -22,13 +22,18 @@ public class SufficientBiomes
 			FMLLog.warning("Sufficient Biomes missing - MFR Sufficient Biomes Compat not loading");
 			return;
 		}
-		
-		MFRRegistry.registerRubberTreeBiome("Hollow");
-		MFRRegistry.registerRubberTreeBiome("Marsh");
-		MFRRegistry.registerRubberTreeBiome("Foot Hills");
-		MFRRegistry.registerRubberTreeBiome("Sand Forest");
-		MFRRegistry.registerRubberTreeBiome("Prairie Forest");
-		
+		try
+		{
+			MFRRegistry.registerRubberTreeBiome("Hollow");
+			MFRRegistry.registerRubberTreeBiome("Marsh");
+			MFRRegistry.registerRubberTreeBiome("Foot Hills");
+			MFRRegistry.registerRubberTreeBiome("Sand Forest");
+			MFRRegistry.registerRubberTreeBiome("Prairie Forest");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 }
