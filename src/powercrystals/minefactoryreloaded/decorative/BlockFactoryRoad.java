@@ -89,4 +89,10 @@ public class BlockFactoryRoad extends Block
 	{
 		return MineFactoryReloadedCore.terrainTexture;
 	}
+	
+	@Override
+	public void onBlockAdded(World world, int x, int y, int z)
+	{
+		onNeighborBlockChange(world, x, y, z, 0);
+	}
 }
