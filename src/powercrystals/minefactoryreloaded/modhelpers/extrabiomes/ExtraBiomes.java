@@ -50,24 +50,6 @@ public class ExtraBiomes
 		_harvestRegistries.put("QUARTERLOG2", HarvestType.Tree);
 		_harvestRegistries.put("QUARTERLOG3", HarvestType.Tree);
 		
-		MFRRegistry.registerRubberTreeBiome("Autumn Woods");
-		MFRRegistry.registerRubberTreeBiome("Birch Forest");
-		MFRRegistry.registerRubberTreeBiome("Extreme Jungle");
-		MFRRegistry.registerRubberTreeBiome("Forested Hills");
-		MFRRegistry.registerRubberTreeBiome("Forested Island");
-		MFRRegistry.registerRubberTreeBiome("Green Hills");
-		MFRRegistry.registerRubberTreeBiome("Green Swamplands");
-		MFRRegistry.registerRubberTreeBiome("Mini Jungle");
-		MFRRegistry.registerRubberTreeBiome("Mountain Taiga");
-		MFRRegistry.registerRubberTreeBiome("Pine Forest");
-		MFRRegistry.registerRubberTreeBiome("Rainforest");
-		MFRRegistry.registerRubberTreeBiome("Redwood Forest");
-		MFRRegistry.registerRubberTreeBiome("Lush Redwoods");
-		MFRRegistry.registerRubberTreeBiome("Snow Forest");
-		MFRRegistry.registerRubberTreeBiome("Snowy Rainforest");
-		MFRRegistry.registerRubberTreeBiome("Temperate Rainforest");
-		MFRRegistry.registerRubberTreeBiome("Woodlands");
-		
 		try
 		{
 			Class<?> xbbs = Class.forName("extrabiomes.lib.BlockSettings");
@@ -104,6 +86,24 @@ public class ExtraBiomes
 			
 			FarmingRegistry.registerSludgeDrop(5, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("QUICKSAND").get(null)), 1, 0));
 			FarmingRegistry.registerSludgeDrop(5, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("CRACKEDSAND").get(null)), 1, 0));
+			
+			MFRRegistry.registerRubberTreeBiome("Autumn Woods");
+			MFRRegistry.registerRubberTreeBiome("Birch Forest");
+			MFRRegistry.registerRubberTreeBiome("Extreme Jungle");
+			MFRRegistry.registerRubberTreeBiome("Forested Hills");
+			MFRRegistry.registerRubberTreeBiome("Forested Island");
+			MFRRegistry.registerRubberTreeBiome("Green Hills");
+			MFRRegistry.registerRubberTreeBiome("Green Swamplands");
+			MFRRegistry.registerRubberTreeBiome("Mini Jungle");
+			MFRRegistry.registerRubberTreeBiome("Mountain Taiga");
+			MFRRegistry.registerRubberTreeBiome("Pine Forest");
+			MFRRegistry.registerRubberTreeBiome("Rainforest");
+			MFRRegistry.registerRubberTreeBiome("Redwood Forest");
+			MFRRegistry.registerRubberTreeBiome("Lush Redwoods");
+			MFRRegistry.registerRubberTreeBiome("Snow Forest");
+			MFRRegistry.registerRubberTreeBiome("Snowy Rainforest");
+			MFRRegistry.registerRubberTreeBiome("Temperate Rainforest");
+			MFRRegistry.registerRubberTreeBiome("Woodlands");
 		}
 		catch(Exception e)
 		{
