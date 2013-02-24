@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.decorative;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -35,11 +36,11 @@ public class BlockFactoryRoad extends Block
 		if(!world.isRemote)
 		{
 			int meta = world.getBlockMetadata(x, y, z);
-			if((meta == 1 || meta == 3) && world.isBlockIndirectlyGettingPowered(x, y, z))
+			if((meta == 1 || meta == 3) && Util.isRedstonePowered(world, x, y, z))
 			{
 				world.setBlockMetadataWithNotify(x, y, z, meta + 1);
 			}
-			else if((meta == 2 || meta == 4) && !world.isBlockIndirectlyGettingPowered(x, y, z))
+			else if((meta == 2 || meta == 4) && !Util.isRedstonePowered(world, x, y, z))
 			{
 				world.setBlockMetadataWithNotify(x, y, z, meta - 1);
 			}
