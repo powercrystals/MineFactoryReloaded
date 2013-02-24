@@ -28,7 +28,7 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 		if(!worldObj.isRemote)
 		{
 			ItemStack output = null;
-			if(_inventory[0] != null && (_inventory[0] == null || _inventory[0].stackSize < Math.min(_inventory[0].getMaxStackSize(), getInventoryStackLimit())))
+			if(_inventory[0] != null)
 			{
 				List<String> names = OreDictTracker.getNamesFromItem(_inventory[0]);
 				if(names == null || names.size() != 1)
