@@ -12,14 +12,14 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "MFReloaded|CompatXycraft", name = "MFR Compat: Xycraft", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:Xycraft")
+@Mod(modid = "MFReloaded|CompatXycraft", name = "MFR Compat: Xycraft", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:XyCraftWorld")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Xycraft 
 {
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
-		if(!Loader.isModLoaded("Xycraft"))
+		if(!Loader.isModLoaded("XyCraftWorld"))
 		{
 			FMLLog.warning("Xycraft missing - MFR Xycraft Compat not loading");
 			return;
