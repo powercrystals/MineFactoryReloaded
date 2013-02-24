@@ -33,7 +33,7 @@ public class Xycraft
 			
 			Class<?> itemClass = Class.forName("soaryn.xycraft.world.XyCraftWorldItems");
 			
-			int CornCropSeedId = ((Item)itemClass.getField("corn").get(null)).itemID;
+			int CornCropSeedId = ((Item)itemClass.getField("kernel").get(null)).itemID;
 			int HenequenCropSeedId = ((Item)itemClass.getField("henequenSeeds").get(null)).itemID;
 			
 			FarmingRegistry.registerHarvestable(new HarvestableXycraftCorn(CornCropsID));
