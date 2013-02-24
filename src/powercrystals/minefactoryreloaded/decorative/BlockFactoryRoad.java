@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -29,12 +28,6 @@ public class BlockFactoryRoad extends Block
 		if(meta == 1 || meta == 3) return 13;
 		if(meta == 2 || meta == 4) return 14;
 		return 12;
-	}
-	
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
-	{
-		float gap = 0.125F;
-		return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool(x, y, z, x + 1, y + 1 - gap, z + 1);
 	}
 	
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
