@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.processing.TileEntityLavaFabricator;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
 import powercrystals.minefactoryreloaded.processing.TileEntityOilFabricator;
+import powercrystals.minefactoryreloaded.processing.TileEntityUnifier;
 import powercrystals.minefactoryreloaded.transport.TileEntityEjector;
 import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
 import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
@@ -39,6 +40,7 @@ public class BlockFactoryMachine1 extends BlockFactoryMachine
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.LavaFabricator)) return new TileEntityLavaFabricator();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.OilFabricator)) return new TileEntityOilFabricator();
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoJukebox)) return new TileEntityAutoJukebox();
+		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.Unifier)) return new TileEntityUnifier();
 		return null;
 	}
 	

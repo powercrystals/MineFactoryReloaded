@@ -108,6 +108,7 @@ import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
 import powercrystals.minefactoryreloaded.processing.TileEntityOilFabricator;
 import powercrystals.minefactoryreloaded.processing.TileEntitySewer;
 import powercrystals.minefactoryreloaded.processing.TileEntitySludgeBoiler;
+import powercrystals.minefactoryreloaded.processing.TileEntityUnifier;
 import powercrystals.minefactoryreloaded.processing.TileEntityWeather;
 import powercrystals.minefactoryreloaded.rails.BlockRailCargoDropoff;
 import powercrystals.minefactoryreloaded.rails.BlockRailCargoPickup;
@@ -339,6 +340,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machine1MetadataMappings.put(Machine.LavaFabricator, 5);
 		machine1MetadataMappings.put(Machine.OilFabricator, 6);
 		machine1MetadataMappings.put(Machine.AutoJukebox, 7);
+		machine1MetadataMappings.put(Machine.Unifier, 8);
 
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorOffTexture);
 		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt());
@@ -417,10 +419,13 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityLavaFabricator.class, "factoryLavaFabricator");
 		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
 		GameRegistry.registerTileEntity(TileEntityAutoJukebox.class, "factoryAutoJukebox");
+		GameRegistry.registerTileEntity(TileEntityUnifier.class, "factoryUnifier");
 
 		MinecraftForge.EVENT_BUS.register(instance);
 
 		registerFarmables();
+		
+		registerRecipes();
 		
 		proxy.load();
 		
@@ -594,8 +599,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		MFRRegistry.registerRubberTreeBiome("TaigaHills");
 		MFRRegistry.registerRubberTreeBiome("Jungle");
 		MFRRegistry.registerRubberTreeBiome("JungleHills");
-		
-		registerRecipes();
 	}
 
 	private static void loadConfig(File configFile)
@@ -695,7 +698,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public enum Machine
 	{
 		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper,
-		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox
+		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox, Unifier
 	}
 	
 	public LiquidStack getLiquidStackFromLiquidItem(ItemStack s)
