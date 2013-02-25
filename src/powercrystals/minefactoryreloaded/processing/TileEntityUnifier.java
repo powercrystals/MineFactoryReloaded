@@ -72,12 +72,14 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 	
 	private void moveItemStack(ItemStack source)
 	{
-		int amt = 0;
 		if(source == null)
 		{
 			return;
 		}
-		else if(_inventory[1] == null)
+
+		int amt = source.stackSize;
+		
+		if(_inventory[1] == null)
 		{
 			amt = Math.min(getInventoryStackLimit(), source.getMaxStackSize());
 		}
@@ -93,7 +95,6 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 		{
 			amt = Math.min(getInventoryStackLimit(), _inventory[1].getMaxStackSize()) - _inventory[1].stackSize;
 		}
-		amt = Math.min(amt, source.stackSize);
 		
 		if(_inventory[1] == null)
 		{
