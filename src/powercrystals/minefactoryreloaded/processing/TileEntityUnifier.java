@@ -30,42 +30,19 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 			ItemStack output = null;
 			if(_inventory[0] != null)
 			{
-				System.out.println("Checking for names for " + _inventory[0].itemID + ":" + _inventory[0].getItemDamage());
 				List<String> names = OreDictTracker.getNamesFromItem(_inventory[0]);
-				if(names == null) System.out.println("Found null names");
-				else System.out.println("Found " + names.size() + " names");
 				
 				if(names == null || names.size() != 1)
 				{
-					System.out.println("Invalid match - moving original");
 					output = _inventory[0];
 				}
 				else
 				{
-					System.out.println("Found name " + names.get(0));
 					output = OreDictionary.getOres(names.get(0)).get(0).copy();
 					output.stackSize = _inventory[0].stackSize;
-					System.out.println("New stack is " + output.stackSize + " of " + output.itemID + ":" + output.getItemDamage());
 				}
 
-				System.out.println("Moving " + output.stackSize + " of " + output.itemID + ":" + output.getItemDamage());
 				moveItemStack(output);
-				if(_inventory[1] != null)
-				{
-					System.out.println("Inv 1 now contains: " + _inventory[1].stackSize + " of " + _inventory[1].itemID + ":" + _inventory[1].getItemDamage());
-				}
-				else
-				{
-					System.out.println("Inv 1 is null");
-				}
-				if(_inventory[0] != null)
-				{
-					System.out.println("Inv 0 now contains: " + _inventory[0].stackSize + " of " + _inventory[0].itemID + ":" + _inventory[0].getItemDamage());
-				}
-				else
-				{
-					System.out.println("Inv 0 is null");
-				}
 			}
 		}
 	}
