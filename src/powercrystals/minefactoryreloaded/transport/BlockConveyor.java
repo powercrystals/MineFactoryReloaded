@@ -65,7 +65,11 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if(!(entity instanceof EntityItem) && !(entity instanceof EntityLiving) || Util.isRedstonePowered(world.getBlockTileEntity(x, y, z)))
+		if(!(entity instanceof EntityItem || (entity instanceof EntityLiving && MineFactoryReloadedCore.conveyorCaptureNonItems.getBoolean(true))))
+		{
+			return;
+		}
+		if(Util.isRedstonePowered(world.getBlockTileEntity(x, y, z)))
 		{
 			return;
 		}
