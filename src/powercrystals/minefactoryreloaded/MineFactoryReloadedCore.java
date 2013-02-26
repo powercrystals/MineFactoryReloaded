@@ -51,7 +51,7 @@ import powercrystals.minefactoryreloaded.core.MineFactoryReloadedFuelHandler;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryRoad;
-import powercrystals.minefactoryreloaded.decorative.GlassPane;
+import powercrystals.minefactoryreloaded.decorative.BlockVanillaGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryRoad;
@@ -400,7 +400,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		if(vanillaOverrideGlassPane.getBoolean(true))
 		{
 			Block.blocksList[Block.thinGlass.blockID] = null;
-			Block.thinGlass = new GlassPane();
+			Block.thinGlass = new BlockVanillaGlassPane();
 			GameRegistry.registerBlock(Block.thinGlass, "blockVanillaGlassPane");
 		}
 

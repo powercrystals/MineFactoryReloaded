@@ -1,9 +1,9 @@
 package powercrystals.minefactoryreloaded.decorative;
 
 
-public class GlassPane extends BlockFactoryGlassPane
+public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 {
-	public GlassPane()
+	public BlockVanillaGlassPane()
 	{
 		super(102, 49, 148);
 		setHardness(0.3F);
