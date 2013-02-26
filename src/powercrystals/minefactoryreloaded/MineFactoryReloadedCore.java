@@ -56,6 +56,7 @@ import powercrystals.minefactoryreloaded.decorative.BlockVanillaIce;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryRoad;
+import powercrystals.minefactoryreloaded.decorative.ItemBlockVanillaIce;
 import powercrystals.minefactoryreloaded.decorative.ItemCeramicDye;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.farmables.egghandlers.VanillaEggHandler;
@@ -409,7 +410,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		{
 			Block.blocksList[Block.ice.blockID] = null;
 			Block.ice = new BlockVanillaIce();
-			GameRegistry.registerBlock(Block.thinGlass, "blockVanillaIce");
+			GameRegistry.registerBlock(Block.thinGlass, ItemBlockVanillaIce.class, "blockVanillaIce");
 		}
 
 		GameRegistry.registerTileEntity(TileEntityFisher.class, "factoryFisher");
