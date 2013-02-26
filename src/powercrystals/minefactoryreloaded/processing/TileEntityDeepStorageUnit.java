@@ -7,9 +7,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
+import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
 
-public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInventory, ISidedInventory
+public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInventory, ISidedInventory, IDeepStorageUnit
 {
 	// in, in, out
 	private ItemStack[] _inventory = new ItemStack[3];
@@ -34,9 +35,32 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 		return _storedQuantity;
 	}
 	
+	public int getQuantityAdjusted()
+	{
+		int quantity = _storedQuantity;
+		
+		for(int i = 0; i < getSizeInventory(); i++)
+		{
+			if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
+			{
+				quantity += _inventory[i].stackSize;
+			}
+		}
+		
+		return quantity;
+	}
+	
 	public void setQuantity(int quantity)
 	{
 		_storedQuantity = quantity;
+	}
+	
+	public void clearSlots()
+	{
+		for(int i = 0; i < getSizeInventory(); i++)
+		{
+			_inventory[i] = null;
+		}
 	}
 	
 	public int getId()
@@ -99,7 +123,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 				_storedQuantity = _inventory[slot].stackSize;
 				_inventory[slot] = null;
 			}
-			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta && _inventory[slot].getTagCompound() == null && Integer.MAX_VALUE - _inventory[slot].stackSize > _storedQuantity)
+			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta && _inventory[slot].getTagCompound() == null && (Integer.MAX_VALUE - 66) - _inventory[slot].stackSize > _storedQuantity)
 			{
 				if(_inventory[slot].getMaxStackSize() > 1)
 				{
@@ -271,5 +295,37 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 				_inventory[j] = s;
 			}
 		}
+	}
+
+	@Override
+	public ItemStack getStoredItemType()
+	{
+		if(_storedQuantity > 0)
+		{
+			return new ItemStack(_storedId, getQuantityAdjusted(), _storedMeta);
+		}
+		return null;
+	}
+
+	@Override
+	public void setStoredItemCount(int amount)
+	{
+		clearSlots();
+		_storedQuantity = amount;
+	}
+
+	@Override
+	public void setStoredItemType(int itemID, int meta, int Count)
+	{
+		clearSlots();
+		_storedId = itemID;
+		_storedMeta = meta;
+		_storedQuantity = Count;
+	}
+
+	@Override
+	public int getMaxStoredCount()
+	{
+		return Integer.MAX_VALUE;
 	}
 }
