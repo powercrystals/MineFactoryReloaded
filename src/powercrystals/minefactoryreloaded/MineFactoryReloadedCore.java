@@ -410,7 +410,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		{
 			Block.blocksList[Block.ice.blockID] = null;
 			Block.ice = new BlockVanillaIce();
-			GameRegistry.registerBlock(Block.thinGlass, ItemBlockVanillaIce.class, "blockVanillaIce");
+			GameRegistry.registerBlock(Block.ice, ItemBlockVanillaIce.class, "blockVanillaIce");
 		}
 
 		GameRegistry.registerTileEntity(TileEntityFisher.class, "factoryFisher");
