@@ -79,7 +79,8 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 2), "Road Light");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 3), "Road Light (Inverted)");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 4), "Road Light (Inverted)");
-		
+
+		LanguageRegistry.addName(new ItemStack(Block.ice, 1, 0), "Ice");
 		LanguageRegistry.addName(new ItemStack(Block.ice, 1, 1), "Ice (Unmelting)");
 		
 		LanguageRegistry.addName(MineFactoryReloadedCore.rubberWoodBlock, "Rubber Wood");
