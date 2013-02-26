@@ -401,7 +401,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		{
 			Block.blocksList[Block.thinGlass.blockID] = null;
 			Block.thinGlass = new GlassPane();
-			GameRegistry.registerBlock(Block.thinGlass, "blockFactoryGlassPane");
+			GameRegistry.registerBlock(Block.thinGlass, "blockVanillaGlassPane");
 		}
 
 		GameRegistry.registerTileEntity(TileEntityFisher.class, "factoryFisher");
