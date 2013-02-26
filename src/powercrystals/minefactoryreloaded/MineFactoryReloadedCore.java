@@ -399,6 +399,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		if(vanillaOverrideGlassPane.getBoolean(true))
 		{
+			Block.blocksList[Block.thinGlass.blockID] = null;
 			Block.thinGlass = new GlassPane();
 			GameRegistry.registerBlock(Block.thinGlass, "blockFactoryGlassPane");
 		}
