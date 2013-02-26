@@ -52,6 +52,7 @@ import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryRoad;
 import powercrystals.minefactoryreloaded.decorative.BlockVanillaGlassPane;
+import powercrystals.minefactoryreloaded.decorative.BlockVanillaIce;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryRoad;
@@ -267,6 +268,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property conveyorCaptureNonItems;
 	
 	public static Property vanillaOverrideGlassPane;
+	public static Property vanillaOverrideIce;
 	
 	public static Property enableCompatibleAutoEnchanter;
 	
@@ -402,6 +404,12 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 			Block.blocksList[Block.thinGlass.blockID] = null;
 			Block.thinGlass = new BlockVanillaGlassPane();
 			GameRegistry.registerBlock(Block.thinGlass, "blockVanillaGlassPane");
+		}
+		if(vanillaOverrideIce.getBoolean(true))
+		{
+			Block.blocksList[Block.ice.blockID] = null;
+			Block.ice = new BlockVanillaIce();
+			GameRegistry.registerBlock(Block.thinGlass, "blockVanillaIce");
 		}
 
 		GameRegistry.registerTileEntity(TileEntityFisher.class, "factoryFisher");
@@ -678,6 +686,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";
+		vanillaOverrideIce = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.Ice", true);
+		vanillaOverrideIce.comment = "If true, enables MFR unmelting ice as well as vanilla ice.";
 		
 		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
 		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
