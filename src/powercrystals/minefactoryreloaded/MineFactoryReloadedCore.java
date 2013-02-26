@@ -51,6 +51,7 @@ import powercrystals.minefactoryreloaded.core.MineFactoryReloadedFuelHandler;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryRoad;
+import powercrystals.minefactoryreloaded.decorative.GlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryRoad;
@@ -265,6 +266,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property enableCheapDSU;
 	public static Property conveyorCaptureNonItems;
 	
+	public static Property vanillaOverrideGlassPane;
+	
 	public static Property enableCompatibleAutoEnchanter;
 	
 	public static Property passengerRailSearchMaxHorizontal;
@@ -393,6 +396,12 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		Block.setBurnProperties(rubberWoodBlock.blockID, 4, 20);
 		Block.setBurnProperties(rubberLeavesBlock.blockID, 30, 20);
+		
+		if(vanillaOverrideGlassPane.getBoolean(true))
+		{
+			Block.thinGlass = new GlassPane();
+			GameRegistry.registerBlock(Block.thinGlass, "blockFactoryGlassPane");
+		}
 
 		GameRegistry.registerTileEntity(TileEntityFisher.class, "factoryFisher");
 		GameRegistry.registerTileEntity(TileEntityPlanter.class, "factoryPlanter");
@@ -665,6 +674,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		enableCheapDSU.comment = "If true, DSU can be built out of chests instead of ender pearls. Does nothing if the DSU recipe is disabled.";
 		conveyorCaptureNonItems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.CaptureNoNitems", true);
 		conveyorCaptureNonItems.comment = "If false, conveyors will not grab non-item entities. Breaks conveyor mob grinders but makes them safe for golems, etc.";
+		
+		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
+		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";
 		
 		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
 		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
