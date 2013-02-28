@@ -841,7 +841,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					"BPB",
 					"BBB",
 					Character.valueOf('P'), plasticSheetItem,
-					Character.valueOf('B'), Block.stoneBrick,
+					Character.valueOf('B'), new ItemStack(Block.stoneBrick, 1, 0),
 				} );
 		
 		GameRegistry.addRecipe(new ItemStack(factoryRoadBlock, 1, 1), new Object[]
@@ -849,7 +849,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					"R R",
 					" G ",
 					"R R",
-					Character.valueOf('R'), factoryRoadBlock,
+					Character.valueOf('R'), new ItemStack(factoryRoadBlock, 1, 0),
 					Character.valueOf('G'), Item.lightStoneDust,
 				} );
 		
@@ -1240,11 +1240,11 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 8), new Object[]
 					{
 						"GGG",
-						"EME",
+						"ECE",
 						"NMS",
 						Character.valueOf('G'), plasticSheetItem,
 						Character.valueOf('E'), Item.emerald,
-						Character.valueOf('M'), Item.magmaCream,
+						Character.valueOf('C'), Item.magmaCream,
 						Character.valueOf('N'), Item.netherStalkSeeds,
 						Character.valueOf('S'), Item.sugar,
 						Character.valueOf('M'), machineBaseItem,
