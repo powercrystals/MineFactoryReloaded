@@ -411,6 +411,11 @@ inv:	for(int i = 0; i < 9; i++)
 	
 	private int findFirstMatchingTank(LiquidStack liquid)
 	{
+		if(liquid == null)
+		{
+			return -1;
+		}
+		
 		for(int i = 0; i < 9; i++)
 		{
 			if(_tanks[i].getLiquid() != null && _tanks[i].getLiquid().itemID == liquid.itemID && _tanks[i].getLiquid().itemMeta == liquid.itemMeta)
