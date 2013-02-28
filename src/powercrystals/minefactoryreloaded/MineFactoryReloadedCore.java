@@ -1247,7 +1247,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					{
 						"GGG",
 						"GGG",
-						Character.valueOf('G'), new ItemStack(factoryGlassBlock, 1, i)
+						Character.valueOf('G'), new ItemStack(factoryGlassPaneBlock, 1, i)
 					} );
 		}
 	}
