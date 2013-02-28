@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
 
 public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInventory, ISidedInventory, IDeepStorageUnit
@@ -90,6 +91,12 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 	}
 
 	@Override
+	public ForgeDirection getDropDirection()
+	{
+			return ForgeDirection.UP;
+	}
+
+	@Override
 	public void updateEntity()
 	{
 		super.updateEntity();
@@ -135,6 +142,12 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 					_storedQuantity += _inventory[slot].stackSize;
 					_inventory[slot] = null;
 				}
+			}
+			// boot improperly typed items from the input slots
+			else if(_inventory[slot].itemID != _storedId || _inventory[slot].getItemDamage() != _storedMeta || _inventory[slot].getTagCompound() != null)
+			{
+			MFRUtil.dropStack(this, _inventory[slot]);
+			_inventory[slot] = null;
 			}
 		}
 		
