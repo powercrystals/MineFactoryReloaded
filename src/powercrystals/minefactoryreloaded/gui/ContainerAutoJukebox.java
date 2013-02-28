@@ -17,7 +17,7 @@ public class ContainerAutoJukebox extends Container
 		super();
 		_jukebox = tileentity;
 		addSlotToContainer(new Slot(tileentity, 0, 8, 24));
-		addSlotToContainer(new SlotRemoveOnly(tileentity, 1, 8, 54));
+		addSlotToContainer(new Slot(tileentity, 1, 8, 54));
 		
 		bindPlayerInventory(inv);
 	}

@@ -22,7 +22,6 @@ public class GuiAutoJukebox extends GuiContainer
 	{
 		super(container);
 		_jukebox = jukebox;
-		ySize = 205;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -30,7 +29,7 @@ public class GuiAutoJukebox extends GuiContainer
 	public void initGui()
 	{
 		super.initGui();
-		_copy = new GuiButton(1, (this.width - this.xSize) / 2 + 63, (this.height - this.ySize) / 2 + 23, 20, 20, "COPY");
+		_copy = new GuiButton(1, (this.width - this.xSize) / 2 + 63, (this.height - this.ySize) / 2 + 23, 60, 20, "COPY");
 		_copy.enabled = true;
 		controlList.add(_copy);
 	}
