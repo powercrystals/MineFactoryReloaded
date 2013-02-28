@@ -25,7 +25,7 @@ public class TileEntityVet extends TileEntityFactoryInventory
 	@Override
 	public int getEnergyStoredMax()
 	{
-		return 64000;
+		return 32000;
 	}
 
 	@Override
