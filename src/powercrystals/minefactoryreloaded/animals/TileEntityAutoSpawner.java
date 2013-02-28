@@ -40,6 +40,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 	{
 		if(_inventory[0] == null || !(_inventory[0].getItem() instanceof ItemSafariNet) || _inventory[0].getTagCompound() == null)
 		{
+			setWorkDone(0);
 			return false;	
 		}
 		if(getWorkDone() < getWorkMax())
@@ -56,6 +57,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 			Entity spawnedEntity = EntityList.createEntityByName((String)EntityList.classToStringMapping.get(_inventory[0].getTagCompound().getString("_class")), worldObj);
 			if(!(spawnedEntity instanceof EntityLiving))
 			{
+				System.out.println("Didn't spawn entityliving (??) for " + _inventory[0].getTagCompound().getString("_class"));
 				return false;
 			}
 			EntityLiving spawnedLiving = (EntityLiving)spawnedEntity;
@@ -70,6 +72,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 					!this.worldObj.getCollidingBoundingBoxes(spawnedLiving, spawnedLiving.boundingBox).isEmpty() ||
 					this.worldObj.isAnyLiquid(spawnedLiving.boundingBox))
 			{
+				System.out.println("Entity could not spawn at " + x + "," + y + "," + z);
 				return false;
 			}
 
