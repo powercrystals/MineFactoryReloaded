@@ -734,6 +734,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		enableMachineLavaFabricator = c.get("MachineEnables", "LavaFabricator", true);
 		enableMachineOiLFabricator = c.get("MachineEnables", "OilFabricator", true);
 		enableMachineAutoJukebox = c.get("MachineEnables", "AutoJukebox", true);
+		enableMachineUnifier = c.get("MachineEnables", "Unifier", true);
+		enableMachineAutoSpawner = c.get("MachineEnables", "AutoSpawner", true);
 
 		c.addCustomCategoryComment("MachineEnables", "Set to false to disable that machine's recipes. Machines will still work if gotten through other means.");
 		c.save();
