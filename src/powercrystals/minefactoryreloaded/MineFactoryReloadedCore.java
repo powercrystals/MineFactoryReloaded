@@ -35,6 +35,7 @@ import powercrystals.core.updater.UpdateManager;
 import powercrystals.minefactoryreloaded.animals.ItemGrowthSyringe;
 import powercrystals.minefactoryreloaded.animals.ItemHealthSyringe;
 import powercrystals.minefactoryreloaded.animals.ItemSafariNet;
+import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
 import powercrystals.minefactoryreloaded.animals.TileEntityBreeder;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.animals.TileEntityGrinder;
@@ -157,7 +158,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.2.0B1";
+	public static final String version = "1.4.6R2.2.0B2";
 	public static final String modName = "Minefactory Reloaded";
 	
 	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
@@ -306,6 +307,12 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	
 	public static int oilLiquidId = -1;
 
+	public enum Machine
+	{
+		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper,
+		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox, Unifier, AutoSpawner
+	}
+
 	public static MineFactoryReloadedCore instance()
 	{
 		return instance;
@@ -348,6 +355,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machine1MetadataMappings.put(Machine.OilFabricator, 6);
 		machine1MetadataMappings.put(Machine.AutoJukebox, 7);
 		machine1MetadataMappings.put(Machine.Unifier, 8);
+		machine1MetadataMappings.put(Machine.AutoSpawner, 9);
 
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorOffTexture);
 		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt());
@@ -440,6 +448,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
 		GameRegistry.registerTileEntity(TileEntityAutoJukebox.class, "factoryAutoJukebox");
 		GameRegistry.registerTileEntity(TileEntityUnifier.class, "factoryUnifier");
+		GameRegistry.registerTileEntity(TileEntityAutoSpawner.class, "factoryAutoSpawner");
 
 		MinecraftForge.EVENT_BUS.register(instance);
 
@@ -720,12 +729,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 
 		c.addCustomCategoryComment("MachineEnables", "Set to false to disable that machine's recipes. Machines will still work if gotten through other means.");
 		c.save();
-	}
-
-	public enum Machine
-	{
-		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper,
-		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox, Unifier
 	}
 	
 	public LiquidStack getLiquidStackFromLiquidItem(ItemStack s)
