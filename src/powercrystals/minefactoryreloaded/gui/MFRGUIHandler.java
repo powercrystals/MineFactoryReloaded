@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.gui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
@@ -31,6 +32,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityChronotyper)
 		{
 			return new ContainerChronotyper(((TileEntityChronotyper)te), player.inventory);
+		}
+		else if(te instanceof TileEntityAutoSpawner)
+		{
+			return new ContainerAutoSpawner(((TileEntityAutoSpawner)te), player.inventory);
 		}
 		else if(te instanceof TileEntityFactoryInventory)
 		{
@@ -74,6 +79,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityHarvester)
 		{
 			return new GuiHarvester(new ContainerHarvester((TileEntityHarvester)te, player.inventory), (TileEntityHarvester)te);
+		}
+		else if(te instanceof TileEntityAutoSpawner)
+		{
+			return new GuiAutoSpawner(new ContainerAutoSpawner((TileEntityAutoSpawner)te, player.inventory), (TileEntityAutoSpawner)te);
 		}
 		else if(te instanceof TileEntityFactoryInventory)
 		{
