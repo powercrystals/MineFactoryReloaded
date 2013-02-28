@@ -1,10 +1,11 @@
-package powercrystals.minefactoryreloaded.gui;
+package powercrystals.minefactoryreloaded.gui.client;
 
 
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
+import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 
 public class GuiAutoSpawner extends GuiFactoryInventory
 {

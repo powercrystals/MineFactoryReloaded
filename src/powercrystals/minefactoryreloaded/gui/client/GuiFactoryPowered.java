@@ -1,9 +1,10 @@
-package powercrystals.minefactoryreloaded.gui;
+package powercrystals.minefactoryreloaded.gui.client;
 
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;

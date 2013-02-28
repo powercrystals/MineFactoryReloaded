@@ -1,9 +1,10 @@
-package powercrystals.minefactoryreloaded.gui;
+package powercrystals.minefactoryreloaded.gui.client;
 
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 
 public class GuiFactoryInventory extends GuiFactoryPowered
 {

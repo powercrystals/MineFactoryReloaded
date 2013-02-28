@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.gui;
+package powercrystals.minefactoryreloaded.gui.slot;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

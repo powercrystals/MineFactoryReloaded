@@ -1,7 +1,8 @@
-package powercrystals.minefactoryreloaded.gui;
+package powercrystals.minefactoryreloaded.gui.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

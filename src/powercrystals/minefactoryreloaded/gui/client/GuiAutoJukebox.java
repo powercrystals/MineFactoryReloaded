@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.gui;
+package powercrystals.minefactoryreloaded.gui.client;
 
 import org.lwjgl.opengl.GL11;
 

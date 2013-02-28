@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.gui;
+package powercrystals.minefactoryreloaded.gui.container;
 
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import net.minecraft.entity.player.EntityPlayer;
