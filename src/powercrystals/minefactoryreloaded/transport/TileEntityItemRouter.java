@@ -33,9 +33,12 @@ public class TileEntityItemRouter extends TileEntityFactory implements IInventor
 		super.updateEntity();
 		if(!worldObj.isRemote)
 		{
-			if(_inventory[45] != null && routeItem(_inventory[45]))
+			for(int i = 45; i < getSizeInventory(); i++)
 			{
-				_inventory[45] = null;
+				if(_inventory[i] != null && routeItem(_inventory[i]))
+				{
+					_inventory[i] = null;
+				}
 			}
 		}
 	}
@@ -121,7 +124,7 @@ public class TileEntityItemRouter extends TileEntityFactory implements IInventor
 	@Override
 	public int getSizeInventory()
 	{
-		return 46;
+		return 48;
 	}
 
 	@Override
