@@ -49,6 +49,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 				_tank.getLiquid().amount -= 10;
 			}
 			setWorkDone(getWorkDone() + 1);
+			return true;
 		}
 		else
 		{
@@ -63,21 +64,21 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 			double y = yCoord + worldObj.rand.nextInt(3) - 1;
 			double z = zCoord + (worldObj.rand.nextDouble() - worldObj.rand.nextDouble()) * _spawnRange;
 			
+			spawnedLiving.setLocationAndAngles(x, y, z, worldObj.rand.nextFloat() * 360.0F, 0.0F);
+			
 			if(!this.worldObj.checkIfAABBIsClear(spawnedLiving.boundingBox) ||
 					!this.worldObj.getCollidingBoundingBoxes(spawnedLiving, spawnedLiving.boundingBox).isEmpty() ||
 					this.worldObj.isAnyLiquid(spawnedLiving.boundingBox))
 			{
 				return false;
 			}
-			
-			spawnedLiving.setLocationAndAngles(x, y, z, worldObj.rand.nextFloat() * 360.0F, 0.0F);
 
 			worldObj.spawnEntityInWorld(spawnedLiving);
 			worldObj.playAuxSFX(2004, this.xCoord, this.yCoord, this.zCoord, 0);
 
 			spawnedLiving.spawnExplosionParticle();
+			return true;
 		}
-		return false;
 	}
 
 	@Override
