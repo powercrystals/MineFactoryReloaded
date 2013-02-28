@@ -7,6 +7,7 @@ import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
@@ -61,6 +62,10 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new ContainerLiquiCrafter((TileEntityLiquiCrafter)te, player.inventory);
 		}
+		else if(te instanceof TileEntityAutoJukebox)
+		{
+			return new ContainerAutoJukebox((TileEntityAutoJukebox)te, player.inventory);
+		}
 		return null;
 	}
 
@@ -107,6 +112,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityLiquiCrafter)
 		{
 			return new GuiLiquiCrafter(new ContainerLiquiCrafter((TileEntityLiquiCrafter)te, player.inventory), (TileEntityLiquiCrafter)te);
+		}
+		else if(te instanceof TileEntityAutoJukebox)
+		{
+			return new GuiAutoJukebox(new ContainerAutoJukebox((TileEntityAutoJukebox)te, player.inventory), (TileEntityAutoJukebox)te);
 		}
 		return null;
 	}

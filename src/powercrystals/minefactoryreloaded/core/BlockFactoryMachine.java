@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.core;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
@@ -110,7 +111,8 @@ public abstract class BlockFactoryMachine extends BlockContainer
 			world.markBlockForUpdate(x, y, z);
 			return true;
 		}
-		else if(te instanceof TileEntityFactoryPowered || te instanceof TileEntityItemRouter || te instanceof TileEntityLiquidRouter || te instanceof TileEntityDeepStorageUnit || te instanceof TileEntityLiquiCrafter)
+		else if(te instanceof TileEntityFactoryPowered || te instanceof TileEntityItemRouter || te instanceof TileEntityLiquidRouter ||
+				te instanceof TileEntityDeepStorageUnit || te instanceof TileEntityLiquiCrafter || te instanceof TileEntityAutoJukebox)
 		{
 			entityplayer.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
 			return true;
