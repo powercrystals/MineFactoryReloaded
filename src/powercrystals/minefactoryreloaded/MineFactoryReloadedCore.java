@@ -91,6 +91,7 @@ import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableCow;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableMooshroom;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableSheep;
+import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableSquid;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityAgeableHandler;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityLivingHandler;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.SheepHandler;
@@ -579,6 +580,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		FarmingRegistry.registerRanchable(new RanchableCow());
 		FarmingRegistry.registerRanchable(new RanchableMooshroom());
 		FarmingRegistry.registerRanchable(new RanchableSheep());
+		FarmingRegistry.registerRanchable(new RanchableSquid());
 		
 		FarmingRegistry.registerGrindable(new GrindableStandard(EntityChicken.class, new ItemStack[] { new ItemStack(Item.feather), new ItemStack(Item.chickenRaw), new ItemStack(Item.egg) }));
 		FarmingRegistry.registerGrindable(new GrindableStandard(EntityCow.class, new ItemStack[] { new ItemStack(Item.leather), new ItemStack(Item.beefRaw) }));
