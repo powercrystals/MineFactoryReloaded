@@ -66,7 +66,6 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 			}
 			if(!(spawnedEntity instanceof EntityLiving))
 			{
-				System.out.println("Didn't spawn entityliving (??) for " + _inventory[0].getTagCompound().getString("_class"));
 				return false;
 			}
 			EntityLiving spawnedLiving = (EntityLiving)spawnedEntity;
@@ -81,7 +80,6 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 					!this.worldObj.getCollidingBoundingBoxes(spawnedLiving, spawnedLiving.boundingBox).isEmpty() ||
 					this.worldObj.isAnyLiquid(spawnedLiving.boundingBox))
 			{
-				System.out.println("Entity could not spawn at " + x + "," + y + "," + z);
 				return false;
 			}
 
@@ -89,6 +87,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 			worldObj.playAuxSFX(2004, this.xCoord, this.yCoord, this.zCoord, 0);
 
 			spawnedLiving.spawnExplosionParticle();
+			setWorkDone(0);
 			return true;
 		}
 	}
