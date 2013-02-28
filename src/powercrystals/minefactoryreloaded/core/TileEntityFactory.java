@@ -133,7 +133,7 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	public Packet getDescriptionPacket()
 	{
 		Object[] toSend = {xCoord, yCoord, zCoord, _forwardDirection.ordinal(), _isActive};
-		return PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdTileDescription, toSend);
+		return PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.TileDescription, toSend);
 	}
 	
 	@Override

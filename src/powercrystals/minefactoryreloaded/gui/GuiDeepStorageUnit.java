@@ -104,7 +104,7 @@ public class GuiDeepStorageUnit extends GuiContainer
 	{
 		if(button.id > 0 && button.id <= 6)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdDSUButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.DSUButton,
 					new Object[] { _dsu.xCoord, _dsu.yCoord, _dsu.zCoord, button.id - 1 }));
 		}
 	}

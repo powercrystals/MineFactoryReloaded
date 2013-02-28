@@ -70,7 +70,7 @@ public class GuiAutoEnchanter extends GuiFactoryInventory
 			if(_enchanter.getTargetLevel() < 30)
 			{
 				_enchanter.setTargetLevel(_enchanter.getTargetLevel() + 1);
-				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdEnchanterButton,
+				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.EnchanterButton,
 						new Object[] { _enchanter.xCoord, _enchanter.yCoord, _enchanter.zCoord, 1 }));
 			}
 		}
@@ -79,7 +79,7 @@ public class GuiAutoEnchanter extends GuiFactoryInventory
 			if(_enchanter.getTargetLevel() > 1)
 			{
 				_enchanter.setTargetLevel(_enchanter.getTargetLevel() - 1);
-				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdEnchanterButton,
+				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.EnchanterButton,
 						new Object[] { _enchanter.xCoord, _enchanter.yCoord, _enchanter.zCoord, -1 }));
 			}
 		}

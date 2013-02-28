@@ -26,7 +26,7 @@ public class ServerPacketHandler implements IPacketHandler
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
 		int packetType = PacketWrapper.readPacketID(data);
 		
-		if (packetType == Packets.PacketIdEnchanterButton) // client -> server: autoenchanter GUI buttons
+		if (packetType == Packets.EnchanterButton) // client -> server: autoenchanter GUI buttons
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
@@ -37,7 +37,7 @@ public class ServerPacketHandler implements IPacketHandler
 				((TileEntityAutoEnchanter)te).setTargetLevel(((TileEntityAutoEnchanter)te).getTargetLevel() + (Integer)packetReadout[3]);
 			}
 		}
-		else if(packetType == Packets.PacketIdHarvesterButton) // client -> server: harvester setting
+		else if(packetType == Packets.HarvesterButton) // client -> server: harvester setting
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, String.class, Boolean.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
@@ -48,7 +48,7 @@ public class ServerPacketHandler implements IPacketHandler
 				((TileEntityHarvester)te).getSettings().put((String)packetReadout[3], (Boolean)packetReadout[4]);
 			}
 		}
-		else if(packetType == Packets.PacketIdChronotyperButton) // client -> server: toggle chronotyper
+		else if(packetType == Packets.ChronotyperButton) // client -> server: toggle chronotyper
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
@@ -59,7 +59,7 @@ public class ServerPacketHandler implements IPacketHandler
 				((TileEntityChronotyper)te).setMoveOld(!((TileEntityChronotyper)te).getMoveOld());
 			}
 		}
-		else if(packetType == Packets.PacketIdDSUButton) // client -> server: toggle DSU output side
+		else if(packetType == Packets.DSUButton) // client -> server: toggle DSU output side
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);

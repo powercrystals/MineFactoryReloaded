@@ -71,7 +71,7 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 			{
 				worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1005, xCoord, yCoord, zCoord, _inventory[0].itemID);
 				PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(),
-						PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdAutoJukeboxPlay, new Object[] { xCoord, yCoord, zCoord, _inventory[0].itemID } ));
+						PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.AutoJukeboxPlay, new Object[] { xCoord, yCoord, zCoord, _inventory[0].itemID } ));
 			}
 		}
 		

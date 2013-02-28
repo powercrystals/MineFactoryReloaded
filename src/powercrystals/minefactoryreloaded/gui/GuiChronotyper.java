@@ -44,7 +44,7 @@ public class GuiChronotyper extends GuiFactoryPowered
 	{
 		if(button.id == 1)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.PacketIdChronotyperButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.ChronotyperButton,
 					new Object[] { _chronotyper.xCoord, _chronotyper.yCoord, _chronotyper.zCoord }));
 		}
 	}

@@ -28,7 +28,7 @@ public class ClientPacketHandler implements IPacketHandler
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
 		int packetType = PacketWrapper.readPacketID(data);
 		
-		if (packetType == Packets.PacketIdTileDescription) // server -> client; server propagating machine rotation; args X Y Z rotation isActive
+		if (packetType == Packets.TileDescription) // server -> client; server propagating machine rotation; args X Y Z rotation isActive
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
@@ -41,7 +41,7 @@ public class ClientPacketHandler implements IPacketHandler
 				tef.setIsActive((Boolean)packetReadout[4]);
 			}
 		}
-		else if (packetType == Packets.PacketIdConveyorDescription) // server -> client; server propagating conveyor color
+		else if (packetType == Packets.ConveyorDescription) // server -> client; server propagating conveyor color
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
@@ -53,7 +53,7 @@ public class ClientPacketHandler implements IPacketHandler
 				tec.setDyeColor((Integer)packetReadout[3]);
 			}
 		}
-		else if (packetType == Packets.PacketIdAutoJukeboxPlay) // server -> client; server playing a record
+		else if (packetType == Packets.AutoJukeboxPlay) // server -> client; server playing a record
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
