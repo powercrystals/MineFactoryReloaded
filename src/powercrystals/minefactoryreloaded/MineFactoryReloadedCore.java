@@ -853,8 +853,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('G'), Item.lightStoneDust,
 				} );
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 4, 1), new ItemStack(factoryRoadBlock, 1, 1));
-		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 1, 1), new ItemStack(factoryRoadBlock, 4, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 1, 4), new ItemStack(factoryRoadBlock, 1, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 1, 1), new ItemStack(factoryRoadBlock, 1, 4));
 		
 		if(vanillaOverrideIce.getBoolean(true))
 		{
@@ -1223,7 +1223,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		if(enableMachineUnifier.getBoolean(true))
 		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 7), new Object[]
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 8), new Object[]
 					{
 						"GGG",
 						"PBP",
@@ -1237,7 +1237,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		if(enableMachineAutoSpawner.getBoolean(true))
 		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 8), new Object[]
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 9), new Object[]
 					{
 						"GGG",
 						"ECE",
