@@ -123,7 +123,7 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 	@Override
 	public String getInvName()
 	{
-		return "Item Router";
+		return "Auto Jukebox";
 	}
 
 	@Override
