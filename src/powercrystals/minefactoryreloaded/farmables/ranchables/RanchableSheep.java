@@ -25,7 +25,7 @@ public class RanchableSheep implements IFactoryRanchable
 	{
 		EntitySheep s = (EntitySheep)entity;
 		
-		if(s.getSheared())
+		if(s.getSheared() || s.getGrowingAge() < 0)
 		{
 			return null;
 		}
