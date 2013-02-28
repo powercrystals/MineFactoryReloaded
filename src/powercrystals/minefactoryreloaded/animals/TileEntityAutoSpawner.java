@@ -3,12 +3,16 @@ package powercrystals.minefactoryreloaded.animals;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
+import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
-public class TileEntityAutoSpawner extends TileEntityFactoryInventory
+public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements ITankContainer
 {
 	private static int _spawnRange = 4;
 	private LiquidTank _tank;
@@ -96,6 +100,46 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory
 	
 	@Override
 	public ILiquidTank getTank()
+	{
+		return _tank;
+	}
+
+	@Override
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
+	{
+		if(resource == null || resource.itemID != LiquidDictionary.getLiquid("mobEssence", 1000).itemID)
+		{
+			return 0;
+		}
+		return _tank.fill(resource, doFill);
+	}
+
+	@Override
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
+	{
+		return fill(ForgeDirection.UNKNOWN, resource, doFill);
+	}
+
+	@Override
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
+	{
+		return null;
+	}
+
+	@Override
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
+	{
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction)
+	{
+		return new ILiquidTank[] { _tank };
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
 		return _tank;
 	}
