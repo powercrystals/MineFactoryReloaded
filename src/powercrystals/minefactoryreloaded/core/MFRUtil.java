@@ -19,6 +19,7 @@ import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
+import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
 
 public class MFRUtil
 {
@@ -113,6 +114,20 @@ public class MFRUtil
 				if(chest.getValue().getInvName() == "Engine")
 				{
 					continue;
+				}
+				if(chest.getValue() instanceof IDeepStorageUnit)
+				{
+					IDeepStorageUnit idsu = (IDeepStorageUnit)chest.getValue();
+					// don't put s in a DSU if it has NBT data
+					if(s.getTagCompound() != null)
+					{
+						continue;
+					}
+					// don't put s in a DSU if the stored quantity is nonzero and it's mismatched with the stored item type
+					if(idsu.getStoredItemType() != null && (idsu.getStoredItemType().itemID != s.itemID || idsu.getStoredItemType().getItemDamage() != s.getItemDamage()))
+					{
+						continue;
+					}
 				}
 				s.stackSize = UtilInventory.addToInventory(chest.getValue(), chest.getKey(), s);
 				if(s.stackSize == 0)
