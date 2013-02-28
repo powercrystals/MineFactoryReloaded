@@ -29,125 +29,136 @@ public class BlockFactoryGlassPane extends BlockPane
 		return blockIndexInTexture + meta;
 	}
 	
-    public int getRenderBlockPass()
-    {
-        return 1;
-    }
+	public int getRenderBlockPass()
+	{
+		return 1;
+	}
 	
 	public int getBlockSideTextureFromMetadata(int meta)
 	{
 		return getSideTextureIndex() + meta;
 	}
 	
-    public boolean canThisFactoryPaneConnectToThisBlockID(int blockId)
-    {
-        return Block.opaqueCubeLookup[blockId] || blockId == this.blockID || blockId == Block.glass.blockID || blockId == MineFactoryReloadedCore.factoryGlassPaneBlock.blockID ||
-        		(blockId == Block.thinGlass.blockID && MineFactoryReloadedCore.vanillaOverrideGlassPane.getBoolean(true));
-    }
-    
-    @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
-    {
-        float var5 = 0.4375F;
-        float var6 = 0.5625F;
-        float var7 = 0.4375F;
-        float var8 = 0.5625F;
-        boolean var9 = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z - 1));
-        boolean var10 = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z + 1));
-        boolean var11 = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x - 1, y, z));
-        boolean var12 = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x + 1, y, z));
-
-        if ((!var11 || !var12) && (var11 || var12 || var9 || var10))
-        {
-            if (var11 && !var12)
-            {
-                var5 = 0.0F;
-            }
-            else if (!var11 && var12)
-            {
-                var6 = 1.0F;
-            }
-        }
-        else
-        {
-            var5 = 0.0F;
-            var6 = 1.0F;
-        }
-
-        if ((!var9 || !var10) && (var11 || var12 || var9 || var10))
-        {
-            if (var9 && !var10)
-            {
-                var7 = 0.0F;
-            }
-            else if (!var9 && var10)
-            {
-                var8 = 1.0F;
-            }
-        }
-        else
-        {
-            var7 = 0.0F;
-            var8 = 1.0F;
-        }
-
-        this.setBlockBounds(var5, 0.0F, var7, var6, 1.0F, var8);
-    }
-    
-    @SuppressWarnings("rawtypes")
+	public boolean canThisFactoryPaneConnectToThisBlockID(int blockId)
+	{
+		return Block.opaqueCubeLookup[blockId] || blockId == this.blockID || blockId == Block.glass.blockID || blockId == MineFactoryReloadedCore.factoryGlassPaneBlock.blockID ||
+				(blockId == Block.thinGlass.blockID && MineFactoryReloadedCore.vanillaOverrideGlassPane.getBoolean(true));
+	}
+	
 	@Override
-    public void addCollidingBlockToList(World world, int x, int y, int z, AxisAlignedBB aabb, List blockList, Entity e)
-    {
-        boolean var8 = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z - 1));
-        boolean var9 = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z + 1));
-        boolean var10 = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x - 1, y, z));
-        boolean var11 = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x + 1, y, z));
+	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
+	{
+		float xStart = 0.4375F;
+		float zStart = 0.5625F;
+		float xStop = 0.4375F;
+		float zStop = 0.5625F;
+		boolean connectedNorth = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z - 1));
+		boolean connectedSouth = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z + 1));
+		boolean connectedWest = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x - 1, y, z));
+		boolean connectedEast = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x + 1, y, z));
 
-        if ((!var10 || !var11) && (var10 || var11 || var8 || var9))
-        {
-            if (var10 && !var11)
-            {
-                this.setBlockBounds(0.0F, 0.0F, 0.4375F, 0.5F, 1.0F, 0.5625F);
-                super.addCollidingBlockToList(world, x, y, z, aabb, blockList, e);
-            }
-            else if (!var10 && var11)
-            {
-                this.setBlockBounds(0.5F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
-                super.addCollidingBlockToList(world, x, y, z, aabb, blockList, e);
-            }
-        }
-        else
-        {
-            this.setBlockBounds(0.0F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
-            super.addCollidingBlockToList(world, x, y, z, aabb, blockList, e);
-        }
+		if ((!connectedWest || !connectedEast) && (connectedWest || connectedEast || connectedNorth || connectedSouth))
+		{
+			if (connectedWest && !connectedEast)
+			{
+				xStart = 0.0F;
+			}
+			else if (!connectedWest && connectedEast)
+			{
+				zStart = 1.0F;
+			}
+		}
+		else
+		{
+			xStart = 0.0F;
+			zStart = 1.0F;
+		}
 
-        if ((!var8 || !var9) && (var10 || var11 || var8 || var9))
-        {
-            if (var8 && !var9)
-            {
-                this.setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.0F, 0.5F);
-                super.addCollidingBlockToList(world, x, y, z, aabb, blockList, e);
-            }
-            else if (!var8 && var9)
-            {
-                this.setBlockBounds(0.4375F, 0.0F, 0.5F, 0.5625F, 1.0F, 1.0F);
-                super.addCollidingBlockToList(world, x, y, z, aabb, blockList, e);
-            }
-        }
-        else
-        {
-            this.setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.0F, 1.0F);
-            super.addCollidingBlockToList(world, x, y, z, aabb, blockList, e);
-        }
-    }
+		if ((!connectedNorth || !connectedSouth) && (connectedWest || connectedEast || connectedNorth || connectedSouth))
+		{
+			if (connectedNorth && !connectedSouth)
+			{
+				xStop = 0.0F;
+			}
+			else if (!connectedNorth && connectedSouth)
+			{
+				zStop = 1.0F;
+			}
+		}
+		else
+		{
+			xStop = 0.0F;
+			zStop = 1.0F;
+		}
 
-    @Override
-    public int getRenderType()
-    {
-    	return MineFactoryReloadedCore.renderIdFactoryGlassPane;
-    }
-    
+		this.setBlockBounds(xStart, 0.0F, xStop, zStart, 1.0F, zStop);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void addCollidingBlockToList(World world, int x, int y, int z, AxisAlignedBB aabb, List blockList, Entity e)
+	{
+		boolean connectedNorth = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z - 1));
+		boolean connectedSouth = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z + 1));
+		boolean connectedWest = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x - 1, y, z));
+		boolean connectedEast = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x + 1, y, z));
+
+		if ((!connectedWest || !connectedEast) && (connectedWest || connectedEast || connectedNorth || connectedSouth))
+		{
+			if (connectedWest && !connectedEast)
+			{
+				this.setBlockBounds(0.0F, 0.0F, 0.4375F, 0.5F, 1.0F, 0.5625F);
+				addCollidingBlockToList_do(world, x, y, z, aabb, blockList, e);
+			}
+			else if (!connectedWest && connectedEast)
+			{
+				this.setBlockBounds(0.5F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
+				addCollidingBlockToList_do(world, x, y, z, aabb, blockList, e);
+			}
+		}
+		else
+		{
+			this.setBlockBounds(0.0F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
+			addCollidingBlockToList_do(world, x, y, z, aabb, blockList, e);
+		}
+
+		if ((!connectedNorth || !connectedSouth) && (connectedWest || connectedEast || connectedNorth || connectedSouth))
+		{
+			if (connectedNorth && !connectedSouth)
+			{
+				this.setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.0F, 0.5F);
+				addCollidingBlockToList_do(world, x, y, z, aabb, blockList, e);
+			}
+			else if (!connectedNorth && connectedSouth)
+			{
+				this.setBlockBounds(0.4375F, 0.0F, 0.5F, 0.5625F, 1.0F, 1.0F);
+				addCollidingBlockToList_do(world, x, y, z, aabb, blockList, e);
+			}
+		}
+		else
+		{
+			this.setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.0F, 1.0F);
+			addCollidingBlockToList_do(world, x, y, z, aabb, blockList, e);
+		}
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	protected void addCollidingBlockToList_do(World world, int x, int y, int z, AxisAlignedBB aabb, List blockList, Entity e)
+	{
+		AxisAlignedBB newAABB = this.getCollisionBoundingBoxFromPool(world, x, y, z);
+	
+		if (newAABB != null && aabb.intersectsWith(newAABB))
+		{
+			blockList.add(newAABB);
+		}
+	}
+
+	@Override
+	public int getRenderType()
+	{
+		return MineFactoryReloadedCore.renderIdFactoryGlassPane;
+	}
+	
 	@Override
 	public String getTextureFile()
 	{
