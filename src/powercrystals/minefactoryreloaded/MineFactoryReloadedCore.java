@@ -305,6 +305,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property enableMachineLavaFabricator;
 	public static Property enableMachineOiLFabricator;
 	public static Property enableMachineAutoJukebox;
+	public static Property enableMachineUnifier;
+	public static Property enableMachineAutoSpawner;
 
 	private static MineFactoryReloadedCore instance;
 	
@@ -831,6 +833,41 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('S'), Item.stick,
 				} );
 		
+		GameRegistry.addRecipe(new ItemStack(factoryRoadBlock, 16), new Object[]
+				{
+					"BBB",
+					"BPB",
+					"BBB",
+					Character.valueOf('P'), plasticSheetItem,
+					Character.valueOf('B'), Block.stoneBrick,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(factoryRoadBlock, 1, 1), new Object[]
+				{
+					"R R",
+					" G ",
+					"R R",
+					Character.valueOf('R'), factoryRoadBlock,
+					Character.valueOf('G'), Item.lightStoneDust,
+				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 4, 1), new ItemStack(factoryRoadBlock, 1, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 1, 1), new ItemStack(factoryRoadBlock, 4, 1));
+		
+		if(vanillaOverrideIce.getBoolean(true))
+		{
+			GameRegistry.addShapelessRecipe(new ItemStack(Block.ice, 1, 1), new ItemStack(Block.ice, 0, 1), new ItemStack(rawPlasticItem, 1));
+		}
+		
+		GameRegistry.addRecipe(new ItemStack(blankRecordItem, 1), new Object[]
+				{
+					"R R",
+					" P ",
+					"R R",
+					Character.valueOf('R'), rawPlasticItem,
+					Character.valueOf('P'), Item.paper,
+				} );
+		
 		if(enableMachinePlanter.getBoolean(true))
 		{
 			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 0), new Object[]
@@ -1178,6 +1215,36 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 						" M ",
 						Character.valueOf('G'), plasticSheetItem,
 						Character.valueOf('J'), Block.jukebox,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
+		
+		if(enableMachineUnifier.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 7), new Object[]
+					{
+						"GGG",
+						"PBP",
+						" M ",
+						Character.valueOf('G'), plasticSheetItem,
+						Character.valueOf('B'), Item.book,
+						Character.valueOf('P'), Block.pumpkin,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
+		
+		if(enableMachineAutoSpawner.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 8), new Object[]
+					{
+						"GGG",
+						"EME",
+						"NMS",
+						Character.valueOf('G'), plasticSheetItem,
+						Character.valueOf('E'), Item.emerald,
+						Character.valueOf('M'), Item.magmaCream,
+						Character.valueOf('N'), Item.netherStalkSeeds,
+						Character.valueOf('S'), Item.sugar,
 						Character.valueOf('M'), machineBaseItem,
 					} );
 		}
