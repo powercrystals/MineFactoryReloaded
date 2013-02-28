@@ -6,13 +6,9 @@ import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
 
 public class ContainerAutoSpawner extends ContainerFactoryInventory
 {
-	private TileEntityAutoSpawner _spawner;
-	
 	public ContainerAutoSpawner(TileEntityAutoSpawner spawner, InventoryPlayer inv)
 	{
 		super(spawner, inv);
-		
-		_spawner = spawner;
 	}
 	
 	@Override
