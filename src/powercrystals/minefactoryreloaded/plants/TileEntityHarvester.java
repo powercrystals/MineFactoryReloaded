@@ -8,8 +8,6 @@ import java.util.Random;
 
 import com.google.common.collect.ImmutableMap;
 
-import buildcraft.core.IMachine;
-
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -21,12 +19,14 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityHarvester extends TileEntityFactoryPowered implements IMachine
+public class TileEntityHarvester extends TileEntityFactoryPowered implements ITankContainer
 {
 	private static Map<Integer, IFactoryHarvestable> harvestables = new HashMap<Integer, IFactoryHarvestable>();
 
@@ -235,27 +235,39 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements IMa
 	}
 
 	@Override
-	public boolean isActive()
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		return false;
+		return 0;
 	}
 
 	@Override
-	public boolean manageLiquids()
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		return true;
+		return 0;
 	}
 
 	@Override
-	public boolean manageSolids()
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
-		return true;
+		return null;
 	}
 
 	@Override
-	public boolean allowActions()
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
-		return false;
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction)
+	{
+		return new ILiquidTank[] { _tank };
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
+	{
+		return _tank;
 	}
 
 	@Override

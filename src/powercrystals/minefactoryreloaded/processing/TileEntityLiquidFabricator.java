@@ -1,13 +1,14 @@
 package powercrystals.minefactoryreloaded.processing;
 
-import buildcraft.core.IMachine;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowered implements IMachine
+public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowered implements ITankContainer
 {
 	private int _liquidId;
 	private int _liquidFabPerTick;
@@ -72,26 +73,38 @@ public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowere
 	}
 
 	@Override
-	public boolean isActive()
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		return false;
+		return 0;
 	}
 
 	@Override
-	public boolean manageLiquids()
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		return true;
+		return 0;
 	}
 
 	@Override
-	public boolean manageSolids()
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
-		return false;
+		return null;
 	}
 
 	@Override
-	public boolean allowActions()
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
-		return false;
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction)
+	{
+		return new ILiquidTank[] { _tank };
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
+	{
+		return _tank;
 	}
 }

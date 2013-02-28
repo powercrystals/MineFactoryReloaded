@@ -5,17 +5,18 @@ import java.util.List;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
-import buildcraft.core.IMachine;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
 
-public class TileEntitySewer extends TileEntityFactory implements IMachine
+public class TileEntitySewer extends TileEntityFactory implements ITankContainer
 {
 	private LiquidTank _tank;
 	private Area _harvestArea;
@@ -65,27 +66,38 @@ public class TileEntitySewer extends TileEntityFactory implements IMachine
 	}
 
 	@Override
-	public boolean isActive()
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		return false;
+		return 0;
 	}
 
 	@Override
-	public boolean manageLiquids()
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		return true;
+		return 0;
 	}
 
 	@Override
-	public boolean manageSolids()
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
-		return false;
+		return null;
 	}
 
 	@Override
-	public boolean allowActions()
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
-		return false;
+		return null;
 	}
 
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction)
+	{
+		return new ILiquidTank[] { _tank };
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
+	{
+		return _tank;
+	}
 }

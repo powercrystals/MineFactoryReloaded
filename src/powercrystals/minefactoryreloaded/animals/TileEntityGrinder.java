@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import buildcraft.core.IMachine;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
@@ -22,7 +22,7 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityGrinder extends TileEntityFactoryPowered implements IMachine
+public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainer
 {
 	private static Map<Class<?>, IFactoryGrindable> grindables = new HashMap<Class<?>, IFactoryGrindable>();
 	
@@ -151,32 +151,44 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements IMach
 	}
 
 	@Override
-	public boolean isActive()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean manageLiquids()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean manageSolids()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean allowActions()
-	{
-		return false;
-	}
-
-	@Override
 	public String getInvName()
 	{
 		return "Mob Grinder";
+	}
+
+	@Override
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
+	{
+		return 0;
+	}
+
+	@Override
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
+	{
+		return 0;
+	}
+
+	@Override
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
+	{
+		return null;
+	}
+
+	@Override
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
+	{
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction)
+	{
+		return new ILiquidTank[] { _tank };
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
+	{
+		return _tank;
 	}
 }

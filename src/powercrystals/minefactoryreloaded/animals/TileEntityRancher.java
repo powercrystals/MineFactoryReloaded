@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import buildcraft.core.IMachine;
-
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
@@ -15,12 +13,14 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityRancher extends TileEntityFactoryInventory implements IMachine
+public class TileEntityRancher extends TileEntityFactoryInventory implements ITankContainer
 {
 	private static Map<Class<?>, IFactoryRanchable> ranchables = new HashMap<Class<?>, IFactoryRanchable>();
 	
@@ -129,26 +129,38 @@ public class TileEntityRancher extends TileEntityFactoryInventory implements IMa
 	}
 
 	@Override
-	public boolean isActive()
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		return false;
+		return 0;
 	}
 
 	@Override
-	public boolean manageLiquids()
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		return true;
+		return 0;
 	}
 
 	@Override
-	public boolean manageSolids()
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
-		return true;
+		return null;
 	}
 
 	@Override
-	public boolean allowActions()
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
-		return false;
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction)
+	{
+		return new ILiquidTank[] { _tank };
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
+	{
+		return _tank;
 	}
 }

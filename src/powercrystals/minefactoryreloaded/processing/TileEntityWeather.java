@@ -3,19 +3,18 @@ package powercrystals.minefactoryreloaded.processing;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-import buildcraft.core.IMachine;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityWeather extends TileEntityFactoryPowered implements IMachine
+public class TileEntityWeather extends TileEntityFactoryPowered implements ITankContainer
 {	
 	private LiquidTank _tank;
 	
@@ -108,27 +107,39 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements IMach
 	}
 
 	@Override
-	public boolean isActive()
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		return false;
+		return 0;
 	}
 
 	@Override
-	public boolean manageLiquids()
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		return true;
+		return 0;
 	}
 
 	@Override
-	public boolean manageSolids()
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
-		return true;
+		return null;
 	}
 
 	@Override
-	public boolean allowActions()
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
-		return false;
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction)
+	{
+		return new ILiquidTank[] { _tank };
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
+	{
+		return _tank;
 	}
 
 	@Override
