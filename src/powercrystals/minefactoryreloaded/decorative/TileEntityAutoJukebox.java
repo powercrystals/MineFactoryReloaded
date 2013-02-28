@@ -7,21 +7,50 @@ import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.ISidedInventory;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
 import powercrystals.minefactoryreloaded.net.Packets;
 
-public class TileEntityAutoJukebox extends TileEntityFactory implements IInventory
+public class TileEntityAutoJukebox extends TileEntityFactory implements IInventory, ISidedInventory
 {
-	private ItemStack[] _inventory = new ItemStack[1];
+	private ItemStack[] _inventory = new ItemStack[2];
 	private boolean _lastRedstoneState;
+	private boolean _canCopy;
+	
+	public void setCanCopy(boolean canCopy)
+	{
+		_canCopy = canCopy;
+	}
+	
+	public boolean getCanCopy()
+	{
+		if(worldObj.isRemote)
+		{
+			return _canCopy;
+		}
+		else if(_inventory[0] != null && _inventory[0].getItem() instanceof ItemRecord && _inventory[1] != null && _inventory[1].itemID == MineFactoryReloadedCore.blankRecordItem.itemID)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public void copyRecord()
+	{
+		if(!worldObj.isRemote && getCanCopy())
+		{
+			_inventory[1] = _inventory[0].copy();
+		}
+	}
 	
 	@Override
 	public int getSizeInventory()
 	{
-		return 1;
+		return 2;
 	}
 
 	@Override
@@ -155,5 +184,17 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 		}
 
 		nbttagcompound.setTag("Items", nbttaglist);
+	}
+
+	@Override
+	public int getStartInventorySide(ForgeDirection side)
+	{
+		return 0;
+	}
+
+	@Override
+	public int getSizeInventorySide(ForgeDirection side)
+	{
+		return 1;
 	}
 }

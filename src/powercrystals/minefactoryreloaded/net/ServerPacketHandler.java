@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
+import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
@@ -68,6 +69,17 @@ public class ServerPacketHandler implements IPacketHandler
 			{
 				int side = (Integer)packetReadout[3];
 				((TileEntityDeepStorageUnit)te).setSideIsOutput(side, (!((TileEntityDeepStorageUnit)te).getIsSideOutput(side)));
+			}
+		}
+		else if(packetType == Packets.AutoJukeboxCopy) // client -> server: copy record
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityAutoJukebox)
+			{
+				((TileEntityAutoJukebox)te).copyRecord();
 			}
 		}
 	}

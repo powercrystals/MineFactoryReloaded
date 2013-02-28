@@ -10,4 +10,5 @@ public final class Packets
 	public static final int PacketIdConveyorDescription = 6;
 	public static final int PacketIdAutoJukeboxPlay = 7;
 	public static final int RoadBlockUpdate = 8;
+	public static final int AutoJukeboxCopy = 9;
 }

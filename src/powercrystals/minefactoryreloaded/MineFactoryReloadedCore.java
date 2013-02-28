@@ -212,6 +212,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item machineBaseItem;
 	public static Item safariNetItem;
 	public static Item ceramicDyeItem;
+	public static Item blankRecordItem;
 
 	public static int conveyorTexture = 0;
 	public static int conveyorOffTexture = 1;
@@ -258,6 +259,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property machineBaseItemId;
 	public static Property safariNetItemId;
 	public static Property ceramicDyeId;
+	public static Property blankRecordId;
 
 	public static Property animateBlockFaces;
 	public static Property treeSearchMaxVertical;
@@ -391,6 +393,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setIconIndex(17).setItemName("factoryMachineBlock");
 		safariNetItem = (new ItemSafariNet()).setIconIndex(18).setItemName("safariNetItem");
 		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setIconIndex(22).setItemName("ceramicDyeItem");
+		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setIconIndex(40).setItemName("blankRecordItem");
 
 		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
 		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
@@ -669,6 +672,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machineBaseItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MachineBlock", 12003);
 		safariNetItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNet", 12004);
 		ceramicDyeId = c.getItem(Configuration.CATEGORY_ITEM, "ID.CeramicDye", 12005);
+		blankRecordId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BlankRecord", 12006);
 
 		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
 		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";

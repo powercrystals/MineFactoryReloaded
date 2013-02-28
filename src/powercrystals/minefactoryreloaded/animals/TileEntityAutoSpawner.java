@@ -95,7 +95,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 	@Override
 	public int getEnergyStoredMax()
 	{
-		return 32767;
+		return 32000;
 	}
 
 	@Override
