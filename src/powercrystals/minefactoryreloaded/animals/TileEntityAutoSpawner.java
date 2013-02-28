@@ -54,7 +54,16 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 		}
 		else
 		{
-			Entity spawnedEntity = EntityList.createEntityByName((String)EntityList.classToStringMapping.get(_inventory[0].getTagCompound().getString("_class")), worldObj);
+			Entity spawnedEntity = null;
+			try
+			{
+				spawnedEntity = EntityList.createEntityByName((String)EntityList.classToStringMapping.get(Class.forName(_inventory[0].getTagCompound().getString("_class"))), worldObj);
+			}
+			catch(ClassNotFoundException e)
+			{
+				e.printStackTrace();
+				return false;
+			}
 			if(!(spawnedEntity instanceof EntityLiving))
 			{
 				System.out.println("Didn't spawn entityliving (??) for " + _inventory[0].getTagCompound().getString("_class"));
