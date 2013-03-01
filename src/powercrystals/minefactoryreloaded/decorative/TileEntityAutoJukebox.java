@@ -159,7 +159,7 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 	@Override
 	public int getInventoryStackLimit()
 	{
-		return 1;
+		return 64;
 	}
 
 	@Override

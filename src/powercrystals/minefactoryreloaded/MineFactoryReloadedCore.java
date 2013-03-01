@@ -397,7 +397,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setIconIndex(17).setItemName("factoryMachineBlock");
 		safariNetItem = (new ItemSafariNet()).setIconIndex(18).setItemName("safariNetItem");
 		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setIconIndex(22).setItemName("ceramicDyeItem");
-		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setIconIndex(40).setItemName("blankRecordItem");
+		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setIconIndex(40).setItemName("blankRecordItem").setMaxStackSize(1);
 
 		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
 		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
