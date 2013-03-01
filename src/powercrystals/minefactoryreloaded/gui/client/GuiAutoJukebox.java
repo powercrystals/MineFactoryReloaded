@@ -33,7 +33,7 @@ public class GuiAutoJukebox extends GuiContainer
 		super.initGui();
 		_play = new GuiButton(1, (this.width - this.xSize) / 2 +  63, (this.height - this.ySize) / 2 + 23, 20, 20, "\u25B6");
 		_stop = new GuiButton(2, (this.width - this.xSize) / 2 +  83, (this.height - this.ySize) / 2 + 23, 20, 20, "\u25A0");
-		_copy = new GuiButton(3, (this.width - this.xSize) / 2 + 103, (this.height - this.ySize) / 2 + 23, 60, 20, "\u25CF");
+		_copy = new GuiButton(3, (this.width - this.xSize) / 2 + 103, (this.height - this.ySize) / 2 + 23, 20, 20, "\u25CF");
 		controlList.add(_play);
 		controlList.add(_stop);
 		controlList.add(_copy);
