@@ -73,7 +73,7 @@ public class ServerPacketHandler implements IPacketHandler
 		}
 		else if(packetType == Packets.AutoJukeboxButton) // client -> server: copy record
 		{
-			Class[] decodeAs = { Integer.class, Integer.class, Integer.class };
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
