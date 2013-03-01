@@ -3,28 +3,26 @@ package powercrystals.minefactoryreloaded.animals;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.ItemFactory;
 
-public class ItemGrowthSyringe extends ItemFactory
+public class ItemGrowthSyringe extends ItemSyringe
 {
 	public ItemGrowthSyringe()
 	{
 		super(MineFactoryReloadedCore.syringeGrowthItemId.getInt());
-		setMaxStackSize(1);
 	}
 	
 	@Override
-	public boolean itemInteractionForEntity(ItemStack s, EntityLiving e)
+	public boolean canInject(World world, EntityLiving entity, ItemStack syringe)
 	{
-		if (e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0)
-		{
-			((EntityAgeable)e).setGrowingAge(0);
-			s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
-			
-			return true;
-		}
-		
-		return false;
+		return entity instanceof EntityAgeable && ((EntityAgeable)entity).getGrowingAge() < 0;
+	}
+	
+	@Override
+	public boolean inject(World world, EntityLiving entity, ItemStack syringe)
+	{
+		((EntityAgeable)entity).setGrowingAge(0);
+		return true;
 	}
 }

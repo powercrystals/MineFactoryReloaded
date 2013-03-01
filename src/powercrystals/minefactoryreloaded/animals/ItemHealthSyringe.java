@@ -2,28 +2,26 @@ package powercrystals.minefactoryreloaded.animals;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.ItemFactory;
 
-public class ItemHealthSyringe extends ItemFactory
+public class ItemHealthSyringe extends ItemSyringe
 {
 	public ItemHealthSyringe()
 	{
 		super(MineFactoryReloadedCore.syringeHealthItemId.getInt());
-		setMaxStackSize(1);
 	}
 	
 	@Override
-	public boolean itemInteractionForEntity(ItemStack s, EntityLiving e)
+	public boolean canInject(World world, EntityLiving entity, ItemStack syringe)
 	{
-		if (e.getHealth() < e.getMaxHealth())
-		{
-			e.heal(2);
-			s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
-			
-			return true;
-		}
-		
-		return false;
+		return entity.getHealth() < entity.getMaxHealth();
+	}
+	
+	@Override
+	public boolean inject(World world, EntityLiving entity, ItemStack syringe)
+	{
+		entity.heal(2);
+		return true;
 	}
 }
