@@ -11,6 +11,7 @@ public abstract class MFRRegistry
 	private static List<IMobEggHandler> _eggHandlers = new ArrayList<IMobEggHandler>();
 	private static List<ISafariNetHandler> _safariNetHandlers = new ArrayList<ISafariNetHandler>();
 	private static List<String> _rubberTreeBiomes = new ArrayList<String>();
+	private static List<Class<?>> _safariNetBlacklist = new ArrayList<Class<?>>();
 	
 	public static void registerMobEggHandler(IMobEggHandler handler)
 	{
@@ -40,5 +41,15 @@ public abstract class MFRRegistry
 	public static List<String> getRubberTreeBiomes()
 	{
 		return _rubberTreeBiomes;
+	}
+	
+	public static void registerSafariNetBlacklist(Class<?> entityClass)
+	{
+		_safariNetBlacklist.add(entityClass);
+	}
+	
+	public static List<Class<?>> getSafariNetBlacklist()
+	{
+		return _safariNetBlacklist;
 	}
 }

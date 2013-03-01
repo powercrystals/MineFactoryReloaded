@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -635,6 +637,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		MFRRegistry.registerRubberTreeBiome("TaigaHills");
 		MFRRegistry.registerRubberTreeBiome("Jungle");
 		MFRRegistry.registerRubberTreeBiome("JungleHills");
+
+		MFRRegistry.registerSafariNetBlacklist(EntityDragon.class);
+		MFRRegistry.registerSafariNetBlacklist(EntityWither.class);
 	}
 
 	private static void loadConfig(File configFile)

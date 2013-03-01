@@ -237,7 +237,11 @@ public class ItemSafariNet extends ItemFactory
 		{
 			return false;
 		}
-		if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer))
+		else if(MFRRegistry.getSafariNetBlacklist().contains(entity.getClass()))
+		{
+			return false;
+		}
+		else if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer))
 		{
 			NBTTagCompound c = new NBTTagCompound();
 			
