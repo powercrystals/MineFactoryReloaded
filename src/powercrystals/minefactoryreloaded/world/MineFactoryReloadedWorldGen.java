@@ -20,14 +20,16 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 		BiomeGenBase b = world.getBiomeGenForCoords(x, z);
 		
 		System.out.println("Our biome: " + b.biomeName);
+		System.out.println("Allowed biomes: ");
 		for(String s : MFRRegistry.getRubberTreeBiomes())
 		{
-			System.out.print(s);
+			System.out.print(s + ";");
 		}
 		System.out.println();
 		
 		if(MFRRegistry.getRubberTreeBiomes().contains(b.biomeName))
 		{
+			System.out.println("Biome matched");
 			if(random.nextInt(100) < 40)
 			{
 				new WorldGenRubberTree().generate(world, random, x, random.nextInt(3) + 4, z);
