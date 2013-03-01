@@ -28,7 +28,7 @@ public class NEIMFRConfig implements IConfigureNEI
 		{
 			subTypes.add(MineFactoryReloadedCore.machineBlock0.blockID, i, i);
 		}
-		for (int i = 0; i <= 7; i++)
+		for (int i = 0; i <= 10; i++)
 		{
 			subTypes.add(MineFactoryReloadedCore.machineBlock1.blockID, i, i);
 		}
@@ -58,6 +58,10 @@ public class NEIMFRConfig implements IConfigureNEI
 		subTypes.add(MineFactoryReloadedCore.railDropoffPassengerBlock.blockID, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.railPickupPassengerBlock.blockID, 0, 0);
 		
+		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 0, 0);
+		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 0, 1);
+		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 0, 4);
+		
 		subTypes.add(MineFactoryReloadedCore.factoryHammerItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.milkItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.sludgeItem, 0, 0);
@@ -76,8 +80,10 @@ public class NEIMFRConfig implements IConfigureNEI
 		subTypes.add(MineFactoryReloadedCore.rawRubberItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.machineBaseItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.safariNetItem, 0, 0);
+		subTypes.add(MineFactoryReloadedCore.blankRecordItem, 0, 0);
+		subTypes.add(MineFactoryReloadedCore.syringeZombieItem, 0, 0);
 		
-		API.addSetRange("Minefactory", subTypes);
+		API.addSetRange("MineFactory", subTypes);
 	}
 
 	@Override
