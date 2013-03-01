@@ -11,7 +11,7 @@ public class ItemSyringeZombie extends ItemSyringe
 {
 	public ItemSyringeZombie()
 	{
-		super(MineFactoryReloadedCore.syringeZombieItem.itemID);
+		super(MineFactoryReloadedCore.syringeZombieId.getInt());
 	}
 	
 	@Override
