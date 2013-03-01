@@ -141,7 +141,7 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 	@Override
 	public String getInvName()
 	{
-		return "Item Router";
+		return "Unifier";
 	}
 
 	@Override
