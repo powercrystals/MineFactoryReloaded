@@ -869,7 +869,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					" G ",
 					"R R",
 					Character.valueOf('R'), new ItemStack(factoryRoadBlock, 1, 0),
-					Character.valueOf('G'), Item.lightStoneDust,
+					Character.valueOf('G'), Block.redstoneLampIdle,
 				} );
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 1, 4), new ItemStack(factoryRoadBlock, 1, 1));
@@ -882,9 +882,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		GameRegistry.addRecipe(new ItemStack(blankRecordItem, 1), new Object[]
 				{
-					"R R",
-					" P ",
-					"R R",
+					"RRR",
+					"RPR",
+					"RRR",
 					Character.valueOf('R'), rawPlasticItem,
 					Character.valueOf('P'), Item.paper,
 				} );
