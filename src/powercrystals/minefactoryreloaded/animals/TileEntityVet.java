@@ -2,13 +2,12 @@ package powercrystals.minefactoryreloaded.animals;
 
 import java.util.List;
 
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.ISyringe;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
@@ -51,31 +50,18 @@ public class TileEntityVet extends TileEntityFactoryInventory
 				continue;
 			}
 			EntityLiving e = (EntityLiving)o;
-			if (e.getHealth() < e.getMaxHealth())
+			
+			for(int i = 0; i < getSizeInventory(); i++)
 			{
-				for(int i = 0; i < getSizeInventory(); i++)
+				ItemStack s = getStackInSlot(i);
+				if(s != null && s.getItem() instanceof ISyringe)
 				{
-					ItemStack s = getStackInSlot(i);
-					if(s != null && s.itemID == MineFactoryReloadedCore.syringeHealthItem.itemID)
+					if(((ISyringe)s.getItem()).canInject(worldObj, e, s))
 					{
-						e.heal(2);
-						s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
-						
-						return true;
-					}
-				}
-			}
-			else if(e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0)
-			{
-				for(int i = 0; i < getSizeInventory(); i++)
-				{
-					ItemStack s = getStackInSlot(i);
-					if(s != null && s.itemID == MineFactoryReloadedCore.syringeGrowthItem.itemID)
-					{
-						((EntityAgeable)e).setGrowingAge(0);
-						s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
-						
-						return true;
+						if(((ISyringe)s.getItem()).inject(worldObj, e, s))
+						{
+							return true;
+						}
 					}
 				}
 			}
