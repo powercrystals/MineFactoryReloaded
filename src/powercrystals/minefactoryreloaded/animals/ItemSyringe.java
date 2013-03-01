@@ -17,7 +17,7 @@ public abstract class ItemSyringe extends ItemFactory implements ISyringe
 	@Override
 	public boolean itemInteractionForEntity(ItemStack s, EntityLiving e)
 	{
-		if(canInject(e.worldObj, e, s))
+		if(!e.worldObj.isRemote && canInject(e.worldObj, e, s))
 		{
 			if(inject(e.worldObj, e, s))
 			{

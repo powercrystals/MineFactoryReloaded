@@ -112,6 +112,7 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(MineFactoryReloadedCore.machineBaseItem, "Factory Machine Block");
 		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetItem, "Safari Net");
 		LanguageRegistry.addName(MineFactoryReloadedCore.blankRecordItem, "Blank Record");
+		LanguageRegistry.addName(MineFactoryReloadedCore.syringeZombieItem, "Zombie Syringe");
 		
 		for(int i = 0; i < 16; i++)
 		{

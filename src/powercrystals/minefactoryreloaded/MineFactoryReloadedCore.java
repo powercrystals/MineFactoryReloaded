@@ -816,6 +816,15 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.addShapelessRecipe(new ItemStack(syringeHealthItem), new Object[] { syringeEmptyItem, Item.appleRed });
 		GameRegistry.addShapelessRecipe(new ItemStack(syringeGrowthItem), new Object[] { syringeEmptyItem, Item.goldenCarrot });
 		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(syringeZombieItem, 1), new Object[]
+				{
+					"FFF",
+					"FSF",
+					"FFF",
+					Character.valueOf('F'), Item.rottenFlesh,
+					Character.valueOf('S'), syringeEmptyItem,
+				} ));
+		
 		GameRegistry.addRecipe(new ItemStack(fertilizerItem, 16), new Object[]
 				{
 					"WBW",
