@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
-public class ItemGrowthSyringe extends ItemSyringe
+public class ItemSyringeGrowth extends ItemSyringe
 {
-	public ItemGrowthSyringe()
+	public ItemSyringeGrowth()
 	{
 		super(MineFactoryReloadedCore.syringeGrowthItemId.getInt());
 	}
