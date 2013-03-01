@@ -5,6 +5,7 @@ import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
+import powercrystals.minefactoryreloaded.processing.TileEntityUnifier;
 import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
 import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
 import net.minecraft.block.BlockContainer;
@@ -112,7 +113,8 @@ public abstract class BlockFactoryMachine extends BlockContainer
 			return true;
 		}
 		else if(te instanceof TileEntityFactoryPowered || te instanceof TileEntityItemRouter || te instanceof TileEntityLiquidRouter ||
-				te instanceof TileEntityDeepStorageUnit || te instanceof TileEntityLiquiCrafter || te instanceof TileEntityAutoJukebox)
+				te instanceof TileEntityDeepStorageUnit || te instanceof TileEntityLiquiCrafter || te instanceof TileEntityAutoJukebox ||
+				te instanceof TileEntityUnifier)
 		{
 			entityplayer.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
 			return true;
