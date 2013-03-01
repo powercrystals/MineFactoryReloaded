@@ -684,7 +684,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		safariNetItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNet", 12004);
 		ceramicDyeId = c.getItem(Configuration.CATEGORY_ITEM, "ID.CeramicDye", 12005);
 		blankRecordId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BlankRecord", 12006);
-		syringeZombieId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BlankRecord", 12007);
+		syringeZombieId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeZombie", 12007);
 
 		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
 		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";
@@ -816,14 +816,14 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.addShapelessRecipe(new ItemStack(syringeHealthItem), new Object[] { syringeEmptyItem, Item.appleRed });
 		GameRegistry.addShapelessRecipe(new ItemStack(syringeGrowthItem), new Object[] { syringeEmptyItem, Item.goldenCarrot });
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(syringeZombieItem, 1), new Object[]
+		GameRegistry.addRecipe(new ItemStack(syringeZombieItem, 1), new Object[]
 				{
 					"FFF",
 					"FSF",
 					"FFF",
 					Character.valueOf('F'), Item.rottenFlesh,
 					Character.valueOf('S'), syringeEmptyItem,
-				} ));
+				} );
 		
 		GameRegistry.addRecipe(new ItemStack(fertilizerItem, 16), new Object[]
 				{

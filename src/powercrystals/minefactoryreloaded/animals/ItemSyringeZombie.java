@@ -23,7 +23,7 @@ public class ItemSyringeZombie extends ItemSyringe
 	@Override
 	public boolean inject(World world, EntityLiving entity, ItemStack syringe)
 	{
-		if(world.rand.nextInt(100) < 50)
+		if(world.rand.nextInt(100) < 2)
 		{
 			EntityZombie z = new EntityZombie(world);
 			z.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
