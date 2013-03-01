@@ -30,7 +30,7 @@ public class ContainerAutoJukebox extends Container
 		super.detectAndSendChanges();
 		for(int i = 0; i < crafters.size(); i++)
 		{
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 100, _jukebox.getCanCopy() ? 1 : 0);
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 100, (_jukebox.getCanCopy() ? 1 : 0) | (_jukebox.getCanPlay() ? 2 : 0));
 		}
 	}
 	
@@ -38,7 +38,11 @@ public class ContainerAutoJukebox extends Container
 	public void updateProgressBar(int var, int value)
 	{
 		super.updateProgressBar(var, value);
-		if(var == 100) _jukebox.setCanCopy(value == 1 ? true : false);
+		if(var == 100)
+		{
+			_jukebox.setCanCopy((value & 1) != 0 ? true : false);
+			_jukebox.setCanPlay((value & 2) != 0 ? true : false);
+		}
 	}
 	
 	@Override

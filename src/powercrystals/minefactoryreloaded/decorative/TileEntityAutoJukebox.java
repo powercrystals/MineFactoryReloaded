@@ -20,6 +20,7 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 	private ItemStack[] _inventory = new ItemStack[2];
 	private boolean _lastRedstoneState;
 	private boolean _canCopy;
+	private boolean _canPlay;
 	
 	public void setCanCopy(boolean canCopy)
 	{
@@ -32,7 +33,26 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 		{
 			return _canCopy;
 		}
-		else if(_inventory[0] != null && _inventory[0].getItem() instanceof ItemRecord && _inventory[1] != null && _inventory[1].itemID == MineFactoryReloadedCore.blankRecordItem.itemID)
+		else if(_inventory[0] != null && _inventory[0].getItem() instanceof ItemRecord && _inventory[1] != null &&
+				_inventory[1].itemID == MineFactoryReloadedCore.blankRecordItem.itemID)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public void setCanPlay(boolean canPlay)
+	{
+		_canPlay = canPlay;
+	}
+	
+	public boolean getCanPlay()
+	{
+		if(worldObj.isRemote)
+		{
+			return _canPlay;
+		}
+		else if(_inventory[0] != null && _inventory[0].getItem() instanceof ItemRecord)
 		{
 			return true;
 		}
@@ -45,6 +65,21 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 		{
 			_inventory[1] = _inventory[0].copy();
 		}
+	}
+	
+	public void playRecord()
+	{
+		if(_inventory[0] != null && _inventory[0].getItem() instanceof ItemRecord)
+		{
+			worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1005, xCoord, yCoord, zCoord, _inventory[0].itemID);
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(),
+					PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.AutoJukeboxPlay, new Object[] { xCoord, yCoord, zCoord, _inventory[0].itemID } ));
+		}
+	}
+	
+	public void stopRecord()
+	{
+		worldObj.playAuxSFX(1005, xCoord, yCoord, zCoord, 0);
 	}
 	
 	@Override
@@ -66,13 +101,8 @@ public class TileEntityAutoJukebox extends TileEntityFactory implements IInvento
 		boolean redstoneState = Util.isRedstonePowered(this);
 		if(redstoneState && !_lastRedstoneState)
 		{
-			worldObj.playAuxSFX(1005, xCoord, yCoord, zCoord, 0);
-			if(_inventory[0] != null && _inventory[0].getItem() instanceof ItemRecord)
-			{
-				worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1005, xCoord, yCoord, zCoord, _inventory[0].itemID);
-				PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(),
-						PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.AutoJukeboxPlay, new Object[] { xCoord, yCoord, zCoord, _inventory[0].itemID } ));
-			}
+			stopRecord();
+			playRecord();
 		}
 		
 		_lastRedstoneState = redstoneState;

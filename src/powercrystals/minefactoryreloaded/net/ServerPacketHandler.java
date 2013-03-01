@@ -71,7 +71,7 @@ public class ServerPacketHandler implements IPacketHandler
 				((TileEntityDeepStorageUnit)te).setSideIsOutput(side, (!((TileEntityDeepStorageUnit)te).getIsSideOutput(side)));
 			}
 		}
-		else if(packetType == Packets.AutoJukeboxCopy) // client -> server: copy record
+		else if(packetType == Packets.AutoJukeboxButton) // client -> server: copy record
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
@@ -79,7 +79,11 @@ public class ServerPacketHandler implements IPacketHandler
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
 			if(te instanceof TileEntityAutoJukebox)
 			{
-				((TileEntityAutoJukebox)te).copyRecord();
+				TileEntityAutoJukebox j = ((TileEntityAutoJukebox)te);
+				int button = (Integer)packetReadout[3];
+				if(button == 1) j.playRecord();
+				else if(button == 2) j.stopRecord();
+				else if(button == 3) j.copyRecord();
 			}
 		}
 	}

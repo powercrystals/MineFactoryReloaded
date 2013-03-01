@@ -16,6 +16,8 @@ import net.minecraft.util.StatCollector;
 public class GuiAutoJukebox extends GuiContainer
 {
 	private TileEntityAutoJukebox _jukebox;
+	private GuiButton _play;
+	private GuiButton _stop;
 	private GuiButton _copy;
 
 	public GuiAutoJukebox(Container container, TileEntityAutoJukebox jukebox)
@@ -29,9 +31,19 @@ public class GuiAutoJukebox extends GuiContainer
 	public void initGui()
 	{
 		super.initGui();
-		_copy = new GuiButton(1, (this.width - this.xSize) / 2 + 63, (this.height - this.ySize) / 2 + 23, 60, 20, "COPY");
-		_copy.enabled = true;
+		_play = new GuiButton(1, (this.width - this.xSize) / 2 + 63, (this.height - this.ySize) / 2 + 23, 20, 20, "\u25B6");
+		_stop = new GuiButton(2, (this.width - this.xSize) / 2 + 83, (this.height - this.ySize) / 2 + 23, 20, 20, "\u25A0");
+		_copy = new GuiButton(3, (this.width - this.xSize) / 2 + 63, (this.height - this.ySize) / 2 + 53, 60, 20, "COPY");
+		controlList.add(_play);
+		controlList.add(_stop);
 		controlList.add(_copy);
+	}
+	
+	@Override
+	public void updateScreen()
+	{
+		super.updateScreen();
+		_copy.enabled = _jukebox.getCanCopy();
 	}
 	
 	@Override
@@ -55,10 +67,7 @@ public class GuiAutoJukebox extends GuiContainer
 	@Override
 	protected void actionPerformed(GuiButton button)
 	{
-		if(button.id == 1)
-		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.AutoJukeboxCopy,
-					new Object[] { _jukebox.xCoord, _jukebox.yCoord, _jukebox.zCoord, 1 }));
-		}
+		PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.AutoJukeboxButton,
+				new Object[] { _jukebox.xCoord, _jukebox.yCoord, _jukebox.zCoord, button.id }));
 	}
 }
