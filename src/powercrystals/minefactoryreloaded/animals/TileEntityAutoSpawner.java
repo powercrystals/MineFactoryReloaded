@@ -19,7 +19,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 	
 	public TileEntityAutoSpawner()
 	{
-		super(1408);
+		super(512);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 	}
 	
