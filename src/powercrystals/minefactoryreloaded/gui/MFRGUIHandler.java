@@ -19,6 +19,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiHarvester;
 import powercrystals.minefactoryreloaded.gui.client.GuiItemRouter;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquidRouter;
+import powercrystals.minefactoryreloaded.gui.client.GuiUnifier;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
@@ -30,10 +31,12 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
 import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquidRouter;
+import powercrystals.minefactoryreloaded.gui.container.ContainerUnifier;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
+import powercrystals.minefactoryreloaded.processing.TileEntityUnifier;
 import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
 import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -88,6 +91,10 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new ContainerAutoJukebox((TileEntityAutoJukebox)te, player.inventory);
 		}
+		else if(te instanceof TileEntityUnifier)
+		{
+			return new ContainerUnifier((TileEntityUnifier)te, player.inventory);
+		}
 		return null;
 	}
 
@@ -138,6 +145,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityAutoJukebox)
 		{
 			return new GuiAutoJukebox(new ContainerAutoJukebox((TileEntityAutoJukebox)te, player.inventory), (TileEntityAutoJukebox)te);
+		}
+		else if(te instanceof TileEntityUnifier)
+		{
+			return new GuiUnifier(new ContainerUnifier((TileEntityUnifier)te, player.inventory), (TileEntityUnifier)te);
 		}
 		return null;
 	}
