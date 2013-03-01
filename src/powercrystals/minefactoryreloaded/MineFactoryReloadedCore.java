@@ -34,9 +34,10 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import powercrystals.core.updater.IUpdateableMod;
 import powercrystals.core.updater.UpdateManager;
-import powercrystals.minefactoryreloaded.animals.ItemGrowthSyringe;
-import powercrystals.minefactoryreloaded.animals.ItemHealthSyringe;
+import powercrystals.minefactoryreloaded.animals.ItemSyringeGrowth;
+import powercrystals.minefactoryreloaded.animals.ItemSyringeHealth;
 import powercrystals.minefactoryreloaded.animals.ItemSafariNet;
+import powercrystals.minefactoryreloaded.animals.ItemSyringeZombie;
 import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
 import powercrystals.minefactoryreloaded.animals.TileEntityBreeder;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
@@ -215,6 +216,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item safariNetItem;
 	public static Item ceramicDyeItem;
 	public static Item blankRecordItem;
+	public static Item syringeZombieItem;
 
 	public static int conveyorTexture = 0;
 	public static int conveyorOffTexture = 1;
@@ -262,6 +264,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property safariNetItemId;
 	public static Property ceramicDyeId;
 	public static Property blankRecordId;
+	public static Property syringeZombieId;
 
 	public static Property animateBlockFaces;
 	public static Property treeSearchMaxVertical;
@@ -391,13 +394,14 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		sludgeBucketItem = (new ItemFactory(sludgeBucketItemId.getInt())).setIconIndex(11).setItemName("sludgeBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		mobEssenceBucketItem = (new ItemFactory(mobEssenceBucketItemId.getInt())).setIconIndex(12).setItemName("mobEssenceBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setIconIndex(13).setItemName("syringeEmptyItem");
-		syringeHealthItem = (new ItemHealthSyringe()).setIconIndex(14).setItemName("syringeHealthItem").setContainerItem(syringeEmptyItem);
-		syringeGrowthItem = (new ItemGrowthSyringe()).setIconIndex(15).setItemName("syringeGrowthItem").setContainerItem(syringeEmptyItem);
+		syringeHealthItem = (new ItemSyringeHealth()).setIconIndex(14).setItemName("syringeHealthItem").setContainerItem(syringeEmptyItem);
+		syringeGrowthItem = (new ItemSyringeGrowth()).setIconIndex(15).setItemName("syringeGrowthItem").setContainerItem(syringeEmptyItem);
 		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setIconIndex(16).setItemName("rawRubberItem");
 		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setIconIndex(17).setItemName("factoryMachineBlock");
 		safariNetItem = (new ItemSafariNet()).setIconIndex(18).setItemName("safariNetItem");
 		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setIconIndex(22).setItemName("ceramicDyeItem");
 		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setIconIndex(40).setItemName("blankRecordItem").setMaxStackSize(1);
+		syringeZombieItem = (new ItemSyringeZombie()).setIconIndex(41).setItemName("syringeZombieItem").setContainerItem(syringeEmptyItem);
 
 		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
 		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
@@ -680,6 +684,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		safariNetItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNet", 12004);
 		ceramicDyeId = c.getItem(Configuration.CATEGORY_ITEM, "ID.CeramicDye", 12005);
 		blankRecordId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BlankRecord", 12006);
+		syringeZombieId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BlankRecord", 12007);
 
 		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
 		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";
