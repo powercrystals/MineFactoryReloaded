@@ -234,4 +234,21 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
+	
+	public static void registerSafariNetBlacklist(Class<?> blacklistedEntity)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerSafariNetBlacklist", Class.class);
+				reg.invoke(registry, blacklistedEntity);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }
