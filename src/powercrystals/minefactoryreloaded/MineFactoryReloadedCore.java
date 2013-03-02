@@ -863,7 +863,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('B'), new ItemStack(Block.stoneBrick, 1, 0),
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(factoryRoadBlock, 1, 1), new Object[]
+		GameRegistry.addRecipe(new ItemStack(factoryRoadBlock, 4, 1), new Object[]
 				{
 					"R R",
 					" G ",
@@ -877,7 +877,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		if(vanillaOverrideIce.getBoolean(true))
 		{
-			GameRegistry.addShapelessRecipe(new ItemStack(Block.ice, 1, 1), new ItemStack(Block.ice, 0, 1), new ItemStack(rawPlasticItem, 1));
+			GameRegistry.addShapelessRecipe(new ItemStack(Block.ice, 1, 1), new ItemStack(Block.ice, 1, 0), new ItemStack(rawPlasticItem, 1));
 		}
 		
 		GameRegistry.addRecipe(new ItemStack(blankRecordItem, 1), new Object[]
