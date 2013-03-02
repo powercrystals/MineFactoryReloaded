@@ -24,31 +24,14 @@ public class NEIMFRConfig implements IConfigureNEI
 	private void addSubSet()
 	{
 		MultiItemRange subTypes = new MultiItemRange();
-		for (int i = 0; i <= 15; i++)
-		{
-			subTypes.add(MineFactoryReloadedCore.machineBlock0.blockID, i, i);
-		}
-		for (int i = 0; i <= 10; i++)
-		{
-			subTypes.add(MineFactoryReloadedCore.machineBlock1.blockID, i, i);
-		}
-		for (int i = 0; i <= 15; i++)
-		{
-			subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.itemID, i, i);
-		}
-		for (int i = 0; i <= 15; i++)
-		{
-			subTypes.add(MineFactoryReloadedCore.factoryGlassBlock.blockID, i, i);
-		}
-		for (int i = 0; i <= 15; i++)
-		{
-			subTypes.add(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, i, i);
-		}
-		
-		for (int i = 0; i <= 16; i++)
-		{
-			subTypes.add(MineFactoryReloadedCore.conveyorBlock.blockID, 0, 0);
-		}
+		subTypes.add(MineFactoryReloadedCore.machineBlock0.blockID, 0, 15);
+		subTypes.add(MineFactoryReloadedCore.machineBlock1.blockID, 0, 10);
+		subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.itemID, 0, 15);
+		subTypes.add(MineFactoryReloadedCore.factoryGlassBlock.blockID, 0, 15);
+		subTypes.add(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, 0, 15);
+
+		subTypes.add(MineFactoryReloadedCore.conveyorBlock.blockID, 0, 16);
+
 		
 		subTypes.add(MineFactoryReloadedCore.rubberWoodBlock.blockID, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.rubberLeavesBlock.blockID, 0, 0);
@@ -59,8 +42,8 @@ public class NEIMFRConfig implements IConfigureNEI
 		subTypes.add(MineFactoryReloadedCore.railPickupPassengerBlock.blockID, 0, 0);
 		
 		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 0, 0);
-		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 0, 1);
-		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 0, 4);
+		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 1, 1);
+		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 4, 4);
 		
 		subTypes.add(MineFactoryReloadedCore.factoryHammerItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.milkItem, 0, 0);
