@@ -423,12 +423,14 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		if(vanillaOverrideGlassPane.getBoolean(true))
 		{
 			Block.blocksList[Block.thinGlass.blockID] = null;
+			Item.itemsList[Block.thinGlass.blockID - 256] = null;
 			Block.thinGlass = new BlockVanillaGlassPane();
 			GameRegistry.registerBlock(Block.thinGlass, "blockVanillaGlassPane");
 		}
 		if(vanillaOverrideIce.getBoolean(true))
 		{
 			Block.blocksList[Block.ice.blockID] = null;
+			Item.itemsList[Block.thinGlass.blockID - 256] = null;
 			Block.ice = new BlockVanillaIce();
 			GameRegistry.registerBlock(Block.ice, ItemBlockVanillaIce.class, "blockVanillaIce");
 		}
