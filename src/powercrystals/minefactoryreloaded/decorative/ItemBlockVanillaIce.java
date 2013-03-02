@@ -31,7 +31,7 @@ public class ItemBlockVanillaIce extends ItemBlock
 
     public String getItemNameIS(ItemStack stack)
     {
-        if(stack.getItemDamage() == 0) return "ice";
+        if(stack.getItemDamage() == 0) return "tile.ice";
         if(stack.getItemDamage() == 1) return "iceUnmelting";
         return "ice";
     }
