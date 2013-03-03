@@ -30,7 +30,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	{
 		super.updateEntity();
 		
-		if(worldObj.isRemote)
+		if(!worldObj.isRemote)
 		{
 			for(int i = 0; i < 9; i++)
 			{
