@@ -4,28 +4,24 @@ import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
 import powercrystals.minefactoryreloaded.processing.TileEntityUnifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerUnifier extends Container
+public class ContainerUnifier extends ContainerFactoryInventory
 {
 	private TileEntityUnifier _unifier;
 	
 	public ContainerUnifier(TileEntityUnifier tileentity, InventoryPlayer inv)
 	{
-		super();
+		super(tileentity, inv);
 		_unifier = tileentity;
-		addSlotToContainer(new Slot(tileentity, 0, 8, 24));
-		addSlotToContainer(new SlotRemoveOnly(tileentity, 1, 8, 54));
-		
-		bindPlayerInventory(inv);
 	}
 	
 	@Override
-	public boolean canInteractWith(EntityPlayer player)
+	protected void addSlots()
 	{
-		return ((TileEntityUnifier)_unifier).isUseableByPlayer(player);
+		addSlotToContainer(new Slot(_unifier, 0, 8, 24));
+		addSlotToContainer(new SlotRemoveOnly(_unifier, 1, 8, 54));
 	}
 	
 	@Override
@@ -70,21 +66,5 @@ public class ContainerUnifier extends Container
 		}
 
 		return stack;
-	}
-	
-	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 9; j++)
-			{
-					addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-			}
-		}
-
-		for (int i = 0; i < 9; i++)
-		{
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
-		}
 	}
 }

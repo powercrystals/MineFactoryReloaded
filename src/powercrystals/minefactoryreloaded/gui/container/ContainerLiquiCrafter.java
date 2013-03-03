@@ -7,7 +7,6 @@ import powercrystals.minefactoryreloaded.gui.slot.SlotViewOnly;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -16,7 +15,7 @@ import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class ContainerLiquiCrafter extends Container
+public class ContainerLiquiCrafter extends ContainerFactoryInventory
 {
 	private TileEntityLiquiCrafter _crafter;
 	
@@ -25,8 +24,13 @@ public class ContainerLiquiCrafter extends Container
 
 	public ContainerLiquiCrafter(TileEntityLiquiCrafter crafter, InventoryPlayer inventoryPlayer)
 	{
-		super();
+		super(crafter, inventoryPlayer);
 		_crafter = crafter;
+	}
+	
+	@Override
+	protected void addSlots()
+	{
 		for(int i = 0; i < 3; i++)
 		{
 			for(int j = 0; j < 3; j++)
@@ -45,8 +49,6 @@ public class ContainerLiquiCrafter extends Container
 				addSlotToContainer(new Slot(_crafter, 11 + j + i * 9, 8 + j * 18, 79 + i * 18));
 			}
 		}
-		
-		bindPlayerInventory(inventoryPlayer);
 	}
 	
 	@Override
@@ -87,28 +89,6 @@ public class ContainerLiquiCrafter extends Container
 		{
 			_tempLiquidStack.amount = value;
 			((LiquidTank)_crafter.getTanks(ForgeDirection.UNKNOWN)[_tempTankIndex]).setLiquid(_tempLiquidStack);
-		}
-	}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer entityplayer)
-	{
-		return _crafter.isUseableByPlayer(entityplayer);
-	}
-	
-	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 9; j++)
-			{
-					addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 133 + i * 18));
-			}
-		}
-
-		for (int i = 0; i < 9; i++)
-		{
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 191));
 		}
 	}
 	

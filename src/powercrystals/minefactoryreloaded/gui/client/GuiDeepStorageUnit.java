@@ -1,19 +1,16 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.StatCollector;
 
-public class GuiDeepStorageUnit extends GuiContainer
+public class GuiDeepStorageUnit extends GuiFactoryInventory
 {
 	private TileEntityDeepStorageUnit _dsu;
 
@@ -24,9 +21,9 @@ public class GuiDeepStorageUnit extends GuiContainer
 	private GuiButton _dirWest;
 	private GuiButton _dirEast;
 	
-	public GuiDeepStorageUnit(Container container, TileEntityDeepStorageUnit dsu)
+	public GuiDeepStorageUnit(ContainerFactoryInventory container, TileEntityDeepStorageUnit dsu)
 	{
-		super(container);
+		super(container, dsu);
 		_dsu = dsu;
 		ySize = 205;
 	}
@@ -86,17 +83,6 @@ public class GuiDeepStorageUnit extends GuiContainer
 		fontRenderer.drawString(((Integer)_dsu.getQuantity()).toString(), 110, 80, 4210752);
 		
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);	
-	}
-	
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
-	{
-		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "dsu.png");
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(texture);
-		int x = (width - xSize) / 2;
-		int y = (height - ySize) / 2;
-		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 	}
 	
 	@Override

@@ -10,7 +10,6 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoJukebox;
-import powercrystals.minefactoryreloaded.gui.client.GuiAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.client.GuiChronotyper;
 import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -22,7 +21,6 @@ import powercrystals.minefactoryreloaded.gui.client.GuiLiquidRouter;
 import powercrystals.minefactoryreloaded.gui.client.GuiUnifier;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
-import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.container.ContainerChronotyper;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
@@ -61,7 +59,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityAutoSpawner)
 		{
-			return new ContainerAutoSpawner(((TileEntityAutoSpawner)te), player.inventory);
+			return new ContainerFactoryInventory(((TileEntityAutoSpawner)te), player.inventory);
 		}
 		else if(te instanceof TileEntityFactoryInventory)
 		{
@@ -116,7 +114,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityAutoSpawner)
 		{
-			return new GuiAutoSpawner(new ContainerAutoSpawner((TileEntityAutoSpawner)te, player.inventory), (TileEntityAutoSpawner)te);
+			return new GuiFactoryInventory(new ContainerFactoryInventory((TileEntityAutoSpawner)te, player.inventory), (TileEntityAutoSpawner)te);
 		}
 		else if(te instanceof TileEntityFactoryInventory)
 		{

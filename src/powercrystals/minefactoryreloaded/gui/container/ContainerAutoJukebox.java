@@ -2,7 +2,6 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -10,18 +9,20 @@ import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptBlankRecord;
 import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptRecord;
 
-public class ContainerAutoJukebox extends Container
+public class ContainerAutoJukebox extends ContainerFactoryInventory
 {
 	private TileEntityAutoJukebox _jukebox;
 	
 	public ContainerAutoJukebox(TileEntityAutoJukebox tileentity, InventoryPlayer inv)
 	{
-		super();
-		_jukebox = tileentity;
-		addSlotToContainer(new SlotAcceptRecord(tileentity, 0, 8, 24));
-		addSlotToContainer(new SlotAcceptBlankRecord(tileentity, 1, 8, 54));
-		
-		bindPlayerInventory(inv);
+		super(tileentity, inv);
+	}
+	
+	@Override
+	protected void addSlots()
+	{
+		addSlotToContainer(new SlotAcceptRecord(_jukebox, 0, 8, 24));
+		addSlotToContainer(new SlotAcceptBlankRecord(_jukebox, 1, 8, 54));
 	}
 
 	@Override
@@ -43,12 +44,6 @@ public class ContainerAutoJukebox extends Container
 			_jukebox.setCanCopy((value & 1) != 0 ? true : false);
 			_jukebox.setCanPlay((value & 2) != 0 ? true : false);
 		}
-	}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer player)
-	{
-		return ((TileEntityAutoJukebox)_jukebox).isUseableByPlayer(player);
 	}
 	
 	@Override
@@ -93,21 +88,5 @@ public class ContainerAutoJukebox extends Container
 		}
 
 		return stack;
-	}
-	
-	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 9; j++)
-			{
-					addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-			}
-		}
-
-		for (int i = 0; i < 9; i++)
-		{
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
-		}
 	}
 }

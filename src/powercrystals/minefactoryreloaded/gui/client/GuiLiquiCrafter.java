@@ -3,23 +3,22 @@ package powercrystals.minefactoryreloaded.gui.client;
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
 import net.minecraft.block.Block;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.LiquidStack;
 
-public class GuiLiquiCrafter extends GuiContainer
+public class GuiLiquiCrafter extends GuiFactoryInventory
 {
 	private TileEntityLiquiCrafter _crafter;
 
-	public GuiLiquiCrafter(Container container, TileEntityLiquiCrafter router)
+	public GuiLiquiCrafter(ContainerFactoryInventory container, TileEntityLiquiCrafter router)
 	{
-		super(container);
+		super(container, router);
 		_crafter = router;
 		ySize = 256;
 	}
@@ -72,17 +71,6 @@ public class GuiLiquiCrafter extends GuiContainer
 					this.drawTexturedModalRect(42 - 56, 80, 232, 0, 16, 33);
 			}
 		}
-	}
-	
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
-	{
-		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "liquicrafter.png");
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(texture);
-		int x = (width - xSize) / 2;
-		int y = (height - ySize) / 2;
-		this.drawTexturedModalRect(x - 56, y, 0, 0, xSize + 56, ySize);
 	}
 	
 	private void drawTank(int liquidId, int liquidMeta, int level, int tankIndex)

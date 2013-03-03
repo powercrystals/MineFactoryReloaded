@@ -6,46 +6,27 @@ import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerDeepStorageUnit extends Container
+public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 {
 	private TileEntityDeepStorageUnit _dsu;
 	private int _tempQuantity;
 	
 	public ContainerDeepStorageUnit(TileEntityDeepStorageUnit dsu, InventoryPlayer inventoryPlayer)
 	{
+		super(dsu, inventoryPlayer);
 		_dsu = dsu;
-		addSlotToContainer(new Slot(dsu, 0, 134, 16));
-		addSlotToContainer(new Slot(dsu, 1, 152, 16));
-		addSlotToContainer(new SlotRemoveOnly(dsu, 2, 152, 49));
-		
-		bindPlayerInventory(inventoryPlayer);
 	}
 	
 	@Override
-	public boolean canInteractWith(EntityPlayer player)
+	protected void addSlots()
 	{
-		return _dsu.isUseableByPlayer(player);
-	}
-	
-	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 9; j++)
-			{
-					addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 124 + i * 18));
-			}
-		}
-
-		for (int i = 0; i < 9; i++)
-		{
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 182));
-		}
+		addSlotToContainer(new Slot(_dsu, 0, 134, 16));
+		addSlotToContainer(new Slot(_dsu, 1, 152, 16));
+		addSlotToContainer(new SlotRemoveOnly(_dsu, 2, 152, 49));
 	}
 	
 	@Override
