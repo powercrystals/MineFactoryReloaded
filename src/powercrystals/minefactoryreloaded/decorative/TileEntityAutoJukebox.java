@@ -3,7 +3,6 @@ package powercrystals.minefactoryreloaded.decorative;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemRecord;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 import powercrystals.core.net.PacketWrapper;
@@ -14,7 +13,6 @@ import powercrystals.minefactoryreloaded.net.Packets;
 
 public class TileEntityAutoJukebox extends TileEntityFactoryInventory implements ISidedInventory
 {
-	private ItemStack[] _inventory = new ItemStack[2];
 	private boolean _lastRedstoneState;
 	private boolean _canCopy;
 	private boolean _canPlay;

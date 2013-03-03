@@ -11,8 +11,6 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
 public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implements ISidedInventory, IDeepStorageUnit
 {
-	// in, in, out
-	private ItemStack[] _inventory = new ItemStack[3];
 	private boolean[] _isSideOutput = new boolean[] { false, false, true, true, true, true };
 	
 	private int _storedQuantity;

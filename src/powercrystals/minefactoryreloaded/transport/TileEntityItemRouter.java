@@ -12,7 +12,6 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
 public class TileEntityItemRouter extends TileEntityFactoryInventory implements ISidedInventory
 {
-	private ItemStack[] _inventory = new ItemStack[getSizeInventory()];
 	private static final int[] _invOffsets = new int[] { 0, 0, 9, 18, 36, 27 };
 	private static final ForgeDirection[] _outputDirections = new ForgeDirection[]
 			{ ForgeDirection.DOWN, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };

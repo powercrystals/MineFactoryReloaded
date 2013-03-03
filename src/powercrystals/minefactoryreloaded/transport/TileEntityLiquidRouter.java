@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.transport;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
@@ -13,7 +12,6 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
 public class TileEntityLiquidRouter extends TileEntityFactoryInventory implements ITankContainer
 {
-	private ItemStack[] _inventory = new ItemStack[6];
 	private LiquidTank[] _bufferTanks = new LiquidTank[6];
 	private static final ForgeDirection[] _outputDirections = new ForgeDirection[]
 			{ ForgeDirection.DOWN, ForgeDirection.UP, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };

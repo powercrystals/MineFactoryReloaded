@@ -11,8 +11,6 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
 public class TileEntityUnifier extends TileEntityFactoryInventory implements ISidedInventory
 {
-	private ItemStack[] _inventory = new ItemStack[2];
-	
 	@Override
 	public String getGuiBackground()
 	{
