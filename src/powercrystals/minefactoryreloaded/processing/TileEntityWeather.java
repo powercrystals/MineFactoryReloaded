@@ -25,6 +25,12 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "weathercollector.png";
+	}
+	
+	@Override
 	public boolean canRotate()
 	{
 		return false;

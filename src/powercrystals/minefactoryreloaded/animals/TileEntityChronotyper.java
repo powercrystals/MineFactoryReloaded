@@ -21,6 +21,12 @@ public class TileEntityChronotyper extends TileEntityFactoryPowered
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "chronotyper.png";
+	}
+	
+	@Override
 	public int getSizeInventory()
 	{
 		return 0;

@@ -21,6 +21,12 @@ public class TileEntityDeepStorageUnit extends TileEntityFactory implements IInv
 	private int _storedId;
 	private int _storedMeta;
 	
+	@Override
+	public String getGuiBackground()
+	{
+		return "dsu.png";
+	}
+	
 	public boolean getIsSideOutput(int side)
 	{
 		return _isSideOutput[side];

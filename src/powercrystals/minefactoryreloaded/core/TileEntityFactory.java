@@ -129,6 +129,11 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 		_isActive = isActive;
 	}
 	
+	public String getGuiBackground()
+	{
+		return null;
+	}
+	
 	@Override
 	public Packet getDescriptionPacket()
 	{

@@ -25,6 +25,12 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 		_areaManager.setOverrideDirection(ForgeDirection.UP);
 	}
 	
+	@Override
+	public String getGuiBackground()
+	{
+		return "planter.png";
+	}
+	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
 		plantables.put(new Integer(plantable.getSourceId()), plantable);

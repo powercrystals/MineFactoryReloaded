@@ -19,6 +19,12 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 		super(640);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "breeder.png";
+	}
 
 	@Override
 	public int getEnergyStoredMax()

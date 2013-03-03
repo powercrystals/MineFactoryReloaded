@@ -8,6 +8,12 @@ public class TileEntityLavaFabricator extends TileEntityLiquidFabricator
 	{
 		super(Block.lavaStill.blockID, 200, 20);
 	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "lavafab.png";
+	}
 
 	@Override
 	public String getInvName()

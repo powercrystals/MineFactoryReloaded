@@ -24,6 +24,12 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "autospawner.png";
+	}
+	
+	@Override
 	public int getSizeInventory()
 	{
 		return 1;

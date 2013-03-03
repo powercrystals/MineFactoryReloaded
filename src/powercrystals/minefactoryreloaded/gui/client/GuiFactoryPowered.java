@@ -33,25 +33,6 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 		
 		drawBars();
 	}
-
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float gameTicks, int mouseX, int mouseY)
-	{
-		int texture;
-		if(_tePowered.getTank() == null)
-		{
-			texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "noinv.png");
-		}
-		else
-		{
-			texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "noinvtank.png");
-		}
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(texture);
-		int x = (width - xSize) / 2;
-		int y = (height - ySize) / 2;
-		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-	}
 	
 	protected void drawBars()
 	{

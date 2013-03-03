@@ -24,6 +24,12 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "composter.png";
+	}
+	
+	@Override
 	public boolean canRotate()
 	{
 		return false;

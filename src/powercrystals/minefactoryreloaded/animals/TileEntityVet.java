@@ -20,6 +20,12 @@ public class TileEntityVet extends TileEntityFactoryPowered
 		super(320);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "vet.png";
+	}
 
 	@Override
 	public int getEnergyStoredMax()

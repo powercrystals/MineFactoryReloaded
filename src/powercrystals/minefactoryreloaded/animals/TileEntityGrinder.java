@@ -35,6 +35,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		grindables.put(grindable.getGrindableEntity(), grindable);
 	}
 	
+	@Override
+	public String getGuiBackground()
+	{
+		return "grinder.png";
+	}
+	
 	public TileEntityGrinder()
 	{
 		super(3200);

@@ -20,6 +20,12 @@ public class TileEntityFisher extends TileEntityFactoryPowered implements IMachi
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "fisher.png";
+	}
+	
+	@Override
 	public boolean canRotate()
 	{
 		return false;

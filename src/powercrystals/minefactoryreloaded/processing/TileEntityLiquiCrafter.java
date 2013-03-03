@@ -54,6 +54,12 @@ public class TileEntityLiquiCrafter extends TileEntityFactory implements IInvent
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "liquicrafter.png";
+	}
+	
+	@Override
 	public void updateEntity()
 	{
 		super.updateEntity();

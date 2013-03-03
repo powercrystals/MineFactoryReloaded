@@ -40,6 +40,12 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "rancher.png";
+	}
+	
+	@Override
 	protected boolean shouldPumpLiquid()
 	{
 		return true;

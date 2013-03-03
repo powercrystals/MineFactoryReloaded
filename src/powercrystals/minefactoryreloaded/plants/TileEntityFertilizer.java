@@ -41,6 +41,12 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 		_rand = new Random();
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "fertilizer.png";
+	}
 
 	@Override
 	public boolean activateMachine()

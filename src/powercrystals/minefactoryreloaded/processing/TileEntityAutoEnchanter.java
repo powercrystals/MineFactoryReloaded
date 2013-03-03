@@ -31,6 +31,12 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "autoenchanter.png";
+	}
+	
+	@Override
 	public boolean canRotate()
 	{
 		return false;

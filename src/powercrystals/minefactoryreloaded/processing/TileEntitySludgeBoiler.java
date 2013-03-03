@@ -47,6 +47,12 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	}
 	
 	@Override
+	public String getGuiBackground()
+	{
+		return "sludgeboiler.png";
+	}
+	
+	@Override
 	public boolean canRotate()
 	{
 		return false;

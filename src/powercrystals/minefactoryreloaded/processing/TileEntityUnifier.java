@@ -17,8 +17,10 @@ public class TileEntityUnifier extends TileEntityFactory implements IInventory, 
 {
 	private ItemStack[] _inventory = new ItemStack[2];
 	
-	public TileEntityUnifier()
+	@Override
+	public String getGuiBackground()
 	{
+		return "unifier.png";
 	}
 	
 	@Override

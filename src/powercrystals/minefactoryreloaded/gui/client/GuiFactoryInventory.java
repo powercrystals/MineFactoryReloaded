@@ -20,15 +20,8 @@ public class GuiFactoryInventory extends GuiContainer
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float mouseX, int mouseY, int gameTicks)
 	{
-		int texture;
-		if(_tileEntity.getTank() == null)
-		{
-			texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "inv.png");
-		}
-		else
-		{
-			texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "invtank.png");
-		}
+		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
+
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.renderEngine.bindTexture(texture);
 		int x = (width - xSize) / 2;

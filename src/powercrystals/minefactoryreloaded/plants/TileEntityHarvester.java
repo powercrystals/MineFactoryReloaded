@@ -56,6 +56,12 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		_rand = new Random();
 	}
 	
+	@Override
+	public String getGuiBackground()
+	{
+		return "harvester.png";
+	}
+	
 	public HashMap<String, Boolean> getSettings()
 	{
 		return _settings;
