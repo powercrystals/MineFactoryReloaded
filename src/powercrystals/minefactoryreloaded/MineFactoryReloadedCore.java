@@ -106,6 +106,7 @@ import powercrystals.minefactoryreloaded.net.ServerPacketHandler;
 import powercrystals.minefactoryreloaded.plants.TileEntityFertilizer;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.plants.TileEntityPlanter;
+import powercrystals.minefactoryreloaded.power.TileEntityBioFuelGenerator;
 import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 import powercrystals.minefactoryreloaded.processing.TileEntityBlockBreaker;
 import powercrystals.minefactoryreloaded.processing.TileEntityComposter;
@@ -328,7 +329,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public enum Machine
 	{
 		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper,
-		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox, Unifier, AutoSpawner, BioReactor
+		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox, Unifier, AutoSpawner, BioReactor,
+		BioFuelGenerator
 	}
 
 	public static MineFactoryReloadedCore instance()
@@ -375,6 +377,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machine1MetadataMappings.put(Machine.Unifier, 8);
 		machine1MetadataMappings.put(Machine.AutoSpawner, 9);
 		machine1MetadataMappings.put(Machine.BioReactor, 10);
+		machine1MetadataMappings.put(Machine.BioFuelGenerator, 11);
 
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorOffTexture);
 		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt());
@@ -476,6 +479,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityUnifier.class, "factoryUnifier");
 		GameRegistry.registerTileEntity(TileEntityAutoSpawner.class, "factoryAutoSpawner");
 		GameRegistry.registerTileEntity(TileEntityBioReactor.class, "factoryBioReactor");
+		GameRegistry.registerTileEntity(TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator");
 
 		MinecraftForge.EVENT_BUS.register(instance);
 

@@ -25,7 +25,7 @@ public class NEIMFRConfig implements IConfigureNEI
 	{
 		MultiItemRange subTypes = new MultiItemRange();
 		subTypes.add(MineFactoryReloadedCore.machineBlock0.blockID, 0, 15);
-		subTypes.add(MineFactoryReloadedCore.machineBlock1.blockID, 0, 10);
+		subTypes.add(MineFactoryReloadedCore.machineBlock1.blockID, 0, 11);
 		subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.itemID, 0, 15);
 		subTypes.add(MineFactoryReloadedCore.factoryGlassBlock.blockID, 0, 15);
 		subTypes.add(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, 0, 15);
