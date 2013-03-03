@@ -1,7 +1,6 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraftforge.liquids.LiquidStack;
@@ -27,12 +26,6 @@ public class ContainerFactoryPowered extends ContainerFactoryInventory
 	{
 		super(te, inv);
 		_te = te;
-	}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer entityplayer)
-	{
-		return entityplayer.getDistanceSq((double)_te.xCoord + 0.5D, (double)_te.yCoord + 0.5D, (double)_te.zCoord + 0.5D) <= 64D;
 	}
 
 	@Override
