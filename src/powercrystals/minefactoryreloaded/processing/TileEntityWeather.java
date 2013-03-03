@@ -159,4 +159,10 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 	{
 		return 0;
 	}
+
+	@Override
+	public boolean manageSolids()
+	{
+		return true;
+	}
 }

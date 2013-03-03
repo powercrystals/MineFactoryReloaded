@@ -317,4 +317,10 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		return 0;
 	}
+
+	@Override
+	public boolean manageSolids()
+	{
+		return true;
+	}
 }

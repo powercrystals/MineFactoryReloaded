@@ -192,4 +192,10 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	{
 		return 0;
 	}
+
+	@Override
+	public boolean manageSolids()
+	{
+		return true;
+	}
 }

@@ -203,4 +203,10 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		return _tank;
 	}
+
+	@Override
+	public boolean manageSolids()
+	{
+		return true;
+	}
 }

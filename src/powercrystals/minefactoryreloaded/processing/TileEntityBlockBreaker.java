@@ -75,4 +75,10 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 	{
 		return 0;
 	}
+
+	@Override
+	public boolean manageSolids()
+	{
+		return true;
+	}
 }

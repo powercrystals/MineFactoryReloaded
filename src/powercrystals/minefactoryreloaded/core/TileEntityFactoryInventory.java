@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.core;
 
+import buildcraft.core.IMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -9,7 +10,7 @@ import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public abstract class TileEntityFactoryInventory extends TileEntityFactory implements IInventory
+public abstract class TileEntityFactoryInventory extends TileEntityFactory implements IInventory, IMachine
 {
 	protected TileEntityFactoryInventory()
 	{
@@ -148,5 +149,29 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	public ItemStack getStackInSlotOnClosing(int var1)
 	{
 		return null;
+	}
+
+	@Override
+	public boolean isActive()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean manageLiquids()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean manageSolids()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean allowActions()
+	{
+		return false;
 	}
 }
