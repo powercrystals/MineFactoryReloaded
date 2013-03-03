@@ -17,15 +17,12 @@ import net.minecraftforge.liquids.LiquidTank;
 
 public class ContainerFactoryPowered extends ContainerFactoryInventory
 {
-	protected TileEntityFactoryPowered _te;
-	
 	private int _tankAmount;
 	private int _tankId;
 	
 	public ContainerFactoryPowered(TileEntityFactoryPowered te, InventoryPlayer inv)
 	{
 		super(te, inv);
-		_te = te;
 	}
 
 	@Override
@@ -34,9 +31,9 @@ public class ContainerFactoryPowered extends ContainerFactoryInventory
 		super.detectAndSendChanges();
 		for(int i = 0; i < crafters.size(); i++)
 		{
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 0, _te.getWorkDone());
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 1, _te.getEnergyStored());
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 2, _te.getIdleTicks());
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 0, ((TileEntityFactoryPowered)_te).getWorkDone());
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 1, ((TileEntityFactoryPowered)_te).getEnergyStored());
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 2, ((TileEntityFactoryPowered)_te).getIdleTicks());
 			if(_te.getTank() != null && _te.getTank().getLiquid() != null)
 			{
 				((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 3, _te.getTank().getLiquid().amount);
@@ -55,9 +52,9 @@ public class ContainerFactoryPowered extends ContainerFactoryInventory
 	@Override
 	public void updateProgressBar(int var, int value)
 	{
-		if(var == 0) _te.setWorkDone(value);
-		else if(var == 1) _te.setEnergyStored(value);
-		else if(var == 2) _te.setIdleTicks(value);
+		if(var == 0) ((TileEntityFactoryPowered)_te).setWorkDone(value);
+		else if(var == 1) ((TileEntityFactoryPowered)_te).setEnergyStored(value);
+		else if(var == 2) ((TileEntityFactoryPowered)_te).setIdleTicks(value);
 		else if(var == 3) _tankAmount = value;
 		else if(var == 4) _tankId = value;
 		else if(var == 5) ((LiquidTank)_te.getTank()).setLiquid(new LiquidStack(_tankId, _tankAmount, value));
