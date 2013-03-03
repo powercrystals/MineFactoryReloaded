@@ -72,6 +72,7 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoJukebox)), "Auto-Jukebox");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.Unifier)), "Unifier");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoSpawner)), "Auto-Spawner");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.BioReactor)), "Bio Reactor");
 
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, 16), "Conveyor Belt");
 
@@ -114,6 +115,8 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(MineFactoryReloadedCore.blankRecordItem, "Blank Record");
 		LanguageRegistry.addName(MineFactoryReloadedCore.syringeZombieItem, "Zombie Syringe");
 		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetSingleItem, "Safari Net (Single Use)");
+		LanguageRegistry.addName(MineFactoryReloadedCore.bioFuelItem, "BioFuel");
+		LanguageRegistry.addName(MineFactoryReloadedCore.bioFuelBucketItem, "BioFuel Bucket");
 		
 		for(int i = 0; i < 16; i++)
 		{
