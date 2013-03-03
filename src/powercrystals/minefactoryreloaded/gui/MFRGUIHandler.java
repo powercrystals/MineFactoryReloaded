@@ -21,6 +21,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquidRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
+import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioReactor;
 import powercrystals.minefactoryreloaded.gui.container.ContainerChronotyper;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
@@ -60,7 +61,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityAutoSpawner)
 		{
-			return new ContainerFactoryInventory(((TileEntityAutoSpawner)te), player.inventory);
+			return new ContainerAutoSpawner(((TileEntityAutoSpawner)te), player.inventory);
 		}
 		else if(te instanceof TileEntityBioReactor)
 		{
@@ -119,7 +120,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityAutoSpawner)
 		{
-			return new GuiFactoryInventory(new ContainerFactoryInventory((TileEntityAutoSpawner)te, player.inventory), (TileEntityAutoSpawner)te);
+			return new GuiFactoryInventory(new ContainerAutoSpawner((TileEntityAutoSpawner)te, player.inventory), (TileEntityAutoSpawner)te);
 		}
 		else if(te instanceof TileEntityBioReactor)
 		{
