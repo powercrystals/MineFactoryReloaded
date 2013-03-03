@@ -15,6 +15,7 @@ public class GuiFactoryInventory extends GuiContainer
 	public GuiFactoryInventory(ContainerFactoryInventory container, TileEntityFactoryInventory tileentity)
 	{
 		super(container);
+		_tileEntity = tileentity;
 	}
 
 	@Override
