@@ -20,6 +20,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	private int _burnTime;
 	private static final int _burnTimeMax = 8000;
 	private static final int _bioFuelPerTick = 10;
+	private static final int _burnTimeDecreasePerTick = 10;
 	
 	// start at 80, +20 for each slot after the first
 	private static final int[] _outputValues = { 0, 80, 180, 300, 440, 600, 780, 980, 1200, 1440 };
@@ -111,7 +112,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 			
 			if(_burnTime > 0 && (_tank.getLiquid() == null || _tank.getLiquid().amount < _tank.getCapacity() - _bioFuelPerTick))
 			{
-				_burnTime -= 1;
+				_burnTime -= _burnTimeDecreasePerTick;
 				_tank.fill(new LiquidStack(MineFactoryReloadedCore.bioFuelItem.itemID, _bioFuelPerTick), true);
 			}
 		}
