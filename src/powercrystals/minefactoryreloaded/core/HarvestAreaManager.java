@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.core;
 
+import java.util.List;
+
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
@@ -14,6 +16,9 @@ public class HarvestAreaManager
 	private int _areaUp;
 	private int _areaDown;
 	
+	private List<BlockPosition> _harvestedBlocks;
+	private int _currentBlock;
+	
 	public HarvestAreaManager(TileEntityFactory owner, int harvestRadius, int harvestAreaUp, int harvestAreaDown)
 	{
 		_overrideDirection = ForgeDirection.UNKNOWN;
@@ -23,24 +28,31 @@ public class HarvestAreaManager
 		_owner = owner;
 	}
 	
-	private void recalculateArea()
+	public Area getHarvestArea()
 	{
-		BlockPosition ourpos = BlockPosition.fromFactoryTile(_owner);
-		if(_overrideDirection != ForgeDirection.UNKNOWN)
-		{
-			ourpos.orientation = _overrideDirection;
-		}
-		ourpos.moveForwards(_radius + 1);
-		Area a = new Area(ourpos, _radius, _areaDown, _areaUp);
-		_harvestArea = a;
+		checkRecalculate();
+		return _harvestArea;
 	}
 	
-	public Area getHarvestArea()
+	public BlockPosition getNextBlock()
+	{
+		checkRecalculate();
+		BlockPosition next = _harvestedBlocks.get(_currentBlock);
+		_currentBlock++;
+		if(_currentBlock >= _harvestedBlocks.size())
+		{
+			_currentBlock = 0;
+		}
+		
+		return next;
+	}
+	
+	private void checkRecalculate()
 	{
 		if(_harvestArea == null)
 		{
 			recalculateArea();
-			return _harvestArea;
+			return;
 		}
 		
 		BlockPosition origin = _harvestArea.getOrigin();
@@ -52,7 +64,20 @@ public class HarvestAreaManager
 		{
 			recalculateArea();
 		}
-		return _harvestArea;
+	}
+	
+	private void recalculateArea()
+	{
+		BlockPosition ourpos = BlockPosition.fromFactoryTile(_owner);
+		if(_overrideDirection != ForgeDirection.UNKNOWN)
+		{
+			ourpos.orientation = _overrideDirection;
+		}
+		ourpos.moveForwards(_radius + 1);
+		Area a = new Area(ourpos, _radius, _areaDown, _areaUp);
+		_harvestedBlocks = a.getPositionsBottomFirst();
+		_currentBlock = 0;
+		_harvestArea = a;
 	}
 	
 	public void setOverrideDirection(ForgeDirection dir)

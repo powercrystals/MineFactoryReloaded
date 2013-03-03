@@ -94,7 +94,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int getIdleTicksMax()
 	{
-		return 200;
+		return 5;
 	}
 
 	@Override
@@ -142,43 +142,40 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		harvestable.postHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
 		_tank.fill(new LiquidStack(MineFactoryReloadedCore.sludgeItem, 10), true);
-		
-		setIdleTicks(5);
+
 		return true;
 	}
 
 	private BlockPosition getNextHarvest()
 	{
-		Area harvestArea = _areaManager.getHarvestArea();
-		for(BlockPosition bp : harvestArea.getPositionsBottomFirst())
+		BlockPosition bp = _areaManager.getNextBlock();
+		
+		int searchId = worldObj.getBlockId(bp.x, bp.y, bp.z);
+		
+		if(!harvestables.containsKey(new Integer(searchId)))
 		{
-			int searchId = worldObj.getBlockId(bp.x, bp.y, bp.z);
-			
-			if(!harvestables.containsKey(new Integer(searchId)))
+			return null;
+		}
+		
+		IFactoryHarvestable harvestable = harvestables.get(new Integer(searchId));
+		if(harvestable.canBeHarvested(worldObj, _settings, bp.x, bp.y, bp.z))
+		{
+			if(harvestable.getHarvestType() == HarvestType.Normal)
 			{
-				continue;
+				return null;
 			}
-			
-			IFactoryHarvestable harvestable = harvestables.get(new Integer(searchId));
-			if(harvestable.canBeHarvested(worldObj, _settings, bp.x, bp.y, bp.z))
+			else if(harvestable.getHarvestType() == HarvestType.LeaveBottom)
 			{
-				if(harvestable.getHarvestType() == HarvestType.Normal)
+				BlockPosition temp = getNextVertical(bp.x, bp.y, bp.z);
+				if(temp == null)
 				{
-					return bp;
+					return null;
 				}
-				else if(harvestable.getHarvestType() == HarvestType.LeaveBottom)
-				{
-					BlockPosition temp = getNextVertical(bp.x, bp.y, bp.z);
-					if(temp == null)
-					{
-						continue;
-					}
-					return temp;
-				}
-				else if(harvestable.getHarvestType() == HarvestType.Tree)
-				{
-					return getNextTreeSegment(bp.x, bp.y, bp.z);
-				}
+				return temp;
+			}
+			else if(harvestable.getHarvestType() == HarvestType.Tree)
+			{
+				return getNextTreeSegment(bp.x, bp.y, bp.z);
 			}
 		}
 		return null;
