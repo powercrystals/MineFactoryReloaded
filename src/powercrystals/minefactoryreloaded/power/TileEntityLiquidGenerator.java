@@ -15,7 +15,7 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 	private int _outputPulseSize;
 	
 	private int _ticksSinceLastConsumption = 0;
-	private int _bufferMax;
+	private int _bufferMax = 1000;
 	private int _buffer;
 	
 	private LiquidTank _tank;
