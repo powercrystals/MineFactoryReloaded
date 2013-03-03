@@ -9,6 +9,7 @@ import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
@@ -95,6 +96,11 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 						}
 					}
 				}
+			}
+			
+			if(Util.isRedstonePowered(this))
+			{
+				return;
 			}
 			
 			int newBurn = getOutputValue();

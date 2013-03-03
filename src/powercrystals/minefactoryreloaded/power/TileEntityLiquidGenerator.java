@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.power;
 
+import powercrystals.core.util.Util;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
@@ -49,6 +50,11 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 				return;
 			}
 			_ticksSinceLastConsumption = 0;
+			
+			if(Util.isRedstonePowered(this))
+			{
+				return;
+			}
 			
 			if(_tank.getLiquid() == null || _tank.getLiquid().amount < _liquidConsumedPerTick || _bufferMax - _buffer < _powerProducedPerConsumption)
 			{
