@@ -7,7 +7,6 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ForgeHooksClient;
 
 public class GuiFactoryPowered extends GuiFactoryInventory
@@ -28,8 +27,7 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
-		fontRenderer.drawString(_tePowered.getInvName(), 8, 6, 4210752);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		drawBars();
 	}

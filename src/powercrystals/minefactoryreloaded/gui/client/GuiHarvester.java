@@ -45,14 +45,6 @@ public class GuiHarvester extends GuiFactoryPowered
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
-	{
-		fontRenderer.drawString(_tePowered.getInvName(), 8, 6, 4210752);
-		
-		drawBars();
-	}
-	
-	@Override
 	public void updateScreen()
 	{
 		super.updateScreen();

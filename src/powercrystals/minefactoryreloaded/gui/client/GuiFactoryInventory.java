@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
@@ -16,6 +17,13 @@ public class GuiFactoryInventory extends GuiContainer
 	{
 		super(container);
 		_tileEntity = tileentity;
+	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+	{
+		fontRenderer.drawString(_tileEntity.getInvName(), 8, 6, 4210752);
+		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 	}
 
 	@Override

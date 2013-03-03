@@ -91,7 +91,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityUnifier)
 		{
-			return new ContainerUnifier((TileEntityUnifier)te, player.inventory);
+			return new ContainerFactoryInventory((TileEntityUnifier)te, player.inventory);
 		}
 		return null;
 	}
@@ -146,7 +146,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityUnifier)
 		{
-			return new GuiUnifier(new ContainerUnifier((TileEntityUnifier)te, player.inventory), (TileEntityUnifier)te);
+			return new GuiFactoryInventory(new ContainerFactoryInventory((TileEntityUnifier)te, player.inventory), (TileEntityUnifier)te);
 		}
 		return null;
 	}
