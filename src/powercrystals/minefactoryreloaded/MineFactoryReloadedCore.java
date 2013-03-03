@@ -553,8 +553,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	private void registerFarmables()
 	{
 		FarmingRegistry.registerPlantable(new PlantableStandard(Block.sapling.blockID, Block.sapling.blockID));
-		FarmingRegistry.registerPlantable(new PlantableStandard(Item.reed.itemID, Block.reed.blockID));
-		FarmingRegistry.registerPlantable(new PlantableStandard(Block.cactus.blockID, Block.cactus.blockID));
 		FarmingRegistry.registerPlantable(new PlantableStandard(Item.pumpkinSeeds.itemID, Block.pumpkinStem.blockID));
 		FarmingRegistry.registerPlantable(new PlantableStandard(Item.melonSeeds.itemID, Block.melonStem.blockID));
 		FarmingRegistry.registerPlantable(new PlantableStandard(Block.mushroomBrown.blockID, Block.mushroomBrown.blockID));
