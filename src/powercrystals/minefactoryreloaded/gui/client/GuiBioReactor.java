@@ -9,8 +9,8 @@ import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 
 public class GuiBioReactor extends GuiFactoryInventory
 {
-	private static final int _barColorBurn = (79)  | (44 << 8)  | (63 << 16)  | (255 << 24);
-	private static final int _barColorValue =   (55)  | (82 << 8) | (211 << 16) | (255 << 24);
+	private static final int _barColorBurn =  (79)  | (44 << 8)  | (63 << 16)  | (255 << 24);
+	private static final int _barColorValue = (55)  | (182 << 8) | (211 << 16) | (255 << 24);
 	
 	public GuiBioReactor(ContainerBioReactor container, TileEntityBioReactor tileentity)
 	{
