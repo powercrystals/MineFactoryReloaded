@@ -32,7 +32,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	{
 		super.updateEntity();
 
-		if(shouldPumpLiquid())
+		if(!worldObj.isRemote && shouldPumpLiquid())
 		{
 			MFRUtil.pumpLiquid(getTank(), this);
 		}
