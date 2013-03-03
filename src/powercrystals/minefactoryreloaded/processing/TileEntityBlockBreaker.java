@@ -71,6 +71,12 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered implements 
 	{
 		return "Block Breaker";
 	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
 
 	@Override
 	public boolean isActive()

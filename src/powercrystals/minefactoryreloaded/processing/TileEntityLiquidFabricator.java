@@ -71,6 +71,12 @@ public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowere
 	{
 		return true;
 	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
 
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)

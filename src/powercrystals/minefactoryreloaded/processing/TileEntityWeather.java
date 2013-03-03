@@ -147,4 +147,10 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 	{
 		return "Weather Collector";
 	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
 }

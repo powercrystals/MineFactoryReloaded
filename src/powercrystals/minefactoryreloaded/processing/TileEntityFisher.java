@@ -78,6 +78,12 @@ public class TileEntityFisher extends TileEntityFactoryPowered implements IMachi
 	{
 		return "Fisher";
 	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
 
 	@Override
 	public boolean isActive()

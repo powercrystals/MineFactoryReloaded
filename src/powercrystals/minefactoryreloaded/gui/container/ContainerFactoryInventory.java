@@ -1,21 +1,27 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
-public class ContainerFactoryInventory extends ContainerFactoryPowered
+public class ContainerFactoryInventory extends Container
 {
+	protected TileEntityFactoryInventory _te;
+	
 	public ContainerFactoryInventory(TileEntityFactoryInventory tileentity, InventoryPlayer inv)
 	{
-		super(tileentity, inv);
 		_te = tileentity;
+		if(_te.getSizeInventory() > 0)
+		{
+			addSlots();
+		}
+		bindPlayerInventory(inv);
 	}
 	
-	@Override
-	protected void addSlots(InventoryPlayer inv)
+	protected void addSlots()
 	{
 		addSlotToContainer(new Slot((TileEntityFactoryInventory)_te, 0, 8, 15));
 		addSlotToContainer(new Slot((TileEntityFactoryInventory)_te, 1, 26, 15));
@@ -26,8 +32,6 @@ public class ContainerFactoryInventory extends ContainerFactoryPowered
 		addSlotToContainer(new Slot((TileEntityFactoryInventory)_te, 6, 8, 51));
 		addSlotToContainer(new Slot((TileEntityFactoryInventory)_te, 7, 26, 51));
 		addSlotToContainer(new Slot((TileEntityFactoryInventory)_te, 8, 44, 51));
-		
-		bindPlayerInventory(inv);
 	}
 	
 	@Override
@@ -78,5 +82,21 @@ public class ContainerFactoryInventory extends ContainerFactoryPowered
 		}
 
 		return stack;
+	}
+	
+	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+					addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+			}
+		}
+
+		for (int i = 0; i < 9; i++)
+		{
+			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
+		}
 	}
 }

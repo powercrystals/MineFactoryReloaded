@@ -160,4 +160,10 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	{
 		return "Composter";
 	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
 }

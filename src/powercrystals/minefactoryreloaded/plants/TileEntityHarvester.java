@@ -305,4 +305,10 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		return "Harvester";
 	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
 }

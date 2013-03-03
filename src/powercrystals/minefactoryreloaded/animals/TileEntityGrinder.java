@@ -155,6 +155,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		return "Mob Grinder";
 	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
 
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)

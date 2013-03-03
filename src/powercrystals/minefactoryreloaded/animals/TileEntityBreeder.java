@@ -8,9 +8,9 @@ import net.minecraft.item.Item;
 
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityBreeder extends TileEntityFactoryInventory
+public class TileEntityBreeder extends TileEntityFactoryPowered
 {
 	private HarvestAreaManager _areaManager;
 	
@@ -72,6 +72,12 @@ public class TileEntityBreeder extends TileEntityFactoryInventory
 		}
 		setIdleTicks(getIdleTicksMax());
 		return false;
+	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 9;
 	}
 
 	@Override

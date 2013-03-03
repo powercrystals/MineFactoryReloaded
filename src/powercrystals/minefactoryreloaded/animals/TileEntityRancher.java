@@ -8,7 +8,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -20,7 +20,7 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityRancher extends TileEntityFactoryInventory implements ITankContainer
+public class TileEntityRancher extends TileEntityFactoryPowered implements ITankContainer
 {
 	private static Map<Class<?>, IFactoryRanchable> ranchables = new HashMap<Class<?>, IFactoryRanchable>();
 	
@@ -126,6 +126,12 @@ public class TileEntityRancher extends TileEntityFactoryInventory implements ITa
 	public String getInvName()
 	{
 		return "Rancher";
+	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 9;
 	}
 
 	@Override

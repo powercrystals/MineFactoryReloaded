@@ -11,9 +11,9 @@ import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityFertilizer extends TileEntityFactoryInventory
+public class TileEntityFertilizer extends TileEntityFactoryPowered
 {
 	private static Map<Integer, IFactoryFertilizer> fertilizers = new HashMap<Integer, IFactoryFertilizer>();
 	private static Map<Integer, IFactoryFertilizable> fertilizables = new HashMap<Integer, IFactoryFertilizable>();
@@ -93,6 +93,12 @@ public class TileEntityFertilizer extends TileEntityFactoryInventory
 	public String getInvName()
 	{
 		return "Fertilizer";
+	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 9;
 	}
 
 	@Override

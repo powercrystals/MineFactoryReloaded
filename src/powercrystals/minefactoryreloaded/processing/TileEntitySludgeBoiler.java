@@ -206,4 +206,10 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	{
 		return "Sludge Boiler";
 	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
 }

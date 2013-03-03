@@ -20,12 +20,10 @@ public class ContainerAutoEnchanter extends ContainerFactoryInventory
 	}
 	
 	@Override
-	protected void addSlots(InventoryPlayer inv)
+	protected void addSlots()
 	{
 		addSlotToContainer(new Slot((TileEntityAutoEnchanter)_te, 0, 8, 24));
 		addSlotToContainer(new SlotRemoveOnly((TileEntityAutoEnchanter)_te, 1, 8, 54));
-		
-		bindPlayerInventory(inv);
 	}
 
 	@Override

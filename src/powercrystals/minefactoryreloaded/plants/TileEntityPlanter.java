@@ -7,12 +7,12 @@ import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityPlanter extends TileEntityFactoryInventory
+public class TileEntityPlanter extends TileEntityFactoryPowered
 {
 	private static Map<Integer, IFactoryPlantable> plantables = new HashMap<Integer, IFactoryPlantable>();
 	
@@ -78,6 +78,12 @@ public class TileEntityPlanter extends TileEntityFactoryInventory
 	public String getInvName()
 	{
 		return "Planter";
+	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 9;
 	}
 
 	@Override

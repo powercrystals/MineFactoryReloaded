@@ -10,9 +10,9 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements ITankContainer
+public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements ITankContainer
 {
 	private static int _spawnRange = 4;
 	private LiquidTank _tank;

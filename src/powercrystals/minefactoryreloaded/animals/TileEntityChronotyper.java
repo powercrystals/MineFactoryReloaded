@@ -21,6 +21,12 @@ public class TileEntityChronotyper extends TileEntityFactoryPowered
 	}
 	
 	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
+	
+	@Override
 	public String getInvName()
 	{
 		return "Chronotyper";

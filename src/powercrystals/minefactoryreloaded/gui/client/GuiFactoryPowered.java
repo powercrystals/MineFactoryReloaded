@@ -6,12 +6,11 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import net.minecraft.block.Block;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ForgeHooksClient;
 
-public class GuiFactoryPowered extends GuiContainer
+public class GuiFactoryPowered extends GuiFactoryInventory
 {
 	protected TileEntityFactoryPowered _tePowered;
 	
@@ -22,7 +21,7 @@ public class GuiFactoryPowered extends GuiContainer
 	
 	public GuiFactoryPowered(ContainerFactoryPowered container, TileEntityFactoryPowered te)
 	{
-		super(container);
+		super(container, te);
 		_tePowered = te;
 	}
 	

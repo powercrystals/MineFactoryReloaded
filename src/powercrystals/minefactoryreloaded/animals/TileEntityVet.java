@@ -9,9 +9,9 @@ import net.minecraft.item.ItemStack;
 
 import powercrystals.minefactoryreloaded.api.ISyringe;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityVet extends TileEntityFactoryInventory
+public class TileEntityVet extends TileEntityFactoryPowered
 {
 	private HarvestAreaManager _areaManager;
 	
@@ -74,5 +74,11 @@ public class TileEntityVet extends TileEntityFactoryInventory
 	public String getInvName()
 	{
 		return "Veterinary";
+	}
+	
+	@Override
+	public int getSizeInventory()
+	{
+		return 9;
 	}
 }

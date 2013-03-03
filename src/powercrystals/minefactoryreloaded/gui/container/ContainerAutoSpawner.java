@@ -12,10 +12,8 @@ public class ContainerAutoSpawner extends ContainerFactoryInventory
 	}
 	
 	@Override
-	protected void addSlots(InventoryPlayer inv)
+	protected void addSlots()
 	{
 		addSlotToContainer(new Slot((TileEntityAutoSpawner)_te, 0, 8, 24));
-		
-		bindPlayerInventory(inv);
 	}
 }

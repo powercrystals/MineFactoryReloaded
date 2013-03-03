@@ -5,24 +5,25 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.liquids.LiquidTank;
 
-public abstract class TileEntityFactoryInventory extends TileEntityFactoryPowered implements IInventory
+public abstract class TileEntityFactoryInventory extends TileEntityFactory implements IInventory
 {
-	protected TileEntityFactoryInventory(int energyActivation)
+	protected TileEntityFactoryInventory()
 	{
-		super(energyActivation);
 		_inventory = new ItemStack[getSizeInventory()];
+	}
+	
+	public ILiquidTank getTank()
+	{
+		return null;
 	}
 	
 	// IInventory methods
 
 	protected ItemStack[] _inventory;
-	
-	@Override
-	public int getSizeInventory()
-	{
-		return 9;
-	}
 
 	@Override
 	public ItemStack getStackInSlot(int i)
@@ -107,6 +108,15 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactoryPowere
 				_inventory[j] = s;
 			}
 		}
+		if(getTank() != null)
+		{
+			((LiquidTank)getTank()).setLiquid(new LiquidStack(nbttagcompound.getInteger("tankItemId"), nbttagcompound.getInteger("tankAmount"), nbttagcompound.getInteger("tankItemMeta")));
+
+			if(getTank().getLiquid() != null && getTank().getLiquid().amount > getTank().getCapacity())
+			{
+				getTank().getLiquid().amount = getTank().getCapacity();
+			}
+		}
 	}
 
 	@Override
@@ -124,6 +134,12 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactoryPowere
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
+		if(getTank() != null && getTank().getLiquid() != null)
+		{
+			nbttagcompound.setInteger("tankAmount", getTank().getLiquid().amount);
+			nbttagcompound.setInteger("tankItemId", getTank().getLiquid().itemID);
+			nbttagcompound.setInteger("tankMeta", getTank().getLiquid().itemMeta);
+		}
 
 		nbttagcompound.setTag("Items", nbttaglist);
 	}
@@ -133,5 +149,4 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactoryPowere
 	{
 		return null;
 	}
-
 }

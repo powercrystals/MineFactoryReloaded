@@ -5,9 +5,6 @@ import powercrystals.core.util.Util;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.LiquidStack;
-import net.minecraftforge.liquids.LiquidTank;
 import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -27,7 +24,7 @@ import buildcraft.api.power.IPowerReceptor;
  * progress bar correctly.
  */
 
-public abstract class TileEntityFactoryPowered extends TileEntityFactory implements IPowerReceptor, IEnergySink
+public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventory implements IPowerReceptor, IEnergySink
 {	
 	private static int energyPerEU = 4;
 	private static int energyPerMJ = 10;
@@ -199,11 +196,6 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 	{
 		_idleTicks = ticks;
 	}
-	
-	public ILiquidTank getTank()
-	{
-		return null;
-	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
@@ -212,13 +204,6 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 
 		nbttagcompound.setInteger("energyStored", _energyStored);
 		nbttagcompound.setInteger("workDone", _workDone);
-		
-		if(getTank() != null && getTank().getLiquid() != null)
-		{
-			nbttagcompound.setInteger("tankAmount", getTank().getLiquid().amount);
-			nbttagcompound.setInteger("tankItemId", getTank().getLiquid().itemID);
-			nbttagcompound.setInteger("tankMeta", getTank().getLiquid().itemMeta);
-		}
 	}
 	
 	@Override
@@ -228,15 +213,6 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactory impleme
 		
 		_energyStored = Math.min(nbttagcompound.getInteger("energyStored"), getEnergyStoredMax());
 		_workDone = Math.min(nbttagcompound.getInteger("workDone"), getWorkMax());
-		if(getTank() != null)
-		{
-			((LiquidTank)getTank()).setLiquid(new LiquidStack(nbttagcompound.getInteger("tankItemId"), nbttagcompound.getInteger("tankAmount"), nbttagcompound.getInteger("tankItemMeta")));
-
-			if(getTank().getLiquid() != null && getTank().getLiquid().amount > getTank().getCapacity())
-			{
-				getTank().getLiquid().amount = getTank().getCapacity();
-			}
-		}
 	}
 	
 	// IPowerReceptor methods

@@ -13,9 +13,9 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityAutoEnchanter extends TileEntityFactoryInventory implements ISidedInventory, ITankContainer
+public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements ISidedInventory, ITankContainer
 {
 	private Random _rand;
 	private int _targetLevel;

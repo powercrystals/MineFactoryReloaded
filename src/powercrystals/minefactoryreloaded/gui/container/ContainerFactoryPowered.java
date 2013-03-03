@@ -3,10 +3,7 @@ package powercrystals.minefactoryreloaded.gui.container;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
@@ -19,7 +16,7 @@ import net.minecraftforge.liquids.LiquidTank;
  * 5: tank meta
  */
 
-public class ContainerFactoryPowered extends Container
+public class ContainerFactoryPowered extends ContainerFactoryInventory
 {
 	protected TileEntityFactoryPowered _te;
 	
@@ -28,13 +25,8 @@ public class ContainerFactoryPowered extends Container
 	
 	public ContainerFactoryPowered(TileEntityFactoryPowered te, InventoryPlayer inv)
 	{
+		super(te, inv);
 		_te = te;
-		addSlots(inv);
-	}
-	
-	protected void addSlots(InventoryPlayer inv)
-	{
-		bindPlayerInventory(inv);
 	}
 	
 	@Override
@@ -76,27 +68,5 @@ public class ContainerFactoryPowered extends Container
 		else if(var == 3) _tankAmount = value;
 		else if(var == 4) _tankId = value;
 		else if(var == 5) ((LiquidTank)_te.getTank()).setLiquid(new LiquidStack(_tankId, _tankAmount, value));
-	}
-	
-	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 9; j++)
-			{
-					addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-			}
-		}
-
-		for (int i = 0; i < 9; i++)
-		{
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
-		}
-	}
-	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
-	{
-		return null;
 	}
 }
