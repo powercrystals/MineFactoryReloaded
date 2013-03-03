@@ -68,7 +68,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 			}
 			
 			int newBurn = 100 * occupiedSlots;
-			if(_burnTimeMax - _burnTime <= newBurn)
+			if(_burnTimeMax - _burnTime >= newBurn)
 			{
 				_burnTime += newBurn;
 				for(int i = 0; i < 9; i++)
