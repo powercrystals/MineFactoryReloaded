@@ -113,6 +113,7 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetItem, "Safari Net");
 		LanguageRegistry.addName(MineFactoryReloadedCore.blankRecordItem, "Blank Record");
 		LanguageRegistry.addName(MineFactoryReloadedCore.syringeZombieItem, "Zombie Syringe");
+		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetSingleItem, "Safari Net (Single Use)");
 		
 		for(int i = 0; i < 16; i++)
 		{
