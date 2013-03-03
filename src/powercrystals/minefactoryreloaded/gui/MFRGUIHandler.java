@@ -31,6 +31,7 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
 import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquidRouter;
+import powercrystals.minefactoryreloaded.gui.container.ContainerUnifier;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
@@ -89,7 +90,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityUnifier)
 		{
-			return new ContainerFactoryInventory((TileEntityUnifier)te, player.inventory);
+			return new ContainerUnifier((TileEntityUnifier)te, player.inventory);
 		}
 		else if(te instanceof TileEntityFactoryPowered)
 		{
@@ -148,7 +149,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityUnifier)
 		{
-			return new GuiFactoryInventory(new ContainerFactoryInventory((TileEntityUnifier)te, player.inventory), (TileEntityUnifier)te);
+			return new GuiFactoryInventory(new ContainerUnifier((TileEntityUnifier)te, player.inventory), (TileEntityUnifier)te);
 		}
 		else if(te instanceof TileEntityFactoryPowered)
 		{
