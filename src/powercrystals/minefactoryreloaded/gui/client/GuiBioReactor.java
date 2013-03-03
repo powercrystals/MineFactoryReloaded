@@ -8,5 +8,6 @@ public class GuiBioReactor extends GuiFactoryInventory
 	public GuiBioReactor(ContainerBioReactor container, TileEntityBioReactor tileentity)
 	{
 		super(container, tileentity);
+		ySize = 194;
 	}
 }
