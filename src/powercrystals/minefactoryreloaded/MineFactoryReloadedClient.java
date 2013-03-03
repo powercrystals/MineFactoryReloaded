@@ -164,6 +164,7 @@ public class MineFactoryReloadedClient
 			registerAnimation(3, MineFactoryReloadedCore.animationFolder + "liquids/Sludge_Still.png", MineFactoryReloadedCore.itemTexture);
 			registerAnimation(4, MineFactoryReloadedCore.animationFolder + "liquids/Sewage_Still.png", MineFactoryReloadedCore.itemTexture);
 			registerAnimation(5, MineFactoryReloadedCore.animationFolder + "liquids/MobEssence_Still.png", MineFactoryReloadedCore.itemTexture);
+			registerAnimation(46, MineFactoryReloadedCore.animationFolder + "liquids/BioFuel_Still.png", MineFactoryReloadedCore.itemTexture);
 		}
 		
 		MineFactoryReloadedCore.renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
