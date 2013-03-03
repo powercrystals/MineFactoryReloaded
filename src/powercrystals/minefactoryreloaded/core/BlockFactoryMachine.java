@@ -135,26 +135,30 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 				{
 					continue;
 				}
-				float f = world.rand.nextFloat() * 0.8F + 0.1F;
-				float f1 = world.rand.nextFloat() * 0.8F + 0.1F;
-				float f2 = world.rand.nextFloat() * 0.8F + 0.1F;
+				float xOffset = world.rand.nextFloat() * 0.8F + 0.1F;
+				float yOffset = world.rand.nextFloat() * 0.8F + 0.1F;
+				float zOffset = world.rand.nextFloat() * 0.8F + 0.1F;
 				do
 				{
 					if(itemstack.stackSize <= 0)
 					{
 						continue inv;
 					}
-					int i1 = world.rand.nextInt(21) + 10;
-					if(i1 > itemstack.stackSize)
+					int amountToDrop = world.rand.nextInt(21) + 10;
+					if(amountToDrop > itemstack.stackSize)
 					{
-						i1 = itemstack.stackSize;
+						amountToDrop = itemstack.stackSize;
 					}
-					itemstack.stackSize -= i1;
-					EntityItem entityitem = new EntityItem(world, (float)x + f, (float)y + f1, (float)z + f2, new ItemStack(itemstack.itemID, i1, itemstack.getItemDamage()));
-					float f3 = 0.05F;
-					entityitem.motionX = (float)world.rand.nextGaussian() * f3;
-					entityitem.motionY = (float)world.rand.nextGaussian() * f3 + 0.2F;
-					entityitem.motionZ = (float)world.rand.nextGaussian() * f3;
+					itemstack.stackSize -= amountToDrop;
+					EntityItem entityitem = new EntityItem(world, (float)x + xOffset, (float)y + yOffset, (float)z + zOffset, new ItemStack(itemstack.itemID, amountToDrop, itemstack.getItemDamage()));
+					if(itemstack.getTagCompound() != null)
+					{
+						entityitem.getEntityItem().setTagCompound(itemstack.getTagCompound());
+					}
+					float motionMultiplier = 0.05F;
+					entityitem.motionX = (float)world.rand.nextGaussian() * motionMultiplier;
+					entityitem.motionY = (float)world.rand.nextGaussian() * motionMultiplier + 0.2F;
+					entityitem.motionZ = (float)world.rand.nextGaussian() * motionMultiplier;
 					world.spawnEntityInWorld(entityitem);
 				} while(true);
 			}
