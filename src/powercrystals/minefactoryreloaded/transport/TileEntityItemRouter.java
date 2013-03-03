@@ -144,6 +144,6 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory implements 
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
-		return 1;
+		return 3;
 	}
 }
