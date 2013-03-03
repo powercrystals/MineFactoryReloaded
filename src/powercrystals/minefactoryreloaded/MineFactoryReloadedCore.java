@@ -217,6 +217,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item ceramicDyeItem;
 	public static Item blankRecordItem;
 	public static Item syringeZombieItem;
+	public static Item safariNetSingleItem;
 
 	public static int conveyorTexture = 0;
 	public static int conveyorOffTexture = 1;
@@ -265,6 +266,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property ceramicDyeId;
 	public static Property blankRecordId;
 	public static Property syringeZombieId;
+	public static Property safariNetSingleItemId;
 
 	public static Property animateBlockFaces;
 	public static Property treeSearchMaxVertical;
@@ -398,10 +400,11 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		syringeGrowthItem = (new ItemSyringeGrowth()).setIconIndex(15).setItemName("syringeGrowthItem").setContainerItem(syringeEmptyItem);
 		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setIconIndex(16).setItemName("rawRubberItem");
 		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setIconIndex(17).setItemName("factoryMachineBlock");
-		safariNetItem = (new ItemSafariNet()).setIconIndex(18).setItemName("safariNetItem");
+		safariNetItem = (new ItemSafariNet(safariNetItemId.getInt())).setIconIndex(18).setItemName("safariNetItem");
 		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setIconIndex(22).setItemName("ceramicDyeItem");
 		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setIconIndex(40).setItemName("blankRecordItem").setMaxStackSize(1);
 		syringeZombieItem = (new ItemSyringeZombie()).setIconIndex(41).setItemName("syringeZombieItem").setContainerItem(syringeEmptyItem);
+		safariNetSingleItem = (new ItemSafariNet(safariNetSingleItemId.getInt())).setIconIndex(42).setItemName("safariNetSingleItem");
 
 		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
 		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
@@ -687,6 +690,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		ceramicDyeId = c.getItem(Configuration.CATEGORY_ITEM, "ID.CeramicDye", 12005);
 		blankRecordId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BlankRecord", 12006);
 		syringeZombieId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeZombie", 12007);
+		safariNetSingleItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetSingleUse", 12008);
 
 		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
 		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";
@@ -845,6 +849,16 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					" E ",
 					Character.valueOf('E'), Item.enderPearl,
 					Character.valueOf('G'), Item.ghastTear,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(safariNetItem, 1), new Object[]
+				{
+					"SLS",
+					" B ",
+					"S S",
+					Character.valueOf('S'), Item.silk,
+					Character.valueOf('L'), Item.leather,
+					Character.valueOf('B'), Item.slimeBall,
 				} );
 		
 		GameRegistry.addRecipe(new ItemStack(factoryHammerItem, 1), new Object[]

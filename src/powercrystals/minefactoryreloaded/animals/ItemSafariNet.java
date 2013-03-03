@@ -26,9 +26,9 @@ import powercrystals.minefactoryreloaded.core.ItemFactory;
 
 public class ItemSafariNet extends ItemFactory
 {
-	public ItemSafariNet()
+	public ItemSafariNet(int id)
 	{
-		super(MineFactoryReloadedCore.safariNetItemId.getInt());
+		super(id);
 		maxStackSize = 1;
 	}
 	
@@ -170,14 +170,28 @@ public class ItemSafariNet extends ItemFactory
 			{
 				if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
 				{
-					itemstack.setItemDamage(0);
+					if(itemstack.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)
+					{
+						itemstack.stackSize--;
+					}
+					else
+					{
+						itemstack.setItemDamage(0);
+					}
 				}
 			}
 			else
 			{
 				if(spawnCreature(world, itemstack.getTagCompound(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
 				{
-					itemstack.setTagCompound(null);
+					if(itemstack.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)
+					{
+						itemstack.stackSize--;
+					}
+					else
+					{
+						itemstack.setTagCompound(null);
+					}
 				}
 			}
 
