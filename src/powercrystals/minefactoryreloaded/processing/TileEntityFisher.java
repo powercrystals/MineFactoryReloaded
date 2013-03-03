@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.processing;
 
-import buildcraft.core.IMachine;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
@@ -12,7 +11,7 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityFisher extends TileEntityFactoryPowered implements IMachine
+public class TileEntityFisher extends TileEntityFactoryPowered
 {
 	public TileEntityFisher()
 	{
@@ -89,29 +88,5 @@ public class TileEntityFisher extends TileEntityFactoryPowered implements IMachi
 	public int getSizeInventory()
 	{
 		return 0;
-	}
-
-	@Override
-	public boolean isActive()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean manageLiquids()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean manageSolids()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean allowActions()
-	{
-		return false;
 	}
 }

@@ -2,8 +2,6 @@ package powercrystals.minefactoryreloaded.processing;
 
 import java.util.List;
 
-import buildcraft.core.IMachine;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -13,7 +11,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityBlockBreaker extends TileEntityFactoryPowered implements IMachine
+public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 {
 	public TileEntityBlockBreaker()
 	{
@@ -77,29 +75,4 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered implements 
 	{
 		return 0;
 	}
-
-	@Override
-	public boolean isActive()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean manageLiquids()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean manageSolids()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean allowActions()
-	{
-		return false;
-	}
-
 }

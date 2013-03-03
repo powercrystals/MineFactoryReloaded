@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import buildcraft.core.IMachine;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,7 +24,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements ITankContainer, IMachine
+public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements ITankContainer
 {
 	private LiquidTank _tank;
 	private static List<WeightedRandomItem> _drops  = new ArrayList<WeightedRandomItem>();
@@ -181,30 +179,6 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 			return _tank;
 		}
 		return null;
-	}
-
-	@Override
-	public boolean isActive()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean manageLiquids()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean manageSolids()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean allowActions()
-	{
-		return false;
 	}
 
 	@Override

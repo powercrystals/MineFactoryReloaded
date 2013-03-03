@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.processing;
 
-import buildcraft.core.IMachine;
-
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
@@ -13,7 +11,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityComposter extends TileEntityFactoryPowered implements ITankContainer, IMachine
+public class TileEntityComposter extends TileEntityFactoryPowered implements ITankContainer
 {
 	private LiquidTank _tank;
 	
@@ -135,30 +133,6 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 			return _tank;
 		}
 		return null;
-	}
-
-	@Override
-	public boolean isActive()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean manageLiquids()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean manageSolids()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean allowActions()
-	{
-		return false;
 	}
 
 	@Override
