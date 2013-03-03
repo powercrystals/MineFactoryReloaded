@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.power;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
@@ -66,7 +67,7 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 		{
 			return 0;
 		}
-		return _tank.fill(resource, true);
+		return _tank.fill(resource, doFill);
 	}
 
 	@Override
@@ -97,5 +98,35 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
 		return _tank;
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setInteger("ticksSinceLastConsumption", _ticksSinceLastConsumption);
+		nbttagcompound.setInteger("buffer", _buffer);
+		if(_tank.getLiquid() != null)
+		{
+			nbttagcompound.setInteger("tankAmount", _tank.getLiquid().amount);
+			nbttagcompound.setInteger("tankItemId", _tank.getLiquid().itemID);
+			nbttagcompound.setInteger("tankMeta", _tank.getLiquid().itemMeta);
+		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		
+		_ticksSinceLastConsumption = nbttagcompound.getInteger("ticksSinceLastConsumption");
+		_buffer = nbttagcompound.getInteger("buffer");
+		
+		_tank.setLiquid(new LiquidStack(nbttagcompound.getInteger("tankItemId"), nbttagcompound.getInteger("tankAmount"), nbttagcompound.getInteger("tankItemMeta")));
+
+		if(_tank.getLiquid() != null && _tank.getLiquid().amount > _tank.getCapacity())
+		{
+			_tank.getLiquid().amount = _tank.getCapacity();
+		}
 	}
 }

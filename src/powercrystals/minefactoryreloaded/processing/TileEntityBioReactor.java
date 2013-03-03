@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.processing;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 import net.minecraftforge.liquids.ILiquidTank;
@@ -218,4 +219,17 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 		return _tank;
 	}
 
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setInteger("burnTime", _burnTime);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		_burnTime = nbttagcompound.getInteger("burnTime");
+	}
 }
