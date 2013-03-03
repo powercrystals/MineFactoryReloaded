@@ -10,6 +10,12 @@ import net.minecraftforge.common.ForgeDirection;
 public class HarvestAreaManager
 {
 	private TileEntityFactory _owner;
+	
+	private int _originX;
+	private int _originY;
+	private int _originZ;
+	private ForgeDirection _originOrientation;
+	
 	private ForgeDirection _overrideDirection;
 	private Area _harvestArea;
 	private int _radius;
@@ -26,6 +32,11 @@ public class HarvestAreaManager
 		_areaUp = harvestAreaUp;
 		_areaDown = harvestAreaDown;
 		_owner = owner;
+		
+		_originX = owner.xCoord;
+		_originY = owner.yCoord;
+		_originZ = owner.zCoord;
+		_originOrientation = owner.getDirectionFacing();
 	}
 	
 	public Area getHarvestArea()
@@ -55,12 +66,11 @@ public class HarvestAreaManager
 			return;
 		}
 		
-		BlockPosition origin = _harvestArea.getOrigin();
-		if(        (_overrideDirection != ForgeDirection.UNKNOWN && origin.orientation != _overrideDirection)
-				|| (_overrideDirection == ForgeDirection.UNKNOWN && origin.orientation != _owner.getDirectionFacing())
-				|| origin.x != _owner.xCoord
-				|| origin.y != _owner.yCoord
-				|| origin.z != _owner.zCoord)
+		if(        (_overrideDirection != ForgeDirection.UNKNOWN && _originOrientation != _overrideDirection)
+				|| (_overrideDirection == ForgeDirection.UNKNOWN && _originOrientation != _owner.getDirectionFacing())
+				|| _originX != _owner.xCoord
+				|| _originY != _owner.yCoord
+				|| _originZ != _owner.zCoord)
 		{
 			recalculateArea();
 		}
@@ -73,11 +83,14 @@ public class HarvestAreaManager
 		{
 			ourpos.orientation = _overrideDirection;
 		}
+		_originX = ourpos.x;
+		_originY = ourpos.y;
+		_originZ = ourpos.z;
+		_originOrientation = ourpos.orientation;
 		ourpos.moveForwards(_radius + 1);
-		Area a = new Area(ourpos, _radius, _areaDown, _areaUp);
-		_harvestedBlocks = a.getPositionsBottomFirst();
+		_harvestArea = new Area(ourpos, _radius, _areaDown, _areaUp);
+		_harvestedBlocks = _harvestArea.getPositionsBottomFirst();
 		_currentBlock = 0;
-		_harvestArea = a;
 	}
 	
 	public void setOverrideDirection(ForgeDirection dir)
