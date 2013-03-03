@@ -58,7 +58,7 @@ public class GuiFactoryInventory extends GuiContainer
 	protected void drawTank(int xOffset, int yOffset, int liquidId, int liquidMeta, int level)
 	{
 		int liquidTexture = 0;
-		int gaugeTexture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "noinvtank.png");
+		int gaugeTexture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 
 		if (liquidId <= 0)
 		{

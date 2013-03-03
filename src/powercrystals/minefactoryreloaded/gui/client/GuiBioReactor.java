@@ -31,7 +31,7 @@ public class GuiBioReactor extends GuiFactoryInventory
 			drawTank(132, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
 		}
 
-		drawBar(152, 75, ((TileEntityBioReactor)_tileEntity).getOutputValue(), ((TileEntityBioReactor)_tileEntity).getOutputValueMax(), _barColorValue);
-		drawBar(162, 75, ((TileEntityBioReactor)_tileEntity).getBurnTime(), ((TileEntityBioReactor)_tileEntity).getOutputValueMax(), _barColorBurn);
+		drawBar(150, 75, ((TileEntityBioReactor)_tileEntity).getOutputValueMax(), ((TileEntityBioReactor)_tileEntity).getOutputValue(), _barColorValue);
+		drawBar(160, 75, ((TileEntityBioReactor)_tileEntity).getBurnTimeMax(), ((TileEntityBioReactor)_tileEntity).getOutputValue(), _barColorBurn);
 	}
 }
