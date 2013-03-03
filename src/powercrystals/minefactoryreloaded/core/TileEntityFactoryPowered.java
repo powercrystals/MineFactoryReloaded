@@ -64,11 +64,6 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	public abstract String getInvName();
 	
-	protected boolean shouldPumpLiquid()
-	{
-		return false;
-	}
-	
 	@Override
 	public void updateEntity()
 	{
@@ -118,11 +113,6 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 			{
 				_energyStored -= _energyActivation;
 			}
-		}
-
-		if(shouldPumpLiquid())
-		{
-			MFRUtil.pumpLiquid(getTank(), this);
 		}
 	}
 	

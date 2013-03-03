@@ -60,6 +60,18 @@ public class MFRUtil
 		}
 	}
 	
+	public static void mergeStacks(ItemStack to, ItemStack from)
+	{
+		if(to == null || from == null) return;
+		
+		if(to.itemID != from.itemID || to.getItemDamage() != from.getItemDamage()) return;
+		if(to.getTagCompound() != null || from.getTagCompound() != null) return;
+		
+		int amountToCopy = Math.min(to.getMaxStackSize() - to.stackSize, from.stackSize);
+		to.stackSize += amountToCopy;
+		from.stackSize -= amountToCopy;
+	}
+	
 	public static void dropStackDirected(TileEntityFactory from, ItemStack s, ForgeDirection towards)
 	{
 		s = s.copy();

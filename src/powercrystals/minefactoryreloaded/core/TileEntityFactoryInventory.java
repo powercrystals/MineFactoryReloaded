@@ -22,6 +22,22 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		return null;
 	}
 	
+	protected boolean shouldPumpLiquid()
+	{
+		return false;
+	}
+	
+	@Override
+	public void updateEntity()
+	{
+		super.updateEntity();
+
+		if(shouldPumpLiquid())
+		{
+			MFRUtil.pumpLiquid(getTank(), this);
+		}
+	}
+	
 	// IInventory methods
 
 	protected ItemStack[] _inventory;

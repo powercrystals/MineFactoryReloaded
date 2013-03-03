@@ -10,6 +10,7 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoJukebox;
+import powercrystals.minefactoryreloaded.gui.client.GuiBioReactor;
 import powercrystals.minefactoryreloaded.gui.client.GuiChronotyper;
 import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -20,6 +21,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquidRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
+import powercrystals.minefactoryreloaded.gui.container.ContainerBioReactor;
 import powercrystals.minefactoryreloaded.gui.container.ContainerChronotyper;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
@@ -30,6 +32,7 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquidRouter;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
+import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
 import powercrystals.minefactoryreloaded.processing.TileEntityUnifier;
@@ -59,13 +62,9 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new ContainerFactoryInventory(((TileEntityAutoSpawner)te), player.inventory);
 		}
-		else if(te instanceof TileEntityFactoryInventory)
+		else if(te instanceof TileEntityBioReactor)
 		{
-			return new ContainerFactoryInventory((TileEntityFactoryInventory)te, player.inventory);
-		}
-		else if(te instanceof TileEntityFactoryPowered)
-		{
-			return new ContainerFactoryPowered((TileEntityFactoryPowered)te, player.inventory);
+			return new ContainerBioReactor(((TileEntityBioReactor)te), player.inventory);
 		}
 		else if(te instanceof TileEntityItemRouter)
 		{
@@ -91,6 +90,14 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new ContainerFactoryInventory((TileEntityUnifier)te, player.inventory);
 		}
+		else if(te instanceof TileEntityFactoryPowered)
+		{
+			return new ContainerFactoryPowered((TileEntityFactoryPowered)te, player.inventory);
+		}
+		else if(te instanceof TileEntityFactoryInventory)
+		{
+			return new ContainerFactoryInventory((TileEntityFactoryInventory)te, player.inventory);
+		}
 		return null;
 	}
 
@@ -114,13 +121,9 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new GuiFactoryInventory(new ContainerFactoryInventory((TileEntityAutoSpawner)te, player.inventory), (TileEntityAutoSpawner)te);
 		}
-		else if(te instanceof TileEntityFactoryInventory)
+		else if(te instanceof TileEntityBioReactor)
 		{
-			return new GuiFactoryInventory(new ContainerFactoryInventory((TileEntityFactoryInventory)te, player.inventory), (TileEntityFactoryInventory)te);
-		}
-		else if(te instanceof TileEntityFactoryPowered)
-		{
-			return new GuiFactoryPowered(new ContainerFactoryPowered((TileEntityFactoryPowered)te, player.inventory), (TileEntityFactoryPowered)te);
+			return new GuiBioReactor(new ContainerBioReactor((TileEntityBioReactor)te, player.inventory), (TileEntityBioReactor)te);
 		}
 		else if(te instanceof TileEntityItemRouter)
 		{
@@ -145,6 +148,14 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityUnifier)
 		{
 			return new GuiFactoryInventory(new ContainerFactoryInventory((TileEntityUnifier)te, player.inventory), (TileEntityUnifier)te);
+		}
+		else if(te instanceof TileEntityFactoryPowered)
+		{
+			return new GuiFactoryPowered(new ContainerFactoryPowered((TileEntityFactoryPowered)te, player.inventory), (TileEntityFactoryPowered)te);
+		}
+		else if(te instanceof TileEntityFactoryInventory)
+		{
+			return new GuiFactoryInventory(new ContainerFactoryInventory((TileEntityFactoryInventory)te, player.inventory), (TileEntityFactoryInventory)te);
 		}
 		return null;
 	}

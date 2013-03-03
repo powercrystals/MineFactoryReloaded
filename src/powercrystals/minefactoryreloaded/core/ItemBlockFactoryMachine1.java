@@ -67,6 +67,7 @@ public class ItemBlockFactoryMachine1 extends ItemBlock
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoJukebox)) return "factoryAutoJukebox";
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.Unifier)) return "factoryUnifier";
 		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoSpawner)) return "factoryAutoSpawner";
+		if(md == MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.BioReactor)) return "factoryBioReactor";
 		return "Invalid";
 	}
 
@@ -74,7 +75,7 @@ public class ItemBlockFactoryMachine1 extends ItemBlock
 	@Override
 	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
 	{
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < 11; i++)
 		{
 			par3List.add(new ItemStack(MineFactoryReloadedCore.machineBlock1.blockID, 1, i));
 		}

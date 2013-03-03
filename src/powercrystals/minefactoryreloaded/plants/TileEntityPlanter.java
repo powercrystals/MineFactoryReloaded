@@ -1,10 +1,8 @@
 package powercrystals.minefactoryreloaded.plants;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
@@ -14,8 +12,6 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityPlanter extends TileEntityFactoryPowered
 {
-	private static Map<Integer, IFactoryPlantable> plantables = new HashMap<Integer, IFactoryPlantable>();
-	
 	private HarvestAreaManager _areaManager;
 	
 	public TileEntityPlanter() 
@@ -33,7 +29,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
-		plantables.put(new Integer(plantable.getSourceId()), plantable);
+		MFRRegistry.getPlantables().put(new Integer(plantable.getSourceId()), plantable);
 	}
 	
 	@Override
@@ -57,11 +53,11 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 				
 				ItemStack availableStack = getStackInSlot(stackIndex);
 				
-				if(!plantables.containsKey(new Integer(availableStack.itemID)))
+				if(!MFRRegistry.getPlantables().containsKey(new Integer(availableStack.itemID)))
 				{
 					continue;
 				}
-				IFactoryPlantable plantable = plantables.get(new Integer(availableStack.itemID));
+				IFactoryPlantable plantable = MFRRegistry.getPlantables().get(new Integer(availableStack.itemID));
 	
 				if(!plantable.canBePlantedHere(worldObj, bp.x, bp.y, bp.z, availableStack))
 				{

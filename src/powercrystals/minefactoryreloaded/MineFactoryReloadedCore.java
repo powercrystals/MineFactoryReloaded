@@ -106,6 +106,7 @@ import powercrystals.minefactoryreloaded.net.ServerPacketHandler;
 import powercrystals.minefactoryreloaded.plants.TileEntityFertilizer;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.plants.TileEntityPlanter;
+import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 import powercrystals.minefactoryreloaded.processing.TileEntityBlockBreaker;
 import powercrystals.minefactoryreloaded.processing.TileEntityComposter;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
@@ -218,6 +219,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item blankRecordItem;
 	public static Item syringeZombieItem;
 	public static Item safariNetSingleItem;
+	public static Item bioFuelItem;
+	public static Item bioFuelBucketItem;
 
 	public static int conveyorTexture = 0;
 	public static int conveyorOffTexture = 1;
@@ -267,6 +270,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property blankRecordId;
 	public static Property syringeZombieId;
 	public static Property safariNetSingleItemId;
+	public static Property bioFuelItemId;
+	public static Property bioFuelBucketItemId;
 
 	public static Property animateBlockFaces;
 	public static Property treeSearchMaxVertical;
@@ -314,6 +319,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property enableMachineAutoJukebox;
 	public static Property enableMachineUnifier;
 	public static Property enableMachineAutoSpawner;
+	public static Property enableMachineBioReactor;
 
 	private static MineFactoryReloadedCore instance;
 	
@@ -322,7 +328,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public enum Machine
 	{
 		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper,
-		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox, Unifier, AutoSpawner
+		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox, Unifier, AutoSpawner, BioReactor
 	}
 
 	public static MineFactoryReloadedCore instance()
@@ -368,6 +374,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		machine1MetadataMappings.put(Machine.AutoJukebox, 7);
 		machine1MetadataMappings.put(Machine.Unifier, 8);
 		machine1MetadataMappings.put(Machine.AutoSpawner, 9);
+		machine1MetadataMappings.put(Machine.BioReactor, 10);
 
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorOffTexture);
 		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt());
@@ -405,6 +412,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setIconIndex(40).setItemName("blankRecordItem").setMaxStackSize(1);
 		syringeZombieItem = (new ItemSyringeZombie()).setIconIndex(41).setItemName("syringeZombieItem").setContainerItem(syringeEmptyItem);
 		safariNetSingleItem = (new ItemSafariNet(safariNetSingleItemId.getInt())).setIconIndex(42).setItemName("safariNetSingleItem");
+		bioFuelItem = (new ItemFactory(bioFuelItemId.getInt())).setIconIndex(46).setItemName("factoryBioFuelItem");
+		bioFuelBucketItem = (new ItemFactory(bioFuelBucketItemId.getInt())).setIconIndex(47).setItemName("factoryBioFuelBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 
 		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
 		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
@@ -466,6 +475,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityAutoJukebox.class, "factoryAutoJukebox");
 		GameRegistry.registerTileEntity(TileEntityUnifier.class, "factoryUnifier");
 		GameRegistry.registerTileEntity(TileEntityAutoSpawner.class, "factoryAutoSpawner");
+		GameRegistry.registerTileEntity(TileEntityBioReactor.class, "factoryBioReactor");
 
 		MinecraftForge.EVENT_BUS.register(instance);
 
@@ -691,6 +701,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		blankRecordId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BlankRecord", 12006);
 		syringeZombieId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeZombie", 12007);
 		safariNetSingleItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetSingleUse", 12008);
+		bioFuelItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BioFuel", 12009);
+		bioFuelBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetSingleUse", 12010);
 
 		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
 		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";
@@ -752,6 +764,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		enableMachineAutoJukebox = c.get("MachineEnables", "AutoJukebox", true);
 		enableMachineUnifier = c.get("MachineEnables", "Unifier", true);
 		enableMachineAutoSpawner = c.get("MachineEnables", "AutoSpawner", true);
+		enableMachineBioReactor = c.get("MachineEnables", "BioReactor", true);
 
 		c.addCustomCategoryComment("MachineEnables", "Set to false to disable that machine's recipes. Machines will still work if gotten through other means.");
 		c.save();

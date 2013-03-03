@@ -1,17 +1,32 @@
 package powercrystals.minefactoryreloaded;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 
 public abstract class MFRRegistry
 {
+	private static Map<Integer, IFactoryPlantable> _plantables = new HashMap<Integer, IFactoryPlantable>();
+	
 	private static List<IMobEggHandler> _eggHandlers = new ArrayList<IMobEggHandler>();
 	private static List<ISafariNetHandler> _safariNetHandlers = new ArrayList<ISafariNetHandler>();
 	private static List<String> _rubberTreeBiomes = new ArrayList<String>();
 	private static List<Class<?>> _safariNetBlacklist = new ArrayList<Class<?>>();
+	
+	public static void registerPlantable(IFactoryPlantable plantable)
+	{
+		_plantables.put(new Integer(plantable.getSourceId()), plantable);
+	}
+	
+	public static Map<Integer, IFactoryPlantable> getPlantables()
+	{
+		return _plantables;
+	}
 	
 	public static void registerMobEggHandler(IMobEggHandler handler)
 	{
