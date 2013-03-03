@@ -104,6 +104,6 @@ public class GuiFactoryInventory extends GuiContainer
 		}
 		
 		this.mc.renderEngine.bindTexture(gaugeTexture);
-		this.drawTexturedModalRect(124, 15, 176, 0, 16, 60);
+		this.drawTexturedModalRect(xOffset, yOffset - 60, 176, 0, 16, 60);
 	}
 }
