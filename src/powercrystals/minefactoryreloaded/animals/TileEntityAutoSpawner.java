@@ -73,31 +73,30 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 		else
 		{
 			Entity spawnedEntity = null;
-			
-			if(_spawnExact)
+			try
 			{
-				NBTTagCompound tag = (NBTTagCompound)_inventory[0].getTagCompound().copy();
-				tag.removeTag("Equipment");
-				spawnedEntity = EntityList.createEntityFromNBT(tag, worldObj);
+				spawnedEntity = EntityList.createEntityByName((String)EntityList.classToStringMapping.get(Class.forName(_inventory[0].getTagCompound().getString("_class"))), worldObj);
 			}
-			else
+			catch(ClassNotFoundException e)
 			{
-				try
-				{
-					spawnedEntity = EntityList.createEntityByName((String)EntityList.classToStringMapping.get(Class.forName(_inventory[0].getTagCompound().getString("_class"))), worldObj);
-				}
-				catch(ClassNotFoundException e)
-				{
-					e.printStackTrace();
-					return false;
-				}
+				e.printStackTrace();
+				return false;
 			}
 			
 			if(!(spawnedEntity instanceof EntityLiving))
 			{
 				return false;
 			}
+			
 			EntityLiving spawnedLiving = (EntityLiving)spawnedEntity;
+			spawnedLiving.initCreature();
+
+			if(_spawnExact)
+			{
+				NBTTagCompound tag = (NBTTagCompound)_inventory[0].getTagCompound().copy();
+				tag.removeTag("Equipment");
+				spawnedLiving.readEntityFromNBT(tag);
+			}
 			
 			double x = xCoord + (worldObj.rand.nextDouble() - worldObj.rand.nextDouble()) * _spawnRange;
 			double y = yCoord + worldObj.rand.nextInt(3) - 1;
