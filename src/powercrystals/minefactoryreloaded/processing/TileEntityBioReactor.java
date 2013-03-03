@@ -17,12 +17,49 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 {
 	private LiquidTank _tank;
 	private int _burnTime;
-	private final static int _burnTimeMax = 1000;
-	private final static int _bioFuelPerTick = 10;
+	private static final int _burnTimeMax = 8000;
+	private static final int _bioFuelPerTick = 10;
+	
+	// start at 80, +20 for each slot after the first
+	private static final int[] _outputValues = { 0, 80, 180, 300, 440, 600, 780, 980, 1200, 1440 };
 	
 	public TileEntityBioReactor()
 	{
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
+	}
+	
+	public int getBurnTime()
+	{
+		return _burnTime;
+	}
+	
+	public void setBurnTime(int burnTime)
+	{
+		_burnTime = burnTime;
+	}
+	
+	public int getBurnTimeMax()
+	{
+		return _burnTimeMax;
+	}
+	
+	public int getOutputValue()
+	{
+		int occupiedSlots = 0;
+		for(int i = 9; i < 18; i++)
+		{
+			if(_inventory[i] != null)
+			{
+				occupiedSlots++;
+			}
+		}
+		
+		return _outputValues[occupiedSlots];
+	}
+	
+	public int getOutputValueMax()
+	{
+		return _outputValues[9];
 	}
 	
 	@Override
@@ -58,16 +95,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 				}
 			}
 			
-			int occupiedSlots = 0;
-			for(int i = 9; i < 18; i++)
-			{
-				if(_inventory[i] != null)
-				{
-					occupiedSlots++;
-				}
-			}
-			
-			int newBurn = 100 * occupiedSlots;
+			int newBurn = getOutputValue();
 			if(_burnTimeMax - _burnTime >= newBurn)
 			{
 				_burnTime += newBurn;
