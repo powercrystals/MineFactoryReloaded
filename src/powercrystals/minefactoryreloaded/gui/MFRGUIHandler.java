@@ -10,6 +10,7 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoJukebox;
+import powercrystals.minefactoryreloaded.gui.client.GuiAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.client.GuiBioReactor;
 import powercrystals.minefactoryreloaded.gui.client.GuiChronotyper;
 import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
@@ -121,7 +122,7 @@ public class MFRGUIHandler implements IGuiHandler
 		}
 		else if(te instanceof TileEntityAutoSpawner)
 		{
-			return new GuiFactoryInventory(new ContainerAutoSpawner((TileEntityAutoSpawner)te, player.inventory), (TileEntityAutoSpawner)te);
+			return new GuiAutoSpawner(new ContainerAutoSpawner((TileEntityAutoSpawner)te, player.inventory), (TileEntityAutoSpawner)te);
 		}
 		else if(te instanceof TileEntityBioReactor)
 		{

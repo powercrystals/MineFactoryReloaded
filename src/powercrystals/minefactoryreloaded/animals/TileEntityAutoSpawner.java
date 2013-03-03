@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.animals;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
@@ -14,13 +15,24 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
 public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements ITankContainer
 {
-	private static int _spawnRange = 4;
+	private static final int _spawnRange = 4;
 	private LiquidTank _tank;
+	private boolean _spawnExact = false;
 	
 	public TileEntityAutoSpawner()
 	{
 		super(512);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
+	}
+	
+	public boolean getSpawnExact()
+	{
+		return _spawnExact;
+	}
+	
+	public void setSpawnExact(boolean spawnExact)
+	{
+		_spawnExact = spawnExact;
 	}
 	
 	@Override
@@ -61,15 +73,26 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 		else
 		{
 			Entity spawnedEntity = null;
-			try
+			
+			if(_spawnExact)
 			{
-				spawnedEntity = EntityList.createEntityByName((String)EntityList.classToStringMapping.get(Class.forName(_inventory[0].getTagCompound().getString("_class"))), worldObj);
+				NBTTagCompound tag = (NBTTagCompound)_inventory[0].getTagCompound().copy();
+				tag.removeTag("Equipment");
+				spawnedEntity = EntityList.createEntityFromNBT(tag, worldObj);
 			}
-			catch(ClassNotFoundException e)
+			else
 			{
-				e.printStackTrace();
-				return false;
+				try
+				{
+					spawnedEntity = EntityList.createEntityByName((String)EntityList.classToStringMapping.get(Class.forName(_inventory[0].getTagCompound().getString("_class"))), worldObj);
+				}
+				catch(ClassNotFoundException e)
+				{
+					e.printStackTrace();
+					return false;
+				}
 			}
+			
 			if(!(spawnedEntity instanceof EntityLiving))
 			{
 				return false;

@@ -11,4 +11,5 @@ public final class Packets
 	public static final int AutoJukeboxPlay = 7;
 	public static final int RoadBlockUpdate = 8;
 	public static final int AutoJukeboxButton = 9;
+	public static final int AutoSpawnerButton = 10;
 }

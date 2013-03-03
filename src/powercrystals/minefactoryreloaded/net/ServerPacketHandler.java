@@ -9,6 +9,7 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 
 import powercrystals.core.net.PacketWrapper;
+import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
@@ -84,6 +85,17 @@ public class ServerPacketHandler implements IPacketHandler
 				if(button == 1) j.playRecord();
 				else if(button == 2) j.stopRecord();
 				else if(button == 3) j.copyRecord();
+			}
+		}
+		else if(packetType == Packets.AutoSpawnerButton) // client -> server: toggle autospawner
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityAutoSpawner)
+			{
+				((TileEntityAutoSpawner)te).setSpawnExact(!((TileEntityAutoSpawner)te).getSpawnExact());
 			}
 		}
 	}

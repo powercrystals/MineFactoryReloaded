@@ -37,7 +37,7 @@ public class GuiChronotyper extends GuiFactoryPowered
 	public void updateScreen()
 	{
 		super.updateScreen();
-		_ageToggle.displayString = "Moving: " + (((TileEntityChronotyper)_chronotyper).getMoveOld() ? "Adults" : "Babies");
+		_ageToggle.displayString = "Moving: " + (_chronotyper.getMoveOld() ? "Adults" : "Babies");
 	}
 	
 	@Override
