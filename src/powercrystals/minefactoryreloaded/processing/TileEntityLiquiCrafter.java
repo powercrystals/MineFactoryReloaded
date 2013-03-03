@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -18,10 +17,10 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.util.Util;
-import powercrystals.minefactoryreloaded.core.TileEntityFactory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.transport.RemoteInventoryCrafting;
 
-public class TileEntityLiquiCrafter extends TileEntityFactory implements IInventory, ISidedInventory, ITankContainer
+public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implements ISidedInventory, ITankContainer
 {
 	private boolean _lastRedstoneState;
 	
@@ -253,44 +252,6 @@ inv:	for(int i = 0; i < 9; i++)
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int slot)
-	{
-		return _inventory[slot];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int size)
-	{
-		if(_inventory[slot] != null)
-		{
-			if(_inventory[slot].stackSize <= size)
-			{
-				ItemStack itemstack = _inventory[slot];
-				_inventory[slot] = null;
-				if(slot < 9) calculateOutput();
-				return itemstack;
-			}
-			ItemStack itemstack1 = _inventory[slot].splitStack(size);
-			if(_inventory[slot].stackSize == 0)
-			{
-				_inventory[slot] = null;
-			}
-			if(slot < 9) calculateOutput();
-			return itemstack1;
-		}
-		else
-		{
-			return null;
-		}
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot)
-	{
-		return null;
-	}
-
-	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
 		_inventory[slot] = stack;
@@ -313,16 +274,6 @@ inv:	for(int i = 0; i < 9; i++)
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
 		return player.getDistanceSq(xCoord, yCoord, zCoord) <= 64D;
-	}
-
-	@Override
-	public void openChest()
-	{
-	}
-
-	@Override
-	public void closeChest()
-	{
 	}
 
 	@Override
@@ -449,19 +400,6 @@ inv:	for(int i = 0; i < 9; i++)
 	{
 		super.readFromNBT(nbttagcompound);
 		
-		NBTTagList inv = nbttagcompound.getTagList("Items");
-		for(int i = 0; i < inv.tagCount(); i++)
-		{
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound)inv.tagAt(i);
-			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if(j >= 0 && j < _inventory.length)
-			{
-				ItemStack s = new ItemStack(0, 0, 0);
-				s.readFromNBT(nbttagcompound1);
-				_inventory[j] = s;
-			}
-		}
-		
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Tanks");
 		for(int i = 0; i < nbttaglist.tagCount(); i++)
 		{
@@ -480,20 +418,6 @@ inv:	for(int i = 0; i < 9; i++)
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeToNBT(nbttagcompound);
-		NBTTagList inv = new NBTTagList();
-		for(int i = 0; i < _inventory.length; i++)
-		{
-			if(_inventory[i] != null)
-			{
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte)i);
-				_inventory[i].writeToNBT(nbttagcompound1);
-				inv.appendTag(nbttagcompound1);
-			}
-		}
-
-		nbttagcompound.setTag("Items", inv);
-		
 
 		NBTTagList tanks = new NBTTagList();
 		for(int i = 0; i < _tanks.length; i++)
