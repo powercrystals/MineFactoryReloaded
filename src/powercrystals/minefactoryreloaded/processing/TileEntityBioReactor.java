@@ -71,6 +71,13 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 			if(_burnTimeMax - _burnTime <= newBurn)
 			{
 				_burnTime += newBurn;
+				for(int i = 0; i < 9; i++)
+				{
+					if(_inventory[i] != null)
+					{
+						decrStackSize(i, 1);
+					}
+				}
 			}
 			
 			if(_burnTime > 0 && (_tank.getLiquid() == null || _tank.getLiquid().amount < _tank.getCapacity() - _bioFuelPerTick))
@@ -85,7 +92,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	{
 		for(int i = 9; i < 18; i++)
 		{
-			if(_inventory[i] != null && _inventory[i].itemID == s.itemID && _inventory[i].getItemDamage() == _inventory[i].getItemDamage())
+			if(_inventory[i] != null && _inventory[i].itemID == s.itemID && _inventory[i].getItemDamage() == s.getItemDamage())
 			{
 				return i;
 			}
