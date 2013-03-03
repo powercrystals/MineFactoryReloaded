@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.power;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
+import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
@@ -25,6 +26,8 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 		_powerProducedPerConsumption = powerProducedPerConsumption;
 		_ticksBetweenConsumption = ticksBetweenConsumption;
 		_outputPulseSize = 100;
+		
+		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 	}
 	
 	protected abstract LiquidStack getLiquidType();
