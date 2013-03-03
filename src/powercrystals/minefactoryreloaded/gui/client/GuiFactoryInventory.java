@@ -16,6 +16,7 @@ public class GuiFactoryInventory extends GuiContainer
 {
 	protected TileEntityFactoryInventory _tileEntity;
 	protected int _barSizeMax = 60;
+	protected int _tankSizeMax = 61;
 	
 	public GuiFactoryInventory(ContainerFactoryInventory container, TileEntityFactoryInventory tileentity)
 	{
@@ -32,7 +33,7 @@ public class GuiFactoryInventory extends GuiContainer
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		if(_tileEntity.getTank() != null && _tileEntity.getTank().getLiquid() != null)
 		{
-			int tankSize = _tileEntity.getTank().getLiquid().amount * _barSizeMax / _tileEntity.getTank().getCapacity();
+			int tankSize = _tileEntity.getTank().getLiquid().amount * _tankSizeMax / _tileEntity.getTank().getCapacity();
 			drawTank(124, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
 		}
 	}

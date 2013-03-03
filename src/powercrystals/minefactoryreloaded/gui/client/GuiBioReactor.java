@@ -27,11 +27,11 @@ public class GuiBioReactor extends GuiFactoryInventory
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		if(_tileEntity.getTank() != null && _tileEntity.getTank().getLiquid() != null)
 		{
-			int tankSize = _tileEntity.getTank().getLiquid().amount * _barSizeMax / _tileEntity.getTank().getCapacity();
+			int tankSize = _tileEntity.getTank().getLiquid().amount * _tankSizeMax / _tileEntity.getTank().getCapacity();
 			drawTank(132, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
 		}
 
 		drawBar(150, 75, ((TileEntityBioReactor)_tileEntity).getOutputValueMax(), ((TileEntityBioReactor)_tileEntity).getOutputValue(), _barColorValue);
-		drawBar(160, 75, ((TileEntityBioReactor)_tileEntity).getBurnTimeMax(), ((TileEntityBioReactor)_tileEntity).getOutputValue(), _barColorBurn);
+		drawBar(160, 75, ((TileEntityBioReactor)_tileEntity).getBurnTimeMax(), ((TileEntityBioReactor)_tileEntity).getBurnTime(), _barColorBurn);
 	}
 }
