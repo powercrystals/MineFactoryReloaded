@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
 import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 
 public class ContainerBioReactor extends ContainerFactoryInventory
@@ -18,7 +19,7 @@ public class ContainerBioReactor extends ContainerFactoryInventory
 		
 		for(int i = 0; i < 9; i++)
 		{
-			addSlotToContainer(new Slot(_te, 9 + i, 8 + 18 * i, 83));
+			addSlotToContainer(new SlotRemoveOnly(_te, 9 + i, 8 + 18 * i, 83));
 		}
 	}
 	

@@ -59,7 +59,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 			}
 			
 			int occupiedSlots = 0;
-			for(int i = 0; i < 9; i++)
+			for(int i = 9; i < 18; i++)
 			{
 				if(_inventory[i] != null)
 				{
@@ -71,7 +71,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 			if(_burnTimeMax - _burnTime >= newBurn)
 			{
 				_burnTime += newBurn;
-				for(int i = 0; i < 9; i++)
+				for(int i = 9; i < 18; i++)
 				{
 					if(_inventory[i] != null)
 					{
