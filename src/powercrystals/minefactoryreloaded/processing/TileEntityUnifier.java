@@ -30,7 +30,7 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ISi
 				
 				if(names == null || names.size() != 1)
 				{
-					output = _inventory[0];
+					output = _inventory[0].copy();
 				}
 				else
 				{
