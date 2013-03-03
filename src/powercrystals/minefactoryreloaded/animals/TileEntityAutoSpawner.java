@@ -107,7 +107,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryInventory implements
 	@Override
 	public int getIdleTicksMax()
 	{
-		return 1000;
+		return 200;
 	}
 	
 	@Override
