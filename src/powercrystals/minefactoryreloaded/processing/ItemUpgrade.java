@@ -35,9 +35,9 @@ public class ItemUpgrade extends ItemFactory
 	public String getItemNameIS(ItemStack s)
 	{
 		if(s.getItemDamage() == 0) return "factoryUpgradeLapis";
-		if(s.getItemDamage() == 0) return "factoryUpgradeGold";
-		if(s.getItemDamage() == 0) return "factoryUpgradeDiamond";
-		if(s.getItemDamage() == 0) return "factoryUpgradeEmerald";
+		if(s.getItemDamage() == 1) return "factoryUpgradeGold";
+		if(s.getItemDamage() == 2) return "factoryUpgradeDiamond";
+		if(s.getItemDamage() == 3) return "factoryUpgradeEmerald";
 		return "factoryUpgradeLapis";
 	}
 	
@@ -57,7 +57,7 @@ public class ItemUpgrade extends ItemFactory
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int itemId, CreativeTabs creativeTab, List subtypes)
 	{
-		for(int i = 0; i < 12; i++)
+		for(int i = 0; i < 4; i++)
 		{
 			subtypes.add(new ItemStack(MineFactoryReloadedCore.machineBlock1.blockID, 1, i));
 		}
