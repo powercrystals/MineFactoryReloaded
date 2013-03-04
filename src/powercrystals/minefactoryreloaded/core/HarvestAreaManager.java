@@ -62,6 +62,15 @@ public class HarvestAreaManager
 		return next;
 	}
 	
+	public void rewindBlock()
+	{
+		_currentBlock--;
+		if(_currentBlock < 0)
+		{
+			_currentBlock = _harvestedBlocks.size() - 1;
+		}
+	}
+	
 	public void setOverrideDirection(ForgeDirection dir)
 	{
 		_overrideDirection = dir;

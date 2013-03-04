@@ -173,16 +173,16 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			}
 			else if(harvestable.getHarvestType() == HarvestType.LeaveBottom)
 			{
-				BlockPosition temp = getNextVertical(bp.x, bp.y, bp.z);
-				if(temp == null)
-				{
-					return null;
-				}
-				return temp;
+				return getNextVertical(bp.x, bp.y, bp.z);
 			}
 			else if(harvestable.getHarvestType() == HarvestType.Tree)
 			{
-				return getNextTreeSegment(bp.x, bp.y, bp.z);
+				BlockPosition temp = getNextTreeSegment(bp.x, bp.y, bp.z);
+				if(temp != null)
+				{
+					_areaManager.rewindBlock();
+				}
+				return temp;
 			}
 		}
 		return null;
