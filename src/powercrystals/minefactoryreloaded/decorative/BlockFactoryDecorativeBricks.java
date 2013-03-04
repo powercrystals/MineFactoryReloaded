@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.decorative;
 
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -35,5 +36,11 @@ public class BlockFactoryDecorativeBricks extends Block
 	public int getBlockTextureFromSideAndMetadata(int side, int meta)
 	{
 		return 80 + meta;
+	}
+	
+	@Override
+	public String getTextureFile()
+	{
+		return MineFactoryReloadedCore.terrainTexture;
 	}
 }
