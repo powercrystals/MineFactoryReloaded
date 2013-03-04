@@ -8,12 +8,9 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerLiquidRouter extends ContainerFactoryInventory
 {
-	private TileEntityLiquidRouter _router;
-
 	public ContainerLiquidRouter(TileEntityLiquidRouter router, InventoryPlayer inventoryPlayer)
 	{
 		super(router, inventoryPlayer);
-		_router = router;
 	}
 	
 	@Override
@@ -21,7 +18,7 @@ public class ContainerLiquidRouter extends ContainerFactoryInventory
 	{
 		for(int i = 0; i < 6; i++)
 		{
-			addSlotToContainer(new Slot(_router, i, 8 + i * 18, 20));
+			addSlotToContainer(new Slot(_te, i, 8 + i * 18, 20));
 		}
 	}
 	

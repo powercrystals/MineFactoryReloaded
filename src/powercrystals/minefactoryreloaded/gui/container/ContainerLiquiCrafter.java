@@ -35,18 +35,18 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 		{
 			for(int j = 0; j < 3; j++)
 			{
-				addSlotToContainer(new Slot(_crafter, j + i * 3, 8 + j * 18, 20 + i * 18));
+				addSlotToContainer(new Slot(_te, j + i * 3, 8 + j * 18, 20 + i * 18));
 			}
 		}
 
-		addSlotToContainer(new SlotViewOnly(_crafter, 9, 80, 38));
-		addSlotToContainer(new SlotRemoveOnly(_crafter, 10, 134, 38));
+		addSlotToContainer(new SlotViewOnly(_te, 9, 80, 38));
+		addSlotToContainer(new SlotRemoveOnly(_te, 10, 134, 38));
 		
 		for(int i = 0; i < 2; i++)
 		{
 			for(int j = 0; j < 9; j++)
 			{
-				addSlotToContainer(new Slot(_crafter, 11 + j + i * 9, 8 + j * 18, 79 + i * 18));
+				addSlotToContainer(new Slot(_te, 11 + j + i * 9, 8 + j * 18, 79 + i * 18));
 			}
 		}
 	}

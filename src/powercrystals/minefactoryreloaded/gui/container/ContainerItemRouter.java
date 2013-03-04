@@ -8,12 +8,9 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerItemRouter extends ContainerFactoryInventory
 {
-	private TileEntityItemRouter _router;
-
 	public ContainerItemRouter(TileEntityItemRouter router, InventoryPlayer inventoryPlayer)
 	{
 		super(router, inventoryPlayer);
-		_router = router;
 	}
 	
 	@Override
@@ -23,7 +20,7 @@ public class ContainerItemRouter extends ContainerFactoryInventory
 		{
 			for(int j = 0; j < 9; j++)
 			{
-				addSlotToContainer(new Slot(_router, j + i * 9, 8 + j * 18, 20 + i * 18));
+				addSlotToContainer(new Slot(_te, j + i * 9, 8 + j * 18, 20 + i * 18));
 			}
 		}
 	}
