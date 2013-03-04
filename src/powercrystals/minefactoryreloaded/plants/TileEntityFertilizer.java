@@ -64,6 +64,7 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered implements IS
 		int targetId = worldObj.getBlockId(bp.x, bp.y, bp.z);
 		if(!fertilizables.containsKey(new Integer(targetId)))
 		{
+			setIdleTicks(getIdleTicksMax());
 			return false;
 		}
 		for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
@@ -92,7 +93,6 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered implements IS
 				{
 					setInventorySlotContents(stackIndex, null);
 				}
-				setIdleTicks(5);
 				return true;
 			}
 		}
