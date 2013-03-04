@@ -2,8 +2,6 @@ package powercrystals.minefactoryreloaded.gui.client;
 
 import net.minecraft.client.gui.GuiButton;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 import powercrystals.core.net.PacketWrapper;
@@ -12,7 +10,7 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 
-public class GuiAutoEnchanter extends GuiFactoryInventory
+public class GuiAutoEnchanter extends GuiFactoryPowered
 {
 	private TileEntityAutoEnchanter _enchanter;
 	private GuiButton _inc;
@@ -42,17 +40,6 @@ public class GuiAutoEnchanter extends GuiFactoryInventory
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		fontRenderer.drawString(new Integer(_enchanter.getTargetLevel()).toString(), 68, 44, 4210752);
-	}
-	
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
-	{
-		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + "autoenchanter.png");
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(texture);
-		int x = (width - xSize) / 2;
-		int y = (height - ySize) / 2;
-		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 	}
 	
 	@Override

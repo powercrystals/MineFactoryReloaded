@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 
-public class ContainerAutoEnchanter extends ContainerFactoryInventory
+public class ContainerAutoEnchanter extends ContainerFactoryPowered
 {
 	private TileEntityAutoEnchanter _enchanter;
 	
