@@ -20,13 +20,14 @@ import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.ISidedInventory;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityHarvester extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityHarvester extends TileEntityFactoryPowered implements ITankContainer, ISidedInventory
 {
 	private static Map<Integer, IFactoryHarvestable> harvestables = new HashMap<Integer, IFactoryHarvestable>();
 
@@ -95,6 +96,12 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	public int getIdleTicksMax()
 	{
 		return 5;
+	}
+	
+	@Override
+	protected void onFactoryInventoryChanged()
+	{
+		_areaManager.updateUpgradeLevel(_inventory[0]);
 	}
 
 	@Override
@@ -301,6 +308,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 				}
 			}
 		}
+		_areaManager.updateUpgradeLevel(_inventory[0]);
 	}
 	
 	@Override
@@ -312,12 +320,24 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int getSizeInventory()
 	{
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public boolean manageSolids()
 	{
 		return true;
+	}
+
+	@Override
+	public int getStartInventorySide(ForgeDirection side)
+	{
+		return 0;
+	}
+
+	@Override
+	public int getSizeInventorySide(ForgeDirection side)
+	{
+		return 0;
 	}
 }

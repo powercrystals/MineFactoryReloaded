@@ -73,6 +73,7 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.Unifier)), "Unifier");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.AutoSpawner)), "Auto-Spawner");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.BioReactor)), "Bio Reactor");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.machineBlock1, 1, MineFactoryReloadedCore.machine1MetadataMappings.get(Machine.BioFuelGenerator)), "BioFuel Generator");
 
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, 16), "Conveyor Belt");
 
@@ -117,6 +118,11 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetSingleItem, "Safari Net (Single Use)");
 		LanguageRegistry.addName(MineFactoryReloadedCore.bioFuelItem, "BioFuel");
 		LanguageRegistry.addName(MineFactoryReloadedCore.bioFuelBucketItem, "BioFuel Bucket");
+
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), "Lapis Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 1), "Gold Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 2), "Diamond Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 3), "Emerald Upgrade");
 		
 		for(int i = 0; i < 16; i++)
 		{

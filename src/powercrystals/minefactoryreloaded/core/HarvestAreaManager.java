@@ -5,6 +5,8 @@ import java.util.List;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.core.TileEntityFactory;
+import powercrystals.minefactoryreloaded.processing.ItemUpgrade;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 
 public class HarvestAreaManager
@@ -24,6 +26,8 @@ public class HarvestAreaManager
 	
 	private List<BlockPosition> _harvestedBlocks;
 	private int _currentBlock;
+	
+	private int _upgradeLevel;
 	
 	public HarvestAreaManager(TileEntityFactory owner, int harvestRadius, int harvestAreaUp, int harvestAreaDown)
 	{
@@ -58,6 +62,25 @@ public class HarvestAreaManager
 		return next;
 	}
 	
+	public void setOverrideDirection(ForgeDirection dir)
+	{
+		_overrideDirection = dir;
+	}
+	
+	public void updateUpgradeLevel(ItemStack stack)
+	{
+		int newUpgradeLevel = 0;
+		if(stack != null && stack.getItem() instanceof ItemUpgrade)
+		{
+			newUpgradeLevel = ((ItemUpgrade)stack.getItem()).getUpgradeLevel(stack);
+		}
+		if(newUpgradeLevel != _upgradeLevel)
+		{
+			_upgradeLevel = newUpgradeLevel;
+			recalculateArea();
+		}
+	}
+	
 	private void checkRecalculate()
 	{
 		if(_harvestArea == null)
@@ -90,13 +113,8 @@ public class HarvestAreaManager
 		_originOrientation = ourpos.orientation;
 		
 		ourpos.moveForwards(_radius + 1);
-		_harvestArea = new Area(ourpos, _radius, _areaDown, _areaUp);
+		_harvestArea = new Area(ourpos, _radius + _upgradeLevel, _areaDown, _areaUp);
 		_harvestedBlocks = _harvestArea.getPositionsBottomFirst();
 		_currentBlock = 0;
-	}
-	
-	public void setOverrideDirection(ForgeDirection dir)
-	{
-		_overrideDirection = dir;
 	}
 }

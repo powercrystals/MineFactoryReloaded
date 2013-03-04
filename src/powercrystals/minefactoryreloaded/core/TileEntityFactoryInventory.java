@@ -67,6 +67,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 			{
 				ItemStack itemstack = _inventory[slot];
 				_inventory[slot] = null;
+				onFactoryInventoryChanged();
 				return itemstack;
 			}
 			ItemStack itemstack1 = _inventory[slot].splitStack(size);
@@ -74,10 +75,12 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 			{
 				_inventory[slot] = null;
 			}
+			onFactoryInventoryChanged();
 			return itemstack1;
 		}
 		else
 		{
+			onFactoryInventoryChanged();
 			return null;
 		}
 	}
@@ -90,8 +93,13 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		{
 			itemstack.stackSize = getInventoryStackLimit();
 		}
+		onFactoryInventoryChanged();
 	}
 
+	protected void onFactoryInventoryChanged()
+	{
+	}
+	
 	@Override
 	public int getInventoryStackLimit()
 	{

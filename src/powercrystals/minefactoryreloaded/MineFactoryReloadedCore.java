@@ -107,6 +107,7 @@ import powercrystals.minefactoryreloaded.plants.TileEntityFertilizer;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.plants.TileEntityPlanter;
 import powercrystals.minefactoryreloaded.power.TileEntityBioFuelGenerator;
+import powercrystals.minefactoryreloaded.processing.ItemUpgrade;
 import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 import powercrystals.minefactoryreloaded.processing.TileEntityBlockBreaker;
 import powercrystals.minefactoryreloaded.processing.TileEntityComposter;
@@ -222,6 +223,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item safariNetSingleItem;
 	public static Item bioFuelItem;
 	public static Item bioFuelBucketItem;
+	public static Item upgradeItem;
 
 	public static int conveyorTexture = 0;
 	public static int conveyorOffTexture = 1;
@@ -273,6 +275,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property safariNetSingleItemId;
 	public static Property bioFuelItemId;
 	public static Property bioFuelBucketItemId;
+	public static Property upgradeItemId;
 
 	public static Property animateBlockFaces;
 	public static Property treeSearchMaxVertical;
@@ -417,6 +420,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		safariNetSingleItem = (new ItemSafariNet(safariNetSingleItemId.getInt())).setIconIndex(42).setItemName("safariNetSingleItem");
 		bioFuelItem = (new ItemFactory(bioFuelItemId.getInt())).setIconIndex(46).setItemName("factoryBioFuelItem");
 		bioFuelBucketItem = (new ItemFactory(bioFuelBucketItemId.getInt())).setIconIndex(47).setItemName("factoryBioFuelBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setItemName("factoryUpgradeItem").setMaxStackSize(1);
 
 		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
 		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
@@ -706,6 +710,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		safariNetSingleItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetSingleUse", 12008);
 		bioFuelItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BioFuel", 12009);
 		bioFuelBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BioFuelBucket", 12010);
+		upgradeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Upgrade", 12011);
 
 		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
 		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";
