@@ -114,7 +114,15 @@ public class HarvestAreaManager
 		
 		int radius = _radius + _upgradeLevel;
 		
-		ourpos.moveForwards(radius + 1);
+		if(ourpos.orientation == ForgeDirection.UP || ourpos.orientation == ForgeDirection.DOWN)
+		{
+			ourpos.moveForwards(1);
+		}
+		else
+		{
+			ourpos.moveForwards(radius + 1);
+		}
+		
 		_harvestArea = new Area(ourpos, radius, _areaDown, _areaUp);
 		_harvestedBlocks = _harvestArea.getPositionsBottomFirst();
 		_currentBlock = 0;

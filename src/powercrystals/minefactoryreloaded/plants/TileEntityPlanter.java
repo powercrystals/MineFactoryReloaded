@@ -49,13 +49,11 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 	public boolean activateMachine()
 	{
 		BlockPosition bp = _areaManager.getNextBlock();
-		System.out.println("Testing position " + bp.toString());
 		
 		for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
 		{
 			if(getStackInSlot(stackIndex) == null)
 			{
-				System.out.println("Stack in slot " + stackIndex + " is null");
 				continue;
 			}
 			
@@ -63,14 +61,12 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 			
 			if(!MFRRegistry.getPlantables().containsKey(new Integer(availableStack.itemID)))
 			{
-				System.out.println("Stack in slot " + stackIndex + " is not plantable");
 				continue;
 			}
 			IFactoryPlantable plantable = MFRRegistry.getPlantables().get(new Integer(availableStack.itemID));
 
 			if(!plantable.canBePlantedHere(worldObj, bp.x, bp.y, bp.z, availableStack))
 			{
-				System.out.println("Stack in slot " + stackIndex + " cannot be planted here");
 				continue;
 			}
 			plantable.prePlant(worldObj, bp.x, bp.y, bp.z, availableStack);
