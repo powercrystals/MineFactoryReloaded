@@ -52,11 +52,13 @@ import powercrystals.minefactoryreloaded.core.ItemFactory;
 import powercrystals.minefactoryreloaded.core.ItemFactoryHammer;
 import powercrystals.minefactoryreloaded.core.ItemBlockFactoryMachine0;
 import powercrystals.minefactoryreloaded.core.MineFactoryReloadedFuelHandler;
+import powercrystals.minefactoryreloaded.decorative.BlockFactoryDecorativeBricks;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.BlockFactoryRoad;
 import powercrystals.minefactoryreloaded.decorative.BlockVanillaGlassPane;
 import powercrystals.minefactoryreloaded.decorative.BlockVanillaIce;
+import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryDecorativeBrick;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryRoad;
@@ -187,6 +189,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Block factoryGlassBlock;
 	public static Block factoryGlassPaneBlock;
 	public static Block factoryRoadBlock;
+	public static Block factoryDecorativeBrickBlock;
 	
 	public static Block rubberWoodBlock;
 	public static Block rubberLeavesBlock;
@@ -241,6 +244,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property factoryGlassBlockId;
 	public static Property factoryGlassPaneBlockId;
 	public static Property factoryRoadBlockId;
+	public static Property factoryDecorativeBrickBlockId;
 	
 	public static Property rubberWoodBlockId;
 	public static Property rubberLeavesBlockId;
@@ -388,6 +392,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt(), 16);
 		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt(), 16, 32);
 		factoryRoadBlock = new BlockFactoryRoad(factoryRoadBlockId.getInt());
+		factoryDecorativeBrickBlock = new BlockFactoryDecorativeBricks(factoryDecorativeBrickBlockId.getInt());
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
 		rubberLeavesBlock = new BlockRubberLeaves(rubberLeavesBlockId.getInt());
 		rubberSaplingBlock = new BlockRubberSapling(rubberSaplingBlockId.getInt());
@@ -428,6 +433,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
 		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
 		GameRegistry.registerBlock(factoryRoadBlock, ItemBlockFactoryRoad.class, "blockFactoryRoad");
+		GameRegistry.registerBlock(factoryDecorativeBrickBlock, ItemBlockFactoryDecorativeBrick.class, "blockFactoryDecorativeBrick");
 		GameRegistry.registerBlock(rubberWoodBlock, "blockRubberWood");
 		GameRegistry.registerBlock(rubberLeavesBlock, "blockRubberLeaves");
 		GameRegistry.registerBlock(rubberSaplingBlock, "blockRubberSapling");
@@ -685,6 +691,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		factoryGlassPaneBlockId = c.getBlock("ID.StainedGlassPane", 3130);
 		machineBlock1Id = c.getBlock("ID.MachineBlock1", 3131);
 		factoryRoadBlockId = c.getBlock("ID.Road", 3132);
+		factoryDecorativeBrickBlockId = c.getBlock("ID.Bricks", 3133);
 
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);

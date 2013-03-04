@@ -83,6 +83,13 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 3), "Road Light (Inverted)");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 4), "Road Light (Inverted)");
 
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 0), "Glowstone Bricks");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 1), "Ice Bricks");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 2), "Lapis Lazuli Bricks");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 3), "Obsidian Bricks");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 4), "Paved Stone Bricks");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 5), "Snow Bricks");
+
 		LanguageRegistry.addName(new ItemStack(Block.ice, 1, 0), "Ice");
 		LanguageRegistry.addName(new ItemStack(Block.ice, 1, 1), "Ice (Unmelting)");
 		
