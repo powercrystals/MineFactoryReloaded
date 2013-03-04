@@ -34,7 +34,7 @@ public class GuiFactoryInventory extends GuiContainer
 		if(_tileEntity.getTank() != null && _tileEntity.getTank().getLiquid() != null)
 		{
 			int tankSize = _tileEntity.getTank().getLiquid().amount * _tankSizeMax / _tileEntity.getTank().getCapacity();
-			drawTank(124, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
+			drawTank(122, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
 		}
 	}
 

@@ -22,8 +22,8 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
-		drawBar(142, 75, _tePowered.getEnergyStoredMax(), _tePowered.getEnergyStored(), _barColorEnergy);
-		drawBar(152, 75, _tePowered.getWorkMax(), _tePowered.getWorkDone(), _barColorWork);
-		drawBar(162, 75, _tePowered.getIdleTicksMax(), _tePowered.getIdleTicks(), _barColorIdle);
+		drawBar(140, 75, _tePowered.getEnergyStoredMax(), _tePowered.getEnergyStored(), _barColorEnergy);
+		drawBar(150, 75, _tePowered.getWorkMax(), _tePowered.getWorkDone(), _barColorWork);
+		drawBar(160, 75, _tePowered.getIdleTicksMax(), _tePowered.getIdleTicks(), _barColorIdle);
 	}
 }

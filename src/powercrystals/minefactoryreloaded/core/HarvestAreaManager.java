@@ -83,10 +83,12 @@ public class HarvestAreaManager
 		{
 			ourpos.orientation = _overrideDirection;
 		}
+		
 		_originX = ourpos.x;
 		_originY = ourpos.y;
 		_originZ = ourpos.z;
 		_originOrientation = ourpos.orientation;
+		
 		ourpos.moveForwards(_radius + 1);
 		_harvestArea = new Area(ourpos, _radius, _areaDown, _areaUp);
 		_harvestedBlocks = _harvestArea.getPositionsBottomFirst();
