@@ -48,7 +48,8 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 	@Override
 	public boolean activateMachine()
 	{
-		BlockPosition bp = _areaManager.getNextBlock();
+		BlockPosition bp = _areaManager.getNextBlock().copy();
+		bp.y += 1;
 		
 		for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
 		{
