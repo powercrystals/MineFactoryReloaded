@@ -134,4 +134,10 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 
 		return stack;
 	}
+	
+	@Override
+	protected int getPlayerInventoryVerticalOffset()
+	{
+		return 133;
+	}
 }

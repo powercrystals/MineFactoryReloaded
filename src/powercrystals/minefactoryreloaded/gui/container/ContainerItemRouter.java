@@ -26,6 +26,12 @@ public class ContainerItemRouter extends ContainerFactoryInventory
 	}
 	
 	@Override
+	protected int getPlayerInventoryVerticalOffset()
+	{
+		return 124;
+	}
+	
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
 		return null;
