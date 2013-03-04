@@ -27,13 +27,6 @@ public class GuiHarvester extends GuiFactoryPowered
 		ySize = 180;
 	}
 	
-	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
-	{
-		// TODO Auto-generated method stub
-		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-	}
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initGui()

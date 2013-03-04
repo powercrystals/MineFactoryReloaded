@@ -20,6 +20,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiHarvester;
 import powercrystals.minefactoryreloaded.gui.client.GuiItemRouter;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquidRouter;
+import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
@@ -33,7 +34,10 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquidRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUnifier;
+import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
+import powercrystals.minefactoryreloaded.plants.TileEntityFertilizer;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
+import powercrystals.minefactoryreloaded.plants.TileEntityPlanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
@@ -56,6 +60,14 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityHarvester)
 		{
 			return new ContainerHarvester(((TileEntityHarvester)te), player.inventory);
+		}
+		else if(te instanceof TileEntityPlanter)
+		{
+			return new ContainerUpgradable(((TileEntityPlanter)te), player.inventory);
+		}
+		else if(te instanceof TileEntityFertilizer)
+		{
+			return new ContainerUpgradable(((TileEntityFertilizer)te), player.inventory);
 		}
 		else if(te instanceof TileEntityChronotyper)
 		{
@@ -119,6 +131,14 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityHarvester)
 		{
 			return new GuiHarvester(new ContainerHarvester((TileEntityHarvester)te, player.inventory), (TileEntityHarvester)te);
+		}
+		else if(te instanceof TileEntityPlanter)
+		{
+			return new GuiUpgradable(new ContainerUpgradable((TileEntityPlanter)te, player.inventory), (TileEntityPlanter)te);
+		}
+		else if(te instanceof TileEntityFertilizer)
+		{
+			return new GuiUpgradable(new ContainerUpgradable((TileEntityFertilizer)te, player.inventory), (TileEntityFertilizer)te);
 		}
 		else if(te instanceof TileEntityAutoSpawner)
 		{

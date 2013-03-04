@@ -8,9 +8,11 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.ISidedInventory;
 
-public class TileEntityPlanter extends TileEntityFactoryPowered
+public class TileEntityPlanter extends TileEntityFactoryPowered implements ISidedInventory
 {
 	private HarvestAreaManager _areaManager;
 	
@@ -36,6 +38,12 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	public boolean canRotate()
 	{
 		return false;
+	}
+	
+	@Override
+	protected void onFactoryInventoryChanged()
+	{
+		_areaManager.updateUpgradeLevel(_inventory[9]);
 	}
 
 	@Override
@@ -77,6 +85,14 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	}
 
 	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		
+		onFactoryInventoryChanged();
+	}
+	
+	@Override
 	public String getInvName()
 	{
 		return "Planter";
@@ -85,7 +101,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	@Override
 	public int getSizeInventory()
 	{
-		return 9;
+		return 10;
 	}
 
 	@Override
@@ -104,5 +120,17 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	public int getIdleTicksMax()
 	{
 		return 200;
+	}
+
+	@Override
+	public int getStartInventorySide(ForgeDirection side)
+	{
+		return 0;
+	}
+
+	@Override
+	public int getSizeInventorySide(ForgeDirection side)
+	{
+		return 9;
 	}
 }

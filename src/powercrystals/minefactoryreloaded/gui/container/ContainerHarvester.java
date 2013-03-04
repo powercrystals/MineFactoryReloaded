@@ -5,7 +5,7 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 
-public class ContainerHarvester extends ContainerFactoryPowered
+public class ContainerHarvester extends ContainerUpgradable
 {
 	public ContainerHarvester(TileEntityHarvester te, InventoryPlayer inv)
 	{
@@ -54,11 +54,5 @@ public class ContainerHarvester extends ContainerFactoryPowered
 	private void setSetting(String setting, int value)
 	{
 		((TileEntityHarvester)_te).getSettings().put(setting, value == 0 ? false : true);
-	}
-	
-	@Override
-	protected int getPlayerInventoryVerticalOffset()
-	{
-		return 99;
 	}
 }

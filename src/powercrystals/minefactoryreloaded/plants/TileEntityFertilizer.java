@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.ISidedInventory;
 
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
@@ -13,7 +15,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
-public class TileEntityFertilizer extends TileEntityFactoryPowered
+public class TileEntityFertilizer extends TileEntityFactoryPowered implements ISidedInventory
 {
 	private static Map<Integer, IFactoryFertilizer> fertilizers = new HashMap<Integer, IFactoryFertilizer>();
 	private static Map<Integer, IFactoryFertilizable> fertilizables = new HashMap<Integer, IFactoryFertilizable>();
@@ -46,6 +48,12 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 	public boolean canRotate()
 	{
 		return false;
+	}
+	
+	@Override
+	protected void onFactoryInventoryChanged()
+	{
+		_areaManager.updateUpgradeLevel(_inventory[9]);
 	}
 	
 	@Override
@@ -110,7 +118,7 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 	@Override
 	public int getSizeInventory()
 	{
-		return 9;
+		return 10;
 	}
 
 	@Override
@@ -129,5 +137,17 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 	public int getIdleTicksMax()
 	{
 		return 200;
+	}
+
+	@Override
+	public int getStartInventorySide(ForgeDirection side)
+	{
+		return 0;
+	}
+
+	@Override
+	public int getSizeInventorySide(ForgeDirection side)
+	{
+		return 9;
 	}
 }

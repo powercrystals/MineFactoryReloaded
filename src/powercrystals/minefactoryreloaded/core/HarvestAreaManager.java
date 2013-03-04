@@ -74,7 +74,6 @@ public class HarvestAreaManager
 		{
 			newUpgradeLevel = ((ItemUpgrade)stack.getItem()).getUpgradeLevel(stack);
 		}
-		System.out.println("AreaManager checking upgrade level - old: " + _upgradeLevel + ", new: " + newUpgradeLevel);
 		if(newUpgradeLevel != _upgradeLevel)
 		{
 			_upgradeLevel = newUpgradeLevel;
@@ -114,7 +113,6 @@ public class HarvestAreaManager
 		_originOrientation = ourpos.orientation;
 		
 		int radius = _radius + _upgradeLevel;
-		System.out.println("HarvestManager initializing area with radius " + radius);
 		
 		ourpos.moveForwards(radius + 1);
 		_harvestArea = new Area(ourpos, radius, _areaDown, _areaUp);
