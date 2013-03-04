@@ -43,6 +43,12 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 	}
 	
 	@Override
+	public boolean canRotate()
+	{
+		return false;
+	}
+	
+	@Override
 	public String getGuiBackground()
 	{
 		return "fertilizer.png";
