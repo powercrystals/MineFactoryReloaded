@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 
-import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
@@ -65,48 +65,54 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered implements IS
 	@Override
 	public boolean activateMachine()
 	{
-		Area a = _areaManager.getHarvestArea();
+		BlockPosition bp = _areaManager.getNextBlock();
 		
-		for(BlockPosition bp : a.getPositionsBottomFirst())
+		int targetId = worldObj.getBlockId(bp.x, bp.y, bp.z);
+		if(!fertilizables.containsKey(new Integer(targetId)))
 		{
-			int targetId = worldObj.getBlockId(bp.x, bp.y, bp.z);
-			if(!fertilizables.containsKey(new Integer(targetId)))
+			return false;
+		}
+		for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
+		{
+			ItemStack fertStack = getStackInSlot(stackIndex);
+			if(fertStack == null || !fertilizers.containsKey(new Integer(fertStack.itemID)))
 			{
 				continue;
 			}
-			for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
+			IFactoryFertilizer fertilizer = fertilizers.get(new Integer(fertStack.itemID));
+			IFactoryFertilizable fertilizable = fertilizables.get(new Integer(targetId));
+			
+			if(fertilizer.getFertilizerMeta() != fertStack.getItemDamage())
 			{
-				ItemStack fertStack = getStackInSlot(stackIndex);
-				if(fertStack == null || !fertilizers.containsKey(new Integer(fertStack.itemID)))
+				continue;
+			}
+			
+			if(!fertilizable.canFertilizeBlock(worldObj, bp.x, bp.y, bp.z, fertilizer.getFertilizerType()))
+			{
+				continue;
+			}
+			if(fertilizable.fertilize(worldObj, _rand, bp.x, bp.y, bp.z, fertilizer.getFertilizerType()))
+			{
+				fertilizer.consume(fertStack);
+				if(fertStack.stackSize <= 0)
 				{
-					continue;
+					setInventorySlotContents(stackIndex, null);
 				}
-				IFactoryFertilizer fertilizer = fertilizers.get(new Integer(fertStack.itemID));
-				IFactoryFertilizable fertilizable = fertilizables.get(new Integer(targetId));
-				
-				if(fertilizer.getFertilizerMeta() != fertStack.getItemDamage())
-				{
-					continue;
-				}
-				
-				if(!fertilizable.canFertilizeBlock(worldObj, bp.x, bp.y, bp.z, fertilizer.getFertilizerType()))
-				{
-					continue;
-				}
-				if(fertilizable.fertilize(worldObj, _rand, bp.x, bp.y, bp.z, fertilizer.getFertilizerType()))
-				{
-					fertilizer.consume(fertStack);
-					if(fertStack.stackSize <= 0)
-					{
-						setInventorySlotContents(stackIndex, null);
-					}
-					setIdleTicks(5);
-					return true;
-				}
+				setIdleTicks(5);
+				return true;
 			}
 		}
+			
 		setIdleTicks(getIdleTicksMax());
 		return false;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		
+		onFactoryInventoryChanged();
 	}
 
 	@Override
@@ -136,7 +142,7 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered implements IS
 	@Override
 	public int getIdleTicksMax()
 	{
-		return 200;
+		return 20;
 	}
 
 	@Override

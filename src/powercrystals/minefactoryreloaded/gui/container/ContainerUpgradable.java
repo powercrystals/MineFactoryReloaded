@@ -1,8 +1,8 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptUpgrade;
 
 public class ContainerUpgradable extends ContainerFactoryPowered
 {
@@ -16,7 +16,7 @@ public class ContainerUpgradable extends ContainerFactoryPowered
 	{
 		super.addSlots();
 		
-		addSlotToContainer(new Slot(_te, 9, 152, 79));
+		addSlotToContainer(new SlotAcceptUpgrade(_te, 9, 152, 79));
 	}
 	
 	@Override

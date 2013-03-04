@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.plants;
 
-import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
@@ -49,37 +48,36 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 	@Override
 	public boolean activateMachine()
 	{
-		Area a = _areaManager.getHarvestArea();
-		for(BlockPosition bp : a.getPositionsBottomFirst())
+		BlockPosition bp = _areaManager.getNextBlock();
+		
+		for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
 		{
-			for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
+			if(getStackInSlot(stackIndex) == null)
 			{
-				if(getStackInSlot(stackIndex) == null)
-				{
-					continue;
-				}
-				
-				ItemStack availableStack = getStackInSlot(stackIndex);
-				
-				if(!MFRRegistry.getPlantables().containsKey(new Integer(availableStack.itemID)))
-				{
-					continue;
-				}
-				IFactoryPlantable plantable = MFRRegistry.getPlantables().get(new Integer(availableStack.itemID));
-	
-				if(!plantable.canBePlantedHere(worldObj, bp.x, bp.y, bp.z, availableStack))
-				{
-					continue;
-				}
-				plantable.prePlant(worldObj, bp.x, bp.y, bp.z, availableStack);
-				worldObj.setBlockAndMetadataWithNotify(bp.x, bp.y, bp.z,
-						plantable.getPlantedBlockId(worldObj, bp.x, bp.y, bp.z, availableStack),
-						plantable.getPlantedBlockMetadata(worldObj, bp.x, bp.y, bp.z, availableStack));
-				plantable.postPlant(worldObj, bp.x, bp.y, bp.z, availableStack);
-				decrStackSize(stackIndex, 1);
-				return true;
+				continue;
 			}
+			
+			ItemStack availableStack = getStackInSlot(stackIndex);
+			
+			if(!MFRRegistry.getPlantables().containsKey(new Integer(availableStack.itemID)))
+			{
+				continue;
+			}
+			IFactoryPlantable plantable = MFRRegistry.getPlantables().get(new Integer(availableStack.itemID));
+
+			if(!plantable.canBePlantedHere(worldObj, bp.x, bp.y, bp.z, availableStack))
+			{
+				continue;
+			}
+			plantable.prePlant(worldObj, bp.x, bp.y, bp.z, availableStack);
+			worldObj.setBlockAndMetadataWithNotify(bp.x, bp.y, bp.z,
+					plantable.getPlantedBlockId(worldObj, bp.x, bp.y, bp.z, availableStack),
+					plantable.getPlantedBlockMetadata(worldObj, bp.x, bp.y, bp.z, availableStack));
+			plantable.postPlant(worldObj, bp.x, bp.y, bp.z, availableStack);
+			decrStackSize(stackIndex, 1);
+			return true;
 		}
+			
 		setIdleTicks(getIdleTicksMax());
 		return false;
 	}
@@ -119,7 +117,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 	@Override
 	public int getIdleTicksMax()
 	{
-		return 200;
+		return 5;
 	}
 
 	@Override

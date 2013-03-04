@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
+import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptUpgrade;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 
 public class ContainerHarvester extends ContainerUpgradable
@@ -15,7 +15,7 @@ public class ContainerHarvester extends ContainerUpgradable
 	@Override
 	protected void addSlots()
 	{
-		addSlotToContainer(new Slot(_te, 0, 152, 79));
+		addSlotToContainer(new SlotAcceptUpgrade(_te, 0, 152, 79));
 	}
 
 	@Override
