@@ -66,9 +66,13 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			if(_tank.getLiquid() != null && _tank.getLiquid().amount >= 10)
 			{
 				_tank.getLiquid().amount -= 10;
+				setWorkDone(getWorkDone() + 1);
+				return true;
 			}
-			setWorkDone(getWorkDone() + 1);
-			return true;
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{
