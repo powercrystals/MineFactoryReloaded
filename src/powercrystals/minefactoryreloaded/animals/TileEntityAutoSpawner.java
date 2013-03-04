@@ -133,7 +133,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	@Override
 	public int getWorkMax()
 	{
-		return 15;
+		return _spawnExact ? 50 : 15;
 	}
 
 	@Override
