@@ -127,6 +127,12 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory implements 
 	{
 		return "Item Router";
 	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "itemrouter.png";
+	}
 
 	@Override
 	public int getInventoryStackLimit()

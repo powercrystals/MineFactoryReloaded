@@ -120,4 +120,10 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 	{
 		return "Liquid Router";
 	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "liquidrouter.png";
+	}
 }
