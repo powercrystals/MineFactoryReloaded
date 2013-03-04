@@ -129,6 +129,10 @@ public class BlockConveyor extends BlockContainer
 		{
 			((EntityLiving)entity).fallDistance = 0;
 		}
+		else if(entity instanceof EntityItem)
+		{
+			((EntityItem)entity).delayBeforeCanPickup = 40;
+		}
 	}
 	
 	@Override
