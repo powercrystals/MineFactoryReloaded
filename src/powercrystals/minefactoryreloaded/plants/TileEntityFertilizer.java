@@ -45,12 +45,6 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered implements IS
 	}
 	
 	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-	
-	@Override
 	protected void onFactoryInventoryChanged()
 	{
 		_areaManager.updateUpgradeLevel(_inventory[9]);
