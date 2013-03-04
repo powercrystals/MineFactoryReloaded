@@ -101,6 +101,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	protected void onFactoryInventoryChanged()
 	{
+		System.out.println("Resetting harvester upgrade level");
 		_areaManager.updateUpgradeLevel(_inventory[0]);
 	}
 
