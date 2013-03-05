@@ -225,7 +225,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int powerRequest()
 	{
-		return 10;
+		return (int)Math.max(_powerProvider.getMaxEnergyStored() - _powerProvider.getEnergyStored(), 0);
 	}
 	
 	@Override
