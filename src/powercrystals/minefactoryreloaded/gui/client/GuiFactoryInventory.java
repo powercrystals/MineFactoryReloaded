@@ -139,8 +139,8 @@ public class GuiFactoryInventory extends GuiContainer
 			}
 		}
 
-		xStart = x + 12;
-		yStart = y - 12;
+		xStart = x + 12 - width;
+		yStart = y - 12 - height;
 		int height = 8;
 
 		if(stringList.size() > 1)
@@ -173,7 +173,7 @@ public class GuiFactoryInventory extends GuiContainer
 
 			if(stringIndex == 0)
 			{
-				line = "\u00a7" + line;
+				line = "\u00a7" + Integer.toHexString(15) + line;
 			}
 			else
 			{
