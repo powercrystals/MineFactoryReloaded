@@ -107,6 +107,12 @@ public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 		if(var == 101) _dsu.setQuantity(_tempQuantity | (value << 16));
 	}
 	
+	@Override
+	protected int getPlayerInventoryVerticalOffset()
+	{
+		return 124;
+	}
+	
 	private int upcastShort(int value)
 	{
 		if(value < 0) value += 65536;
