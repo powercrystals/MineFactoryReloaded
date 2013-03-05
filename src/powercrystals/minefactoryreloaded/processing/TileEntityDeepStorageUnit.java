@@ -125,7 +125,12 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	{
 		if(_inventory[slot] != null)
 		{
-			if(_storedQuantity == 0)
+			if(_storedQuantity == 0
+					&& (_inventory[2] == null
+					|| (_inventory[2].itemID == _inventory[slot].itemID
+					&& _inventory[2].getItemDamage() == _inventory[slot].getItemDamage()))
+					&& _inventory[slot].getTagCompound() == null
+					)
 			{
 				_storedId = _inventory[slot].itemID;
 				_storedMeta = _inventory[slot].getItemDamage();

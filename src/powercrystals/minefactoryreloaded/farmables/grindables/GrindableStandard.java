@@ -32,6 +32,12 @@ public class GrindableStandard implements IFactoryGrindable
 		_drops.add(dropStack);
 	}
 	
+	public GrindableStandard(Class<?> entityToRanch)
+	{
+		_ranchableClass = entityToRanch;
+		_drops = new ArrayList<ItemStack>();
+	}
+	
 	@Override
 	public Class<?> getGrindableEntity()
 	{
