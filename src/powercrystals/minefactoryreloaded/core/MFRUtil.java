@@ -203,6 +203,7 @@ public class MFRUtil
 		entityitem.motionX = 0.0D;
 		if(towards != ForgeDirection.DOWN) entityitem.motionY = 0.3D;
 		entityitem.motionZ = 0.0D;
+		entityitem.delayBeforeCanPickup = 20;
 		world.spawnEntityInWorld(entityitem);
 	}
 }
