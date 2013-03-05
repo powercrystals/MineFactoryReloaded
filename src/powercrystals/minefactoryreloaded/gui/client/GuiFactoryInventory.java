@@ -1,12 +1,17 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ForgeHooksClient;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
@@ -106,5 +111,85 @@ public class GuiFactoryInventory extends GuiContainer
 		
 		this.mc.renderEngine.bindTexture(gaugeTexture);
 		this.drawTexturedModalRect(xOffset, yOffset - 60, 176, 0, 16, 60);
+	}
+
+	protected void drawBarTooltip(String name, String unit, int value, int max, int x, int y)
+	{
+		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+		RenderHelper.disableStandardItemLighting();
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		
+		List<String> stringList = new LinkedList<String>();
+		stringList.add(name);
+		stringList.add(value + " / " + max);
+
+		int width = 0;
+		int tempWidth;
+		int xStart;
+		int yStart;
+
+		for(int i = 0; i < stringList.size(); i++)
+		{
+			tempWidth = this.fontRenderer.getStringWidth(stringList.get(i));
+
+			if(tempWidth > width)
+			{
+				width = tempWidth;
+			}
+		}
+
+		xStart = x + 12;
+		yStart = y - 12;
+		int height = 8;
+
+		if(stringList.size() > 1)
+		{
+			height += 2 + (stringList.size() - 1) * 10;
+		}
+
+		if(this.guiTop + yStart + height + 6 > this.height)
+		{
+			yStart = this.height - height - this.guiTop - 6;
+		}
+
+		this.zLevel = 300.0F;
+		int color1 = -267386864;
+		this.drawGradientRect(xStart - 3, yStart - 4, xStart + width + 3, yStart - 3, color1, color1);
+		this.drawGradientRect(xStart - 3, yStart + height + 3, xStart + width + 3, yStart + height + 4, color1, color1);
+		this.drawGradientRect(xStart - 3, yStart - 3, xStart + width + 3, yStart + height + 3, color1, color1);
+		this.drawGradientRect(xStart - 4, yStart - 3, xStart - 3, yStart + height + 3, color1, color1);
+		this.drawGradientRect(xStart + width + 3, yStart - 3, xStart + width + 4, yStart + height + 3, color1, color1);
+		int color2 = 1347420415;
+		int color3 = (color2 & 16711422) >> 1 | color2 & -16777216;
+		this.drawGradientRect(xStart - 3, yStart - 3 + 1, xStart - 3 + 1, yStart + height + 3 - 1, color2, color3);
+		this.drawGradientRect(xStart + width + 2, yStart - 3 + 1, xStart + width + 3, yStart + height + 3 - 1, color2, color3);
+		this.drawGradientRect(xStart - 3, yStart - 3, xStart + width + 3, yStart - 3 + 1, color2, color2);
+		this.drawGradientRect(xStart - 3, yStart + height + 2, xStart + width + 3, yStart + height + 3, color3, color3);
+
+		for(int stringIndex = 0; stringIndex < stringList.size(); ++stringIndex)
+		{
+			String line = stringList.get(stringIndex);
+
+			if(stringIndex == 0)
+			{
+				line = "\u00a7" + line;
+			}
+			else
+			{
+				line = "\u00a77" + line;
+			}
+
+			this.fontRenderer.drawStringWithShadow(line, xStart, yStart, -1);
+
+			if(stringIndex == 0)
+			{
+				yStart += 2;
+			}
+
+			yStart += 10;
+		}
+
+		this.zLevel = 0.0F;
 	}
 }
