@@ -206,6 +206,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		_energyStored = Math.min(nbttagcompound.getInteger("energyStored"), getEnergyStoredMax());
 		_workDone = Math.min(nbttagcompound.getInteger("workDone"), getWorkMax());
 		_powerProvider.readFromNBT(nbttagcompound);
+		_powerProvider.configure(25, 10, 10, 1, 1000);
 	}
 	
 	// IPowerReceptor methods
