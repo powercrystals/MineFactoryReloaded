@@ -124,7 +124,7 @@ public class GuiFactoryInventory extends GuiContainer
 		stringList.add(name);
 		stringList.add(value + " / " + max);
 
-		int width = 0;
+		int tooltipWidth = 0;
 		int tempWidth;
 		int xStart;
 		int yStart;
@@ -133,39 +133,39 @@ public class GuiFactoryInventory extends GuiContainer
 		{
 			tempWidth = this.fontRenderer.getStringWidth(stringList.get(i));
 
-			if(tempWidth > width)
+			if(tempWidth > tooltipWidth)
 			{
-				width = tempWidth;
+				tooltipWidth = tempWidth;
 			}
 		}
 
-		xStart = x + 12 - width;
-		yStart = y - 12 - height;
-		int height = 8;
+		xStart = x + 12 - this.width;
+		yStart = y - 12 - this.height;
+		int tooltipHeight = 8;
 
 		if(stringList.size() > 1)
 		{
-			height += 2 + (stringList.size() - 1) * 10;
+			tooltipHeight += 2 + (stringList.size() - 1) * 10;
 		}
 
-		if(this.guiTop + yStart + height + 6 > this.height)
+		if(this.guiTop + yStart + tooltipHeight + 6 > this.height)
 		{
-			yStart = this.height - height - this.guiTop - 6;
+			yStart = this.height - tooltipHeight - this.guiTop - 6;
 		}
 
 		this.zLevel = 300.0F;
 		int color1 = -267386864;
-		this.drawGradientRect(xStart - 3, yStart - 4, xStart + width + 3, yStart - 3, color1, color1);
-		this.drawGradientRect(xStart - 3, yStart + height + 3, xStart + width + 3, yStart + height + 4, color1, color1);
-		this.drawGradientRect(xStart - 3, yStart - 3, xStart + width + 3, yStart + height + 3, color1, color1);
-		this.drawGradientRect(xStart - 4, yStart - 3, xStart - 3, yStart + height + 3, color1, color1);
-		this.drawGradientRect(xStart + width + 3, yStart - 3, xStart + width + 4, yStart + height + 3, color1, color1);
+		this.drawGradientRect(xStart - 3, yStart - 4, xStart + tooltipWidth + 3, yStart - 3, color1, color1);
+		this.drawGradientRect(xStart - 3, yStart + tooltipHeight + 3, xStart + tooltipWidth + 3, yStart + tooltipHeight + 4, color1, color1);
+		this.drawGradientRect(xStart - 3, yStart - 3, xStart + tooltipWidth + 3, yStart + tooltipHeight + 3, color1, color1);
+		this.drawGradientRect(xStart - 4, yStart - 3, xStart - 3, yStart + tooltipHeight + 3, color1, color1);
+		this.drawGradientRect(xStart + tooltipWidth + 3, yStart - 3, xStart + tooltipWidth + 4, yStart + tooltipHeight + 3, color1, color1);
 		int color2 = 1347420415;
 		int color3 = (color2 & 16711422) >> 1 | color2 & -16777216;
-		this.drawGradientRect(xStart - 3, yStart - 3 + 1, xStart - 3 + 1, yStart + height + 3 - 1, color2, color3);
-		this.drawGradientRect(xStart + width + 2, yStart - 3 + 1, xStart + width + 3, yStart + height + 3 - 1, color2, color3);
-		this.drawGradientRect(xStart - 3, yStart - 3, xStart + width + 3, yStart - 3 + 1, color2, color2);
-		this.drawGradientRect(xStart - 3, yStart + height + 2, xStart + width + 3, yStart + height + 3, color3, color3);
+		this.drawGradientRect(xStart - 3, yStart - 3 + 1, xStart - 3 + 1, yStart + tooltipHeight + 3 - 1, color2, color3);
+		this.drawGradientRect(xStart + tooltipWidth + 2, yStart - 3 + 1, xStart + tooltipWidth + 3, yStart + tooltipHeight + 3 - 1, color2, color3);
+		this.drawGradientRect(xStart - 3, yStart - 3, xStart + tooltipWidth + 3, yStart - 3 + 1, color2, color2);
+		this.drawGradientRect(xStart - 3, yStart + tooltipHeight + 2, xStart + tooltipWidth + 3, yStart + tooltipHeight + 3, color3, color3);
 
 		for(int stringIndex = 0; stringIndex < stringList.size(); ++stringIndex)
 		{
