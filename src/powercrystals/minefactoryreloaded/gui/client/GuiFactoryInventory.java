@@ -40,7 +40,7 @@ public class GuiFactoryInventory extends GuiContainer
 		{
 			int tankSize = _tileEntity.getTank().getLiquid().amount * _tankSizeMax / _tileEntity.getTank().getCapacity();
 			drawTank(122, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
-			if(isPointInRegion(122, 15, 16, 60, mouseX, mouseY))
+			if(isPointInRegion(122, 15, 16, 60, mouseX, mouseY) && _tileEntity.getTank().getLiquid().amount > 0)
 			{
 				drawBarTooltip(_tileEntity.getTank().getLiquid().asItemStack().getDisplayName(),
 						"mB", _tileEntity.getTank().getLiquid().amount, _tileEntity.getTank().getCapacity(), mouseX, mouseY);

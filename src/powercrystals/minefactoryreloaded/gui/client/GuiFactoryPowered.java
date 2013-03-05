@@ -20,11 +20,11 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
-		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		
 		drawBar(140, 75, _tePowered.getEnergyStoredMax(), _tePowered.getEnergyStored(), _barColorEnergy);
 		drawBar(150, 75, _tePowered.getWorkMax(), _tePowered.getWorkDone(), _barColorWork);
 		drawBar(160, 75, _tePowered.getIdleTicksMax(), _tePowered.getIdleTicks(), _barColorIdle);
+		
+		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		if(isPointInRegion(141, 15, 8, 60, mouseX, mouseY))
 		{
