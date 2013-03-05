@@ -24,9 +24,9 @@ public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 	@Override
 	protected void addSlots()
 	{
-		addSlotToContainer(new Slot(_dsu, 0, 134, 16));
-		addSlotToContainer(new Slot(_dsu, 1, 152, 16));
-		addSlotToContainer(new SlotRemoveOnly(_dsu, 2, 152, 49));
+		addSlotToContainer(new Slot(_te, 0, 134, 16));
+		addSlotToContainer(new Slot(_te, 1, 152, 16));
+		addSlotToContainer(new SlotRemoveOnly(_te, 2, 152, 49));
 	}
 	
 	@Override
