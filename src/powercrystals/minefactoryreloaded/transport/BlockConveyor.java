@@ -18,6 +18,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.core.util.Util;
@@ -232,23 +233,17 @@ public class BlockConveyor extends BlockContainer
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(World world, int i, int j, int k)
+	public boolean canPlaceBlockAt(World world, int x, int y, int z)
 	{
-		return world.isBlockOpaqueCube(i, j - 1, k);
+		return world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP);
 	}
 
 	@Override
-	public void onBlockAdded(World world, int i, int j, int k)
-	{
-		super.onBlockAdded(world, i, j, k);
-	}
-
-	@Override
-	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, int par6, float par7, float par8, float par9)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side, float xOffset, float yOffset, float zOffset)
 	{
 		if(MFRUtil.isHoldingWrench(entityplayer))
 		{
-			TileEntity te = world.getBlockTileEntity(i, j, k);
+			TileEntity te = world.getBlockTileEntity(x, y, z);
 			if(te != null && te instanceof IRotateableTile)
 			{
 				((IRotateableTile)te).rotate();
@@ -258,12 +253,12 @@ public class BlockConveyor extends BlockContainer
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int i, int j, int k, int l)
+	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
 	{
-		if(!world.isRemote && !world.isBlockOpaqueCube(i, j - 1, k))
+		if(!world.isRemote && !world.isBlockOpaqueCube(x, y - 1, z))
 		{
-			dropBlockAsItem(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
-			world.setBlockWithNotify(i, j, k, 0);
+			dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+			world.setBlockWithNotify(x, y, z, 0);
 		}
 	}
 	
@@ -287,7 +282,7 @@ public class BlockConveyor extends BlockContainer
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World var1)
+	public TileEntity createNewTileEntity(World world)
 	{
 		return new TileEntityConveyor();
 	}
