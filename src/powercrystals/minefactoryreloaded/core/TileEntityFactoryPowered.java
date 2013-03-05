@@ -90,9 +90,10 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		{
 			getPowerProvider().update(this);
 			
-			if(_energyStored < getEnergyStoredMax() && getPowerProvider().useEnergy(1, 100, false) > 0)
+			int mjRequired = Math.min((getEnergyStoredMax() - getEnergyStored()) / energyPerMJ, 100);
+			if(_energyStored < getEnergyStoredMax() && getPowerProvider().useEnergy(1, mjRequired, false) > 0)
 			{
-				int mjGained = (int)(getPowerProvider().useEnergy(1, 100, true));
+				int mjGained = (int)(getPowerProvider().useEnergy(1, mjRequired, true));
 				_energyStored += mjGained * energyPerMJ;
 			}
 		}
@@ -224,7 +225,6 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int powerRequest()
 	{
-		//return (energyStoredMax - energyStored) / energyPerMJ;
 		return 10;
 	}
 	
