@@ -227,6 +227,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 					z - MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(), z + MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt());
 			
 			_treeManager = new TreeHarvestManager(a);
+			_lastTree = new BlockPosition(x, y, z);
 		}
 		
 		while(true)
