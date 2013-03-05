@@ -70,6 +70,8 @@ public class ContainerFactoryInventory extends Container
 	{
 		super.updateProgressBar(var, value);
 
+		System.out.println("Got update packet: " + var + " = " + value);
+		
 		if(var == 3) _tankAmount = value;
 		else if(var == 4) _tankId = value;
 		else if(var == 5) ((LiquidTank)_te.getTank()).setLiquid(new LiquidStack(_tankId, _tankAmount, value));
