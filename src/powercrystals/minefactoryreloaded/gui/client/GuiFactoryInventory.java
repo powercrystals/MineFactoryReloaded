@@ -139,8 +139,8 @@ public class GuiFactoryInventory extends GuiContainer
 			}
 		}
 
-		xStart = x + 12;
-		yStart = y - 12;
+		xStart = x + 12 - this.guiLeft;
+		yStart = y - 12 - this.guiTop;
 		int tooltipHeight = 8;
 
 		if(stringList.size() > 1)
