@@ -36,6 +36,9 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	private Random _rand;
 	
 	private HarvestAreaManager _areaManager;
+	private TreeHarvestManager _treeManager;
+	private BlockPosition _lastTree;
+	
 	private LiquidTank _tank;
 	
 	public static void registerHarvestable(IFactoryHarvestable harvestable)
@@ -217,31 +220,38 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		int blockId;
  
-		Area a = new Area(x - MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(), x + MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(),
-				y, y + MineFactoryReloadedCore.treeSearchMaxVertical.getInt(),
-				z - MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(), z + MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt());
-		
-		for(BlockPosition bp : a.getPositionsBottomFirst())
+		if(_lastTree == null || _lastTree.x != x || _lastTree.y != y || _lastTree.z != z)
 		{
-			blockId = worldObj.getBlockId(bp.x, bp.y, bp.z);
-			if(harvestables.containsKey(new Integer(blockId)) && harvestables.get(new Integer(blockId)).getHarvestType() == HarvestType.TreeLeaf
-					&& harvestables.get(new Integer(blockId)).canBeHarvested(worldObj, _settings, bp.x, bp.y, bp.z))
-			{
-				return new BlockPosition(bp.x, bp.y, bp.z);
-			}
+			Area a = new Area(x - MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(), x + MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(),
+					y, y + MineFactoryReloadedCore.treeSearchMaxVertical.getInt(),
+					z - MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(), z + MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt());
+			
+			_treeManager = new TreeHarvestManager(a);
 		}
 		
-		for(BlockPosition bp : a.getPositionsTopFirst())
+		while(true)
 		{
-			blockId = worldObj.getBlockId(bp.x, bp.y, bp.z);
-			if(harvestables.containsKey(new Integer(blockId)) && harvestables.get(new Integer(blockId)).getHarvestType() == HarvestType.Tree
-					&& harvestables.get(new Integer(blockId)).canBeHarvested(worldObj, _settings, bp.x, bp.y, bp.z))
+			if(_treeManager.getIsDone())
 			{
-				return new BlockPosition(bp.x, bp.y, bp.z);
+				return null;
 			}
-
+			
+			BlockPosition bp = _treeManager.getNextBlock();
+			blockId = worldObj.getBlockId(bp.x, bp.y, bp.z);
+			
+			if(harvestables.containsKey(new Integer(blockId)) && harvestables.get(new Integer(blockId)).canBeHarvested(worldObj, _settings, bp.x, bp.y, bp.z))
+			{
+				if(_treeManager.getIsLeafPass() && harvestables.get(new Integer(blockId)).getHarvestType() == HarvestType.TreeLeaf)
+				{
+					return bp;
+				}
+				else if(!_treeManager.getIsLeafPass() && harvestables.get(new Integer(blockId)).getHarvestType() == HarvestType.Tree)
+				{
+					return bp;
+				}
+			}
+			_treeManager.moveNext();
 		}
-		return null;
 	}
 
 	@Override
