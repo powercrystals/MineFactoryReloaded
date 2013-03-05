@@ -36,7 +36,7 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 		}
 		else if(isPointInRegion(161, 15, 8, 60, mouseX, mouseY))
 		{
-			drawBarTooltip("Energy", "MJ", _tePowered.getIdleTicks(), _tePowered.getIdleTicksMax(), mouseX, mouseY);
+			drawBarTooltip("Idle", "t", _tePowered.getIdleTicks(), _tePowered.getIdleTicksMax(), mouseX, mouseY);
 		}
 	}
 }
