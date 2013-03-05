@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -65,7 +66,7 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if(!(entity instanceof EntityItem || (entity instanceof EntityLiving && MineFactoryReloadedCore.conveyorCaptureNonItems.getBoolean(true))))
+		if(!(entity instanceof EntityItem || entity instanceof EntityXPOrb || (entity instanceof EntityLiving && MineFactoryReloadedCore.conveyorCaptureNonItems.getBoolean(true))))
 		{
 			return;
 		}
