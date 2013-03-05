@@ -78,15 +78,15 @@ public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 		super.detectAndSendChanges();
 		for(int i = 0; i < crafters.size(); i++)
 		{
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 0, _dsu.getIsSideOutput(0) ? 1 : 0);
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 1, _dsu.getIsSideOutput(1) ? 1 : 0);
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 2, _dsu.getIsSideOutput(2) ? 1 : 0);
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 3, _dsu.getIsSideOutput(3) ? 1 : 0);
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 4, _dsu.getIsSideOutput(4) ? 1 : 0);
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 5, _dsu.getIsSideOutput(5) ? 1 : 0);
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 100, _dsu.getIsSideOutput(0) ? 1 : 0);
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 101, _dsu.getIsSideOutput(1) ? 1 : 0);
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 102, _dsu.getIsSideOutput(2) ? 1 : 0);
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 103, _dsu.getIsSideOutput(3) ? 1 : 0);
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 104, _dsu.getIsSideOutput(4) ? 1 : 0);
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 105, _dsu.getIsSideOutput(5) ? 1 : 0);
 
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 100, _dsu.getQuantity());
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 101, _dsu.getQuantity() >> 16);
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 200, _dsu.getQuantity());
+			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 201, _dsu.getQuantity() >> 16);
 		}
 	}
 	
