@@ -118,13 +118,16 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 			{
 				IFactoryGrindable r = grindables.get(e.getClass());
 				List<ItemStack> drops = r.grind(worldObj, e, getRandom());
-				if(drops.size() == 1)
+				if(drops != null)
 				{
-					MFRUtil.dropStack(this, drops.get(0));
-				}
-				else if(drops.size() > 1)
-				{
-					MFRUtil.dropStack(this, drops.get(_rand.nextInt(drops.size())));
+					if(drops.size() == 1)
+					{
+						MFRUtil.dropStack(this, drops.get(0));
+					}
+					else if(drops.size() > 1)
+					{
+						MFRUtil.dropStack(this, drops.get(_rand.nextInt(drops.size())));
+					}
 				}
 				
 				foundMob = true;
