@@ -194,6 +194,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 
 		nbttagcompound.setInteger("energyStored", _energyStored);
 		nbttagcompound.setInteger("workDone", _workDone);
+		_powerProvider.writeToNBT(nbttagcompound);
 	}
 	
 	@Override
@@ -203,6 +204,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		
 		_energyStored = Math.min(nbttagcompound.getInteger("energyStored"), getEnergyStoredMax());
 		_workDone = Math.min(nbttagcompound.getInteger("workDone"), getWorkMax());
+		_powerProvider.readFromNBT(nbttagcompound);
 	}
 	
 	// IPowerReceptor methods
