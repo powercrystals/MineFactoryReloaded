@@ -2,7 +2,6 @@ package powercrystals.minefactoryreloaded.processing;
 
 import java.util.Random;
 
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
@@ -13,6 +12,7 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.core.AutoEnchantmentHelper;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
 public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements ISidedInventory, ITankContainer
@@ -100,7 +100,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 		}
 		else if(getWorkDone() >= getWorkMax())
 		{
-			EnchantmentHelper.addRandomEnchantment(this._rand, s, _targetLevel);
+			AutoEnchantmentHelper.addRandomEnchantment(this._rand, s, _targetLevel);
 			setInventorySlotContents(0, null);
 			setInventorySlotContents(1, s);
 			setWorkDone(0);
