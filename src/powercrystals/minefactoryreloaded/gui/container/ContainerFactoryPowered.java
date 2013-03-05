@@ -35,6 +35,8 @@ public class ContainerFactoryPowered extends ContainerFactoryInventory
 	@Override
 	public void updateProgressBar(int var, int value)
 	{
+		super.updateProgressBar(var, value);
+		
 		if(var == 0) ((TileEntityFactoryPowered)_te).setWorkDone(value);
 		else if(var == 1) ((TileEntityFactoryPowered)_te).setEnergyStored(value);
 		else if(var == 2) ((TileEntityFactoryPowered)_te).setIdleTicks(value);

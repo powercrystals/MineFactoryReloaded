@@ -69,8 +69,6 @@ public class ContainerFactoryInventory extends Container
 	public void updateProgressBar(int var, int value)
 	{
 		super.updateProgressBar(var, value);
-
-		System.out.println("Got update packet: " + var + " = " + value);
 		
 		if(var == 3) _tankAmount = value;
 		else if(var == 4) _tankId = value;
