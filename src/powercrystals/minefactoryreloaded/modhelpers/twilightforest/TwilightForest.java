@@ -42,46 +42,46 @@ public class TwilightForest
 			entityEggs = (HashMap)Class.forName("twilightforest.entity.TFCreatures").getField("entityEggs").get(null);
 			twilightForestContainer = FMLCommonHandler.instance().findContainerFor(Class.forName("twilightforest.TwilightForestMod").getField("instance").get(null));
 			
-			Class<?> tfBighorn = Class.forName("twilightforest.entity.EntityTFBighorn");
-			Class<?> tfBird = Class.forName("twilightforest.entity.EntityTFBird");
-			Class<?> tfBoar = Class.forName("twilightforest.entity.EntityTFBoar");
-			Class<?> tfBoggard = Class.forName("twilightforest.entity.EntityTFBoggard");
-			Class<?> tfBunny = Class.forName("twilightforest.entity.EntityTFBunny");
-			Class<?> tfDeathTome = Class.forName("twilightforest.entity.EntityTFDeathTome");
-			Class<?> tfDeer = Class.forName("twilightforest.entity.EntityTFDeer");
-			Class<?> tfFireBeetle = Class.forName("twilightforest.entity.EntityTFFireBeetle");
-			Class<?> tfHedgeSpider = Class.forName("twilightforest.entity.EntityTFHedgeSpider");
-			Class<?> tfHostileWolf = Class.forName("twilightforest.entity.EntityTFHostileWolf");
-			Class<?> tfKingSpider = Class.forName("twilightforest.entity.EntityTFKingSpider");
-			Class<?> tfKobold = Class.forName("twilightforest.entity.EntityTFKobold");
-			Class<?> tfLichMinion = Class.forName("twilightforest.entity.EntityTFLichMinion");
-			Class<?> tfLoyalZombie = Class.forName("twilightforest.entity.EntityTFLoyalZombie");
-			Class<?> tfMazeSlime = Class.forName("twilightforest.entity.EntityTFMazeSlime");
-			Class<?> tfMiniGhast = Class.forName("twilightforest.entity.EntityTFMiniGhast");
-			Class<?> tfMinoshroom = Class.forName("twilightforest.entity.EntityTFMinoshroom");
-			Class<?> tfMinotaur = Class.forName("twilightforest.entity.EntityTFMinotaur");
-			Class<?> tfMistWolf = Class.forName("twilightforest.entity.EntityTFMistWolf");
-			Class<?> tfPenguin = Class.forName("twilightforest.entity.EntityTFPenguin");
-			Class<?> tfPinchBeetle = Class.forName("twilightforest.entity.EntityTFPinchBeetle");
-			Class<?> tfRaven = Class.forName("twilightforest.entity.EntityTFRaven");
-			Class<?> tfRedcap = Class.forName("twilightforest.entity.EntityTFRedcap");
-			Class<?> tfRedcapSapper = Class.forName("twilightforest.entity.EntityTFRedcapSapper");
-			Class<?> tfSkeletonDruid = Class.forName("twilightforest.entity.EntityTFSkeletonDruid");
-			Class<?> tfSlimeBeetle = Class.forName("twilightforest.entity.EntityTFSlimeBeetle");
-			Class<?> tfSquirrel = Class.forName("twilightforest.entity.EntityTFSquirrel");
-			Class<?> tfSwarmSpider = Class.forName("twilightforest.entity.EntityTFSwarmSpider");
-			Class<?> tfTinyBird = Class.forName("twilightforest.entity.EntityTFTinyBird");
-			Class<?> tfTowerBroodling = Class.forName("twilightforest.entity.EntityTFTowerBroodling");
-			Class<?> tfTowerGhast = Class.forName("twilightforest.entity.EntityTFTowerGhast");
-			Class<?> tfTowerGolem = Class.forName("twilightforest.entity.EntityTFTowerGolem");
-			Class<?> tfTowerTermite = Class.forName("twilightforest.entity.EntityTFTowerTermite");
-			Class<?> tfWraith = Class.forName("twilightforest.entity.EntityTFWraith");
+			Class tfBighorn = Class.forName("twilightforest.entity.EntityTFBighorn");
+			Class tfBird = Class.forName("twilightforest.entity.EntityTFBird");
+			Class tfBoar = Class.forName("twilightforest.entity.EntityTFBoar");
+			Class tfBoggard = Class.forName("twilightforest.entity.EntityTFBoggard");
+			Class tfBunny = Class.forName("twilightforest.entity.EntityTFBunny");
+			Class tfDeathTome = Class.forName("twilightforest.entity.EntityTFDeathTome");
+			Class tfDeer = Class.forName("twilightforest.entity.EntityTFDeer");
+			Class tfFireBeetle = Class.forName("twilightforest.entity.EntityTFFireBeetle");
+			Class tfHedgeSpider = Class.forName("twilightforest.entity.EntityTFHedgeSpider");
+			Class tfHostileWolf = Class.forName("twilightforest.entity.EntityTFHostileWolf");
+			Class tfKingSpider = Class.forName("twilightforest.entity.EntityTFKingSpider");
+			Class tfKobold = Class.forName("twilightforest.entity.EntityTFKobold");
+			Class tfLichMinion = Class.forName("twilightforest.entity.EntityTFLichMinion");
+			Class tfLoyalZombie = Class.forName("twilightforest.entity.EntityTFLoyalZombie");
+			Class tfMazeSlime = Class.forName("twilightforest.entity.EntityTFMazeSlime");
+			Class tfMiniGhast = Class.forName("twilightforest.entity.EntityTFMiniGhast");
+			Class tfMinoshroom = Class.forName("twilightforest.entity.EntityTFMinoshroom");
+			Class tfMinotaur = Class.forName("twilightforest.entity.EntityTFMinotaur");
+			Class tfMistWolf = Class.forName("twilightforest.entity.EntityTFMistWolf");
+			Class tfPenguin = Class.forName("twilightforest.entity.EntityTFPenguin");
+			Class tfPinchBeetle = Class.forName("twilightforest.entity.EntityTFPinchBeetle");
+			Class tfRaven = Class.forName("twilightforest.entity.EntityTFRaven");
+			Class tfRedcap = Class.forName("twilightforest.entity.EntityTFRedcap");
+			Class tfRedcapSapper = Class.forName("twilightforest.entity.EntityTFRedcapSapper");
+			Class tfSkeletonDruid = Class.forName("twilightforest.entity.EntityTFSkeletonDruid");
+			Class tfSlimeBeetle = Class.forName("twilightforest.entity.EntityTFSlimeBeetle");
+			Class tfSquirrel = Class.forName("twilightforest.entity.EntityTFSquirrel");
+			Class tfSwarmSpider = Class.forName("twilightforest.entity.EntityTFSwarmSpider");
+			Class tfTinyBird = Class.forName("twilightforest.entity.EntityTFTinyBird");
+			Class tfTowerBroodling = Class.forName("twilightforest.entity.EntityTFTowerBroodling");
+			Class tfTowerGhast = Class.forName("twilightforest.entity.EntityTFTowerGhast");
+			Class tfTowerGolem = Class.forName("twilightforest.entity.EntityTFTowerGolem");
+			Class tfTowerTermite = Class.forName("twilightforest.entity.EntityTFTowerTermite");
+			Class tfWraith = Class.forName("twilightforest.entity.EntityTFWraith");
 			
 			FarmingRegistry.registerMobEggHandler(new TwilightForestEggHandler());
 			
 			FarmingRegistry.registerRanchable(new RanchableTFBighorn(tfBighorn));
 
-			Class<?> tfItems = Class.forName("twilightforest.item.TFItems");
+			Class tfItems = Class.forName("twilightforest.item.TFItems");
 			if(tfItems != null)
 			{
 				
