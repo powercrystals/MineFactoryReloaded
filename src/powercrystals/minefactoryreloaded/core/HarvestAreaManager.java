@@ -49,6 +49,11 @@ public class HarvestAreaManager
 		return _harvestArea;
 	}
 	
+	public int getRadius()
+	{
+		return _radius + _upgradeLevel;
+	}
+	
 	public BlockPosition getNextBlock()
 	{
 		checkRecalculate();
