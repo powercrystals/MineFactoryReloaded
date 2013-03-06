@@ -1,9 +1,16 @@
 package powercrystals.minefactoryreloaded.core;
 
+import java.util.EnumSet;
+
 import powercrystals.core.power.PowerProviderAdvanced;
 import powercrystals.core.util.Util;
+import universalelectricity.core.electricity.ElectricityConnections;
+import universalelectricity.core.electricity.ElectricityNetwork;
+import universalelectricity.core.electricity.ElectricityPack;
+import universalelectricity.core.implement.IVoltage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
 import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -24,10 +31,11 @@ import buildcraft.api.power.IPowerReceptor;
  * progress bar correctly.
  */
 
-public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventory implements IPowerReceptor, IEnergySink
+public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventory implements IPowerReceptor, IEnergySink, IVoltage
 {	
 	private static int energyPerEU = 4;
 	private static int energyPerMJ = 10;
+	private static int wPerEnergy = 1100;
 	
 	private int _energyStored;
 	private int _energyActivation;
@@ -58,6 +66,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		_powerProvider = new PowerProviderAdvanced();
 		_powerProvider.configure(25, 10, 10, 1, 1000);
 		setIsActive(false);
+		ElectricityConnections.registerConnector(this, EnumSet.range(ForgeDirection.DOWN, ForgeDirection.EAST));
 	}
 	
 	// local methods
@@ -97,6 +106,10 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 				_energyStored += mjGained * energyPerMJ;
 			}
 		}
+		
+		ElectricityPack powerRequested = new ElectricityPack((getEnergyStoredMax() - getEnergyStored()) * wPerEnergy / getVoltage(), getVoltage());
+		ElectricityPack powerPack = ElectricityNetwork.consumeFromMultipleSides(this, powerRequested);
+		_energyStored += powerPack.getWatts() / wPerEnergy;
 		
 		setIsActive(_energyStored >= _energyActivation * 2);
 		
@@ -274,5 +287,13 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	public int getMaxSafeInput()
 	{
 		return 128;
+	}
+	
+	// IVoltage Methods
+	
+	@Override
+	public double getVoltage(Object... data)
+	{
+		return 120;
 	}
 }

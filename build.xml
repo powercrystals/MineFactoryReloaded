@@ -37,6 +37,7 @@
 			<available file="${mcpsrc.dir}/buildcraft" type="dir"/>
 			<available file="${mcpsrc.dir}/ic2" type="dir"/>
 			<available file="${mcpsrc.dir}/thaumcraft" type="dir"/>
+			<available file="${mcpsrc.dir}/universalelectricity" type="dir"/>
 			<available file="${lib.dir}/CodeChickenCore 0.7.1.0-deobf.jar"/>
 			<available file="${lib.dir}/NotEnoughItems 1.4.5.1-deobf.jar"/>
 		</and>
@@ -61,6 +62,9 @@
 		<echo message="Downloading NEI... " />
 		<get src="http://porpchan.org/NotEnoughItems%201.4.5.1-deobf.jar" dest="${lib.dir}/NotEnoughItems 1.4.5.1-deobf.jar" />
 		
+		<echo message="Downloading UniversalElectricity API... " />
+		<get src="http://calclavia.com/download.php?d=ue/&amp;f=UniversalElectricity_v1.2.6.339_api.zip" dest="${download.dir}/ue-api.zip" />
+		
 	</target>
 
 	<target name="extract-dependencies" depends="setup-forge,get-dependencies">
@@ -81,6 +85,10 @@
 		<echo message="Exctracting Thaumcraft API... " />
 		<unzip src="${download.dir}/tc-api.zip" dest="${download.dir}" />
 		<move file="${download.dir}/thaumcraft" todir="${mcpsrc.dir}" />
+		
+		<echo message="Exctracting UniversalElectricity API... " />
+		<unzip src="${download.dir}/ue-api.zip" dest="${download.dir}/universalelectricity/" />
+		<move file="${download.dir}/universalelectricity/minecraft/universalelectricity" todir="${mcpsrc.dir}" />
 	</target>
 
 
