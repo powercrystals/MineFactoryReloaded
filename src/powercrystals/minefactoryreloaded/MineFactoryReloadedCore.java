@@ -34,6 +34,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import powercrystals.core.updater.IUpdateableMod;
 import powercrystals.core.updater.UpdateManager;
+import powercrystals.minefactoryreloaded.animals.ItemSafariNetLauncher;
 import powercrystals.minefactoryreloaded.animals.ItemSyringeGrowth;
 import powercrystals.minefactoryreloaded.animals.ItemSyringeHealth;
 import powercrystals.minefactoryreloaded.animals.ItemSafariNet;
@@ -65,6 +66,7 @@ import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryRoad;
 import powercrystals.minefactoryreloaded.decorative.ItemBlockVanillaIce;
 import powercrystals.minefactoryreloaded.decorative.ItemCeramicDye;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
+import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
 import powercrystals.minefactoryreloaded.farmables.egghandlers.VanillaEggHandler;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCocoa;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCropPlant;
@@ -151,6 +153,7 @@ import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -227,6 +230,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item bioFuelItem;
 	public static Item bioFuelBucketItem;
 	public static Item upgradeItem;
+	public static Item safariNetLauncherItem;
 
 	public static int conveyorTexture = 0;
 	public static int conveyorOffTexture = 1;
@@ -280,6 +284,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property bioFuelItemId;
 	public static Property bioFuelBucketItemId;
 	public static Property upgradeItemId;
+	public static Property safariNetLauncherItemId;
 
 	public static Property animateBlockFaces;
 	public static Property treeSearchMaxVertical;
@@ -426,6 +431,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		bioFuelItem = (new ItemFactory(bioFuelItemId.getInt())).setIconIndex(46).setItemName("factoryBioFuelItem");
 		bioFuelBucketItem = (new ItemFactory(bioFuelBucketItemId.getInt())).setIconIndex(47).setItemName("factoryBioFuelBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setItemName("factoryUpgradeItem").setMaxStackSize(1);
+		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setIconIndex(50).setItemName("safariNetLauncherItem").setMaxStackSize(1);
 
 		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
 		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
@@ -490,6 +496,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityAutoSpawner.class, "factoryAutoSpawner");
 		GameRegistry.registerTileEntity(TileEntityBioReactor.class, "factoryBioReactor");
 		GameRegistry.registerTileEntity(TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator");
+		
+		EntityRegistry.registerModEntity(EntitySafariNet.class, "entitySafariNet", 0, instance, 160, 5, true);
 
 		MinecraftForge.EVENT_BUS.register(instance);
 
@@ -718,6 +726,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		bioFuelItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BioFuel", 12009);
 		bioFuelBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BioFuelBucket", 12010);
 		upgradeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Upgrade", 12011);
+		safariNetLauncherItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetLauncher", 12012);
 
 		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
 		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";

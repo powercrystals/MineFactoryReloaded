@@ -149,54 +149,59 @@ public class ItemSafariNet extends ItemFactory
 		{
 			return true;
 		}
-		else if(itemstack.getItemDamage() == 0 && itemstack.getTagCompound() == null)
+		else if(isEmpty(itemstack))
 		{
 			return true;
 		}
 		else
 		{
-			int blockId = world.getBlockId(x, y, z);
-			x += Facing.offsetsXForSide[side];
-			y += Facing.offsetsYForSide[side];
-			z += Facing.offsetsZForSide[side];
-			double spawnOffsetY = 0.0D;
-
-			if (side == 1 && Block.blocksList[blockId] != null && Block.blocksList[blockId].getRenderType() == 11)
-			{
-				spawnOffsetY = 0.5D;
-			}
-
-			if(itemstack.getItemDamage() != 0)
-			{
-				if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
-				{
-					if(itemstack.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)
-					{
-						itemstack.stackSize--;
-					}
-					else
-					{
-						itemstack.setItemDamage(0);
-					}
-				}
-			}
-			else
-			{
-				if(spawnCreature(world, itemstack.getTagCompound(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
-				{
-					if(itemstack.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)
-					{
-						itemstack.stackSize--;
-					}
-					else
-					{
-						itemstack.setTagCompound(null);
-					}
-				}
-			}
-
-			return true;
+			return releaseEntity(itemstack, world, x, y, z, side);
 		}
+	}
+	
+	public static boolean releaseEntity(ItemStack itemstack, World world, int x, int y, int z, int side)
+	{
+		int blockId = world.getBlockId(x, y, z);
+		x += Facing.offsetsXForSide[side];
+		y += Facing.offsetsYForSide[side];
+		z += Facing.offsetsZForSide[side];
+		double spawnOffsetY = 0.0D;
+
+		if (side == 1 && Block.blocksList[blockId] != null && Block.blocksList[blockId].getRenderType() == 11)
+		{
+			spawnOffsetY = 0.5D;
+		}
+
+		if(itemstack.getItemDamage() != 0)
+		{
+			if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
+			{
+				if(itemstack.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)
+				{
+					itemstack.stackSize--;
+				}
+				else
+				{
+					itemstack.setItemDamage(0);
+				}
+			}
+		}
+		else
+		{
+			if(spawnCreature(world, itemstack.getTagCompound(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
+			{
+				if(itemstack.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)
+				{
+					itemstack.stackSize--;
+				}
+				else
+				{
+					itemstack.setTagCompound(null);
+				}
+			}
+		}
+
+		return true;
 	}
 
 	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
@@ -247,7 +252,12 @@ public class ItemSafariNet extends ItemFactory
 	@Override
 	public boolean itemInteractionForEntity(ItemStack itemstack, EntityLiving entity)
 	{
-		if(itemstack.getItemDamage() > 0 || itemstack.getTagCompound() != null)
+		return captureEntity(itemstack, entity);
+	}
+	
+	public static boolean captureEntity(ItemStack itemstack, EntityLiving entity)
+	{
+		if(!isEmpty(itemstack))
 		{
 			return false;
 		}
@@ -269,5 +279,10 @@ public class ItemSafariNet extends ItemFactory
 			return true;
 		}
 		return true;
+	}
+	
+	public static boolean isEmpty(ItemStack s)
+	{
+		return s.getItemDamage() == 0 && s.getTagCompound() == null;
 	}
 }
