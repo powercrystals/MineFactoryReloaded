@@ -53,6 +53,10 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	private boolean _isAddedToIC2EnergyNet;
 	private boolean _addToNetOnNextTick;
 	
+	// UE-related fields
+	
+	private int _ueBuffer;
+	
 	// constructors
 	
 	protected TileEntityFactoryPowered()
@@ -109,7 +113,11 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		
 		ElectricityPack powerRequested = new ElectricityPack((getEnergyStoredMax() - getEnergyStored()) * wPerEnergy / getVoltage(), getVoltage());
 		ElectricityPack powerPack = ElectricityNetwork.consumeFromMultipleSides(this, powerRequested);
-		_energyStored += powerPack.getWatts() / wPerEnergy;
+		_ueBuffer += powerPack.getWatts();
+		
+		int energyFromUE = _ueBuffer / wPerEnergy;
+		_energyStored += energyFromUE;
+		_ueBuffer -= (energyFromUE * wPerEnergy);
 		
 		setIsActive(_energyStored >= _energyActivation * 2);
 		
