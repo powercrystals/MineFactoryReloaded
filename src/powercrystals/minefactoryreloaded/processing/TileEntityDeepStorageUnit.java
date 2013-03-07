@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.processing;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -144,12 +143,10 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	{
 		if(_inventory[slot] != null)
 		{
-			if(_storedQuantity == 0
-					&& (_inventory[2] == null
-					|| (_inventory[2].itemID == _inventory[slot].itemID
-					&& _inventory[2].getItemDamage() == _inventory[slot].getItemDamage()))
-					&& _inventory[slot].getTagCompound() == null
-					)
+			if(_storedQuantity == 0 &&
+					(_inventory[2] == null ||
+						(_inventory[2].itemID == _inventory[slot].itemID &&	_inventory[2].getItemDamage() == _inventory[slot].getItemDamage()))
+					&& _inventory[slot].getTagCompound() == null)
 			{
 				_storedId = _inventory[slot].itemID;
 				_storedMeta = _inventory[slot].getItemDamage();
@@ -172,8 +169,8 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			// boot improperly typed items from the input slots
 			else if(_inventory[slot].itemID != _storedId || _inventory[slot].getItemDamage() != _storedMeta || _inventory[slot].getTagCompound() != null)
 			{
-			MFRUtil.dropStack(this, _inventory[slot]);
-			_inventory[slot] = null;
+				MFRUtil.dropStack(this, _inventory[slot]);
+				_inventory[slot] = null;
 			}
 		}
 		
