@@ -6,6 +6,7 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityEggInfo;
 import net.minecraft.entity.EntityList;
@@ -274,9 +275,17 @@ public class ItemSafariNet extends ItemFactory
 			c.setString("id", (String)EntityList.classToStringMapping.get(entity.getClass()));
 			c.setString("_class", entity.getClass().getName());
 			
-			itemstack.setTagCompound(c);
 			entity.setDead();
-			return true;
+			if(entity.isDead)
+			{
+				itemstack.setTagCompound(c);
+				return true;
+			}
+			else
+			{
+				Minecraft.getMinecraft().thePlayer.sendChatToPlayer("Failed to capture entity - is it protected?");
+				return false;
+			}
 		}
 		return true;
 	}
