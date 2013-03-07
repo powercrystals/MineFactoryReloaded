@@ -161,6 +161,11 @@ public class ItemSafariNet extends ItemFactory
 	
 	public static boolean releaseEntity(ItemStack itemstack, World world, int x, int y, int z, int side)
 	{
+		if(world.isRemote)
+		{
+			return false;
+		}
+		
 		int blockId = world.getBlockId(x, y, z);
 		x += Facing.offsetsXForSide[side];
 		y += Facing.offsetsYForSide[side];
@@ -257,6 +262,10 @@ public class ItemSafariNet extends ItemFactory
 	
 	public static boolean captureEntity(ItemStack itemstack, EntityLiving entity)
 	{
+		if(entity.worldObj.isRemote)
+		{
+			return false;
+		}
 		if(!isEmpty(itemstack))
 		{
 			return false;
@@ -291,5 +300,10 @@ public class ItemSafariNet extends ItemFactory
 	public static boolean isEmpty(ItemStack s)
 	{
 		return s == null || (s.getItemDamage() == 0 && s.getTagCompound() == null);
+	}
+	
+	public static boolean isSingleUse(ItemStack s)
+	{
+		return s != null && s.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID;
 	}
 }

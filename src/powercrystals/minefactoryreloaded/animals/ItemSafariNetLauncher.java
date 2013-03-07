@@ -3,7 +3,6 @@ package powercrystals.minefactoryreloaded.animals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
 
@@ -26,11 +25,7 @@ public class ItemSafariNetLauncher extends ItemFactory
 			{
 				if(!world.isRemote)
 				{
-					EntitySafariNet esn = new EntitySafariNet(world, player, (ammo.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID));
-					if(!ItemSafariNet.isEmpty(ammo))
-					{
-						esn.setStoredEntity(ammo);
-					}
+					EntitySafariNet esn = new EntitySafariNet(world, player, ammo);
 					world.spawnEntityInWorld(esn);
 				}
 				player.inventory.setInventorySlotContents(i, null);

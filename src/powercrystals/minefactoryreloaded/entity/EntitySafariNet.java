@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.entity;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.animals.ItemSafariNet;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -16,22 +15,19 @@ public class EntitySafariNet extends EntityThrowable
 	public EntitySafariNet(World world)
 	{
 		super(world);
-		dataWatcher.addObject(12, (byte)0);
 		dataWatcher.addObjectByDataType(13, 5);
 	}
 	
-	public EntitySafariNet(World world, double x, double y, double z, boolean singleUse)
+	public EntitySafariNet(World world, double x, double y, double z, ItemStack netStack)
 	{
 		super(world, x, y, z);
-		dataWatcher.addObject(12, (byte)(singleUse ? 1 : 0));
-		dataWatcher.addObjectByDataType(13, 5);
+		dataWatcher.addObject(13, netStack);
 	}
 
-	public EntitySafariNet(World world, EntityLiving owner, boolean singleUse)
+	public EntitySafariNet(World world, EntityLiving owner, ItemStack netStack)
 	{
 		super(world, owner);
-		dataWatcher.addObject(12, (byte)(singleUse ? 1 : 0));
-		dataWatcher.addObjectByDataType(13, 5);
+		dataWatcher.addObject(13, netStack);
 	}
 	
 	public void setStoredEntity(ItemStack s)
@@ -42,61 +38,44 @@ public class EntitySafariNet extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{
-		ItemStack emptyNet;
-		
-		if(dataWatcher.getWatchableObjectByte(12) == 1)
-		{
-			emptyNet = new ItemStack(MineFactoryReloadedCore.safariNetSingleItem);
-		}
-		else
-		{
-			emptyNet = new ItemStack(MineFactoryReloadedCore.safariNetItem);
-		}
-		
 		ItemStack storedEntity = dataWatcher.getWatchableObjectItemStack(13);
-		if(storedEntity == null || ItemSafariNet.isEmpty(storedEntity))
+		
+		if(mop.typeOfHit == EnumMovingObjectType.TILE)
 		{
-			if(mop.typeOfHit == EnumMovingObjectType.TILE)
+			if(ItemSafariNet.isEmpty(storedEntity))
 			{
-				dropAsStack(emptyNet);
+				dropAsStack(storedEntity);
 			}
-			else if(mop.entityHit != null && mop.entityHit instanceof EntityLiving)
-			{
-				ItemStack entityNet = emptyNet.copy();
-				if(ItemSafariNet.captureEntity(entityNet, (EntityLiving)mop.entityHit))
-				{
-					dropAsStack(entityNet);
-				}
-				else
-				{
-					dropAsStack(emptyNet);
-				}
-			}
-		}
-		else
-		{
-			if(mop.typeOfHit == EnumMovingObjectType.TILE)
+			else
 			{
 				ItemSafariNet.releaseEntity(storedEntity, worldObj, mop.blockX, mop.blockY, mop.blockZ, mop.sideHit);
-				if(dataWatcher.getWatchableObjectByte(12) == 1)
+				if(ItemSafariNet.isSingleUse(storedEntity))
 				{
 					dropAsStack(null);
 				}
 				else
 				{
-					dropAsStack(emptyNet);
+					dropAsStack(storedEntity);
 				}
+			}
+		}
+		else
+		{
+			if(ItemSafariNet.isEmpty(storedEntity))
+			{
+				ItemSafariNet.captureEntity(storedEntity, (EntityLiving)mop.entityHit);
+				dropAsStack(storedEntity);
 			}
 			else
 			{
 				ItemSafariNet.releaseEntity(storedEntity, worldObj, (int)mop.entityHit.posX, (int)mop.entityHit.posY, (int)mop.entityHit.posZ, 1);
-				if(dataWatcher.getWatchableObjectByte(12) == 1)
+				if(ItemSafariNet.isSingleUse(storedEntity))
 				{
 					dropAsStack(null);
 				}
 				else
 				{
-					dropAsStack(emptyNet);
+					dropAsStack(storedEntity);
 				}
 			}
 		}
@@ -118,20 +97,23 @@ public class EntitySafariNet extends EntityThrowable
 	
 	public int getIconIndex()
 	{
-		return (dataWatcher.getWatchableObjectByte(12) == 1) ? MineFactoryReloadedCore.safariNetSingleItem.getIconFromDamage(0) + 3 : MineFactoryReloadedCore.safariNetItem.getIconFromDamage(0) + 3;
+		return dataWatcher.getWatchableObjectItemStack(13).getIconIndex() + 3;
 	}
 	
 	@Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeEntityToNBT(nbttagcompound);
-		nbttagcompound.setByte("singleUseSafariNet", dataWatcher.getWatchableObjectByte(12));
+		NBTTagCompound stackTag = new NBTTagCompound();
+		dataWatcher.getWatchableObjectItemStack(13).writeToNBT(stackTag);
+		nbttagcompound.setTag("safariNetStack", stackTag);
 	}
 	
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
 		super.readEntityFromNBT(nbttagcompound);
-		dataWatcher.addObject(12, nbttagcompound.getByte("singleUseSafariNet"));
+		NBTTagCompound stackTag = nbttagcompound.getCompoundTag("safariNetStack");
+		dataWatcher.addObject(13, ItemStack.loadItemStackFromNBT(stackTag));
 	}
 }

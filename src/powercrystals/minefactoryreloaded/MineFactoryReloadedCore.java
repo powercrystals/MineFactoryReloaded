@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
@@ -46,6 +47,7 @@ import powercrystals.minefactoryreloaded.animals.TileEntityGrinder;
 import powercrystals.minefactoryreloaded.animals.TileEntityRancher;
 import powercrystals.minefactoryreloaded.animals.TileEntityVet;
 import powercrystals.minefactoryreloaded.api.*;
+import powercrystals.minefactoryreloaded.core.BehaviorDispenseSafariNet;
 import powercrystals.minefactoryreloaded.core.BlockFactoryMachine0;
 import powercrystals.minefactoryreloaded.core.BlockFactoryMachine1;
 import powercrystals.minefactoryreloaded.core.ItemBlockFactoryMachine1;
@@ -508,6 +510,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		proxy.load();
 		
 		NetworkRegistry.instance().registerGuiHandler(this, new MFRGUIHandler());
+		
+		BlockDispenser.dispenseBehaviorRegistry.putObject(safariNetItem, new BehaviorDispenseSafariNet());
+		BlockDispenser.dispenseBehaviorRegistry.putObject(safariNetSingleItem, new BehaviorDispenseSafariNet());
 		
 		if(rubberTreeWorldGen.getBoolean(true))
 		{
