@@ -17,7 +17,6 @@ public class TreeHarvestManager
 	public TreeHarvestManager(Area treeArea)
 	{
 		_treeArea = treeArea;
-		_treeBlocks = _treeArea.getPositionsBottomFirst();
 		reset();
 	}
 	
@@ -48,6 +47,7 @@ public class TreeHarvestManager
 	{
 		_currentBlock = 0;
 		_isLeafPass = true;
+		_treeBlocks = _treeArea.getPositionsBottomFirst();
 	}
 	
 	public boolean getIsLeafPass()
