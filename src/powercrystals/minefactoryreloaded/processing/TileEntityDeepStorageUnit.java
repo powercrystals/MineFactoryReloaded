@@ -44,7 +44,11 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		
 		for(int i = 0; i < getSizeInventory(); i++)
 		{
-			if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
+			if(_inventory[i] != null && _storedQuantity == 0)
+			{
+				quantity += _inventory[i].stackSize;
+			}
+			else if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
 			{
 				quantity += _inventory[i].stackSize;
 			}
@@ -68,7 +72,14 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	
 	public int getId()
 	{
-		return _storedId;
+		if(_storedQuantity == 0 && _inventory[2] != null)
+		{
+			return _inventory[2].itemID;
+		}
+		else
+		{
+			return _storedId;			
+		}
 	}
 	
 	public void setId(int id)
@@ -78,7 +89,14 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	
 	public int getMeta()
 	{
-		return _storedMeta;
+		if(_storedQuantity == 0 && _inventory[2] != null)
+		{
+			return _inventory[2].getItemDamage();
+		}
+		else
+		{
+			return _storedMeta;			
+		}
 	}
 	
 	public void setMeta(int meta)
