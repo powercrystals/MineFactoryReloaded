@@ -96,15 +96,15 @@ public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 	{
 		super.updateProgressBar(var, value);
 		
-		if(var == 0) _dsu.setSideIsOutput(0, value == 1);
-		if(var == 1) _dsu.setSideIsOutput(1, value == 1);
-		if(var == 2) _dsu.setSideIsOutput(2, value == 1);
-		if(var == 3) _dsu.setSideIsOutput(3, value == 1);
-		if(var == 4) _dsu.setSideIsOutput(4, value == 1);
-		if(var == 5) _dsu.setSideIsOutput(5, value == 1);
+		if(var == 100) _dsu.setSideIsOutput(0, value == 1);
+		if(var == 101) _dsu.setSideIsOutput(1, value == 1);
+		if(var == 102) _dsu.setSideIsOutput(2, value == 1);
+		if(var == 103) _dsu.setSideIsOutput(3, value == 1);
+		if(var == 104) _dsu.setSideIsOutput(4, value == 1);
+		if(var == 105) _dsu.setSideIsOutput(5, value == 1);
 		
-		if(var == 100) _tempQuantity = upcastShort(value);
-		if(var == 101) _dsu.setQuantity(_tempQuantity | (value << 16));
+		if(var == 200) _tempQuantity = upcastShort(value);
+		if(var == 201) _dsu.setQuantity(_tempQuantity | (value << 16));
 	}
 	
 	@Override

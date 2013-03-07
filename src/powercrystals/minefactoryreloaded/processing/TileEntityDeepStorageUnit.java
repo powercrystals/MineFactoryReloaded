@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.processing;
 
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -35,6 +36,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	
 	public int getQuantity()
 	{
+		FMLLog.warning("EMYDEBUG: getQuantity() called");
 		return _storedQuantity;
 	}
 	
@@ -47,6 +49,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			if(_inventory[i] != null && _storedQuantity == 0)
 			{
 				quantity += _inventory[i].stackSize;
+				FMLLog.warning("EMYDEBUG: adding stack from slot " + i + " of size " + _inventory[i].stackSize );				
 			}
 			else if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
 			{
@@ -54,6 +57,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			}
 		}
 		
+		FMLLog.warning("EMYDEBUG current quantity: " + quantity);
 		return quantity;
 	}
 	
@@ -258,7 +262,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	@Override
 	public ItemStack getStoredItemType()
 	{
-		if(_storedQuantity > 0)
+		if(_storedQuantity > 0 || _inventory[2] != null)
 		{
 			return new ItemStack(_storedId, getQuantityAdjusted(), _storedMeta);
 		}
