@@ -115,7 +115,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		ElectricityPack powerPack = ElectricityNetwork.consumeFromMultipleSides(this, powerRequested);
 		_ueBuffer += powerPack.getWatts();
 		
-		int energyFromUE = _ueBuffer / wPerEnergy;
+		int energyFromUE = Math.min(_ueBuffer / wPerEnergy, getEnergyStoredMax() - getEnergyStored());
 		_energyStored += energyFromUE;
 		_ueBuffer -= (energyFromUE * wPerEnergy);
 		
@@ -216,6 +216,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 
 		nbttagcompound.setInteger("energyStored", _energyStored);
 		nbttagcompound.setInteger("workDone", _workDone);
+		nbttagcompound.setInteger("ueBuffer", _ueBuffer);
 		_powerProvider.writeToNBT(nbttagcompound);
 	}
 	
@@ -226,6 +227,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		
 		_energyStored = Math.min(nbttagcompound.getInteger("energyStored"), getEnergyStoredMax());
 		_workDone = Math.min(nbttagcompound.getInteger("workDone"), getWorkMax());
+		_ueBuffer = nbttagcompound.getInteger("ueBuffer");
 		_powerProvider.readFromNBT(nbttagcompound);
 		_powerProvider.configure(25, 10, 10, 1, 1000);
 	}
