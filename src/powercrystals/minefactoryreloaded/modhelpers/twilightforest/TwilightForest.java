@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.block.Block;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -52,8 +53,13 @@ public class TwilightForest
 			Class tfFireBeetle = Class.forName("twilightforest.entity.EntityTFFireBeetle");
 			Class tfHedgeSpider = Class.forName("twilightforest.entity.EntityTFHedgeSpider");
 			Class tfHostileWolf = Class.forName("twilightforest.entity.EntityTFHostileWolf");
+			Class tfHydra = Class.forName("twilightforest.entity.EntityTFHydra");
+			Class tfHydraHead = Class.forName("twilightforest.entity.EntityTFHydraHead");
+			Class tfHydraNeck = Class.forName("twilightforest.entity.EntityTFHydraNeck");
+			Class tfHydraPart = Class.forName("twilightforest.entity.EntityTFHydraPart");
 			Class tfKingSpider = Class.forName("twilightforest.entity.EntityTFKingSpider");
 			Class tfKobold = Class.forName("twilightforest.entity.EntityTFKobold");
+			Class tfLich = Class.forName("twilightforest.entity.EntityTFLich");
 			Class tfLichMinion = Class.forName("twilightforest.entity.EntityTFLichMinion");
 			Class tfLoyalZombie = Class.forName("twilightforest.entity.EntityTFLoyalZombie");
 			Class tfMazeSlime = Class.forName("twilightforest.entity.EntityTFMazeSlime");
@@ -61,8 +67,11 @@ public class TwilightForest
 			Class tfMinoshroom = Class.forName("twilightforest.entity.EntityTFMinoshroom");
 			Class tfMinotaur = Class.forName("twilightforest.entity.EntityTFMinotaur");
 			Class tfMistWolf = Class.forName("twilightforest.entity.EntityTFMistWolf");
+			Class tfNaga = Class.forName("twilightforest.entity.EntityTFNaga");
+			Class tfNagaSegment = Class.forName("twilightforest.entity.EntityTFNagaSegment");
 			Class tfPenguin = Class.forName("twilightforest.entity.EntityTFPenguin");
 			Class tfPinchBeetle = Class.forName("twilightforest.entity.EntityTFPinchBeetle");
+			Class tfQuestRam = Class.forName("twilightforest.entity.EntityTFQuestRam");
 			Class tfRaven = Class.forName("twilightforest.entity.EntityTFRaven");
 			Class tfRedcap = Class.forName("twilightforest.entity.EntityTFRedcap");
 			Class tfRedcapSapper = Class.forName("twilightforest.entity.EntityTFRedcapSapper");
@@ -71,16 +80,27 @@ public class TwilightForest
 			Class tfSquirrel = Class.forName("twilightforest.entity.EntityTFSquirrel");
 			Class tfSwarmSpider = Class.forName("twilightforest.entity.EntityTFSwarmSpider");
 			Class tfTinyBird = Class.forName("twilightforest.entity.EntityTFTinyBird");
+			Class tfTowerBoss = Class.forName("twilightforest.entity.EntityTFTowerBoss");
 			Class tfTowerBroodling = Class.forName("twilightforest.entity.EntityTFTowerBroodling");
 			Class tfTowerGhast = Class.forName("twilightforest.entity.EntityTFTowerGhast");
 			Class tfTowerGolem = Class.forName("twilightforest.entity.EntityTFTowerGolem");
 			Class tfTowerTermite = Class.forName("twilightforest.entity.EntityTFTowerTermite");
 			Class tfWraith = Class.forName("twilightforest.entity.EntityTFWraith");
+
+			MFRRegistry.registerSafariNetBlacklist(tfHydra);
+			MFRRegistry.registerSafariNetBlacklist(tfHydraHead);
+			MFRRegistry.registerSafariNetBlacklist(tfHydraNeck);
+			MFRRegistry.registerSafariNetBlacklist(tfHydraPart);
+			MFRRegistry.registerSafariNetBlacklist(tfLich);
+			MFRRegistry.registerSafariNetBlacklist(tfNaga);
+			MFRRegistry.registerSafariNetBlacklist(tfNagaSegment);
+			MFRRegistry.registerSafariNetBlacklist(tfQuestRam);
+			MFRRegistry.registerSafariNetBlacklist(tfTowerBoss);
 			
 			FarmingRegistry.registerMobEggHandler(new TwilightForestEggHandler());
 			
 			FarmingRegistry.registerRanchable(new RanchableTFBighorn(tfBighorn));
-
+			
 			Class tfItems = Class.forName("twilightforest.item.TFItems");
 			if(tfItems != null)
 			{
