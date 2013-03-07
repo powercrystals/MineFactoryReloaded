@@ -36,7 +36,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	
 	public int getQuantity()
 	{
-		FMLLog.warning("EMYDEBUG: getQuantity() called");
 		return _storedQuantity;
 	}
 	
@@ -48,8 +47,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		{
 			if(_inventory[i] != null && _storedQuantity == 0)
 			{
-				quantity += _inventory[i].stackSize;
-				FMLLog.warning("EMYDEBUG: adding stack from slot " + i + " of size " + _inventory[i].stackSize );				
+				quantity += _inventory[i].stackSize;				
 			}
 			else if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
 			{
@@ -57,7 +55,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			}
 		}
 		
-		FMLLog.warning("EMYDEBUG current quantity: " + quantity);
 		return quantity;
 	}
 	
