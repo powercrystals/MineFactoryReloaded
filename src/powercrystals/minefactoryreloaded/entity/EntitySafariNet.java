@@ -78,19 +78,33 @@ public class EntitySafariNet extends EntityThrowable
 			if(mop.typeOfHit == EnumMovingObjectType.TILE)
 			{
 				ItemSafariNet.releaseEntity(storedEntity, worldObj, mop.blockX, mop.blockY, mop.blockZ, mop.sideHit);
-				dropAsStack(emptyNet);
+				if(dataWatcher.getWatchableObjectByte(12) == 1)
+				{
+					dropAsStack(null);
+				}
+				else
+				{
+					dropAsStack(emptyNet);
+				}
 			}
 			else
 			{
 				ItemSafariNet.releaseEntity(storedEntity, worldObj, (int)mop.entityHit.posX, (int)mop.entityHit.posY, (int)mop.entityHit.posZ, 1);
-				dropAsStack(emptyNet);
+				if(dataWatcher.getWatchableObjectByte(12) == 1)
+				{
+					dropAsStack(null);
+				}
+				else
+				{
+					dropAsStack(emptyNet);
+				}
 			}
 		}
 	}
 	
 	private void dropAsStack(ItemStack stack)
 	{
-		if(!worldObj.isRemote)
+		if(!worldObj.isRemote && stack != null)
 		{
 			EntityItem ei = new EntityItem(worldObj, posX, posY, posZ, stack);
 			if(stack.getTagCompound() != null)
