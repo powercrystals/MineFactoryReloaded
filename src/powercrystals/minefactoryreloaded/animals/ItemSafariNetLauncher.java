@@ -26,7 +26,12 @@ public class ItemSafariNetLauncher extends ItemFactory
 			{
 				if(!world.isRemote)
 				{
-					world.spawnEntityInWorld(new EntitySafariNet(world, player, (ammo.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)));
+					EntitySafariNet esn = new EntitySafariNet(world, player, (ammo.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID));
+					if(!ItemSafariNet.isEmpty(ammo))
+					{
+						esn.setStoredEntity(ammo);
+					}
+					world.spawnEntityInWorld(esn);
 				}
 				player.inventory.setInventorySlotContents(i, null);
 				break;

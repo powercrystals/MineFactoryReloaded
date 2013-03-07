@@ -6,7 +6,6 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityEggInfo;
 import net.minecraft.entity.EntityList;
@@ -283,7 +282,6 @@ public class ItemSafariNet extends ItemFactory
 			}
 			else
 			{
-				Minecraft.getMinecraft().thePlayer.sendChatToPlayer("Failed to capture entity - is it protected?");
 				return false;
 			}
 		}
@@ -292,6 +290,6 @@ public class ItemSafariNet extends ItemFactory
 	
 	public static boolean isEmpty(ItemStack s)
 	{
-		return s.getItemDamage() == 0 && s.getTagCompound() == null;
+		return s == null || (s.getItemDamage() == 0 && s.getTagCompound() == null);
 	}
 }

@@ -17,26 +17,26 @@ public class EntitySafariNet extends EntityThrowable
 	{
 		super(world);
 		dataWatcher.addObject(12, (byte)0);
+		dataWatcher.addObjectByDataType(13, 5);
 	}
 	
 	public EntitySafariNet(World world, double x, double y, double z, boolean singleUse)
 	{
 		super(world, x, y, z);
 		dataWatcher.addObject(12, (byte)(singleUse ? 1 : 0));
+		dataWatcher.addObjectByDataType(13, 5);
 	}
 
 	public EntitySafariNet(World world, EntityLiving owner, boolean singleUse)
 	{
 		super(world, owner);
 		dataWatcher.addObject(12, (byte)(singleUse ? 1 : 0));
+		dataWatcher.addObjectByDataType(13, 5);
 	}
 	
-	@Override
-	public boolean isInRangeToRenderDist(double distance)
+	public void setStoredEntity(ItemStack s)
 	{
-		double var3 = this.boundingBox.getAverageEdgeLength() * 4.0D;
-		var3 *= 64.0D;
-		return distance < var3 * var3;
+		dataWatcher.updateObject(13, s);
 	}
 
 	@Override
@@ -53,19 +53,36 @@ public class EntitySafariNet extends EntityThrowable
 			emptyNet = new ItemStack(MineFactoryReloadedCore.safariNetItem);
 		}
 		
-		if(mop.typeOfHit == EnumMovingObjectType.TILE)
+		ItemStack storedEntity = dataWatcher.getWatchableObjectItemStack(13);
+		if(storedEntity == null || ItemSafariNet.isEmpty(storedEntity))
 		{
-			dropAsStack(emptyNet);
-		}
-		else if(mop.entityHit != null && mop.entityHit instanceof EntityLiving)
-		{
-			ItemStack entityNet = emptyNet.copy();
-			if(ItemSafariNet.captureEntity(entityNet, (EntityLiving)mop.entityHit))
+			if(mop.typeOfHit == EnumMovingObjectType.TILE)
 			{
-				dropAsStack(entityNet);
+				dropAsStack(emptyNet);
+			}
+			else if(mop.entityHit != null && mop.entityHit instanceof EntityLiving)
+			{
+				ItemStack entityNet = emptyNet.copy();
+				if(ItemSafariNet.captureEntity(entityNet, (EntityLiving)mop.entityHit))
+				{
+					dropAsStack(entityNet);
+				}
+				else
+				{
+					dropAsStack(emptyNet);
+				}
+			}
+		}
+		else
+		{
+			if(mop.typeOfHit == EnumMovingObjectType.TILE)
+			{
+				ItemSafariNet.releaseEntity(storedEntity, worldObj, mop.blockX, mop.blockY, mop.blockZ, mop.sideHit);
+				dropAsStack(emptyNet);
 			}
 			else
 			{
+				ItemSafariNet.releaseEntity(storedEntity, worldObj, (int)mop.entityHit.posX, (int)mop.entityHit.posY, (int)mop.entityHit.posZ, 1);
 				dropAsStack(emptyNet);
 			}
 		}
