@@ -235,7 +235,7 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z)
 	{
-		return world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP);
+		return world.isBlockSolidOnSide(x, y - 1, z, ForgeDirection.UP);
 	}
 
 	@Override
