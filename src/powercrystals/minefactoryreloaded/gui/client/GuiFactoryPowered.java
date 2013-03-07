@@ -25,6 +25,12 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 		drawBar(160, 75, _tePowered.getIdleTicksMax(), _tePowered.getIdleTicks(), _barColorIdle);
 		
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+	}
+	
+	@Override
+	protected void drawTooltips(int mouseX, int mouseY)
+	{
+		super.drawTooltips(mouseX, mouseY);
 		
 		if(isPointInRegion(141, 15, 8, 60, mouseX, mouseY))
 		{

@@ -250,6 +250,11 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 				{
 					return bp;
 				}
+				else if(!_treeManager.getIsLeafPass() && harvestables.get(new Integer(blockId)).getHarvestType() == HarvestType.TreeLeaf)
+				{
+					_treeManager.reset();
+					continue;
+				}
 			}
 			_treeManager.moveNext();
 		}

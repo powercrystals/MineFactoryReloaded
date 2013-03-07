@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -40,16 +39,11 @@ public class GuiFactoryInventory extends GuiContainer
 		{
 			int tankSize = _tileEntity.getTank().getLiquid().amount * _tankSizeMax / _tileEntity.getTank().getCapacity();
 			drawTank(122, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
-			if(isPointInRegion(122, 15, 16, 60, mouseX, mouseY) && _tileEntity.getTank().getLiquid().amount > 0)
-			{
-				drawBarTooltip(_tileEntity.getTank().getLiquid().asItemStack().getDisplayName(),
-						"mB", _tileEntity.getTank().getLiquid().amount, _tileEntity.getTank().getCapacity(), mouseX, mouseY);
-			}
 		}
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float mouseX, int mouseY, int gameTicks)
+	protected void drawGuiContainerBackgroundLayer(float gameTicks, int mouseX, int mouseY)
 	{
 		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 
@@ -58,6 +52,23 @@ public class GuiFactoryInventory extends GuiContainer
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+	}
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float gameTicks)
+	{
+		super.drawScreen(mouseX, mouseY, gameTicks);
+		
+		drawTooltips(mouseX, mouseY);
+	}
+	
+	protected void drawTooltips(int mouseX, int mouseY)
+	{
+		if(isPointInRegion(122, 15, 16, 60, mouseX, mouseY) && _tileEntity.getTank() != null && _tileEntity.getTank().getLiquid().amount > 0)
+		{
+			drawBarTooltip(_tileEntity.getTank().getLiquid().asItemStack().getDisplayName(),
+					"mB", _tileEntity.getTank().getLiquid().amount, _tileEntity.getTank().getCapacity(), mouseX, mouseY);
+		}
 	}
 	
 	protected void drawBar(int xOffset, int yOffset, int max, int current, int color)
@@ -120,10 +131,10 @@ public class GuiFactoryInventory extends GuiContainer
 
 	protected void drawBarTooltip(String name, String unit, int value, int max, int x, int y)
 	{
-		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-		RenderHelper.disableStandardItemLighting();
-		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+		GL11.glDisable(GL11.GL_LIGHTING);
 		
 		List<String> stringList = new LinkedList<String>();
 		stringList.add(name);
@@ -144,8 +155,8 @@ public class GuiFactoryInventory extends GuiContainer
 			}
 		}
 
-		xStart = x + 12 - this.guiLeft;
-		yStart = y - 12 - this.guiTop;
+		xStart = x + 12;
+		yStart = y - 12;
 		int tooltipHeight = 8;
 
 		if(stringList.size() > 1)
@@ -159,6 +170,7 @@ public class GuiFactoryInventory extends GuiContainer
 		}
 
 		this.zLevel = 300.0F;
+		itemRenderer.zLevel = 300.0F;
 		int color1 = -267386864;
 		this.drawGradientRect(xStart - 3, yStart - 4, xStart + tooltipWidth + 3, yStart - 3, color1, color1);
 		this.drawGradientRect(xStart - 3, yStart + tooltipHeight + 3, xStart + tooltipWidth + 3, yStart + tooltipHeight + 4, color1, color1);
@@ -194,7 +206,11 @@ public class GuiFactoryInventory extends GuiContainer
 
 			yStart += 10;
 		}
+		
+		GL11.glPopMatrix();
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 
 		this.zLevel = 0.0F;
+		itemRenderer.zLevel = 0.0F;
 	}
 }
