@@ -127,9 +127,9 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 			setWorkDone(0);
 			return true;
 		}
-		else if(_tank.getLiquid() != null && _tank.getLiquid().amount >= 10)
+		else if(_tank.getLiquid() != null && _tank.getLiquid().amount >= 4)
 		{
-			_tank.drain(10, true);
+			_tank.drain(4, true);
 			setWorkDone(getWorkDone() + 1);
 			return true;
 		}
