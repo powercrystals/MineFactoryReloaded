@@ -7,6 +7,8 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore.Machine;
+import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
+import powercrystals.minefactoryreloaded.render.RenderEntitySafariNet;
 import powercrystals.minefactoryreloaded.render.RendererConveyor;
 import powercrystals.minefactoryreloaded.render.RendererFactoryGlassPane;
 
@@ -125,6 +127,7 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetSingleItem, "Safari Net (Single Use)");
 		LanguageRegistry.addName(MineFactoryReloadedCore.bioFuelItem, "BioFuel");
 		LanguageRegistry.addName(MineFactoryReloadedCore.bioFuelBucketItem, "BioFuel Bucket");
+		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetLauncherItem, "Safari Net Launcher");
 
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), "Lapis Upgrade");
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 1), "Gold Upgrade");
@@ -185,6 +188,7 @@ public class MineFactoryReloadedClient
 		
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdConveyor, new RendererConveyor());
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlassPane, new RendererFactoryGlassPane());
+		RenderingRegistry.registerEntityRenderingHandler(EntitySafariNet.class, new RenderEntitySafariNet());
 	}
 	
 	private void registerMachine0Animation(Machine machine, String animation)
