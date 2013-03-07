@@ -1,7 +1,10 @@
 package powercrystals.minefactoryreloaded.processing;
 
+import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.enchantment.EnchantmentData;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
@@ -45,7 +48,25 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	public int getWorkMax()
 	{
-		return (_targetLevel + (int)Math.pow(((double)_targetLevel) / 7.5, 4)) * 10;
+		return (_targetLevel + (int)(Math.pow(((double)_targetLevel) / 7.5, 4) * 10 * getEnchantmentMultiplier()));
+	}
+
+	@SuppressWarnings("unchecked")
+	private double getEnchantmentMultiplier()
+	{
+		ItemStack s = getStackInSlot(0);
+		if(s == null)
+		{
+			return 1;
+		}
+		
+		Map<Integer, EnchantmentData> enchantments = AutoEnchantmentHelper.getEnchantments(s);
+		if(enchantments == null || enchantments.size() == 0)
+		{
+			return 1;
+		}
+		
+		return Math.pow(enchantments.size() + 1.0, 2);
 	}
 
 	@Override
@@ -91,7 +112,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 			setWorkDone(0);
 			return false;
 		}
-		if(s.getItem().getItemEnchantability() == 0 || s.hasTagCompound())
+		if(s.getItem().getItemEnchantability() == 0 || s.itemID == Item.enchantedBook.itemID)
 		{
 			setInventorySlotContents(0, null);
 			setInventorySlotContents(1, s);

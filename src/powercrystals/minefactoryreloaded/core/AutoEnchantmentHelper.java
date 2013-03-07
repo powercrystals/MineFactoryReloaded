@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import net.minecraft.enchantment.Enchantment;
@@ -12,13 +13,18 @@ import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.WeightedRandom;
 
 public class AutoEnchantmentHelper extends EnchantmentHelper
 {
+	@SuppressWarnings("unchecked")
 	public static ItemStack addRandomEnchantment(Random rand, ItemStack stack, int level)
 	{
 		List<EnchantmentData> enchantments = buildEnchantmentList(rand, stack, level);
+		Map<Integer, Integer> existingEnchants = getEnchantments(stack);
+		
 		boolean isBook = stack.itemID == Item.book.itemID;
 
 		if(isBook)
@@ -29,21 +35,45 @@ public class AutoEnchantmentHelper extends EnchantmentHelper
 		Collections.shuffle(enchantments);
 		if(enchantments != null)
 		{
-			for(EnchantmentData var6 : enchantments)
+outerlist:	for(EnchantmentData newEnchant : enchantments)
 			{
 				if(isBook)
 				{
-					Item.enchantedBook.func_92115_a(stack, var6);
+					Item.enchantedBook.func_92115_a(stack, newEnchant);
 					return stack;
 				}
 				else
 				{
-					stack.addEnchantment(var6.enchantmentobj, var6.enchantmentLevel);
+					for(Entry<Integer, Integer> oldEnchant : existingEnchants.entrySet())
+					{
+						if(oldEnchant.getKey() == newEnchant.enchantmentobj.effectId)
+						{
+							if(oldEnchant.getValue() < newEnchant.enchantmentLevel)
+							{
+								updateEnchantment(stack, oldEnchant.getKey(), (short)newEnchant.enchantmentLevel);
+							}
+							continue outerlist;
+						}
+					}
+					stack.addEnchantment(newEnchant.enchantmentobj, newEnchant.enchantmentLevel);
 				}
 			}
 		}
 
 		return stack;
+	}
+	
+	private static void updateEnchantment(ItemStack stack, int enchantId, short newLevel)
+	{
+		NBTTagList tagList = stack.getTagCompound().getTagList("ench");
+		for(int i = 0; i < tagList.tagCount(); ++i)
+		{
+			if(((NBTTagCompound)tagList.tagAt(i)).getShort("id") == enchantId)
+			{
+				((NBTTagCompound)tagList.tagAt(i)).setShort("lvl", newLevel);
+			}
+		}
+		stack.getTagCompound().setTag("ench", tagList);
 	}
 
 	public static List<EnchantmentData> buildEnchantmentList(Random rand, ItemStack stack, int level)
