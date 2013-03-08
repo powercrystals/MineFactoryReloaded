@@ -15,4 +15,22 @@ public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 	{
 		return LiquidDictionary.getLiquid("bioFuel", 1);
 	}
+
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
+
+	@Override
+	public String getInvName()
+	{
+		return "BioFuel Generator";
+	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "biofuelgenerator.png";
+	}
 }

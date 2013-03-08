@@ -11,6 +11,7 @@ import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoSpawner;
+import powercrystals.minefactoryreloaded.gui.client.GuiBioFuelGenerator;
 import powercrystals.minefactoryreloaded.gui.client.GuiBioReactor;
 import powercrystals.minefactoryreloaded.gui.client.GuiChronotyper;
 import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
@@ -24,6 +25,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
+import powercrystals.minefactoryreloaded.gui.container.ContainerBioFuelGenerator;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioReactor;
 import powercrystals.minefactoryreloaded.gui.container.ContainerChronotyper;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
@@ -38,6 +40,7 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
 import powercrystals.minefactoryreloaded.plants.TileEntityFertilizer;
 import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.plants.TileEntityPlanter;
+import powercrystals.minefactoryreloaded.power.TileEntityBioFuelGenerator;
 import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
@@ -80,6 +83,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityBioReactor)
 		{
 			return new ContainerBioReactor(((TileEntityBioReactor)te), player.inventory);
+		}
+		else if(te instanceof TileEntityBioFuelGenerator)
+		{
+			return new ContainerBioFuelGenerator(((TileEntityBioFuelGenerator)te), player.inventory);
 		}
 		else if(te instanceof TileEntityItemRouter)
 		{
@@ -147,6 +154,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityBioReactor)
 		{
 			return new GuiBioReactor(new ContainerBioReactor((TileEntityBioReactor)te, player.inventory), (TileEntityBioReactor)te);
+		}
+		else if(te instanceof TileEntityBioFuelGenerator)
+		{
+			return new GuiBioFuelGenerator(new ContainerBioFuelGenerator((TileEntityBioFuelGenerator)te, player.inventory), (TileEntityBioFuelGenerator)te);
 		}
 		else if(te instanceof TileEntityItemRouter)
 		{

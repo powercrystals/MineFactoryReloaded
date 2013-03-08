@@ -34,6 +34,27 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 	
 	protected abstract LiquidStack getLiquidType();
 	
+	public int getBuffer()
+	{
+		return _buffer;
+	}
+	
+	public void setBuffer(int buffer)
+	{
+		_buffer = buffer;
+	}
+	
+	public int getBufferMax()
+	{
+		return _bufferMax;
+	}
+	
+	@Override
+	public ILiquidTank getTank()
+	{
+		return _tank;
+	}
+	
 	@Override
 	public void updateEntity()
 	{

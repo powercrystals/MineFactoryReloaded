@@ -5,9 +5,9 @@ import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.power.PowerProviderAdvanced;
-import powercrystals.minefactoryreloaded.core.TileEntityFactory;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
-public abstract class TileEntityGenerator extends TileEntityFactory implements IPowerReceptor
+public abstract class TileEntityGenerator extends TileEntityFactoryInventory implements IPowerReceptor
 {
 	private IPowerProvider _powerProvider;
 	
