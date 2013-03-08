@@ -130,9 +130,16 @@ public class MineFactoryReloadedClient
 		LanguageRegistry.addName(MineFactoryReloadedCore.safariNetLauncherItem, "Safari Net Launcher");
 
 		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), "Lapis Upgrade");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 1), "Gold Upgrade");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 2), "Diamond Upgrade");
-		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 3), "Emerald Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 1), "Iron Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 2), "Tin Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 3), "Copper Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 4), "Bronze Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 5), "Silver Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 6), "Gold Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 7), "Quartz Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 8), "Diamond Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 9), "Platinum Upgrade");
+		LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 10), "Emerald Upgrade");
 		
 		for(int i = 0; i < 16; i++)
 		{
