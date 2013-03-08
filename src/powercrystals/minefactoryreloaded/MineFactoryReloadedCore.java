@@ -100,12 +100,10 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.Mod.ServerStarted;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
@@ -257,6 +255,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property vanillaOverrideIce;
 	
 	public static Property enableCompatibleAutoEnchanter;
+	
+	public static Property rubberTreeBiomeWhitelist;
+	public static Property rubberTreeBiomeBlacklist;
 	
 	public static Property passengerRailSearchMaxHorizontal;
 	public static Property passengerRailSearchMaxVertical;
@@ -492,11 +493,18 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		{
 			FurnaceRecipes.smelting().addSmelting(s.itemID, s.getItemDamage(), new ItemStack(rawPlasticItem), 0.3F);
 		}
-	}
-	
-	@ServerStarted
-	public void serverStarted(FMLServerStartedEvent event)
-	{
+		
+		String[] biomeWhitelist = rubberTreeBiomeWhitelist.value.split(",");
+		for(String biome : biomeWhitelist)
+		{
+			MFRRegistry.registerRubberTreeBiome(biome);
+		}
+		
+		String[] biomeBlacklist = rubberTreeBiomeBlacklist.value.split(",");
+		for(String biome : biomeBlacklist)
+		{
+			MFRRegistry.getRubberTreeBiomes().remove(biome);
+		}
 	}
 	
 	@ForgeSubscribe
@@ -604,6 +612,11 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
 		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
+		
+		rubberTreeBiomeWhitelist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTreeBiomeWhitelist", "");
+		rubberTreeBiomeWhitelist.comment = "A comma-separated list of biomes to allow rubber trees to spawn in. Does nothing if rubber tree worldgen is disabled.";
+		rubberTreeBiomeBlacklist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTreeBiomeBlacklist", "");
+		rubberTreeBiomeBlacklist.comment = "A comma-separated list of biomes to disallow rubber trees to spawn in. Overrides any other biomes added.";
 		
 		enableMachinePlanter = c.get("MachineEnables", "Planter", true);
 		enableMachineFisher = c.get("MachineEnables", "Fisher", true);
