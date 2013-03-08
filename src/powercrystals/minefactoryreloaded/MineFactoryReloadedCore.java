@@ -1421,8 +1421,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					"M M",
 					" B ",
 					"M M",
-					Character.valueOf('B'), Block.glowStone,
-					Character.valueOf('M'), Block.ice,
+					Character.valueOf('B'), Block.brick,
+					Character.valueOf('M'), Block.glowStone,
 				} );
 		
 		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 1), new Object[]
@@ -1467,7 +1467,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					" B ",
 					"M M",
 					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.snow,
+					Character.valueOf('M'), Block.blockSnow,
 				} );
 	}
 
