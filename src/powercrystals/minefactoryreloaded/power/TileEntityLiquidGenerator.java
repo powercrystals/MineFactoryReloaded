@@ -61,6 +61,8 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 		super.updateEntity();
 		if(!worldObj.isRemote)
 		{
+			setIsActive(_buffer > _outputPulseSize * 2);
+			
 			int mjPulse = Math.min(_buffer, _outputPulseSize);
 			_buffer -= mjPulse;
 			_buffer += producePower(mjPulse);
