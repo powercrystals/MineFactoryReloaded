@@ -291,6 +291,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Property enableMachineUnifier;
 	public static Property enableMachineAutoSpawner;
 	public static Property enableMachineBioReactor;
+	public static Property enableMachineBioFuelGenerator;
 
 	private static MineFactoryReloadedCore instance;
 	
@@ -488,7 +489,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sludge", new LiquidStack(sludgeItem,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sludgeBucketItem), new ItemStack(Item.bucketEmpty)));
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sewage", new LiquidStack(sewageItem,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sewageBucketItem), new ItemStack(Item.bucketEmpty)));
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mobEssence", new LiquidStack(mobEssenceItem,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(mobEssenceBucketItem), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("bioFuel", new LiquidStack(bioFuelItem,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(bioFuelBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("biofuel", new LiquidStack(bioFuelItem,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(bioFuelBucketItem), new ItemStack(Item.bucketEmpty)));
 		
 		for(ItemStack s : OreDictionary.getOres("itemRubber"))
 		{
@@ -646,6 +647,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		enableMachineUnifier = c.get("MachineEnables", "Unifier", true);
 		enableMachineAutoSpawner = c.get("MachineEnables", "AutoSpawner", true);
 		enableMachineBioReactor = c.get("MachineEnables", "BioReactor", true);
+		enableMachineBioFuelGenerator = c.get("MachineEnables", "BioFuelGenerator", true);
 
 		c.addCustomCategoryComment("MachineEnables", "Set to false to disable that machine's recipes. Machines will still work if gotten through other means.");
 		c.save();
@@ -745,7 +747,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('G'), Item.ghastTear,
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(safariNetItem, 1), new Object[]
+		GameRegistry.addRecipe(new ItemStack(safariNetSingleItem, 1), new Object[]
 				{
 					"SLS",
 					" B ",
@@ -753,6 +755,18 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					Character.valueOf('S'), Item.silk,
 					Character.valueOf('L'), Item.leather,
 					Character.valueOf('B'), Item.slimeBall,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(safariNetLauncherItem, 1), new Object[]
+				{
+					"PGP",
+					"LGL",
+					"IRI",
+					Character.valueOf('P'), plasticSheetItem,
+					Character.valueOf('L'), Item.lightStoneDust,
+					Character.valueOf('G'), Item.gunpowder,
+					Character.valueOf('I'), Item.ingotIron,
+					Character.valueOf('R'), Item.redstone,
 				} );
 		
 		GameRegistry.addRecipe(new ItemStack(factoryHammerItem, 1), new Object[]
@@ -1180,6 +1194,157 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 					} );
 		}
 		
+		if(enableMachineBioReactor.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 10), new Object[]
+					{
+						"GGG",
+						"UEU",
+						"SMS",
+						Character.valueOf('G'), plasticSheetItem,
+						Character.valueOf('U'), Item.sugar,
+						Character.valueOf('E'), Item.fermentedSpiderEye,
+						Character.valueOf('S'), Item.slimeBall,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
+		
+		if(enableMachineBioFuelGenerator.getBoolean(true))
+		{
+			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 11), new Object[]
+					{
+						"GGG",
+						"PFP",
+						"RMR",
+						Character.valueOf('G'), plasticSheetItem,
+						Character.valueOf('F'), Block.stoneOvenIdle,
+						Character.valueOf('P'), Block.pistonBase,
+						Character.valueOf('R'), Item.blazeRod,
+						Character.valueOf('M'), machineBaseItem,
+					} );
+		}
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 0), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), "dyeBlue",
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 1), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), Item.ingotIron,
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 2), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), "ingotTin",
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 3), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), "ingotCopper",
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 4), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), "ingotBronze",
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 5), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), "ingotSilver",
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 6), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), Item.ingotGold,
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 7), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), "ingotQuartz",
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 8), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), Item.diamond,
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 9), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), "ingotPlatinum",
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 10), new Object[]
+				{
+					"III",
+					"PPP",
+					"RGR",
+					Character.valueOf('I'), Item.emerald,
+					Character.valueOf('P'), rawPlasticItem,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.goldNugget,
+				} ));
+		
 		
 		
 		
@@ -1248,6 +1413,62 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 						Character.valueOf('G'), new ItemStack(factoryGlassBlock, 1, i)
 					} );
 		}
+		
+
+		
+		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 0), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.glowStone,
+					Character.valueOf('M'), Block.ice,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 1), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.brick,
+					Character.valueOf('M'), Block.ice,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 2), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.brick,
+					Character.valueOf('M'), Block.blockLapis,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 3), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.brick,
+					Character.valueOf('M'), Block.obsidian,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 4), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.brick,
+					Character.valueOf('M'), new ItemStack(Block.stoneSingleSlab, 1, 0),
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 5), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.brick,
+					Character.valueOf('M'), Block.snow,
+				} );
 	}
 
 	@Override

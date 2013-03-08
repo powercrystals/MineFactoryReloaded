@@ -13,7 +13,7 @@ public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 	@Override
 	protected LiquidStack getLiquidType()
 	{
-		return LiquidDictionary.getLiquid("bioFuel", 1);
+		return LiquidDictionary.getLiquid("biofuel", 1);
 	}
 
 	@Override
