@@ -56,7 +56,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	@Override
 	protected boolean activateMachine()
 	{
-		if(_inventory[0] == null || !(_inventory[0].getItem() instanceof ItemSafariNet) || _inventory[0].getTagCompound() == null)
+		if(_inventory[0] == null || !(_inventory[0].getItem() instanceof ItemSafariNet) || _inventory[0].getTagCompound() == null || ItemSafariNet.isSingleUse(_inventory[0]))
 		{
 			setWorkDone(0);
 			return false;	
