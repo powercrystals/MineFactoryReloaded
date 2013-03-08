@@ -164,7 +164,47 @@
 {
   "modid": "MFReloaded|CompatTwilightForest",
   "name": "MFR Compat: TwilightForest",
-  "description": "Compatibility addon for Thaumcraft",
+  "description": "Compatibility addon for Twilight Forest",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
+  "modid": "MFReloaded|CompatVanilla",
+  "name": "MFR Compat: Vanilla",
+  "description": "Compatibility addon for Vanilla MC",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
+  "modid": "MFReloaded|CompatXyCraft",
+  "name": "MFR Compat: XyCraft",
+  "description": "Compatibility addon for XyCraft",
   "version": "2.1.2",
   "mcversion": "1.4.6",
   "url": "http://www.minecraftforum.net/topic/1629898-",
