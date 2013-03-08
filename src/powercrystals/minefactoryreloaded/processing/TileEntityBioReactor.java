@@ -7,11 +7,11 @@ import net.minecraftforge.common.ISidedInventory;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 
@@ -119,7 +119,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 			if(_burnTime > 0 && (_tank.getLiquid() == null || _tank.getLiquid().amount < _tank.getCapacity() - _bioFuelPerTick))
 			{
 				_burnTime -= _burnTimeDecreasePerTick;
-				_tank.fill(new LiquidStack(MineFactoryReloadedCore.bioFuelItem.itemID, _bioFuelPerTick), true);
+				_tank.fill(LiquidDictionary.getLiquid("biofuel", _bioFuelPerTick), true);
 			}
 		}
 	}
