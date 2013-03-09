@@ -164,6 +164,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		if(!harvestables.containsKey(new Integer(searchId)))
 		{
+			_treeManager = null;
 			return null;
 		}
 		
