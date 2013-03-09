@@ -7,7 +7,6 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 
@@ -81,14 +80,6 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 			
 		setIdleTicks(getIdleTicksMax());
 		return false;
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbttagcompound)
-	{
-		super.readFromNBT(nbttagcompound);
-		
-		onFactoryInventoryChanged();
 	}
 	
 	@Override

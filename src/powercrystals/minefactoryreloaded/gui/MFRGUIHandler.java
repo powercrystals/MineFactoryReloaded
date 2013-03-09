@@ -5,6 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
 import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
+import powercrystals.minefactoryreloaded.animals.TileEntitySewer;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
@@ -21,6 +22,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiHarvester;
 import powercrystals.minefactoryreloaded.gui.client.GuiItemRouter;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquidRouter;
+import powercrystals.minefactoryreloaded.gui.client.GuiSewer;
 import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
@@ -35,6 +37,7 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
 import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquidRouter;
+import powercrystals.minefactoryreloaded.gui.container.ContainerSewer;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUnifier;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
 import powercrystals.minefactoryreloaded.plants.TileEntityFertilizer;
@@ -112,6 +115,10 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return new ContainerUnifier((TileEntityUnifier)te, player.inventory);
 		}
+		else if(te instanceof TileEntitySewer)
+		{
+			return new ContainerSewer((TileEntitySewer)te, player.inventory);
+		}
 		else if(te instanceof TileEntityFactoryPowered)
 		{
 			return new ContainerFactoryPowered((TileEntityFactoryPowered)te, player.inventory);
@@ -182,6 +189,10 @@ public class MFRGUIHandler implements IGuiHandler
 		else if(te instanceof TileEntityUnifier)
 		{
 			return new GuiFactoryInventory(new ContainerUnifier((TileEntityUnifier)te, player.inventory), (TileEntityUnifier)te);
+		}
+		else if(te instanceof TileEntitySewer)
+		{
+			return new GuiSewer(new ContainerSewer((TileEntitySewer)te, player.inventory), (TileEntitySewer)te);
 		}
 		else if(te instanceof TileEntityFactoryPowered)
 		{

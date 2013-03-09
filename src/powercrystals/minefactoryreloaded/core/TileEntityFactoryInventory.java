@@ -133,6 +133,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 				_inventory[j] = s;
 			}
 		}
+		onFactoryInventoryChanged();
 		if(getTank() != null)
 		{
 			((LiquidTank)getTank()).setLiquid(new LiquidStack(nbttagcompound.getInteger("tankItemId"), nbttagcompound.getInteger("tankAmount"), nbttagcompound.getInteger("tankItemMeta")));

@@ -332,7 +332,6 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 				}
 			}
 		}
-		_areaManager.updateUpgradeLevel(_inventory[0]);
 	}
 	
 	@Override

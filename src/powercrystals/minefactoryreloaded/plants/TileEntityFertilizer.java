@@ -102,14 +102,6 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered implements IS
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbttagcompound)
-	{
-		super.readFromNBT(nbttagcompound);
-		
-		onFactoryInventoryChanged();
-	}
-
-	@Override
 	public String getInvName()
 	{
 		return "Fertilizer";
