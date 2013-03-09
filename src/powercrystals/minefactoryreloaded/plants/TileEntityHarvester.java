@@ -233,7 +233,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			_treeManager = new TreeHarvestManager(a);
 			_lastTree = new BlockPosition(x, y, z);
 		}
-		else if(_treeManager.getIsDone())
+		else if(_treeManager != null && _treeManager.getIsDone())
 		{
 			_treeManager.reset();
 		}
