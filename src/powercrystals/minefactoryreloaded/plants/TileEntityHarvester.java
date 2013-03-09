@@ -164,7 +164,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		if(!harvestables.containsKey(new Integer(searchId)))
 		{
-			_treeManager = null;
+			_lastTree = null;
 			return null;
 		}
 		
@@ -173,12 +173,12 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		{
 			if(harvestable.getHarvestType() == HarvestType.Normal)
 			{
-				_treeManager = null;
+				_lastTree = null;
 				return bp;
 			}
 			else if(harvestable.getHarvestType() == HarvestType.LeaveBottom)
 			{
-				_treeManager = null;
+				_lastTree = null;
 				return getNextVertical(bp.x, bp.y, bp.z);
 			}
 			else if(harvestable.getHarvestType() == HarvestType.Tree)
@@ -191,7 +191,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 				return temp;
 			}
 		}
-		_treeManager = null;
+		_lastTree = null;
 		return null;
 	}
 	
@@ -233,7 +233,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			_treeManager = new TreeHarvestManager(a);
 			_lastTree = new BlockPosition(x, y, z);
 		}
-		else if(_treeManager != null && _treeManager.getIsDone())
+		else if(_treeManager.getIsDone())
 		{
 			_treeManager.reset();
 		}
