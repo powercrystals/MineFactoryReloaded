@@ -172,10 +172,12 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		{
 			if(harvestable.getHarvestType() == HarvestType.Normal)
 			{
-				return null;
+				_treeManager = null;
+				return bp;
 			}
 			else if(harvestable.getHarvestType() == HarvestType.LeaveBottom)
 			{
+				_treeManager = null;
 				return getNextVertical(bp.x, bp.y, bp.z);
 			}
 			else if(harvestable.getHarvestType() == HarvestType.Tree)
@@ -188,6 +190,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 				return temp;
 			}
 		}
+		_treeManager = null;
 		return null;
 	}
 	
@@ -228,6 +231,10 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			
 			_treeManager = new TreeHarvestManager(a);
 			_lastTree = new BlockPosition(x, y, z);
+		}
+		else if(_treeManager.getIsDone())
+		{
+			_treeManager.reset();
 		}
 		
 		while(true)
