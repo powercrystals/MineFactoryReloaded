@@ -35,7 +35,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 {	
 	private static int energyPerEU = 4;
 	private static int energyPerMJ = 10;
-	private static int wPerEnergy = 110;
+	private static int wPerEnergy = 7;
 	
 	private int _energyStored;
 	private int _energyActivation;
