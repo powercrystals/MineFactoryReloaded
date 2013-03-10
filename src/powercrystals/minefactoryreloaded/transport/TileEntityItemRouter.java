@@ -73,6 +73,19 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory implements 
 		return false;
 	}
 	
+	public boolean hasRouteForItem(ItemStack stack)
+	{
+		for(ForgeDirection d : ForgeDirection.VALID_DIRECTIONS)
+		{
+			if(isSideValidForItem(stack, d))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	private boolean isSideValidForItem(ItemStack stack, ForgeDirection side)
 	{
 		if(side == ForgeDirection.UNKNOWN || side == ForgeDirection.UP)

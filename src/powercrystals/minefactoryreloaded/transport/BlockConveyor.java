@@ -76,6 +76,19 @@ public class BlockConveyor extends BlockContainer
 			return;
 		}
 		
+		TileEntity te = world.getBlockTileEntity(x, y - 1, z);
+		if(!world.isRemote && entity instanceof EntityItem && te != null && te instanceof TileEntityItemRouter)
+		{
+			if(((TileEntityItemRouter)te).hasRouteForItem(((EntityItem)entity).getEntityItem()))
+			{
+				if(((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()))
+				{
+					entity.setDead();
+					return;
+				}
+			}
+		}
+		
 		double xVelocity = 0;
 		double yVelocity = 0;
 		double zVelocity = 0;
