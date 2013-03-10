@@ -9,9 +9,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.liquids.LiquidDictionary;
+import net.minecraftforge.liquids.LiquidStack;
 
 import powercrystals.core.util.UtilInventory;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 
 public class RanchableMooshroom implements IFactoryRanchable {
@@ -42,7 +43,8 @@ public class RanchableMooshroom implements IFactoryRanchable {
 		}
 		else
 		{
-			drops.add(new ItemStack(MineFactoryReloadedCore.milkItem));
+			LiquidStack milk = LiquidDictionary.getLiquid("milk", 1000);
+			drops.add(new ItemStack(milk.itemID, 1, milk.itemMeta));
 		}
 		
 		return drops;
