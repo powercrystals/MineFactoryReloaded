@@ -108,7 +108,7 @@ public class Vanilla
 		FarmingRegistry.registerHarvestable(new HarvestableStandard(MineFactoryReloadedCore.rubberWoodBlock.blockID, HarvestType.Tree));
 		FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(MineFactoryReloadedCore.rubberLeavesBlock.blockID));
 
-		FarmingRegistry.registerFertilizable(new FertilizableSapling());
+		FarmingRegistry.registerFertilizable(new FertilizableSapling(Block.sapling.blockID));
 		FarmingRegistry.registerFertilizable(new FertilizableCropPlant(Block.crops.blockID));
 		FarmingRegistry.registerFertilizable(new FertilizableCropPlant(Block.carrot.blockID));
 		FarmingRegistry.registerFertilizable(new FertilizableCropPlant(Block.potato.blockID));

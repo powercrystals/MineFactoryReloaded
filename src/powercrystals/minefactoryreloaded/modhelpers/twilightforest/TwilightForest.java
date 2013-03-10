@@ -7,7 +7,12 @@ import net.minecraft.block.Block;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSapling;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
+import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -181,7 +186,26 @@ public class TwilightForest
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfTowerTermite, borerEssence));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfWraith, new ItemStack(Item.lightStoneDust)));
 			
-			}					
+			}
+			
+			Class tfBlocks = Class.forName("twilightforest.block.TFBlocks");
+			if(tfBlocks != null)
+			{
+				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("log").get(null)).blockID, HarvestType.Tree));
+				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("magicLog").get(null)).blockID, HarvestType.Tree));
+				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("magicLogSpecial").get(null)).blockID, HarvestType.Tree));
+				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("root").get(null)).blockID, HarvestType.Tree));
+				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("leaves").get(null)).blockID));
+				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("magicLeaves").get(null)).blockID));
+				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("hedge").get(null)).blockID));
+				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("firefly").get(null)).blockID));
+				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("cicada").get(null)).blockID));
+				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("plant").get(null)).blockID, HarvestType.Normal));
+				
+				FarmingRegistry.registerPlantable(new PlantableStandard(((Block)tfBlocks.getField("sapling").get(null)).blockID, ((Block)tfBlocks.getField("sapling").get(null)).blockID));
+				
+				FarmingRegistry.registerFertilizable(new FertilizableSapling(((Block)tfBlocks.getField("sapling").get(null)).blockID));
+			}
 		}
 		catch(Exception x)
 		{
