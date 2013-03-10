@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
@@ -104,10 +103,9 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 				{
 					for(ItemStack s : drops)
 					{
-						LiquidStack ls = MineFactoryReloadedCore.instance().getLiquidStackFromLiquidItem(s);
-						if (ls != null)
+						if(LiquidContainerRegistry.isLiquid(s))
 						{
-							_tank.fill(ls, true);
+							_tank.fill(new LiquidStack(s.itemID, 1000, s.getItemDamage()), true);
 							didDrop = true;
 							continue;
 						}

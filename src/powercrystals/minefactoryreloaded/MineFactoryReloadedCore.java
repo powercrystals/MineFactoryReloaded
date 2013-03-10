@@ -653,15 +653,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		c.save();
 	}
 	
-	public LiquidStack getLiquidStackFromLiquidItem(ItemStack s)
-	{
-		if(LiquidContainerRegistry.isLiquid(s))
-		{
-			return new LiquidStack(s.itemID, LiquidContainerRegistry.BUCKET_VOLUME, s.getItemDamage());
-		}
-		return null;
-	}
-	
 	private void registerRecipes()
 	{
 		OreDictionary.registerOre("itemRubber", rubberBarItem);
