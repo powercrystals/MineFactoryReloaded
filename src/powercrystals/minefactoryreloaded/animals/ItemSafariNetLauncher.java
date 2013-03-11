@@ -5,12 +5,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class ItemSafariNetLauncher extends ItemFactory
 {
 	public ItemSafariNetLauncher(int id)
 	{
 		super(id);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)

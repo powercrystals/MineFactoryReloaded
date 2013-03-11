@@ -4,6 +4,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.net.Packets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -21,6 +22,7 @@ public class BlockFactoryRoad extends Block
 		setBlockName("factoryRoadBlock");
 		setResistance(25.0F);
 		setStepSound(soundStoneFootstep);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.decorative;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,6 +15,7 @@ public class BlockFactoryGlass extends BlockGlass
 		setBlockName("factoryGlassBlock");
 		setHardness(0.3F);
 		setStepSound(soundGlassFootstep);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
     public int getRenderBlockPass()

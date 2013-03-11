@@ -1,8 +1,13 @@
 package powercrystals.minefactoryreloaded.world;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.block.BlockLog;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -47,5 +52,12 @@ public class BlockRubberWood extends BlockLog
 	public String getTextureFile()
 	{
 		return MineFactoryReloadedCore.terrainTexture;
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int blockId, CreativeTabs tab, List subBlocks)
+	{
+		subBlocks.add(new ItemStack(blockId, 1, 0));
 	}
 }

@@ -1,11 +1,11 @@
 package powercrystals.minefactoryreloaded.decorative;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockFactoryDecorativeBricks extends Block
@@ -17,7 +17,7 @@ public class BlockFactoryDecorativeBricks extends Block
 		setResistance(10.0F);
 		setStepSound(soundStoneFootstep);
 		setBlockName("factoryDecorativeBrick");
-		setCreativeTab(CreativeTabs.tabBlock);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override

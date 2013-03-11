@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.decorative;
 import java.util.List;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
@@ -21,6 +22,10 @@ public class BlockFactoryGlassPane extends BlockPane
 		setBlockName("factoryGlassPaneBlock");
 		setHardness(0.3F);
 		setStepSound(soundGlassFootstep);
+		if(blockId != Block.thinGlass.blockID)
+		{
+			setCreativeTab(MFRCreativeTab.tab);
+		}
 	}
 	
 	@Override

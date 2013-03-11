@@ -23,6 +23,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class ItemSafariNet extends ItemFactory
 {
@@ -30,6 +31,7 @@ public class ItemSafariNet extends ItemFactory
 	{
 		super(id);
 		maxStackSize = 1;
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override

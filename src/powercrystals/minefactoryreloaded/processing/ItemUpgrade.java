@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
@@ -75,7 +74,7 @@ public class ItemUpgrade extends ItemFactory
 	{
 		for(int i = 0; i < 11; i++)
 		{
-			subtypes.add(new ItemStack(MineFactoryReloadedCore.machineBlock1.blockID, 1, i));
+			subtypes.add(new ItemStack(itemId, 1, i));
 		}
 	}
 }

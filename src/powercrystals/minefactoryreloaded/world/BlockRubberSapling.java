@@ -1,8 +1,14 @@
 package powercrystals.minefactoryreloaded.world;
 
+import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.BlockSapling;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -43,5 +49,12 @@ public class BlockRubberSapling extends BlockSapling
 	public int idDropped(int par1, Random par2Random, int par3)
 	{
 		return MineFactoryReloadedCore.rubberSaplingBlock.blockID;
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int blockId, CreativeTabs tab, List subBlocks)
+	{
+		subBlocks.add(new ItemStack(blockId, 1, 0));
 	}
 }

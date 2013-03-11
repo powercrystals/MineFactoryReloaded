@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.ISyringe;
 import powercrystals.minefactoryreloaded.core.ItemFactory;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public abstract class ItemSyringe extends ItemFactory implements ISyringe
 {
@@ -12,6 +13,7 @@ public abstract class ItemSyringe extends ItemFactory implements ISyringe
 	{
 		super(id);
 		setMaxStackSize(1);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override

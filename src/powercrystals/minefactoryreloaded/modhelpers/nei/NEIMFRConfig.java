@@ -65,6 +65,10 @@ public class NEIMFRConfig implements IConfigureNEI
 		subTypes.add(MineFactoryReloadedCore.safariNetItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.blankRecordItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.syringeZombieItem, 0, 0);
+		subTypes.add(MineFactoryReloadedCore.bioFuelItem, 0, 0);
+		subTypes.add(MineFactoryReloadedCore.bioFuelBucketItem, 0, 0);
+		subTypes.add(MineFactoryReloadedCore.upgradeItem, 0, 10);
+		subTypes.add(MineFactoryReloadedCore.safariNetLauncherItem, 0, 0);
 		
 		API.addSetRange("MineFactory", subTypes);
 	}
