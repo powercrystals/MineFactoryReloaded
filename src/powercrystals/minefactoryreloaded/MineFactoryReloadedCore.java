@@ -257,6 +257,8 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	
 	public static Property enableCompatibleAutoEnchanter;
 	
+	public static Property enableSlipperyRoads;
+	
 	public static Property rubberTreeBiomeWhitelist;
 	public static Property rubberTreeBiomeBlacklist;
 	
@@ -614,6 +616,9 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		
 		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
 		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
+		
+		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
+		enableSlipperyRoads.comment = "If true, roads will be slippery like ice.";
 		
 		rubberTreeBiomeWhitelist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTreeBiomeWhitelist", "");
 		rubberTreeBiomeWhitelist.comment = "A comma-separated list of biomes to allow rubber trees to spawn in. Does nothing if rubber tree worldgen is disabled.";
