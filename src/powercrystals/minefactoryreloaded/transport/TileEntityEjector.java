@@ -56,11 +56,11 @@ inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 						ItemStack output = targetStack.copy();
 						output.stackSize = 1;
 						MFRUtil.dropStackDirected(this, output, this.getDirectionFacing());
-						if(targetStack.stackSize == 1)
+						if(targetStack.stackSize == 1 && output.stackSize == 0)
 						{
 							inventory.setInventorySlotContents(i, null);
 						}
-						else
+						else if(output.stackSize == 0)
 						{
 							ItemStack newStack = targetStack.copy();
 							newStack.stackSize--;

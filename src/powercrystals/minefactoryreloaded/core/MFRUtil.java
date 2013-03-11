@@ -74,7 +74,6 @@ public class MFRUtil
 	
 	public static void dropStackDirected(TileEntityFactory from, ItemStack s, ForgeDirection towards)
 	{
-		s = s.copy();
 		BlockPosition bp = new BlockPosition(from.xCoord, from.yCoord, from.zCoord);
 		bp.orientation = towards;
 		bp.moveForwards(1);
@@ -89,7 +88,7 @@ public class MFRUtil
 			return;
 		}
 		
-		if(s.stackSize > 0)
+		if(s.stackSize > 0 && from.worldObj.isAirBlock(bp.x, bp.y, bp.z))
 		{
 			dropStackOnGround(s, BlockPosition.fromFactoryTile(from), from.worldObj, towards);
 		}
