@@ -14,6 +14,8 @@ public class ItemBlockFactoryDecorativeBrick extends ItemBlock
 	public ItemBlockFactoryDecorativeBrick(int id)
 	{
 		super(id);
+		setMaxDamage(0);
+		setHasSubtypes(true);
 	}
 
 	@SideOnly(Side.CLIENT)
