@@ -14,7 +14,7 @@ public class GuiBioFuelGenerator extends GuiFactoryInventory
 	public GuiBioFuelGenerator(ContainerFactoryInventory container, TileEntityBioFuelGenerator tileentity)
 	{
 		super(container, tileentity);
-		ySize = 194;
+		ySize = 165;
 	}
 	
 	@Override
