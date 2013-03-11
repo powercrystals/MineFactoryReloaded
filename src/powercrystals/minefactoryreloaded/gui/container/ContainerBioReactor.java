@@ -2,8 +2,12 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
 import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
 
@@ -47,5 +51,49 @@ public class ContainerBioReactor extends ContainerFactoryInventory
 	protected int getPlayerInventoryVerticalOffset()
 	{
 		return 113;
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer player, int slot)
+	{
+		ItemStack stack = null;
+		Slot slotObject = (Slot) inventorySlots.get(slot);
+		int machInvSize = ((TileEntityFactoryInventory)_te).getSizeInventory();
+
+		if(slotObject != null && slotObject.getHasStack())
+		{
+			ItemStack stackInSlot = slotObject.getStack();
+			stack = stackInSlot.copy();
+			
+			if(slot < machInvSize)
+			{
+				if(!mergeItemStack(stackInSlot, machInvSize, inventorySlots.size(), true))
+				{
+					return null;
+				}
+			}
+			else if(!mergeItemStack(stackInSlot, 0, 9, false))
+			{
+				return null;
+			}
+			
+			if(stackInSlot.stackSize == 0)
+			{
+				slotObject.putStack(null);
+			}
+			else
+			{
+				slotObject.onSlotChanged();
+			}
+			
+			if(stackInSlot.stackSize == stack.stackSize)
+			{
+				return null;
+			}
+			
+			slotObject.onPickupFromSlot(player, stackInSlot);
+		}
+
+		return stack;
 	}
 }
