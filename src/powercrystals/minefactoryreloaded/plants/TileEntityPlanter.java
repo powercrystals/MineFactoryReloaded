@@ -1,5 +1,10 @@
 package powercrystals.minefactoryreloaded.plants;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
@@ -13,7 +18,8 @@ import net.minecraftforge.common.ISidedInventory;
 public class TileEntityPlanter extends TileEntityFactoryPowered implements ISidedInventory
 {
 	private HarvestAreaManager _areaManager;
-	
+	private boolean _isMultiPlanter = true;
+		
 	public TileEntityPlanter() 
 	{
 		super(160);
@@ -49,8 +55,19 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 	{
 		BlockPosition bp = _areaManager.getNextBlock().copy();
 		bp.y += 1;
+		List<Integer> slotOrder = Arrays.asList(0,1,2,3,4,5,6,7,8);
 		
-		for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
+		if(_isMultiPlanter)
+		{
+			int ps = getPlanterSlotIdFromBp(bp); 
+			Collections.shuffle(slotOrder);
+			if(slotOrder.contains(ps) && slotOrder.indexOf(ps) != 0)
+			{
+				Collections.swap(slotOrder, slotOrder.indexOf(ps), 0);
+			}
+		}
+		
+		for(Integer stackIndex : slotOrder)
 		{
 			if(getStackInSlot(stackIndex) == null)
 			{
@@ -80,6 +97,16 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 			
 		setIdleTicks(getIdleTicksMax());
 		return false;
+	}
+	
+	//assumes a 3x3 grid in inventory slots 0-8
+	//slot 0 is northwest, slot 2 is northeast, etc
+	private int getPlanterSlotIdFromBp(BlockPosition bp)
+	{
+		int radius = _areaManager.getRadius();
+		int xOffset = (bp.x - this.xCoord) / radius;
+		int zOffset = (bp.z - this.zCoord) / radius;
+		return 4 - xOffset + 3 * zOffset;
 	}
 	
 	@Override
