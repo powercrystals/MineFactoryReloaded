@@ -106,7 +106,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 		int radius = _areaManager.getRadius();
 		int xOffset = (bp.x - this.xCoord) / radius;
 		int zOffset = (bp.z - this.zCoord) / radius;
-		return 4 - xOffset + 3 * zOffset;
+		return 4 + xOffset + 3 * zOffset;
 	}
 	
 	@Override
