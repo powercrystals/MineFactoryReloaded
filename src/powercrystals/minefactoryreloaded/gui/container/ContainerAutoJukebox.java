@@ -16,13 +16,14 @@ public class ContainerAutoJukebox extends ContainerFactoryInventory
 	public ContainerAutoJukebox(TileEntityAutoJukebox tileentity, InventoryPlayer inv)
 	{
 		super(tileentity, inv);
+		_jukebox = tileentity;
 	}
 	
 	@Override
 	protected void addSlots()
 	{
-		addSlotToContainer(new SlotAcceptRecord(_jukebox, 0, 8, 24));
-		addSlotToContainer(new SlotAcceptBlankRecord(_jukebox, 1, 8, 54));
+		addSlotToContainer(new SlotAcceptRecord(_te, 0, 8, 24));
+		addSlotToContainer(new SlotAcceptBlankRecord(_te, 1, 8, 54));
 	}
 
 	@Override
