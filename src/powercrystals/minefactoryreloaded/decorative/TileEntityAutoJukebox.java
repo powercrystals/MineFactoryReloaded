@@ -102,6 +102,12 @@ public class TileEntityAutoJukebox extends TileEntityFactoryInventory implements
 		
 		_lastRedstoneState = redstoneState;
 	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "autojukebox.png";
+	}
 
 	@Override
 	public String getInvName()
