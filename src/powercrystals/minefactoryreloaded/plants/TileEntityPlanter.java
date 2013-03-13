@@ -1,7 +1,6 @@
 package powercrystals.minefactoryreloaded.plants;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -104,9 +103,9 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements ISide
 	private int getPlanterSlotIdFromBp(BlockPosition bp)
 	{
 		int radius = _areaManager.getRadius();
-		int xOffset = (bp.x - this.xCoord) / radius;
-		int zOffset = (bp.z - this.zCoord) / radius;
-		return 4 + xOffset + 3 * zOffset;
+		int xAdjusted = Math.round( 1.49F * (bp.x - this.xCoord) / radius);
+		int zAdjusted = Math.round( 1.49F * (bp.z - this.zCoord) / radius);
+		return 4 + xAdjusted + 3 * zAdjusted;
 	}
 	
 	@Override
