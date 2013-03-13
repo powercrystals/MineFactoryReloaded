@@ -89,7 +89,7 @@ public class MFRUtil
 			return;
 		}
 		
-		if(s.stackSize > 0 && from.worldObj.isAirBlock(bp.x, bp.y, bp.z))
+		if(s.stackSize > 0 && !from.worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, towards.getOpposite()))
 		{
 			dropStackOnGround(s, BlockPosition.fromFactoryTile(from), from.worldObj, towards);
 		}
