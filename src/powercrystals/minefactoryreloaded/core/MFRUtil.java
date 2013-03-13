@@ -84,7 +84,8 @@ public class MFRUtil
 		}
 		else if(te != null && te instanceof IPipeEntry && ((IPipeEntry)te).acceptItems())
 		{
-			((IPipeEntry)te).entityEntering(s, towards);
+			((IPipeEntry)te).entityEntering(s.copy(), towards);
+			s.stackSize = 0;
 			return;
 		}
 		
@@ -198,11 +199,12 @@ public class MFRUtil
 				
 		}
 		
-		EntityItem entityitem = new EntityItem(world, from.x + dropOffsetX, from.y + dropOffsetY, from.z + dropOffsetZ, stack);
+		EntityItem entityitem = new EntityItem(world, from.x + dropOffsetX, from.y + dropOffsetY, from.z + dropOffsetZ, stack.copy());
 		entityitem.motionX = 0.0D;
 		if(towards != ForgeDirection.DOWN) entityitem.motionY = 0.3D;
 		entityitem.motionZ = 0.0D;
 		entityitem.delayBeforeCanPickup = 20;
 		world.spawnEntityInWorld(entityitem);
+		stack.stackSize = 0;
 	}
 }
