@@ -7,6 +7,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.ISyringe;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
@@ -66,6 +67,7 @@ public class TileEntityVet extends TileEntityFactoryPowered
 					{
 						if(((ISyringe)s.getItem()).inject(worldObj, e, s))
 						{
+							s.itemID = MineFactoryReloadedCore.syringeEmptyItem.itemID;
 							return true;
 						}
 					}
