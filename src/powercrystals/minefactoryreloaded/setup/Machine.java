@@ -98,7 +98,7 @@ public class Machine
 		_blockIndex = blockIndex;
 		_meta = meta;
 		_name = name;
-		_internalName = "block.mfr.machine." + name.toLowerCase();
+		_internalName = "tile.mfr.machine." + name.toLowerCase();
 		_tileEntityClass = tileEntityClass;
 		_tileEntityName = tileEntityName;
 

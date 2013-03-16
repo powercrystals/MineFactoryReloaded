@@ -67,7 +67,8 @@ public class ItemSafariNet extends ItemFactory
 	}
 
 	@SideOnly(Side.CLIENT)
-	public Icon getIconIndex(ItemStack stack, int pass)
+	@Override
+	public Icon getIcon(ItemStack stack, int pass)
 	{
 		if(stack.getTagCompound() == null) return _iconEmpty;
 		if(pass == 0) return _iconBack;

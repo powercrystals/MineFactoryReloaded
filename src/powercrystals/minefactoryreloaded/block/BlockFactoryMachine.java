@@ -46,6 +46,7 @@ public class BlockFactoryMachine extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public void func_94332_a(IconRegister ir)
 	{
+		Machine.LoadTextures(_mfrMachineBlockIndex, ir);
 	}
 
 	@Override
