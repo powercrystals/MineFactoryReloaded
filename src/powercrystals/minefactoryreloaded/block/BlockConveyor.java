@@ -81,6 +81,13 @@ public class BlockConveyor extends BlockContainer
 			return _iconsStopped[_iconsStopped.length - 1];
 		}
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+	{
+		return _iconsStopped[meta];
+	}
 
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity, ItemStack stack)

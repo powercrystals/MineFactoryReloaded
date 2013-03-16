@@ -10,6 +10,7 @@ import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -32,6 +33,11 @@ public class BlockRubberSapling extends BlockSapling
 	public void func_94332_a(IconRegister par1IconRegister)
 	{
         field_94336_cN = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+	}
+	
+	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
+	{
+		return field_94336_cN;
 	}
 	
 	@Override

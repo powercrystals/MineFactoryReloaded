@@ -46,7 +46,13 @@ public class BlockRubberLeaves extends BlockLeaves
 	@SideOnly(Side.CLIENT)
 	public Icon getBlockTexture(IBlockAccess world, int x, int y, int z, int side)
 	{
-		return Block.leaves.graphicsLevel ? _iconOpaque : _iconTransparent;
+		return Block.leaves.graphicsLevel ? _iconTransparent : _iconOpaque;
+	}
+	
+	@Override
+	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+	{
+		return Block.leaves.graphicsLevel ? _iconTransparent : _iconOpaque;
 	}
 	
 	@Override
