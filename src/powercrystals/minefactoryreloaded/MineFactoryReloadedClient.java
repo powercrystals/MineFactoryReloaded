@@ -1,7 +1,12 @@
 package powercrystals.minefactoryreloaded;
 
+import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
+import powercrystals.minefactoryreloaded.render.RenderEntitySafariNet;
+import powercrystals.minefactoryreloaded.render.RendererConveyor;
+import powercrystals.minefactoryreloaded.render.RendererFactoryGlassPane;
 import powercrystals.minefactoryreloaded.setup.Machine;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 import net.minecraft.block.Block;
@@ -127,6 +132,13 @@ public class MineFactoryReloadedClient
 			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 1, i), colorNames[i] + " Ceramic Dye");
 			LanguageRegistry.addName(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, i), colorNames[i] + " Conveyor Belt");
 		}
+		
+		MineFactoryReloadedCore.renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
+		MineFactoryReloadedCore.renderIdFactoryGlassPane = RenderingRegistry.getNextAvailableRenderId();
+		
+		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdConveyor, new RendererConveyor());
+		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlassPane, new RendererFactoryGlassPane());
+		RenderingRegistry.registerEntityRenderingHandler(EntitySafariNet.class, new RenderEntitySafariNet());
 	}
 		/*if(MineFactoryReloadedCore.animateBlockFaces.getBoolean(true))
 		{
@@ -168,13 +180,6 @@ public class MineFactoryReloadedClient
 			registerAnimation(5, MineFactoryReloadedCore.animationFolder + "liquids/MobEssence_Still.png", MineFactoryReloadedCore.itemTexture);
 			registerAnimation(46, MineFactoryReloadedCore.animationFolder + "liquids/BioFuel_Still.png", MineFactoryReloadedCore.itemTexture);
 		}
-		
-		MineFactoryReloadedCore.renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
-		MineFactoryReloadedCore.renderIdFactoryGlassPane = RenderingRegistry.getNextAvailableRenderId();
-		
-		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdConveyor, new RendererConveyor());
-		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlassPane, new RendererFactoryGlassPane());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySafariNet.class, new RenderEntitySafariNet());
 	}
 	
 	private void registerMachineAnimation(Machine machine, String animation)

@@ -67,6 +67,7 @@ public class BlockConveyor extends BlockContainer
 		if(te != null && te instanceof TileEntityConveyor)
 		{
 			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
+			if(dyeColor == -1) dyeColor = 16;
 			if(Util.isRedstonePowered(te))
 			{
 				return _iconsStopped[dyeColor];
