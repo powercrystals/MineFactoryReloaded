@@ -78,10 +78,10 @@ public class ItemSafariNet extends ItemFactory
 	
 	public void func_94581_a(IconRegister ir)
 	{
-		_iconEmpty = ir.func_94245_a(getUnlocalizedName() + ".empty");
-		_iconBack = ir.func_94245_a(getUnlocalizedName() + ".back");
-		_iconMid = ir.func_94245_a(getUnlocalizedName() + ".mid");
-		_iconFront = ir.func_94245_a(getUnlocalizedName() + ".front");
+		_iconEmpty = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".empty");
+		_iconBack = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".back");
+		_iconMid = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".mid");
+		_iconFront = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".front");
 	}
 	
 	@Override

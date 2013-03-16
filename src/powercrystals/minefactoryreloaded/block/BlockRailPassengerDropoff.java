@@ -1,9 +1,11 @@
 package powercrystals.minefactoryreloaded.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecartEmpty;
 import net.minecraft.entity.player.EntityPlayer;
@@ -89,10 +91,17 @@ public class BlockRailPassengerDropoff extends BlockRailBase
 				|| Block.blocksList[blockId].blockMaterial == Material.lava
 				|| Block.blocksList[blockId].blockMaterial == Material.water
 				|| Block.blocksList[blockId].blockMaterial == Material.fire
-				|| Block.blocksList[blockId] instanceof BlockRail)
+				|| Block.blocksList[blockId] instanceof BlockRailBase)
 		{
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void func_94332_a(IconRegister par1IconRegister)
+	{
+        field_94336_cN = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 }

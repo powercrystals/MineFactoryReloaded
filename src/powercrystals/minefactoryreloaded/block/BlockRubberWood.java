@@ -34,8 +34,8 @@ public class BlockRubberWood extends BlockLog
 	@SideOnly(Side.CLIENT)
 	public void func_94332_a(IconRegister ir)
 	{
-		_iconLogSide = ir.func_94245_a(getUnlocalizedName() + ".side");
-		_iconLogTop = ir.func_94245_a(getUnlocalizedName() + ".top");
+		_iconLogSide = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".side");
+		_iconLogTop = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".top");
 	}
 	
 	@Override

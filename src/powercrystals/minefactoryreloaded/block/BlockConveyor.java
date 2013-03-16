@@ -55,8 +55,8 @@ public class BlockConveyor extends BlockContainer
     {
     	for(int i = 0; i < _names.length; i++)
     	{
-    		_iconsActive[i] = ir.func_94245_a(getUnlocalizedName() + "." + _names[i] + ".active");
-    		_iconsStopped[i] = ir.func_94245_a(getUnlocalizedName() + ".side." + _names[i] + ".stopped");
+    		_iconsActive[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".active." + _names[i]);
+    		_iconsStopped[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".stopped." + _names[i]);
     	}
     }
 

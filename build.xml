@@ -152,6 +152,7 @@
 		
 		<delete dir="${mcp.dir}/reobf/minecraft/thaumcraft"/>
 		<delete dir="${mcp.dir}/reobf/minecraft/powercrystals/core"/>
+		<delete dir="${mcp.dir}/reobf/minecraft/universalelectricity/components"/>
 		
 		<copy todir="${apiclasses.dir}/powercrystals/minefactoryreloaded/api">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/api" />
@@ -160,15 +161,14 @@
 		<copy todir="${classes.dir}">
 			<fileset dir="${mcp.dir}/reobf/minecraft"/>
 		</copy>
+
 		
-		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures">
-			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures">
-				<include name="*.png" />
-			</fileset>
+		<copy todir="${classes.dir}/textures/blocks/powercrystals/minefactoryreloaded">
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/blocks/" />
 		</copy>
 		
-		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures/animations">
-			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/animations" />
+		<copy todir="${classes.dir}/textures/items/powercrystals/minefactoryreloaded">
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/items/" />
 		</copy>
 		
 		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures/gui">

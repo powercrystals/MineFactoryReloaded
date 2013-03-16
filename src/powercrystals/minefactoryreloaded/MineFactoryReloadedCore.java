@@ -156,10 +156,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static Item upgradeItem;
 	public static Item safariNetLauncherItem;
 
-	public static int conveyorTexture = 0;
-	public static int conveyorOffTexture = 1;
-	public static int conveyorStillOffTexture = 2;
-
 	// Config
 	public static Property machineBlock0Id;
 	public static Property machineBlock1Id;
@@ -266,32 +262,32 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		railDropoffPassengerBlock = new BlockRailPassengerDropoff(railDropoffPassengerBlockId.getInt());
 		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt());
 
-		factoryHammerItem = (new ItemFactoryHammer(hammerItemId.getInt())).setUnlocalizedName("factoryHammer").setMaxStackSize(1);
-		milkItem = (new ItemFactory(milkItemId.getInt())).setUnlocalizedName("milkItem");
-		sludgeItem = (new ItemFactory(sludgeItemId.getInt())).setUnlocalizedName("sludgeItem");
-		sewageItem = (new ItemFactory(sewageItemId.getInt())).setUnlocalizedName("sewageItem");
-		mobEssenceItem = (new ItemFactory(mobEssenceItemId.getInt())).setUnlocalizedName("mobEssenceItem");
-		fertilizerItem = (new ItemFactory(fertilizerItemId.getInt())).setUnlocalizedName("fertilizerFactoryItem");
-		plasticSheetItem = (new ItemFactory(plasticSheetItemId.getInt())).setUnlocalizedName("plasticSheetItem");
-		rawPlasticItem = (new ItemFactory(rawPlasticItemId.getInt())).setUnlocalizedName("rawPlasticItem");
-		rubberBarItem = (new ItemFactory(rubberBarItemId.getInt())).setUnlocalizedName("rubberBarItem");
-		sewageBucketItem = (new ItemFactory(sewageBucketItemId.getInt())).setUnlocalizedName("sewageBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		sludgeBucketItem = (new ItemFactory(sludgeBucketItemId.getInt())).setUnlocalizedName("sludgeBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		mobEssenceBucketItem = (new ItemFactory(mobEssenceBucketItemId.getInt())).setUnlocalizedName("mobEssenceBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setUnlocalizedName("syringeEmptyItem");
-		syringeHealthItem = (new ItemSyringeHealth()).setUnlocalizedName("syringeHealthItem").setContainerItem(syringeEmptyItem);
-		syringeGrowthItem = (new ItemSyringeGrowth()).setUnlocalizedName("syringeGrowthItem").setContainerItem(syringeEmptyItem);
-		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setUnlocalizedName("rawRubberItem");
-		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setUnlocalizedName("factoryMachineBlock");
-		safariNetItem = (new ItemSafariNet(safariNetItemId.getInt())).setUnlocalizedName("safariNetItem");
-		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setUnlocalizedName("ceramicDyeItem");
-		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setUnlocalizedName("blankRecordItem").setMaxStackSize(1);
-		syringeZombieItem = (new ItemSyringeZombie()).setUnlocalizedName("syringeZombieItem").setContainerItem(syringeEmptyItem);
-		safariNetSingleItem = (new ItemSafariNet(safariNetSingleItemId.getInt())).setUnlocalizedName("safariNetSingleItem");
-		bioFuelItem = (new ItemFactory(bioFuelItemId.getInt())).setUnlocalizedName("factoryBioFuelItem");
-		bioFuelBucketItem = (new ItemFactory(bioFuelBucketItemId.getInt())).setUnlocalizedName("factoryBioFuelBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setUnlocalizedName("factoryUpgradeItem").setMaxStackSize(1);
-		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setUnlocalizedName("safariNetLauncherItem").setMaxStackSize(1);
+		factoryHammerItem = (new ItemFactoryHammer(hammerItemId.getInt())).setUnlocalizedName("mfr.hammer").setMaxStackSize(1);
+		milkItem = (new ItemFactory(milkItemId.getInt())).setUnlocalizedName("mfr.milk");
+		sludgeItem = (new ItemFactory(sludgeItemId.getInt())).setUnlocalizedName("mfr.sludge");
+		sewageItem = (new ItemFactory(sewageItemId.getInt())).setUnlocalizedName("mfr.sewage");
+		mobEssenceItem = (new ItemFactory(mobEssenceItemId.getInt())).setUnlocalizedName("mfr.essence");
+		fertilizerItem = (new ItemFactory(fertilizerItemId.getInt())).setUnlocalizedName("mfr.fertilizer");
+		plasticSheetItem = (new ItemFactory(plasticSheetItemId.getInt())).setUnlocalizedName("mfr.plastic.sheet");
+		rawPlasticItem = (new ItemFactory(rawPlasticItemId.getInt())).setUnlocalizedName("mfr.plastic.raw");
+		rubberBarItem = (new ItemFactory(rubberBarItemId.getInt())).setUnlocalizedName("mfr.rubber.bar");
+		sewageBucketItem = (new ItemFactory(sewageBucketItemId.getInt())).setUnlocalizedName("mfr.bucket.sewage").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		sludgeBucketItem = (new ItemFactory(sludgeBucketItemId.getInt())).setUnlocalizedName("mfr.bucket.sludge").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		mobEssenceBucketItem = (new ItemFactory(mobEssenceBucketItemId.getInt())).setUnlocalizedName("mfr.bucket.essence").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setUnlocalizedName("mfr.syringe.empty");
+		syringeHealthItem = (new ItemSyringeHealth()).setUnlocalizedName("mfr.syringe.health").setContainerItem(syringeEmptyItem);
+		syringeGrowthItem = (new ItemSyringeGrowth()).setUnlocalizedName("mfr.syringe.growth").setContainerItem(syringeEmptyItem);
+		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setUnlocalizedName("mfr.rubber.raw");
+		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setUnlocalizedName("mfr.machineblock");
+		safariNetItem = (new ItemSafariNet(safariNetItemId.getInt())).setUnlocalizedName("mfr.safarinet.reusable");
+		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setUnlocalizedName("mfr.ceramicdye");
+		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setUnlocalizedName("mfr.record.blank").setMaxStackSize(1);
+		syringeZombieItem = (new ItemSyringeZombie()).setUnlocalizedName("mfr.syringe.zombie").setContainerItem(syringeEmptyItem);
+		safariNetSingleItem = (new ItemSafariNet(safariNetSingleItemId.getInt())).setUnlocalizedName("mfr.safarinet.singleuse");
+		bioFuelItem = (new ItemFactory(bioFuelItemId.getInt())).setUnlocalizedName("mfr.biofuel");
+		bioFuelBucketItem = (new ItemFactory(bioFuelBucketItemId.getInt())).setUnlocalizedName("mfr.bucket.biofuel").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setUnlocalizedName("mfr.upgrade.radius").setMaxStackSize(1);
+		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setUnlocalizedName("mfr.safarinet.launcher").setMaxStackSize(1);
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{

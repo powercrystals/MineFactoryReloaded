@@ -11,7 +11,7 @@ import net.minecraft.util.Icon;
 
 public class ItemUpgrade extends ItemFactory
 {
-	private static String[] _upgradeNames = { "lapis", "iron", "tin", "copper", "bronze", "silver", "gold", "quartz", "diamond", "platium", "emerald" };
+	private static String[] _upgradeNames = { "lapis", "iron", "tin", "copper", "bronze", "silver", "gold", "quartz", "diamond", "platinum", "emerald" };
 	private static Icon[] _upgradeIcons = new Icon[_upgradeNames.length];
 	
 	public ItemUpgrade(int id)
@@ -48,7 +48,7 @@ public class ItemUpgrade extends ItemFactory
 	{
 		for(int i = 0; i < _upgradeIcons.length; i++)
 		{
-			_upgradeIcons[i] = ir.func_94245_a(getUnlocalizedName() + "." + _upgradeNames[i]);
+			_upgradeIcons[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + "." + _upgradeNames[i]);
 		}
 	}
 	

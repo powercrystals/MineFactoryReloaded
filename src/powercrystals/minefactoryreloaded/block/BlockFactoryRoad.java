@@ -1,6 +1,8 @@
 package powercrystals.minefactoryreloaded.block;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -8,6 +10,7 @@ import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.net.Packets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,6 +33,15 @@ public class BlockFactoryRoad extends Block
 		setResistance(25.0F);
 		setStepSound(soundStoneFootstep);
 		setCreativeTab(MFRCreativeTab.tab);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void func_94332_a(IconRegister par1IconRegister)
+	{
+		_iconRoad = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		_iconRoadOff = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".light.off");
+		_iconRoadOn = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".light.on");
 	}
 
 	@Override

@@ -38,8 +38,8 @@ public class BlockRubberLeaves extends BlockLeaves
 	@SideOnly(Side.CLIENT)
 	public void func_94332_a(IconRegister ir)
 	{
-		_iconOpaque = ir.func_94245_a(getUnlocalizedName() + ".opaque");
-		_iconTransparent = ir.func_94245_a(getUnlocalizedName() + ".transparent");
+		_iconOpaque = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".opaque");
+		_iconTransparent = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".transparent");
 	}
 	
 	@Override

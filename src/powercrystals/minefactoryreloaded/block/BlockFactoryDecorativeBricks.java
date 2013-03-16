@@ -20,7 +20,7 @@ public class BlockFactoryDecorativeBricks extends Block
 		setHardness(2.0F);
 		setResistance(10.0F);
 		setStepSound(soundStoneFootstep);
-		setUnlocalizedName("mfr.decorativeBrick");
+		setUnlocalizedName("mfr.decorativebrick");
 		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
@@ -49,7 +49,7 @@ public class BlockFactoryDecorativeBricks extends Block
 	{
 		for(int i = 0; i < _icons.length; i++)
 		{
-			_icons[i] = ir.func_94245_a(getUnlocalizedName() + "." + _names[i]);
+			_icons[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + "." + _names[i]);
 		}
 	}
 	
