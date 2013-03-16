@@ -5,9 +5,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptBlankRecord;
 import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptRecord;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 
 public class ContainerAutoJukebox extends ContainerFactoryInventory
 {
@@ -16,14 +16,13 @@ public class ContainerAutoJukebox extends ContainerFactoryInventory
 	public ContainerAutoJukebox(TileEntityAutoJukebox tileentity, InventoryPlayer inv)
 	{
 		super(tileentity, inv);
-		_jukebox = tileentity;
 	}
 	
 	@Override
 	protected void addSlots()
 	{
-		addSlotToContainer(new SlotAcceptRecord(_te, 0, 8, 24));
-		addSlotToContainer(new SlotAcceptBlankRecord(_te, 1, 8, 54));
+		addSlotToContainer(new SlotAcceptRecord(_jukebox, 0, 8, 24));
+		addSlotToContainer(new SlotAcceptBlankRecord(_jukebox, 1, 8, 54));
 	}
 
 	@Override

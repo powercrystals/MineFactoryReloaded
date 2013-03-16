@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
@@ -21,81 +22,52 @@ import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidDictionary.LiquidRegisterEvent;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import powercrystals.core.updater.IUpdateableMod;
 import powercrystals.core.updater.UpdateManager;
-import powercrystals.minefactoryreloaded.animals.ItemSafariNetLauncher;
-import powercrystals.minefactoryreloaded.animals.ItemSyringeGrowth;
-import powercrystals.minefactoryreloaded.animals.ItemSyringeHealth;
-import powercrystals.minefactoryreloaded.animals.ItemSafariNet;
-import powercrystals.minefactoryreloaded.animals.ItemSyringeZombie;
-import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
-import powercrystals.minefactoryreloaded.animals.TileEntityBreeder;
-import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
-import powercrystals.minefactoryreloaded.animals.TileEntityGrinder;
-import powercrystals.minefactoryreloaded.animals.TileEntityRancher;
-import powercrystals.minefactoryreloaded.animals.TileEntitySewer;
-import powercrystals.minefactoryreloaded.animals.TileEntityVet;
-import powercrystals.minefactoryreloaded.core.BehaviorDispenseSafariNet;
-import powercrystals.minefactoryreloaded.core.BlockFactoryMachine0;
-import powercrystals.minefactoryreloaded.core.BlockFactoryMachine1;
-import powercrystals.minefactoryreloaded.core.ItemBlockFactoryMachine1;
-import powercrystals.minefactoryreloaded.core.ItemFactory;
-import powercrystals.minefactoryreloaded.core.ItemFactoryHammer;
-import powercrystals.minefactoryreloaded.core.ItemBlockFactoryMachine0;
-import powercrystals.minefactoryreloaded.core.MineFactoryReloadedFuelHandler;
-import powercrystals.minefactoryreloaded.decorative.BlockFactoryDecorativeBricks;
-import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlass;
-import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
-import powercrystals.minefactoryreloaded.decorative.BlockFactoryRoad;
-import powercrystals.minefactoryreloaded.decorative.BlockVanillaGlassPane;
-import powercrystals.minefactoryreloaded.decorative.BlockVanillaIce;
-import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryDecorativeBrick;
-import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlass;
-import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryGlassPane;
-import powercrystals.minefactoryreloaded.decorative.ItemBlockFactoryRoad;
-import powercrystals.minefactoryreloaded.decorative.ItemBlockVanillaIce;
-import powercrystals.minefactoryreloaded.decorative.ItemCeramicDye;
-import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
+import powercrystals.minefactoryreloaded.block.BlockConveyor;
+import powercrystals.minefactoryreloaded.block.BlockFactoryDecorativeBricks;
+import powercrystals.minefactoryreloaded.block.BlockFactoryGlass;
+import powercrystals.minefactoryreloaded.block.BlockFactoryGlassPane;
+import powercrystals.minefactoryreloaded.block.BlockFactoryMachine;
+import powercrystals.minefactoryreloaded.block.BlockFactoryRoad;
+import powercrystals.minefactoryreloaded.block.BlockRailCargoDropoff;
+import powercrystals.minefactoryreloaded.block.BlockRailCargoPickup;
+import powercrystals.minefactoryreloaded.block.BlockRailPassengerDropoff;
+import powercrystals.minefactoryreloaded.block.BlockRailPassengerPickup;
+import powercrystals.minefactoryreloaded.block.BlockRubberLeaves;
+import powercrystals.minefactoryreloaded.block.BlockRubberSapling;
+import powercrystals.minefactoryreloaded.block.BlockRubberWood;
+import powercrystals.minefactoryreloaded.block.BlockVanillaGlassPane;
+import powercrystals.minefactoryreloaded.block.BlockVanillaIce;
+import powercrystals.minefactoryreloaded.block.ItemBlockConveyor;
+import powercrystals.minefactoryreloaded.block.ItemBlockFactoryDecorativeBrick;
+import powercrystals.minefactoryreloaded.block.ItemBlockFactoryGlass;
+import powercrystals.minefactoryreloaded.block.ItemBlockFactoryGlassPane;
+import powercrystals.minefactoryreloaded.block.ItemBlockFactoryMachine;
+import powercrystals.minefactoryreloaded.block.ItemBlockFactoryRoad;
+import powercrystals.minefactoryreloaded.block.ItemBlockVanillaIce;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
 import powercrystals.minefactoryreloaded.gui.MFRGUIHandler;
+import powercrystals.minefactoryreloaded.item.ItemCeramicDye;
+import powercrystals.minefactoryreloaded.item.ItemFactory;
+import powercrystals.minefactoryreloaded.item.ItemFactoryHammer;
+import powercrystals.minefactoryreloaded.item.ItemSafariNet;
+import powercrystals.minefactoryreloaded.item.ItemSafariNetLauncher;
+import powercrystals.minefactoryreloaded.item.ItemSyringeGrowth;
+import powercrystals.minefactoryreloaded.item.ItemSyringeHealth;
+import powercrystals.minefactoryreloaded.item.ItemSyringeZombie;
+import powercrystals.minefactoryreloaded.item.ItemUpgrade;
 import powercrystals.minefactoryreloaded.net.ClientPacketHandler;
 import powercrystals.minefactoryreloaded.net.ConnectionHandler;
 import powercrystals.minefactoryreloaded.net.IMFRProxy;
 import powercrystals.minefactoryreloaded.net.ServerPacketHandler;
-import powercrystals.minefactoryreloaded.plants.TileEntityFertilizer;
-import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
-import powercrystals.minefactoryreloaded.plants.TileEntityPlanter;
-import powercrystals.minefactoryreloaded.power.TileEntityBioFuelGenerator;
-import powercrystals.minefactoryreloaded.processing.ItemUpgrade;
-import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
-import powercrystals.minefactoryreloaded.processing.TileEntityBlockBreaker;
-import powercrystals.minefactoryreloaded.processing.TileEntityComposter;
-import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
-import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
-import powercrystals.minefactoryreloaded.processing.TileEntityFisher;
-import powercrystals.minefactoryreloaded.processing.TileEntityLavaFabricator;
-import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
-import powercrystals.minefactoryreloaded.processing.TileEntityOilFabricator;
-import powercrystals.minefactoryreloaded.processing.TileEntitySludgeBoiler;
-import powercrystals.minefactoryreloaded.processing.TileEntityUnifier;
-import powercrystals.minefactoryreloaded.processing.TileEntityWeather;
-import powercrystals.minefactoryreloaded.rails.BlockRailCargoDropoff;
-import powercrystals.minefactoryreloaded.rails.BlockRailCargoPickup;
-import powercrystals.minefactoryreloaded.rails.BlockRailPassengerDropoff;
-import powercrystals.minefactoryreloaded.rails.BlockRailPassengerPickup;
-import powercrystals.minefactoryreloaded.transport.BlockConveyor;
-import powercrystals.minefactoryreloaded.transport.ItemBlockConveyor;
-import powercrystals.minefactoryreloaded.transport.TileEntityCollector;
-import powercrystals.minefactoryreloaded.transport.TileEntityConveyor;
-import powercrystals.minefactoryreloaded.transport.TileEntityEjector;
-import powercrystals.minefactoryreloaded.transport.TileEntityItemRouter;
-import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
-import powercrystals.minefactoryreloaded.world.BlockRubberLeaves;
-import powercrystals.minefactoryreloaded.world.BlockRubberSapling;
-import powercrystals.minefactoryreloaded.world.BlockRubberWood;
-import powercrystals.minefactoryreloaded.world.MineFactoryReloadedWorldGen;
+import powercrystals.minefactoryreloaded.setup.BehaviorDispenseSafariNet;
+import powercrystals.minefactoryreloaded.setup.Machine;
+import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedFuelHandler;
+import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedWorldGen;
+import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
+import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -125,13 +97,11 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static IMFRProxy proxy;
 	
 	public static final String modId = "MFReloaded";
-	public static final String version = "1.4.6R2.3.3B1";
+	public static final String version = "1.4.6R2.4.0B1";
 	public static final String modName = "Minefactory Reloaded";
 	
-	private static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
+	public static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
 	public static final String terrainTexture = textureFolder + "terrain_0.png";
-	public static final String machine0Texture = textureFolder + "machine_0.png";
-	public static final String machine1Texture = textureFolder + "machine_1.png";
 	public static final String itemTexture = textureFolder + "items_0.png";
 	public static final String animationFolder = textureFolder + "animations/";
 	public static final String guiFolder = textureFolder + "gui/";
@@ -139,8 +109,7 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static int renderIdConveyor = 1000;
 	public static int renderIdFactoryGlassPane = 1001;
 	
-	public static Block machineBlock0;
-	public static Block machineBlock1;
+	public static Map<Integer, Block> machineBlocks = new HashMap<Integer, Block>();
 	
 	public static Block conveyorBlock;
 	
@@ -190,9 +159,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public static int conveyorTexture = 0;
 	public static int conveyorOffTexture = 1;
 	public static int conveyorStillOffTexture = 2;
-
-	public static Map<MineFactoryReloadedCore.Machine, Integer> machine0MetadataMappings = new HashMap<Machine, Integer>();
-	public static Map<MineFactoryReloadedCore.Machine, Integer> machine1MetadataMappings = new HashMap<Machine, Integer>();
 
 	// Config
 	public static Property machineBlock0Id;
@@ -264,47 +230,10 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	
 	public static Property passengerRailSearchMaxHorizontal;
 	public static Property passengerRailSearchMaxVertical;
-	
-	public static Property enableMachinePlanter;
-	public static Property enableMachineFisher;
-	public static Property enableMachineHarvester;
-	public static Property enableMachineRancher;
-	public static Property enableMachineFertilizer;
-	public static Property enableMachineVet;
-	public static Property enableMachineCollector;
-	public static Property enableMachineBreaker;
-	public static Property enableMachineWeather;
-	public static Property enableMachineBoiler;
-	public static Property enableMachineSewer;
-	public static Property enableMachineComposter;
-	public static Property enableMachineBreeder;
-	public static Property enableMachineGrinder;
-	public static Property enableMachineEnchanter;
-	public static Property enableMachineChronotyper;
-	
-	public static Property enableMachineEjector;
-	public static Property enableMachineItemRouter;
-	public static Property enableMachineLiquidRouter;
-	public static Property enableMachineDeepStorageUnit;
-	public static Property enableMachineLiquiCrafter;
-	public static Property enableMachineLavaFabricator;
-	public static Property enableMachineOiLFabricator;
-	public static Property enableMachineAutoJukebox;
-	public static Property enableMachineUnifier;
-	public static Property enableMachineAutoSpawner;
-	public static Property enableMachineBioReactor;
-	public static Property enableMachineBioFuelGenerator;
 
 	private static MineFactoryReloadedCore instance;
 	
 	public static int oilLiquidId = -1;
-
-	public enum Machine
-	{
-		Planter, Fisher, Harvester, Fertilizer, Rancher, Vet, Collector, Breaker, Weather, Boiler, Sewer, Composter, Breeder, Grinder, Enchanter, Chronotyper,
-		Ejector, ItemRouter, LiquidRouter, DeepStorageUnit, LiquiCrafter, OilFabricator, LavaFabricator, AutoJukebox, Unifier, AutoSpawner, BioReactor,
-		BioFuelGenerator
-	}
 
 	public static MineFactoryReloadedCore instance()
 	{
@@ -322,80 +251,53 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	{
 		instance = this;
 
-		machine0MetadataMappings.put(Machine.Planter, 0);
-		machine0MetadataMappings.put(Machine.Fisher, 1);
-		machine0MetadataMappings.put(Machine.Harvester, 2);
-		machine0MetadataMappings.put(Machine.Rancher, 3);
-		machine0MetadataMappings.put(Machine.Fertilizer, 4);
-		machine0MetadataMappings.put(Machine.Vet, 5);
-		machine0MetadataMappings.put(Machine.Collector, 6);
-		machine0MetadataMappings.put(Machine.Breaker, 7);
-		machine0MetadataMappings.put(Machine.Weather, 8);
-		machine0MetadataMappings.put(Machine.Boiler, 9);
-		machine0MetadataMappings.put(Machine.Sewer, 10);
-		machine0MetadataMappings.put(Machine.Composter, 11);
-		machine0MetadataMappings.put(Machine.Breeder, 12);
-		machine0MetadataMappings.put(Machine.Grinder, 13);
-		machine0MetadataMappings.put(Machine.Enchanter, 14);
-		machine0MetadataMappings.put(Machine.Chronotyper, 15);
-
-		machine1MetadataMappings.put(Machine.Ejector, 0);
-		machine1MetadataMappings.put(Machine.ItemRouter, 1);
-		machine1MetadataMappings.put(Machine.LiquidRouter, 2);
-		machine1MetadataMappings.put(Machine.DeepStorageUnit, 3);
-		machine1MetadataMappings.put(Machine.LiquiCrafter, 4);
-		machine1MetadataMappings.put(Machine.LavaFabricator, 5);
-		machine1MetadataMappings.put(Machine.OilFabricator, 6);
-		machine1MetadataMappings.put(Machine.AutoJukebox, 7);
-		machine1MetadataMappings.put(Machine.Unifier, 8);
-		machine1MetadataMappings.put(Machine.AutoSpawner, 9);
-		machine1MetadataMappings.put(Machine.BioReactor, 10);
-		machine1MetadataMappings.put(Machine.BioFuelGenerator, 11);
-
-		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt(), conveyorOffTexture);
-		machineBlock0 = new BlockFactoryMachine0(machineBlock0Id.getInt());
-		machineBlock1 = new BlockFactoryMachine1(machineBlock1Id.getInt());
-		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt(), 16);
-		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt(), 16, 32);
+		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt());
+		machineBlocks.put(0, new BlockFactoryMachine(machineBlock0Id.getInt(), 0));
+		machineBlocks.put(1, new BlockFactoryMachine(machineBlock1Id.getInt(), 1));
+		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt());
+		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt());
 		factoryRoadBlock = new BlockFactoryRoad(factoryRoadBlockId.getInt());
 		factoryDecorativeBrickBlock = new BlockFactoryDecorativeBricks(factoryDecorativeBrickBlockId.getInt());
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
 		rubberLeavesBlock = new BlockRubberLeaves(rubberLeavesBlockId.getInt());
 		rubberSaplingBlock = new BlockRubberSapling(rubberSaplingBlockId.getInt());
-		railDropoffCargoBlock = new BlockRailCargoDropoff(railDropoffCargoBlockId.getInt(), 8);
-		railPickupCargoBlock = new BlockRailCargoPickup(railPickupCargoBlockId.getInt(), 9);
-		railDropoffPassengerBlock = new BlockRailPassengerDropoff(railDropoffPassengerBlockId.getInt(), 10);
-		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt(), 11);
+		railDropoffCargoBlock = new BlockRailCargoDropoff(railDropoffCargoBlockId.getInt());
+		railPickupCargoBlock = new BlockRailCargoPickup(railPickupCargoBlockId.getInt());
+		railDropoffPassengerBlock = new BlockRailPassengerDropoff(railDropoffPassengerBlockId.getInt());
+		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt());
 
-		factoryHammerItem = (new ItemFactoryHammer(hammerItemId.getInt())).setIconIndex(0).setItemName("factoryHammer").setMaxStackSize(1);
-		milkItem = (new ItemFactory(milkItemId.getInt())).setIconIndex(2).setItemName("milkItem");
-		sludgeItem = (new ItemFactory(sludgeItemId.getInt())).setIconIndex(3).setItemName("sludgeItem");
-		sewageItem = (new ItemFactory(sewageItemId.getInt())).setIconIndex(4).setItemName("sewageItem");
-		mobEssenceItem = (new ItemFactory(mobEssenceItemId.getInt())).setIconIndex(5).setItemName("mobEssenceItem");
-		fertilizerItem = (new ItemFactory(fertilizerItemId.getInt())).setIconIndex(6).setItemName("fertilizerFactoryItem");
-		plasticSheetItem = (new ItemFactory(plasticSheetItemId.getInt())).setIconIndex(7).setItemName("plasticSheetItem");
-		rawPlasticItem = (new ItemFactory(rawPlasticItemId.getInt())).setIconIndex(8).setItemName("rawPlasticItem");
-		rubberBarItem = (new ItemFactory(rubberBarItemId.getInt())).setIconIndex(9).setItemName("rubberBarItem");
-		sewageBucketItem = (new ItemFactory(sewageBucketItemId.getInt())).setIconIndex(10).setItemName("sewageBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		sludgeBucketItem = (new ItemFactory(sludgeBucketItemId.getInt())).setIconIndex(11).setItemName("sludgeBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		mobEssenceBucketItem = (new ItemFactory(mobEssenceBucketItemId.getInt())).setIconIndex(12).setItemName("mobEssenceBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setIconIndex(13).setItemName("syringeEmptyItem");
-		syringeHealthItem = (new ItemSyringeHealth()).setIconIndex(14).setItemName("syringeHealthItem").setContainerItem(syringeEmptyItem);
-		syringeGrowthItem = (new ItemSyringeGrowth()).setIconIndex(15).setItemName("syringeGrowthItem").setContainerItem(syringeEmptyItem);
-		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setIconIndex(16).setItemName("rawRubberItem");
-		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setIconIndex(17).setItemName("factoryMachineBlock");
-		safariNetItem = (new ItemSafariNet(safariNetItemId.getInt())).setIconIndex(18).setItemName("safariNetItem");
-		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setIconIndex(22).setItemName("ceramicDyeItem");
-		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setIconIndex(40).setItemName("blankRecordItem").setMaxStackSize(1);
-		syringeZombieItem = (new ItemSyringeZombie()).setIconIndex(41).setItemName("syringeZombieItem").setContainerItem(syringeEmptyItem);
-		safariNetSingleItem = (new ItemSafariNet(safariNetSingleItemId.getInt())).setIconIndex(42).setItemName("safariNetSingleItem");
-		bioFuelItem = (new ItemFactory(bioFuelItemId.getInt())).setIconIndex(46).setItemName("factoryBioFuelItem");
-		bioFuelBucketItem = (new ItemFactory(bioFuelBucketItemId.getInt())).setIconIndex(47).setItemName("factoryBioFuelBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setItemName("factoryUpgradeItem").setMaxStackSize(1);
-		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setIconIndex(50).setItemName("safariNetLauncherItem").setMaxStackSize(1);
+		factoryHammerItem = (new ItemFactoryHammer(hammerItemId.getInt())).setUnlocalizedName("factoryHammer").setMaxStackSize(1);
+		milkItem = (new ItemFactory(milkItemId.getInt())).setUnlocalizedName("milkItem");
+		sludgeItem = (new ItemFactory(sludgeItemId.getInt())).setUnlocalizedName("sludgeItem");
+		sewageItem = (new ItemFactory(sewageItemId.getInt())).setUnlocalizedName("sewageItem");
+		mobEssenceItem = (new ItemFactory(mobEssenceItemId.getInt())).setUnlocalizedName("mobEssenceItem");
+		fertilizerItem = (new ItemFactory(fertilizerItemId.getInt())).setUnlocalizedName("fertilizerFactoryItem");
+		plasticSheetItem = (new ItemFactory(plasticSheetItemId.getInt())).setUnlocalizedName("plasticSheetItem");
+		rawPlasticItem = (new ItemFactory(rawPlasticItemId.getInt())).setUnlocalizedName("rawPlasticItem");
+		rubberBarItem = (new ItemFactory(rubberBarItemId.getInt())).setUnlocalizedName("rubberBarItem");
+		sewageBucketItem = (new ItemFactory(sewageBucketItemId.getInt())).setUnlocalizedName("sewageBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		sludgeBucketItem = (new ItemFactory(sludgeBucketItemId.getInt())).setUnlocalizedName("sludgeBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		mobEssenceBucketItem = (new ItemFactory(mobEssenceBucketItemId.getInt())).setUnlocalizedName("mobEssenceBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setUnlocalizedName("syringeEmptyItem");
+		syringeHealthItem = (new ItemSyringeHealth()).setUnlocalizedName("syringeHealthItem").setContainerItem(syringeEmptyItem);
+		syringeGrowthItem = (new ItemSyringeGrowth()).setUnlocalizedName("syringeGrowthItem").setContainerItem(syringeEmptyItem);
+		rawRubberItem = (new ItemFactory(rawRubberItemId.getInt())).setUnlocalizedName("rawRubberItem");
+		machineBaseItem = (new ItemFactory(machineBaseItemId.getInt())).setUnlocalizedName("factoryMachineBlock");
+		safariNetItem = (new ItemSafariNet(safariNetItemId.getInt())).setUnlocalizedName("safariNetItem");
+		ceramicDyeItem = (new ItemCeramicDye(ceramicDyeId.getInt())).setUnlocalizedName("ceramicDyeItem");
+		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setUnlocalizedName("blankRecordItem").setMaxStackSize(1);
+		syringeZombieItem = (new ItemSyringeZombie()).setUnlocalizedName("syringeZombieItem").setContainerItem(syringeEmptyItem);
+		safariNetSingleItem = (new ItemSafariNet(safariNetSingleItemId.getInt())).setUnlocalizedName("safariNetSingleItem");
+		bioFuelItem = (new ItemFactory(bioFuelItemId.getInt())).setUnlocalizedName("factoryBioFuelItem");
+		bioFuelBucketItem = (new ItemFactory(bioFuelBucketItemId.getInt())).setUnlocalizedName("factoryBioFuelBucketItem").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setUnlocalizedName("factoryUpgradeItem").setMaxStackSize(1);
+		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setUnlocalizedName("safariNetLauncherItem").setMaxStackSize(1);
 
-		GameRegistry.registerBlock(machineBlock0, ItemBlockFactoryMachine0.class, "blockMachine");
-		GameRegistry.registerBlock(machineBlock1, ItemBlockFactoryMachine1.class, "blockMachine1");
+		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
+		{
+			GameRegistry.registerBlock(machine.getValue(), ItemBlockFactoryMachine.class, machine.getValue().getUnlocalizedName());
+		}
+		
 		GameRegistry.registerBlock(conveyorBlock, ItemBlockConveyor.class, "blockConveyor");
 		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
 		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
@@ -427,42 +329,18 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 			GameRegistry.registerBlock(Block.ice, ItemBlockVanillaIce.class, "blockVanillaIce");
 		}
 
-		GameRegistry.registerTileEntity(TileEntityFisher.class, "factoryFisher");
-		GameRegistry.registerTileEntity(TileEntityPlanter.class, "factoryPlanter");
-		GameRegistry.registerTileEntity(TileEntityHarvester.class, "factoryHarvester");
-		GameRegistry.registerTileEntity(TileEntityRancher.class, "factoryRancher");
-		GameRegistry.registerTileEntity(TileEntityFertilizer.class, "factoryFertilizer");
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "factoryConveyor");
-		GameRegistry.registerTileEntity(TileEntityVet.class, "factoryVet");
-		GameRegistry.registerTileEntity(TileEntityCollector.class, "factoryItemCollector");
-		GameRegistry.registerTileEntity(TileEntityBlockBreaker.class, "factoryBlockBreaker");
-		GameRegistry.registerTileEntity(TileEntityWeather.class, "factoryWeather");
-		GameRegistry.registerTileEntity(TileEntitySludgeBoiler.class, "factorySludgeBoiler");
-		GameRegistry.registerTileEntity(TileEntitySewer.class, "factorySewer");
-		GameRegistry.registerTileEntity(TileEntityComposter.class, "factoryComposter");
-		GameRegistry.registerTileEntity(TileEntityBreeder.class, "factoryBreeder");
-		GameRegistry.registerTileEntity(TileEntityGrinder.class, "factoryGrinder");
-		GameRegistry.registerTileEntity(TileEntityAutoEnchanter.class, "factoryEnchanter");
-		GameRegistry.registerTileEntity(TileEntityChronotyper.class, "factoryChronotyper");
-
-		GameRegistry.registerTileEntity(TileEntityEjector.class, "factoryEjector");
-		GameRegistry.registerTileEntity(TileEntityItemRouter.class, "factoryItemRouter");
-		GameRegistry.registerTileEntity(TileEntityLiquidRouter.class, "factoryLiquidRouter");
-		GameRegistry.registerTileEntity(TileEntityDeepStorageUnit.class, "factoryDeepStorageUnit");
-		GameRegistry.registerTileEntity(TileEntityLiquiCrafter.class, "factoryLiquiCrafter");
-		GameRegistry.registerTileEntity(TileEntityLavaFabricator.class, "factoryLavaFabricator");
-		GameRegistry.registerTileEntity(TileEntityOilFabricator.class, "factoryOilFabricator");
-		GameRegistry.registerTileEntity(TileEntityAutoJukebox.class, "factoryAutoJukebox");
-		GameRegistry.registerTileEntity(TileEntityUnifier.class, "factoryUnifier");
-		GameRegistry.registerTileEntity(TileEntityAutoSpawner.class, "factoryAutoSpawner");
-		GameRegistry.registerTileEntity(TileEntityBioReactor.class, "factoryBioReactor");
-		GameRegistry.registerTileEntity(TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator");
 		
 		EntityRegistry.registerModEntity(EntitySafariNet.class, "entitySafariNet", 0, instance, 160, 5, true);
 
 		MinecraftForge.EVENT_BUS.register(instance);
 		
-		registerRecipes();
+		Vanilla.registerRecipes();
+		
+		OreDictionary.registerOre("itemRubber", MineFactoryReloadedCore.rubberBarItem);
+		OreDictionary.registerOre("woodRubber", MineFactoryReloadedCore.rubberWoodBlock);
+		
+		GameRegistry.registerFuelHandler(new MineFactoryReloadedFuelHandler());
 		
 		proxy.load();
 		
@@ -498,13 +376,13 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 			FurnaceRecipes.smelting().addSmelting(s.itemID, s.getItemDamage(), new ItemStack(rawPlasticItem), 0.3F);
 		}
 		
-		String[] biomeWhitelist = rubberTreeBiomeWhitelist.value.split(",");
+		String[] biomeWhitelist = rubberTreeBiomeWhitelist.getString().split(",");
 		for(String biome : biomeWhitelist)
 		{
 			MFRRegistry.registerRubberTreeBiome(biome);
 		}
 		
-		String[] biomeBlacklist = rubberTreeBiomeBlacklist.value.split(",");
+		String[] biomeBlacklist = rubberTreeBiomeBlacklist.getString().split(",");
 		for(String biome : biomeBlacklist)
 		{
 			MFRRegistry.getRubberTreeBiomes().remove(biome);
@@ -624,847 +502,13 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 		rubberTreeBiomeWhitelist.comment = "A comma-separated list of biomes to allow rubber trees to spawn in. Does nothing if rubber tree worldgen is disabled.";
 		rubberTreeBiomeBlacklist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTreeBiomeBlacklist", "");
 		rubberTreeBiomeBlacklist.comment = "A comma-separated list of biomes to disallow rubber trees to spawn in. Overrides any other biomes added.";
-		
-		enableMachinePlanter = c.get("MachineEnables", "Planter", true);
-		enableMachineFisher = c.get("MachineEnables", "Fisher", true);
-		enableMachineHarvester = c.get("MachineEnables", "Harvester", true);
-		enableMachineRancher = c.get("MachineEnables", "Rancher", true);
-		enableMachineFertilizer = c.get("MachineEnables", "Fertilizer", true);
-		enableMachineVet = c.get("MachineEnables", "Vet", true);
-		enableMachineCollector = c.get("MachineEnables", "ItemCollector", true);
-		enableMachineBreaker = c.get("MachineEnables", "BlockBreaker", true);
-		enableMachineWeather = c.get("MachineEnables", "WeatherCollector", true);
-		enableMachineBoiler = c.get("MachineEnables", "SludgeBoiler", true);
-		enableMachineSewer = c.get("MachineEnables", "Sewer", true);
-		enableMachineComposter = c.get("MachineEnables", "Composter", true);
-		enableMachineBreeder = c.get("MachineEnables", "Breeder", true);
-		enableMachineGrinder = c.get("MachineEnables", "MobGrinder", true);
-		enableMachineEnchanter = c.get("MachineEnables", "AutoEnchanter", true);
-		enableMachineChronotyper = c.get("MachineEnables", "Chronotyper", true);
-		enableMachineEjector = c.get("MachineEnables", "Ejector", true);
-		enableMachineItemRouter = c.get("MachineEnables", "ItemRouter", true);
-		enableMachineLiquidRouter = c.get("MachineEnables", "LiquidRouter", true);
-		enableMachineDeepStorageUnit = c.get("MachineEnables", "DeepStorageUnit", true);
-		enableMachineLiquiCrafter = c.get("MachineEnables", "LiquiCrafter", true);
-		enableMachineLavaFabricator = c.get("MachineEnables", "LavaFabricator", true);
-		enableMachineOiLFabricator = c.get("MachineEnables", "OilFabricator", true);
-		enableMachineAutoJukebox = c.get("MachineEnables", "AutoJukebox", true);
-		enableMachineUnifier = c.get("MachineEnables", "Unifier", true);
-		enableMachineAutoSpawner = c.get("MachineEnables", "AutoSpawner", true);
-		enableMachineBioReactor = c.get("MachineEnables", "BioReactor", true);
-		enableMachineBioFuelGenerator = c.get("MachineEnables", "BioFuelGenerator", true);
 
-		c.addCustomCategoryComment("MachineEnables", "Set to false to disable that machine's recipes. Machines will still work if gotten through other means.");
+		for(Machine machine : Machine.values())
+		{
+			machine.load(c);
+		}
+		
 		c.save();
-	}
-	
-	private void registerRecipes()
-	{
-		OreDictionary.registerOre("itemRubber", rubberBarItem);
-		OreDictionary.registerOre("woodRubber", rubberWoodBlock);
-		
-		FurnaceRecipes.smelting().addSmelting(rawRubberItem.itemID, 0, new ItemStack(rubberBarItem), 0.1F);
-		FurnaceRecipes.smelting().addSmelting(rubberWoodBlock.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.1F);
-		
-		GameRegistry.registerFuelHandler(new MineFactoryReloadedFuelHandler());
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 3, 3), new ItemStack(rubberWoodBlock));
-		
-		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 4), new Object[]
-				{
-					"R",
-					"S",
-					Character.valueOf('R'), rawRubberItem,
-					Character.valueOf('S'), Item.stick
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(Block.pistonStickyBase), new Object[]
-				{
-					"R",
-					"P",
-					Character.valueOf('R'), rawRubberItem,
-					Character.valueOf('P'), Block.pistonBase
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(plasticSheetItem, 4), new Object[]
-				{
-					"##",
-					"##",
-					Character.valueOf('#'), rawPlasticItem,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(machineBaseItem, 3), new Object[]
-				{
-					"PPP",
-					"SSS",
-					Character.valueOf('P'), plasticSheetItem,
-					Character.valueOf('S'), Block.stone,
-				} );
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(syringeEmptyItem, 1), new Object[]
-				{
-					"PRP",
-					"P P",
-					" I ",
-					Character.valueOf('P'), plasticSheetItem,
-					Character.valueOf('R'), "itemRubber",
-					Character.valueOf('I'), Item.ingotIron,
-				} ));
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(syringeHealthItem), new Object[] { syringeEmptyItem, Item.appleRed });
-		GameRegistry.addShapelessRecipe(new ItemStack(syringeGrowthItem), new Object[] { syringeEmptyItem, Item.goldenCarrot });
-		
-		GameRegistry.addRecipe(new ItemStack(syringeZombieItem, 1), new Object[]
-				{
-					"FFF",
-					"FSF",
-					"FFF",
-					Character.valueOf('F'), Item.rottenFlesh,
-					Character.valueOf('S'), syringeEmptyItem,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(fertilizerItem, 16), new Object[]
-				{
-					"WBW",
-					"STS",
-					"WBW",
-					Character.valueOf('W'), Item.wheat,
-					Character.valueOf('B'), new ItemStack(Item.dyePowder, 1, 15),
-					Character.valueOf('S'), Item.silk,
-					Character.valueOf('T'), Item.stick,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(safariNetItem, 1), new Object[]
-				{
-					" E ",
-					"EGE",
-					" E ",
-					Character.valueOf('E'), Item.enderPearl,
-					Character.valueOf('G'), Item.ghastTear,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(safariNetSingleItem, 1), new Object[]
-				{
-					"SLS",
-					" B ",
-					"S S",
-					Character.valueOf('S'), Item.silk,
-					Character.valueOf('L'), Item.leather,
-					Character.valueOf('B'), Item.slimeBall,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(safariNetLauncherItem, 1), new Object[]
-				{
-					"PGP",
-					"LGL",
-					"IRI",
-					Character.valueOf('P'), plasticSheetItem,
-					Character.valueOf('L'), Item.lightStoneDust,
-					Character.valueOf('G'), Item.gunpowder,
-					Character.valueOf('I'), Item.ingotIron,
-					Character.valueOf('R'), Item.redstone,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(factoryHammerItem, 1), new Object[]
-				{
-					"PPP",
-					" S ",
-					" S ",
-					Character.valueOf('P'), plasticSheetItem,
-					Character.valueOf('S'), Item.stick,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(factoryRoadBlock, 16), new Object[]
-				{
-					"BBB",
-					"BPB",
-					"BBB",
-					Character.valueOf('P'), plasticSheetItem,
-					Character.valueOf('B'), new ItemStack(Block.stoneBrick, 1, 0),
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(factoryRoadBlock, 4, 1), new Object[]
-				{
-					"R R",
-					" G ",
-					"R R",
-					Character.valueOf('R'), new ItemStack(factoryRoadBlock, 1, 0),
-					Character.valueOf('G'), Block.redstoneLampIdle,
-				} );
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 1, 4), new ItemStack(factoryRoadBlock, 1, 1));
-		GameRegistry.addShapelessRecipe(new ItemStack(factoryRoadBlock, 1, 1), new ItemStack(factoryRoadBlock, 1, 4));
-		
-		if(vanillaOverrideIce.getBoolean(true))
-		{
-			GameRegistry.addShapelessRecipe(new ItemStack(Block.ice, 1, 1), new ItemStack(Block.ice, 1, 0), new ItemStack(rawPlasticItem, 1));
-		}
-		
-		GameRegistry.addRecipe(new ItemStack(blankRecordItem, 1), new Object[]
-				{
-					"RRR",
-					"RPR",
-					"RRR",
-					Character.valueOf('R'), rawPlasticItem,
-					Character.valueOf('P'), Item.paper,
-				} );
-		
-		if(enableMachinePlanter.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 0), new Object[]
-					{
-						"GGG",
-						"CPC",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('P'), Block.pistonBase,
-						Character.valueOf('C'), Item.flowerPot,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineFisher.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 1), new Object[]
-					{
-						"GGG",
-						"RRR",
-						"BMB",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('R'), Item.fishingRod,
-						Character.valueOf('B'), Item.bucketEmpty,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineHarvester.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 2), new Object[]
-					{
-						"GGG",
-						"SXS",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('X'), Item.axeGold,
-						Character.valueOf('S'), Item.shears,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineRancher.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 3), new Object[]
-					{
-						"GGG",
-						"SBS",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('B'), Item.bucketEmpty,
-						Character.valueOf('S'), Item.shears,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineFertilizer.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 4), new Object[]
-					{
-						"GGG",
-						"LBL",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('L'), Item.leather,
-						Character.valueOf('B'), Item.glassBottle,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineVet.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 5), new Object[]
-					{
-						"GGG",
-						"SSS",
-						"EME",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('E'), Item.spiderEye,
-						Character.valueOf('S'), syringeEmptyItem,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineCollector.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 8, 6), new Object[]
-					{
-						"GGG",
-						" C ",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('C'), Block.chest,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineBreaker.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 7), new Object[]
-					{
-						"GGG",
-						"PHS",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('P'), Item.pickaxeGold,
-						Character.valueOf('H'), factoryHammerItem,
-						Character.valueOf('S'), Item.shovelGold,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineWeather.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 8), new Object[]
-					{
-						"GGG",
-						"BBB",
-						"UMU",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('B'), Block.fenceIron,
-						Character.valueOf('U'), Item.bucketEmpty,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineBoiler.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 9), new Object[]
-					{
-						"GGG",
-						"FFF",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('F'), Block.stoneOvenIdle,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineSewer.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 4, 10), new Object[]
-					{
-						"GGG",
-						"BUB",
-						"BMB",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('B'), Item.brick,
-						Character.valueOf('U'), Item.bucketEmpty,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineComposter.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 11), new Object[]
-					{
-						"GGG",
-						"PFP",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('P'), Block.pistonBase,
-						Character.valueOf('F'), Block.stoneOvenIdle,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineBreeder.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 12), new Object[]
-					{
-						"GGG",
-						"CAC",
-						"PMP",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('P'), new ItemStack(Item.dyePowder, 1, 5),
-						Character.valueOf('C'), Item.goldenCarrot,
-						Character.valueOf('A'), Item.appleGold,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineGrinder.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 13), new Object[]
-					{
-						"GGG",
-						"BSP",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('P'), Block.pistonBase,
-						Character.valueOf('B'), Item.book,
-						Character.valueOf('S'), Item.swordGold,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineEnchanter.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 14), new Object[]
-					{
-						"GGG",
-						"BBB",
-						"DMD",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('B'), Item.book,
-						Character.valueOf('D'), Item.diamond,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineChronotyper.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock0, 1, 15), new Object[]
-					{
-						"GGG",
-						"EEE",
-						"PMP",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('E'), Item.emerald,
-						Character.valueOf('P'), new ItemStack(Item.dyePowder, 1, 5),
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineEjector.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 0), new Object[]
-					{
-						"GGG",
-						" D ",
-						"RMR",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('D'), Block.dispenser,
-						Character.valueOf('R'), Item.redstone,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineItemRouter.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 1), new Object[]
-					{
-						"GGG",
-						"RCR",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('C'), Block.chest,
-						Character.valueOf('R'), Item.redstoneRepeater,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineLiquidRouter.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 8, 2), new Object[]
-					{
-						"GGG",
-						"RBR",
-						"BMB",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('B'), Item.bucketEmpty,
-						Character.valueOf('R'), Item.redstoneRepeater,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineDeepStorageUnit.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 4, 3), new Object[]
-					{
-						"GGG",
-						"PPP",
-						"EME",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('P'), Item.enderPearl,
-						Character.valueOf('E'), Item.eyeOfEnder,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-			
-			if(enableCheapDSU.getBoolean(false))
-			{
-				GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 3), new Object[]
-						{
-							"GGG",
-							"CCC",
-							"CMC",
-							Character.valueOf('G'), plasticSheetItem,
-							Character.valueOf('C'), Block.chest,
-							Character.valueOf('M'), machineBaseItem,
-						} );
-			}
-		}
-		
-		if(enableMachineLiquiCrafter.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 4), new Object[]
-					{
-						"GGG",
-						"BWB",
-						"FMF",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('B'), Item.bucketEmpty,
-						Character.valueOf('W'), Block.workbench,
-						Character.valueOf('F'), Item.itemFrame,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineLavaFabricator.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 5), new Object[]
-					{
-						"GGG",
-						"OBO",
-						"CMC",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('O'), Block.obsidian,
-						Character.valueOf('B'), Item.blazeRod,
-						Character.valueOf('C'), Item.magmaCream,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineOiLFabricator.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 6), new Object[]
-					{
-						"GGG",
-						"OTO",
-						"OMO",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('O'), Block.obsidian,
-						Character.valueOf('T'), Block.tnt,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineAutoJukebox.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 7), new Object[]
-					{
-						"GGG",
-						" J ",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('J'), Block.jukebox,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineUnifier.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 8), new Object[]
-					{
-						"GGG",
-						"PBP",
-						" M ",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('B'), Item.book,
-						Character.valueOf('P'), Block.pumpkin,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineAutoSpawner.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 9), new Object[]
-					{
-						"GGG",
-						"ECE",
-						"NMS",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('E'), Item.emerald,
-						Character.valueOf('C'), Item.magmaCream,
-						Character.valueOf('N'), Item.netherStalkSeeds,
-						Character.valueOf('S'), Item.sugar,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineBioReactor.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 10), new Object[]
-					{
-						"GGG",
-						"UEU",
-						"SMS",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('U'), Item.sugar,
-						Character.valueOf('E'), Item.fermentedSpiderEye,
-						Character.valueOf('S'), Item.slimeBall,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		if(enableMachineBioFuelGenerator.getBoolean(true))
-		{
-			GameRegistry.addRecipe(new ItemStack(machineBlock1, 1, 11), new Object[]
-					{
-						"GGG",
-						"PFP",
-						"RMR",
-						Character.valueOf('G'), plasticSheetItem,
-						Character.valueOf('F'), Block.stoneOvenIdle,
-						Character.valueOf('P'), Block.pistonBase,
-						Character.valueOf('R'), Item.blazeRod,
-						Character.valueOf('M'), machineBaseItem,
-					} );
-		}
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 0), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), "dyeBlue",
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 1), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), Item.ingotIron,
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 2), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), "ingotTin",
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 3), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), "ingotCopper",
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 4), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), "ingotBronze",
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 5), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), "ingotSilver",
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 6), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), Item.ingotGold,
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 7), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), "ingotQuartz",
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 8), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), Item.diamond,
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 9), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), "ingotPlatinum",
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(upgradeItem, 1, 10), new Object[]
-				{
-					"III",
-					"PPP",
-					"RGR",
-					Character.valueOf('I'), Item.emerald,
-					Character.valueOf('P'), rawPlasticItem,
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('G'), Item.goldNugget,
-				} ));
-		
-		
-		
-		
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(conveyorBlock, 16, 16), new Object[]
-				{
-					"UUU",
-					"RIR",
-					Character.valueOf('U'), "itemRubber",
-					Character.valueOf('R'), Item.redstone,
-					Character.valueOf('I'), Item.ingotIron,
-				} ));
-		
-
-		GameRegistry.addRecipe(new ItemStack(railPickupCargoBlock, 2), new Object[]
-				{
-					" C ",
-					"SDS",
-					"SSS",
-					Character.valueOf('C'), Block.chest,
-					Character.valueOf('S'), plasticSheetItem,
-					Character.valueOf('D'), Block.railDetector
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(railDropoffCargoBlock, 2), new Object[]
-				{
-					"SSS",
-					"SDS",
-					" C ",
-					Character.valueOf('C'), Block.chest,
-					Character.valueOf('S'), plasticSheetItem,
-					Character.valueOf('D'), Block.railDetector
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(railPickupPassengerBlock, 3), new Object[]
-				{
-					" L ",
-					"SDS",
-					"SSS",
-					Character.valueOf('L'), Block.blockLapis,
-					Character.valueOf('S'), plasticSheetItem,
-					Character.valueOf('D'), Block.railDetector
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(railDropoffPassengerBlock, 3), new Object[]
-				{
-					"SSS",
-					"SDS",
-					" L ",
-					Character.valueOf('L'), Block.blockLapis,
-					Character.valueOf('S'), plasticSheetItem,
-					Character.valueOf('D'), Block.railDetector
-				} );
-		
-		for(int i = 0; i < 16; i++)
-		{
-			GameRegistry.addShapelessRecipe(new ItemStack(ceramicDyeItem, 4, i), new ItemStack(Item.clay), new ItemStack(Item.dyePowder, 1, 15 - i));
-			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassBlock, 1, i), new ItemStack(Block.glass), new ItemStack(ceramicDyeItem, 1, i));
-			GameRegistry.addShapelessRecipe(new ItemStack(factoryGlassPaneBlock, 1, i), new ItemStack(Block.thinGlass), new ItemStack(ceramicDyeItem, 1, i));
-			GameRegistry.addShapelessRecipe(new ItemStack(conveyorBlock, 1, i), new ItemStack(conveyorBlock, 1, 16), new ItemStack(ceramicDyeItem, 1, i));
-			
-			GameRegistry.addRecipe(new ItemStack(factoryGlassPaneBlock, 16, i), new Object[]
-					{
-						"GGG",
-						"GGG",
-						Character.valueOf('G'), new ItemStack(factoryGlassBlock, 1, i)
-					} );
-		}
-		
-
-		
-		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 0), new Object[]
-				{
-					"M M",
-					" B ",
-					"M M",
-					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.glowStone,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 1), new Object[]
-				{
-					"M M",
-					" B ",
-					"M M",
-					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.ice,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 2), new Object[]
-				{
-					"M M",
-					" B ",
-					"M M",
-					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.blockLapis,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 3), new Object[]
-				{
-					"M M",
-					" B ",
-					"M M",
-					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.obsidian,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 4), new Object[]
-				{
-					"M M",
-					" B ",
-					"M M",
-					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), new ItemStack(Block.stoneSingleSlab, 1, 0),
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(factoryDecorativeBrickBlock, 8, 5), new Object[]
-				{
-					"M M",
-					" B ",
-					"M M",
-					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.blockSnow,
-				} );
 	}
 
 	@Override

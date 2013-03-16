@@ -4,9 +4,9 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.client.gui.GuiButton;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.net.Packets;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
 
 public class GuiAutoSpawner extends GuiFactoryPowered
 {
@@ -28,7 +28,7 @@ public class GuiAutoSpawner extends GuiFactoryPowered
 		
 		_toggle = new GuiButton(1, xOffset + 7, yOffset + 44, 115, 20, "Spawn Exact Copy: ");
 		
-		controlList.add(_toggle);
+		buttonList.add(_toggle);
 	}
 	
 	@Override

@@ -6,7 +6,7 @@ import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.net.Packets;
-import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import net.minecraft.client.gui.GuiButton;
 
 public class GuiDeepStorageUnit extends GuiFactoryInventory
@@ -43,12 +43,12 @@ public class GuiDeepStorageUnit extends GuiFactoryInventory
 		_dirWest =  new GuiButton(5, xOffset + 67, yOffset + 80, 30, 20, "OUT");
 		_dirEast =  new GuiButton(6, xOffset + 67, yOffset + 40, 30, 20, "OUT");
 		
-		controlList.add(_dirDown);
-		controlList.add(_dirUp);
-		controlList.add(_dirNorth);
-		controlList.add(_dirSouth);
-		controlList.add(_dirWest);
-		controlList.add(_dirEast);
+		buttonList.add(_dirDown);
+		buttonList.add(_dirUp);
+		buttonList.add(_dirNorth);
+		buttonList.add(_dirSouth);
+		buttonList.add(_dirWest);
+		buttonList.add(_dirEast);
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.modhelpers.nei;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import codechicken.nei.MultiItemRange;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
@@ -24,8 +25,8 @@ public class NEIMFRConfig implements IConfigureNEI
 	private void addSubSet()
 	{
 		MultiItemRange subTypes = new MultiItemRange();
-		subTypes.add(MineFactoryReloadedCore.machineBlock0.blockID, 0, 15);
-		subTypes.add(MineFactoryReloadedCore.machineBlock1.blockID, 0, 11);
+		subTypes.add(MineFactoryReloadedCore.machineBlocks.get(0).blockID, 0, Machine.getHighestMetadata(0));
+		subTypes.add(MineFactoryReloadedCore.machineBlocks.get(1).blockID, 0, Machine.getHighestMetadata(1));
 		subTypes.add(MineFactoryReloadedCore.ceramicDyeItem.itemID, 0, 15);
 		subTypes.add(MineFactoryReloadedCore.factoryGlassBlock.blockID, 0, 15);
 		subTypes.add(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, 0, 15);

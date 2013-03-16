@@ -9,12 +9,12 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 
 import powercrystals.core.net.PacketWrapper;
-import powercrystals.minefactoryreloaded.animals.TileEntityAutoSpawner;
-import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
-import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
-import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
-import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
-import powercrystals.minefactoryreloaded.processing.TileEntityDeepStorageUnit;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityChronotyper;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityHarvester;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 

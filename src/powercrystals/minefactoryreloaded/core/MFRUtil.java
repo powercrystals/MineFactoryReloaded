@@ -20,6 +20,7 @@ import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public class MFRUtil
 {

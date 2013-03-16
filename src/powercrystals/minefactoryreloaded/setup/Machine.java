@@ -1,0 +1,224 @@
+package powercrystals.minefactoryreloaded.setup;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.block.BlockFactoryMachine;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioFuelGenerator;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioReactor;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBlockBreaker;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBreeder;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityChronotyper;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityComposter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityEjector;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityFertilizer;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityFisher;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityGrinder;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityHarvester;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLavaFabricator;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquidRouter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityOilFabricator;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityPlanter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityRancher;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntitySewer;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntitySludgeBoiler;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityUnifier;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityVet;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityWeather;
+
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.util.Icon;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.Property;
+
+public class Machine
+{
+	public static Machine Planter = new Machine(0, 0, "Planter", TileEntityPlanter.class, "factoryPlanter");
+	public static Machine Fisher = new Machine(0, 1, "Fisher", TileEntityFisher.class, "factoryFisher");
+	public static Machine Harvester = new Machine(0, 2, "Harvester", TileEntityHarvester.class, "factoryHarvester");
+	public static Machine Rancher = new Machine(0, 3, "Rancher", TileEntityRancher.class, "factoryRancher");
+	public static Machine Fertilizer = new Machine(0, 4, "Fertilizer", TileEntityFertilizer.class, "factoryFertilizer");
+	public static Machine Vet = new Machine(0, 5, "Vet", TileEntityVet.class, "factoryVet");
+	public static Machine ItemCollector = new Machine(0, 6, "ItemCollector", TileEntityCollector.class, "factoryItemCollector");
+	public static Machine BlockBreaker = new Machine(0, 7, "BlockBreaker", TileEntityBlockBreaker.class, "factoryBlockBreaker");
+	public static Machine WeatherCollector = new Machine(0, 8, "WeatherCollector", TileEntityWeather.class, "factoryWeather");
+	public static Machine SludgeBoiler = new Machine(0, 9, "SludgeBoiler", TileEntitySludgeBoiler.class, "factorySludgeBoiler");
+	public static Machine Sewer = new Machine(0, 10, "Sewer", TileEntitySewer.class, "factorySewer");
+	public static Machine Composter = new Machine(0, 11, "Composter", TileEntityComposter.class, "factoryComposter");
+	public static Machine Breeder = new Machine(0, 12, "Breeder", TileEntityBreeder.class, "factoryBreeder");
+	public static Machine Grinder = new Machine(0, 13, "Grinder", TileEntityGrinder.class, "factoryGrinder");
+	public static Machine AutoEnchanter = new Machine(0, 14, "AutoEnchanter", TileEntityAutoEnchanter.class, "factoryEnchanter");
+	public static Machine Chronotyper = new Machine(0, 15, "Chronotyper", TileEntityChronotyper.class, "factoryChronotyper");
+	
+	public static Machine Ejector = new Machine(1, 0, "Ejector", TileEntityEjector.class, "factoryEjector");
+	public static Machine ItemRouter = new Machine(1, 1, "ItemRouter", TileEntityItemRouter.class, "factoryItemRouter");
+	public static Machine LiquidRouter = new Machine(1, 2, "LiquidRouter", TileEntityLiquidRouter.class, "factoryLiquidRouter");
+	public static Machine DeepStorageUnit = new Machine(1, 3, "DeepStorageUnit", TileEntityDeepStorageUnit.class, "factoryDeepStorageUnit");
+	public static Machine LiquiCrafter = new Machine(1, 4, "LiquiCrafter", TileEntityLiquiCrafter.class, "factoryLiquiCrafter");
+	public static Machine LavaFabricator = new Machine(1, 5, "LavaFabricator", TileEntityLavaFabricator.class, "factoryLavaFabricator");
+	public static Machine OilFabricator = new Machine(1, 6, "OilFabricator", TileEntityOilFabricator.class, "factoryOilFabricator");
+	public static Machine AutoJukebox = new Machine(1, 7, "AutoJukebox", TileEntityAutoJukebox.class, "factoryAutoJukebox");
+	public static Machine Unifier = new Machine(1, 8, "Unifier", TileEntityUnifier.class, "factoryUnifier");
+	public static Machine AutoSpawner = new Machine(1, 9, "AutoSpawner", TileEntityAutoSpawner.class, "factoryAutoSpawner");
+	public static Machine BioReactor = new Machine(1, 10, "Ejector", TileEntityBioReactor.class, "factoryBioReactor");
+	public static Machine BioFuelGenerator = new Machine(1, 11, "Ejector", TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator");
+	
+	private static List<Machine> _machines;
+	private static Map<Integer, Machine> _machineMappingss;
+	private static Map<Integer, Integer> _highestMetas;
+
+	private int _blockIndex;
+	private int _meta;
+	private String _name;
+	private String _internalName;
+	private Class<? extends TileEntityFactory> _tileEntityClass;
+	private String _tileEntityName;
+	private Icon[] _iconsActive = new Icon[6];
+	private Icon[] _iconsIdle = new Icon[6];
+	
+	private Property _isRecipeEnabled;
+	
+	private Machine(int blockIndex, int meta, String name, Class<? extends TileEntityFactory> tileEntityClass, String tileEntityName)
+	{
+		_blockIndex = blockIndex;
+		_meta = meta;
+		_name = name;
+		_internalName = "block.mfr.machine." + name.toLowerCase();
+		_tileEntityClass = tileEntityClass;
+		_tileEntityName = tileEntityName;
+
+		if(_machines == null) _machines = new LinkedList<Machine>();
+		if(_machineMappingss == null) _machineMappingss = new HashMap<Integer, Machine>();
+		if(_highestMetas == null) _highestMetas = new HashMap<Integer, Integer>();
+		
+		_machineMappingss.put(_meta | (_blockIndex << 4), this);
+		_machines.add(this);
+		
+		if(_highestMetas.get(_blockIndex) == null || _highestMetas.get(_blockIndex) < _meta)
+		{
+			_highestMetas.put(_blockIndex, _meta);
+		}
+	}
+	
+	public static Machine getMachineFromIndex(int blockIndex, int meta)
+	{
+		return _machineMappingss.get(meta | (blockIndex << 4));
+	}
+	
+	public static Machine getMachineFromId(int blockId, int meta)
+	{
+		return  _machineMappingss.get(meta | (((BlockFactoryMachine)Block.blocksList[blockId]).getBlockIndex() << 4));
+	}
+	
+	public static int getHighestMetadata(int blockIndex)
+	{
+		return _highestMetas.get(blockIndex);
+	}
+	
+	public static List<Machine> values()
+	{
+		return _machines;
+	}
+	
+	public static void LoadTextures(int blockIndex, IconRegister ir)
+	{
+		for(Machine m : _machines)
+		{
+			if(m.getBlockIndex() == blockIndex)
+			{
+				m.loadIcons(ir);
+			}
+		}
+	}
+	
+	
+	
+	
+	public String getInternalName()
+	{
+		return _internalName;
+	}
+	
+	public int getBlockId()
+	{
+		return MineFactoryReloadedCore.machineBlocks.get(_blockIndex).blockID;
+	}
+	
+	public int getMeta()
+	{
+		return _meta;
+	}
+	
+	public int getBlockIndex()
+	{
+		return _blockIndex;
+	}
+	
+	public boolean getIsRecipeEnabled()
+	{
+		return _isRecipeEnabled.getBoolean(true);
+	}
+	
+	public TileEntityFactory getNewTileEntity()
+	{
+		try
+		{
+			TileEntityFactory tileEntity = _tileEntityClass.newInstance();
+			return tileEntity;
+		}
+		catch(IllegalAccessException x)
+		{
+			FMLLog.severe("Unable to create instance of TileEntity from %s", _tileEntityClass.getName());
+			return null;
+		}
+		catch(InstantiationException x)
+		{
+			FMLLog.severe("Unable to create instance of TileEntity from %s", _tileEntityClass.getName());
+			return null;
+		}
+	}
+	
+	public void load(Configuration c)
+	{
+		_isRecipeEnabled = c.get("Machine", _name + ".Recipe.Enabled", true);
+		
+		GameRegistry.registerTileEntity(_tileEntityClass, _tileEntityName);
+	}
+	
+	public void loadIcons(IconRegister ir)
+	{
+		_iconsActive[0] = ir.func_94245_a(getInternalName() + ".active.bottom");
+		_iconsActive[1] = ir.func_94245_a(getInternalName() + ".active.top");
+		_iconsActive[2] = ir.func_94245_a(getInternalName() + ".active.front");
+		_iconsActive[3] = ir.func_94245_a(getInternalName() + ".active.back");
+		_iconsActive[4] = ir.func_94245_a(getInternalName() + ".active.left");
+		_iconsActive[5] = ir.func_94245_a(getInternalName() + ".active.right");
+		_iconsIdle[0] = ir.func_94245_a(getInternalName() + ".idle.bottom");
+		_iconsIdle[1] = ir.func_94245_a(getInternalName() + ".idle.top");
+		_iconsIdle[2] = ir.func_94245_a(getInternalName() + ".idle.front");
+		_iconsIdle[3] = ir.func_94245_a(getInternalName() + ".idle.back");
+		_iconsIdle[4] = ir.func_94245_a(getInternalName() + ".idle.left");
+		_iconsIdle[5] = ir.func_94245_a(getInternalName() + ".idle.right");
+	}
+	
+	public Icon getIcon(int side, boolean isActive)
+	{
+		if(isActive) return _iconsActive[side];
+		return _iconsIdle[side];
+	}
+}

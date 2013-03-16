@@ -1,7 +1,7 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class GuiFactoryPowered extends GuiFactoryInventory
 {

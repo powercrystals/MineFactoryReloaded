@@ -4,14 +4,15 @@ import java.util.List;
 
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
-import powercrystals.minefactoryreloaded.core.TileEntityFactory;
-import powercrystals.minefactoryreloaded.processing.ItemUpgrade;
+import powercrystals.core.position.IRotateableTile;
+import powercrystals.minefactoryreloaded.item.ItemUpgrade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
 public class HarvestAreaManager
 {
-	private TileEntityFactory _owner;
+	private IRotateableTile _owner;
 	
 	private int _originX;
 	private int _originY;
@@ -29,7 +30,7 @@ public class HarvestAreaManager
 	
 	private int _upgradeLevel;
 	
-	public HarvestAreaManager(TileEntityFactory owner, int harvestRadius, int harvestAreaUp, int harvestAreaDown)
+	public HarvestAreaManager(IRotateableTile owner, int harvestRadius, int harvestAreaUp, int harvestAreaDown)
 	{
 		_overrideDirection = ForgeDirection.UNKNOWN;
 		_radius = harvestRadius;
@@ -37,9 +38,9 @@ public class HarvestAreaManager
 		_areaDown = harvestAreaDown;
 		_owner = owner;
 		
-		_originX = owner.xCoord;
-		_originY = owner.yCoord;
-		_originZ = owner.zCoord;
+		_originX = ((TileEntity)owner).xCoord;
+		_originY = ((TileEntity)owner).yCoord;
+		_originZ = ((TileEntity)owner).zCoord;
 		_originOrientation = owner.getDirectionFacing();
 	}
 	
@@ -105,9 +106,9 @@ public class HarvestAreaManager
 		
 		if(        (_overrideDirection != ForgeDirection.UNKNOWN && _originOrientation != _overrideDirection)
 				|| (_overrideDirection == ForgeDirection.UNKNOWN && _originOrientation != _owner.getDirectionFacing())
-				|| _originX != _owner.xCoord
-				|| _originY != _owner.yCoord
-				|| _originZ != _owner.zCoord)
+				|| _originX != ((TileEntity)_owner).xCoord
+				|| _originY != ((TileEntity)_owner).yCoord
+				|| _originZ != ((TileEntity)_owner).zCoord)
 		{
 			recalculateArea();
 		}

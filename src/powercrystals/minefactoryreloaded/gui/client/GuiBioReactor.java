@@ -5,7 +5,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioReactor;
-import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioReactor;
 
 public class GuiBioReactor extends GuiFactoryInventory
 {

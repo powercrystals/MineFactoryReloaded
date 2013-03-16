@@ -8,7 +8,7 @@ import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.net.Packets;
-import powercrystals.minefactoryreloaded.processing.TileEntityAutoEnchanter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
 
 public class GuiAutoEnchanter extends GuiFactoryPowered
 {
@@ -31,8 +31,8 @@ public class GuiAutoEnchanter extends GuiFactoryPowered
 		_dec = new GuiButton(2, (this.width - this.xSize) / 2 + 63, (this.height - this.ySize) / 2 + 53, 20, 20, "-");
 		_inc.enabled = (_enchanter.getTargetLevel() < 30);
 		_dec.enabled = (_enchanter.getTargetLevel() > 1);
-		controlList.add(_inc);
-		controlList.add(_dec);
+		buttonList.add(_inc);
+		buttonList.add(_dec);
 	}
 	
 	@Override

@@ -1,12 +1,13 @@
 package powercrystals.minefactoryreloaded.entity;
 
-import powercrystals.minefactoryreloaded.animals.ItemSafariNet;
+import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumMovingObjectType;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
@@ -95,9 +96,9 @@ public class EntitySafariNet extends EntityThrowable
 		setDead();
 	}
 	
-	public int getIconIndex()
+	public Icon getIcon()
 	{
-		return dataWatcher.getWatchableObjectItemStack(13).getIconIndex() + 3;
+		return dataWatcher.getWatchableObjectItemStack(13).getIconIndex();
 	}
 	
 	@Override

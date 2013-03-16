@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 

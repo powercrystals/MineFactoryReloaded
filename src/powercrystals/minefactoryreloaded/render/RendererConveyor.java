@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.render;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -37,15 +38,14 @@ public class RendererConveyor implements ISimpleBlockRenderingHandler
 	{
 		Tessellator tessellator = Tessellator.instance;
 		int conveyorMetadata = iblockaccess.getBlockMetadata(blockX, blockY, blockZ);
-		int conveyorTextureIndex = renderblocks.overrideBlockTexture >= 0 ? renderblocks.overrideBlockTexture : block.getBlockTexture(iblockaccess, blockX, blockY, blockZ, 0);
+		Icon conveyorTexture = renderblocks.overrideBlockTexture != null ? renderblocks.overrideBlockTexture : block.getBlockTexture(iblockaccess, blockX, blockY, blockZ, 0);
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(iblockaccess, blockX, blockY, blockZ));
 		tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
-		int l1 = (conveyorTextureIndex & 0xf) << 4;
-		int i2 = conveyorTextureIndex & 0xf0;
-		double d = (float)l1 / 256F;
-		double d1 = ((float)l1 + 15.99F) / 256F;
-		double d2 = (float)i2 / 256F;
-		double d3 = ((float)i2 + 15.99F) / 256F;
+		
+		double uStart = conveyorTexture.func_94214_a(0);
+		double uEnd = conveyorTexture.func_94214_a(16);
+		double vStart = conveyorTexture.func_94207_b(0);
+		double vEnd = conveyorTexture.func_94207_b(16);
 		
 		float renderHeight = 0.0625F;
 		
@@ -133,13 +133,13 @@ public class RendererConveyor implements ISimpleBlockRenderingHandler
 			}
 		}
 		
-		tessellator.addVertexWithUV(vert1x, vert1y, vert1z, d1, d2);
-		tessellator.addVertexWithUV(vert2x, vert2y, vert2z, d1, d3);
-		tessellator.addVertexWithUV(vert3x, vert3y, vert3z, d, d3);
-		tessellator.addVertexWithUV(vert4x, vert4y, vert4z, d, d2);
-		tessellator.addVertexWithUV(vert4x, vert4y, vert4z, d, d2);
-		tessellator.addVertexWithUV(vert3x, vert3y, vert3z, d, d3);
-		tessellator.addVertexWithUV(vert2x, vert2y, vert2z, d1, d3);
-		tessellator.addVertexWithUV(vert1x, vert1y, vert1z, d1, d2);
+		tessellator.addVertexWithUV(vert1x, vert1y, vert1z, uEnd, vStart);
+		tessellator.addVertexWithUV(vert2x, vert2y, vert2z, uEnd, vEnd);
+		tessellator.addVertexWithUV(vert3x, vert3y, vert3z, uStart, vEnd);
+		tessellator.addVertexWithUV(vert4x, vert4y, vert4z, uStart, vStart);
+		tessellator.addVertexWithUV(vert4x, vert4y, vert4z, uStart, vStart);
+		tessellator.addVertexWithUV(vert3x, vert3y, vert3z, uStart, vEnd);
+		tessellator.addVertexWithUV(vert2x, vert2y, vert2z, uEnd, vEnd);
+		tessellator.addVertexWithUV(vert1x, vert1y, vert1z, uEnd, vStart);
 	}
 }

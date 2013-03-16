@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
-import powercrystals.minefactoryreloaded.power.TileEntityBioFuelGenerator;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioFuelGenerator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

@@ -7,9 +7,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
-import powercrystals.minefactoryreloaded.processing.TileEntityBioReactor;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioReactor;
 
 public class ContainerBioReactor extends ContainerFactoryInventory
 {

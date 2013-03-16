@@ -1,0 +1,46 @@
+package powercrystals.minefactoryreloaded.item;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
+
+public class ItemCeramicDye extends ItemFactory
+{
+	private String[] _dyeNames = new String[]
+			{ "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
+	private Icon[] _dyeIcons = new Icon[_dyeNames.length];
+	
+	public ItemCeramicDye(int itemId)
+	{
+		super(itemId);
+		setHasSubtypes(true);
+		setMaxDamage(0);
+		setMetaMax(15);
+	}
+	
+	@Override
+	public String getUnlocalizedName(ItemStack s)
+	{
+		int md = Math.min(s.getItemDamage(), _dyeNames.length);
+		return getUnlocalizedName() + "." + _dyeNames[md];
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void func_94581_a(IconRegister ir)
+	{
+		for(int i = 0; i < _dyeIcons.length; i++)
+		{
+			_dyeIcons[i] = ir.func_94245_a(getUnlocalizedName() + "." + _dyeNames[i]);
+		}
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getIconFromDamage(int meta)
+	{
+		meta = Math.min(meta, _dyeIcons.length);
+		return _dyeIcons[meta];
+	}
+}

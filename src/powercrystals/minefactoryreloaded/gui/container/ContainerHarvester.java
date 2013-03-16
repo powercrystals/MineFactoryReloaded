@@ -3,7 +3,7 @@ package powercrystals.minefactoryreloaded.gui.container;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptUpgrade;
-import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityHarvester;
 
 public class ContainerHarvester extends ContainerUpgradable
 {

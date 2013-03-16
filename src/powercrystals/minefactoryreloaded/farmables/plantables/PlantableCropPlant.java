@@ -28,7 +28,7 @@ public class PlantableCropPlant extends PlantableStandard implements IFactoryPla
 		int groundId = world.getBlockId(x, y - 1, z);
 		if(groundId != Block.tilledField.blockID)
 		{
-			world.setBlockWithNotify(x, y - 1, z, Block.tilledField.blockID);
+			world.func_94575_c(x, y - 1, z, Block.tilledField.blockID);
 		}
 	}
 }

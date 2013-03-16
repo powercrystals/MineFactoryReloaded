@@ -2,8 +2,8 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 public class ContainerUnifier extends ContainerFactoryInventory
 {

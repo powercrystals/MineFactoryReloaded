@@ -6,15 +6,15 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
+import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.client.ForgeHooksClient;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 public class GuiFactoryInventory extends GuiContainer
 {
@@ -45,10 +45,8 @@ public class GuiFactoryInventory extends GuiContainer
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float gameTicks, int mouseX, int mouseY)
 	{
-		int texture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
-
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(texture);
+		this.mc.renderEngine.func_98187_b(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
@@ -79,21 +77,18 @@ public class GuiFactoryInventory extends GuiContainer
 	
 	protected void drawTank(int xOffset, int yOffset, int liquidId, int liquidMeta, int level)
 	{
-		int liquidTexture = 0;
-		int gaugeTexture = mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
+		Icon liquidTexture;
 
-		if (liquidId <= 0)
+		if(liquidId <= 0)
 		{
 			return;
 		}
-		if (liquidId < Block.blocksList.length && Block.blocksList[liquidId] != null)
+		if(liquidId < Block.blocksList.length && Block.blocksList[liquidId] != null)
 		{
-			ForgeHooksClient.bindTexture(Block.blocksList[liquidId].getTextureFile(), 0);
-			liquidTexture = Block.blocksList[liquidId].blockIndexInTexture;
+			liquidTexture = Block.blocksList[liquidId].getBlockTextureFromSide(2);
 		}
 		else if	(Item.itemsList[liquidId] != null)
 		{
-			ForgeHooksClient.bindTexture(Item.itemsList[liquidId].getTextureFile(), 0);
 			liquidTexture = Item.itemsList[liquidId].getIconFromDamage(liquidMeta);
 		}
 		else
@@ -101,8 +96,8 @@ public class GuiFactoryInventory extends GuiContainer
 			return;
 		}
 
-		int liquidTexY = liquidTexture / 16;
-		int liquidTexX = liquidTexture - liquidTexY * 16;
+		int liquidTexY = 0; //liquidTexture / 16;
+		int liquidTexX = 0; //liquidTexture - liquidTexY * 16;
 
 		int vertOffset = 0;
 
@@ -121,11 +116,12 @@ public class GuiFactoryInventory extends GuiContainer
 				level = 0;
 			}
 	
+			this.mc.renderEngine.func_98187_b("/terrain.png");
 			drawTexturedModalRect(xOffset, yOffset - x - vertOffset, liquidTexX * 16, liquidTexY * 16 + (16 - x), 16, 16 - (16 - x));
 			vertOffset = vertOffset + 16;
 		}
-		
-		this.mc.renderEngine.bindTexture(gaugeTexture);
+
+		this.mc.renderEngine.func_98187_b(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 		this.drawTexturedModalRect(xOffset, yOffset - 60, 176, 0, 16, 60);
 	}
 

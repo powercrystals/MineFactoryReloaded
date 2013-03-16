@@ -4,9 +4,9 @@ import net.minecraft.client.gui.GuiButton;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.animals.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.net.Packets;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityChronotyper;
 
 public class GuiChronotyper extends GuiFactoryPowered
 {
@@ -30,7 +30,7 @@ public class GuiChronotyper extends GuiFactoryPowered
 		
 		_ageToggle = new GuiButton(1, xOffset + 7, yOffset + 14, 110, 20, "Moving: ");
 		
-		controlList.add(_ageToggle);
+		buttonList.add(_ageToggle);
 	}
 	
 	@Override

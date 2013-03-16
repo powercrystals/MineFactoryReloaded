@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
-import powercrystals.minefactoryreloaded.world.BlockRubberSapling;
+import powercrystals.minefactoryreloaded.block.BlockRubberSapling;
 
 public class FertilizableRubberSapling implements IFactoryFertilizable
 {

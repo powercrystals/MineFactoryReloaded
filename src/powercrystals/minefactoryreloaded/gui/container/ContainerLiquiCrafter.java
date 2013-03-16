@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
 import powercrystals.minefactoryreloaded.gui.slot.SlotViewOnly;
-import powercrystals.minefactoryreloaded.processing.TileEntityLiquiCrafter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;

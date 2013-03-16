@@ -6,7 +6,7 @@ import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
 import powercrystals.minefactoryreloaded.net.Packets;
-import powercrystals.minefactoryreloaded.plants.TileEntityHarvester;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityHarvester;
 
 public class GuiHarvester extends GuiFactoryPowered
 {
@@ -40,9 +40,9 @@ public class GuiHarvester extends GuiFactoryPowered
 		_settingSmallShrooms = new GuiButton(2, xOffset + 7, yOffset + 34, 110, 20, _smallShroomsText);
 		_settingJungleWood = new GuiButton(3, xOffset + 7, yOffset + 54, 110, 20, _jungleWoodText);
 		
-		controlList.add(_settingSilkTouch);
-		controlList.add(_settingSmallShrooms);
-		controlList.add(_settingJungleWood);
+		buttonList.add(_settingSilkTouch);
+		buttonList.add(_settingSmallShrooms);
+		buttonList.add(_settingJungleWood);
 	}
 	
 	@Override

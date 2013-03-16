@@ -56,7 +56,7 @@ public class HarvestableRedPowerFlax implements IFactoryHarvestable
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
-		world.setBlockWithNotify(x, y + 1, z, 0);
+		world.func_94571_i(x, y + 1, z);
 	}
 
 	@Override

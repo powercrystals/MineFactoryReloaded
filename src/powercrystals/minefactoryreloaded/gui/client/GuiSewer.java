@@ -4,8 +4,8 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import powercrystals.minefactoryreloaded.animals.TileEntitySewer;
 import powercrystals.minefactoryreloaded.gui.container.ContainerSewer;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntitySewer;
 
 public class GuiSewer extends GuiFactoryInventory
 {

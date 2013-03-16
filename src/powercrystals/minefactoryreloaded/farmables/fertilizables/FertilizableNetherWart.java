@@ -25,7 +25,7 @@ public class FertilizableNetherWart implements IFactoryFertilizable
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		world.setBlockMetadataWithNotify(x, y, z, 3);
+		world.setBlockMetadataWithNotify(x, y, z, 3, 2);
 		return true;
 	}
 

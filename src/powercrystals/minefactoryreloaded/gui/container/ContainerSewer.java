@@ -1,8 +1,8 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
-import powercrystals.minefactoryreloaded.core.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptUpgrade;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 public class ContainerSewer extends ContainerFactoryInventory
 {

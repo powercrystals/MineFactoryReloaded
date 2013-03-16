@@ -1,7 +1,7 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
-import powercrystals.minefactoryreloaded.transport.TileEntityLiquidRouter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquidRouter;
 
 public class GuiLiquidRouter extends GuiFactoryInventory
 {

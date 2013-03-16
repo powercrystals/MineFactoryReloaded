@@ -1,14 +1,13 @@
 package powercrystals.minefactoryreloaded.render;
 
-import org.lwjgl.opengl.GL11;
-
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.decorative.BlockFactoryGlassPane;
+import powercrystals.minefactoryreloaded.block.BlockFactoryGlassPane;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 
 public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
@@ -19,441 +18,445 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
+	public boolean renderWorldBlock(IBlockAccess blockAccess, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
 	{
 		BlockFactoryGlassPane pane = (BlockFactoryGlassPane)block;
 		
-        int var5 = world.getHeight();
-        Tessellator var6 = Tessellator.instance;
-        GL11.glEnable(GL11.GL_CULL_FACE);
-        var6.setBrightness(pane.getMixedBrightnessForBlock(world, x, y, z));
-        float var7 = 1.0F;
-        int var8 = pane.colorMultiplier(world, x, y, z);
-        float var9 = (float)(var8 >> 16 & 255) / 255.0F;
-        float var10 = (float)(var8 >> 8 & 255) / 255.0F;
-        float var11 = (float)(var8 & 255) / 255.0F;
+		int l = blockAccess.getHeight();
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.setBrightness(pane.getMixedBrightnessForBlock(blockAccess, x, y, z));
+		float f = 1.0F;
+		int i1 = pane.colorMultiplier(blockAccess, x, y, z);
+		float f1 = (float)(i1 >> 16 & 255) / 255.0F;
+		float f2 = (float)(i1 >> 8 & 255) / 255.0F;
+		float f3 = (float)(i1 & 255) / 255.0F;
 
-        if (EntityRenderer.anaglyphEnable)
-        {
-            float var12 = (var9 * 30.0F + var10 * 59.0F + var11 * 11.0F) / 100.0F;
-            float var13 = (var9 * 30.0F + var10 * 70.0F) / 100.0F;
-            float var14 = (var9 * 30.0F + var11 * 70.0F) / 100.0F;
-            var9 = var12;
-            var10 = var13;
-            var11 = var14;
-        }
+		if (EntityRenderer.anaglyphEnable)
+		{
+			float f4 = (f1 * 30.0F + f2 * 59.0F + f3 * 11.0F) / 100.0F;
+			float f5 = (f1 * 30.0F + f2 * 70.0F) / 100.0F;
+			float f6 = (f1 * 30.0F + f3 * 70.0F) / 100.0F;
+			f1 = f4;
+			f2 = f5;
+			f3 = f6;
+		}
 
-        var6.setColorOpaque_F(var7 * var9, var7 * var10, var7 * var11);
-        int var68;
-        int var65;
-        int var66;
+		tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
+		Icon iconFront;
+		Icon iconSide;
+		int metadata;
 
-        var68 = world.getBlockMetadata(x, y, z);
-        var65 = renderer.overrideBlockTexture >= 0 ? renderer.overrideBlockTexture : pane.getBlockTextureFromSideAndMetadata(0, var68);
-        var66 = renderer.overrideBlockTexture >= 0 ? renderer.overrideBlockTexture : pane.getBlockSideTextureFromMetadata(var68);
+		if (renderer.func_94167_b())
+		{
+			iconFront = renderer.overrideBlockTexture;
+			iconSide = renderer.overrideBlockTexture;
+		}
+		else
+		{
+			metadata = blockAccess.getBlockMetadata(x, y, z);
+			iconFront = renderer.func_94165_a(pane, 0, metadata);
+			iconSide = pane.getBlockSideTextureFromMetadata(metadata);
+		}
 
-        var68 = (var65 & 15) << 4;
-        int var15 = var65 & 240;
-        double var16 = (double)((float)var68 / 256.0F);
-        double var18 = (double)(((float)var68 + 7.99F) / 256.0F);
-        double var20 = (double)(((float)var68 + 15.99F) / 256.0F);
-        double var22 = (double)((float)var15 / 256.0F);
-        double var24 = (double)(((float)var15 + 15.99F) / 256.0F);
-        int var26 = (var66 & 15) << 4;
-        int var27 = var66 & 240;
-        double var28 = (double)((float)(var26 + 7) / 256.0F);
-        double var30 = (double)(((float)var26 + 8.99F) / 256.0F);
-        double var32 = (double)((float)var27 / 256.0F);
-        double var34 = (double)((float)(var27 + 8) / 256.0F);
-        double var36 = (double)(((float)var27 + 15.99F) / 256.0F);
-        double var38 = (double)x;
-        double var40 = (double)x + 0.5D;
-        double var42 = (double)(x + 1);
-        double var44 = (double)z;
-        double var46 = (double)z + 0.5D;
-        double var48 = (double)(z + 1);
-        double var50 = (double)x + 0.5D - 0.0625D;
-        double var52 = (double)x + 0.5D + 0.0625D;
-        double var54 = (double)z + 0.5D - 0.0625D;
-        double var56 = (double)z + 0.5D + 0.0625D;
-        boolean var58 = pane.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z - 1));
-        boolean var59 = pane.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z + 1));
-        boolean var60 = pane.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x - 1, y, z));
-        boolean var61 = pane.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x + 1, y, z));
-        boolean var62 = pane.shouldSideBeRendered(world, x, y + 1, z, 1);
-        boolean var63 = pane.shouldSideBeRendered(world, x, y - 1, z, 0);
+		double d0 = (double)iconFront.func_94209_e();
+		double d1 = (double)iconFront.func_94214_a(8.0D);
+		double d2 = (double)iconFront.func_94212_f();
+		double d3 = (double)iconFront.func_94206_g();
+		double d4 = (double)iconFront.func_94210_h();
+		
+		double d5 = (double)iconSide.func_94214_a(7.0D);
+		double d6 = (double)iconSide.func_94214_a(9.0D);
+		double d7 = (double)iconSide.func_94206_g();
+		double d8 = (double)iconSide.func_94207_b(8.0D);
+		double d9 = (double)iconSide.func_94210_h();
+		double d10 = (double)x;
+		double d11 = (double)x + 0.5D;
+		double d12 = (double)(x + 1);
+		double d13 = (double)z;
+		double d14 = (double)z + 0.5D;
+		double d15 = (double)(z + 1);
+		double d16 = (double)x + 0.5D - 0.0625D;
+		double d17 = (double)x + 0.5D + 0.0625D;
+		double d18 = (double)z + 0.5D - 0.0625D;
+		double d19 = (double)z + 0.5D + 0.0625D;
+		boolean connectedNegZ = pane.canThisFactoryPaneConnectToThisBlockID(blockAccess.getBlockId(x, y, z - 1));
+		boolean connectedPosZ = pane.canThisFactoryPaneConnectToThisBlockID(blockAccess.getBlockId(x, y, z + 1));
+		boolean connectedNegX = pane.canThisFactoryPaneConnectToThisBlockID(blockAccess.getBlockId(x - 1, y, z));
+		boolean connectedPosX = pane.canThisFactoryPaneConnectToThisBlockID(blockAccess.getBlockId(x + 1, y, z));
+		boolean renderTop = pane.shouldSideBeRendered(blockAccess, x, y + 1, z, 1);
+		boolean renderBottom = pane.shouldSideBeRendered(blockAccess, x, y - 1, z, 0);
 
-        if ((!var60 || !var61) && (var60 || var61 || var58 || var59))
-        {
-            if (var60 && !var61)
-            {
-                var6.addVertexWithUV(var38, (double)(y + 1), var46, var16, var22);
-                var6.addVertexWithUV(var38, (double)(y + 0), var46, var16, var24);
-                var6.addVertexWithUV(var40, (double)(y + 0), var46, var18, var24);
-                var6.addVertexWithUV(var40, (double)(y + 1), var46, var18, var22);
-                var6.addVertexWithUV(var40, (double)(y + 1), var46, var16, var22);
-                var6.addVertexWithUV(var40, (double)(y + 0), var46, var16, var24);
-                var6.addVertexWithUV(var38, (double)(y + 0), var46, var18, var24);
-                var6.addVertexWithUV(var38, (double)(y + 1), var46, var18, var22);
+		if ((!connectedNegX || !connectedPosX) && (connectedNegX || connectedPosX || connectedNegZ || connectedPosZ))
+		{
+			if (connectedNegX && !connectedPosX)
+			{
+				tessellator.addVertexWithUV(d10, (double)(y + 1), d14, d0, d3);
+				tessellator.addVertexWithUV(d10, (double)(y + 0), d14, d0, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d1, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d1, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d0, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d0, d4);
+				tessellator.addVertexWithUV(d10, (double)(y + 0), d14, d1, d4);
+				tessellator.addVertexWithUV(d10, (double)(y + 1), d14, d1, d3);
 
-                if (!var59 && !var58)
-                {
-                    var6.addVertexWithUV(var40, (double)(y + 1), var56, var28, var32);
-                    var6.addVertexWithUV(var40, (double)(y + 0), var56, var28, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 0), var54, var30, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 1), var54, var30, var32);
-                    var6.addVertexWithUV(var40, (double)(y + 1), var54, var28, var32);
-                    var6.addVertexWithUV(var40, (double)(y + 0), var54, var28, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 0), var56, var30, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 1), var56, var30, var32);
-                }
+				if (!connectedPosZ && !connectedNegZ)
+				{
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d5, d7);
+					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d5, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d18, d6, d7);
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d18, d5, d7);
+					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d5, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d6, d7);
+				}
 
-                if (var62 || y < var5 - 1 && world.isAirBlock(x - 1, y + 1, z))
-                {
-                    var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var56, var30, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var54, var28, var36);
-                    var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var56, var30, var36);
-                    var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var54, var28, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var54, var28, var34);
-                }
+				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x - 1, y + 1, z))
+				{
+					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d9);
+					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d9);
+					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d8);
+				}
 
-                if (var63 || y > 1 && world.isAirBlock(x - 1, y - 1, z))
-                {
-                    var6.addVertexWithUV(var38, (double)y - 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var56, var30, var36);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var54, var28, var36);
-                    var6.addVertexWithUV(var38, (double)y - 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var38, (double)y - 0.01D, var56, var30, var36);
-                    var6.addVertexWithUV(var38, (double)y - 0.01D, var54, var28, var36);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var54, var28, var34);
-                }
-            }
-            else if (!var60 && var61)
-            {
-                var6.addVertexWithUV(var40, (double)(y + 1), var46, var18, var22);
-                var6.addVertexWithUV(var40, (double)(y + 0), var46, var18, var24);
-                var6.addVertexWithUV(var42, (double)(y + 0), var46, var20, var24);
-                var6.addVertexWithUV(var42, (double)(y + 1), var46, var20, var22);
-                var6.addVertexWithUV(var42, (double)(y + 1), var46, var18, var22);
-                var6.addVertexWithUV(var42, (double)(y + 0), var46, var18, var24);
-                var6.addVertexWithUV(var40, (double)(y + 0), var46, var20, var24);
-                var6.addVertexWithUV(var40, (double)(y + 1), var46, var20, var22);
+				if (renderBottom || y > 1 && blockAccess.isAirBlock(x - 1, y - 1, z))
+				{
+					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d9);
+					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d9);
+					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d9);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d8);
+				}
+			}
+			else if (!connectedNegX && connectedPosX)
+			{
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d1, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d1, d4);
+				tessellator.addVertexWithUV(d12, (double)(y + 0), d14, d2, d4);
+				tessellator.addVertexWithUV(d12, (double)(y + 1), d14, d2, d3);
+				tessellator.addVertexWithUV(d12, (double)(y + 1), d14, d1, d3);
+				tessellator.addVertexWithUV(d12, (double)(y + 0), d14, d1, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d2, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d2, d3);
 
-                if (!var59 && !var58)
-                {
-                    var6.addVertexWithUV(var40, (double)(y + 1), var54, var28, var32);
-                    var6.addVertexWithUV(var40, (double)(y + 0), var54, var28, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 0), var56, var30, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 1), var56, var30, var32);
-                    var6.addVertexWithUV(var40, (double)(y + 1), var56, var28, var32);
-                    var6.addVertexWithUV(var40, (double)(y + 0), var56, var28, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 0), var54, var30, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 1), var54, var30, var32);
-                }
+				if (!connectedPosZ && !connectedNegZ)
+				{
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d18, d5, d7);
+					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d5, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d6, d7);
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d5, d7);
+					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d5, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d18, d6, d7);
+				}
 
-                if (var62 || y < var5 - 1 && world.isAirBlock(x + 1, y + 1, z))
-                {
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var56, var30, var32);
-                    var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var54, var28, var32);
-                    var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var56, var30, var32);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var54, var28, var32);
-                }
+				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x + 1, y + 1, z))
+				{
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d7);
+					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d7);
+					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d7);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d7);
+				}
 
-                if (var63 || y > 1 && world.isAirBlock(x + 1, y - 1, z))
-                {
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var56, var30, var32);
-                    var6.addVertexWithUV(var42, (double)y - 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var42, (double)y - 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var54, var28, var32);
-                    var6.addVertexWithUV(var42, (double)y - 0.01D, var56, var30, var32);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var42, (double)y - 0.01D, var54, var28, var32);
-                }
-            }
-        }
-        else
-        {
-            var6.addVertexWithUV(var38, (double)(y + 1), var46, var16, var22);
-            var6.addVertexWithUV(var38, (double)(y + 0), var46, var16, var24);
-            var6.addVertexWithUV(var42, (double)(y + 0), var46, var20, var24);
-            var6.addVertexWithUV(var42, (double)(y + 1), var46, var20, var22);
-            var6.addVertexWithUV(var42, (double)(y + 1), var46, var16, var22);
-            var6.addVertexWithUV(var42, (double)(y + 0), var46, var16, var24);
-            var6.addVertexWithUV(var38, (double)(y + 0), var46, var20, var24);
-            var6.addVertexWithUV(var38, (double)(y + 1), var46, var20, var22);
+				if (renderBottom || y > 1 && blockAccess.isAirBlock(x + 1, y - 1, z))
+				{
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d7);
+					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d7);
+					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d7);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d7);
+				}
+			}
+		}
+		else
+		{
+			tessellator.addVertexWithUV(d10, (double)(y + 1), d14, d0, d3);
+			tessellator.addVertexWithUV(d10, (double)(y + 0), d14, d0, d4);
+			tessellator.addVertexWithUV(d12, (double)(y + 0), d14, d2, d4);
+			tessellator.addVertexWithUV(d12, (double)(y + 1), d14, d2, d3);
+			tessellator.addVertexWithUV(d12, (double)(y + 1), d14, d0, d3);
+			tessellator.addVertexWithUV(d12, (double)(y + 0), d14, d0, d4);
+			tessellator.addVertexWithUV(d10, (double)(y + 0), d14, d2, d4);
+			tessellator.addVertexWithUV(d10, (double)(y + 1), d14, d2, d3);
 
-            if (var62)
-            {
-                var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var56, var30, var36);
-                var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var56, var30, var32);
-                var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var54, var28, var32);
-                var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var54, var28, var36);
-                var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var56, var30, var36);
-                var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var56, var30, var32);
-                var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var54, var28, var32);
-                var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var54, var28, var36);
-            }
-            else
-            {
-                if (y < var5 - 1 && world.isAirBlock(x - 1, y + 1, z))
-                {
-                    var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var56, var30, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var54, var28, var36);
-                    var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var56, var30, var36);
-                    var6.addVertexWithUV(var38, (double)(y + 1) + 0.01D, var54, var28, var36);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var54, var28, var34);
-                }
+			if (renderTop)
+			{
+				tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d9);
+				tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d7);
+				tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d7);
+				tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d9);
+				tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d9);
+				tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d7);
+				tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d7);
+				tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d9);
+			}
+			else
+			{
+				if (y < l - 1 && blockAccess.isAirBlock(x - 1, y + 1, z))
+				{
+					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d9);
+					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d9);
+					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d8);
+				}
 
-                if (y < var5 - 1 && world.isAirBlock(x + 1, y + 1, z))
-                {
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var56, var30, var32);
-                    var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var54, var28, var32);
-                    var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var56, var30, var32);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var40, (double)(y + 1) + 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var42, (double)(y + 1) + 0.01D, var54, var28, var32);
-                }
-            }
+				if (y < l - 1 && blockAccess.isAirBlock(x + 1, y + 1, z))
+				{
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d7);
+					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d7);
+					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d7);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d7);
+				}
+			}
 
-            if (var63)
-            {
-                var6.addVertexWithUV(var38, (double)y - 0.01D, var56, var30, var36);
-                var6.addVertexWithUV(var42, (double)y - 0.01D, var56, var30, var32);
-                var6.addVertexWithUV(var42, (double)y - 0.01D, var54, var28, var32);
-                var6.addVertexWithUV(var38, (double)y - 0.01D, var54, var28, var36);
-                var6.addVertexWithUV(var42, (double)y - 0.01D, var56, var30, var36);
-                var6.addVertexWithUV(var38, (double)y - 0.01D, var56, var30, var32);
-                var6.addVertexWithUV(var38, (double)y - 0.01D, var54, var28, var32);
-                var6.addVertexWithUV(var42, (double)y - 0.01D, var54, var28, var36);
-            }
-            else
-            {
-                if (y > 1 && world.isAirBlock(x - 1, y - 1, z))
-                {
-                    var6.addVertexWithUV(var38, (double)y - 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var56, var30, var36);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var54, var28, var36);
-                    var6.addVertexWithUV(var38, (double)y - 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var38, (double)y - 0.01D, var56, var30, var36);
-                    var6.addVertexWithUV(var38, (double)y - 0.01D, var54, var28, var36);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var54, var28, var34);
-                }
+			if (renderBottom)
+			{
+				tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d9);
+				tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d7);
+				tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d7);
+				tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d9);
+				tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d9);
+				tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d7);
+				tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d7);
+				tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d9);
+			}
+			else
+			{
+				if (y > 1 && blockAccess.isAirBlock(x - 1, y - 1, z))
+				{
+					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d9);
+					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d9);
+					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d9);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d8);
+				}
 
-                if (y > 1 && world.isAirBlock(x + 1, y - 1, z))
-                {
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var56, var30, var32);
-                    var6.addVertexWithUV(var42, (double)y - 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var42, (double)y - 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var54, var28, var32);
-                    var6.addVertexWithUV(var42, (double)y - 0.01D, var56, var30, var32);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var56, var30, var34);
-                    var6.addVertexWithUV(var40, (double)y - 0.01D, var54, var28, var34);
-                    var6.addVertexWithUV(var42, (double)y - 0.01D, var54, var28, var32);
-                }
-            }
-        }
+				if (y > 1 && blockAccess.isAirBlock(x + 1, y - 1, z))
+				{
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d7);
+					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d7);
+					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d7);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d8);
+					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d8);
+					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d7);
+				}
+			}
+		}
 
-        if ((!var58 || !var59) && (var60 || var61 || var58 || var59))
-        {
-            if (var58 && !var59)
-            {
-                var6.addVertexWithUV(var40, (double)(y + 1), var44, var16, var22);
-                var6.addVertexWithUV(var40, (double)(y + 0), var44, var16, var24);
-                var6.addVertexWithUV(var40, (double)(y + 0), var46, var18, var24);
-                var6.addVertexWithUV(var40, (double)(y + 1), var46, var18, var22);
-                var6.addVertexWithUV(var40, (double)(y + 1), var46, var16, var22);
-                var6.addVertexWithUV(var40, (double)(y + 0), var46, var16, var24);
-                var6.addVertexWithUV(var40, (double)(y + 0), var44, var18, var24);
-                var6.addVertexWithUV(var40, (double)(y + 1), var44, var18, var22);
+		if ((!connectedNegZ || !connectedPosZ) && (connectedNegX || connectedPosX || connectedNegZ || connectedPosZ))
+		{
+			if (connectedNegZ && !connectedPosZ)
+			{
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d13, d0, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d13, d0, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d1, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d1, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d0, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d0, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d13, d1, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d13, d1, d3);
 
-                if (!var61 && !var60)
-                {
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var28, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 0), var46, var28, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 0), var46, var30, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var30, var32);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var28, var32);
-                    var6.addVertexWithUV(var52, (double)(y + 0), var46, var28, var36);
-                    var6.addVertexWithUV(var50, (double)(y + 0), var46, var30, var36);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var30, var32);
-                }
+				if (!connectedPosX && !connectedNegX)
+				{
+					tessellator.addVertexWithUV(d16, (double)(y + 1), d14, d5, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 0), d14, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 0), d14, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1), d14, d6, d7);
+					tessellator.addVertexWithUV(d17, (double)(y + 1), d14, d5, d7);
+					tessellator.addVertexWithUV(d17, (double)(y + 0), d14, d5, d9);
+					tessellator.addVertexWithUV(d16, (double)(y + 0), d14, d6, d9);
+					tessellator.addVertexWithUV(d16, (double)(y + 1), d14, d6, d7);
+				}
 
-                if (var62 || y < var5 - 1 && world.isAirBlock(x, y + 1, z - 1))
-                {
-                    var6.addVertexWithUV(var50, (double)(y + 1), var44, var30, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var30, var34);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var28, var34);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var44, var28, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var30, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var44, var30, var34);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var44, var28, var34);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var28, var32);
-                }
+				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x, y + 1, z - 1))
+				{
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d6, d8);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d5, d8);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d5, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d6, d8);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d5, d8);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d5, d7);
+				}
 
-                if (var63 || y > 1 && world.isAirBlock(x, y - 1, z - 1))
-                {
-                    var6.addVertexWithUV(var50, (double)y, var44, var30, var32);
-                    var6.addVertexWithUV(var50, (double)y, var46, var30, var34);
-                    var6.addVertexWithUV(var52, (double)y, var46, var28, var34);
-                    var6.addVertexWithUV(var52, (double)y, var44, var28, var32);
-                    var6.addVertexWithUV(var50, (double)y, var46, var30, var32);
-                    var6.addVertexWithUV(var50, (double)y, var44, var30, var34);
-                    var6.addVertexWithUV(var52, (double)y, var44, var28, var34);
-                    var6.addVertexWithUV(var52, (double)y, var46, var28, var32);
-                }
-            }
-            else if (!var58 && var59)
-            {
-                var6.addVertexWithUV(var40, (double)(y + 1), var46, var18, var22);
-                var6.addVertexWithUV(var40, (double)(y + 0), var46, var18, var24);
-                var6.addVertexWithUV(var40, (double)(y + 0), var48, var20, var24);
-                var6.addVertexWithUV(var40, (double)(y + 1), var48, var20, var22);
-                var6.addVertexWithUV(var40, (double)(y + 1), var48, var18, var22);
-                var6.addVertexWithUV(var40, (double)(y + 0), var48, var18, var24);
-                var6.addVertexWithUV(var40, (double)(y + 0), var46, var20, var24);
-                var6.addVertexWithUV(var40, (double)(y + 1), var46, var20, var22);
+				if (renderBottom || y > 1 && blockAccess.isAirBlock(x, y - 1, z - 1))
+				{
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d6, d8);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d5, d8);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d5, d7);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d6, d8);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d5, d8);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d5, d7);
+				}
+			}
+			else if (!connectedNegZ && connectedPosZ)
+			{
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d1, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d1, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d15, d2, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d15, d2, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d15, d1, d3);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d15, d1, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d2, d4);
+				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d2, d3);
 
-                if (!var61 && !var60)
-                {
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var28, var32);
-                    var6.addVertexWithUV(var52, (double)(y + 0), var46, var28, var36);
-                    var6.addVertexWithUV(var50, (double)(y + 0), var46, var30, var36);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var30, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var28, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 0), var46, var28, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 0), var46, var30, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var30, var32);
-                }
+				if (!connectedPosX && !connectedNegX)
+				{
+					tessellator.addVertexWithUV(d17, (double)(y + 1), d14, d5, d7);
+					tessellator.addVertexWithUV(d17, (double)(y + 0), d14, d5, d9);
+					tessellator.addVertexWithUV(d16, (double)(y + 0), d14, d6, d9);
+					tessellator.addVertexWithUV(d16, (double)(y + 1), d14, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 1), d14, d5, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 0), d14, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 0), d14, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1), d14, d6, d7);
+				}
 
-                if (var62 || y < var5 - 1 && world.isAirBlock(x, y + 1, z + 1))
-                {
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var28, var34);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var48, var28, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var48, var30, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var30, var34);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var48, var28, var34);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var28, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var30, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var48, var30, var34);
-                }
+				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x, y + 1, z + 1))
+				{
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d5, d8);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d6, d8);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d8);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d8);
+				}
 
-                if (var63 || y > 1 && world.isAirBlock(x, y - 1, z + 1))
-                {
-                    var6.addVertexWithUV(var50, (double)y, var46, var28, var34);
-                    var6.addVertexWithUV(var50, (double)y, var48, var28, var36);
-                    var6.addVertexWithUV(var52, (double)y, var48, var30, var36);
-                    var6.addVertexWithUV(var52, (double)y, var46, var30, var34);
-                    var6.addVertexWithUV(var50, (double)y, var48, var28, var34);
-                    var6.addVertexWithUV(var50, (double)y, var46, var28, var36);
-                    var6.addVertexWithUV(var52, (double)y, var46, var30, var36);
-                    var6.addVertexWithUV(var52, (double)y, var48, var30, var34);
-                }
-            }
-        }
-        else
-        {
-            var6.addVertexWithUV(var40, (double)(y + 1), var48, var16, var22);
-            var6.addVertexWithUV(var40, (double)(y + 0), var48, var16, var24);
-            var6.addVertexWithUV(var40, (double)(y + 0), var44, var20, var24);
-            var6.addVertexWithUV(var40, (double)(y + 1), var44, var20, var22);
-            var6.addVertexWithUV(var40, (double)(y + 1), var44, var16, var22);
-            var6.addVertexWithUV(var40, (double)(y + 0), var44, var16, var24);
-            var6.addVertexWithUV(var40, (double)(y + 0), var48, var20, var24);
-            var6.addVertexWithUV(var40, (double)(y + 1), var48, var20, var22);
+				if (renderBottom || y > 1 && blockAccess.isAirBlock(x, y - 1, z + 1))
+				{
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d5, d8);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d6, d8);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d8);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d8);
+				}
+			}
+		}
+		else
+		{
+			tessellator.addVertexWithUV(d11, (double)(y + 1), d15, d0, d3);
+			tessellator.addVertexWithUV(d11, (double)(y + 0), d15, d0, d4);
+			tessellator.addVertexWithUV(d11, (double)(y + 0), d13, d2, d4);
+			tessellator.addVertexWithUV(d11, (double)(y + 1), d13, d2, d3);
+			tessellator.addVertexWithUV(d11, (double)(y + 1), d13, d0, d3);
+			tessellator.addVertexWithUV(d11, (double)(y + 0), d13, d0, d4);
+			tessellator.addVertexWithUV(d11, (double)(y + 0), d15, d2, d4);
+			tessellator.addVertexWithUV(d11, (double)(y + 1), d15, d2, d3);
 
-            if (var62)
-            {
-                var6.addVertexWithUV(var52, (double)(y + 1), var48, var30, var36);
-                var6.addVertexWithUV(var52, (double)(y + 1), var44, var30, var32);
-                var6.addVertexWithUV(var50, (double)(y + 1), var44, var28, var32);
-                var6.addVertexWithUV(var50, (double)(y + 1), var48, var28, var36);
-                var6.addVertexWithUV(var52, (double)(y + 1), var44, var30, var36);
-                var6.addVertexWithUV(var52, (double)(y + 1), var48, var30, var32);
-                var6.addVertexWithUV(var50, (double)(y + 1), var48, var28, var32);
-                var6.addVertexWithUV(var50, (double)(y + 1), var44, var28, var36);
-            }
-            else
-            {
-                if (y < var5 - 1 && world.isAirBlock(x, y + 1, z - 1))
-                {
-                    var6.addVertexWithUV(var50, (double)(y + 1), var44, var30, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var30, var34);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var28, var34);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var44, var28, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var30, var32);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var44, var30, var34);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var44, var28, var34);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var28, var32);
-                }
+			if (renderTop)
+			{
+				tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d9);
+				tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d6, d7);
+				tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d5, d7);
+				tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d9);
+				tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d6, d9);
+				tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d7);
+				tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d7);
+				tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d5, d9);
+			}
+			else
+			{
+				if (y < l - 1 && blockAccess.isAirBlock(x, y + 1, z - 1))
+				{
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d6, d8);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d5, d8);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d5, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d6, d8);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d5, d8);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d5, d7);
+				}
 
-                if (y < var5 - 1 && world.isAirBlock(x, y + 1, z + 1))
-                {
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var28, var34);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var48, var28, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var48, var30, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var30, var34);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var48, var28, var34);
-                    var6.addVertexWithUV(var50, (double)(y + 1), var46, var28, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var46, var30, var36);
-                    var6.addVertexWithUV(var52, (double)(y + 1), var48, var30, var34);
-                }
-            }
+				if (y < l - 1 && blockAccess.isAirBlock(x, y + 1, z + 1))
+				{
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d5, d8);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d6, d8);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d8);
+					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d8);
+				}
+			}
 
-            if (var63)
-            {
-                var6.addVertexWithUV(var52, (double)y, var48, var30, var36);
-                var6.addVertexWithUV(var52, (double)y, var44, var30, var32);
-                var6.addVertexWithUV(var50, (double)y, var44, var28, var32);
-                var6.addVertexWithUV(var50, (double)y, var48, var28, var36);
-                var6.addVertexWithUV(var52, (double)y, var44, var30, var36);
-                var6.addVertexWithUV(var52, (double)y, var48, var30, var32);
-                var6.addVertexWithUV(var50, (double)y, var48, var28, var32);
-                var6.addVertexWithUV(var50, (double)y, var44, var28, var36);
-            }
-            else
-            {
-                if (y > 1 && world.isAirBlock(x, y - 1, z - 1))
-                {
-                    var6.addVertexWithUV(var50, (double)y, var44, var30, var32);
-                    var6.addVertexWithUV(var50, (double)y, var46, var30, var34);
-                    var6.addVertexWithUV(var52, (double)y, var46, var28, var34);
-                    var6.addVertexWithUV(var52, (double)y, var44, var28, var32);
-                    var6.addVertexWithUV(var50, (double)y, var46, var30, var32);
-                    var6.addVertexWithUV(var50, (double)y, var44, var30, var34);
-                    var6.addVertexWithUV(var52, (double)y, var44, var28, var34);
-                    var6.addVertexWithUV(var52, (double)y, var46, var28, var32);
-                }
+			if (renderBottom)
+			{
+				tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d9);
+				tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d6, d7);
+				tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d5, d7);
+				tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d9);
+				tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d6, d9);
+				tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d7);
+				tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d7);
+				tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d5, d9);
+			}
+			else
+			{
+				if (y > 1 && blockAccess.isAirBlock(x, y - 1, z - 1))
+				{
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d6, d8);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d5, d8);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d5, d7);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d6, d7);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d6, d8);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d5, d8);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d5, d7);
+				}
 
-                if (y > 1 && world.isAirBlock(x, y - 1, z + 1))
-                {
-                    var6.addVertexWithUV(var50, (double)y, var46, var28, var34);
-                    var6.addVertexWithUV(var50, (double)y, var48, var28, var36);
-                    var6.addVertexWithUV(var52, (double)y, var48, var30, var36);
-                    var6.addVertexWithUV(var52, (double)y, var46, var30, var34);
-                    var6.addVertexWithUV(var50, (double)y, var48, var28, var34);
-                    var6.addVertexWithUV(var50, (double)y, var46, var28, var36);
-                    var6.addVertexWithUV(var52, (double)y, var46, var30, var36);
-                    var6.addVertexWithUV(var52, (double)y, var48, var30, var34);
-                }
-            }
-        }
+				if (y > 1 && blockAccess.isAirBlock(x, y - 1, z + 1))
+				{
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d5, d8);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d6, d8);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d8);
+					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d5, d9);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d6, d9);
+					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d8);
+				}
+			}
+		}
 
-        return true;
+		return true;
 	}
 
 	@Override

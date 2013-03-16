@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.gui.slot;
 
-import powercrystals.minefactoryreloaded.processing.ItemUpgrade;
+import powercrystals.minefactoryreloaded.item.ItemUpgrade;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

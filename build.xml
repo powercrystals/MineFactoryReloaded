@@ -6,8 +6,8 @@
 	<property name="classes.dir" value="${build.dir}/packaging" />
 	<property name="apiclasses.dir" value="${build.dir}/api-packaging" />
 	<property name="src.dir" value="src" />
-	<property name="forge.buildnum" value="527" />
-	<property name="forge.version" value="1.4.7-6.6.1.${forge.buildnum}" />
+	<property name="forge.buildnum" value="583" />
+	<property name="forge.version" value="1.5-7.7.0.${forge.buildnum}" />
 	<property name="forge.url" value="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${forge.version}.zip" />
 	<property name="forge.dir" value="${build.dir}/forge" />
 	<property name="mcp.dir" value="${forge.dir}/mcp" />
@@ -36,7 +36,6 @@
 			<available file="${mcpsrc.dir}/powercrystals/core" type="dir"/>
 			<available file="${mcpsrc.dir}/buildcraft" type="dir"/>
 			<available file="${mcpsrc.dir}/ic2" type="dir"/>
-			<available file="${mcpsrc.dir}/thaumcraft" type="dir"/>
 			<available file="${mcpsrc.dir}/universalelectricity" type="dir"/>
 			<available file="${lib.dir}/CodeChickenCore 0.7.1.0-deobf.jar"/>
 			<available file="${lib.dir}/NotEnoughItems 1.4.5.1-deobf.jar"/>
@@ -45,16 +44,13 @@
 
 	<target name="get-dependencies" depends="get-version" unless="${have-apis}">
 		<echo message="Downloading IC2 API... " />
-		<get src="http://ic2api.player.to:8080/job/IC2_lf/205/artifact/packages/industrialcraft-2-api_1.113.205-lf.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
+		<get src="http://ic2api.player.to:8080/job/IC2_lf/231/artifact/packages/industrialcraft-2-api_1.115.231-lf.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
 		
 		<echo message="Downloading BuildCraft API..." />
 		<get src="https://github.com/BuildCraft/BuildCraft/archive/master.zip" dest="${download.dir}/BuildCraft-master.zip"/>
 		
 		<echo message="Downloading PowerCrystalsCore... " />
 		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
-		
-		<echo message="Downloading Thaumcraft API... " />
-		<get src="http://porpchan.org/ThaumcraftApi%200.0.3%20for%203.0.3.zip" dest="${download.dir}/tc-api.zip" />
 		
 		<echo message="Downloading CodeChickenCore... " />
 		<get src="http://porpchan.org/CodeChickenCore%200.7.1.0-deobf.jar" dest="${lib.dir}/CodeChickenCore 0.7.1.0-deobf.jar" />
@@ -63,7 +59,7 @@
 		<get src="http://porpchan.org/NotEnoughItems%201.4.5.1-deobf.jar" dest="${lib.dir}/NotEnoughItems 1.4.5.1-deobf.jar" />
 		
 		<echo message="Downloading UniversalElectricity API... " />
-		<get src="http://calclavia.com/download.php?d=ue/&amp;f=UniversalElectricity_v1.2.6.339_api.zip" dest="${download.dir}/ue-api.zip" />
+		<get src="http://calclavia.com/download.php?d=ue/&amp;f=UniversalElectricity_v1.3.0.351.zip" dest="${download.dir}/ue-api.zip" />
 		
 	</target>
 
@@ -77,14 +73,15 @@
 		<mkdir dir="${mcpsrc.dir}/buildcraft/" />
 		<move file="${download.dir}/BuildCraft-master/common/buildcraft/api" todir="${mcpsrc.dir}/buildcraft"/>
 		<move file="${download.dir}/BuildCraft-master/common/buildcraft/core/IMachine.java" todir="${mcpsrc.dir}/buildcraft/core"/>
+
+		<echo message="Deleting extra BC API classes" />
+		<delete dir="${mcpsrc.dir}/buildcraft/api/blueprints/" />
+		<delete dir="${mcpsrc.dir}/buildcraft/api/bptblocks/" />
+		<delete file="${mcpsrc.dir}/buildcraft/api/core/BuildCraftAPI.java" />
 		
 		<echo message="Extracting IC2 API... " />
 		<unzip src="${download.dir}/industrialcraft-2-api.zip" dest="${download.dir}" />
 		<move file="${download.dir}/ic2" todir="${mcpsrc.dir}" />
-		
-		<echo message="Exctracting Thaumcraft API... " />
-		<unzip src="${download.dir}/tc-api.zip" dest="${download.dir}" />
-		<move file="${download.dir}/thaumcraft" todir="${mcpsrc.dir}" />
 		
 		<echo message="Exctracting UniversalElectricity API... " />
 		<unzip src="${download.dir}/ue-api.zip" dest="${download.dir}/universalelectricity/" />

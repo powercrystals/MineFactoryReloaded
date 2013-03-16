@@ -22,11 +22,11 @@ public class FarmingRegistry
 	{
 		try
 		{
-			Class<?> planter = Class.forName("powercrystals.minefactoryreloaded.plants.TileEntityPlanter");
-			if(planter != null)
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
 			{
-				Method reg = planter.getMethod("registerPlantable", IFactoryPlantable.class);
-				reg.invoke(planter, plantable);
+				Method reg = registry.getMethod("registerPlantable", IFactoryPlantable.class);
+				reg.invoke(registry, plantable);
 			}
 		}
 		catch(Exception e)
@@ -44,11 +44,11 @@ public class FarmingRegistry
 	{
 		try
 		{
-			Class<?> harvester = Class.forName("powercrystals.minefactoryreloaded.plants.TileEntityHarvester");
-			if(harvester != null)
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
 			{
-				Method reg = harvester.getMethod("registerHarvestable", IFactoryHarvestable.class);
-				reg.invoke(harvester, harvestable);
+				Method reg = registry.getMethod("registerHarvestable", IFactoryHarvestable.class);
+				reg.invoke(registry, harvestable);
 			}
 		}
 		catch(Exception e)
@@ -66,11 +66,11 @@ public class FarmingRegistry
 	{
 		try
 		{
-			Class<?> fertilizer = Class.forName("powercrystals.minefactoryreloaded.plants.TileEntityFertilizer");
-			if(fertilizer != null)
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
 			{
-				Method reg = fertilizer.getMethod("registerFertilizable", IFactoryFertilizable.class);
-				reg.invoke(fertilizer, fertilizable);
+				Method reg = registry.getMethod("registerFertilizable", IFactoryFertilizable.class);
+				reg.invoke(registry, fertilizable);
 			}
 		}
 		catch(Exception e)
@@ -88,11 +88,11 @@ public class FarmingRegistry
 	{
 		try
 		{
-			Class<?> fertilizerTE = Class.forName("powercrystals.minefactoryreloaded.plants.TileEntityFertilizer");
-			if(fertilizerTE != null)
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
 			{
-				Method reg = fertilizerTE.getMethod("registerFertilizer", IFactoryFertilizer.class);
-				reg.invoke(fertilizerTE, fertilizer);
+				Method reg = registry.getMethod("registerFertilizer", IFactoryFertilizer.class);
+				reg.invoke(registry, fertilizer);
 			}
 		}
 		catch(Exception e)
@@ -110,11 +110,11 @@ public class FarmingRegistry
 	{
 		try
 		{
-			Class<?> rancher = Class.forName("powercrystals.minefactoryreloaded.animals.TileEntityRancher");
-			if(rancher != null)
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
 			{
-				Method reg = rancher.getMethod("registerRanchable", IFactoryRanchable.class);
-				reg.invoke(rancher, ranchable);
+				Method reg = registry.getMethod("registerRanchable", IFactoryRanchable.class);
+				reg.invoke(registry, ranchable);
 			}
 		}
 		catch(Exception e)
@@ -132,11 +132,11 @@ public class FarmingRegistry
 	{
 		try
 		{
-			Class<?> grinder = Class.forName("powercrystals.minefactoryreloaded.animals.TileEntityGrinder");
-			if(grinder != null)
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
 			{
-				Method reg = grinder.getMethod("registerGrindable", IFactoryGrindable.class);
-				reg.invoke(grinder, grindable);
+				Method reg = registry.getMethod("registerGrindable", IFactoryGrindable.class);
+				reg.invoke(registry, grindable);
 			}
 		}
 		catch(Exception e)
@@ -155,11 +155,11 @@ public class FarmingRegistry
 	{
 		try
 		{
-			Class<?> boiler = Class.forName("powercrystals.minefactoryreloaded.processing.TileEntitySludgeBoiler");
-			if(boiler != null)
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
 			{
-				Method reg = boiler.getMethod("registerSludgeDrop", int.class, ItemStack.class);
-				reg.invoke(boiler, weight, drop);
+				Method reg = registry.getMethod("registerSludgeDrop", int.class, ItemStack.class);
+				reg.invoke(registry, weight, drop);
 			}
 		}
 		catch(Exception e)
@@ -235,6 +235,11 @@ public class FarmingRegistry
 		}
 	}
 	
+	/**
+	 * Bans an entity class from being collected by Safari Nets
+	 * 
+	 * @param blacklistedEntity Class to blacklist
+	 */
 	public static void registerSafariNetBlacklist(Class<?> blacklistedEntity)
 	{
 		try

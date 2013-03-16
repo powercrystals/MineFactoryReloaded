@@ -12,9 +12,10 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 
 import powercrystals.core.net.PacketWrapper;
-import powercrystals.minefactoryreloaded.core.TileEntityFactory;
-import powercrystals.minefactoryreloaded.decorative.TileEntityAutoJukebox;
-import powercrystals.minefactoryreloaded.transport.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
@@ -69,7 +70,7 @@ public class ClientPacketHandler implements IPacketHandler
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
-			((EntityPlayer)player).worldObj.setBlockMetadata((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2], (Integer)packetReadout[3]);
+			((EntityPlayer)player).worldObj.setBlockAndMetadataWithNotify((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2], MineFactoryReloadedCore.factoryRoadBlock.blockID, (Integer)packetReadout[3], 6);
 			((EntityPlayer)player).worldObj.markBlockForRenderUpdate((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
 		}
 	}

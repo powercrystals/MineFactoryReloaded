@@ -5,7 +5,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
-import powercrystals.minefactoryreloaded.power.TileEntityBioFuelGenerator;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioFuelGenerator;
 
 public class GuiBioFuelGenerator extends GuiFactoryInventory
 {

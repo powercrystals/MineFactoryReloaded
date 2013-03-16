@@ -74,9 +74,7 @@ public class PlantableCocoa implements IFactoryPlantable
 			blockDirection = 3; // WEST
 		}
 		
-		// func_85104_a -> updateBlockMetadata
-		//Block.blocksList[Block.cocoaPlant.blockID].func_85104_a(world, x, y, z, blockDirection, 0, 0, 0, 0);
-		world.setBlockMetadataWithNotify(x, y, z, Direction.footInvisibleFaceRemap[Direction.vineGrowth[blockDirection]]);
+		world.setBlockMetadataWithNotify(x, y, z, Direction.footInvisibleFaceRemap[Direction.vineGrowth[blockDirection]], 2);
 	}
 
 }

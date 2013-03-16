@@ -54,7 +54,7 @@ public class HarvestablePams implements IFactoryHarvestable
 	{
 		if(world.getBlockMetadata(x, y, z) > 7)
 		{
-			world.setBlockMetadata(x, y, z, 7);
+			world.setBlockMetadataWithNotify(x, y, z, 7, 2);
 		}
 	}
 
