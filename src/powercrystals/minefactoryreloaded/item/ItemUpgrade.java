@@ -19,7 +19,7 @@ public class ItemUpgrade extends ItemFactory
 		super(id);
 		setHasSubtypes(true);
 		setMaxDamage(0);
-		setMetaMax(15);
+		setMetaMax(10);
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

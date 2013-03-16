@@ -202,18 +202,18 @@ public class Machine
 	
 	public void loadIcons(IconRegister ir)
 	{
-		_iconsActive[0] = ir.func_94245_a(getInternalName() + ".active.bottom");
-		_iconsActive[1] = ir.func_94245_a(getInternalName() + ".active.top");
-		_iconsActive[2] = ir.func_94245_a(getInternalName() + ".active.front");
-		_iconsActive[3] = ir.func_94245_a(getInternalName() + ".active.back");
-		_iconsActive[4] = ir.func_94245_a(getInternalName() + ".active.left");
-		_iconsActive[5] = ir.func_94245_a(getInternalName() + ".active.right");
-		_iconsIdle[0] = ir.func_94245_a(getInternalName() + ".idle.bottom");
-		_iconsIdle[1] = ir.func_94245_a(getInternalName() + ".idle.top");
-		_iconsIdle[2] = ir.func_94245_a(getInternalName() + ".idle.front");
-		_iconsIdle[3] = ir.func_94245_a(getInternalName() + ".idle.back");
-		_iconsIdle[4] = ir.func_94245_a(getInternalName() + ".idle.left");
-		_iconsIdle[5] = ir.func_94245_a(getInternalName() + ".idle.right");
+		_iconsActive[0] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".active.bottom");
+		_iconsActive[1] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".active.top");
+		_iconsActive[2] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".active.front");
+		_iconsActive[3] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".active.back");
+		_iconsActive[4] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".active.left");
+		_iconsActive[5] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".active.right");
+		_iconsIdle[0] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".idle.bottom");
+		_iconsIdle[1] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".idle.top");
+		_iconsIdle[2] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".idle.front");
+		_iconsIdle[3] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".idle.back");
+		_iconsIdle[4] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".idle.left");
+		_iconsIdle[5] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getInternalName() + ".idle.right");
 	}
 	
 	public Icon getIcon(int side, boolean isActive)

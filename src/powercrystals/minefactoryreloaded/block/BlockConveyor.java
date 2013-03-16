@@ -59,6 +59,28 @@ public class BlockConveyor extends BlockContainer
     		_iconsStopped[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".stopped." + _names[i]);
     	}
     }
+	
+	@Override
+	public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side)
+	{
+		TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileEntityConveyor)
+		{
+			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
+			if(Util.isRedstonePowered(te))
+			{
+				return _iconsStopped[dyeColor];
+			}
+			else
+			{
+				return _iconsActive[dyeColor];
+			}
+		}
+		else
+		{
+			return _iconsStopped[_iconsStopped.length - 1];
+		}
+	}
 
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity, ItemStack stack)
@@ -169,28 +191,6 @@ public class BlockConveyor extends BlockContainer
 		else if(entity instanceof EntityItem)
 		{
 			((EntityItem)entity).delayBeforeCanPickup = 40;
-		}
-	}
-	
-	@Override
-	public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side)
-	{
-		TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityConveyor)
-		{
-			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
-			if(Util.isRedstonePowered(te))
-			{
-				return _iconsStopped[dyeColor];
-			}
-			else
-			{
-				return _iconsActive[dyeColor];
-			}
-		}
-		else
-		{
-			return _iconsStopped[_iconsStopped.length - 1];
 		}
 	}
 
