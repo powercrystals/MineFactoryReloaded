@@ -87,7 +87,7 @@ public class GuiFactoryInventory extends GuiContainer
 		}
 		if(liquidId < Block.blocksList.length && Block.blocksList[liquidId] != null)
 		{
-			liquidTexture = Block.blocksList[liquidId].getBlockTextureFromSide(2);
+			liquidTexture = Block.blocksList[liquidId].getBlockTextureFromSide(0);
 		}
 		else if	(Item.itemsList[liquidId] != null)
 		{
