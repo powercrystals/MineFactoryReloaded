@@ -22,6 +22,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockFactoryMachine extends BlockContainer
 {
@@ -205,8 +206,26 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 	}
 
 	@Override
+	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return true;
+	}
+	
+	@Override
+	public boolean isBlockNormalCube(World world, int x, int y, int z)
+	{
+		return false;
+	}
+	
+	@Override
 	public boolean canProvidePower()
 	{
 		return true;
+	}
+	
+	@Override
+	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side)
+	{
+		return 0;
 	}
 }
