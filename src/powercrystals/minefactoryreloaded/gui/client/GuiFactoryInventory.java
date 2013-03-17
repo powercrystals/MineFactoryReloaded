@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
 
@@ -78,6 +79,7 @@ public class GuiFactoryInventory extends GuiContainer
 	protected void drawTank(int xOffset, int yOffset, int liquidId, int liquidMeta, int level)
 	{
 		Icon liquidTexture;
+		ItemStack tempStack = new ItemStack(liquidId, 1, liquidMeta);
 
 		if(liquidId <= 0)
 		{
@@ -96,28 +98,33 @@ public class GuiFactoryInventory extends GuiContainer
 			return;
 		}
 
-		int liquidTexY = 0; //liquidTexture / 16;
-		int liquidTexX = 0; //liquidTexture - liquidTexY * 16;
-
 		int vertOffset = 0;
 
 		while(level > 0)
 		{
-			int x = 0;
+			int texHeight = 0;
 	
 			if (level > 16)
 			{
-				x = 16;
+				texHeight = 16;
 				level -= 16;
 			}
 			else
 			{
-				x = level;
+				texHeight = level;
 				level = 0;
 			}
-	
-			this.mc.renderEngine.func_98187_b("/terrain.png");
-			drawTexturedModalRect(xOffset, yOffset - x - vertOffset, liquidTexX * 16, liquidTexY * 16 + (16 - x), 16, 16 - (16 - x));
+			
+            if(tempStack.func_94608_d() == 0)
+            {
+                this.mc.renderEngine.func_98187_b("/terrain.png");
+            }
+            else
+            {
+                this.mc.renderEngine.func_98187_b("/gui/items.png");
+            }
+			
+			this.func_94065_a(xOffset, yOffset - texHeight - vertOffset, liquidTexture, 16, texHeight);
 			vertOffset = vertOffset + 16;
 		}
 

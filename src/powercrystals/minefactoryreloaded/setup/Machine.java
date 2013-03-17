@@ -75,8 +75,8 @@ public class Machine
 	public static Machine AutoJukebox = new Machine(1, 7, "AutoJukebox", TileEntityAutoJukebox.class, "factoryAutoJukebox");
 	public static Machine Unifier = new Machine(1, 8, "Unifier", TileEntityUnifier.class, "factoryUnifier");
 	public static Machine AutoSpawner = new Machine(1, 9, "AutoSpawner", TileEntityAutoSpawner.class, "factoryAutoSpawner");
-	public static Machine BioReactor = new Machine(1, 10, "Ejector", TileEntityBioReactor.class, "factoryBioReactor");
-	public static Machine BioFuelGenerator = new Machine(1, 11, "Ejector", TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator");
+	public static Machine BioReactor = new Machine(1, 10, "BioReactor", TileEntityBioReactor.class, "factoryBioReactor");
+	public static Machine BioFuelGenerator = new Machine(1, 11, "BioFuelGenerator", TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator");
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;

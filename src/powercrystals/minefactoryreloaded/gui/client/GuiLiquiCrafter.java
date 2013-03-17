@@ -3,7 +3,7 @@ package powercrystals.minefactoryreloaded.gui.client;
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
+import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.LiquidStack;
@@ -12,11 +12,12 @@ public class GuiLiquiCrafter extends GuiFactoryInventory
 {
 	private TileEntityLiquiCrafter _crafter;
 
-	public GuiLiquiCrafter(ContainerFactoryInventory container, TileEntityLiquiCrafter router)
+	public GuiLiquiCrafter(ContainerLiquiCrafter container, TileEntityLiquiCrafter router)
 	{
 		super(container, router);
 		_crafter = router;
-		ySize = 256;
+		xSize = 231;
+		ySize = 214;
 	}
 	
 	@Override

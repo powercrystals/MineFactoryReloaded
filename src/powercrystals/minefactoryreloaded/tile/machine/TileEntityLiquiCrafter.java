@@ -26,6 +26,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
+// slots 0-8 craft grid, 9 craft grid output, 10 output, 11-28 resources
 public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implements ITankContainer
 {
 	private boolean _lastRedstoneState;
@@ -46,9 +47,6 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	}
 	
 	private LiquidTank[] _tanks = new LiquidTank[9];
-	
-	//0-8 craft grid, 9 craft grid output, 10 output, 11-28 resources
-	private ItemStack[] _inventory = new ItemStack[29];
 	
 	public TileEntityLiquiCrafter()
 	{
