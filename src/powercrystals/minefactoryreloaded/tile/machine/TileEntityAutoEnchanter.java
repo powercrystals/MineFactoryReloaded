@@ -68,6 +68,10 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	public int getWorkMax()
 	{
+		if(getStackInSlot(0) != null && getStackInSlot(0).itemID == Item.glassBottle.itemID)
+		{
+			return 125;
+		}
 		return (_targetLevel + (int)(Math.pow(((double)_targetLevel) / 7.5, 4) * 10 * getEnchantmentMultiplier()));
 	}
 
@@ -132,7 +136,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 			setWorkDone(0);
 			return false;
 		}
-		if(s.getItem().getItemEnchantability() == 0 || s.itemID == Item.enchantedBook.itemID)
+		if((s.getItem().getItemEnchantability() == 0 && s.itemID != Item.glassBottle.itemID) || s.itemID == Item.enchantedBook.itemID)
 		{
 			setInventorySlotContents(0, null);
 			setInventorySlotContents(1, s);
@@ -141,10 +145,18 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 		}
 		else if(getWorkDone() >= getWorkMax())
 		{
-			AutoEnchantmentHelper.addRandomEnchantment(this._rand, s, _targetLevel);
-			setInventorySlotContents(0, null);
-			setInventorySlotContents(1, s);
-			setWorkDone(0);
+			if(s.itemID == Item.glassBottle.itemID)
+			{
+				setInventorySlotContents(0, null);
+				setInventorySlotContents(1, new ItemStack(Item.expBottle));
+			}
+			else
+			{
+				AutoEnchantmentHelper.addRandomEnchantment(this._rand, s, _targetLevel);
+				setInventorySlotContents(0, null);
+				setInventorySlotContents(1, s);
+				setWorkDone(0);
+			}
 			return true;
 		}
 		else if(_tank.getLiquid() != null && _tank.getLiquid().amount >= 4)
