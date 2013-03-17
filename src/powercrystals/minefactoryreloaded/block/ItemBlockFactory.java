@@ -24,23 +24,23 @@ public class ItemBlockFactory extends ItemBlock
 		_names = names;
 	}
 
-    @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int damage)
-    {
-        return Block.blocksList[getBlockID()].getBlockTextureFromSideAndMetadata(2, damage);
-    }
+	@SideOnly(Side.CLIENT)
+	public Icon getIconFromDamage(int damage)
+	{
+		return Block.blocksList[getBlockID()].getBlockTextureFromSideAndMetadata(2, damage);
+	}
 
-    @Override
-    public int getMetadata(int meta)
-    {
-        return meta;
-    }
+	@Override
+	public int getMetadata(int meta)
+	{
+		return meta;
+	}
 
-    @Override
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        return getUnlocalizedName() + "." + _names[Math.min(stack.getItemDamage(), _names.length - 1)];
-    }
+	@Override
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		return getUnlocalizedName() + "." + _names[Math.min(stack.getItemDamage(), _names.length - 1)];
+	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override

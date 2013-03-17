@@ -32,11 +32,11 @@ public class ItemBlockFactoryMachine extends ItemBlockFactory
 		setNames(names);
 	}
 
-    @Override
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        return _names[Math.min(stack.getItemDamage(), _names.length - 1)];
-    }
+	@Override
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		return _names[Math.min(stack.getItemDamage(), _names.length - 1)];
+	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override

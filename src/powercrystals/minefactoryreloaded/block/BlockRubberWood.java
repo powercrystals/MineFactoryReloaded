@@ -43,7 +43,7 @@ public class BlockRubberWood extends BlockLog
 	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
 	{
 		int logDirection = meta & 12;
-        return logDirection == 0 && (side == 1 || side == 0) ? _iconLogTop : (logDirection == 4 && (side == 5 || side == 4) ? _iconLogTop : (logDirection == 8 && (side == 2 || side == 3) ? _iconLogTop : _iconLogSide));
+		return logDirection == 0 && (side == 1 || side == 0) ? _iconLogTop : (logDirection == 4 && (side == 5 || side == 4) ? _iconLogTop : (logDirection == 8 && (side == 2 || side == 3) ? _iconLogTop : _iconLogSide));
 	}
 	
 	@Override

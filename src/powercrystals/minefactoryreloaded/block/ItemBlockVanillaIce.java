@@ -9,25 +9,25 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockVanillaIce extends ItemBlock
 {
-    public ItemBlockVanillaIce(int blockId)
-    {
-        super(blockId);
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
-    }
+	public ItemBlockVanillaIce(int blockId)
+	{
+		super(blockId);
+		this.setMaxDamage(0);
+		this.setHasSubtypes(true);
+	}
 
-    @Override
-    public int getMetadata(int meta)
-    {
-        return meta;
-    }
+	@Override
+	public int getMetadata(int meta)
+	{
+		return meta;
+	}
 
-    @Override
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        if(stack.getItemDamage() == 1) return getUnlocalizedName() + ".unmelting";
-        return getUnlocalizedName();
-    }
+	@Override
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		if(stack.getItemDamage() == 1) return getUnlocalizedName() + ".unmelting";
+		return getUnlocalizedName();
+	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override

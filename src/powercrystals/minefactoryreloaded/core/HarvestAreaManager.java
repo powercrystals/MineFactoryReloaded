@@ -104,7 +104,7 @@ public class HarvestAreaManager
 			return;
 		}
 		
-		if(        (_overrideDirection != ForgeDirection.UNKNOWN && _originOrientation != _overrideDirection)
+		if(		(_overrideDirection != ForgeDirection.UNKNOWN && _originOrientation != _overrideDirection)
 				|| (_overrideDirection == ForgeDirection.UNKNOWN && _originOrientation != _owner.getDirectionFacing())
 				|| _originX != ((TileEntity)_owner).xCoord
 				|| _originY != ((TileEntity)_owner).yCoord

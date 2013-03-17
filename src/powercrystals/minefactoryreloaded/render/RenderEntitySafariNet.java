@@ -18,7 +18,7 @@ public class RenderEntitySafariNet extends Render
 		GL11.glTranslatef((float)x, (float)y, (float)z);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glScalef(0.5F, 0.5F, 0.5F);
-        this.loadTexture("/gui/items.png");
+		this.loadTexture("/gui/items.png");
 		Tessellator var10 = Tessellator.instance;
 
 		this.renderItemInFlight(var10, ((EntitySafariNet)entity).getIcon());

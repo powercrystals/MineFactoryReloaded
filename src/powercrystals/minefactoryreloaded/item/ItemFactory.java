@@ -28,15 +28,15 @@ public class ItemFactory extends Item
 	@SideOnly(Side.CLIENT)
 	public void func_94581_a(IconRegister par1IconRegister)
 	{
-    	this.iconIndex = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		this.iconIndex = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
-    
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes)
-    {
-        for(int meta = 0; meta <= _metaMax; meta++)
-        {
-            subTypes.add(new ItemStack(itemId, 1, meta));
-        }
-    }
+	{
+		for(int meta = 0; meta <= _metaMax; meta++)
+		{
+			subTypes.add(new ItemStack(itemId, 1, meta));
+		}
+	}
 }

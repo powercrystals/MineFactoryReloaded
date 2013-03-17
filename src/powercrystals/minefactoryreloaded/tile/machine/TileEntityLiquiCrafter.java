@@ -401,16 +401,16 @@ inv:	for(int i = 0; i < 9; i++)
 		return -1;
 	}
 	
-    private ItemStack findMatchingRecipe()
-    {
-    	InventoryCrafting craft = new RemoteInventoryCrafting();
-    	for(int i = 0; i < 9; i++)
-    	{
-    		craft.setInventorySlotContents(i, (_inventory[i] == null ? null : _inventory[i].copy()));
-    	}
-    	
-    	return CraftingManager.getInstance().findMatchingRecipe(craft, worldObj);
-    }
+	private ItemStack findMatchingRecipe()
+	{
+		InventoryCrafting craft = new RemoteInventoryCrafting();
+		for(int i = 0; i < 9; i++)
+		{
+			craft.setInventorySlotContents(i, (_inventory[i] == null ? null : _inventory[i].copy()));
+		}
+		
+		return CraftingManager.getInstance().findMatchingRecipe(craft, worldObj);
+	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound)

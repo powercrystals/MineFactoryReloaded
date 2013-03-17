@@ -49,16 +49,16 @@ public class BlockConveyor extends BlockContainer
 		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void func_94332_a(IconRegister ir)
-    {
-    	for(int i = 0; i < _names.length; i++)
-    	{
-    		_iconsActive[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".active." + _names[i]);
-    		_iconsStopped[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".stopped." + _names[i]);
-    	}
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void func_94332_a(IconRegister ir)
+	{
+		for(int i = 0; i < _names.length; i++)
+		{
+			_iconsActive[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".active." + _names[i]);
+			_iconsStopped[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".stopped." + _names[i]);
+		}
+	}
 	
 	@Override
 	public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side)

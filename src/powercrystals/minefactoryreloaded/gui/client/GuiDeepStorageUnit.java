@@ -37,7 +37,7 @@ public class GuiDeepStorageUnit extends GuiFactoryInventory
 		int yOffset = (this.height - this.ySize) / 2;
 		
 		_dirDown =  new GuiButton(1, xOffset + 7,  yOffset + 80, 30, 20, "OUT");
-		_dirUp =    new GuiButton(2, xOffset + 7,  yOffset + 40, 30, 20, "OUT");
+		_dirUp =	new GuiButton(2, xOffset + 7,  yOffset + 40, 30, 20, "OUT");
 		_dirNorth = new GuiButton(3, xOffset + 37, yOffset + 40, 30, 20, "OUT");
 		_dirSouth = new GuiButton(4, xOffset + 37, yOffset + 80, 30, 20, "OUT");
 		_dirWest =  new GuiButton(5, xOffset + 67, yOffset + 80, 30, 20, "OUT");
@@ -56,7 +56,7 @@ public class GuiDeepStorageUnit extends GuiFactoryInventory
 	{
 		super.updateScreen();
 		_dirDown.displayString  = _dsu.getIsSideOutput(0) ? "OUT" : "IN";
-		_dirUp.displayString    = _dsu.getIsSideOutput(1) ? "OUT" : "IN";
+		_dirUp.displayString	= _dsu.getIsSideOutput(1) ? "OUT" : "IN";
 		_dirNorth.displayString = _dsu.getIsSideOutput(2) ? "OUT" : "IN";
 		_dirSouth.displayString = _dsu.getIsSideOutput(3) ? "OUT" : "IN";
 		_dirWest.displayString  = _dsu.getIsSideOutput(4) ? "OUT" : "IN";

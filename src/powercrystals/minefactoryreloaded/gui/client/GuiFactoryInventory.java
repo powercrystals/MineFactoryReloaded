@@ -115,14 +115,14 @@ public class GuiFactoryInventory extends GuiContainer
 				level = 0;
 			}
 			
-            if(tempStack.func_94608_d() == 0)
-            {
-                this.mc.renderEngine.func_98187_b("/terrain.png");
-            }
-            else
-            {
-                this.mc.renderEngine.func_98187_b("/gui/items.png");
-            }
+			if(tempStack.func_94608_d() == 0)
+			{
+				this.mc.renderEngine.func_98187_b("/terrain.png");
+			}
+			else
+			{
+				this.mc.renderEngine.func_98187_b("/gui/items.png");
+			}
 			
 			this.func_94065_a(xOffset, yOffset - texHeight - vertOffset, liquidTexture, 16, texHeight);
 			vertOffset = vertOffset + 16;

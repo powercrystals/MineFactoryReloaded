@@ -7,13 +7,13 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockFactoryRoad extends ItemBlockFactory
 {
-    public ItemBlockFactoryRoad(int blockId)
-    {
-        super(blockId);
-        setMaxDamage(0);
-        setHasSubtypes(true);
-        setNames(new String[] { "default", "light.off", "light.on", "light.inverted.off", "light.inverted.on" });
-    }
+	public ItemBlockFactoryRoad(int blockId)
+	{
+		super(blockId);
+		setMaxDamage(0);
+		setHasSubtypes(true);
+		setNames(new String[] { "default", "light.off", "light.on", "light.inverted.off", "light.inverted.on" });
+	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override

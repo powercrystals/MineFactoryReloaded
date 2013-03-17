@@ -108,7 +108,7 @@ public class BlockFactoryRoad extends Block
 	}
 	
 	@Override
-    public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
+	public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
 	{
 		return world.getBlockMetadata(x, y, z) > 0;
 	}

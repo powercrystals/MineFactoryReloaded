@@ -7,13 +7,13 @@ import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
 
 public class ItemBlockConveyor extends ItemBlockFactory
 {
-    public ItemBlockConveyor(int blockId)
-    {
-    	super(blockId);
-        setMaxDamage(0);
-        setHasSubtypes(true);
-        setNames(new String[] { "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black", "default" });
-    }
+	public ItemBlockConveyor(int blockId)
+	{
+		super(blockId);
+		setMaxDamage(0);
+		setHasSubtypes(true);
+		setNames(new String[] { "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black", "default" });
+	}
 	
 	@Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
