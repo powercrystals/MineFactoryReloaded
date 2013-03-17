@@ -426,7 +426,10 @@ inv:	for(int i = 0; i < 9; i++)
 			{
 				LiquidStack l = new LiquidStack(0, 0, 0);
 				l.readFromNBT(nbttagcompound1);
-				_tanks[j].setLiquid(l);
+				if(LiquidContainerRegistry.isLiquid(l.asItemStack()))
+				{
+					_tanks[j].setLiquid(l);
+				}
 			}
 		}
 	}

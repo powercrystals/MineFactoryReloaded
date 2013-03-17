@@ -103,6 +103,17 @@ tile.mfr.rail.cargo.pickup.name = Cargo Pickup Rail
 tile.mfr.rail.passenger.dropoff.name = Passenger Dropoff Rail
 tile.mfr.rail.passenger.pickup.name = Passenger Pickup Rail
 
+tile.mfr.liquid.milk.flowing.name = Milk
+tile.mfr.liquid.milk.still.name = Milk
+tile.mfr.liquid.sludge.flowing.name = Sludge
+tile.mfr.liquid.sludge.still.name = Sludge
+tile.mfr.liquid.sewage.flowing.name = Sewage
+tile.mfr.liquid.sewage.still.name = Sewage
+tile.mfr.liquid.essence.flowing.name = Essence
+tile.mfr.liquid.essence.still.name = Essence
+tile.mfr.liquid.biofuel.flowing.name = BioFuel
+tile.mfr.liquid.biofuel.still.name = BioFuel
+
 item.mfr.hammer.name = Precision Sledgehammer
 item.mfr.milk.name = Milk
 item.mfr.sludge.name = Sludge

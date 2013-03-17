@@ -17,13 +17,13 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
@@ -143,7 +143,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		if(resource == null || (resource.itemID != MineFactoryReloadedCore.sludgeItem.itemID))
+		if(resource == null || (resource.itemID != LiquidDictionary.getCanonicalLiquid("sludge").itemID))
 		{
 			return 0;
 		}
@@ -156,14 +156,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		if(resource == null || (resource.itemID != MineFactoryReloadedCore.sludgeItem.itemID))
-		{
-			return 0;
-		}
-		else
-		{
-			return _tank.fill(resource, doFill);
-		}
+		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
 
 	@Override
@@ -187,7 +180,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
-		if(type != null && type.itemID == MineFactoryReloadedCore.sludgeItem.itemID)
+		if(type != null && type.itemID == LiquidDictionary.getCanonicalLiquid("sludge").itemID)
 		{
 			return _tank;
 		}

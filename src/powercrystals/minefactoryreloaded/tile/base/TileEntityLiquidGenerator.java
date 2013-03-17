@@ -135,12 +135,6 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 		super.writeToNBT(nbttagcompound);
 		nbttagcompound.setInteger("ticksSinceLastConsumption", _ticksSinceLastConsumption);
 		nbttagcompound.setInteger("buffer", _buffer);
-		if(_tank.getLiquid() != null)
-		{
-			nbttagcompound.setInteger("tankAmount", _tank.getLiquid().amount);
-			nbttagcompound.setInteger("tankItemId", _tank.getLiquid().itemID);
-			nbttagcompound.setInteger("tankMeta", _tank.getLiquid().itemMeta);
-		}
 	}
 	
 	@Override
@@ -150,12 +144,5 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 		
 		_ticksSinceLastConsumption = nbttagcompound.getInteger("ticksSinceLastConsumption");
 		_buffer = nbttagcompound.getInteger("buffer");
-		
-		_tank.setLiquid(new LiquidStack(nbttagcompound.getInteger("tankItemId"), nbttagcompound.getInteger("tankAmount"), nbttagcompound.getInteger("tankItemMeta")));
-
-		if(_tank.getLiquid() != null && _tank.getLiquid().amount > _tank.getCapacity())
-		{
-			_tank.getLiquid().amount = _tank.getCapacity();
-		}
 	}
 }

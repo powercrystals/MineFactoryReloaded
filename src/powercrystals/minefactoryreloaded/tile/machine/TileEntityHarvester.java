@@ -32,6 +32,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
@@ -165,7 +166,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		harvestable.postHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
-		_tank.fill(new LiquidStack(MineFactoryReloadedCore.sludgeItem, 10), true);
+		_tank.fill(LiquidDictionary.getLiquid("sludge", 10), true);
 
 		return true;
 	}

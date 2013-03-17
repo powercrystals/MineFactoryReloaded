@@ -47,10 +47,6 @@ public class NEIMFRConfig implements IConfigureNEI
 		subTypes.add(MineFactoryReloadedCore.factoryRoadBlock.blockID, 4, 4);
 		
 		subTypes.add(MineFactoryReloadedCore.factoryHammerItem, 0, 0);
-		subTypes.add(MineFactoryReloadedCore.milkItem, 0, 0);
-		subTypes.add(MineFactoryReloadedCore.sludgeItem, 0, 0);
-		subTypes.add(MineFactoryReloadedCore.sewageItem, 0, 0);
-		subTypes.add(MineFactoryReloadedCore.mobEssenceItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.fertilizerItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.plasticSheetItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.rawPlasticItem, 0, 0);
@@ -66,7 +62,6 @@ public class NEIMFRConfig implements IConfigureNEI
 		subTypes.add(MineFactoryReloadedCore.safariNetItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.blankRecordItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.syringeZombieItem, 0, 0);
-		subTypes.add(MineFactoryReloadedCore.bioFuelItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.bioFuelBucketItem, 0, 0);
 		subTypes.add(MineFactoryReloadedCore.upgradeItem, 0, 10);
 		subTypes.add(MineFactoryReloadedCore.safariNetLauncherItem, 0, 0);

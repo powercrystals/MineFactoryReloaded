@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
@@ -147,9 +148,14 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 			}
 		}
 		onFactoryInventoryChanged();
-		if(getTank() != null)
+		
+		int tankItemId = nbttagcompound.getInteger("tankItemId");
+		int tankItemMeta = nbttagcompound.getInteger("tankItemMeta");
+		int tankAmount = nbttagcompound.getInteger("tankAmount");
+		
+		if(getTank() != null && LiquidContainerRegistry.isLiquid(new ItemStack(tankItemId, 1, tankItemMeta)))
 		{
-			((LiquidTank)getTank()).setLiquid(new LiquidStack(nbttagcompound.getInteger("tankItemId"), nbttagcompound.getInteger("tankAmount"), nbttagcompound.getInteger("tankItemMeta")));
+			((LiquidTank)getTank()).setLiquid(new LiquidStack(tankItemId, tankAmount, tankItemMeta));
 
 			if(getTank().getLiquid() != null && getTank().getLiquid().amount > getTank().getCapacity())
 			{

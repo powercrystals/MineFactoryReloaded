@@ -15,6 +15,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -219,7 +220,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		if(resource == null || (resource.itemID != MineFactoryReloadedCore.mobEssenceItem.itemID))
+		if(resource == null || (resource.itemID != LiquidDictionary.getCanonicalLiquid("mobEssence").itemID))
 		{
 			return 0;
 		}
@@ -230,12 +231,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
-		if(resource == null || (resource.itemID != MineFactoryReloadedCore.mobEssenceItem.itemID))
-		{
-			return 0;
-		}
-
-		return _tank.fill(resource, doFill);
+		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
 
 	@Override
@@ -259,7 +255,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
-		if(type != null && type.itemID == MineFactoryReloadedCore.mobEssenceItem.itemID)
+		if(type != null && type.itemID == LiquidDictionary.getCanonicalLiquid("mobEssence").itemID)
 		{
 			return _tank;
 		}

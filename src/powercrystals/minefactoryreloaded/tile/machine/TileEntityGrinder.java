@@ -17,10 +17,10 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
@@ -158,7 +158,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				{
 					e.attackEntityFrom(DamageSource.generic, 50);
 				}
-				_tank.fill(new LiquidStack(MineFactoryReloadedCore.mobEssenceItem, 100), true);
+				_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 				setIdleTicks(20);
 				return true;
 			}
