@@ -94,11 +94,13 @@ public class TileEntityAutoJukebox extends TileEntityFactoryInventory
 			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(),
 					PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.AutoJukeboxPlay, new Object[] { xCoord, yCoord, zCoord, _inventory[0].itemID } ));
 		}
+		worldObj.notifyBlockChange(xCoord, yCoord, zCoord, worldObj.getBlockId(xCoord, yCoord, zCoord));
 	}
 	
 	public void stopRecord()
 	{
 		worldObj.playAuxSFX(1005, xCoord, yCoord, zCoord, 0);
+		worldObj.notifyBlockChange(xCoord, yCoord, zCoord, worldObj.getBlockId(xCoord, yCoord, zCoord));
 	}
 	
 	@Override
