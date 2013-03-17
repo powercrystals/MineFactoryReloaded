@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.MobDrop;
 
 public class GrindableSkeleton implements IFactoryGrindable
 {
@@ -20,20 +21,20 @@ public class GrindableSkeleton implements IFactoryGrindable
 	}
 
 	@Override
-	public List<ItemStack> grind(World world, EntityLiving entity, Random random)
+	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
-		List<ItemStack> drops = new ArrayList<ItemStack>();
+		List<MobDrop> drops = new ArrayList<MobDrop>();
 		EntitySkeleton s = (EntitySkeleton)entity;
 		
 		if(s.getSkeletonType() == 0)
 		{
-			drops.add(new ItemStack(Item.bone));
-			drops.add(new ItemStack(Item.arrow));
+			drops.add(new MobDrop(10, new ItemStack(Item.bone)));
+			drops.add(new MobDrop(10, new ItemStack(Item.arrow)));
 		}
 		else if(s.getSkeletonType() == 1)
 		{
-			drops.add(new ItemStack(Item.bone));
-			drops.add(new ItemStack(Item.coal));
+			drops.add(new MobDrop(10, new ItemStack(Item.bone)));
+			drops.add(new MobDrop(10, new ItemStack(Item.coal)));
 		}
 		
 		return drops;

@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
@@ -21,6 +22,7 @@ import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -129,17 +131,11 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 			if(MFRRegistry.getGrindables().containsKey(e.getClass()))
 			{
 				IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
-				List<ItemStack> drops = r.grind(worldObj, e, getRandom());
+				List<MobDrop> drops = r.grind(worldObj, e, getRandom());
 				if(drops != null)
 				{
-					if(drops.size() == 1)
-					{
-						MFRUtil.dropStack(this, drops.get(0));
-					}
-					else if(drops.size() > 1)
-					{
-						MFRUtil.dropStack(this, drops.get(_rand.nextInt(drops.size())));
-					}
+					ItemStack drop = ((MobDrop)WeightedRandom.getRandomItem(_rand, drops)).getStack();
+					MFRUtil.dropStack(this, drop);
 				}
 				
 				foundMob = true;

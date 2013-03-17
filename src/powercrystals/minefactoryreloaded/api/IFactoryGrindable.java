@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 /**
@@ -26,5 +25,5 @@ public interface IFactoryGrindable
 	 * @param random A Random instance. 
 	 * @return The drops generated when this entity is killed.
 	 */
-	public List<ItemStack> grind(World world, EntityLiving entity, Random random);
+	public List<MobDrop> grind(World world, EntityLiving entity, Random random);
 }

@@ -9,43 +9,44 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.MobDrop;
 
 public class GrindableStandard implements IFactoryGrindable
 {
-	private Class<?> _ranchableClass;
-	private List<ItemStack> _drops;
+	private Class<?> _grindableClass;
+	private List<MobDrop> _drops;
 	
-	public GrindableStandard(Class<?> entityToRanch, ItemStack[] dropStacks)
+	public GrindableStandard(Class<?> entityToGrind, MobDrop[] dropStacks)
 	{
-		_ranchableClass = entityToRanch;
-		_drops = new ArrayList<ItemStack>();
-		for(ItemStack d : dropStacks)
+		_grindableClass = entityToGrind;
+		_drops = new ArrayList<MobDrop>();
+		for(MobDrop d : dropStacks)
 		{
 			_drops.add(d);
 		}
 	}
 	
-	public GrindableStandard(Class<?> entityToRanch, ItemStack dropStack)
+	public GrindableStandard(Class<?> entityToGrind, ItemStack dropStack)
 	{
-		_ranchableClass = entityToRanch;
-		_drops = new ArrayList<ItemStack>();
-		_drops.add(dropStack);
+		_grindableClass = entityToGrind;
+		_drops = new ArrayList<MobDrop>();
+		_drops.add(new MobDrop(10, dropStack));
 	}
 	
-	public GrindableStandard(Class<?> entityToRanch)
+	public GrindableStandard(Class<?> entityToGrind)
 	{
-		_ranchableClass = entityToRanch;
-		_drops = new ArrayList<ItemStack>();
+		_grindableClass = entityToGrind;
+		_drops = new ArrayList<MobDrop>();
 	}
 	
 	@Override
 	public Class<?> getGrindableEntity()
 	{
-		return _ranchableClass;
+		return _grindableClass;
 	}
 
 	@Override
-	public List<ItemStack> grind(World world, EntityLiving entity, Random random)
+	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
 		return _drops;
 	}

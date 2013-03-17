@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.MobDrop;
 
 public class GrindableZombiePigman implements IFactoryGrindable
 {
@@ -20,15 +21,15 @@ public class GrindableZombiePigman implements IFactoryGrindable
 	}
 
 	@Override
-	public List<ItemStack> grind(World world, EntityLiving entity, Random random)
+	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
-		List<ItemStack> drops = new ArrayList<ItemStack>();
-		drops.add(new ItemStack(Item.rottenFlesh));
-		drops.add(new ItemStack(Item.goldNugget));
+		List<MobDrop> drops = new ArrayList<MobDrop>();
+		drops.add(new MobDrop(10, new ItemStack(Item.rottenFlesh)));
+		drops.add(new MobDrop(10, new ItemStack(Item.goldNugget)));
 		
 		if(random.nextInt(1000) == 0)
 		{
-			drops.add(new ItemStack(Item.sign));
+			drops.add(new MobDrop(10, new ItemStack(Item.sign)));
 		}
 		
 		return drops;
