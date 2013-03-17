@@ -22,6 +22,26 @@
   ]
 },
 {
+  "modid": "MFReloaded|CompatBiomesOPlenty",
+  "name": "MFR Compat: Biomes O' Plenty",
+  "description": "Compatibility addon for Biomes O' Plenty",
+  "version": "2.1.2",
+  "mcversion": "1.4.6",
+  "url": "http://www.minecraftforum.net/topic/1629898-",
+  "updateUrl": "",
+  "authors": [
+    "PowerCrystals"
+  ],
+  "credits": "All the contributors",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"MFReloaded",
+  "dependencies": [
+    "MFReloaded"
+  ]
+},
+{
   "modid": "MFReloaded|CompatExtraBiomes",
   "name": "MFR Compat: ExtraBiomes",
   "description": "Compatibility addon for ExtraBiomes",
@@ -125,26 +145,6 @@
   "modid": "MFReloaded|CompatSoulShards",
   "name": "MFR Compat: SoulShards",
   "description": "Compatibility addon for SoulShards",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MFReloaded",
-  "dependencies": [
-    "MFReloaded"
-  ]
-},
-{
-  "modid": "MFReloaded|CompatThaumcraft",
-  "name": "MFR Compat: Thaumcraft",
-  "description": "Compatibility addon for Thaumcraft",
   "version": "2.1.2",
   "mcversion": "1.4.6",
   "url": "http://www.minecraftforum.net/topic/1629898-",
