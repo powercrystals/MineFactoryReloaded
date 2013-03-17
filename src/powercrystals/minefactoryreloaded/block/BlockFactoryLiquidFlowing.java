@@ -2,12 +2,19 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.Random;
 
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlowing;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -27,6 +34,35 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 		super(flowingId, Material.water);
 		setUnlocalizedName("mfr.liquid." + liquidName + ".flowing");
 		_stillId = stillId;
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+	{
+		if(entity instanceof EntityPlayer)
+		{
+			if(blockID == MineFactoryReloadedCore.sludgeFlowing.blockID)
+			{
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 12 * 20, 0));
+			}
+			else if(blockID == MineFactoryReloadedCore.sewageFlowing.blockID)
+			{
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.hunger.id, 12 * 20, 0));
+			}
+			else if(blockID == MineFactoryReloadedCore.essenceFlowing.blockID)
+			{
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.nightVision.id, 60 * 20, 0));
+			}
+			else if(blockID == MineFactoryReloadedCore.milkFlowing.blockID)
+			{
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.digSpeed.id, 6 * 20, 0));
+			}
+			else if(blockID == MineFactoryReloadedCore.biofuelFlowing.blockID)
+			{
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 12 * 20, 0));
+			}
+		}
+		super.onEntityCollidedWithBlock(world, x, y, z, entity);
 	}
 	
 	@SideOnly(Side.CLIENT)
