@@ -67,7 +67,10 @@ public class BlockFactoryGlassPane extends BlockPane
 	
 	public boolean canThisFactoryPaneConnectToThisBlockID(int blockId)
 	{
-		return Block.opaqueCubeLookup[blockId] || blockId == this.blockID || blockId == Block.glass.blockID || blockId == MineFactoryReloadedCore.factoryGlassPaneBlock.blockID ||
+		return Block.opaqueCubeLookup[blockId] ||
+				blockId == Block.glass.blockID ||
+				blockId == MineFactoryReloadedCore.factoryGlassPaneBlock.blockID ||
+				blockId == MineFactoryReloadedCore.factoryGlassBlock.blockID ||
 				(blockId == Block.thinGlass.blockID && MineFactoryReloadedCore.vanillaOverrideGlassPane.getBoolean(true));
 	}
 	
