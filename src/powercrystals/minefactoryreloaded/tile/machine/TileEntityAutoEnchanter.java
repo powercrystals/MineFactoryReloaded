@@ -70,7 +70,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	{
 		if(getStackInSlot(0) != null && getStackInSlot(0).itemID == Item.glassBottle.itemID)
 		{
-			return 125;
+			return 250;
 		}
 		return (_targetLevel + (int)(Math.pow(((double)_targetLevel) / 7.5, 4) * 10 * getEnchantmentMultiplier()));
 	}
