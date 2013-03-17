@@ -17,7 +17,7 @@ public class BiomesOPlenty
 	@Init
 	public static void load(FMLInitializationEvent ev)
 	{
-		if(!Loader.isModLoaded("EmasherWorldGen"))
+		if(!Loader.isModLoaded("BiomesOPlenty"))
 		{
 			FMLLog.warning("Biomes O' Plenty missing - MFR Biomes O' Plenty Compat not loading");
 			return;
@@ -55,5 +55,4 @@ public class BiomesOPlenty
 			e.printStackTrace();
 		}
 	}
-	
 }
