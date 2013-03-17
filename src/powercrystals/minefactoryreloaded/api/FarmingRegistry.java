@@ -169,6 +169,29 @@ public class FarmingRegistry
 	}
 	
 	/**
+	 * Registers specific food to use in the Breeder (instead of wheat) for a given mob.
+	 * 
+	 * @param entityToBreed Entity this food will be used with. 
+	 * @param food The item to use when breeding this entity.
+	 */
+	public static void registerBreederFood(Class<?> entityToBreed, ItemStack food)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerBreederFood", Class.class, ItemStack.class);
+				reg.invoke(registry, entityToBreed, food);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Registers a Safari Net handler to properly serialize a type of mob.
 	 * 
 	 * @param handler The Safari Net handler.

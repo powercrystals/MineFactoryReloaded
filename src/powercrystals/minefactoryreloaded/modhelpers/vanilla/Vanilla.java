@@ -199,6 +199,11 @@ public class Vanilla
 		FarmingRegistry.registerSludgeDrop(15, new ItemStack(Item.clay, 4));
 		FarmingRegistry.registerSludgeDrop(1, new ItemStack(Block.slowSand));
 		
+		FarmingRegistry.registerBreederFood(EntityChicken.class, new ItemStack(Item.seeds));
+		FarmingRegistry.registerBreederFood(EntityWolf.class, new ItemStack(Item.porkCooked));
+		FarmingRegistry.registerBreederFood(EntityOcelot.class, new ItemStack(Item.fishRaw));
+		FarmingRegistry.registerBreederFood(EntityPig.class, new ItemStack(Item.carrot));
+		
 		FarmingRegistry.registerSafariNetHandler(new EntityLivingHandler());
 		FarmingRegistry.registerSafariNetHandler(new EntityAgeableHandler());
 		FarmingRegistry.registerSafariNetHandler(new SheepHandler());

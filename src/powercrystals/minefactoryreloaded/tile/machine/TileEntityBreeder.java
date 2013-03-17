@@ -9,8 +9,10 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 import powercrystals.core.util.UtilInventory;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
@@ -67,12 +69,6 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 	@Override
 	protected boolean activateMachine()
 	{
-		int stackIndex = UtilInventory.findFirstStack(this, Item.wheat.itemID, 0);
-		if(stackIndex < 0)
-		{
-			return false;
-		}
-		
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 		
 		for(Object o : entities)
@@ -80,6 +76,17 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 			if(o != null && o instanceof EntityAnimal)
 			{
 				EntityAnimal a = ((EntityAnimal)o);
+				ItemStack food = MFRRegistry.getBreederFoods().get(a.getClass());
+				if(food == null)
+				{
+					food = new ItemStack(Item.wheat);
+				}
+				int stackIndex = UtilInventory.findFirstStack(this, food.itemID, food.getItemDamage());
+				if(stackIndex < 0)
+				{
+					continue;
+				}
+				
 				if(!a.isInLove() && a.getGrowingAge() == 0)
 				{
 					a.inLove = 600;

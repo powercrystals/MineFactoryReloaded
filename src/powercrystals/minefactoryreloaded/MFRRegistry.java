@@ -27,6 +27,7 @@ public abstract class MFRRegistry
 	private static Map<Class<?>, IFactoryRanchable> _ranchables = new HashMap<Class<?>, IFactoryRanchable>();
 	private static Map<Class<?>, IFactoryGrindable> _grindables = new HashMap<Class<?>, IFactoryGrindable>();
 	private static List<WeightedRandomItem> _sludgeDrops  = new ArrayList<WeightedRandomItem>();
+	private static Map<Class<?>, ItemStack> _breederFoods = new HashMap<Class<?>, ItemStack>();
 	
 	private static List<IMobEggHandler> _eggHandlers = new ArrayList<IMobEggHandler>();
 	private static List<ISafariNetHandler> _safariNetHandlers = new ArrayList<ISafariNetHandler>();
@@ -99,12 +100,22 @@ public abstract class MFRRegistry
 	
 	public static void registerSludgeDrop(int weight, ItemStack drop)
 	{
-		_sludgeDrops.add(new WeightedRandomItemStack(weight, drop));
+		_sludgeDrops.add(new WeightedRandomItemStack(weight, drop.copy()));
 	}
 	
 	public static List<WeightedRandomItem> getSludgeDrops()
 	{
 		return _sludgeDrops;
+	}
+
+	public static void registerBreederFood(Class<?> entityToBreed, ItemStack food)
+	{
+		_breederFoods.put(entityToBreed, food.copy());
+	}
+	
+	public static Map<Class<?>, ItemStack> getBreederFoods()
+	{
+		return _breederFoods;
 	}
 	
 	public static void registerMobEggHandler(IMobEggHandler handler)
