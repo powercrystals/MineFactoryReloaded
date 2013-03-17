@@ -23,6 +23,7 @@ import net.minecraftforge.liquids.LiquidDictionary.LiquidRegisterEvent;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import powercrystals.core.mod.BaseMod;
 import powercrystals.core.updater.IUpdateableMod;
 import powercrystals.core.updater.UpdateManager;
 import powercrystals.minefactoryreloaded.block.BlockConveyor;
@@ -88,23 +89,20 @@ import cpw.mods.fml.relauncher.Side;
 @Mod(modid = MineFactoryReloadedCore.modId, name = MineFactoryReloadedCore.modName, version = MineFactoryReloadedCore.version,
 dependencies = "after:BuildCraft|Core;after:BuildCraft|Factory;after:BuildCraft|Energy;after:BuildCraft|Builders;after:BuildCraft|Transport;after:IC2;required-after:PowerCrystalsCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false,
-clientPacketHandlerSpec = @SidedPacketHandler(channels = { MineFactoryReloadedCore.modId }, packetHandler = ClientPacketHandler.class),
-serverPacketHandlerSpec = @SidedPacketHandler(channels = { MineFactoryReloadedCore.modId }, packetHandler = ServerPacketHandler.class),
+clientPacketHandlerSpec = @SidedPacketHandler(channels = { MineFactoryReloadedCore.modNetworkChannel }, packetHandler = ClientPacketHandler.class),
+serverPacketHandlerSpec = @SidedPacketHandler(channels = { MineFactoryReloadedCore.modNetworkChannel }, packetHandler = ServerPacketHandler.class),
 connectionHandler = ConnectionHandler.class)
-public class MineFactoryReloadedCore implements IUpdateableMod
+public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 {
 	@SidedProxy(clientSide = "powercrystals.minefactoryreloaded.net.ClientProxy", serverSide = "powercrystals.minefactoryreloaded.net.CommonProxy")
 	public static IMFRProxy proxy;
 	
-	public static final String modId = "MFReloaded";
+	public static final String modId = "MineFactoryReloaded";
+	public static final String modNetworkChannel = "MFReloaded";
 	public static final String version = "1.4.6R2.4.0B1";
 	public static final String modName = "Minefactory Reloaded";
 	
-	public static final String textureFolder = "/powercrystals/minefactoryreloaded/textures/";
-	public static final String terrainTexture = textureFolder + "terrain_0.png";
-	public static final String itemTexture = textureFolder + "items_0.png";
-	public static final String animationFolder = textureFolder + "animations/";
-	public static final String guiFolder = textureFolder + "gui/";
+	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
 	
 	public static int renderIdConveyor = 1000;
 	public static int renderIdFactoryGlassPane = 1001;
@@ -239,7 +237,12 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	@PreInit
 	public void preInit(FMLPreInitializationEvent evt)
 	{
-		loadConfig(evt.getSuggestedConfigurationFile());
+		setConfigFolderBase(evt.getModConfigurationDirectory());
+		
+		loadConfig(getCommonConfig());
+		
+		extractLang(new String[] { "en_US" });
+		loadLang();
 	}
 
 	@Init
@@ -517,12 +520,6 @@ public class MineFactoryReloadedCore implements IUpdateableMod
 	public String getModName()
 	{
 		return modName;
-	}
-
-	@Override
-	public String getModFolder()
-	{
-		return "MineFactoryReloaded";
 	}
 
 	@Override

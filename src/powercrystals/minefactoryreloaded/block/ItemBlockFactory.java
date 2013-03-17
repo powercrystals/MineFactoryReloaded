@@ -12,7 +12,7 @@ import net.minecraft.util.Icon;
 
 public class ItemBlockFactory extends ItemBlock
 {
-	private String[] _names;
+	protected String[] _names;
 	
 	public ItemBlockFactory(int id)
 	{

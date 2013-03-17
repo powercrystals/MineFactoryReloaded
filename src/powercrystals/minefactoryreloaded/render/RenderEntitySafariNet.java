@@ -3,7 +3,6 @@ package powercrystals.minefactoryreloaded.render;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
 
 import net.minecraft.client.renderer.Tessellator;
@@ -19,7 +18,7 @@ public class RenderEntitySafariNet extends Render
 		GL11.glTranslatef((float)x, (float)y, (float)z);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glScalef(0.5F, 0.5F, 0.5F);
-		this.loadTexture(MineFactoryReloadedCore.itemTexture);
+        this.loadTexture("/gui/items.png");
 		Tessellator var10 = Tessellator.instance;
 
 		this.renderItemInFlight(var10, ((EntitySafariNet)entity).getIcon());

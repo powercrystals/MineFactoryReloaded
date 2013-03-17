@@ -33,7 +33,7 @@ public class BlockFactoryMachine extends BlockContainer
 		setHardness(0.5F);
 		setStepSound(soundMetalFootstep);
 		setCreativeTab(MFRCreativeTab.tab);
-		setUnlocalizedName("block.mfr.machine." + index);
+		setUnlocalizedName("mfr.machine." + index);
 		_mfrMachineBlockIndex = index;
 	}
 	

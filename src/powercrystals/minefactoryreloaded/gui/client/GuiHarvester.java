@@ -59,17 +59,17 @@ public class GuiHarvester extends GuiFactoryPowered
 	{
 		if(button.id == 1)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.HarvesterButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.HarvesterButton,
 					new Object[] { _harvester.xCoord, _harvester.yCoord, _harvester.zCoord, "silkTouch", getNewSettingValue("silkTouch") }));
 		}
 		else if(button.id == 2)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.HarvesterButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.HarvesterButton,
 					new Object[] { _harvester.xCoord, _harvester.yCoord, _harvester.zCoord, "harvestSmallMushrooms", getNewSettingValue("harvestSmallMushrooms") }));
 		}
 		else if(button.id == 3)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.HarvesterButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.HarvesterButton,
 					new Object[] { _harvester.xCoord, _harvester.yCoord, _harvester.zCoord, "harvestJungleWood", getNewSettingValue("harvestJungleWood") }));
 		}
 	}

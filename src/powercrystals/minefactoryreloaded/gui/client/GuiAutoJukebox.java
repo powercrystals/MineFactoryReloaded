@@ -46,7 +46,7 @@ public class GuiAutoJukebox extends GuiFactoryInventory
 	@Override
 	protected void actionPerformed(GuiButton button)
 	{
-		PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.AutoJukeboxButton,
+		PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.AutoJukeboxButton,
 				new Object[] { _jukebox.xCoord, _jukebox.yCoord, _jukebox.zCoord, button.id }));
 	}
 }

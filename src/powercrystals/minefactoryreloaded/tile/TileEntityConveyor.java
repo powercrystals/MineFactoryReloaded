@@ -34,7 +34,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile
 	@Override
 	public Packet getDescriptionPacket()
 	{
-		return PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.ConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye });
+		return PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.ConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye });
 	}
 	
 	@Override

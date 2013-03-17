@@ -43,7 +43,7 @@ public class GuiAutoSpawner extends GuiFactoryPowered
 	{
 		if(button.id == 1)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modId, Packets.AutoSpawnerButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.AutoSpawnerButton,
 					new Object[] { _tileEntity.xCoord, _tileEntity.yCoord, _tileEntity.zCoord }));
 		}
 	}
