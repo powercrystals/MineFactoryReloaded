@@ -67,7 +67,7 @@ public class BlockFactoryLiquidStill extends BlockStationary
 	
 	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
 	{
-		return side > 1 ? _iconStill : _iconFlowing;
+		return side <= 1 ? _iconStill : _iconFlowing;
 	}
 	
 	@Override
