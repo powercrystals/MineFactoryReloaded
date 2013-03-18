@@ -3,9 +3,11 @@ package powercrystals.minefactoryreloaded.farmables.plantables;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockNetherStalk;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class PlantableNetherWart implements IFactoryPlantable
 {
@@ -30,7 +32,10 @@ public class PlantableNetherWart implements IFactoryPlantable
 	@Override
 	public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack)
 	{
-		return world.getBlockId(x, y - 1, z) == Block.slowSand.blockID && world.isAirBlock(x, y, z);
+		int groundId = world.getBlockId(x, y - 1, z);
+		return (world.getBlockId(x, y - 1, z) == Block.slowSand.blockID
+				|| Block.blocksList[groundId].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockNetherStalk)Block.netherStalk)))
+			&& world.isAirBlock(x, y, z);
 	}
 
 	@Override

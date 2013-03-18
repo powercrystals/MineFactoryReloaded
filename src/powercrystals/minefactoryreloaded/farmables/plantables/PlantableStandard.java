@@ -5,6 +5,8 @@ import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.IPlantable;
 
 /*
  * Used for directly placing blocks (ie saplings) and items (ie sugarcane). Pass in source ID to constructor,
@@ -13,8 +15,8 @@ import net.minecraft.world.World;
 
 public class PlantableStandard implements IFactoryPlantable
 {
-	private int sourceId;
-	private int plantedBlockId;
+	protected int _sourceId;
+	protected int _plantedBlockId;
 	
 	public PlantableStandard(int sourceId, int plantedBlockId)
 	{
@@ -22,16 +24,22 @@ public class PlantableStandard implements IFactoryPlantable
 		{
 			throw new IllegalArgumentException("Passed an Item ID to FactoryPlantableStandard's planted block argument");
 		}
-		this.sourceId = sourceId;
-		this.plantedBlockId = plantedBlockId;
+		this._sourceId = sourceId;
+		this._plantedBlockId = plantedBlockId;
 	}
 	
 	@Override
 	public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack)
 	{
-		int blockId = world.getBlockId(x, y, z);
-		return Block.blocksList[plantedBlockId].canPlaceBlockAt(world, x, y, z) && 
-			(Block.blocksList[blockId] == null || Block.blocksList[blockId].isAirBlock(world, x, y, z));
+		int groundId = world.getBlockId(x, y - 1, z);
+		if(!world.isAirBlock(x, y, z))
+		{
+			return false;
+		}
+		return 
+				Block.blocksList[_plantedBlockId].canPlaceBlockAt(world, x, y, z) ||
+				(Block.blocksList[_plantedBlockId] instanceof IPlantable &&
+						Block.blocksList[groundId].canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable)Block.blocksList[_plantedBlockId])));
 	}
 
 	@Override
@@ -49,11 +57,11 @@ public class PlantableStandard implements IFactoryPlantable
 	@Override
 	public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack)
 	{
-		if(stack.itemID != sourceId)
+		if(stack.itemID != _sourceId)
 		{
 			return -1;
 		}
-		return plantedBlockId;
+		return _plantedBlockId;
 	}
 
 	@Override
@@ -65,6 +73,6 @@ public class PlantableStandard implements IFactoryPlantable
 	@Override
 	public int getSourceId()
 	{
-		return sourceId;
+		return _sourceId;
 	}
 }
