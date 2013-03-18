@@ -110,12 +110,20 @@ public class TwilightForest
 			Class tfItems = Class.forName("twilightforest.item.TFItems");
 			if(tfItems != null)
 			{
+				MobDrop[] spiderDrops = new MobDrop[]
+				{
+					new MobDrop(3, new ItemStack(Item.silk)),
+					new MobDrop(1, new ItemStack(Item.spiderEye))
+				};
 				
 				ItemStack borerEssence = new ItemStack((Item)tfItems.getField("borerEssence").get(null));
+				ItemStack charmOfKeeping1 = new ItemStack((Item)tfItems.getField("charmOfKeeping1").get(null));
 				ItemStack tfFeather = new ItemStack((Item)tfItems.getField("feather").get(null));
+				ItemStack magicMapFocus = new ItemStack((Item)tfItems.getField("magicMapFocus").get(null));
+				ItemStack mazeMapFocus = new ItemStack((Item)tfItems.getField("mazeMapFocus").get(null));
 				ItemStack meefRaw = new ItemStack((Item)tfItems.getField("meefRaw").get(null));
 				ItemStack meefStroganoff = new ItemStack((Item)tfItems.getField("meefStroganoff").get(null));
-				ItemStack torchberries = new ItemStack((Item)tfItems.getField("torchberries").get(null), 2);
+				ItemStack torchberries = new ItemStack((Item)tfItems.getField("torchberries").get(null), 3);
 				ItemStack venisonRaw = new ItemStack((Item)tfItems.getField("venisonRaw").get(null));
 				
 				FarmingRegistry.registerGrindable(new GrindableTFBighorn(tfBighorn));
@@ -123,15 +131,18 @@ public class TwilightForest
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfBoar, new ItemStack(Item.porkRaw)));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfBoggard, new MobDrop[]
 				{
-					new MobDrop(10, new ItemStack(Item.bootsSteel)),
-					new MobDrop(10, new ItemStack(Item.pickaxeSteel))
+					new MobDrop(20, mazeMapFocus),
+					new MobDrop(17, new ItemStack(Item.bootsSteel)),
+					new MobDrop(11, new ItemStack(Item.pickaxeSteel)),
+					new MobDrop(52, null)
 				}));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfBunny));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfDeathTome, new MobDrop[]
 				{
-					new MobDrop(10, new ItemStack(Item.paper, 2)),
-					new MobDrop(10, new ItemStack(Item.writableBook)),
-					new MobDrop(10, new ItemStack(Item.book))
+					new MobDrop(3, magicMapFocus),
+					new MobDrop(16, new ItemStack(Item.writableBook)),
+					new MobDrop(30, new ItemStack(Item.book)),
+					new MobDrop(31, new ItemStack(Item.paper))
 				}));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfDeer, new MobDrop[]
 				{
@@ -139,28 +150,28 @@ public class TwilightForest
 					new MobDrop(10, venisonRaw)
 				}));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfFireBeetle, new ItemStack(Item.gunpowder)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfHedgeSpider, new MobDrop[]
-				{
-					new MobDrop(10, new ItemStack(Item.silk)),
-					new MobDrop(10, new ItemStack(Item.spiderEye))
-				}));
+				FarmingRegistry.registerGrindable(new GrindableStandard(tfHedgeSpider, spiderDrops));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfHostileWolf));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfKingSpider, new MobDrop[]
-				{
-					new MobDrop(10, new ItemStack(Item.silk)),
-					new MobDrop(10, new ItemStack(Item.spiderEye))
-				}));
+				FarmingRegistry.registerGrindable(new GrindableStandard(tfKingSpider, spiderDrops));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfKobold, new ItemStack(Item.wheat)));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfLichMinion, new ItemStack(Item.rottenFlesh)));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfLoyalZombie, new ItemStack(Item.rottenFlesh)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfMazeSlime, new ItemStack(Item.slimeBall)));
+				FarmingRegistry.registerGrindable(new GrindableStandard(tfMazeSlime, new MobDrop[]
+				{
+					new MobDrop(1, charmOfKeeping1),
+					new MobDrop(39, new ItemStack(Item.slimeBall))
+				}));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfMiniGhast, new MobDrop[]
 				{
 					new MobDrop(10, new ItemStack(Item.gunpowder)),
 					new MobDrop(10, new ItemStack(Item.ghastTear))
 				}));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfMinoshroom, meefStroganoff));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfMinotaur, meefRaw));
+				FarmingRegistry.registerGrindable(new GrindableStandard(tfMinotaur, new MobDrop[]
+				{
+					new MobDrop(1, mazeMapFocus),
+					new MobDrop(39, meefRaw)
+					}));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfMistWolf));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfPenguin));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfPinchBeetle));
@@ -169,22 +180,14 @@ public class TwilightForest
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfRedcapSapper, new ItemStack(Item.coal)));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfSkeletonDruid, new MobDrop[]
 				{
-					new MobDrop(10, new ItemStack(Item.bone, 2)),
+					new MobDrop(10, new ItemStack(Item.bone, 3)),
 					new MobDrop(10, torchberries)
 				}));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfSlimeBeetle, new ItemStack(Item.slimeBall)));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfSquirrel));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfSwarmSpider, new MobDrop[]
-				{
-					new MobDrop(10, new ItemStack(Item.silk)),
-					new MobDrop(10, new ItemStack(Item.spiderEye))
-				}));
+				FarmingRegistry.registerGrindable(new GrindableStandard(tfSwarmSpider, spiderDrops));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfTinyBird, new ItemStack(Item.feather)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfTowerBroodling, new MobDrop[]
-				{
-					new MobDrop(10, new ItemStack(Item.silk)),
-					new MobDrop(10, new ItemStack(Item.spiderEye))
-				}));
+				FarmingRegistry.registerGrindable(new GrindableStandard(tfTowerBroodling, spiderDrops));
 				FarmingRegistry.registerGrindable(new GrindableStandard(tfTowerGhast, new MobDrop[]
 				{
 					new MobDrop(10, new ItemStack(Item.gunpowder)),
