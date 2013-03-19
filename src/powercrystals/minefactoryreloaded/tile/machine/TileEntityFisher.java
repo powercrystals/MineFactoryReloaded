@@ -88,7 +88,7 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 	@Override
 	public int getWorkMax()
 	{
-		return 400;
+		return 900;
 	}
 
 	@Override
