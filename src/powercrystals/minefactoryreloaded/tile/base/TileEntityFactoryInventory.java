@@ -31,6 +31,16 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		return false;
 	}
 	
+	public boolean allowBucketFill()
+	{
+		return false;
+	}
+	
+	public boolean allowBucketDrain()
+	{
+		return false;
+	}
+	
 	@Override
 	public void updateEntity()
 	{
