@@ -19,11 +19,32 @@ import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public class MFRUtil
 {
+	public static ItemStack consumeItem(ItemStack stack)
+	{
+		if (stack.stackSize == 1)
+		{
+			if (stack.getItem().hasContainerItem())
+			{
+				return stack.getItem().getContainerItemStack(stack);
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			stack.splitStack(1);
+			return stack;
+		}	
+	}
+	
 	public static boolean isHoldingWrench(EntityPlayer player)
 	{
 		if(player.inventory.getCurrentItem() == null)
@@ -35,6 +56,27 @@ public class MFRUtil
 		{
 			return true;
 		}
+		return false;
+	}
+	
+	public static boolean manuallyFillTank(ITankContainerBucketable tank, EntityPlayer entityplayer)
+	{
+		ItemStack ci = entityplayer.inventory.getCurrentItem();
+		LiquidStack liquid = LiquidContainerRegistry.getLiquidForFilledItem(ci);
+		if(liquid != null)
+		{
+			if(tank.fill(ForgeDirection.UNKNOWN, liquid, false) == liquid.amount)
+			{
+				tank.fill(ForgeDirection.UNKNOWN, liquid, true);
+				entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, consumeItem(ci));
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean manuallyDrainTank(ITankContainerBucketable tank, EntityPlayer entityplayer)
+	{
 		return false;
 	}
 	
