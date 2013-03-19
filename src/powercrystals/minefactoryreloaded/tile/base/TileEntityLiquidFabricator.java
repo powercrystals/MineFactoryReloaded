@@ -1,13 +1,13 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowered implements ITankContainer
+public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
 	private int _liquidId;
 	private int _liquidFabPerTick;
