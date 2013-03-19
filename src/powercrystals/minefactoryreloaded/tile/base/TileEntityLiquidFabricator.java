@@ -88,7 +88,13 @@ public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowere
 	{
 		return 0;
 	}
-
+	
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
+	}
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
