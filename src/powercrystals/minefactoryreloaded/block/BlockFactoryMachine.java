@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.Machine;
@@ -23,6 +24,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.liquids.LiquidContainerRegistry;
 
 public class BlockFactoryMachine extends BlockContainer
 {
@@ -133,6 +135,22 @@ public class BlockFactoryMachine extends BlockContainer
 		if(te == null)
 		{
 			return false;
+		}
+		if(te instanceof ITankContainerBucketable && LiquidContainerRegistry.isEmptyContainer(entityplayer.inventory.getCurrentItem()) && ((ITankContainerBucketable)te).allowBucketDrain())
+		{
+			// handle filling of empty buckets from te's tank
+			if(MFRUtil.manuallyDrainTank((ITankContainerBucketable)te, entityplayer))
+			{
+				return true;
+			}
+		}
+		else if(te instanceof ITankContainerBucketable && LiquidContainerRegistry.isFilledContainer(entityplayer.inventory.getCurrentItem()) && ((ITankContainerBucketable)te).allowBucketFill())
+		{
+			// handle filling of te's tank from full buckets 
+			if(MFRUtil.manuallyFillTank((ITankContainerBucketable)te, entityplayer))
+			{
+				return true;
+			}
 		}
 		if(MFRUtil.isHoldingWrench(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
 		{
