@@ -15,13 +15,13 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
@@ -30,7 +30,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
-public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable
 {	
 	private HarvestAreaManager _areaManager;
 	private LiquidTank _tank;
@@ -191,6 +191,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		return 0;
 	}
 
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
+	}
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{

@@ -9,18 +9,18 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
-public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
 	private static final int _spawnRange = 4;
 	private LiquidTank _tank;
@@ -184,6 +184,12 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
 
+	@Override
+	public boolean allowBucketFill()
+	{
+		return true;
+	}
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{

@@ -6,19 +6,19 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
-public class TileEntityComposter extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityComposter extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
 	private LiquidTank _tank;
 	
@@ -99,6 +99,12 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	public int getIdleTicksMax()
 	{
 		return 1;
+	}
+	
+	@Override
+	public boolean allowBucketFill()
+	{
+		return true;
 	}
 
 	@Override

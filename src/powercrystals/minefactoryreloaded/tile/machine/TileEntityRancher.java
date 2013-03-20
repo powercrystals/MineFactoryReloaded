@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -20,12 +21,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityRancher extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityRancher extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
 	private HarvestAreaManager _areaManager;
 	private LiquidTank _tank;
@@ -160,6 +160,12 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return 0;
+	}
+	
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
 	}
 
 	@Override

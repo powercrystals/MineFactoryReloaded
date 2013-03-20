@@ -15,11 +15,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.util.Util;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.RemoteInventoryCrafting;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
@@ -27,7 +27,7 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 // slots 0-8 craft grid, 9 craft grid output, 10 output, 11-28 resources
-public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implements ITankContainer
+public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implements ITankContainerBucketable
 {
 	private boolean _lastRedstoneState;
 	
@@ -306,6 +306,12 @@ inv:	for(int i = 0; i < 9; i++)
 		if(side == ForgeDirection.UP || side == ForgeDirection.DOWN) return 1;
 		return 18;
 	}
+	
+	@Override
+	public boolean allowBucketFill()
+	{
+		return true;
+	}
 
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
@@ -325,6 +331,12 @@ inv:	for(int i = 0; i < 9; i++)
 		match = findFirstEmptyTank();
 		if(match >= 0) return _tanks[match].fill(resource, doFill);
 		return 0;
+	}
+	
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
 	}
 
 	@Override

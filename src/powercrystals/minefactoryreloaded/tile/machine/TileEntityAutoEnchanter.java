@@ -13,19 +13,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.AutoEnchantmentHelper;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
-public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
 	private Random _rand;
 	private int _targetLevel;
@@ -229,6 +229,12 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 		_targetLevel = nbttagcompound.getInteger("targetLevel");
 	}
 
+	@Override
+	public boolean allowBucketFill()
+	{
+		return true;
+	}
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{

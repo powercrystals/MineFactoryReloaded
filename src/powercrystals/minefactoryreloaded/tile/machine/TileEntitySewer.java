@@ -10,7 +10,6 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
@@ -18,6 +17,7 @@ import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiSewer;
@@ -25,7 +25,7 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerSewer;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
-public class TileEntitySewer extends TileEntityFactoryInventory implements ITankContainer
+public class TileEntitySewer extends TileEntityFactoryInventory implements ITankContainerBucketable
 {
 	private LiquidTank _tank;
 	
@@ -141,6 +141,12 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return 0;
+	}
+	
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
 	}
 
 	@Override

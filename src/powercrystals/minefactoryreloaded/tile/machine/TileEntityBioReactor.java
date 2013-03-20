@@ -7,20 +7,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiBioReactor;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioReactor;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
-public class TileEntityBioReactor extends TileEntityFactoryInventory implements ITankContainer
+public class TileEntityBioReactor extends TileEntityFactoryInventory implements ITankContainerBucketable
 {
 	private LiquidTank _tank;
 	private int _burnTime;
@@ -220,6 +220,12 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 		return 0;
 	}
 
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
+	}
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{

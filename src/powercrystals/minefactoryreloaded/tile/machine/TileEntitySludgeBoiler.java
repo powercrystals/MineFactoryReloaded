@@ -15,7 +15,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
@@ -24,13 +23,14 @@ import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
-public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
 	private LiquidTank _tank;
 	private Random _rand;
@@ -138,6 +138,12 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	public ForgeDirection getDropDirection()
 	{
 		return ForgeDirection.DOWN;
+	}
+	
+	@Override
+	public boolean allowBucketFill()
+	{
+		return true;
 	}
 
 	@Override

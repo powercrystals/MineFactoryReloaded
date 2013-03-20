@@ -17,6 +17,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
+import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
@@ -30,13 +31,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityHarvester extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityHarvester extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
 	private Map<String, Boolean> _settings;
 	
@@ -289,6 +289,12 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		return 0;
 	}
 
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
+	}
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
