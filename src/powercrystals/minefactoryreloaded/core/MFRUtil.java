@@ -59,15 +59,15 @@ public class MFRUtil
 		return false;
 	}
 	
-	public static boolean manuallyFillTank(ITankContainerBucketable tank, EntityPlayer entityplayer)
+	public static boolean manuallyFillTank(ITankContainerBucketable itcb, EntityPlayer entityplayer)
 	{
 		ItemStack ci = entityplayer.inventory.getCurrentItem();
 		LiquidStack liquid = LiquidContainerRegistry.getLiquidForFilledItem(ci);
 		if(liquid != null)
 		{
-			if(tank.fill(ForgeDirection.UNKNOWN, liquid, false) == liquid.amount)
+			if(itcb.fill(ForgeDirection.UNKNOWN, liquid, false) == liquid.amount)
 			{
-				tank.fill(ForgeDirection.UNKNOWN, liquid, true);
+				itcb.fill(ForgeDirection.UNKNOWN, liquid, true);
 				entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, consumeItem(ci));
 				return true;
 			}
@@ -75,8 +75,34 @@ public class MFRUtil
 		return false;
 	}
 	
-	public static boolean manuallyDrainTank(ITankContainerBucketable tank, EntityPlayer entityplayer)
+	public static boolean manuallyDrainTank(ITankContainerBucketable itcb, EntityPlayer entityplayer)
 	{
+		ItemStack ci = entityplayer.inventory.getCurrentItem();
+		if(LiquidContainerRegistry.isEmptyContainer(ci))
+		{
+			for(ILiquidTank tank : itcb.getTanks(ForgeDirection.UNKNOWN))
+			{
+				LiquidStack tankLiquid = tank.getLiquid();
+				ItemStack filledBucket = LiquidContainerRegistry.fillLiquidContainer(tankLiquid, ci);
+				if(LiquidContainerRegistry.isFilledContainer(filledBucket))
+				{
+					LiquidStack bucketLiquid = LiquidContainerRegistry.getLiquidForFilledItem(filledBucket);
+					if(ci.stackSize == 1)
+					{
+						tank.drain(bucketLiquid.amount, true);
+						entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, filledBucket);
+						return true;
+					}
+					else if(entityplayer.inventory.addItemStackToInventory(filledBucket))
+					{
+						tank.drain(bucketLiquid.amount, true);
+						ci.stackSize -= 1;
+						return true;
+					}
+				}
+					
+			}
+		}
 		return false;
 	}
 	
