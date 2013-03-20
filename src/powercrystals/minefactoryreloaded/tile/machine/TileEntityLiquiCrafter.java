@@ -310,7 +310,7 @@ inv:	for(int i = 0; i < 9; i++)
 	@Override
 	public boolean allowBucketFill()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -336,7 +336,7 @@ inv:	for(int i = 0; i < 9; i++)
 	@Override
 	public boolean allowBucketDrain()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
