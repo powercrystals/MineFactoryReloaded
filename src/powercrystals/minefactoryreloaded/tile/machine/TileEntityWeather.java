@@ -15,12 +15,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-public class TileEntityWeather extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityWeather extends TileEntityFactoryPowered implements ITankContainerBucketable
 {	
 	private LiquidTank _tank;
 	
@@ -141,6 +140,12 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return 0;
+	}
+	
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
 	}
 
 	@Override
