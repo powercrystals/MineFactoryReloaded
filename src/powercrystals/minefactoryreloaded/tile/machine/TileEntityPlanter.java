@@ -1,5 +1,9 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.position.BlockPosition;
@@ -18,6 +22,7 @@ import net.minecraftforge.common.ForgeDirection;
 public class TileEntityPlanter extends TileEntityFactoryPowered
 {
 	private HarvestAreaManager _areaManager;
+	private boolean _isMultiPlanter = true;
 	
 	public TileEntityPlanter() 
 	{
@@ -62,8 +67,19 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	{
 		BlockPosition bp = _areaManager.getNextBlock().copy();
 		bp.y += 1;
+		List<Integer> slotOrder = Arrays.asList(0,1,2,3,4,5,6,7,8);
+
+		if(_isMultiPlanter)
+		{
+			int ps = getPlanterSlotIdFromBp(bp);
+			Collections.shuffle(slotOrder);
+			if(slotOrder.contains(ps) && slotOrder.indexOf(ps) != 0)
+			{
+				Collections.swap(slotOrder, slotOrder.indexOf(ps), 0);
+			}
+		}
 		
-		for(int stackIndex = 0; stackIndex < getSizeInventory(); stackIndex++)
+		for(int stackIndex : slotOrder)
 		{
 			if(getStackInSlot(stackIndex) == null)
 			{
@@ -99,6 +115,16 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	public String getInvName()
 	{
 		return "Planter";
+	}
+	
+	//assumes a 3x3 grid in inventory slots 0-8
+	//slot 0 is northwest, slot 2 is northeast, etc
+	private int getPlanterSlotIdFromBp(BlockPosition bp)
+	{
+	int radius = _areaManager.getRadius();
+	int xAdjusted = Math.round( 1.49F * (bp.x - this.xCoord) / radius);
+	int zAdjusted = Math.round( 1.49F * (bp.z - this.zCoord) / radius);
+	return 4 + xAdjusted + 3 * zAdjusted;
 	}
 	
 	@Override
