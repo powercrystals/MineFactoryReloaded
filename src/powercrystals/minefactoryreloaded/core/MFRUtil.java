@@ -27,9 +27,9 @@ public class MFRUtil
 {
 	public static ItemStack consumeItem(ItemStack stack)
 	{
-		if (stack.stackSize == 1)
+		if(stack.stackSize == 1)
 		{
-			if (stack.getItem().hasContainerItem())
+			if(stack.getItem().hasContainerItem())
 			{
 				return stack.getItem().getContainerItemStack(stack);
 			}
@@ -68,7 +68,10 @@ public class MFRUtil
 			if(itcb.fill(ForgeDirection.UNKNOWN, liquid, false) == liquid.amount)
 			{
 				itcb.fill(ForgeDirection.UNKNOWN, liquid, true);
-				entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, consumeItem(ci));
+				if(!entityplayer.capabilities.isCreativeMode)
+				{
+					entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, consumeItem(ci));					
+				}
 				return true;
 			}
 		}
@@ -87,7 +90,12 @@ public class MFRUtil
 				if(LiquidContainerRegistry.isFilledContainer(filledBucket))
 				{
 					LiquidStack bucketLiquid = LiquidContainerRegistry.getLiquidForFilledItem(filledBucket);
-					if(ci.stackSize == 1)
+					if(entityplayer.capabilities.isCreativeMode)
+					{
+						tank.drain(bucketLiquid.amount, true);
+						return true;
+					}
+					else if(ci.stackSize == 1)
 					{
 						tank.drain(bucketLiquid.amount, true);
 						entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, filledBucket);

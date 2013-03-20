@@ -138,7 +138,6 @@ public class BlockFactoryMachine extends BlockContainer
 		}
 		if(te instanceof ITankContainerBucketable && LiquidContainerRegistry.isEmptyContainer(entityplayer.inventory.getCurrentItem()) && ((ITankContainerBucketable)te).allowBucketDrain())
 		{
-			// handle filling of empty buckets from te's tank
 			if(MFRUtil.manuallyDrainTank((ITankContainerBucketable)te, entityplayer))
 			{
 				return true;
@@ -146,7 +145,6 @@ public class BlockFactoryMachine extends BlockContainer
 		}
 		else if(te instanceof ITankContainerBucketable && LiquidContainerRegistry.isFilledContainer(entityplayer.inventory.getCurrentItem()) && ((ITankContainerBucketable)te).allowBucketFill())
 		{
-			// handle filling of te's tank from full buckets 
 			if(MFRUtil.manuallyFillTank((ITankContainerBucketable)te, entityplayer))
 			{
 				return true;
