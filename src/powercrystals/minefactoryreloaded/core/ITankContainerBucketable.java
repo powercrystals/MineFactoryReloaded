@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.api;
+package powercrystals.minefactoryreloaded.core;
 
 import net.minecraftforge.liquids.ITankContainer;
 /**
