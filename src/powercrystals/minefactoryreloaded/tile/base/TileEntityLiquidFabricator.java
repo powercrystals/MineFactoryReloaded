@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
-import powercrystals.minefactoryreloaded.api.ITankContainerBucketable;
+import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
