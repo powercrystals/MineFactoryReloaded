@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
@@ -130,7 +131,8 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			
 			if(!this.worldObj.checkIfAABBIsClear(spawnedLiving.boundingBox) ||
 					!this.worldObj.getCollidingBoundingBoxes(spawnedLiving, spawnedLiving.boundingBox).isEmpty() ||
-					this.worldObj.isAnyLiquid(spawnedLiving.boundingBox))
+					(this.worldObj.isAnyLiquid(spawnedLiving.boundingBox) && !(spawnedLiving instanceof EntityWaterMob)) ||
+					(!this.worldObj.isAnyLiquid(spawnedLiving.boundingBox) && spawnedLiving instanceof EntityWaterMob))
 			{
 				return false;
 			}
