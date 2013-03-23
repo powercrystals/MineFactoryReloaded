@@ -227,7 +227,6 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
-	public static Property playSounds;
 	public static Property verticalHarvestSearchMaxVertical;
 	public static Property rubberTreeWorldGen;
 	public static Property enableBonemealFertilizing;
@@ -260,13 +259,14 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		setConfigFolderBase(evt.getModConfigurationDirectory());
 		
 		loadConfig(getCommonConfig());
+		MineFactoryReloadedClient.loadConfig(getClientConfig());
 		
 		extractLang(new String[] { "en_US" });
 		loadLang();
 	}
 
 	@Init
-	public void load(FMLInitializationEvent evt)
+	public void init(FMLInitializationEvent evt)
 	{
 		instance = this;
 
@@ -522,9 +522,6 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		upgradeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Upgrade", 12011);
 		safariNetLauncherItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetLauncher", 12012);
 		sugarCharcoalItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SugarCharcoal", 12013);
-
-		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
-		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";
 
 		treeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxHoriztonal", 8);
 		treeSearchMaxHorizontal.comment = "When searching for parts of a tree, how far out to the sides (radius) to search";

@@ -14,6 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
@@ -157,7 +158,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		if(harvestable.breakBlock())
 		{
-			if(MineFactoryReloadedCore.playSounds.getBoolean(true))
+			if(MineFactoryReloadedClient.playSounds.getBoolean(true))
 			{
 				worldObj.playAuxSFXAtEntity(null, 2001, targetCoords.x, targetCoords.y, targetCoords.z, harvestedBlockId + (harvestedBlockMetadata << 12));
 			}
