@@ -1,9 +1,9 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraftforge.liquids.LiquidDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -13,7 +13,7 @@ public class TileEntityOilFabricator extends TileEntityLiquidFabricator
 {
 	public TileEntityOilFabricator()
 	{
-		super(MineFactoryReloadedCore.oilLiquidId, 5880, 1);
+		super(LiquidDictionary.getCanonicalLiquid("oil").itemID, 5880, 1);
 	}
 	
 	@Override
