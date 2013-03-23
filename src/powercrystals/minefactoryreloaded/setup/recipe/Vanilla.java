@@ -645,16 +645,16 @@ public class Vanilla
 					Character.valueOf('G'), Item.goldNugget,
 				} ));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 7), new Object[]
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 7), new Object[]
 				{
 					"III",
 					"PPP",
 					"RGR",
-					Character.valueOf('I'), "ingotQuartz",
+					Character.valueOf('I'), Item.field_94583_ca,
 					Character.valueOf('P'), MineFactoryReloadedCore.rawPlasticItem,
 					Character.valueOf('R'), Item.redstone,
 					Character.valueOf('G'), Item.goldNugget,
-				} ));
+				} );
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 8), new Object[]
 				{
