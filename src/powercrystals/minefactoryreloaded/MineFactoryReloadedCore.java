@@ -164,6 +164,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item bioFuelBucketItem;
 	public static Item upgradeItem;
 	public static Item safariNetLauncherItem;
+	public static Item sugarCharcoalItem;
 
 	// Config
 	public static Property machineBlock0Id;
@@ -222,6 +223,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property bioFuelBucketItemId;
 	public static Property upgradeItemId;
 	public static Property safariNetLauncherItemId;
+	public static Property sugarCharcoalItemId;
 
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
@@ -315,6 +317,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		bioFuelBucketItem = (new ItemFactoryBucket(bioFuelBucketItemId.getInt(), biofuelFlowing.blockID)).setUnlocalizedName("mfr.bucket.biofuel").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setUnlocalizedName("mfr.upgrade.radius").setMaxStackSize(1);
 		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setUnlocalizedName("mfr.safarinet.launcher").setMaxStackSize(1);
+		sugarCharcoalItem = (new ItemFactory(sugarCharcoalItemId.getInt())).setUnlocalizedName("mfr.sugarcharcoal");
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -392,7 +395,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	}
 	
 	@PostInit
-	public void afterModsLoaded(FMLPostInitializationEvent evt)
+	public void postInit(FMLPostInitializationEvent evt)
 	{
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("milk", new LiquidStack(milkStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(Item.bucketMilk), new ItemStack(Item.bucketEmpty)));
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sludge", new LiquidStack(sludgeStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sludgeBucketItem), new ItemStack(Item.bucketEmpty)));
@@ -404,6 +407,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		{
 			FurnaceRecipes.smelting().addSmelting(s.itemID, s.getItemDamage(), new ItemStack(rawPlasticItem), 0.3F);
 		}
+		
+		FurnaceRecipes.smelting().addSmelting(Item.sugar.itemID, new ItemStack(sugarCharcoalItem), 0.1F);
 		
 		String[] biomeWhitelist = rubberTreeBiomeWhitelist.getString().split(",");
 		for(String biome : biomeWhitelist)
@@ -516,6 +521,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		bioFuelBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BioFuelBucket", 12010);
 		upgradeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Upgrade", 12011);
 		safariNetLauncherItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetLauncher", 12012);
+		sugarCharcoalItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SugarCharcoal", 12013);
 
 		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
 		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";

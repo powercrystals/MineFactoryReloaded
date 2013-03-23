@@ -115,11 +115,6 @@ tile.mfr.liquid.biofuel.flowing.name = BioFuel
 tile.mfr.liquid.biofuel.still.name = BioFuel
 
 item.mfr.hammer.name = Precision Sledgehammer
-item.mfr.milk.name = Milk
-item.mfr.sludge.name = Sludge
-item.mfr.sewage.name = Sewage
-item.mfr.essence.name = Mob Essence
-item.mfr.biofuel.name = BioFuel
 item.mfr.fertilizer.name = Industrial Fertilizer
 item.mfr.plastic.sheet.name = Plastic Sheets
 item.mfr.plastic.raw.name = Raw Plastic
@@ -138,6 +133,7 @@ item.mfr.safarinet.reusable.name = Safari Net (Reusable)
 item.mfr.safarinet.singleuse.name = Safari Net (Single-Use)
 item.mfr.safarinet.launcher.name = Safari Net Launcher
 item.mfr.machineblock.name = Factory Machine Block
+item.mfr.sugarcharcoal.name = Sugar Charcoal
 
 item.mfr.ceramicdye.white.name = Ceramic Dye (White)
 item.mfr.ceramicdye.orange.name = Ceramic Dye (Orange)

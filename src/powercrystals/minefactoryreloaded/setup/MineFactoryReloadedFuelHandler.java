@@ -17,6 +17,10 @@ public class MineFactoryReloadedFuelHandler implements IFuelHandler
 		{
 			return 100;
 		}
+		else if(fuel.itemID == MineFactoryReloadedCore.sugarCharcoalItem.itemID)
+		{
+			return 400;
+		}
 		
 		return 0;
 	}
