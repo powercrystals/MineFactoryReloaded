@@ -33,8 +33,9 @@ public class GrindableSkeleton implements IFactoryGrindable
 		}
 		else if(s.getSkeletonType() == 1)
 		{
-			drops.add(new MobDrop(10, new ItemStack(Item.bone)));
-			drops.add(new MobDrop(10, new ItemStack(Item.coal)));
+			drops.add(new MobDrop(48, new ItemStack(Item.bone)));
+			drops.add(new MobDrop(48, new ItemStack(Item.coal)));
+			drops.add(new MobDrop(4, new ItemStack(Item.skull.itemID, 1, 1)));
 		}
 		
 		return drops;
