@@ -44,10 +44,14 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 			if(blockID == MineFactoryReloadedCore.sludgeFlowing.blockID)
 			{
 				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 12 * 20, 0));
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.weakness.id, 12 * 20, 0));
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 12 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.sewageFlowing.blockID)
 			{
 				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.hunger.id, 12 * 20, 0));
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 12 * 20, 0));
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 12 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.essenceFlowing.blockID)
 			{
