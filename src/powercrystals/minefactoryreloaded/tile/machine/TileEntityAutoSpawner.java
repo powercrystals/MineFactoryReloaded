@@ -213,4 +213,18 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	{
 		return _tank;
 	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		_spawnExact = nbttagcompound.getBoolean("spawnExact");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setBoolean("spawnExact", _spawnExact);
+	}
 }
