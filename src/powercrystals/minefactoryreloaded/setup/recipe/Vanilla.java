@@ -813,5 +813,15 @@ public class Vanilla
 					Character.valueOf('B'), Block.brick,
 					Character.valueOf('M'), Block.blockSnow,
 				} );
+		
+		if(MineFactoryReloadedCore.enableMossyCobbleRecipe.getBoolean(true))
+		{
+			GameRegistry.addShapelessRecipe(new ItemStack(Block.cobblestoneMossy), new Object[]
+					{
+						Block.cobblestone,
+						Item.bucketWater,
+						Item.wheat
+					} );
+		}
 	}
 }

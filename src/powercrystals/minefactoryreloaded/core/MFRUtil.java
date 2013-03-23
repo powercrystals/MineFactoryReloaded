@@ -17,7 +17,6 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.UtilInventory;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
@@ -196,33 +195,30 @@ public class MFRUtil
 			}
 		}
 		
-		if(MineFactoryReloadedCore.machinesCanDropInChests.getBoolean(true));
+		for(Entry<ForgeDirection, IInventory> chest : UtilInventory.findChests(from.worldObj, from.xCoord, from.yCoord, from.zCoord).entrySet())
 		{
-			for(Entry<ForgeDirection, IInventory> chest : UtilInventory.findChests(from.worldObj, from.xCoord, from.yCoord, from.zCoord).entrySet())
+			if(chest.getValue().getInvName() == "Engine")
 			{
-				if(chest.getValue().getInvName() == "Engine")
+				continue;
+			}
+			if(chest.getValue() instanceof IDeepStorageUnit)
+			{
+				IDeepStorageUnit idsu = (IDeepStorageUnit)chest.getValue();
+				// don't put s in a DSU if it has NBT data
+				if(s.getTagCompound() != null)
 				{
 					continue;
 				}
-				if(chest.getValue() instanceof IDeepStorageUnit)
+				// don't put s in a DSU if the stored quantity is nonzero and it's mismatched with the stored item type
+				if(idsu.getStoredItemType() != null && (idsu.getStoredItemType().itemID != s.itemID || idsu.getStoredItemType().getItemDamage() != s.getItemDamage()))
 				{
-					IDeepStorageUnit idsu = (IDeepStorageUnit)chest.getValue();
-					// don't put s in a DSU if it has NBT data
-					if(s.getTagCompound() != null)
-					{
-						continue;
-					}
-					// don't put s in a DSU if the stored quantity is nonzero and it's mismatched with the stored item type
-					if(idsu.getStoredItemType() != null && (idsu.getStoredItemType().itemID != s.itemID || idsu.getStoredItemType().getItemDamage() != s.getItemDamage()))
-					{
-						continue;
-					}
+					continue;
 				}
-				s.stackSize = UtilInventory.addToInventory(chest.getValue(), chest.getKey(), s);
-				if(s.stackSize == 0)
-				{
-					return;
-				}
+			}
+			s.stackSize = UtilInventory.addToInventory(chest.getValue(), chest.getKey(), s);
+			if(s.stackSize == 0)
+			{
+				return;
 			}
 		}
 		

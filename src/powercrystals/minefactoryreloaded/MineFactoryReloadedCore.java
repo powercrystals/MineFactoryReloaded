@@ -223,22 +223,20 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property upgradeItemId;
 	public static Property safariNetLauncherItemId;
 
-	public static Property animateBlockFaces;
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
 	public static Property playSounds;
-	public static Property machinesCanDropInChests;
 	public static Property verticalHarvestSearchMaxVertical;
 	public static Property rubberTreeWorldGen;
 	public static Property enableBonemealFertilizing;
 	public static Property enableCheapDSU;
+	public static Property enableMossyCobbleRecipe;
 	public static Property conveyorCaptureNonItems;
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
 	
 	public static Property enableCompatibleAutoEnchanter;
-	
 	public static Property enableSlipperyRoads;
 	
 	public static Property rubberTreeBiomeWhitelist;
@@ -519,12 +517,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		upgradeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Upgrade", 12011);
 		safariNetLauncherItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetLauncher", 12012);
 
-		animateBlockFaces = c.get(Configuration.CATEGORY_GENERAL, "AnimateBlockFaces", true);
-		animateBlockFaces.comment = "Set to false to disable animation of harvester, rancher, conveyor, etc. This may be required if using certain mods that affect rendering.";
 		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
 		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";
-		machinesCanDropInChests = c.get(Configuration.CATEGORY_GENERAL, "MachinesCanDropInChests", true);
-		machinesCanDropInChests.comment = "Set to false to disable machines placing items into chests adjacent to them";
 
 		treeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxHoriztonal", 8);
 		treeSearchMaxHorizontal.comment = "When searching for parts of a tree, how far out to the sides (radius) to search";
@@ -542,6 +536,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		enableBonemealFertilizing.comment = "If true, the fertilizer will use bonemeal as well as MFR fertilizer. Provided for those who want a less work-intensive farm.";
 		enableCheapDSU = c.get(Configuration.CATEGORY_GENERAL, "DSU.EnableCheaperRecipe", false);
 		enableCheapDSU.comment = "If true, DSU can be built out of chests instead of ender pearls. Does nothing if the DSU recipe is disabled.";
+		enableMossyCobbleRecipe = c.get(Configuration.CATEGORY_GENERAL, "EnableMossyCobbleRecipe", true);
+		enableMossyCobbleRecipe.comment = "If true, mossy cobble can be crafted.";
 		conveyorCaptureNonItems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.CaptureNonItems", true);
 		conveyorCaptureNonItems.comment = "If false, conveyors will not grab non-item entities. Breaks conveyor mob grinders but makes them safe for golems, etc.";
 		
