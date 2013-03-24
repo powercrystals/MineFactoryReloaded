@@ -47,16 +47,10 @@
 		<get src="http://ic2api.player.to:8080/job/IC2_lf/231/artifact/packages/industrialcraft-2-api_1.115.231-lf.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
 		
 		<echo message="Downloading BuildCraft API..." />
-		<get src="https://github.com/BuildCraft/BuildCraft/archive/master.zip" dest="${download.dir}/BuildCraft-master.zip"/>
+		<get src="https://dl.dropbox.com/u/13350431/BuildCraft-master.zip" dest="${download.dir}/BuildCraft-master.zip"/>
 		
 		<echo message="Downloading PowerCrystalsCore... " />
-		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
-		
-		<echo message="Downloading CodeChickenCore... " />
-		<get src="http://porpchan.org/CodeChickenCore%200.7.1.0-deobf.jar" dest="${lib.dir}/CodeChickenCore 0.7.1.0-deobf.jar" />
-		
-		<echo message="Downloading NEI... " />
-		<get src="http://porpchan.org/NotEnoughItems%201.4.5.1-deobf.jar" dest="${lib.dir}/NotEnoughItems 1.4.5.1-deobf.jar" />
+		<get src="https://dl.dropbox.com/u/13350431/PowerCrystalsCore-master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
 		
 		<echo message="Downloading UniversalElectricity API... " />
 		<get src="https://dl.dropbox.com/u/13350431/UniversalElectricity_v1.3.1.354.zip" dest="${download.dir}/ue-api.zip" />
