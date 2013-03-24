@@ -823,5 +823,11 @@ public class Vanilla
 						Item.wheat
 					} );
 		}
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.milkBottleItem), new Object[]
+					{
+						Item.bucketMilk,
+						Item.glassBottle
+					} );
 	}
 }

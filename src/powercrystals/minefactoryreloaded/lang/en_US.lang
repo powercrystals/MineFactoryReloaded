@@ -120,6 +120,7 @@ item.mfr.plastic.sheet.name = Plastic Sheets
 item.mfr.plastic.raw.name = Raw Plastic
 item.mfr.rubber.bar.name = Rubber Bar
 item.mfr.rubber.raw.name = Raw Rubber
+item.mfr.bucket.milk.name = Milk Bucket
 item.mfr.bucket.sewage.name = Sewage Bucket
 item.mfr.bucket.sludge.name = Sludge Bucket
 item.mfr.bucket.essence.name = Mob Essence Bucket
@@ -134,6 +135,7 @@ item.mfr.safarinet.singleuse.name = Safari Net (Single-Use)
 item.mfr.safarinet.launcher.name = Safari Net Launcher
 item.mfr.machineblock.name = Factory Machine Block
 item.mfr.sugarcharcoal.name = Sugar Charcoal
+item.mfr.milkbottle.name = Milk Bottle
 
 item.mfr.ceramicdye.white.name = Ceramic Dye (White)
 item.mfr.ceramicdye.orange.name = Ceramic Dye (Orange)

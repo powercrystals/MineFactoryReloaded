@@ -58,6 +58,7 @@ import powercrystals.minefactoryreloaded.item.ItemCeramicDye;
 import powercrystals.minefactoryreloaded.item.ItemFactory;
 import powercrystals.minefactoryreloaded.item.ItemFactoryBucket;
 import powercrystals.minefactoryreloaded.item.ItemFactoryHammer;
+import powercrystals.minefactoryreloaded.item.ItemMilkBottle;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import powercrystals.minefactoryreloaded.item.ItemSafariNetLauncher;
 import powercrystals.minefactoryreloaded.item.ItemSyringeGrowth;
@@ -165,6 +166,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item upgradeItem;
 	public static Item safariNetLauncherItem;
 	public static Item sugarCharcoalItem;
+	public static Item milkBottleItem;
 
 	// Config
 	public static Property machineBlock0Id;
@@ -224,6 +226,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property upgradeItemId;
 	public static Property safariNetLauncherItemId;
 	public static Property sugarCharcoalItemId;
+	public static Property milkBottleItemId;
 
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
@@ -236,6 +239,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
+	public static Property vanillaOverrideMilkBucket;
 	
 	public static Property enableCompatibleAutoEnchanter;
 	public static Property enableSlipperyRoads;
@@ -318,6 +322,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setUnlocalizedName("mfr.upgrade.radius").setMaxStackSize(1);
 		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setUnlocalizedName("mfr.safarinet.launcher").setMaxStackSize(1);
 		sugarCharcoalItem = (new ItemFactory(sugarCharcoalItemId.getInt())).setUnlocalizedName("mfr.sugarcharcoal");
+		milkBottleItem = (new ItemMilkBottle(milkBottleItemId.getInt())).setUnlocalizedName("mfr.milkbottle").setMaxStackSize(1);
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -364,6 +369,12 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 			Item.itemsList[Block.ice.blockID] = null;
 			Block.ice = new BlockVanillaIce();
 			GameRegistry.registerBlock(Block.ice, ItemBlockVanillaIce.class, "blockVanillaIce");
+		}
+		if(vanillaOverrideMilkBucket.getBoolean(true))
+		{
+			int milkBucketId = Item.bucketMilk.itemID;
+			Item.itemsList[milkBucketId] = null;
+			Item.bucketMilk = new ItemFactoryBucket(milkBucketId, milkFlowing.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		}
 
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "factoryConveyor");
@@ -440,18 +451,12 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	@ForgeSubscribe
 	public void onBucketFill(FillBucketEvent e)
 	{
-		System.out.println("Got bucket fill event");
 		ItemStack filledBucket = fillBucket(e.world, e.target);
 		if(filledBucket != null)
 		{
-			System.out.println("Got bucket: " + filledBucket.getDisplayName());
 			e.world.func_94571_i(e.target.blockX, e.target.blockY, e.target.blockZ);
 			e.result = filledBucket;
 			e.setResult(Result.ALLOW);
-		}
-		else
-		{
-			System.out.println("Got null bucket");
 		}
 	}
 	
@@ -522,6 +527,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		upgradeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Upgrade", 12011);
 		safariNetLauncherItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetLauncher", 12012);
 		sugarCharcoalItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SugarCharcoal", 12013);
+		milkBottleItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MilkBottle", 12014);
 
 		treeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxHoriztonal", 8);
 		treeSearchMaxHorizontal.comment = "When searching for parts of a tree, how far out to the sides (radius) to search";
@@ -548,6 +554,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";
 		vanillaOverrideIce = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.Ice", true);
 		vanillaOverrideIce.comment = "If true, enables MFR unmelting ice as well as vanilla ice.";
+		vanillaOverrideMilkBucket = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.MilkBucket", true);
+		vanillaOverrideMilkBucket.comment = "If true, replaces the vanilla milk bucket so milk can be placed in the world.";
 		
 		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
 		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
