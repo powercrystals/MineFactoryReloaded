@@ -26,7 +26,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 		
 		int l = blockAccess.getHeight();
 		Tessellator tessellator = Tessellator.instance;
-		GL11.glEnable(GL11.GL_CULL_FACE);
 		tessellator.setBrightness(pane.getMixedBrightnessForBlock(blockAccess, x, y, z));
 		float f = 1.0F;
 		int i1 = pane.colorMultiplier(blockAccess, x, y, z);
