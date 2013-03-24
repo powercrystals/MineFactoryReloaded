@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.render;
 
-import org.lwjgl.opengl.GL11;
-
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.block.BlockFactoryGlassPane;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;

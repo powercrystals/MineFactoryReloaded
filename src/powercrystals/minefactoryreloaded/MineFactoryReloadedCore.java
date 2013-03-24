@@ -106,7 +106,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static final String modId = "MineFactoryReloaded";
 	public static final String modNetworkChannel = "MFReloaded";
-	public static final String version = "1.5.12.4.0B2";
+	public static final String version = "1.5.1R2.4.0B2";
 	public static final String modName = "Minefactory Reloaded";
 	
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
