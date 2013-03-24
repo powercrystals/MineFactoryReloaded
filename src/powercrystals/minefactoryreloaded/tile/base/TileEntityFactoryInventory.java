@@ -119,13 +119,13 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	}
 
 	@Override
-	public boolean func_94042_c()
+	public boolean isInvNameLocalized()
 	{
 		return false;
 	}
 
 	@Override
-	public boolean func_94041_b(int i, ItemStack itemstack)
+	public boolean isStackValidForSlot(int i, ItemStack itemstack)
 	{
 		return true;
 	}
@@ -209,17 +209,19 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	{
 		return true;
 	}
-
-	@Override
-	public int func_94127_c(int side)
-	{
-		return getStartInventorySide(ForgeDirection.VALID_DIRECTIONS[side]);
-	}
 	
 	@Override
-	public int func_94128_d(int side)
+	public int[] getSizeInventorySide(int side)
 	{
-		return getSizeInventorySide(ForgeDirection.VALID_DIRECTIONS[side]);
+		int start = getStartInventorySide(ForgeDirection.VALID_DIRECTIONS[side]);
+		int size = getSizeInventorySide(ForgeDirection.VALID_DIRECTIONS[side]);
+		
+		int[] slots = new int[size];
+		for(int i = 0; i < size; i++)
+		{
+			slots[i] = i + start;
+		}
+		return slots;
 	}
 	
 	public int getStartInventorySide(ForgeDirection side)
@@ -230,6 +232,18 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return getSizeInventory();
+	}
+
+	@Override
+	public boolean func_102007_a(int i, ItemStack itemstack, int j)
+	{
+		return this.isStackValidForSlot(i, itemstack);
+	}
+
+	@Override
+	public boolean func_102008_b(int i, ItemStack itemstack, int j)
+	{
+		return true;
 	}
 
 	@Override

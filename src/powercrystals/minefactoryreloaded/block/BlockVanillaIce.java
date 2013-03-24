@@ -58,7 +58,7 @@ public class BlockVanillaIce extends BlockIce
 
 			if((var8.blocksMovement() || var8.isLiquid()) && meta == 0)
 			{
-				world.func_94575_c(x, y, z, Block.waterMoving.blockID);
+				world.setBlock(x, y, z, Block.waterMoving.blockID);
 			}
 		}
 	}

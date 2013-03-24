@@ -23,7 +23,7 @@ public class FertilizableGrass implements IFactoryFertilizable
 		{
 			if(Block.tallGrass.canBlockStay(world, x, y + 1, z))
 			{
-				world.setBlockAndMetadataWithNotify(x, y + 1, z, Block.tallGrass.blockID, 1, 2);
+				world.setBlock(x, y + 1, z, Block.tallGrass.blockID, 1, 2);
 			}
 		}
 		else

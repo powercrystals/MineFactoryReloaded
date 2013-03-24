@@ -37,7 +37,7 @@ public class GuiLiquiCrafter extends GuiFactoryInventory
 			}
 		}
 		
-		this.mc.renderEngine.func_98187_b(MineFactoryReloadedCore.guiFolder + "liquicrafter.png");
+		this.mc.renderEngine.bindTexture(MineFactoryReloadedCore.guiFolder + "liquicrafter.png");
 		for(int i = 0; i < 8; i++)
 		{
 			this.drawTexturedModalRect(-50 + (i % 3 * 18), 10 + (i / 3 * 35), 232, 0, 16, 33);
@@ -49,7 +49,7 @@ public class GuiLiquiCrafter extends GuiFactoryInventory
 	{
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.func_98187_b(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
+		this.mc.renderEngine.bindTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 		int x = (width - xSize) / 2 - 56;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

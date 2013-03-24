@@ -39,7 +39,7 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 			{
 				worldObj.playAuxSFXAtEntity(null, 2001, bp.x, bp.y, bp.z, blockId + (blockMeta << 12));
 			}
-			worldObj.func_94571_i(bp.x, bp.y, bp.z);
+			worldObj.setBlockToAir(bp.x, bp.y, bp.z);
 			return true;
 		}
 		setIdleTicks(getIdleTicksMax());

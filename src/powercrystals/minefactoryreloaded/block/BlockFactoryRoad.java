@@ -37,11 +37,11 @@ public class BlockFactoryRoad extends Block
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94332_a(IconRegister par1IconRegister)
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		_iconRoad = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
-		_iconRoadOff = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".light.off");
-		_iconRoadOn = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".light.on");
+		_iconRoad = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		_iconRoadOff = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".light.off");
+		_iconRoadOn = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".light.on");
 	}
 
 	@Override

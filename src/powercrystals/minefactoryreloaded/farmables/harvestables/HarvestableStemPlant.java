@@ -18,7 +18,7 @@ public class HarvestableStemPlant extends HarvestableStandard
 		int groundId = world.getBlockId(x, y - 1, z);
 		if(blockId == 0 && (groundId == Block.dirt.blockID || groundId == Block.grass.blockID))
 		{
-			world.func_94575_c(x, y - 1, z, Block.tilledField.blockID);
+			world.setBlock(x, y - 1, z, Block.tilledField.blockID);
 		}
 	}
 }

@@ -39,34 +39,52 @@ inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 				IInventory inventory = chest.getValue();
 				ForgeDirection toSide = chest.getKey();
 				
-				int invStart = 0;
-				int invEnd = inventory.getSizeInventory();
-				
 				if(toSide != ForgeDirection.UNKNOWN && inventory instanceof ISidedInventory)
 				{
-					invStart = ((ISidedInventory)inventory).func_94127_c(toSide.getOpposite().ordinal());
-					invEnd = invStart + ((ISidedInventory)inventory).func_94128_d(toSide.getOpposite().ordinal());
-				}
-				
-				for(int i = invStart; i < invEnd; i++)
-				{
-					ItemStack targetStack = inventory.getStackInSlot(i);
-					if(targetStack != null)
+					for(int i : ((ISidedInventory)inventory).getSizeInventorySide(toSide.getOpposite().ordinal()))
 					{
-						ItemStack output = targetStack.copy();
-						output.stackSize = 1;
-						MFRUtil.dropStackDirected(this, output, this.getDirectionFacing());
-						if(targetStack.stackSize == 1 && output.stackSize == 0)
+						ItemStack targetStack = inventory.getStackInSlot(i);
+						if(targetStack != null)
 						{
-							inventory.setInventorySlotContents(i, null);
+							ItemStack output = targetStack.copy();
+							output.stackSize = 1;
+							MFRUtil.dropStackDirected(this, output, this.getDirectionFacing());
+							if(targetStack.stackSize == 1 && output.stackSize == 0)
+							{
+								inventory.setInventorySlotContents(i, null);
+							}
+							else if(output.stackSize == 0)
+							{
+								ItemStack newStack = targetStack.copy();
+								newStack.stackSize--;
+								inventory.setInventorySlotContents(i, newStack);
+							}
+							break inv;
 						}
-						else if(output.stackSize == 0)
+					}
+				}
+				else
+				{
+					for(int i = 0; i < inventory.getSizeInventory(); i++)
+					{
+						ItemStack targetStack = inventory.getStackInSlot(i);
+						if(targetStack != null)
 						{
-							ItemStack newStack = targetStack.copy();
-							newStack.stackSize--;
-							inventory.setInventorySlotContents(i, newStack);
+							ItemStack output = targetStack.copy();
+							output.stackSize = 1;
+							MFRUtil.dropStackDirected(this, output, this.getDirectionFacing());
+							if(targetStack.stackSize == 1 && output.stackSize == 0)
+							{
+								inventory.setInventorySlotContents(i, null);
+							}
+							else if(output.stackSize == 0)
+							{
+								ItemStack newStack = targetStack.copy();
+								newStack.stackSize--;
+								inventory.setInventorySlotContents(i, newStack);
+							}
+							break inv;
 						}
-						break inv;
 					}
 				}
 			}

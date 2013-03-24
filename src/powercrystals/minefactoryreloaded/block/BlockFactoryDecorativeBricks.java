@@ -46,11 +46,11 @@ public class BlockFactoryDecorativeBricks extends Block
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94332_a(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
 		for(int i = 0; i < _icons.length; i++)
 		{
-			_icons[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + "." + _names[i]);
+			_icons[i] = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + "." + _names[i]);
 		}
 	}
 	

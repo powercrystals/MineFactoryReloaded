@@ -55,7 +55,7 @@ public class HarvestableXycraftCorn implements IFactoryHarvestable
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
-		world.func_94571_i(x, y + 1, z);
+		world.setBlockToAir(x, y + 1, z);
 	}
 
 	@Override

@@ -36,10 +36,10 @@ public class BlockRubberLeaves extends BlockLeaves
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94332_a(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
-		_iconOpaque = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".opaque");
-		_iconTransparent = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".transparent");
+		_iconOpaque = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".opaque");
+		_iconTransparent = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".transparent");
 	}
 	
 	@Override

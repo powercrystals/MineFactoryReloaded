@@ -45,11 +45,11 @@ public class ItemUpgrade extends ItemFactory
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94581_a(IconRegister ir)
+	public void updateIcons(IconRegister ir)
 	{
 		for(int i = 0; i < _upgradeIcons.length; i++)
 		{
-			_upgradeIcons[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + "." + _upgradeNames[i]);
+			_upgradeIcons[i] = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + "." + _upgradeNames[i]);
 		}
 	}
 	

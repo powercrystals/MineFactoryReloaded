@@ -70,7 +70,7 @@ public class ClientPacketHandler implements IPacketHandler
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
-			((EntityPlayer)player).worldObj.setBlockAndMetadataWithNotify((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2], MineFactoryReloadedCore.factoryRoadBlock.blockID, (Integer)packetReadout[3], 6);
+			((EntityPlayer)player).worldObj.setBlock((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2], MineFactoryReloadedCore.factoryRoadBlock.blockID, (Integer)packetReadout[3], 6);
 			((EntityPlayer)player).worldObj.markBlockForRenderUpdate((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
 		}
 	}

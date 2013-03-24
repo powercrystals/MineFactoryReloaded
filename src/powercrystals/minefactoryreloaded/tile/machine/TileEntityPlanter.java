@@ -99,7 +99,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 				continue;
 			}
 			plantable.prePlant(worldObj, bp.x, bp.y, bp.z, availableStack);
-			worldObj.setBlockAndMetadataWithNotify(bp.x, bp.y, bp.z,
+			worldObj.setBlock(bp.x, bp.y, bp.z,
 					plantable.getPlantedBlockId(worldObj, bp.x, bp.y, bp.z, availableStack),
 					plantable.getPlantedBlockMetadata(worldObj, bp.x, bp.y, bp.z, availableStack), 3);
 			plantable.postPlant(worldObj, bp.x, bp.y, bp.z, availableStack);

@@ -51,12 +51,12 @@ public class BlockConveyor extends BlockContainer
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94332_a(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
 		for(int i = 0; i < _names.length; i++)
 		{
-			_iconsActive[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".active." + _names[i]);
-			_iconsStopped[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".stopped." + _names[i]);
+			_iconsActive[i] = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".active." + _names[i]);
+			_iconsStopped[i] = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".stopped." + _names[i]);
 		}
 	}
 	
@@ -296,7 +296,7 @@ public class BlockConveyor extends BlockContainer
 		if(!world.isRemote && !world.isBlockOpaqueCube(x, y - 1, z))
 		{
 			dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-			world.func_94571_i(x, y, z);
+			world.setBlockToAir(x, y, z);
 		}
 	}
 	

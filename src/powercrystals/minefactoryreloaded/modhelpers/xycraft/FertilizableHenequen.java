@@ -36,7 +36,7 @@ public class FertilizableHenequen implements IFactoryFertilizable
 		{
 			world.setBlockMetadataWithNotify(x, y, z, 4, 2);
 		}
-		world.setBlockAndMetadataWithNotify(x, y + 1, z, _blockId, 5, 2);
+		world.setBlock(x, y + 1, z, _blockId, 5, 2);
 		return true;
 	}
 }

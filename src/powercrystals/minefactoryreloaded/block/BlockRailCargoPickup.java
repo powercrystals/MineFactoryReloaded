@@ -41,32 +41,49 @@ public class BlockRailCargoPickup extends BlockRailBase
 		for(Entry<ForgeDirection, IInventory> chest : UtilInventory.findChests(world, x, y, z).entrySet())
 		{
 			IInventory inv = chest.getValue();
-			int invStart = 0;
-			int invEnd = inv.getSizeInventory();
 			
 			if(inv instanceof ISidedInventory)
 			{
-				invStart = ((ISidedInventory)inv).func_94127_c(chest.getKey().getOpposite().ordinal());
-				invEnd = invStart + ((ISidedInventory)inv).func_94128_d(chest.getKey().getOpposite().ordinal());
+				for(int slotIndex : ((ISidedInventory)inv).getSizeInventorySide(chest.getKey().getOpposite().ordinal()))
+				{
+					ItemStack sourceStack = inv.getStackInSlot(slotIndex);
+					if(sourceStack == null)
+					{
+						continue;
+					}
+					ItemStack stackToAdd = sourceStack.copy();
+					int amountRemaining = UtilInventory.addToInventory(minecart, ForgeDirection.UNKNOWN, stackToAdd);
+					if(amountRemaining == 0)
+					{
+						inv.setInventorySlotContents(slotIndex, null);
+					}
+					else
+					{
+						sourceStack.stackSize = amountRemaining;
+						break;
+					}
+				}
 			}
-			
-			for(int slotIndex = invStart; slotIndex < invEnd; slotIndex++)
+			else
 			{
-				ItemStack sourceStack = inv.getStackInSlot(slotIndex);
-				if(sourceStack == null)
+				for(int slotIndex = 0; slotIndex < inv.getSizeInventory(); slotIndex++)
 				{
-					continue;
-				}
-				ItemStack stackToAdd = sourceStack.copy();
-				int amountRemaining = UtilInventory.addToInventory(minecart, ForgeDirection.UNKNOWN, stackToAdd);
-				if(amountRemaining == 0)
-				{
-					inv.setInventorySlotContents(slotIndex, null);
-				}
-				else
-				{
-					sourceStack.stackSize = amountRemaining;
-					break;
+					ItemStack sourceStack = inv.getStackInSlot(slotIndex);
+					if(sourceStack == null)
+					{
+						continue;
+					}
+					ItemStack stackToAdd = sourceStack.copy();
+					int amountRemaining = UtilInventory.addToInventory(minecart, ForgeDirection.UNKNOWN, stackToAdd);
+					if(amountRemaining == 0)
+					{
+						inv.setInventorySlotContents(slotIndex, null);
+					}
+					else
+					{
+						sourceStack.stackSize = amountRemaining;
+						break;
+					}
 				}
 			}
 		}
@@ -74,8 +91,8 @@ public class BlockRailCargoPickup extends BlockRailBase
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94332_a(IconRegister par1IconRegister)
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		field_94336_cN = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		blockIcon = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 }

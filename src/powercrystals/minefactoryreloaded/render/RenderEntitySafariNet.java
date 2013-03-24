@@ -29,10 +29,10 @@ public class RenderEntitySafariNet extends Render
 
 	private void renderItemInFlight(Tessellator par1Tessellator, Icon par2Icon)
 	{
-		float f = par2Icon.func_94209_e();
-		float f1 = par2Icon.func_94212_f();
-		float f2 = par2Icon.func_94206_g();
-		float f3 = par2Icon.func_94210_h();
+		float f = par2Icon.getMinU();
+		float f1 = par2Icon.getMaxU();
+		float f2 = par2Icon.getMinV();
+		float f3 = par2Icon.getMaxV();
 		float f4 = 1.0F;
 		float f5 = 0.5F;
 		float f6 = 0.25F;

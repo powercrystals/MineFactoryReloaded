@@ -27,9 +27,9 @@ public class ItemFactory extends Item
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94581_a(IconRegister par1IconRegister)
+	public void updateIcons(IconRegister par1IconRegister)
 	{
-		this.iconIndex = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		this.iconIndex = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

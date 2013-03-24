@@ -42,10 +42,10 @@ public class RendererConveyor implements ISimpleBlockRenderingHandler
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(iblockaccess, blockX, blockY, blockZ));
 		tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
 		
-		double uStart = conveyorTexture.func_94214_a(0);
-		double uEnd = conveyorTexture.func_94214_a(16);
-		double vStart = conveyorTexture.func_94207_b(0);
-		double vEnd = conveyorTexture.func_94207_b(16);
+		double uStart = conveyorTexture.getInterpolatedU(0);
+		double uEnd = conveyorTexture.getInterpolatedU(16);
+		double vStart = conveyorTexture.getInterpolatedV(0);
+		double vEnd = conveyorTexture.getInterpolatedV(16);
 		
 		float renderHeight = 0.0625F;
 		

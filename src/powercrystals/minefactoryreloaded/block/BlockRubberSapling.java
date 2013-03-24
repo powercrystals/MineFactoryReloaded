@@ -30,15 +30,15 @@ public class BlockRubberSapling extends BlockSapling
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94332_a(IconRegister par1IconRegister)
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		field_94336_cN = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		blockIcon = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 
 	@Override
 	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
-		return field_94336_cN;
+		return blockIcon;
 	}
 	
 	@Override
@@ -46,11 +46,11 @@ public class BlockRubberSapling extends BlockSapling
 	{
 		WorldGenRubberTree wg = new WorldGenRubberTree(true);
 		
-		world.func_94571_i(x, y, z);
+		world.setBlockToAir(x, y, z);
 		
 		if(!wg.growTree(world, rand, x, y, z))
 		{
-			world.setBlockAndMetadataWithNotify(x, y, z, blockID, 0, 4);
+			world.setBlock(x, y, z, blockID, 0, 4);
 		}
 	}
 	

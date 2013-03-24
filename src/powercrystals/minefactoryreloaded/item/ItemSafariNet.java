@@ -78,12 +78,12 @@ public class ItemSafariNet extends ItemFactory
 	}
 
 	@Override
-	public void func_94581_a(IconRegister ir)
+	public void updateIcons(IconRegister ir)
 	{
-		_iconEmpty = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".empty");
-		_iconBack = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".back");
-		_iconMid = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".mid");
-		_iconFront = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".front");
+		_iconEmpty = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".empty");
+		_iconBack = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".back");
+		_iconMid = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".mid");
+		_iconFront = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".front");
 	}
 	
 	@Override

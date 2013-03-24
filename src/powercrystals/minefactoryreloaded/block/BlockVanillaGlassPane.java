@@ -32,9 +32,9 @@ public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94332_a(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
-		_iconPane = ir.func_94245_a("glass");
-    	_iconSide = ir.func_94245_a("thinglass_top");
+		_iconPane = ir.registerIcon("glass");
+    	_iconSide = ir.registerIcon("thinglass_top");
 	}
 }

@@ -71,9 +71,9 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94332_a(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
-		_icon = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		_icon = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 
 				if(i1 < 0)
 				{
-					world.func_94571_i(x, y, z);
+					world.setBlockToAir(x, y, z);
 				}
 				else
 				{
@@ -188,7 +188,7 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 		{
 			if(this.blockMaterial == Material.lava && world.getBlockMaterial(x, y - 1, z) == Material.water)
 			{
-				world.func_94575_c(x, y - 1, z, Block.stone.blockID);
+				world.setBlock(x, y - 1, z, Block.stone.blockID);
 				this.triggerLavaMixEffects(world, x, y - 1, z);
 				return;
 			}
@@ -242,7 +242,7 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 	private void updateFlow(World world, int x, int y, int z)
 	{
 		int meta = world.getBlockMetadata(x, y, z);
-		world.setBlockAndMetadataWithNotify(x, y, z, _stillId, meta, 2);
+		world.setBlock(x, y, z, _stillId, meta, 2);
 	}
 	
 	private boolean liquidCanDisplaceBlock(World world, int x, int y, int z)
@@ -269,7 +269,7 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 				}
 			}
 
-			world.setBlockAndMetadataWithNotify(x, y, z, this.blockID, meta, 3);
+			world.setBlock(x, y, z, this.blockID, meta, 3);
 		}
 	}
 	

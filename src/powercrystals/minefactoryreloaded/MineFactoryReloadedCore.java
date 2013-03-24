@@ -458,7 +458,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		ItemStack filledBucket = fillBucket(e.world, e.target);
 		if(filledBucket != null)
 		{
-			e.world.func_94571_i(e.target.blockX, e.target.blockY, e.target.blockZ);
+			e.world.setBlockToAir(e.target.blockX, e.target.blockY, e.target.blockZ);
 			e.result = filledBucket;
 			e.setResult(Result.ALLOW);
 		}

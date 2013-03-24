@@ -6,8 +6,8 @@
 	<property name="classes.dir" value="${build.dir}/packaging" />
 	<property name="apiclasses.dir" value="${build.dir}/api-packaging" />
 	<property name="src.dir" value="src" />
-	<property name="forge.buildnum" value="583" />
-	<property name="forge.version" value="1.5-7.7.0.${forge.buildnum}" />
+	<property name="forge.buildnum" value="605" />
+	<property name="forge.version" value="1.5.1-7.7.0.${forge.buildnum}" />
 	<property name="forge.url" value="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${forge.version}.zip" />
 	<property name="forge.dir" value="${build.dir}/forge" />
 	<property name="mcp.dir" value="${forge.dir}/mcp" />
@@ -59,7 +59,7 @@
 		<get src="http://porpchan.org/NotEnoughItems%201.4.5.1-deobf.jar" dest="${lib.dir}/NotEnoughItems 1.4.5.1-deobf.jar" />
 		
 		<echo message="Downloading UniversalElectricity API... " />
-		<get src="http://calclavia.com/download.php?d=ue/&amp;f=UniversalElectricity_v1.3.0.351.zip" dest="${download.dir}/ue-api.zip" />
+		<get src="http://calclavia.com/download.php?d=ue/&amp;f=UniversalElectricity_v1.3.1.354.zip" dest="${download.dir}/ue-api.zip" />
 		
 	</target>
 

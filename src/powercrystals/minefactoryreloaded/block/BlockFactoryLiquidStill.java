@@ -64,10 +64,10 @@ public class BlockFactoryLiquidStill extends BlockStationary
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94332_a(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
-		_iconStill = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
-		_iconFlowing = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName().replace(".still", ".flowing"));
+		_iconStill = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		_iconFlowing = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName().replace(".still", ".flowing"));
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class BlockFactoryLiquidStill extends BlockStationary
 	private void setNotStationary(World world, int x, int y, int z)
 	{
 		int meta = world.getBlockMetadata(x, y, z);
-		world.setBlockAndMetadataWithNotify(x, y, z, _flowingId, meta, 2);
+		world.setBlock(x, y, z, _flowingId, meta, 2);
 		world.scheduleBlockUpdate(x, y, z, _flowingId, this.tickRate(world));
 	}
 }

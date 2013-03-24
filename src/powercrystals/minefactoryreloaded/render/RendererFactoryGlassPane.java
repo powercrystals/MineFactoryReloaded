@@ -49,7 +49,7 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 		Icon iconSide;
 		int metadata;
 
-		if (renderer.func_94167_b())
+		if(renderer.hasOverrideBlockTexture())
 		{
 			iconFront = renderer.overrideBlockTexture;
 			iconSide = renderer.overrideBlockTexture;
@@ -57,21 +57,21 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 		else
 		{
 			metadata = blockAccess.getBlockMetadata(x, y, z);
-			iconFront = renderer.func_94165_a(pane, 0, metadata);
+			iconFront = renderer.getBlockIconFromSideAndMetadata(pane, 0, metadata);
 			iconSide = pane.getBlockSideTextureFromMetadata(metadata);
 		}
 
-		double d0 = (double)iconFront.func_94209_e();
-		double d1 = (double)iconFront.func_94214_a(8.0D);
-		double d2 = (double)iconFront.func_94212_f();
-		double d3 = (double)iconFront.func_94206_g();
-		double d4 = (double)iconFront.func_94210_h();
+		double d0 = (double)iconFront.getMinU();
+		double d1 = (double)iconFront.getInterpolatedU(8.0D);
+		double d2 = (double)iconFront.getMaxU();
+		double d3 = (double)iconFront.getMinV();
+		double d4 = (double)iconFront.getMaxV();
 		
-		double d5 = (double)iconSide.func_94214_a(7.0D);
-		double d6 = (double)iconSide.func_94214_a(9.0D);
-		double d7 = (double)iconSide.func_94206_g();
-		double d8 = (double)iconSide.func_94207_b(8.0D);
-		double d9 = (double)iconSide.func_94210_h();
+		double d5 = (double)iconSide.getInterpolatedU(7.0D);
+		double d6 = (double)iconSide.getInterpolatedU(9.0D);
+		double d7 = (double)iconSide.getMinV();
+		double d8 = (double)iconSide.getInterpolatedV(8.0D);
+		double d9 = (double)iconSide.getMaxV();
 		double d10 = (double)x;
 		double d11 = (double)x + 0.5D;
 		double d12 = (double)(x + 1);

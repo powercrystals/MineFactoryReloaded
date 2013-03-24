@@ -47,7 +47,7 @@ public class GuiFactoryInventory extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float gameTicks, int mouseX, int mouseY)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.func_98187_b(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
+		this.mc.renderEngine.getTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
@@ -115,20 +115,20 @@ public class GuiFactoryInventory extends GuiContainer
 				level = 0;
 			}
 			
-			if(tempStack.func_94608_d() == 0)
+			if(tempStack.getItemSpriteNumber() == 0)
 			{
-				this.mc.renderEngine.func_98187_b("/terrain.png");
+				this.mc.renderEngine.bindTexture("/terrain.png");
 			}
 			else
 			{
-				this.mc.renderEngine.func_98187_b("/gui/items.png");
+				this.mc.renderEngine.bindTexture("/gui/items.png");
 			}
 			
-			this.func_94065_a(xOffset, yOffset - texHeight - vertOffset, liquidTexture, 16, texHeight);
+			this.drawTexturedModelRectFromIcon(xOffset, yOffset - texHeight - vertOffset, liquidTexture, 16, texHeight);
 			vertOffset = vertOffset + 16;
 		}
 
-		this.mc.renderEngine.func_98187_b(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
+		this.mc.renderEngine.bindTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 		this.drawTexturedModalRect(xOffset, yOffset - 60, 176, 0, 16, 60);
 	}
 

@@ -33,11 +33,11 @@ public class BlockFactoryGlass extends BlockGlass
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94332_a(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
 		for(int i = 0; i < _names.length; i++)
 		{
-			_icons[i] = ir.func_94245_a("powercrystals/minefactoryreloaded/tile.mfr.stainedglass." + _names[i]);
+			_icons[i] = ir.registerIcon("powercrystals/minefactoryreloaded/tile.mfr.stainedglass." + _names[i]);
 		}
 	}
 	

@@ -162,7 +162,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			{
 				worldObj.playAuxSFXAtEntity(null, 2001, targetCoords.x, targetCoords.y, targetCoords.z, harvestedBlockId + (harvestedBlockMetadata << 12));
 			}
-			worldObj.func_94571_i(targetCoords.x, targetCoords.y, targetCoords.z);
+			worldObj.setBlockToAir(targetCoords.x, targetCoords.y, targetCoords.z);
 		}
 		
 		harvestable.postHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
