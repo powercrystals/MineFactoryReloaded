@@ -27,7 +27,8 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	{
 		_forwardDirection = ForgeDirection.NORTH;
 	}
-	
+
+	@Override
 	public ForgeDirection getDirectionFacing()
 	{
 		return _forwardDirection;

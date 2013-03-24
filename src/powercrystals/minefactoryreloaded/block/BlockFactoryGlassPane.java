@@ -54,7 +54,8 @@ public class BlockFactoryGlassPane extends BlockPane
 	{
 		return _icons[Math.min(meta, _icons.length - 1)];
 	}
-	
+
+	@Override
 	public int getRenderBlockPass()
 	{
 		return 1;

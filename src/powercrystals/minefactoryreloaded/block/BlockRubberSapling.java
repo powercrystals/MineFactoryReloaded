@@ -34,7 +34,8 @@ public class BlockRubberSapling extends BlockSapling
 	{
 		field_94336_cN = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
-	
+
+	@Override
 	public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
 	{
 		return field_94336_cN;

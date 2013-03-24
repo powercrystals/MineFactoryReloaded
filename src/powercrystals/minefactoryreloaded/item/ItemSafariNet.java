@@ -76,7 +76,8 @@ public class ItemSafariNet extends ItemFactory
 		else if(pass == 2) return _iconFront;
 		return null;
 	}
-	
+
+	@Override
 	public void func_94581_a(IconRegister ir)
 	{
 		_iconEmpty = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".empty");
@@ -99,6 +100,7 @@ public class ItemSafariNet extends ItemFactory
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Override
 	public int getColorFromItemStack(ItemStack stack, int pass)
 	{
 		if(stack.getItemDamage() == 0 && stack.getTagCompound() == null)

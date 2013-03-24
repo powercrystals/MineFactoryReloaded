@@ -62,6 +62,7 @@ public class BlockRubberWood extends BlockLog
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void getSubBlocks(int blockId, CreativeTabs tab, List subBlocks)
 	{
 		subBlocks.add(new ItemStack(blockId, 1, 0));

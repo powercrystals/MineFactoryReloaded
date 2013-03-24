@@ -28,6 +28,7 @@ public class ItemCeramicDye extends ItemFactory
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void func_94581_a(IconRegister ir)
 	{
 		for(int i = 0; i < _dyeIcons.length; i++)

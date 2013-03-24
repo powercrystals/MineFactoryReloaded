@@ -19,12 +19,14 @@ public class ItemFactoryBucket extends ItemBucket
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void func_94581_a(IconRegister par1IconRegister)
 	{
 		this.iconIndex = par1IconRegister.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
 	public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes)
 	{
 		subTypes.add(new ItemStack(itemId, 1, 0));

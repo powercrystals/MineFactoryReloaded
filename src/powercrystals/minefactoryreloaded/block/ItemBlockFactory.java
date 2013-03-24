@@ -25,6 +25,7 @@ public class ItemBlockFactory extends ItemBlock
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Override
 	public Icon getIconFromDamage(int damage)
 	{
 		return Block.blocksList[getBlockID()].getBlockTextureFromSideAndMetadata(2, damage);

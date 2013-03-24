@@ -12,6 +12,7 @@ import net.minecraft.util.Icon;
 
 public class RenderEntitySafariNet extends Render
 {
+	@Override
 	public void doRender(Entity entity, double x, double y, double z, float par8, float par9)
 	{
 		GL11.glPushMatrix();

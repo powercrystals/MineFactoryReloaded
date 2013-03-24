@@ -51,7 +51,8 @@ public class BlockFactoryRoad extends Block
 		if(meta == 2 || meta == 4) return _iconRoadOn;
 		return _iconRoad;
 	}
-	
+
+	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
 	{
 		if(!world.isRemote)

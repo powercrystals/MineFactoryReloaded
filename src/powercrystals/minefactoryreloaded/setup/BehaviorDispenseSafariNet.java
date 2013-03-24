@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 public class BehaviorDispenseSafariNet extends BehaviorDefaultDispenseItem
 {
+	@Override
 	public ItemStack dispenseStack(IBlockSource dispenser, ItemStack stack)
 	{
 		World world = dispenser.getWorld();
@@ -24,9 +25,7 @@ public class BehaviorDispenseSafariNet extends BehaviorDefaultDispenseItem
 		return stack;
 	}
 
-	/**
-	 * Play the dispense sound from the specified block.
-	 */
+	@Override
 	protected void playDispenseSound(IBlockSource dispenser)
 	{
 		dispenser.getWorld().playAuxSFX(1002, dispenser.getXInt(), dispenser.getYInt(), dispenser.getZInt(), 0);

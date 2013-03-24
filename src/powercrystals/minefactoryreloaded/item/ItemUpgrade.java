@@ -44,6 +44,7 @@ public class ItemUpgrade extends ItemFactory
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void func_94581_a(IconRegister ir)
 	{
 		for(int i = 0; i < _upgradeIcons.length; i++)

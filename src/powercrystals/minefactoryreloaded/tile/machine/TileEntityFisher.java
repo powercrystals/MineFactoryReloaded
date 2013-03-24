@@ -48,7 +48,8 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 	{
 		return false;
 	}
-	
+
+	@Override
 	public boolean activateMachine()
 	{
 		BlockPosition fishCenter = BlockPosition.fromFactoryTile(this);

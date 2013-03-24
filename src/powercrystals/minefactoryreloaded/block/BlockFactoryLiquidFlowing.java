@@ -70,11 +70,13 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 	}
 	
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void func_94332_a(IconRegister ir)
 	{
 		_icon = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
-	
+
+	@Override
 	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
 	{
 		return _icon;
@@ -92,7 +94,8 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 	{
 		return false;
 	}
-	
+
+	@Override
 	public void updateTick(World world, int x, int y, int z, Random par5Random)
 	{
 		int l = this.getFlowDecay(world, x, y, z);

@@ -63,12 +63,14 @@ public class BlockFactoryLiquidStill extends BlockStationary
 	}
 	
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void func_94332_a(IconRegister ir)
 	{
 		_iconStill = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 		_iconFlowing = ir.func_94245_a("powercrystals/minefactoryreloaded/" + getUnlocalizedName().replace(".still", ".flowing"));
 	}
-	
+
+	@Override
 	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
 	{
 		return side <= 1 ? _iconStill : _iconFlowing;
@@ -86,7 +88,8 @@ public class BlockFactoryLiquidStill extends BlockStationary
 	{
 		return false;
 	}
-	
+
+	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId)
 	{
 		super.onNeighborBlockChange(world, x, y, z, blockId);

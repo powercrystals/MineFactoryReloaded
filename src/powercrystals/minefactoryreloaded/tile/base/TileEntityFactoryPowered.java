@@ -71,7 +71,8 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	}
 	
 	// local methods
-	
+
+	@Override
 	public abstract String getInvName();
 	
 	@Override
@@ -257,35 +258,29 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	// IC2 methods
 	
-	/**
-	 * Determine whether the sink requires energy.
-	 * 
-	 * @return max accepted input in eu
-	 */
+
+	@Override
 	public int demandsEnergy()
 	{
 		return ((getEnergyStoredMax() - _energyStored) / energyPerEU);
 	}
 
-	/**
-	 * Transfer energy to the sink.
-	 *
-	 * @param directionFrom direction from which the energy comes from
-	 * @param amount energy to be transferred
-	 * @return Energy not consumed (leftover)
-	 */
+
+	@Override
 	public int injectEnergy(Direction directionFrom, int amount)
 	{
 		int euInjected = Math.min(demandsEnergy(), amount);
 		_energyStored += euInjected * energyPerEU;
 		return amount - euInjected;
 	}
-	
+
+	@Override
 	public boolean acceptsEnergyFrom(TileEntity emitter, Direction direction)
 	{
 		return true;
 	}
-	
+
+	@Override
 	public boolean isAddedToEnergyNet()
 	{
 		return _isAddedToIC2EnergyNet;

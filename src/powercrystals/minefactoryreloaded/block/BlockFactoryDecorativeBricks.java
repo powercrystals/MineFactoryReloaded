@@ -45,6 +45,7 @@ public class BlockFactoryDecorativeBricks extends Block
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void func_94332_a(IconRegister ir)
 	{
 		for(int i = 0; i < _icons.length; i++)
