@@ -59,7 +59,7 @@
 		<get src="http://porpchan.org/NotEnoughItems%201.4.5.1-deobf.jar" dest="${lib.dir}/NotEnoughItems 1.4.5.1-deobf.jar" />
 		
 		<echo message="Downloading UniversalElectricity API... " />
-		<get src="http://calclavia.com/download.php?d=ue/&amp;f=UniversalElectricity_v1.3.1.354.zip" dest="${download.dir}/ue-api.zip" />
+		<get src="https://dl.dropbox.com/u/13350431/UniversalElectricity_v1.3.1.354.zip" dest="${download.dir}/ue-api.zip" />
 		
 	</target>
 
