@@ -37,8 +37,6 @@
 			<available file="${mcpsrc.dir}/buildcraft" type="dir"/>
 			<available file="${mcpsrc.dir}/ic2" type="dir"/>
 			<available file="${mcpsrc.dir}/universalelectricity" type="dir"/>
-			<available file="${lib.dir}/CodeChickenCore 0.7.1.0-deobf.jar"/>
-			<available file="${lib.dir}/NotEnoughItems 1.4.5.1-deobf.jar"/>
 		</and>
 	</condition>
 
