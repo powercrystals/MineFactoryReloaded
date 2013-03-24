@@ -47,13 +47,13 @@
 		<get src="http://ic2api.player.to:8080/job/IC2_lf/231/artifact/packages/industrialcraft-2-api_1.115.231-lf.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
 		
 		<echo message="Downloading BuildCraft API..." />
-		<get src="https://dl.dropbox.com/u/13350431/BuildCraft-master.zip" dest="${download.dir}/BuildCraft-master.zip"/>
+		<get src="https://github.com/BuildCraft/BuildCraft/archive/master.zip" dest="${download.dir}/BuildCraft-master.zip"/>
 		
 		<echo message="Downloading PowerCrystalsCore... " />
-		<get src="https://dl.dropbox.com/u/13350431/PowerCrystalsCore-master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
+		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
 		
 		<echo message="Downloading UniversalElectricity API... " />
-		<get src="https://dl.dropbox.com/u/13350431/UniversalElectricity_v1.3.1.354.zip" dest="${download.dir}/ue-api.zip" />
+		<get src="http://calclavia.com/download.php?d=ue/&amp;f=UniversalElectricity_v1.3.1.354.zip" dest="${download.dir}/ue-api.zip" />
 		
 	</target>
 
@@ -243,7 +243,7 @@
 	
 	<target name="download-core" unless="forge-exists">
 		<echo message="Downloading PowerCrystalsCore... " />
-		<get src="https://dl.dropbox.com/u/13350431/PowerCrystalsCore-master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
+		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
 		
 		<echo message="Extracting PowerCrystalsCore... " />
 		<unzip src="${download.dir}/PowerCrystalsCore-master.zip" dest="${download.dir}"/>
