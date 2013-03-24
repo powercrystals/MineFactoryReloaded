@@ -61,6 +61,7 @@ import powercrystals.minefactoryreloaded.item.ItemFactoryHammer;
 import powercrystals.minefactoryreloaded.item.ItemMilkBottle;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import powercrystals.minefactoryreloaded.item.ItemSafariNetLauncher;
+import powercrystals.minefactoryreloaded.item.ItemSpyglass;
 import powercrystals.minefactoryreloaded.item.ItemSyringeGrowth;
 import powercrystals.minefactoryreloaded.item.ItemSyringeHealth;
 import powercrystals.minefactoryreloaded.item.ItemSyringeZombie;
@@ -167,6 +168,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item safariNetLauncherItem;
 	public static Item sugarCharcoalItem;
 	public static Item milkBottleItem;
+	public static Item spyglassItem;
 
 	// Config
 	public static Property machineBlock0Id;
@@ -227,6 +229,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property safariNetLauncherItemId;
 	public static Property sugarCharcoalItemId;
 	public static Property milkBottleItemId;
+	public static Property spyglassItemId;
 
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
@@ -323,6 +326,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setUnlocalizedName("mfr.safarinet.launcher").setMaxStackSize(1);
 		sugarCharcoalItem = (new ItemFactory(sugarCharcoalItemId.getInt())).setUnlocalizedName("mfr.sugarcharcoal");
 		milkBottleItem = (new ItemMilkBottle(milkBottleItemId.getInt())).setUnlocalizedName("mfr.milkbottle").setMaxStackSize(1);
+		spyglassItem = (new ItemSpyglass(spyglassItemId.getInt())).setUnlocalizedName("mfr.spyglass").setMaxStackSize(1);
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -528,6 +532,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		safariNetLauncherItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetLauncher", 12012);
 		sugarCharcoalItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SugarCharcoal", 12013);
 		milkBottleItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MilkBottle", 12014);
+		spyglassItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Spyglass", 12015);
 
 		treeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxHoriztonal", 8);
 		treeSearchMaxHorizontal.comment = "When searching for parts of a tree, how far out to the sides (radius) to search";
