@@ -829,5 +829,27 @@ public class Vanilla
 						Item.bucketMilk,
 						Item.glassBottle
 					} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.spyglassItem), new Object[]
+				{
+					"GLG",
+					"PLP",
+					" S ",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('L'), Block.glass,
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('S'), Item.stick
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.portaSpawnerItem), new Object[]
+				{
+					"GLG",
+					"DND",
+					"GLG",
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('L'), Block.glass,
+					Character.valueOf('D'), Item.diamond,
+					Character.valueOf('N'), Item.netherStar
+				} );
 	}
 }
