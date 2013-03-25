@@ -91,6 +91,7 @@ public class EntitySafariNet extends EntityThrowable
 			{
 				ei.getEntityItem().setTagCompound(stack.getTagCompound());
 			}
+			ei.delayBeforeCanPickup = 40;
 			worldObj.spawnEntityInWorld(ei);
 		}
 		setDead();
