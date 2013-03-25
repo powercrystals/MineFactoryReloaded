@@ -851,5 +851,23 @@ public class Vanilla
 					Character.valueOf('D'), Item.diamond,
 					Character.valueOf('N'), Item.netherStar
 				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.spyglassItem), new Object[]
+				{
+					"PP",
+					"P ",
+					"P ",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+				} );
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.xpExtractorItem), new Object[]
+				{
+					"PLP",
+					"PLP",
+					"RPR",
+					Character.valueOf('R'), "itemRubber",
+					Character.valueOf('L'), Block.glass,
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+				} ));
 	}
 }
