@@ -84,6 +84,8 @@ public class ItemSafariNet extends ItemFactory
 		_iconBack = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".back");
 		_iconMid = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".mid");
 		_iconFront = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".front");
+		
+		iconIndex = _iconEmpty;
 	}
 	
 	@Override
