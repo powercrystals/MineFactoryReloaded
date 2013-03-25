@@ -15,6 +15,8 @@ import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
+import powercrystals.core.inventory.IInventoryManager;
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
@@ -156,7 +158,8 @@ public class MFRUtil
 		TileEntity te = from.worldObj.getBlockTileEntity(bp.x, bp.y, bp.z);
 		if(te != null && te instanceof IInventory)
 		{
-			s.stackSize = UtilInventory.addToInventory((IInventory)te, towards, s);
+			IInventoryManager manager = InventoryManager.create((IInventory)te, towards.getOpposite());
+			s = manager.addItem(s);
 		}
 		else if(te != null && te instanceof IPipeEntry && ((IPipeEntry)te).acceptItems())
 		{
@@ -165,7 +168,7 @@ public class MFRUtil
 			return;
 		}
 		
-		if(s.stackSize > 0 && !from.worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, towards.getOpposite()))
+		if(s != null && s.stackSize > 0 && !from.worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, towards.getOpposite()))
 		{
 			dropStackOnGround(s, BlockPosition.fromFactoryTile(from), from.worldObj, towards);
 		}
@@ -215,7 +218,8 @@ public class MFRUtil
 					continue;
 				}
 			}
-			s.stackSize = UtilInventory.addToInventory(chest.getValue(), chest.getKey(), s);
+			IInventoryManager manager = InventoryManager.create((IInventory)chest.getValue(), chest.getKey().getOpposite());
+			s = manager.addItem(s);
 			if(s.stackSize == 0)
 			{
 				return;

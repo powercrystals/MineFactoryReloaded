@@ -8,6 +8,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 
+import powercrystals.core.inventory.IInventoryManager;
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
@@ -30,8 +32,9 @@ public class TileEntityCollector extends TileEntityFactory
 		Map<ForgeDirection, IInventory> chests = UtilInventory.findChests(worldObj, xCoord, yCoord, zCoord);
 		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 		{
-			s.stackSize = UtilInventory.addToInventory(chest.getValue(), chest.getKey(), s);
-			if(s.stackSize == 0)
+			IInventoryManager manager = InventoryManager.create(chest.getValue(), chest.getKey()); 
+			s = manager.addItem(s);
+			if(s == null)
 			{
 				i.setDead();
 				return;

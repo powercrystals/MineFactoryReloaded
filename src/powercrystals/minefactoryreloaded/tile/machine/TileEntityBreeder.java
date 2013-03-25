@@ -10,8 +10,10 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeDirection;
 
-import powercrystals.core.util.UtilInventory;
+import powercrystals.core.inventory.IInventoryManager;
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -71,6 +73,8 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 	{
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 		
+		IInventoryManager manager = InventoryManager.create(this, ForgeDirection.UNKNOWN);
+		
 		for(Object o : entities)
 		{
 			if(o != null && o instanceof EntityAnimal)
@@ -81,7 +85,7 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 				{
 					food = new ItemStack(Item.wheat);
 				}
-				int stackIndex = UtilInventory.findFirstStack(this, food.itemID, food.getItemDamage());
+				int stackIndex = manager.findItem(food);
 				if(stackIndex < 0)
 				{
 					continue;

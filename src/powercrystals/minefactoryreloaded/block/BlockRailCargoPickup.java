@@ -11,10 +11,11 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecartContainer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.inventory.IInventoryManager;
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
@@ -36,54 +37,27 @@ public class BlockRailCargoPickup extends BlockRailBase
 		{
 			return;
 		}
-		EntityMinecartContainer minecart = (EntityMinecartContainer)entity;
 		
-		for(Entry<ForgeDirection, IInventory> chest : UtilInventory.findChests(world, x, y, z).entrySet())
+		IInventoryManager minecart = InventoryManager.create((EntityMinecartContainer)entity, ForgeDirection.UNKNOWN);
+		
+		for(Entry<ForgeDirection, IInventory> inventory : UtilInventory.findChests(world, x, y, z).entrySet())
 		{
-			IInventory inv = chest.getValue();
-			
-			if(inv instanceof ISidedInventory)
+			IInventoryManager chest = InventoryManager.create(inventory.getValue(), inventory.getKey().getOpposite()); 
+			for(Entry<Integer, ItemStack> contents : chest.getContents().entrySet())
 			{
-				for(int slotIndex : ((ISidedInventory)inv).getSizeInventorySide(chest.getKey().getOpposite().ordinal()))
+				ItemStack stackToAdd = contents.getValue().copy();
+				
+				ItemStack remaining = minecart.addItem(stackToAdd);
+				
+				if(remaining != null)
 				{
-					ItemStack sourceStack = inv.getStackInSlot(slotIndex);
-					if(sourceStack == null)
-					{
-						continue;
-					}
-					ItemStack stackToAdd = sourceStack.copy();
-					int amountRemaining = UtilInventory.addToInventory(minecart, ForgeDirection.UNKNOWN, stackToAdd);
-					if(amountRemaining == 0)
-					{
-						inv.setInventorySlotContents(slotIndex, null);
-					}
-					else
-					{
-						sourceStack.stackSize = amountRemaining;
-						break;
-					}
+					stackToAdd.stackSize -= remaining.stackSize;
+					chest.removeItem(stackToAdd.stackSize, stackToAdd);
 				}
-			}
-			else
-			{
-				for(int slotIndex = 0; slotIndex < inv.getSizeInventory(); slotIndex++)
+				else
 				{
-					ItemStack sourceStack = inv.getStackInSlot(slotIndex);
-					if(sourceStack == null)
-					{
-						continue;
-					}
-					ItemStack stackToAdd = sourceStack.copy();
-					int amountRemaining = UtilInventory.addToInventory(minecart, ForgeDirection.UNKNOWN, stackToAdd);
-					if(amountRemaining == 0)
-					{
-						inv.setInventorySlotContents(slotIndex, null);
-					}
-					else
-					{
-						sourceStack.stackSize = amountRemaining;
-						break;
-					}
+					chest.removeItem(stackToAdd.stackSize, stackToAdd);
+					break;
 				}
 			}
 		}

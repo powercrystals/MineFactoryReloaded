@@ -9,10 +9,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 
-import powercrystals.core.util.UtilInventory;
+import powercrystals.core.inventory.IInventoryManager;
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 
 public class RanchableCow implements IFactoryRanchable
@@ -27,7 +29,8 @@ public class RanchableCow implements IFactoryRanchable
 	public List<ItemStack> ranch(World world, EntityLiving entity, IInventory rancher)
 	{
 		List<ItemStack> drops = new LinkedList<ItemStack>();
-		int bucketIndex = UtilInventory.findFirstStack(rancher, Item.bucketEmpty.itemID, 0);
+		IInventoryManager manager = InventoryManager.create(rancher, ForgeDirection.UNKNOWN);
+		int bucketIndex = manager.findItem(new ItemStack(Item.bucketEmpty));
 		if(bucketIndex >= 0)
 		{
 			drops.add(new ItemStack(Item.bucketMilk));
