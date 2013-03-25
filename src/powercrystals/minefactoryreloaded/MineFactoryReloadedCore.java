@@ -66,6 +66,7 @@ import powercrystals.minefactoryreloaded.item.ItemSpyglass;
 import powercrystals.minefactoryreloaded.item.ItemStraw;
 import powercrystals.minefactoryreloaded.item.ItemSyringeGrowth;
 import powercrystals.minefactoryreloaded.item.ItemSyringeHealth;
+import powercrystals.minefactoryreloaded.item.ItemSyringeSlime;
 import powercrystals.minefactoryreloaded.item.ItemSyringeZombie;
 import powercrystals.minefactoryreloaded.item.ItemUpgrade;
 import powercrystals.minefactoryreloaded.item.ItemXpExtractor;
@@ -175,6 +176,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item portaSpawnerItem;
 	public static Item strawItem;
 	public static Item xpExtractorItem;
+	public static Item syringeSlimeItem;
 
 	// Config
 	public static Property machineBlock0Id;
@@ -239,6 +241,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property portaSpawnerItemId;
 	public static Property strawItemId;
 	public static Property xpExtractorItemId;
+	public static Property syringeSlimeItemId;
 
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
@@ -339,6 +342,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		portaSpawnerItem = (new ItemPortaSpawner(portaSpawnerItemId.getInt())).setUnlocalizedName("mfr.portaspawner").setMaxStackSize(1);
 		strawItem = (new ItemStraw(strawItemId.getInt())).setUnlocalizedName("mfr.straw").setMaxStackSize(1);
 		xpExtractorItem = (new ItemXpExtractor(xpExtractorItemId.getInt())).setUnlocalizedName("mfr.xpextractor").setMaxStackSize(1);
+		syringeSlimeItem = (new ItemSyringeSlime(syringeSlimeItemId.getInt())).setUnlocalizedName("mfr.syringe.slime").setContainerItem(syringeEmptyItem);
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -548,6 +552,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		portaSpawnerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PortaSpawner", 12016);
 		strawItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Straw", 12017);
 		xpExtractorItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.XPExtractor", 12018);
+		syringeSlimeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeSlime", 12019);
 
 		treeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxHoriztonal", 8);
 		treeSearchMaxHorizontal.comment = "When searching for parts of a tree, how far out to the sides (radius) to search";

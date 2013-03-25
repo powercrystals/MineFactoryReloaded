@@ -71,6 +71,16 @@ public class Vanilla
 					Character.valueOf('S'), MineFactoryReloadedCore.syringeEmptyItem,
 				} );
 		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.syringeSlimeItem, 1), new Object[]
+				{
+					"   ",
+					" S ",
+					"BLB",
+					Character.valueOf('B'), Item.slimeBall,
+					Character.valueOf('L'), new ItemStack(Item.dyePowder, 1, 4),
+					Character.valueOf('S'), MineFactoryReloadedCore.syringeEmptyItem,
+				} );
+		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
 				{
 					"WBW",
@@ -852,7 +862,7 @@ public class Vanilla
 					Character.valueOf('N'), Item.netherStar
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.spyglassItem), new Object[]
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.strawItem), new Object[]
 				{
 					"PP",
 					"P ",
