@@ -15,13 +15,8 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 public class MineFactoryReloadedClient
 {
 	public static Property playSounds;
-	
-	public MineFactoryReloadedClient()
-	{
-		load();
-	}
 
-	public static void loadConfig(File configFile)
+	public static void preInit(File configFile)
 	{
 		Configuration c = new Configuration(configFile);
 
@@ -31,7 +26,7 @@ public class MineFactoryReloadedClient
 		c.save();
 	}
 
-	private void load()
+	public static void init()
 	{
 		MineFactoryReloadedCore.renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
 		MineFactoryReloadedCore.renderIdFactoryGlassPane = RenderingRegistry.getNextAvailableRenderId();

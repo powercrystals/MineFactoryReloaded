@@ -275,7 +275,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		setConfigFolderBase(evt.getModConfigurationDirectory());
 		
 		loadConfig(getCommonConfig());
-		MineFactoryReloadedClient.loadConfig(getClientConfig());
+		proxy.preInit(getClientConfig());
 		
 		extractLang(new String[] { "en_US" });
 		loadLang();
@@ -406,7 +406,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		
 		GameRegistry.registerFuelHandler(new MineFactoryReloadedFuelHandler());
 		
-		proxy.load();
+		proxy.init();
 		
 		NetworkRegistry.instance().registerGuiHandler(this, new MFRGUIHandler());
 		

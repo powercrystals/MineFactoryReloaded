@@ -1,14 +1,22 @@
 package powercrystals.minefactoryreloaded.net;
 
+import java.io.File;
+
 import net.minecraft.entity.player.EntityPlayer;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
 
 public class ClientProxy implements IMFRProxy
 {
 	@Override
-	public void load()
+	public void preInit(File configFile)
 	{
-		new MineFactoryReloadedClient();
+		MineFactoryReloadedClient.preInit(configFile);
+	}
+	
+	@Override
+	public void init()
+	{
+		MineFactoryReloadedClient.init();
 	}
 
 	@Override
