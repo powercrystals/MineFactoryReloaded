@@ -32,7 +32,7 @@ public class TileEntityCollector extends TileEntityFactory
 		Map<ForgeDirection, IInventory> chests = UtilInventory.findChests(worldObj, xCoord, yCoord, zCoord);
 		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 		{
-			IInventoryManager manager = InventoryManager.create(chest.getValue(), chest.getKey()); 
+			IInventoryManager manager = InventoryManager.create(chest.getValue(), chest.getKey().getOpposite()); 
 			s = manager.addItem(s);
 			if(s == null)
 			{
