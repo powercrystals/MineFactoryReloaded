@@ -84,12 +84,12 @@ public class TileEntityUnifier extends TileEntityFactoryInventory
 		}
 		else
 		{
-			amt = Math.min(getInventoryStackLimit(), _inventory[1].getMaxStackSize()) - _inventory[1].stackSize;
+			amt = Math.min(_inventory[0].stackSize, _inventory[1].getMaxStackSize() - _inventory[1].stackSize);
 		}
 		
 		if(_inventory[1] == null)
 		{
-			_inventory[1] = source;
+			_inventory[1] = source.copy();
 			_inventory[0].stackSize -= source.stackSize;
 		}
 		else
