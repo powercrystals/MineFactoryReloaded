@@ -10,15 +10,19 @@ import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -80,6 +84,44 @@ public class BlockFactoryMachine extends BlockContainer
 		return Machine.getMachineFromIndex(_mfrMachineBlockIndex, meta).getIcon(side, false);
 	}
 
+	@Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && (te instanceof TileEntityItemRouter || te instanceof TileEntityCollector))
+		{
+			float shrinkAmount = 0.125F;
+			return AxisAlignedBB.getBoundingBox(x + shrinkAmount, y + shrinkAmount, z + shrinkAmount,
+			x + 1 - shrinkAmount, y + 1 - shrinkAmount, z + 1 - shrinkAmount);
+		}
+		else
+		{
+			return super.getCollisionBoundingBoxFromPool(world, x, y, z);
+		}
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+	{
+		if(world.isRemote)
+		{
+			return;
+		}
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileEntityItemRouter && entity instanceof EntityItem)
+		{
+			if(((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()))
+			{
+				entity.setDead();
+			}
+		}
+		else if(te != null && te instanceof TileEntityCollector && entity instanceof EntityItem)
+		{
+			((TileEntityCollector)te).addToChests((EntityItem)entity);
+		}
+		super.onEntityCollidedWithBlock(world, x, y, z, entity);
+	}
+	
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity, ItemStack stack)
 	{
