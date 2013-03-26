@@ -138,6 +138,7 @@ item.mfr.machineblock.name = Factory Machine Block
 item.mfr.sugarcharcoal.name = Sugar Charcoal
 item.mfr.milkbottle.name = Milk Bottle
 item.mfr.spyglass.name = Spyglass
+item.mfr.xpextractor.name = XP Extractor
 item.mfr.portaspawner.name = PortaSpawner
 item.mfr.straw.name = Straw
 
