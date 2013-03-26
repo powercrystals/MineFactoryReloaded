@@ -180,7 +180,10 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item xpExtractorItem;
 	public static Item syringeSlimeItem;
 
-	// Config
+	// client config
+	public static Property spyglassRange;
+	
+	// common config
 	public static Property machineBlock0Id;
 	public static Property machineBlock1Id;
 	
@@ -249,10 +252,12 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property treeSearchMaxHorizontal;
 	public static Property verticalHarvestSearchMaxVertical;
 	public static Property rubberTreeWorldGen;
+	public static Property mfrLakeWorldGen;
 	public static Property enableBonemealFertilizing;
 	public static Property enableCheapDSU;
 	public static Property enableMossyCobbleRecipe;
 	public static Property conveyorCaptureNonItems;
+	public static Property playSounds;
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
@@ -279,8 +284,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	{
 		setConfigFolderBase(evt.getModConfigurationDirectory());
 		
-		loadConfig(getCommonConfig());
-		proxy.preInit(getClientConfig());
+		loadCommonConfig(getCommonConfig());
+		loadClientConfig(getClientConfig());
 		
 		extractLang(new String[] { "en_US" });
 		loadLang();
@@ -423,10 +428,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 25, 1, 1));
 		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 25, 1, 1));
 		
-		if(rubberTreeWorldGen.getBoolean(true))
-		{
-			GameRegistry.registerWorldGenerator(new MineFactoryReloadedWorldGen());
-		}
+		GameRegistry.registerWorldGenerator(new MineFactoryReloadedWorldGen());
 		
 		TickRegistry.registerScheduledTickHandler(new UpdateManager(this), Side.CLIENT);
 	}
@@ -497,7 +499,17 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		else return null;
 	}
 
-	private static void loadConfig(File configFile)
+	private static void loadClientConfig(File configFile)
+	{
+		Configuration c = new Configuration(configFile);
+
+		spyglassRange = c.get(Configuration.CATEGORY_GENERAL, "SpyglassRange", 200);
+		spyglassRange.comment = "The maximum number of blocks the spyglass can look to find something. This calculation is performed only on the client side.";
+		
+		c.save();
+	}
+	
+	private static void loadCommonConfig(File configFile)
 	{
 		Configuration c = new Configuration(configFile);
 		c.load();
@@ -572,6 +584,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		passengerRailSearchMaxHorizontal.comment = "When searching for players or dropoff locations, how far out to the sides (radius) to search";
 		rubberTreeWorldGen = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTree", true);
 		rubberTreeWorldGen.comment = "Whether or not to generate rubber trees during map generation";
+		mfrLakeWorldGen = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.MFRLakes", true);
+		mfrLakeWorldGen.comment = "Whether or not to generate MFR lakes during map generation";
 		enableBonemealFertilizing = c.get(Configuration.CATEGORY_GENERAL, "Fertilizer.EnableBonemeal", false);
 		enableBonemealFertilizing.comment = "If true, the fertilizer will use bonemeal as well as MFR fertilizer. Provided for those who want a less work-intensive farm.";
 		enableCheapDSU = c.get(Configuration.CATEGORY_GENERAL, "DSU.EnableCheaperRecipe", false);
@@ -580,6 +594,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		enableMossyCobbleRecipe.comment = "If true, mossy cobble can be crafted.";
 		conveyorCaptureNonItems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.CaptureNonItems", true);
 		conveyorCaptureNonItems.comment = "If false, conveyors will not grab non-item entities. Breaks conveyor mob grinders but makes them safe for golems, etc.";
+		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
+		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";
 		
 		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";

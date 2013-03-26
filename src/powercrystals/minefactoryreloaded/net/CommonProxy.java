@@ -1,17 +1,10 @@
 package powercrystals.minefactoryreloaded.net;
 
-import java.io.File;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class CommonProxy implements IMFRProxy
 {
-	@Override
-	public void preInit(File configFile)
-	{
-	}
-
 	@Override
 	public void init()
 	{
