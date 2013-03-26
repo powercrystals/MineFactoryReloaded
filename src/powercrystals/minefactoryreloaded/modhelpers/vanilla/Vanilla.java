@@ -25,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.farmables.egghandlers.VanillaEggHandler;
@@ -126,6 +127,10 @@ public class Vanilla
 		if(MineFactoryReloadedCore.enableBonemealFertilizing.getBoolean(false))
 		{
 			FarmingRegistry.registerFertilizer(new FertilizerStandard(Item.dyePowder.itemID, 15));
+		}
+		else
+		{
+			FarmingRegistry.registerFertilizer(new FertilizerStandard(Item.dyePowder.itemID, 15, FertilizerType.Grass));
 		}
 
 		FarmingRegistry.registerRanchable(new RanchableCow());

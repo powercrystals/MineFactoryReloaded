@@ -9,11 +9,18 @@ public class FertilizerStandard implements IFactoryFertilizer
 {
 	private int _id;
 	private int _meta;
+	private FertilizerType _type;
 	
 	public FertilizerStandard(int id, int meta)
 	{
+		this(id, meta, FertilizerType.GrowPlant);
+	}
+	
+	public FertilizerStandard(int id, int meta, FertilizerType type)
+	{
 		_id = id;
 		_meta = meta;
+		_type = type;
 	}
 	
 	@Override
@@ -31,7 +38,7 @@ public class FertilizerStandard implements IFactoryFertilizer
 	@Override
 	public FertilizerType getFertilizerType()
 	{
-		return FertilizerType.GrowPlant;
+		return  _type;
 	}
 
 	@Override

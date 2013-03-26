@@ -13,22 +13,28 @@ public class FertilizableGrass implements IFactoryFertilizable
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		return fertilizerType == FertilizerType.GrowPlant && world.getBlockId(x, y + 1, z) == 0;
+		return (fertilizerType == FertilizerType.GrowPlant || fertilizerType == FertilizerType.Grass) && world.getBlockId(x, y + 1, z) == 0;
 	}
 
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		if(rand.nextInt(6) != 0)
+		for(int xOffset = -1; xOffset <= 1; xOffset++)
 		{
-			if(Block.tallGrass.canBlockStay(world, x, y + 1, z))
+			for(int zOffset = -1; zOffset <= 1; zOffset++)
 			{
-				world.setBlock(x, y + 1, z, Block.tallGrass.blockID, 1, 2);
+				if(rand.nextInt(6) != 0)
+				{
+					if(Block.tallGrass.canBlockStay(world, x + xOffset, y + 1, z + zOffset))
+					{
+						world.setBlock(x + xOffset, y + 1, z + zOffset, Block.tallGrass.blockID, 1, 2);
+					}
+				}
+				else
+				{
+					ForgeHooks.plantGrass(world, x + xOffset, y + 1, z + zOffset);
+				}
 			}
-		}
-		else
-		{
-			ForgeHooks.plantGrass(world, x, y + 1, z);
 		}
 
 		return world.getBlockId(x, y + 1, z) != 0;
