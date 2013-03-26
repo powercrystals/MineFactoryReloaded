@@ -17,7 +17,7 @@ public class BlockRailPassengerDropoff extends BlockRailBase
 {
 	public BlockRailPassengerDropoff(int blockId)
 	{
-		super(blockId, false);
+		super(blockId, true);
 		setUnlocalizedName("mfr.rail.passenger.dropoff");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);

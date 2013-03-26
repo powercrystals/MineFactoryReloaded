@@ -23,7 +23,7 @@ public class BlockRailCargoDropoff extends BlockRailBase
 {
 	public BlockRailCargoDropoff(int id)
 	{
-		super(id, false);
+		super(id, true);
 		setUnlocalizedName("mfr.rail.cargo.dropoff");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
@@ -46,6 +46,10 @@ public class BlockRailCargoDropoff extends BlockRailBase
 			{
 				IInventoryManager chest = InventoryManager.create(inventory.getValue(), inventory.getKey().getOpposite());
 
+				if(contents.getValue() == null)
+				{
+					continue;
+				}
 				ItemStack stackToAdd = contents.getValue().copy();
 				
 				ItemStack remaining = chest.addItem(stackToAdd);

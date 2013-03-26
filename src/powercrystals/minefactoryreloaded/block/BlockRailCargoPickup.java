@@ -23,7 +23,7 @@ public class BlockRailCargoPickup extends BlockRailBase
 {
 	public BlockRailCargoPickup(int id)
 	{
-		super(id, false);
+		super(id, true);
 		setUnlocalizedName("mfr.rail.cargo.pickup");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
@@ -45,14 +45,18 @@ public class BlockRailCargoPickup extends BlockRailBase
 			IInventoryManager chest = InventoryManager.create(inventory.getValue(), inventory.getKey().getOpposite()); 
 			for(Entry<Integer, ItemStack> contents : chest.getContents().entrySet())
 			{
+				if(contents.getValue() == null)
+				{
+					continue;
+				}
 				ItemStack stackToAdd = contents.getValue().copy();
 				
 				ItemStack remaining = minecart.addItem(stackToAdd);
 				
 				if(remaining != null)
 				{
-					stackToAdd.stackSize -= remaining.stackSize;
 					chest.removeItem(stackToAdd.stackSize, stackToAdd);
+					stackToAdd.stackSize -= remaining.stackSize;
 				}
 				else
 				{

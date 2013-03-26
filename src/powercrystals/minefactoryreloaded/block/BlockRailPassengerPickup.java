@@ -21,7 +21,7 @@ public class BlockRailPassengerPickup extends BlockRailBase
 {
 	public BlockRailPassengerPickup(int blockId)
 	{
-		super(blockId, false);
+		super(blockId, true);
 		setUnlocalizedName("mfr.rail.passenger.pickup");
 		setHardness(0.5F);
 		setStepSound(Block.soundMetalFootstep);
