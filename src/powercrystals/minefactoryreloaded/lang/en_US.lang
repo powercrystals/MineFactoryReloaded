@@ -92,7 +92,7 @@ tile.mfr.decorativebrick.obsidian.name = Obsidian Bricks
 tile.mfr.decorativebrick.pavedstone.name = Paved Stone Bricks
 tile.mfr.decorativebrick.snow.name = Snow Bricks
 
-tile.ice.unmentling.name = Ice (Unmelting)
+tile.ice.unmelting.name = Ice (Unmelting)
 
 tile.mfr.rubberwood.sapling.name = Rubber Sapling
 tile.mfr.rubberwood.log.name = Rubber Wood
