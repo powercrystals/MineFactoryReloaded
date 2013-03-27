@@ -17,11 +17,13 @@ import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.Facing;
 import net.minecraft.util.Icon;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
+import powercrystals.minefactoryreloaded.core.RandomMob;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class ItemSafariNet extends ItemFactory
@@ -217,6 +219,11 @@ public class ItemSafariNet extends ItemFactory
 
 	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
 	{
+		if(mobTag.getBoolean("hide"))
+		{
+			mobTag = ((RandomMob)WeightedRandom.getRandomItem(world.rand, MFRRegistry.getVillagerTradeMobs())).getMob();
+		}
+		
 		NBTTagList pos = mobTag.getTagList("Pos");
 		((NBTTagDouble)pos.tagAt(0)).data = x;
 		((NBTTagDouble)pos.tagAt(1)).data = y;
@@ -227,12 +234,18 @@ public class ItemSafariNet extends ItemFactory
 		if (e != null)
 		{
 			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
-			((EntityLiving)e).initCreature();
+			if(e instanceof EntityLiving)
+			{
+				((EntityLiving)e).initCreature();
+			}
 			
 			e.readFromNBT(mobTag);
 			
 			world.spawnEntityInWorld(e);
-			((EntityLiving)e).playLivingSound();
+			if(e instanceof EntityLiving)
+			{
+				((EntityLiving)e).playLivingSound();
+			}
 		}
 
 		return e;

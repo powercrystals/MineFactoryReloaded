@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.api;
 import java.lang.reflect.Method;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 /**
  * @author PowerCrystals
@@ -272,6 +273,30 @@ public class FarmingRegistry
 			{
 				Method reg = registry.getMethod("registerSafariNetBlacklist", Class.class);
 				reg.invoke(registry, blacklistedEntity);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers an entity as a possible output from villager random safari nets. Note that the "id" field must be initialized
+	 * (i.e. with Entity.addEntityID()) for it to work correctly.
+	 * 
+	 * @param savedMob A serialized mob that will be unloaded by the safari net
+	 * @param weight The weight of this mob in the random selection
+	 */
+	public static void registerVillagerTradeMob(NBTTagCompound savedMob, int weight)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerVillagerTradeMob", NBTTagCompound.class, int.class);
+				reg.invoke(registry, savedMob, weight);
 			}
 		}
 		catch(Exception e)

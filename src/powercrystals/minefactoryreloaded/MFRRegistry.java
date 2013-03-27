@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.WeightedRandomItem;
 
 import powercrystals.core.random.WeightedRandomItemStack;
@@ -17,6 +18,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
+import powercrystals.minefactoryreloaded.core.RandomMob;
 
 public abstract class MFRRegistry
 {
@@ -33,6 +35,7 @@ public abstract class MFRRegistry
 	private static List<ISafariNetHandler> _safariNetHandlers = new ArrayList<ISafariNetHandler>();
 	private static List<String> _rubberTreeBiomes = new ArrayList<String>();
 	private static List<Class<?>> _safariNetBlacklist = new ArrayList<Class<?>>();
+	private static List<RandomMob> _villagerTradeMobs = new ArrayList<RandomMob>();
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
@@ -156,5 +159,15 @@ public abstract class MFRRegistry
 	public static List<Class<?>> getSafariNetBlacklist()
 	{
 		return _safariNetBlacklist;
+	}
+	
+	public static void registerVillagerTradeMob(NBTTagCompound savedMob, int weight)
+	{
+		_villagerTradeMobs.add(new RandomMob(weight, savedMob));
+	}
+	
+	public static List<RandomMob> getVillagerTradeMobs()
+	{
+		return _villagerTradeMobs;
 	}
 }
