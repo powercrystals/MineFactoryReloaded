@@ -166,6 +166,11 @@
 		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures/gui">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/gui" />
 		</copy>
+		
+		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures/villager">
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/villager" />
+		</copy>
+		
 		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/lang">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/lang" />
 		</copy>

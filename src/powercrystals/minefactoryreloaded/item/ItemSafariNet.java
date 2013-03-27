@@ -2,7 +2,6 @@ package powercrystals.minefactoryreloaded.item;
 
 import java.util.List;
 
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -49,19 +48,20 @@ public class ItemSafariNet extends ItemFactory
 			return;
 		}
 		
-		infoList.add(stack.getTagCompound().getString("id"));
-		for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
+		if(stack.getTagCompound().getBoolean("hide"))
 		{
-			try
+			infoList.add("It is a mystery");
+		}
+		else
+		{
+			infoList.add(stack.getTagCompound().getString("id"));
+			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
 			{
-				if(handler.validFor().isAssignableFrom(Class.forName(stack.getTagCompound().getString("_class"))))
+				Class c = (Class)EntityList.stringToClassMapping.get(stack.getTagCompound().getString("id"));
+				if(c != null &&handler.validFor().isAssignableFrom(c))
 				{
 					handler.addInformation(stack, player, infoList, advancedTooltips);
 				}
-			}
-			catch(ClassNotFoundException e)
-			{
-				FMLLog.warning("MFR Safari Net tried to look up data for a nonexistent mob class %s!", stack.getTagCompound().getString("id"));
 			}
 		}
 	}
@@ -105,7 +105,7 @@ public class ItemSafariNet extends ItemFactory
 	@Override
 	public int getColorFromItemStack(ItemStack stack, int pass)
 	{
-		if(stack.getItemDamage() == 0 && stack.getTagCompound() == null)
+		if(stack.getItemDamage() == 0 && (stack.getTagCompound() == null || stack.getTagCompound().getBoolean("hide")))
 		{
 			return 16777215;
 		}
@@ -287,7 +287,6 @@ public class ItemSafariNet extends ItemFactory
 			entity.writeToNBT(c);
 
 			c.setString("id", (String)EntityList.classToStringMapping.get(entity.getClass()));
-			c.setString("_class", entity.getClass().getName());
 			
 			entity.setDead();
 			if(entity.isDead)

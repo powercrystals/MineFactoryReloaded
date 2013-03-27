@@ -81,6 +81,8 @@ import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedFuelHandler;
 import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedWorldGen;
 import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
+import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
+import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
 
 import cpw.mods.fml.common.Mod;
@@ -97,6 +99,7 @@ import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = MineFactoryReloadedCore.modId, name = MineFactoryReloadedCore.modName, version = MineFactoryReloadedCore.version,
@@ -116,6 +119,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static final String modName = "Minefactory Reloaded";
 	
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
+	public static final String villagerFolder = "/powercrystals/minefactoryreloaded/textures/villager/";
 	
 	public static int renderIdConveyor = 1000;
 	public static int renderIdFactoryGlassPane = 1001;
@@ -248,6 +252,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property xpExtractorItemId;
 	public static Property syringeSlimeItemId;
 
+	public static Property zoolologistEntityId;
+	
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
 	public static Property verticalHarvestSearchMaxVertical;
@@ -424,9 +430,13 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		BlockDispenser.dispenseBehaviorRegistry.putObject(safariNetItem, new BehaviorDispenseSafariNet());
 		BlockDispenser.dispenseBehaviorRegistry.putObject(safariNetSingleItem, new BehaviorDispenseSafariNet());
 		
-		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 25, 1, 1));
-		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 25, 1, 1));
-		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 25, 1, 1));
+		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 1, 1, 25));
+		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 1, 1, 25));
+		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 1, 1, 25));
+		
+		VillagerRegistry.instance().registerVillageCreationHandler(new VillageCreationHandler());
+		VillagerRegistry.instance().registerVillagerType(zoolologistEntityId.getInt(), villagerFolder + "zoologist.png");
+		VillagerRegistry.instance().registerVillageTradeHandler(zoolologistEntityId.getInt(), new VillageTradeHandler());
 		
 		GameRegistry.registerWorldGenerator(new MineFactoryReloadedWorldGen());
 		
@@ -571,6 +581,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		strawItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Straw", 12017);
 		xpExtractorItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.XPExtractor", 12018);
 		syringeSlimeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeSlime", 12019);
+		
+		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 
 		treeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxHoriztonal", 8);
 		treeSearchMaxHorizontal.comment = "When searching for parts of a tree, how far out to the sides (radius) to search";
