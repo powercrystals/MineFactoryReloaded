@@ -86,7 +86,7 @@ public class TwilightForest
 			Class tfSquirrel = Class.forName("twilightforest.entity.EntityTFSquirrel");
 			Class tfSwarmSpider = Class.forName("twilightforest.entity.EntityTFSwarmSpider");
 			Class tfTinyBird = Class.forName("twilightforest.entity.EntityTFTinyBird");
-			Class tfTowerBoss = Class.forName("twilightforest.entity.EntityTFTowerBoss");
+			Class tfUrGhast = Class.forName("twilightforest.entity.EntityTFUrGhast");
 			Class tfTowerBroodling = Class.forName("twilightforest.entity.EntityTFTowerBroodling");
 			Class tfTowerGhast = Class.forName("twilightforest.entity.EntityTFTowerGhast");
 			Class tfTowerGolem = Class.forName("twilightforest.entity.EntityTFTowerGolem");
@@ -101,7 +101,7 @@ public class TwilightForest
 			MFRRegistry.registerSafariNetBlacklist(tfNaga);
 			MFRRegistry.registerSafariNetBlacklist(tfNagaSegment);
 			MFRRegistry.registerSafariNetBlacklist(tfQuestRam);
-			MFRRegistry.registerSafariNetBlacklist(tfTowerBoss);
+			MFRRegistry.registerSafariNetBlacklist(tfUrGhast);
 			
 			FarmingRegistry.registerMobEggHandler(new TwilightForestEggHandler());
 			
