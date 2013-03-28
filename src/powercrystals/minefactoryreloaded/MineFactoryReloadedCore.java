@@ -66,6 +66,7 @@ import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import powercrystals.minefactoryreloaded.item.ItemSafariNetLauncher;
 import powercrystals.minefactoryreloaded.item.ItemSpyglass;
 import powercrystals.minefactoryreloaded.item.ItemStraw;
+import powercrystals.minefactoryreloaded.item.ItemSyringeCure;
 import powercrystals.minefactoryreloaded.item.ItemSyringeGrowth;
 import powercrystals.minefactoryreloaded.item.ItemSyringeHealth;
 import powercrystals.minefactoryreloaded.item.ItemSyringeSlime;
@@ -183,6 +184,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item strawItem;
 	public static Item xpExtractorItem;
 	public static Item syringeSlimeItem;
+	public static Item syringeCureItem;
 
 	// client config
 	public static Property spyglassRange;
@@ -251,6 +253,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property strawItemId;
 	public static Property xpExtractorItemId;
 	public static Property syringeSlimeItemId;
+	public static Property syringeCureItemId;
 
 	public static Property zoolologistEntityId;
 	
@@ -356,6 +359,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		strawItem = (new ItemStraw(strawItemId.getInt())).setUnlocalizedName("mfr.straw").setMaxStackSize(1);
 		xpExtractorItem = (new ItemXpExtractor(xpExtractorItemId.getInt())).setUnlocalizedName("mfr.xpextractor").setMaxStackSize(1);
 		syringeSlimeItem = (new ItemSyringeSlime(syringeSlimeItemId.getInt())).setUnlocalizedName("mfr.syringe.slime").setContainerItem(syringeEmptyItem);
+		syringeCureItem = (new ItemSyringeCure(syringeCureItemId.getInt())).setUnlocalizedName("mfr.syringe.cure").setContainerItem(syringeEmptyItem);
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -581,6 +585,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		strawItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Straw", 12017);
 		xpExtractorItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.XPExtractor", 12018);
 		syringeSlimeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeSlime", 12019);
+		syringeCureItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeCure", 12020);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 

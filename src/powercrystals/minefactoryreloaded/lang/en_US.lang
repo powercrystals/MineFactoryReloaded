@@ -125,6 +125,7 @@ item.mfr.bucket.sewage.name = Sewage Bucket
 item.mfr.bucket.sludge.name = Sludge Bucket
 item.mfr.bucket.essence.name = Mob Essence Bucket
 item.mfr.bucket.biofuel.name = BioFuel Bucket
+item.mfr.syringe.cure.name = De-Zombification Syringe
 item.mfr.syringe.empty.name = Empty Syringe
 item.mfr.syringe.growth.name = Growth Syringe
 item.mfr.syringe.health.name = Health Syringe
