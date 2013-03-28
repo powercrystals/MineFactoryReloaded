@@ -38,7 +38,7 @@ public class PlantableStandard implements IFactoryPlantable
 		}
 		return 
 				Block.blocksList[_plantedBlockId].canPlaceBlockAt(world, x, y, z) ||
-				(Block.blocksList[_plantedBlockId] instanceof IPlantable &&
+				(Block.blocksList[_plantedBlockId] instanceof IPlantable && Block.blocksList[groundId] != null &&
 						Block.blocksList[groundId].canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable)Block.blocksList[_plantedBlockId])));
 	}
 
