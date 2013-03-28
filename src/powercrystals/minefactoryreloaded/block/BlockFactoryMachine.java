@@ -110,9 +110,14 @@ public class BlockFactoryMachine extends BlockContainer
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileEntityItemRouter && entity instanceof EntityItem)
 		{
-			if(((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()))
+			ItemStack s = ((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()); 
+			if(s == null)
 			{
 				entity.setDead();
+			}
+			else
+			{
+				((EntityItem)entity).setEntityItemStack(s);
 			}
 		}
 		else if(te != null && te instanceof TileEntityCollector && entity instanceof EntityItem)

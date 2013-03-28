@@ -36,9 +36,9 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		{
 			for(int i = 45; i < getSizeInventory(); i++)
 			{
-				if(_inventory[i] != null && routeItem(_inventory[i]))
+				if(_inventory[i] != null)
 				{
-					_inventory[i] = null;
+					_inventory[i] = routeItem(_inventory[i]);
 				}
 			}
 		}
@@ -50,7 +50,7 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		return false;
 	}
 	
-	public boolean routeItem(ItemStack stack)
+	public ItemStack routeItem(ItemStack stack)
 	{
 		List<ForgeDirection> filteredOutputs = new ArrayList<ForgeDirection>();
 		List<ForgeDirection> emptyOutputs = new ArrayList<ForgeDirection>();
@@ -69,14 +69,14 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		if(filteredOutputs.size() > 0)
 		{
 			stack = MFRUtil.dropStackDirected(this, stack, filteredOutputs.get(_rand.nextInt(filteredOutputs.size())));
-			return stack == null || stack.stackSize == 0;
+			return (stack == null || stack.stackSize == 0) ? null : stack;
 		}
 		else if(emptyOutputs.size() > 0)
 		{
 			stack = MFRUtil.dropStackDirected(this, stack, emptyOutputs.get(_rand.nextInt(emptyOutputs.size())));
-			return stack == null || stack.stackSize == 0;
+			return (stack == null || stack.stackSize == 0) ? null : stack;
 		}
-		return false;
+		return stack;
 	}
 	
 	public boolean hasRouteForItem(ItemStack stack)

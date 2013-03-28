@@ -135,10 +135,15 @@ public class BlockConveyor extends BlockContainer
 		{
 			if(((TileEntityItemRouter)te).hasRouteForItem(((EntityItem)entity).getEntityItem()))
 			{
-				if(((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()))
+				ItemStack s = ((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()); 
+				if(s == null)
 				{
 					entity.setDead();
 					return;
+				}
+				else
+				{
+					((EntityItem)entity).setEntityItemStack(s);
 				}
 			}
 		}
