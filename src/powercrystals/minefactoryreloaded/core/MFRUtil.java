@@ -225,13 +225,13 @@ public class MFRUtil
 			}
 			IInventoryManager manager = InventoryManager.create((IInventory)chest.getValue(), chest.getKey().getOpposite());
 			s = manager.addItem(s);
-			if(s.stackSize == 0)
+			if(s == null || s.stackSize == 0)
 			{
 				return;
 			}
 		}
 		
-		if(s.stackSize > 0)
+		if(s != null && s.stackSize > 0)
 		{
 			dropStackOnGround(s, BlockPosition.fromFactoryTile(from), from.worldObj, from.getDropDirection());
 		}
