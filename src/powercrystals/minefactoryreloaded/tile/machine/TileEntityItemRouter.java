@@ -68,13 +68,13 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		
 		if(filteredOutputs.size() > 0)
 		{
-			MFRUtil.dropStackDirected(this, stack, filteredOutputs.get(_rand.nextInt(filteredOutputs.size())));
-			return stack.stackSize == 0;
+			stack = MFRUtil.dropStackDirected(this, stack, filteredOutputs.get(_rand.nextInt(filteredOutputs.size())));
+			return stack == null || stack.stackSize == 0;
 		}
 		else if(emptyOutputs.size() > 0)
 		{
-			MFRUtil.dropStackDirected(this, stack, emptyOutputs.get(_rand.nextInt(emptyOutputs.size())));
-			return stack.stackSize == 0;
+			stack = MFRUtil.dropStackDirected(this, stack, emptyOutputs.get(_rand.nextInt(emptyOutputs.size())));
+			return stack == null || stack.stackSize == 0;
 		}
 		return false;
 	}

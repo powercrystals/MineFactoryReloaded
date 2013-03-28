@@ -150,8 +150,13 @@ public class MFRUtil
 		from.stackSize -= amountToCopy;
 	}
 	
-	public static void dropStackDirected(TileEntityFactory from, ItemStack s, ForgeDirection towards)
+	public static ItemStack dropStackDirected(TileEntityFactory from, ItemStack s, ForgeDirection towards)
 	{
+		if(s == null)
+		{
+			return null;
+		}
+		s = s.copy();
 		BlockPosition bp = new BlockPosition(from.xCoord, from.yCoord, from.zCoord);
 		bp.orientation = towards;
 		bp.moveForwards(1);
@@ -165,13 +170,13 @@ public class MFRUtil
 		{
 			((IPipeEntry)te).entityEntering(s.copy(), towards);
 			s.stackSize = 0;
-			return;
 		}
 		
 		if(s != null && s.stackSize > 0 && !from.worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, towards.getOpposite()))
 		{
 			dropStackOnGround(s, BlockPosition.fromFactoryTile(from), from.worldObj, towards);
 		}
+		return s;
 	}
 	
 	public static void dropStack(TileEntityFactory from, ItemStack s)

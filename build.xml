@@ -51,7 +51,7 @@
 		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
 		
 		<echo message="Downloading UniversalElectricity API... " />
-		<get src="https://dl.dropbox.com/u/13350431/UniversalElectricity_v1.3.1.354.zip" dest="${download.dir}/ue-api.zip" />
+		<get src="http://calclavia.com/download.php?d=ue/&amp;f=UniversalElectricity_v1.3.1.354.zip" dest="${download.dir}/ue-api.zip" />
 		
 	</target>
 
