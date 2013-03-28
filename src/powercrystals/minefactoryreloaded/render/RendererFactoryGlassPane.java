@@ -94,21 +94,12 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d10, (double)(y + 0), d14, d0, d4);
 				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d1, d4);
 				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d1, d3);
-				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d0, d3);
-				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d0, d4);
-				tessellator.addVertexWithUV(d10, (double)(y + 0), d14, d1, d4);
-				tessellator.addVertexWithUV(d10, (double)(y + 1), d14, d1, d3);
 
 				if (!connectedPosZ && !connectedNegZ)
 				{
 					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d5, d7);
 					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d5, d9);
 					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d6, d9);
-					tessellator.addVertexWithUV(d11, (double)(y + 1), d18, d6, d7);
-					tessellator.addVertexWithUV(d11, (double)(y + 1), d18, d5, d7);
-					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d5, d9);
-					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d6, d9);
-					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d6, d7);
 				}
 
 				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x - 1, y + 1, z))
@@ -117,10 +108,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d9);
 					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d9);
 					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d8);
-					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d8);
-					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d9);
-					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d9);
-					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d8);
 				}
 
 				if (renderBottom || y > 1 && blockAccess.isAirBlock(x - 1, y - 1, z))
@@ -129,10 +116,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d9);
 					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d9);
 					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d8);
-					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d8);
-					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d9);
-					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d9);
-					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d8);
 				}
 			}
 			else if (!connectedNegX && connectedPosX)
@@ -141,10 +124,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d1, d4);
 				tessellator.addVertexWithUV(d12, (double)(y + 0), d14, d2, d4);
 				tessellator.addVertexWithUV(d12, (double)(y + 1), d14, d2, d3);
-				tessellator.addVertexWithUV(d12, (double)(y + 1), d14, d1, d3);
-				tessellator.addVertexWithUV(d12, (double)(y + 0), d14, d1, d4);
-				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d2, d4);
-				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d2, d3);
 
 				if (!connectedPosZ && !connectedNegZ)
 				{
@@ -152,10 +131,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d5, d9);
 					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d6, d9);
 					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d6, d7);
-					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d5, d7);
-					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d5, d9);
-					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d6, d9);
-					tessellator.addVertexWithUV(d11, (double)(y + 1), d18, d6, d7);
 				}
 
 				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x + 1, y + 1, z))
@@ -164,10 +139,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d8);
 					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d8);
 					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d7);
-					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d7);
-					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d8);
-					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d8);
-					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d7);
 				}
 
 				if (renderBottom || y > 1 && blockAccess.isAirBlock(x + 1, y - 1, z))
@@ -176,10 +147,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d8);
 					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d8);
 					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d7);
-					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d7);
-					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d8);
-					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d8);
-					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d7);
 				}
 			}
 		}
@@ -189,10 +156,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 			tessellator.addVertexWithUV(d10, (double)(y + 0), d14, d0, d4);
 			tessellator.addVertexWithUV(d12, (double)(y + 0), d14, d2, d4);
 			tessellator.addVertexWithUV(d12, (double)(y + 1), d14, d2, d3);
-			tessellator.addVertexWithUV(d12, (double)(y + 1), d14, d0, d3);
-			tessellator.addVertexWithUV(d12, (double)(y + 0), d14, d0, d4);
-			tessellator.addVertexWithUV(d10, (double)(y + 0), d14, d2, d4);
-			tessellator.addVertexWithUV(d10, (double)(y + 1), d14, d2, d3);
 
 			if (renderTop)
 			{
@@ -200,10 +163,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d7);
 				tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d7);
 				tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d9);
-				tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d9);
-				tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d7);
-				tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d7);
-				tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d9);
 			}
 			else
 			{
@@ -213,10 +172,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d9);
 					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d9);
 					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d8);
-					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d8);
-					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d19, d6, d9);
-					tessellator.addVertexWithUV(d10, (double)(y + 1) + 0.01D, d18, d5, d9);
-					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d8);
 				}
 
 				if (y < l - 1 && blockAccess.isAirBlock(x + 1, y + 1, z))
@@ -225,10 +180,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d8);
 					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d8);
 					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d7);
-					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d19, d6, d7);
-					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d19, d6, d8);
-					tessellator.addVertexWithUV(d11, (double)(y + 1) + 0.01D, d18, d5, d8);
-					tessellator.addVertexWithUV(d12, (double)(y + 1) + 0.01D, d18, d5, d7);
 				}
 			}
 
@@ -238,10 +189,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d7);
 				tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d7);
 				tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d9);
-				tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d9);
-				tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d7);
-				tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d7);
-				tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d9);
 			}
 			else
 			{
@@ -251,10 +198,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d9);
 					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d9);
 					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d8);
-					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d8);
-					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d19, d6, d9);
-					tessellator.addVertexWithUV(d10, (double)y - 0.01D, d18, d5, d9);
-					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d8);
 				}
 
 				if (y > 1 && blockAccess.isAirBlock(x + 1, y - 1, z))
@@ -263,10 +206,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d8);
 					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d8);
 					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d7);
-					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d19, d6, d7);
-					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d19, d6, d8);
-					tessellator.addVertexWithUV(d11, (double)y - 0.01D, d18, d5, d8);
-					tessellator.addVertexWithUV(d12, (double)y - 0.01D, d18, d5, d7);
 				}
 			}
 		}
@@ -279,10 +218,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d11, (double)(y + 0), d13, d0, d4);
 				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d1, d4);
 				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d1, d3);
-				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d0, d3);
-				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d0, d4);
-				tessellator.addVertexWithUV(d11, (double)(y + 0), d13, d1, d4);
-				tessellator.addVertexWithUV(d11, (double)(y + 1), d13, d1, d3);
 
 				if (!connectedPosX && !connectedNegX)
 				{
@@ -290,10 +225,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)(y + 0), d14, d5, d9);
 					tessellator.addVertexWithUV(d17, (double)(y + 0), d14, d6, d9);
 					tessellator.addVertexWithUV(d17, (double)(y + 1), d14, d6, d7);
-					tessellator.addVertexWithUV(d17, (double)(y + 1), d14, d5, d7);
-					tessellator.addVertexWithUV(d17, (double)(y + 0), d14, d5, d9);
-					tessellator.addVertexWithUV(d16, (double)(y + 0), d14, d6, d9);
-					tessellator.addVertexWithUV(d16, (double)(y + 1), d14, d6, d7);
 				}
 
 				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x, y + 1, z - 1))
@@ -302,10 +233,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d6, d8);
 					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d5, d8);
 					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d5, d7);
-					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d6, d7);
-					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d6, d8);
-					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d5, d8);
-					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d5, d7);
 				}
 
 				if (renderBottom || y > 1 && blockAccess.isAirBlock(x, y - 1, z - 1))
@@ -314,10 +241,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d6, d8);
 					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d5, d8);
 					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d5, d7);
-					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d6, d7);
-					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d6, d8);
-					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d5, d8);
-					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d5, d7);
 				}
 			}
 			else if (!connectedNegZ && connectedPosZ)
@@ -326,10 +249,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d1, d4);
 				tessellator.addVertexWithUV(d11, (double)(y + 0), d15, d2, d4);
 				tessellator.addVertexWithUV(d11, (double)(y + 1), d15, d2, d3);
-				tessellator.addVertexWithUV(d11, (double)(y + 1), d15, d1, d3);
-				tessellator.addVertexWithUV(d11, (double)(y + 0), d15, d1, d4);
-				tessellator.addVertexWithUV(d11, (double)(y + 0), d14, d2, d4);
-				tessellator.addVertexWithUV(d11, (double)(y + 1), d14, d2, d3);
 
 				if (!connectedPosX && !connectedNegX)
 				{
@@ -337,10 +256,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d17, (double)(y + 0), d14, d5, d9);
 					tessellator.addVertexWithUV(d16, (double)(y + 0), d14, d6, d9);
 					tessellator.addVertexWithUV(d16, (double)(y + 1), d14, d6, d7);
-					tessellator.addVertexWithUV(d16, (double)(y + 1), d14, d5, d7);
-					tessellator.addVertexWithUV(d16, (double)(y + 0), d14, d5, d9);
-					tessellator.addVertexWithUV(d17, (double)(y + 0), d14, d6, d9);
-					tessellator.addVertexWithUV(d17, (double)(y + 1), d14, d6, d7);
 				}
 
 				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x, y + 1, z + 1))
@@ -349,10 +264,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d9);
 					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d9);
 					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d6, d8);
-					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d8);
-					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d5, d9);
-					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d6, d9);
-					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d8);
 				}
 
 				if (renderBottom || y > 1 && blockAccess.isAirBlock(x, y - 1, z + 1))
@@ -361,10 +272,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d9);
 					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d9);
 					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d6, d8);
-					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d8);
-					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d5, d9);
-					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d6, d9);
-					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d8);
 				}
 			}
 		}
@@ -374,10 +281,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 			tessellator.addVertexWithUV(d11, (double)(y + 0), d15, d0, d4);
 			tessellator.addVertexWithUV(d11, (double)(y + 0), d13, d2, d4);
 			tessellator.addVertexWithUV(d11, (double)(y + 1), d13, d2, d3);
-			tessellator.addVertexWithUV(d11, (double)(y + 1), d13, d0, d3);
-			tessellator.addVertexWithUV(d11, (double)(y + 0), d13, d0, d4);
-			tessellator.addVertexWithUV(d11, (double)(y + 0), d15, d2, d4);
-			tessellator.addVertexWithUV(d11, (double)(y + 1), d15, d2, d3);
 
 			if (renderTop)
 			{
@@ -385,10 +288,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d6, d7);
 				tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d5, d7);
 				tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d9);
-				tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d6, d9);
-				tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d7);
-				tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d7);
-				tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d5, d9);
 			}
 			else
 			{
@@ -398,10 +297,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d6, d8);
 					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d5, d8);
 					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d5, d7);
-					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d6, d7);
-					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d13, d6, d8);
-					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d13, d5, d8);
-					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d5, d7);
 				}
 
 				if (y < l - 1 && blockAccess.isAirBlock(x, y + 1, z + 1))
@@ -410,10 +305,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d9);
 					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d9);
 					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d6, d8);
-					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d15, d5, d8);
-					tessellator.addVertexWithUV(d16, (double)(y + 1) + 0.005D, d14, d5, d9);
-					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d14, d6, d9);
-					tessellator.addVertexWithUV(d17, (double)(y + 1) + 0.005D, d15, d6, d8);
 				}
 			}
 
@@ -423,10 +314,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d6, d7);
 				tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d5, d7);
 				tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d9);
-				tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d6, d9);
-				tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d7);
-				tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d7);
-				tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d5, d9);
 			}
 			else
 			{
@@ -436,10 +323,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d6, d8);
 					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d5, d8);
 					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d5, d7);
-					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d6, d7);
-					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d13, d6, d8);
-					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d13, d5, d8);
-					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d5, d7);
 				}
 
 				if (y > 1 && blockAccess.isAirBlock(x, y - 1, z + 1))
@@ -448,10 +331,6 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d9);
 					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d9);
 					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d6, d8);
-					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d15, d5, d8);
-					tessellator.addVertexWithUV(d16, (double)y - 0.005D, d14, d5, d9);
-					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d14, d6, d9);
-					tessellator.addVertexWithUV(d17, (double)y - 0.005D, d15, d6, d8);
 				}
 			}
 		}
