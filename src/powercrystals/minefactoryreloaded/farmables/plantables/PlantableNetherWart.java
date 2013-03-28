@@ -33,8 +33,9 @@ public class PlantableNetherWart implements IFactoryPlantable
 	public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack)
 	{
 		int groundId = world.getBlockId(x, y - 1, z);
-		return (world.getBlockId(x, y - 1, z) == Block.slowSand.blockID
-				|| Block.blocksList[groundId].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockNetherStalk)Block.netherStalk)))
+		return (world.getBlockId(x, y - 1, z) == Block.slowSand.blockID ||
+				(Block.blocksList[groundId] != null &&
+				Block.blocksList[groundId].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockNetherStalk)Block.netherStalk))))
 			&& world.isAirBlock(x, y, z);
 	}
 

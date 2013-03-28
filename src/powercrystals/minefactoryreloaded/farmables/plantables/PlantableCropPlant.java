@@ -27,7 +27,7 @@ public class PlantableCropPlant extends PlantableStandard implements IFactoryPla
 				groundId == Block.dirt.blockID ||
 				groundId == Block.grass.blockID ||
 				groundId == Block.tilledField.blockID ||
-				(Block.blocksList[_plantedBlockId] instanceof IPlantable &&
+				(Block.blocksList[_plantedBlockId] instanceof IPlantable && Block.blocksList[groundId] != null &&
 						Block.blocksList[groundId].canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable)Block.blocksList[_plantedBlockId]))));
 	}
 
