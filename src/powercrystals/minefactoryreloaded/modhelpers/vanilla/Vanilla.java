@@ -239,7 +239,6 @@ public class Vanilla
 		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityPig.class), 100);
 		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityCreeper.class), 25);
 		MFRRegistry.registerVillagerTradeMob(prepareMob(EntitySquid.class), 30);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityOcelot.class), 40);
 		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityMinecartHopper.class), 15);
 		
 		NBTTagCompound chargedCreeper = prepareMob(EntityCreeper.class);
