@@ -204,15 +204,12 @@ public class TwilightForest
 				
 				MFRRegistry.registerBreederFood(tfBoar, new ItemStack(Item.carrot));
 				
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfBoar), 100);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfDeer), 100);
+				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfBoar), 80);
+				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfDeer), 80);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfRaven), 50);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfBird), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfBunny), 5);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfPenguin), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfSquirrel), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfTinyBird), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfMazeSlime), 5);
+				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfMazeSlime), 15);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfPinchBeetle), 5);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfWraith), 5);
 			}
