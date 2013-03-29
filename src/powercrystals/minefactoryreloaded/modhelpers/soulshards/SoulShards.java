@@ -3,7 +3,7 @@ package powercrystals.minefactoryreloaded.modhelpers.soulshards;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -29,9 +29,9 @@ public class SoulShards
 			Class<?> soulShardBlaze = Class.forName("com.shadwdrgn.soulshards.EntitySpawnedBlaze");
 			Class<?> soulShardSkeleton = Class.forName("com.shadwdrgn.soulshards.EntitySpawnedSkeleton");
 			Class<?> soulShardZombie = Class.forName("com.shadwdrgn.soulshards.EntitySpawnedZombie");
-			FarmingRegistry.registerGrindable(new GrindableStandard(soulShardBlaze, new ItemStack(Item.blazeRod)));
-			FarmingRegistry.registerGrindable(new GrindableSoulShardSkeleton(soulShardSkeleton));
-			FarmingRegistry.registerGrindable(new GrindableStandard(soulShardZombie, new ItemStack(Item.rottenFlesh)));
+			MFRRegistry.registerGrindable(new GrindableStandard(soulShardBlaze, new ItemStack(Item.blazeRod)));
+			MFRRegistry.registerGrindable(new GrindableSoulShardSkeleton(soulShardSkeleton));
+			MFRRegistry.registerGrindable(new GrindableStandard(soulShardZombie, new ItemStack(Item.rottenFlesh)));
 		}
 		catch (Exception x)
 		{

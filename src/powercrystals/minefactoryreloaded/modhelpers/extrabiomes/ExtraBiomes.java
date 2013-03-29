@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
@@ -58,21 +57,21 @@ public class ExtraBiomes
 			{
 				Object o = xbbs.getField(s).get(null);
 				Integer blockID = (Integer)xbbs.getMethod("getID").invoke(o);
-				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(blockID));
+				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(blockID));
 			}
 			
 			for(Entry<String, HarvestType> e : _harvestRegistries.entrySet())
 			{
 				Object o = xbbs.getField(e.getKey()).get(null);
 				Integer blockID = (Integer)xbbs.getMethod("getID").invoke(o);
-				FarmingRegistry.registerHarvestable(new HarvestableStandard(blockID, e.getValue()));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(blockID, e.getValue()));
 			}
 			
 			for(String s : new String[] { "SAPLING", "CATTAIL" })
 			{
 				Object o = xbbs.getField(s).get(null);
 				Integer blockID = (Integer)xbbs.getMethod("getID").invoke(o);
-				FarmingRegistry.registerPlantable(new PlantableStandard(blockID, blockID));
+				MFRRegistry.registerPlantable(new PlantableStandard(blockID, blockID));
 			}
 			
 
@@ -82,10 +81,10 @@ public class ExtraBiomes
 			Object o = xbbs.getField("SAPLING").get(null);
 			int saplingBlockID = (Integer)xbbs.getMethod("getID").invoke(o);
 			
-			FarmingRegistry.registerFertilizable(new FertilizableExtraBiomesTree(saplingBlockID, fert));
+			MFRRegistry.registerFertilizable(new FertilizableExtraBiomesTree(saplingBlockID, fert));
 			
-			FarmingRegistry.registerSludgeDrop(5, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("QUICKSAND").get(null)), 1, 0));
-			FarmingRegistry.registerSludgeDrop(5, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("CRACKEDSAND").get(null)), 1, 0));
+			MFRRegistry.registerSludgeDrop(5, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("QUICKSAND").get(null)), 1, 0));
+			MFRRegistry.registerSludgeDrop(5, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("CRACKEDSAND").get(null)), 1, 0));
 			
 			MFRRegistry.registerRubberTreeBiome("Autumn Woods");
 			MFRRegistry.registerRubberTreeBiome("Birch Forest");

@@ -12,7 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
@@ -44,16 +44,16 @@ public class RP2
 			
 			Method fertilizeMethod = Class.forName("com.eloraam.redpower.world.BlockCustomFlower").getMethod("growTree", World.class, int.class, int.class, int.class);
 			
-			FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(blockIdLeaves));
-			FarmingRegistry.registerHarvestable(new HarvestableStandard(blockIdLogs, HarvestType.Tree));
-			FarmingRegistry.registerHarvestable(new HarvestableRedPowerPlant(blockIdPlants));
-			FarmingRegistry.registerHarvestable(new HarvestableRedPowerFlax(blockIdCrops));
+			MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(blockIdLeaves));
+			MFRRegistry.registerHarvestable(new HarvestableStandard(blockIdLogs, HarvestType.Tree));
+			MFRRegistry.registerHarvestable(new HarvestableRedPowerPlant(blockIdPlants));
+			MFRRegistry.registerHarvestable(new HarvestableRedPowerFlax(blockIdCrops));
 			
-			FarmingRegistry.registerPlantable(new PlantableStandard(blockIdPlants, blockIdPlants));
-			FarmingRegistry.registerPlantable(new PlantableCropPlant(itemCropSeedId, blockIdCrops));
+			MFRRegistry.registerPlantable(new PlantableStandard(blockIdPlants, blockIdPlants));
+			MFRRegistry.registerPlantable(new PlantableCropPlant(itemCropSeedId, blockIdCrops));
 			
-			FarmingRegistry.registerFertilizable(new FertilizableRedPowerFlax(blockIdCrops));
-			FarmingRegistry.registerFertilizable(new FertilizableRedPowerRubberTree(blockIdPlants, fertilizeMethod));
+			MFRRegistry.registerFertilizable(new FertilizableRedPowerFlax(blockIdCrops));
+			MFRRegistry.registerFertilizable(new FertilizableRedPowerRubberTree(blockIdPlants, fertilizeMethod));
 		}
 		catch (Exception x)
 		{

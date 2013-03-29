@@ -3,7 +3,7 @@ package powercrystals.minefactoryreloaded.modhelpers.xycraft;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -36,14 +36,14 @@ public class Xycraft
 			int CornCropSeedId = ((Item)itemClass.getField("kernel").get(null)).itemID;
 			int HenequenCropSeedId = ((Item)itemClass.getField("henequenSeeds").get(null)).itemID;
 			
-			FarmingRegistry.registerHarvestable(new HarvestableXycraftCorn(CornCropsID));
-			FarmingRegistry.registerHarvestable(new HarvestableHenequen(HenequenCropsID));
+			MFRRegistry.registerHarvestable(new HarvestableXycraftCorn(CornCropsID));
+			MFRRegistry.registerHarvestable(new HarvestableHenequen(HenequenCropsID));
 			
-			FarmingRegistry.registerPlantable(new PlantableCropPlant(CornCropSeedId, CornCropsID));
-			FarmingRegistry.registerPlantable(new PlantableCropPlant(HenequenCropSeedId, HenequenCropsID));
+			MFRRegistry.registerPlantable(new PlantableCropPlant(CornCropSeedId, CornCropsID));
+			MFRRegistry.registerPlantable(new PlantableCropPlant(HenequenCropSeedId, HenequenCropsID));
 			
-			FarmingRegistry.registerFertilizable(new FertilizableCorn(CornCropsID));
-			FarmingRegistry.registerFertilizable(new FertilizableHenequen(HenequenCropsID));
+			MFRRegistry.registerFertilizable(new FertilizableCorn(CornCropsID));
+			MFRRegistry.registerFertilizable(new FertilizableHenequen(HenequenCropsID));
 		}
 		catch (Exception x)
 		{

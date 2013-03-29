@@ -11,7 +11,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import net.minecraft.item.ItemStack;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
@@ -43,25 +43,25 @@ public class IC2
 				
 				if(rubberSapling != null)
 				{
-					FarmingRegistry.registerPlantable(new PlantableStandard(rubberSapling.itemID, rubberSapling.itemID));
-					FarmingRegistry.registerFertilizable(new FertilizableIC2RubberTree(rubberSapling.itemID));
+					MFRRegistry.registerPlantable(new PlantableStandard(rubberSapling.itemID, rubberSapling.itemID));
+					MFRRegistry.registerFertilizable(new FertilizableIC2RubberTree(rubberSapling.itemID));
 				}
 				if(rubberLeaves != null)
 				{
-					FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(rubberLeaves.itemID));
+					MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(rubberLeaves.itemID));
 				}
 				if(rubberWood != null)
 				{
-					FarmingRegistry.registerHarvestable(new HarvestableIC2RubberWood(rubberWood.itemID, HarvestType.Tree, stickyResin.itemID));
+					MFRRegistry.registerHarvestable(new HarvestableIC2RubberWood(rubberWood.itemID, HarvestType.Tree, stickyResin.itemID));
 				}
 				
 				ItemStack fertilizer = (ItemStack)ic2Items.getField("fertilizer").get(null);
 				if(fertilizer != null)
 				{
-					FarmingRegistry.registerFertilizer(new FertilizerStandard(fertilizer.itemID, fertilizer.getItemDamage()));
+					MFRRegistry.registerFertilizer(new FertilizerStandard(fertilizer.itemID, fertilizer.getItemDamage()));
 				}
 				
-				FarmingRegistry.registerHarvestable(new HarvestableIC2Crop(crop.itemID));
+				MFRRegistry.registerHarvestable(new HarvestableIC2Crop(crop.itemID));
 			}
 		}
 		catch (Exception x)

@@ -6,7 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.block.Block;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
@@ -104,9 +103,9 @@ public class TwilightForest
 			MFRRegistry.registerSafariNetBlacklist(tfQuestRam);
 			MFRRegistry.registerSafariNetBlacklist(tfUrGhast);
 			
-			FarmingRegistry.registerMobEggHandler(new TwilightForestEggHandler());
+			MFRRegistry.registerMobEggHandler(new TwilightForestEggHandler());
 			
-			FarmingRegistry.registerRanchable(new RanchableTFBighorn(tfBighorn));
+			MFRRegistry.registerRanchable(new RanchableTFBighorn(tfBighorn));
 			
 			Class tfItems = Class.forName("twilightforest.item.TFItems");
 			if(tfItems != null)
@@ -127,80 +126,80 @@ public class TwilightForest
 				ItemStack torchberries = new ItemStack((Item)tfItems.getField("torchberries").get(null), 3);
 				ItemStack venisonRaw = new ItemStack((Item)tfItems.getField("venisonRaw").get(null));
 				
-				FarmingRegistry.registerGrindable(new GrindableTFBighorn(tfBighorn));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfBird, new ItemStack(Item.feather)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfBoar, new ItemStack(Item.porkRaw)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfBoggard, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableTFBighorn(tfBighorn));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfBird, new ItemStack(Item.feather)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfBoar, new ItemStack(Item.porkRaw)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfBoggard, new MobDrop[]
 				{
 					new MobDrop(20, mazeMapFocus),
 					new MobDrop(17, new ItemStack(Item.bootsSteel)),
 					new MobDrop(11, new ItemStack(Item.pickaxeSteel)),
 					new MobDrop(52, null)
 				}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfBunny));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfDeathTome, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableStandard(tfBunny));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfDeathTome, new MobDrop[]
 				{
 					new MobDrop(3, magicMapFocus),
 					new MobDrop(16, new ItemStack(Item.writableBook)),
 					new MobDrop(30, new ItemStack(Item.book)),
 					new MobDrop(31, new ItemStack(Item.paper))
 				}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfDeer, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableStandard(tfDeer, new MobDrop[]
 				{
 					new MobDrop(10, new ItemStack(Item.leather)),
 					new MobDrop(10, venisonRaw)
 				}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfFireBeetle, new ItemStack(Item.gunpowder)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfHedgeSpider, spiderDrops));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfHostileWolf));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfKingSpider, spiderDrops));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfKobold, new ItemStack(Item.wheat)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfLichMinion, new ItemStack(Item.rottenFlesh)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfLoyalZombie, new ItemStack(Item.rottenFlesh)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfMazeSlime, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableStandard(tfFireBeetle, new ItemStack(Item.gunpowder)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfHedgeSpider, spiderDrops));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfHostileWolf));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfKingSpider, spiderDrops));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfKobold, new ItemStack(Item.wheat)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfLichMinion, new ItemStack(Item.rottenFlesh)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfLoyalZombie, new ItemStack(Item.rottenFlesh)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfMazeSlime, new MobDrop[]
 				{
 					new MobDrop(1, charmOfKeeping1),
 					new MobDrop(39, new ItemStack(Item.slimeBall))
 				}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfMiniGhast, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableStandard(tfMiniGhast, new MobDrop[]
 				{
 					new MobDrop(10, new ItemStack(Item.gunpowder)),
 					new MobDrop(10, new ItemStack(Item.ghastTear))
 				}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfMinoshroom, meefStroganoff));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfMinotaur, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableStandard(tfMinoshroom, meefStroganoff));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfMinotaur, new MobDrop[]
 				{
 					new MobDrop(1, mazeMapFocus),
 					new MobDrop(39, meefRaw)
 					}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfMistWolf));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfPenguin));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfPinchBeetle));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfRaven, tfFeather));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfRedcap, new ItemStack(Item.coal)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfRedcapSapper, new ItemStack(Item.coal)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfSkeletonDruid, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableStandard(tfMistWolf));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfPenguin));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfPinchBeetle));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfRaven, tfFeather));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfRedcap, new ItemStack(Item.coal)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfRedcapSapper, new ItemStack(Item.coal)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfSkeletonDruid, new MobDrop[]
 				{
 					new MobDrop(10, new ItemStack(Item.bone, 3)),
 					new MobDrop(10, torchberries)
 				}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfSlimeBeetle, new ItemStack(Item.slimeBall)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfSquirrel));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfSwarmSpider, spiderDrops));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfTinyBird, new ItemStack(Item.feather)));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfTowerBroodling, spiderDrops));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfTowerGhast, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableStandard(tfSlimeBeetle, new ItemStack(Item.slimeBall)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfSquirrel));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfSwarmSpider, spiderDrops));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfTinyBird, new ItemStack(Item.feather)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfTowerBroodling, spiderDrops));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfTowerGhast, new MobDrop[]
 				{
 					new MobDrop(10, new ItemStack(Item.gunpowder)),
 					new MobDrop(10, new ItemStack(Item.ghastTear))
 				}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfTowerGolem, new MobDrop[]
+				MFRRegistry.registerGrindable(new GrindableStandard(tfTowerGolem, new MobDrop[]
 				{
 					new MobDrop(10, new ItemStack(Block.plantRed)),
 					new MobDrop(10, new ItemStack(Item.ingotIron))
 				}));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfTowerTermite, borerEssence));
-				FarmingRegistry.registerGrindable(new GrindableStandard(tfWraith, new ItemStack(Item.lightStoneDust)));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfTowerTermite, borerEssence));
+				MFRRegistry.registerGrindable(new GrindableStandard(tfWraith, new ItemStack(Item.lightStoneDust)));
 				
 				MFRRegistry.registerBreederFood(tfBoar, new ItemStack(Item.carrot));
 				
@@ -219,20 +218,20 @@ public class TwilightForest
 			Class tfBlocks = Class.forName("twilightforest.block.TFBlocks");
 			if(tfBlocks != null)
 			{
-				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("log").get(null)).blockID, HarvestType.Tree));
-				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("magicLog").get(null)).blockID, HarvestType.Tree));
-				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("magicLogSpecial").get(null)).blockID, HarvestType.Tree));
-				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("root").get(null)).blockID, HarvestType.Tree));
-				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("leaves").get(null)).blockID));
-				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("magicLeaves").get(null)).blockID));
-				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("hedge").get(null)).blockID));
-				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("firefly").get(null)).blockID));
-				FarmingRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("cicada").get(null)).blockID));
-				FarmingRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("plant").get(null)).blockID, HarvestType.Normal));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("log").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("magicLog").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("magicLogSpecial").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("root").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("leaves").get(null)).blockID));
+				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("magicLeaves").get(null)).blockID));
+				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("hedge").get(null)).blockID));
+				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("firefly").get(null)).blockID));
+				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)tfBlocks.getField("cicada").get(null)).blockID));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)tfBlocks.getField("plant").get(null)).blockID, HarvestType.Normal));
 				
-				FarmingRegistry.registerPlantable(new PlantableStandard(((Block)tfBlocks.getField("sapling").get(null)).blockID, ((Block)tfBlocks.getField("sapling").get(null)).blockID));
+				MFRRegistry.registerPlantable(new PlantableStandard(((Block)tfBlocks.getField("sapling").get(null)).blockID, ((Block)tfBlocks.getField("sapling").get(null)).blockID));
 				
-				FarmingRegistry.registerFertilizable(new FertilizableSapling(((Block)tfBlocks.getField("sapling").get(null)).blockID));
+				MFRRegistry.registerFertilizable(new FertilizableSapling(((Block)tfBlocks.getField("sapling").get(null)).blockID));
 			}
 		}
 		catch(Exception x)
