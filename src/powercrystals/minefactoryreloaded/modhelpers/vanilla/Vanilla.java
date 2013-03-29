@@ -33,6 +33,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.MobDrop;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.farmables.egghandlers.VanillaEggHandler;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCocoa;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCropPlant;

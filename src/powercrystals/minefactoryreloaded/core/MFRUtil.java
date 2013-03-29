@@ -293,7 +293,7 @@ public class MFRUtil
 		stack.stackSize = 0;
 	}
 
-	public NBTTagCompound prepareMob(Class<? extends Entity> entity)
+	public static NBTTagCompound prepareMob(Class<? extends Entity> entity)
 	{
 		NBTTagCompound c = null;
 		try
