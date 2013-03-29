@@ -3,11 +3,14 @@ package powercrystals.minefactoryreloaded.core;
 import java.util.Map.Entry;
 
 import buildcraft.api.transport.IPipeEntry;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -288,5 +291,27 @@ public class MFRUtil
 		entityitem.delayBeforeCanPickup = 20;
 		world.spawnEntityInWorld(entityitem);
 		stack.stackSize = 0;
+	}
+
+	public NBTTagCompound prepareMob(Class<? extends Entity> entity)
+	{
+		NBTTagCompound c = null;
+		try
+		{
+			Entity e = (Entity)entity.getConstructor(new Class[] {World.class}).newInstance(new Object[] { null });
+			if(e instanceof EntityLiving)
+			{
+				((EntityLiving)e).initCreature();
+			}
+			c = new NBTTagCompound();
+			e.writeToNBT(c);
+			e.addEntityID(c);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return c;
 	}
 }

@@ -230,46 +230,24 @@ public class Vanilla
 		MFRRegistry.registerSafariNetBlacklist(EntityDragon.class);
 		MFRRegistry.registerSafariNetBlacklist(EntityWither.class);
 		
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityMooshroom.class), 20);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntitySlime.class), 20);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityCow.class), 100);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityChicken.class), 100);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityWitch.class), 10);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityGhast.class), 15);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityPig.class), 100);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityCreeper.class), 25);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntitySquid.class), 30);
-		MFRRegistry.registerVillagerTradeMob(prepareMob(EntityMinecartHopper.class), 15);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityMooshroom.class), 20);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntitySlime.class), 20);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityCow.class), 100);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityChicken.class), 100);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityWitch.class), 10);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityGhast.class), 15);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityPig.class), 100);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityCreeper.class), 25);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntitySquid.class), 30);
+		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityMinecartHopper.class), 15);
 		
-		NBTTagCompound chargedCreeper = prepareMob(EntityCreeper.class);
+		NBTTagCompound chargedCreeper = MFRUtil.prepareMob(EntityCreeper.class);
 		chargedCreeper.setBoolean("powered", true);
 		chargedCreeper.setShort("Fuse", (short)120);
 		MFRRegistry.registerVillagerTradeMob(chargedCreeper, 5);
 		
-		NBTTagCompound armedTNT = prepareMob(EntityTNTPrimed.class);
+		NBTTagCompound armedTNT = MFRUtil.prepareMob(EntityTNTPrimed.class);
 		armedTNT.setByte("Fuse", (byte)120);
 		MFRRegistry.registerVillagerTradeMob(armedTNT, 5);
-	}
-	
-	private NBTTagCompound prepareMob(Class<? extends Entity> entity)
-	{
-		NBTTagCompound c = null;
-		try
-		{
-			Entity e = (Entity)entity.getConstructor(new Class[] {World.class}).newInstance(new Object[] { null });
-			if(e instanceof EntityLiving)
-			{
-				((EntityLiving)e).initCreature();
-			}
-			c = new NBTTagCompound();
-			e.writeToNBT(c);
-			e.addEntityID(c);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-		return c;
 	}
 }
