@@ -209,6 +209,8 @@ public class TwilightForest
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfRaven), 50);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfBird), 5);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfPenguin), 5);
+				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfSquirrel), 5);
+				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfTinyBird), 5);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfMazeSlime), 15);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfPinchBeetle), 5);
 				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfWraith), 5);
