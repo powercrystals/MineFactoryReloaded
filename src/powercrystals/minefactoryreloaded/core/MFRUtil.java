@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -293,25 +292,22 @@ public class MFRUtil
 		stack.stackSize = 0;
 	}
 
-	public static NBTTagCompound prepareMob(Class<? extends Entity> entity)
+	public static Entity prepareMob(Class<? extends Entity> entity, World world)
 	{
-		NBTTagCompound c = null;
 		try
 		{
-			Entity e = (Entity)entity.getConstructor(new Class[] {World.class}).newInstance(new Object[] { null });
+			Entity e = (Entity)entity.getConstructor(new Class[] {World.class}).newInstance(new Object[] { world });
 			if(e instanceof EntityLiving)
 			{
 				((EntityLiving)e).initCreature();
 			}
-			c = new NBTTagCompound();
-			e.writeToNBT(c);
-			e.addEntityID(c);
+			return e;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		
-		return c;
+		return null;
 	}
 }

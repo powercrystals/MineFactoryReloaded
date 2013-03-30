@@ -1,12 +1,8 @@
 package powercrystals.minefactoryreloaded.modhelpers.vanilla;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.item.EntityMinecartHopper;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -26,14 +22,11 @@ import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.MobDrop;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.farmables.egghandlers.VanillaEggHandler;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCocoa;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCropPlant;
@@ -231,24 +224,6 @@ public class Vanilla
 		MFRRegistry.registerSafariNetBlacklist(EntityDragon.class);
 		MFRRegistry.registerSafariNetBlacklist(EntityWither.class);
 		
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityMooshroom.class), 20);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntitySlime.class), 20);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityCow.class), 100);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityChicken.class), 100);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityWitch.class), 10);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityGhast.class), 15);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityPig.class), 100);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityCreeper.class), 25);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntitySquid.class), 30);
-		MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(EntityMinecartHopper.class), 15);
-		
-		NBTTagCompound chargedCreeper = MFRUtil.prepareMob(EntityCreeper.class);
-		chargedCreeper.setBoolean("powered", true);
-		chargedCreeper.setShort("Fuse", (short)120);
-		MFRRegistry.registerVillagerTradeMob(chargedCreeper, 5);
-		
-		NBTTagCompound armedTNT = MFRUtil.prepareMob(EntityTNTPrimed.class);
-		armedTNT.setByte("Fuse", (byte)120);
-		MFRRegistry.registerVillagerTradeMob(armedTNT, 5);
+		MFRRegistry.registerRandomMobProvider(new VanillaMobProvider());
 	}
 }

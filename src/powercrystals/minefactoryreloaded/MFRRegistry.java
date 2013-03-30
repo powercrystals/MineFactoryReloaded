@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.WeightedRandomItem;
 
 import powercrystals.core.random.WeightedRandomItemStack;
@@ -17,8 +16,8 @@ import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
+import powercrystals.minefactoryreloaded.api.IRandomMobProvider;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
-import powercrystals.minefactoryreloaded.core.RandomMob;
 
 public abstract class MFRRegistry
 {
@@ -35,7 +34,7 @@ public abstract class MFRRegistry
 	private static List<ISafariNetHandler> _safariNetHandlers = new ArrayList<ISafariNetHandler>();
 	private static List<String> _rubberTreeBiomes = new ArrayList<String>();
 	private static List<Class<?>> _safariNetBlacklist = new ArrayList<Class<?>>();
-	private static List<RandomMob> _villagerTradeMobs = new ArrayList<RandomMob>();
+	private static List<IRandomMobProvider> _randomMobProviders = new ArrayList<IRandomMobProvider>();
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
@@ -161,13 +160,13 @@ public abstract class MFRRegistry
 		return _safariNetBlacklist;
 	}
 	
-	public static void registerVillagerTradeMob(NBTTagCompound savedMob, int weight)
+	public static void registerRandomMobProvider(IRandomMobProvider mobProvider)
 	{
-		_villagerTradeMobs.add(new RandomMob(weight, savedMob));
+		_randomMobProviders.add(mobProvider);
 	}
 	
-	public static List<RandomMob> getVillagerTradeMobs()
+	public static List<IRandomMobProvider> getRandomMobProviders()
 	{
-		return _villagerTradeMobs;
+		return _randomMobProviders;
 	}
 }

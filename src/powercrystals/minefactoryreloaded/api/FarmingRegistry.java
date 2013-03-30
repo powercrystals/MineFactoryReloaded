@@ -3,7 +3,6 @@ package powercrystals.minefactoryreloaded.api;
 import java.lang.reflect.Method;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 /**
  * @author PowerCrystals
@@ -288,15 +287,15 @@ public class FarmingRegistry
 	 * @param savedMob A serialized mob that will be unloaded by the safari net
 	 * @param weight The weight of this mob in the random selection
 	 */
-	public static void registerVillagerTradeMob(NBTTagCompound savedMob, int weight)
+	public static void registerVillagerTradeMob(IRandomMobProvider mobProvider)
 	{
 		try
 		{
 			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
 			if(registry != null)
 			{
-				Method reg = registry.getMethod("registerVillagerTradeMob", NBTTagCompound.class, int.class);
-				reg.invoke(registry, savedMob, weight);
+				Method reg = registry.getMethod("registerVillagerTradeMob", IRandomMobProvider.class);
+				reg.invoke(registry, mobProvider);
 			}
 		}
 		catch(Exception e)
