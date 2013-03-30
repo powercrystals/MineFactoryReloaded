@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class HarvestableVine implements IFactoryHarvestable
 {
 	@Override
-	public int getSourceId()
+	public int getPlantId()
 	{
 		return Block.vine.blockID;
 	}

@@ -11,7 +11,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 public class PlantableCocoa implements IFactoryPlantable
 {
 	@Override
-	public int getSourceId()
+	public int getSeedId()
 	{
 		return Item.dyePowder.itemID;
 	}

@@ -25,10 +25,10 @@ public class HarvestableTreeLeaves extends HarvestableStandard
 		if(harvesterSettings.get("silkTouch") != null && harvesterSettings.get("silkTouch"))
 		{
 			ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-			drops.add(new ItemStack(getSourceId(), 1, world.getBlockMetadata(x, y, z)));
+			drops.add(new ItemStack(getPlantId(), 1, world.getBlockMetadata(x, y, z)));
 			return drops;
 		}
-		else if(getSourceId() == Block.leaves.blockID && (world.getBlockMetadata(x, y, z) & 3) == 0)
+		else if(getPlantId() == Block.leaves.blockID && (world.getBlockMetadata(x, y, z) & 3) == 0)
 		{
 			ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 			if(rand.nextInt(20) == 0) drops.add(new ItemStack(Block.sapling));
@@ -37,7 +37,7 @@ public class HarvestableTreeLeaves extends HarvestableStandard
 		}
 		else
 		{
-			return Block.blocksList[getSourceId()].getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+			return Block.blocksList[getPlantId()].getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 		}
 	}
 }

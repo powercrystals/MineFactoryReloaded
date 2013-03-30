@@ -30,7 +30,7 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 	}
 	
 	@Override
-	public int getSourceId()
+	public int getPlantId()
 	{
 		return _blockId;
 	}

@@ -23,6 +23,11 @@ public class AutoEnchantmentHelper extends EnchantmentHelper
 	public static ItemStack addRandomEnchantment(Random rand, ItemStack stack, int level)
 	{
 		List<EnchantmentData> enchantments = buildEnchantmentList(rand, stack, level);
+		if(enchantments == null)
+		{
+			return stack;
+		}
+		
 		Map<Integer, Integer> existingEnchants = getEnchantments(stack);
 		
 		boolean isBook = stack.itemID == Item.book.itemID;

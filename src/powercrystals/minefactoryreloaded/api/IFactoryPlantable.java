@@ -13,7 +13,7 @@ public interface IFactoryPlantable
 	/**
 	 * @return The block or item ID this plantable is managing.
 	 */
-	public int getSourceId();
+	public int getSeedId();
 	
 	/**
 	 * @param world The world instance this block or item will be placed into.

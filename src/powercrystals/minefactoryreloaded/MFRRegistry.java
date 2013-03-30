@@ -38,7 +38,7 @@ public abstract class MFRRegistry
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
-		_plantables.put(new Integer(plantable.getSourceId()), plantable);
+		_plantables.put(new Integer(plantable.getSeedId()), plantable);
 	}
 	
 	public static Map<Integer, IFactoryPlantable> getPlantables()
@@ -48,7 +48,7 @@ public abstract class MFRRegistry
 	
 	public static void registerHarvestable(IFactoryHarvestable harvestable)
 	{
-		_harvestables.put(harvestable.getSourceId(), harvestable);
+		_harvestables.put(harvestable.getPlantId(), harvestable);
 	}
 	
 	public static Map<Integer, IFactoryHarvestable> getHarvestables()

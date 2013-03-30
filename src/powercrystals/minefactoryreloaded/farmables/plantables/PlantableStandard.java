@@ -71,7 +71,7 @@ public class PlantableStandard implements IFactoryPlantable
 	}
 	
 	@Override
-	public int getSourceId()
+	public int getSeedId()
 	{
 		return _sourceId;
 	}

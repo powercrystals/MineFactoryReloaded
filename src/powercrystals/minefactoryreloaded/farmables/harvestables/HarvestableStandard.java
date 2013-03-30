@@ -27,7 +27,7 @@ public class HarvestableStandard implements IFactoryHarvestable
 	}
 
 	@Override
-	public int getSourceId()
+	public int getPlantId()
 	{
 		return sourceId;
 	}

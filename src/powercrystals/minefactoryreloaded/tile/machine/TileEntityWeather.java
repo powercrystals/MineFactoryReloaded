@@ -96,10 +96,17 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 			setWorkDone(getWorkDone() + 1);
 			if(getWorkDone() >= getWorkMax())
 			{
-				setWorkDone(0);
 				if(bgb.getFloatTemperature() >= 0.15F)
 				{
-					_tank.fill(new LiquidStack(Block.waterStill.blockID, LiquidContainerRegistry.BUCKET_VOLUME), true);
+					if(_tank.fill(new LiquidStack(Block.waterStill.blockID, LiquidContainerRegistry.BUCKET_VOLUME), true) > 0)
+					{
+						setWorkDone(0);
+						return true;
+					}
+					else
+					{
+						return false;
+					}
 				}
 				else
 				{
