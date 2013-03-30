@@ -8,11 +8,13 @@ import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
 import powercrystals.minefactoryreloaded.modhelpers.FertilizableCropReflection;
+import powercrystals.minefactoryreloaded.modhelpers.magicalcrops.FertilizableMagicalCropReflection;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -65,19 +67,19 @@ public class MagicalCrops
 			{
 				int seedId = ((Item)mod.getField("mSeeds" + magicalCrop).get(null)).itemID;
 				int blockId = ((Block)mod.getField("mCrop" + magicalCrop).get(null)).blockID;
-				//Method fertilize = Class.forName("magicCrop.mCrop" + magicalCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
+				Method fertilize = Class.forName("magicCrop.mCrop" + magicalCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
-				//MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
+				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize));
 			}
 			
-			/* disabled until magical fertilizer 
+			
 			Item magicalFertilizer = (Item)mod.getField("magicFertilizer").get(null);
 			if(magicalFertilizer != null)
 			{
-				MFRRegistry.registerFertilizer(new FertilizerStandard(magicalFertilizer.itemID, 0));
+				MFRRegistry.registerFertilizer(new FertilizerStandard(magicalFertilizer.itemID, 0, FertilizerType.GrowMagicalCrop));
 			}
-			*/
+			
 		}
 		catch (Exception x)
 		{
