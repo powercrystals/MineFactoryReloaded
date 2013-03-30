@@ -288,7 +288,19 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		{
 			if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
 			{
-				amount -= _inventory[i].stackSize;
+				if(amount == 0)
+				{
+					_inventory[i] = null;
+				}
+				else if(amount >= _inventory[i].stackSize)
+				{
+					amount -= _inventory[i].stackSize;					
+				}
+				else if(amount < _inventory[i].stackSize)
+				{
+					_inventory[i].stackSize = amount;
+					amount = 0;
+				}
 			}
 		}
 		_storedQuantity = amount;
