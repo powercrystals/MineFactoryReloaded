@@ -17,7 +17,7 @@ public class PlantablePamWhiteMushroom implements IFactoryPlantable
 	}
 	
 	@Override
-	public int getSourceId()
+	public int getSeedId()
 	{
 		return _itemId;
 	}

@@ -21,7 +21,7 @@ public class HarvestableRedPowerFlax implements IFactoryHarvestable
 	}
 	
 	@Override
-	public int getSourceId()
+	public int getPlantId()
 	{
 		return _sourceId;
 	}

@@ -16,7 +16,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 public class HarvestableNetherWart implements IFactoryHarvestable
 {
 	@Override
-	public int getSourceId()
+	public int getPlantId()
 	{
 		return Block.netherStalk.blockID;
 	}

@@ -12,7 +12,7 @@ import net.minecraftforge.common.ForgeDirection;
 public class PlantableNetherWart implements IFactoryPlantable
 {
 	@Override
-	public int getSourceId()
+	public int getSeedId()
 	{
 		return Item.netherStalkSeeds.itemID;
 	}

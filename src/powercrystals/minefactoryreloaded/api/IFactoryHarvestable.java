@@ -17,7 +17,7 @@ public interface IFactoryHarvestable
 	/**
 	 * @return The block ID this harvestable instance is managing.
 	 */
-	public int getSourceId();
+	public int getPlantId();
 	
 	/**
 	 * @return The type of harvest the Harvester should perform on this block.
