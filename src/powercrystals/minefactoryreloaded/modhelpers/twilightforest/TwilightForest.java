@@ -8,7 +8,6 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.MobDrop;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSapling;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
@@ -202,17 +201,6 @@ public class TwilightForest
 				MFRRegistry.registerGrindable(new GrindableStandard(tfWraith, new ItemStack(Item.lightStoneDust)));
 				
 				MFRRegistry.registerBreederFood(tfBoar, new ItemStack(Item.carrot));
-				
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfBoar), 80);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfDeer), 80);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfRaven), 50);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfBird), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfPenguin), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfSquirrel), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfTinyBird), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfMazeSlime), 15);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfPinchBeetle), 5);
-				MFRRegistry.registerVillagerTradeMob(MFRUtil.prepareMob(tfWraith), 5);
 			}
 			
 			Class tfBlocks = Class.forName("twilightforest.block.TFBlocks");
@@ -233,6 +221,8 @@ public class TwilightForest
 				
 				MFRRegistry.registerFertilizable(new FertilizableSapling(((Block)tfBlocks.getField("sapling").get(null)).blockID));
 			}
+			
+			MFRRegistry.registerRandomMobProvider(new TwilightForestMobProvider());
 		}
 		catch(Exception x)
 		{

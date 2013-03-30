@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
@@ -22,8 +23,9 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
+import powercrystals.minefactoryreloaded.api.IRandomMobProvider;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
-import powercrystals.minefactoryreloaded.core.RandomMob;
+import powercrystals.minefactoryreloaded.api.RandomMob;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class ItemSafariNet extends ItemFactory
@@ -219,27 +221,38 @@ public class ItemSafariNet extends ItemFactory
 
 	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
 	{
+		Entity e;
 		if(mobTag.getBoolean("hide"))
 		{
-			mobTag = ((RandomMob)WeightedRandom.getRandomItem(world.rand, MFRRegistry.getVillagerTradeMobs())).getMob();
+			List<RandomMob> mobs = new ArrayList<RandomMob>();
+			
+			for(IRandomMobProvider p : MFRRegistry.getRandomMobProviders())
+			{
+				System.out.println("Adding mobs from " + p.getClass().getName());
+				mobs.addAll(p.getRandomMobs(world));
+			}
+			e = ((RandomMob)WeightedRandom.getRandomItem(world.rand, mobs)).getMob();
 		}
-		
-		NBTTagList pos = mobTag.getTagList("Pos");
-		((NBTTagDouble)pos.tagAt(0)).data = x;
-		((NBTTagDouble)pos.tagAt(1)).data = y;
-		((NBTTagDouble)pos.tagAt(2)).data = z;
-		
-		Entity e = EntityList.createEntityFromNBT(mobTag, world);
-
-		if (e != null)
+		else
 		{
-			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+			
+			NBTTagList pos = mobTag.getTagList("Pos");
+			((NBTTagDouble)pos.tagAt(0)).data = x;
+			((NBTTagDouble)pos.tagAt(1)).data = y;
+			((NBTTagDouble)pos.tagAt(2)).data = z;
+			
+			e = EntityList.createEntityFromNBT(mobTag, world);
 			if(e instanceof EntityLiving)
 			{
 				((EntityLiving)e).initCreature();
 			}
 			
 			e.readFromNBT(mobTag);
+		}
+
+		if(e != null)
+		{
+			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
 			
 			world.spawnEntityInWorld(e);
 			if(e instanceof EntityLiving)
