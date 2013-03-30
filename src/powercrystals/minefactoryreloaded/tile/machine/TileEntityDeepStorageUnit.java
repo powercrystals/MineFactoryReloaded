@@ -284,7 +284,13 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	@Override
 	public void setStoredItemCount(int amount)
 	{
-		clearSlots();
+		for(int i = 0; i < getSizeInventory(); i++)
+		{
+			if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
+			{
+				amount -= _inventory[i].stackSize;
+			}
+		}
 		_storedQuantity = amount;
 	}
 
