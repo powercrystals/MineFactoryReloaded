@@ -55,7 +55,7 @@ public class MagicalCrops
 			{
 				int seedId = ((Item)mod.getField("seed" + crop).get(null)).itemID;
 				int blockId = ((Block)mod.getField("crop" + crop).get(null)).blockID;
-				Method fertilize = Class.forName("magicCrop.crop" + crop).getMethod("e_", World.class, int.class, int.class, int.class);
+				Method fertilize = Class.forName("magicCrop.crop" + crop).getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
 				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
@@ -65,18 +65,19 @@ public class MagicalCrops
 			{
 				int seedId = ((Item)mod.getField("mSeeds" + magicalCrop).get(null)).itemID;
 				int blockId = ((Block)mod.getField("mCrop" + magicalCrop).get(null)).blockID;
-				Method fertilize = Class.forName("magicCrop.mCrop" + magicalCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
+				//Method fertilize = Class.forName("magicCrop.mCrop" + magicalCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
-				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
+				//MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
 			}
 			
+			/* disabled until magical fertilizer 
 			Item magicalFertilizer = (Item)mod.getField("magicFertilizer").get(null);
 			if(magicalFertilizer != null)
 			{
 				MFRRegistry.registerFertilizer(new FertilizerStandard(magicalFertilizer.itemID, 0));
 			}
-			
+			*/
 		}
 		catch (Exception x)
 		{
