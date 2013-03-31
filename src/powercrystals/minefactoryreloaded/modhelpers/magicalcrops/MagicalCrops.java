@@ -3,13 +3,11 @@ package powercrystals.minefactoryreloaded.modhelpers.magicalcrops;
 import java.lang.reflect.Method;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
-import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
@@ -42,6 +40,7 @@ public class MagicalCrops
 			String[] herbs = {"Guam", "Harr", "Marr", "Ran", "Tarr", "Toad"};
 			String[] crops = {"Sberry", "Tomato", "Sweetcorn", "Cucum", "Melon", "Bberry", "Rberry", "Grape", "Chil"};
 			String[] magicalCrops = {"Coal", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Dye"};
+			String[] soulCrops = {"Cow", "Pigmen", "Skele", "Spider"};
 			
 			for(String herb : herbs)
 			{
@@ -73,6 +72,15 @@ public class MagicalCrops
 				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize));
 			}
 			
+			for(String soulCrop : soulCrops)
+			{
+				int seedId = ((Item)mod.getField("soulSeed" + soulCrop).get(null)).itemID;
+				int blockId = ((Block)mod.getField("soulCrop" + soulCrop).get(null)).blockID;
+				Method fertilize = Class.forName("magicCrop.soulCrop" + soulCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
+				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
+				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
+				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize));
+			}
 			
 			Item magicalFertilizer = (Item)mod.getField("magicFertilizer").get(null);
 			if(magicalFertilizer != null)
