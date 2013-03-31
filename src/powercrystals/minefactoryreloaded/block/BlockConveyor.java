@@ -115,7 +115,11 @@ public class BlockConveyor extends BlockContainer
 			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 		}
 		
-		((TileEntityConveyor)world.getBlockTileEntity(x, y, z)).setDyeColor(stack.getItemDamage() == 16 ? -1 : stack.getItemDamage());
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileEntityConveyor)
+		{
+			((TileEntityConveyor)te).setDyeColor(stack.getItemDamage() == 16 ? -1 : stack.getItemDamage());
+		}
 	}
 
 	@Override
