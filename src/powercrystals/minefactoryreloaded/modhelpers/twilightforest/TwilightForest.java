@@ -49,7 +49,6 @@ public class TwilightForest
 			twilightForestContainer = FMLCommonHandler.instance().findContainerFor(Class.forName("twilightforest.TwilightForestMod").getField("instance").get(null));
 			
 			Class tfBighorn = Class.forName("twilightforest.entity.EntityTFBighorn");
-			Class tfBird = Class.forName("twilightforest.entity.EntityTFBird");
 			Class tfBoar = Class.forName("twilightforest.entity.EntityTFBoar");
 			Class tfBoggard = Class.forName("twilightforest.entity.EntityTFBoggard");
 			Class tfBunny = Class.forName("twilightforest.entity.EntityTFBunny");
@@ -127,7 +126,6 @@ public class TwilightForest
 				ItemStack venisonRaw = new ItemStack((Item)tfItems.getField("venisonRaw").get(null));
 				
 				MFRRegistry.registerGrindable(new GrindableTFBighorn(tfBighorn));
-				MFRRegistry.registerGrindable(new GrindableStandard(tfBird, new ItemStack(Item.feather)));
 				MFRRegistry.registerGrindable(new GrindableStandard(tfBoar, new ItemStack(Item.porkRaw)));
 				MFRRegistry.registerGrindable(new GrindableStandard(tfBoggard, new MobDrop[]
 				{
