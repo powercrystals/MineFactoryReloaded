@@ -62,7 +62,7 @@ public class EntitySafariNet extends EntityThrowable
 		}
 		else
 		{
-			if(ItemSafariNet.isEmpty(storedEntity))
+			if(ItemSafariNet.isEmpty(storedEntity) && mop.entityHit instanceof EntityLiving)
 			{
 				ItemSafariNet.captureEntity(storedEntity, (EntityLiving)mop.entityHit);
 				dropAsStack(storedEntity);
