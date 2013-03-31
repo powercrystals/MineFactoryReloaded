@@ -96,6 +96,7 @@ public class TwilightForest
 			MFRRegistry.registerSafariNetBlacklist(tfHydraHead);
 			MFRRegistry.registerSafariNetBlacklist(tfHydraNeck);
 			MFRRegistry.registerSafariNetBlacklist(tfHydraPart);
+			MFRRegistry.registerSafariNetBlacklist(tfKingSpider);
 			MFRRegistry.registerSafariNetBlacklist(tfLich);
 			MFRRegistry.registerSafariNetBlacklist(tfNaga);
 			MFRRegistry.registerSafariNetBlacklist(tfNagaSegment);
