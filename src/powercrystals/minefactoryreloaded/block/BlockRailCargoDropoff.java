@@ -51,16 +51,18 @@ public class BlockRailCargoDropoff extends BlockRailBase
 					continue;
 				}
 				ItemStack stackToAdd = contents.getValue().copy();
-				
+				System.out.println("EmyDebug: stackToAdd: " + stackToAdd.toString());
 				ItemStack remaining = chest.addItem(stackToAdd);
 				
 				if(remaining != null)
 				{
+					System.out.println("EmyDebug: remaining: " + remaining.toString());
 					stackToAdd.stackSize -= remaining.stackSize;
 					minecart.removeItem(stackToAdd.stackSize, stackToAdd);
 				}
 				else
 				{
+					System.out.println("EmyDebug: remaining is null.");
 					minecart.removeItem(stackToAdd.stackSize, stackToAdd);
 					break;
 				}
