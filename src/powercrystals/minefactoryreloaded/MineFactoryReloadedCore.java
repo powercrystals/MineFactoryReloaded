@@ -118,14 +118,16 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static final String modId = "MineFactoryReloaded";
 	public static final String modNetworkChannel = "MFReloaded";
-	public static final String version = "1.5.1R2.4.0B2";
+	public static final String version = "1.5.1R2.4.0B3";
 	public static final String modName = "Minefactory Reloaded";
 	
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
 	public static final String villagerFolder = "/powercrystals/minefactoryreloaded/textures/villager/";
+	public static final String tileEntityFolder = "/powercrystals/minefactoryreloaded/textures/tileentity/";
 	
 	public static int renderIdConveyor = 1000;
 	public static int renderIdFactoryGlassPane = 1001;
+	public static int renderIdRedstoneCable = 1002;
 	
 	public static Map<Integer, Block> machineBlocks = new HashMap<Integer, Block>();
 	
@@ -145,7 +147,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Block railPickupPassengerBlock;
 	public static Block railDropoffPassengerBlock;
 	
-	public static Block redstoneCableBlock;
+	public static BlockRedstoneCable redstoneCableBlock;
 	
 	public static Block milkFlowing;
 	public static Block milkStill;

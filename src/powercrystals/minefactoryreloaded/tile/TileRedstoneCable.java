@@ -9,12 +9,19 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
 public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTile
 {
+	public enum ConnectionState
+	{
+		NoConnection,
+		ConnectToCable,
+		ConnectToMachine,
+		ConnectToInterface
+	}
+	
 	private RedstoneNetwork _network;
 	private boolean _needsNetworkUpdate;
 	
 	public void setSideColor(ForgeDirection side, int color)
 	{
-		onColorChanged(side, color);
 	}
 	
 	public int getSideColor(ForgeDirection side)
@@ -22,8 +29,28 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		return 0;
 	}
 	
-	private void onColorChanged(ForgeDirection side, int color)
+	public ConnectionState getConnectionState(ForgeDirection side)
 	{
+		BlockPosition bp = new BlockPosition(this);
+		bp.orientation = side;
+		bp.moveForwards(1);
+		
+		if(worldObj.isAirBlock(bp.x, bp.y, bp.z))
+		{
+			return ConnectionState.NoConnection;
+		}
+		else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == MineFactoryReloadedCore.redstoneCableBlock.blockID)
+		{
+			return ConnectionState.ConnectToCable;
+		}
+		else if(worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, side.getOpposite()))
+		{
+			return ConnectionState.ConnectToMachine;
+		}
+		else
+		{
+			return ConnectionState.ConnectToInterface;
+		}
 	}
 	
 	@Override
@@ -95,7 +122,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		}
 		if(_network == null)
 		{
-			System.out.println("Initializing new network");
+			//System.out.println("Initializing new network at" + ourbp.toString());
 			setNetwork(new RedstoneNetwork(worldObj));
 		}
 		for(BlockPosition bp : ourbp.getAdjacent(true))
