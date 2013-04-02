@@ -181,8 +181,11 @@ public abstract class MFRInventoryUtil
 			}
 		}
 		// (3) Having failed to put it in a chest or a pipe, throw it on the fucking ground. If airdropdirection is a valid direction.
+		System.out.println("Airdropdirection " + airdropdirection.toString() + " is valid: " + Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection));
+		System.out.println("Block is solid:" + from.worldObj.isBlockSolidOnSide(from.xCoord, from.yCoord, from.zCoord, airdropdirection.getOpposite()));
 		if(Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection) && !from.worldObj.isBlockSolidOnSide(from.xCoord, from.yCoord, from.zCoord, airdropdirection.getOpposite()))
 		{
+			System.out.println("EMYDEBUG: yay, the if triggered.");
 			dropStackOnGround(stack, bp, from.worldObj, airdropdirection);
 			stack.stackSize = 0;
 		}
