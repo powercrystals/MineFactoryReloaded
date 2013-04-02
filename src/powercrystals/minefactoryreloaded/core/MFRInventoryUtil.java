@@ -98,7 +98,7 @@ public abstract class MFRInventoryUtil
 	
 	/**
 	 * Drops an ItemStack, checking all directions for pipes > chests. DOESN'T drop items into the world.
-	 * Example of this behavior: Cargo dropoff rail.
+	 * Example of this behavior: Cargo dropoff rail. (Doesn't actually use this method yet though).
 	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack)
@@ -181,11 +181,10 @@ public abstract class MFRInventoryUtil
 			}
 		}
 		// (3) Having failed to put it in a chest or a pipe, throw it on the fucking ground. If airdropdirection is a valid direction.
-		System.out.println("Airdropdirection " + airdropdirection.toString() + " is valid: " + Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection));
-		System.out.println("Block is solid:" + from.worldObj.isBlockSolidOnSide(from.xCoord, from.yCoord, from.zCoord, airdropdirection.getOpposite()));
+		bp.orientation = airdropdirection;
+		bp.moveForwards(1);
 		if(Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection) && !from.worldObj.isBlockSolidOnSide(from.xCoord, from.yCoord, from.zCoord, airdropdirection.getOpposite()))
 		{
-			System.out.println("EMYDEBUG: yay, the if triggered.");
 			dropStackOnGround(stack, bp, from.worldObj, airdropdirection);
 			stack.stackSize = 0;
 		}
