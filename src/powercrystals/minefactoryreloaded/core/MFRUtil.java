@@ -1,25 +1,14 @@
 package powercrystals.minefactoryreloaded.core;
 
-import java.util.Map.Entry;
-
-import buildcraft.api.transport.IPipeEntry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import powercrystals.core.inventory.IInventoryManager;
-import powercrystals.core.inventory.InventoryManager;
-import powercrystals.core.position.BlockPosition;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
-import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public class MFRUtil
