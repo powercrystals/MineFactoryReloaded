@@ -154,7 +154,7 @@ public abstract class MFRInventoryUtil
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection[] dropdirections, ForgeDirection airdropdirection)
 	{
-		if(stack == null || stack.stackSize == 0)
+		if(stack == null || stack.stackSize == 0 || from.worldObj.isRemote)
 		{
 			return stack;
 		}
