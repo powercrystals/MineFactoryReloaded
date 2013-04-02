@@ -7,7 +7,6 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -26,7 +25,7 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float scale)
 	{
 		TileRedstoneCable cable = (TileRedstoneCable)tileentity;
-		this.bindTextureByName(MineFactoryReloadedCore.tileEntityFolder + "cable.png");
+		bindTextureByName(MineFactoryReloadedCore.tileEntityFolder + "cable.png");
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5f, (float) z + 0.5F);
 		
@@ -38,8 +37,7 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
 	{
-		
-		Minecraft.getMinecraft().renderEngine.bindTexture(MineFactoryReloadedCore.tileEntityFolder+"cable.png");
+		bindTextureByName(MineFactoryReloadedCore.tileEntityFolder + "cable.png");
 		
 		GL11.glPushMatrix();
 		GL11.glTranslated(-0.5, -0.5 + -1.0 / 16.0, -0.5);

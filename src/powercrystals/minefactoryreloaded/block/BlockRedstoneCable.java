@@ -22,6 +22,23 @@ public class BlockRedstoneCable extends BlockContainer
 	}
 	
 	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileRedstoneCable)
+		{
+			TileRedstoneCable cable = (TileRedstoneCable)te;
+			float xMin = cable.getConnectionState(ForgeDirection.WEST) != ConnectionState.NoConnection ? 0 : 0.375F;
+			float xMax = cable.getConnectionState(ForgeDirection.EAST) != ConnectionState.NoConnection ? 1 : 0.625F;
+			float yMin = cable.getConnectionState(ForgeDirection.DOWN) != ConnectionState.NoConnection ? 0 : 0.375F;
+			float yMax = cable.getConnectionState(ForgeDirection.UP) != ConnectionState.NoConnection ? 1 : 0.625F;
+			float zMin = cable.getConnectionState(ForgeDirection.NORTH) != ConnectionState.NoConnection ? 0 : 0.375F;
+			float zMax = cable.getConnectionState(ForgeDirection.SOUTH) != ConnectionState.NoConnection ? 1 : 0.625F;
+			setBlockBounds(xMin, yMin, zMin, xMax, yMax, zMax);
+		}
+	}
+	
+	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
