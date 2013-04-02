@@ -13,7 +13,12 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public abstract class MFRLiquidMover
 {
-
+	/**
+	 * Attempts to fill tank with the player's current item.
+	 * @param	itcb			the tank the liquid is going into
+	 * @param	entityplayer	the player trying to fill the tank
+	 * @return	True if liquid was transferred to the tank.
+	 */
 	public static boolean manuallyFillTank(ITankContainerBucketable itcb, EntityPlayer entityplayer)
 	{
 		ItemStack ci = entityplayer.inventory.getCurrentItem();
@@ -33,6 +38,12 @@ public abstract class MFRLiquidMover
 		return false;
 	}
 
+	/**
+	 * Attempts to drain tank into the player's current item.
+	 * @param	itcb			the tank the liquid is coming from
+	 * @param	entityplayer	the player trying to take liquid from the tank
+	 * @return	True if liquid was transferred from the tank.
+	 */
 	public static boolean manuallyDrainTank(ITankContainerBucketable itcb, EntityPlayer entityplayer)
 	{
 		ItemStack ci = entityplayer.inventory.getCurrentItem();

@@ -107,8 +107,9 @@ public abstract class MFRInventoryUtil
 	}
 
 	/**
-	 * Drops an ItemStack, checking all directions for pipes > chests. Drop items into the world.
+	 * Drops an ItemStack, checking all directions for pipes > chests. Drops items into the world.
 	 * Example of this behavior: Harvesters, sludge boilers, etc.
+	 * @param	airdropdirection	the direction that the stack may be dropped into air.
 	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection airdropdirection)
@@ -120,6 +121,7 @@ public abstract class MFRInventoryUtil
 	 * Drops an ItemStack, into chests > pipes > the world, but only in a single direction.
 	 * Example of this behavior: Item Router, Ejector
 	 * @param	dropdirection a -single- direction in which to check for pipes/chests
+	 * @param	airdropdirection	the direction that the stack may be dropped into air.
 	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection dropdirection, ForgeDirection airdropdirection)
@@ -131,14 +133,15 @@ public abstract class MFRInventoryUtil
 	/**
 	 * Drops an ItemStack, checks pipes > chests > world in that order.
 	 * It generally shouldn't be necessary to call this explicitly. 
-	 * @param	from	the TileEntity doing the dropping
-	 * @param	stack	the ItemStack being dropped
-	 * @param	dropdirections	directions in which stack may be dropped into chests or pipes
+	 * @param	from				the TileEntity doing the dropping
+	 * @param	stack				the ItemStack being dropped
+	 * @param	dropdirections		directions in which stack may be dropped into chests or pipes
 	 * @param	airdropdirection	the direction that the stack may be dropped into air. ForgeDirection.UNKNOWN or other invalid directions indicate that stack shouldn't be dropped into the world.
 	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection[] dropdirections, ForgeDirection airdropdirection)
 	{
+		// (0) Sanity check. Don't bother dropping if there's nothing to drop, and never try to drop items on the client.
 		if(stack == null || stack.stackSize == 0 || from.worldObj.isRemote)
 		{
 			return stack;
