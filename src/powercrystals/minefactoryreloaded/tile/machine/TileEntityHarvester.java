@@ -19,6 +19,7 @@ import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
@@ -152,7 +153,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		{
 			for(ItemStack dropStack : drops)
 			{
-				MFRUtil.dropStack(this, dropStack);
+				MFRInventoryUtil.dropStack(this, dropStack, this.getDropDirection());
 			}
 		}
 		

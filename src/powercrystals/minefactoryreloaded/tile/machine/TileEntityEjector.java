@@ -11,6 +11,7 @@ import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.util.Util;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public class TileEntityEjector extends TileEntityFactory
@@ -48,7 +49,7 @@ inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 						{
 							ItemStack output = targetStack.copy();
 							output.stackSize = 1;
-							output = MFRUtil.dropStackDirected(this, output, this.getDirectionFacing());
+							output = MFRInventoryUtil.dropStack(this, output, this.getDirectionFacing(), this.getDirectionFacing());
 							if(targetStack.stackSize == 1 && output != null && output.stackSize == 0)
 							{
 								inventory.setInventorySlotContents(i, null);
@@ -72,7 +73,7 @@ inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 						{
 							ItemStack output = targetStack.copy();
 							output.stackSize = 1;
-							MFRUtil.dropStackDirected(this, output, this.getDirectionFacing());
+							MFRInventoryUtil.dropStack(this, output, this.getDirectionFacing(), this.getDirectionFacing());
 							if(targetStack.stackSize == 1 && output.stackSize == 0)
 							{
 								inventory.setInventorySlotContents(i, null);

@@ -24,6 +24,7 @@ import powercrystals.core.position.BlockPosition;
 import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
@@ -107,7 +108,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 				ItemStack s = ((WeightedRandomItemStack)WeightedRandom.getRandomItem(_rand, MFRRegistry.getSludgeDrops())).getStack();
 				if(s != null)
 				{
-					MFRUtil.dropStack(this, s);
+					MFRInventoryUtil.dropStack(this, s, this.getDropDirection());
 				}
 				setWorkDone(0);
 			}

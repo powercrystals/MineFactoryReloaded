@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
@@ -68,7 +69,7 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 		
 		if(getWorkDone() > getWorkMax())
 		{
-			MFRUtil.dropStack(this, new ItemStack(Item.fishRaw));
+			MFRInventoryUtil.dropStack(this, new ItemStack(Item.fishRaw), this.getDropDirection());
 			setWorkDone(0);
 		}
 		return true;

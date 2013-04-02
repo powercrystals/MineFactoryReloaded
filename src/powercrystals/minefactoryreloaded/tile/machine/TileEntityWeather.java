@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
@@ -111,7 +112,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 				}
 				else
 				{
-					MFRUtil.dropStack(this, new ItemStack(Item.snowball));
+					MFRInventoryUtil.dropStack(this, new ItemStack(Item.snowball), this.getDropDirection());
 				}
 			}
 			return true;
