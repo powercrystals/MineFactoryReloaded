@@ -19,6 +19,7 @@ import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -125,7 +126,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public boolean activateMachine()
 	{
-		MFRUtil.pumpLiquid(_tank, this);
+		MFRLiquidMover.pumpLiquid(_tank, this);
 		
 		int harvestedBlockId = 0;
 		int harvestedBlockMetadata = 0;

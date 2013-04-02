@@ -9,6 +9,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
@@ -89,7 +90,7 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 	@Override
 	public boolean activateMachine()
 	{
-		MFRUtil.pumpLiquid(_tank, this);
+		MFRLiquidMover.pumpLiquid(_tank, this);
 		
 		boolean didDrop = false;
 		

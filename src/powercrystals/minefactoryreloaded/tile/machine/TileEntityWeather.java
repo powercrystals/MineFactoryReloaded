@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -82,7 +83,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 	@Override
 	public boolean activateMachine()
 	{
-		MFRUtil.pumpLiquid(_tank, this);
+		MFRLiquidMover.pumpLiquid(_tank, this);
 		
 		if(worldObj.getWorldInfo().isRaining() && canSeeSky())
 		{

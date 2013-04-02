@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.Machine;
@@ -185,14 +186,14 @@ public class BlockFactoryMachine extends BlockContainer
 		}
 		if(te instanceof ITankContainerBucketable && LiquidContainerRegistry.isEmptyContainer(entityplayer.inventory.getCurrentItem()) && ((ITankContainerBucketable)te).allowBucketDrain())
 		{
-			if(MFRUtil.manuallyDrainTank((ITankContainerBucketable)te, entityplayer))
+			if(MFRLiquidMover.manuallyDrainTank((ITankContainerBucketable)te, entityplayer))
 			{
 				return true;
 			}
 		}
 		else if(te instanceof ITankContainerBucketable && LiquidContainerRegistry.isFilledContainer(entityplayer.inventory.getCurrentItem()) && ((ITankContainerBucketable)te).allowBucketFill())
 		{
-			if(MFRUtil.manuallyFillTank((ITankContainerBucketable)te, entityplayer))
+			if(MFRLiquidMover.manuallyFillTank((ITankContainerBucketable)te, entityplayer))
 			{
 				return true;
 			}
