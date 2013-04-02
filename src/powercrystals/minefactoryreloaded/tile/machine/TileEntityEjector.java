@@ -10,7 +10,6 @@ import net.minecraftforge.common.ForgeDirection;
 
 import powercrystals.core.util.Util;
 import powercrystals.core.util.UtilInventory;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 

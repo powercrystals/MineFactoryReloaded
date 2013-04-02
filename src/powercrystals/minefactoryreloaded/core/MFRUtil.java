@@ -4,12 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
-import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public class MFRUtil
 {
@@ -27,26 +23,6 @@ public class MFRUtil
 		return false;
 	}
 	
-	/**
-	 * Methods from MFRInventoryUtil should be used instead.
-	 * dropStack here should be equivalent to MFRInventoryUtil.dropStack(from, s, towards, towards) 
-	 */
-	@Deprecated
-	public static ItemStack dropStackDirected(TileEntityFactory from, ItemStack s, ForgeDirection towards)
-	{
-		return MFRInventoryUtil.dropStack(from, s, towards, towards);
-	}
-	
-	/**
-	 * Methods from MFRInventoryUtil should be used instead. 
-	 * dropStack here should be equivalent to MFRInventoryUtil.dropStack(from, s, from.getDropDirection()) 
-	 */
-	@Deprecated
-	public static void dropStack(TileEntityFactory from, ItemStack s)
-	{
-		MFRInventoryUtil.dropStack(from, s, from.getDropDirection());
-	}
-
 	public static Entity prepareMob(Class<? extends Entity> entity, World world)
 	{
 		try

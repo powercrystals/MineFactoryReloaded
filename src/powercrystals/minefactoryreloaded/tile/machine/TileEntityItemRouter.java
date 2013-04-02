@@ -11,7 +11,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiItemRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
