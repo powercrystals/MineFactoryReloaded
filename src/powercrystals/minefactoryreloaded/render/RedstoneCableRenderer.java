@@ -66,5 +66,4 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 	{
 		return MineFactoryReloadedCore.renderIdRedstoneCable;
 	}
-
 }

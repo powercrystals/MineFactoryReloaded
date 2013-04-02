@@ -3,11 +3,13 @@ package powercrystals.minefactoryreloaded.block;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.TileRedstoneCable.ConnectionState;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockRedstoneCable extends BlockContainer
 {
@@ -61,8 +63,12 @@ public class BlockRedstoneCable extends BlockContainer
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
 			power = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput();
+			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId());
 		}
-		//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power);
+		else
+		{
+			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - no tile or no network!");
+		}
 		return power;
 	}
 	
@@ -74,9 +80,24 @@ public class BlockRedstoneCable extends BlockContainer
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
 			power = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput();
+			//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId());
 		}
-		//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power);
+		else
+		{
+			//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - no tile or no network!");
+		}
 		return power;
+	}
+	
+	@Override
+	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
+		{
+			return ((TileRedstoneCable)te).getConnectionState(side) == ConnectionState.ConnectToInterface;
+		}
+		return false;
 	}
 	
 	@Override

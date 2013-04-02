@@ -20,7 +20,6 @@ public class RedstoneNetwork
 	private List<BlockPosition> _nodes = new LinkedList<BlockPosition>();
 	private List<BlockPosition> _poweringNodes = new LinkedList<BlockPosition>();
 	private List<BlockPosition> _cables = new LinkedList<BlockPosition>();
-	//private int _powerLevelInput = 0;
 	private int _powerLevelOutput = 0;
 	private World _world;
 	
@@ -110,6 +109,7 @@ public class RedstoneNetwork
 				((TileRedstoneCable)te).setNetwork(this);
 			}
 		}
+		updatePowerLevels();
 		notifyNodes();
 	}
 	
@@ -147,13 +147,12 @@ public class RedstoneNetwork
 	
 	private void updatePowerLevels()
 	{
-		//_powerLevelInput = 0;
 		_powerLevelOutput = 0;
 		
 		for(BlockPosition node : _poweringNodes)
 		{
-		//	_powerLevelInput = Math.max(_powerLevelInput, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()));
 			_powerLevelOutput = Math.max(_powerLevelOutput, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1);
+			_powerLevelOutput = Math.max(_powerLevelOutput, _world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1);
 		}
 		//System.out.println("Network with ID " + _id + " recalculated power levels as: output: " + _powerLevelOutput);
 	}

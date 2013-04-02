@@ -165,7 +165,33 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			
 			//getIndirectPowerLevelTo
 			//isBlockProvidingPowerTo
-			if(worldObj.isBlockProvidingPowerTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) == 0 ||
+			if(worldObj.getBlockId(bp.x, bp.y, bp.z) == Block.redstoneWire.blockID)
+			{
+				if(worldObj.getBlockMetadata(bp.x, bp.y, bp.z) < getNetwork().getPowerLevelOutput())
+				{
+					_network.removePoweringNode(bp);
+				}
+				else
+				{
+					_network.addPoweringNode(bp);
+				}
+			}
+			else if(worldObj.isBlockProvidingPowerTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) > 0)
+			{
+				_network.addPoweringNode(bp);
+			}
+			else if(worldObj.getIndirectPowerLevelTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) > 0 && getConnectionState(bp.orientation) == ConnectionState.ConnectToInterface)
+			{
+				_network.addPoweringNode(bp);
+			}
+			else
+			{
+				_network.removePoweringNode(bp);
+			}
+			
+			/*if(worldObj.isBlockProvidingPowerTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) == 0 ||
+					(getConnectionState(bp.orientation) == ConnectionState.ConnectToInterface &&
+					worldObj.isBlockProvidingPowerTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) == 0) ||
 					(worldObj.getBlockId(bp.x, bp.y, bp.z) == Block.redstoneWire.blockID &&
 					worldObj.getBlockMetadata(bp.x, bp.y, bp.z) < getNetwork().getPowerLevelOutput()))
 			{
@@ -174,12 +200,12 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			}
 			else
 			{
-				//System.out.println("** is proividing power");
+				//System.out.println("** is providing power");
 				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.redstoneCableBlock.blockID)
 				{
 					_network.addPoweringNode(bp);
 				}
-			}
+			}*/
 		}
 	}
 }
