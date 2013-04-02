@@ -23,18 +23,18 @@ public abstract class MFRInventoryUtil
 {
 	/**
 	 * Searches from position x, y, z, checking for BC-compatible pipes in all directions.
-	 * @return HashMap<ForgeDirection, IPipeEntry> specifying all found pipes and their directions.
+	 * @return Map<ForgeDirection, IPipeEntry> specifying all found pipes and their directions.
 	 */
-	public static HashMap<ForgeDirection, IPipeEntry> findPipes(World world, int x, int y, int z)
+	public static Map<ForgeDirection, IPipeEntry> findPipes(World world, int x, int y, int z)
 	{
 		return findPipes(world, x, y, z, ForgeDirection.VALID_DIRECTIONS);
 	}
 	
 	/**
 	 * Searches from position x, y, z, checking for BC-compatible pipes in each directiontocheck.
-	 * @return HashMap<ForgeDirection, IPipeEntry> specifying all found pipes and their directions.
+	 * @return Map<ForgeDirection, IPipeEntry> specifying all found pipes and their directions.
 	 */
-	public static HashMap<ForgeDirection, IPipeEntry> findPipes(World world, int x, int y, int z, ForgeDirection[] directionstocheck)
+	public static Map<ForgeDirection, IPipeEntry> findPipes(World world, int x, int y, int z, ForgeDirection[] directionstocheck)
 	{
 		HashMap<ForgeDirection, IPipeEntry> pipes = new HashMap<ForgeDirection, IPipeEntry>();
 		for(ForgeDirection direction : directionstocheck)
@@ -53,7 +53,7 @@ public abstract class MFRInventoryUtil
 	
 	/**
 	 * Searches from position x, y, z, checking for inventories in all directions.
-	 * @return HashMap<ForgeDirection, IInventory> specifying all found inventories and their directions.
+	 * @return Map<ForgeDirection, IInventory> specifying all found inventories and their directions.
 	 */
 	public static Map<ForgeDirection, IInventory> findChests(World world, int x, int y, int z)
 	{
@@ -62,7 +62,7 @@ public abstract class MFRInventoryUtil
 	
 	/**
 	 * Searches from position x, y, z, checking for inventories in each directiontocheck.
-	 * @return HashMap<ForgeDirection, IInventory> specifying all found inventories and their directions.
+	 * @return Map<ForgeDirection, IInventory> specifying all found inventories and their directions.
 	 */
 	public static Map<ForgeDirection, IInventory> findChests(World world, int x, int y, int z, ForgeDirection[] directionstocheck)
 	{
@@ -174,7 +174,7 @@ public abstract class MFRInventoryUtil
 					continue;
 				}
 			}
-			// Try to stick shit in all non-DSU inventories.
+			// Try to put stack in all non-DSU inventories.
 			IInventoryManager manager = InventoryManager.create((IInventory)chest.getValue(), chest.getKey().getOpposite());
 			stack = manager.addItem(stack);
 			if(stack == null || stack.stackSize == 0)
@@ -182,20 +182,20 @@ public abstract class MFRInventoryUtil
 				return null;
 			}
 		}
-		// (3) Having failed to put it in a chest or a pipe, throw it on the fucking ground. If airdropdirection is a valid direction.
+		// (3) Having failed to put it in a chest or a pipe, drop it in the air if airdropdirection is a valid direction.
 		bp.orientation = airdropdirection;
 		bp.moveForwards(1);
 		if(Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection) && !from.worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, airdropdirection.getOpposite()))
 		{
 			bp.moveBackwards(1);
-			dropStackOnGround(stack, bp, from.worldObj, airdropdirection);
+			dropStackInAir(stack, bp, from.worldObj, airdropdirection);
 			return null;
 		}
 		// (4) Is the stack still here? :( Better give it back.
 		return stack;
 	}
 	
-	private static void dropStackOnGround(ItemStack stack, BlockPosition bp, World world, ForgeDirection towards)
+	private static void dropStackInAir(ItemStack stack, BlockPosition bp, World world, ForgeDirection towards)
 	{
 		float dropOffsetX = 0.0F;
 		float dropOffsetY = 0.0F;
