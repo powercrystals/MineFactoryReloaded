@@ -10,10 +10,12 @@ import net.minecraft.item.ItemRecord;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 
@@ -29,13 +31,13 @@ public class ClientPacketHandler implements IPacketHandler
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
 		int packetType = PacketWrapper.readPacketID(data);
 		
-		if (packetType == Packets.TileDescription) // server -> client; server propagating machine rotation; args X Y Z rotation isActive
+		if(packetType == Packets.TileDescription) // server -> client; server propagating machine rotation; args X Y Z rotation isActive
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
-			if (te instanceof TileEntityFactory)
+			if(te instanceof TileEntityFactory)
 			{
 				TileEntityFactory tef = (TileEntityFactory) te;
 				tef.rotateDirectlyTo((Integer)packetReadout[3]);
@@ -60,7 +62,7 @@ public class ClientPacketHandler implements IPacketHandler
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
-			if (te instanceof TileEntityAutoJukebox)
+			if(te instanceof TileEntityAutoJukebox)
 			{
 				Minecraft.getMinecraft().ingameGUI.setRecordPlayingMessage(((ItemRecord)Item.itemsList[(Integer)packetReadout[3]]).recordName);
 			}
@@ -72,6 +74,23 @@ public class ClientPacketHandler implements IPacketHandler
 			
 			((EntityPlayer)player).worldObj.setBlock((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2], MineFactoryReloadedCore.factoryRoadBlock.blockID, (Integer)packetReadout[3], 6);
 			((EntityPlayer)player).worldObj.markBlockForRenderUpdate((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+		}
+		else if (packetType == Packets.CableDescription) // server -> client; cable side colors
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileRedstoneCable)
+			{
+				TileRedstoneCable tec = (TileRedstoneCable) te;
+				tec.setSideColor(ForgeDirection.DOWN, (Integer)packetReadout[3]);
+				tec.setSideColor(ForgeDirection.UP, (Integer)packetReadout[4]);
+				tec.setSideColor(ForgeDirection.NORTH, (Integer)packetReadout[5]);
+				tec.setSideColor(ForgeDirection.SOUTH, (Integer)packetReadout[6]);
+				tec.setSideColor(ForgeDirection.WEST, (Integer)packetReadout[7]);
+				tec.setSideColor(ForgeDirection.EAST, (Integer)packetReadout[8]);
+			}
 		}
 	}
 }

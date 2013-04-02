@@ -1,32 +1,45 @@
 package powercrystals.minefactoryreloaded.tile;
 
 import net.minecraft.block.Block;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.position.INeighboorUpdateTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.net.Packets;
 
 public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTile
 {
-	public enum ConnectionState
-	{
-		NoConnection,
-		ConnectToCable,
-		ConnectToMachine,
-		ConnectToInterface
-	}
-	
+	private int[] _sideColors = new int [6];
 	private RedstoneNetwork _network;
 	private boolean _needsNetworkUpdate;
 	
+	public enum ConnectionState
+	{
+		None,
+		CableAll,
+		CableSingle,
+		FlatSingle
+	}
+	
 	public void setSideColor(ForgeDirection side, int color)
 	{
+		if(side == ForgeDirection.UNKNOWN)
+		{
+			return;
+		}
+		_sideColors[side.ordinal()] = color;
 	}
 	
 	public int getSideColor(ForgeDirection side)
 	{
-		return 0;
+		if(side == ForgeDirection.UNKNOWN)
+		{
+			return 0;
+		}
+		return _sideColors[side.ordinal()];
 	}
 	
 	public ConnectionState getConnectionState(ForgeDirection side)
@@ -37,20 +50,29 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		
 		if(worldObj.isAirBlock(bp.x, bp.y, bp.z))
 		{
-			return ConnectionState.NoConnection;
+			return ConnectionState.None;
 		}
 		else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == MineFactoryReloadedCore.redstoneCableBlock.blockID)
 		{
-			return ConnectionState.ConnectToCable;
+			return ConnectionState.CableAll;
 		}
 		else if(worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, side.getOpposite()))
 		{
-			return ConnectionState.ConnectToMachine;
+			return ConnectionState.CableSingle;
 		}
 		else
 		{
-			return ConnectionState.ConnectToInterface;
+			return ConnectionState.FlatSingle;
 		}
+	}
+	
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		return PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.CableDescription, new Object[]
+				{
+					xCoord, yCoord, zCoord, _sideColors[0], _sideColors[1], _sideColors[2], _sideColors[3], _sideColors[4], _sideColors[5]
+				});
 	}
 	
 	@Override
@@ -180,7 +202,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			{
 				_network.addPoweringNode(bp);
 			}
-			else if(worldObj.getIndirectPowerLevelTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) > 0 && getConnectionState(bp.orientation) == ConnectionState.ConnectToInterface)
+			else if(worldObj.getIndirectPowerLevelTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) > 0 && getConnectionState(bp.orientation) == ConnectionState.FlatSingle)
 			{
 				_network.addPoweringNode(bp);
 			}

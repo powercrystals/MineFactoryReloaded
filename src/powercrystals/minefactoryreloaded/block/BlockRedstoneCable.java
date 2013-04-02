@@ -6,6 +6,7 @@ import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable.ConnectionState;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -22,18 +23,38 @@ public class BlockRedstoneCable extends BlockContainer
 	}
 	
 	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
+	{
+		if(world.isRemote)
+		{
+			return false;
+		}
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileRedstoneCable)
+		{
+			TileRedstoneCable cable = (TileRedstoneCable)te;
+			int nextColor = cable.getSideColor(ForgeDirection.VALID_DIRECTIONS[side]) + 1;
+			if(nextColor > 15) nextColor = 0;
+			cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], nextColor);
+			world.markBlockForUpdate(x, y, z);
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileRedstoneCable)
 		{
 			TileRedstoneCable cable = (TileRedstoneCable)te;
-			float xMin = cable.getConnectionState(ForgeDirection.WEST) != ConnectionState.NoConnection ? 0 : 0.375F;
-			float xMax = cable.getConnectionState(ForgeDirection.EAST) != ConnectionState.NoConnection ? 1 : 0.625F;
-			float yMin = cable.getConnectionState(ForgeDirection.DOWN) != ConnectionState.NoConnection ? 0 : 0.375F;
-			float yMax = cable.getConnectionState(ForgeDirection.UP) != ConnectionState.NoConnection ? 1 : 0.625F;
-			float zMin = cable.getConnectionState(ForgeDirection.NORTH) != ConnectionState.NoConnection ? 0 : 0.375F;
-			float zMax = cable.getConnectionState(ForgeDirection.SOUTH) != ConnectionState.NoConnection ? 1 : 0.625F;
+			float xMin = cable.getConnectionState(ForgeDirection.WEST) != ConnectionState.None ? 0 : 0.375F;
+			float xMax = cable.getConnectionState(ForgeDirection.EAST) != ConnectionState.None ? 1 : 0.625F;
+			float yMin = cable.getConnectionState(ForgeDirection.DOWN) != ConnectionState.None ? 0 : 0.375F;
+			float yMax = cable.getConnectionState(ForgeDirection.UP) != ConnectionState.None ? 1 : 0.625F;
+			float zMin = cable.getConnectionState(ForgeDirection.NORTH) != ConnectionState.None ? 0 : 0.375F;
+			float zMax = cable.getConnectionState(ForgeDirection.SOUTH) != ConnectionState.None ? 1 : 0.625F;
 			setBlockBounds(xMin, yMin, zMin, xMax, yMax, zMax);
 		}
 	}
@@ -112,7 +133,7 @@ public class BlockRedstoneCable extends BlockContainer
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
-			return ((TileRedstoneCable)te).getConnectionState(side) == ConnectionState.ConnectToInterface;
+			return ((TileRedstoneCable)te).getConnectionState(side) == ConnectionState.FlatSingle;
 		}
 		return false;
 	}

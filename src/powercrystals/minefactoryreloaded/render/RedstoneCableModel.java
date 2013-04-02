@@ -77,8 +77,8 @@ public class RedstoneCableModel extends ModelBase
 	public void render(float f5)
 	{
 		_base.render(f5);
-		renderSide(ConnectionState.ConnectToCable, 0, 0, 0, f5);
-		renderSide(ConnectionState.ConnectToCable, 0, (float)Math.PI, 0, f5);
+		renderSide(ConnectionState.CableAll, 0, 0, 0, f5);
+		renderSide(ConnectionState.CableAll, 0, (float)Math.PI, 0, f5);
 	}
 
 	public void render(TileRedstoneCable entity, float f5)
@@ -97,12 +97,12 @@ public class RedstoneCableModel extends ModelBase
 	{
 		switch (state)
 		{
-		case ConnectToCable:
+		case CableAll:
 			_cableConn.rotateAngleY = yRot;
 			_cableConn.rotateAngleZ = zRot;
 			_cableConn.render(scale);
 			break;
-		case ConnectToMachine:
+		case CableSingle:
 			_cableConn.rotateAngleY = yRot;
 			_cableConn.rotateAngleZ = zRot;
 			_cableConn.render(scale);
@@ -114,7 +114,7 @@ public class RedstoneCableModel extends ModelBase
 			_bandWhite.render(scale);
 			GL11.glColor3f(1.0f, 1.0f, 1.0f);
 			break;
-		case ConnectToInterface:
+		case FlatSingle:
 			_interfaceConn.rotateAngleY = yRot;
 			_interfaceConn.rotateAngleZ = zRot;
 			_interfaceConn.render(scale);
