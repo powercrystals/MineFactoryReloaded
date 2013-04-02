@@ -154,8 +154,7 @@ public abstract class MFRInventoryUtil
 			if(pipe.getValue().acceptItems())
 			{
 				pipe.getValue().entityEntering(stack.copy(), pipe.getKey());
-				stack.stackSize = 0;
-				return stack;
+				return null;
 			}
 		}
 		// (2) Try to put stack in chests that are in valid directions
@@ -180,16 +179,17 @@ public abstract class MFRInventoryUtil
 			stack = manager.addItem(stack);
 			if(stack == null || stack.stackSize == 0)
 			{
-				return stack;
+				return null;
 			}
 		}
 		// (3) Having failed to put it in a chest or a pipe, throw it on the fucking ground. If airdropdirection is a valid direction.
 		bp.orientation = airdropdirection;
 		bp.moveForwards(1);
-		if(Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection) && !from.worldObj.isBlockSolidOnSide(from.xCoord, from.yCoord, from.zCoord, airdropdirection.getOpposite()))
+		if(Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection) && !from.worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, airdropdirection.getOpposite()))
 		{
+			bp.moveBackwards(1);
 			dropStackOnGround(stack, bp, from.worldObj, airdropdirection);
-			stack.stackSize = 0;
+			return null;
 		}
 		// (4) Is the stack still here? :( Better give it back.
 		return stack;
