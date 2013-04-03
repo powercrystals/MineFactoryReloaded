@@ -340,7 +340,7 @@ public class ItemSafariNet extends ItemFactory
 		return s != null && s.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID;
 	}
 	
-	@SuppressWarnings({ "unchecked" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes)
 	{
