@@ -39,14 +39,18 @@ public class MagicalCrops
 			// the various plants are separated by type to make future changes easier (mostly considering magicFertilizer behavior)
 			String[] herbs = {"Guam", "Harr", "Marr", "Ran", "Tarr", "Toad"};
 			String[] crops = {"Sberry", "Tomato", "Sweetcorn", "Cucum", "Melon", "Bberry", "Rberry", "Grape", "Chil"};
-			String[] magicalCrops = {"Coal", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Dye", "Nether"};
+			String[] magicalCrops = {"Coal", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Nether"};
 			String[] soulCrops = {"Cow", "Pigmen", "Skele", "Spider"};
+			
+			int seedId;
+			int blockId;
+			Method fertilize;
 			
 			for(String herb : herbs)
 			{
-				int seedId = ((Item)mod.getField("SeedHerb" + herb).get(null)).itemID;
-				int blockId = ((Block)mod.getField("PlantHerb" + herb).get(null)).blockID;
-				Method fertilize = Class.forName("magicCrop.PlantHerb" + herb).getMethod("fertilize", World.class, int.class, int.class, int.class);
+				seedId = ((Item)mod.getField("SeedHerb" + herb).get(null)).itemID;
+				blockId = ((Block)mod.getField("PlantHerb" + herb).get(null)).blockID;
+				fertilize = Class.forName("magicCrop.PlantHerb" + herb).getMethod("fertilize", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
 				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
@@ -54,19 +58,30 @@ public class MagicalCrops
 			
 			for(String crop : crops)
 			{
-				int seedId = ((Item)mod.getField("seed" + crop).get(null)).itemID;
-				int blockId = ((Block)mod.getField("crop" + crop).get(null)).blockID;
-				Method fertilize = Class.forName("magicCrop.crop" + crop).getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
+				seedId = ((Item)mod.getField("seed" + crop).get(null)).itemID;
+				blockId = ((Block)mod.getField("crop" + crop).get(null)).blockID;
+				fertilize = Class.forName("magicCrop.crop" + crop).getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
 				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
 			}
 			
+			/*
+			 *  mCropDye is named as a magical crop, but it actually extends vanilla BlockCrops.
+			 *  This means that it needs to get its own special registration, rather than going on one of the string lists. 
+			 */
+			seedId = ((Item)mod.getField("mSeedsDye").get(null)).itemID;
+			blockId = ((Block)mod.getField("mCropDye").get(null)).blockID;
+			fertilize = Class.forName("magicCrop.mCropDye").getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
+			MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
+			MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
+			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
+			
 			for(String magicalCrop : magicalCrops)
 			{
-				int seedId = ((Item)mod.getField("mSeeds" + magicalCrop).get(null)).itemID;
-				int blockId = ((Block)mod.getField("mCrop" + magicalCrop).get(null)).blockID;
-				Method fertilize = Class.forName("magicCrop.mCrop" + magicalCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
+				seedId = ((Item)mod.getField("mSeeds" + magicalCrop).get(null)).itemID;
+				blockId = ((Block)mod.getField("mCrop" + magicalCrop).get(null)).blockID;
+				fertilize = Class.forName("magicCrop.mCrop" + magicalCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
 				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize));
@@ -74,9 +89,9 @@ public class MagicalCrops
 			
 			for(String soulCrop : soulCrops)
 			{
-				int seedId = ((Item)mod.getField("soulSeed" + soulCrop).get(null)).itemID;
-				int blockId = ((Block)mod.getField("soulCrop" + soulCrop).get(null)).blockID;
-				Method fertilize = Class.forName("magicCrop.soulCrop" + soulCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
+				seedId = ((Item)mod.getField("soulSeed" + soulCrop).get(null)).itemID;
+				blockId = ((Block)mod.getField("soulCrop" + soulCrop).get(null)).blockID;
+				fertilize = Class.forName("magicCrop.soulCrop" + soulCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId));
 				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize));
