@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import powercrystals.core.position.BlockPosition;
@@ -64,7 +65,7 @@ public abstract class TileEntityGenerator extends TileEntityFactoryInventory imp
 	}
 
 	@Override
-	public int powerRequest()
+	public int powerRequest(ForgeDirection from)
 	{
 		return 0;
 	}

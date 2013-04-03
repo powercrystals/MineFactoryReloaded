@@ -20,7 +20,8 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 	private TileEntityLiquiCrafter _crafter;
 	
 	private int _tempTankIndex;
-	private LiquidStack _tempLiquidStack;
+	private int _tempLiquidId;
+	private int _tempLiquidMeta;
 
 	public ContainerLiquiCrafter(TileEntityLiquiCrafter crafter, InventoryPlayer inventoryPlayer)
 	{
@@ -83,12 +84,11 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 	{
 		super.updateProgressBar(var, value);
 		if(var == 0) _tempTankIndex = value;
-		else if(var == 1) _tempLiquidStack = new LiquidStack(value, 0);
-		else if(var == 2) _tempLiquidStack.itemMeta = value;
+		else if(var == 1) _tempLiquidId = value;
+		else if(var == 2) _tempLiquidMeta = value;
 		else if(var == 3)
 		{
-			_tempLiquidStack.amount = value;
-			((LiquidTank)_crafter.getTanks(ForgeDirection.UNKNOWN)[_tempTankIndex]).setLiquid(_tempLiquidStack);
+			((LiquidTank)_crafter.getTanks(ForgeDirection.UNKNOWN)[_tempTankIndex]).setLiquid(new LiquidStack(_tempLiquidId, value, _tempLiquidMeta));
 		}
 	}
 	

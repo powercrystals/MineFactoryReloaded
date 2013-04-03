@@ -6,8 +6,8 @@
 	<property name="classes.dir" value="${build.dir}/packaging" />
 	<property name="apiclasses.dir" value="${build.dir}/api-packaging" />
 	<property name="src.dir" value="src" />
-	<property name="forge.buildnum" value="605" />
-	<property name="forge.version" value="1.5.1-7.7.0.${forge.buildnum}" />
+	<property name="forge.buildnum" value="624" />
+	<property name="forge.version" value="1.5.1-7.7.1.${forge.buildnum}" />
 	<property name="forge.url" value="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${forge.version}.zip" />
 	<property name="forge.dir" value="${build.dir}/forge" />
 	<property name="mcp.dir" value="${forge.dir}/mcp" />
@@ -45,7 +45,7 @@
 		<get src="http://ic2api.player.to:8080/job/IC2_lf/231/artifact/packages/industrialcraft-2-api_1.115.231-lf.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
 		
 		<echo message="Downloading BuildCraft API..." />
-		<get src="https://github.com/BuildCraft/BuildCraft/archive/master.zip" dest="${download.dir}/BuildCraft-master.zip"/>
+		<get src="https://github.com/BuildCraft/BuildCraft/archive/mc1.5.zip" dest="${download.dir}/BuildCraft-master.zip"/>
 		
 		<echo message="Downloading PowerCrystalsCore... " />
 		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
@@ -63,13 +63,8 @@
 		<echo message="Extracting BuildCraft API..." />
 		<unzip src="${download.dir}/BuildCraft-master.zip" dest="${download.dir}"/>
 		<mkdir dir="${mcpsrc.dir}/buildcraft/" />
-		<move file="${download.dir}/BuildCraft-master/common/buildcraft/api" todir="${mcpsrc.dir}/buildcraft"/>
-		<move file="${download.dir}/BuildCraft-master/common/buildcraft/core/IMachine.java" todir="${mcpsrc.dir}/buildcraft/core"/>
-
-		<echo message="Deleting extra BC API classes" />
-		<delete dir="${mcpsrc.dir}/buildcraft/api/blueprints/" />
-		<delete dir="${mcpsrc.dir}/buildcraft/api/bptblocks/" />
-		<delete file="${mcpsrc.dir}/buildcraft/api/core/BuildCraftAPI.java" />
+		<move file="${download.dir}/BuildCraft-mc1.5/common/buildcraft/api" todir="${mcpsrc.dir}/buildcraft"/>
+		<move file="${download.dir}/BuildCraft-mc1.5/common/buildcraft/core/IMachine.java" todir="${mcpsrc.dir}/buildcraft/core"/>
 		
 		<echo message="Extracting IC2 API... " />
 		<unzip src="${download.dir}/industrialcraft-2-api.zip" dest="${download.dir}" />
