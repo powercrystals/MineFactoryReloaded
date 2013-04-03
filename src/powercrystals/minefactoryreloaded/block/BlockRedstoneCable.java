@@ -1,12 +1,18 @@
 package powercrystals.minefactoryreloaded.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable.ConnectionState;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
@@ -124,11 +130,21 @@ public class BlockRedstoneCable extends BlockContainer
 			{
 				if(!world.isRemote)
 				{
-					side = _partSideMappings[subHit];
-					int nextColor = cable.getSideColor(ForgeDirection.VALID_DIRECTIONS[side]) + 1;
-					if(nextColor > 15) nextColor = 0;
-					cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], nextColor);
-					world.markBlockForUpdate(x, y, z);
+					ItemStack s = player.inventory.getCurrentItem();
+					if(s != null && s.getItem() instanceof IToolHammer)
+					{
+						side = _partSideMappings[subHit];
+						int nextColor = cable.getSideColor(ForgeDirection.VALID_DIRECTIONS[side]) + 1;
+						if(nextColor > 15) nextColor = 0;
+						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], nextColor);
+						world.markBlockForUpdate(x, y, z);
+					}
+					else if(s != null && s.itemID == Item.dyePowder.itemID)
+					{
+						side = _partSideMappings[subHit];
+						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], 16 - s.getItemDamage());
+						world.markBlockForUpdate(x, y, z);
+					}
 				}
 				return true;
 			}
@@ -244,5 +260,12 @@ public class BlockRedstoneCable extends BlockContainer
 	public int getRenderType()
 	{
 		return MineFactoryReloadedCore.renderIdRedstoneCable;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		blockIcon = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 }
