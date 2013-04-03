@@ -103,6 +103,8 @@ tile.mfr.rail.cargo.pickup.name = Cargo Pickup Rail
 tile.mfr.rail.passenger.dropoff.name = Passenger Dropoff Rail
 tile.mfr.rail.passenger.pickup.name = Passenger Pickup Rail
 
+tile.mfr.cable.redstone.name = RedNet Cable
+
 tile.mfr.liquid.milk.flowing.name = Milk
 tile.mfr.liquid.milk.still.name = Milk
 tile.mfr.liquid.sludge.flowing.name = Sludge

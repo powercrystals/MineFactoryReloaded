@@ -879,5 +879,14 @@ public class Vanilla
 					Character.valueOf('L'), Block.glass,
 					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
 				} ));
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.redstoneCableBlock, 8), new Object[]
+				{
+					"PPP",
+					"RRR",
+					"PPP",
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+				} );
 	}
 }

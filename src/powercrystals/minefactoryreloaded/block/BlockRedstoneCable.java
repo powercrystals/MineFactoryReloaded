@@ -41,6 +41,8 @@ public class BlockRedstoneCable extends BlockContainer
 		super(id, Material.clay);
 		
 		setUnlocalizedName("mfr.cable.redstone");
+		setHardness(0.8F);
+		
 		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
