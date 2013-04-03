@@ -146,7 +146,7 @@ public class BlockRedstoneCable extends BlockContainer
 					if(!world.isRemote)
 					{
 						side = _partSideMappings[subHit];
-						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], s.getItemDamage());
+						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], 15 - s.getItemDamage());
 						world.markBlockForUpdate(x, y, z);
 						return true;
 					}
