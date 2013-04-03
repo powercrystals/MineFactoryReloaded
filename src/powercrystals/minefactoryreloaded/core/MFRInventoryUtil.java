@@ -103,7 +103,7 @@ public abstract class MFRInventoryUtil
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack)
 	{
-		return dropStack(from, stack, ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN);
+		return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN);
 	}
 
 	/**
@@ -114,7 +114,7 @@ public abstract class MFRInventoryUtil
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection airdropdirection)
 	{
-		return dropStack(from, stack, ForgeDirection.VALID_DIRECTIONS, airdropdirection);
+		return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, ForgeDirection.VALID_DIRECTIONS, airdropdirection);
 	}
 	
 	/**
@@ -127,12 +127,11 @@ public abstract class MFRInventoryUtil
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection dropdirection, ForgeDirection airdropdirection)
 	{
 		ForgeDirection[] dropdirections = {dropdirection};
-		return dropStack(from, stack, dropdirections, airdropdirection);
+		return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, dropdirections, airdropdirection);
 	}
 	
 	/**
 	 * Drops an ItemStack, checks pipes > chests > world in that order.
-	 * It generally shouldn't be necessary to call this explicitly. 
 	 * @param	from				the TileEntity doing the dropping
 	 * @param	stack				the ItemStack being dropped
 	 * @param	dropdirections		directions in which stack may be dropped into chests or pipes
@@ -141,15 +140,29 @@ public abstract class MFRInventoryUtil
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection[] dropdirections, ForgeDirection airdropdirection)
 	{
+		return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, dropdirections, airdropdirection);
+	}
+	
+	/**
+	 * Drops an ItemStack, checks pipes > chests > world in that order.
+	 * It generally shouldn't be necessary to call this explicitly. 
+	 * @param	world				the worldObj
+	 * @param	bp					the BlockPosition to drop from
+	 * @param	stack				the ItemStack being dropped
+	 * @param	dropdirections		directions in which stack may be dropped into chests or pipes
+	 * @param	airdropdirection	the direction that the stack may be dropped into air. ForgeDirection.UNKNOWN or other invalid directions indicate that stack shouldn't be dropped into the world.
+	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
+	 */
+	public static ItemStack dropStack(World world, BlockPosition bp, ItemStack stack, ForgeDirection[] dropdirections, ForgeDirection airdropdirection)
+	{
 		// (0) Sanity check. Don't bother dropping if there's nothing to drop, and never try to drop items on the client.
-		if(stack == null || stack.stackSize == 0 || from.worldObj.isRemote)
+		if(stack == null || stack.stackSize == 0 || world.isRemote)
 		{
 			return stack;
 		}
-		BlockPosition bp = new BlockPosition(from.xCoord, from.yCoord, from.zCoord);
 		stack = stack.copy();		
 		// (1) Try to put stack in pipes that are in valid directions
-		for(Entry<ForgeDirection, IPipeEntry> pipe : findPipes(from.worldObj, bp.x, bp.y, bp.z, dropdirections).entrySet())
+		for(Entry<ForgeDirection, IPipeEntry> pipe : findPipes(world, bp.x, bp.y, bp.z, dropdirections).entrySet())
 		{
 			if(pipe.getValue().acceptItems())
 			{
@@ -158,7 +171,7 @@ public abstract class MFRInventoryUtil
 			}
 		}
 		// (2) Try to put stack in chests that are in valid directions
-		for(Entry<ForgeDirection, IInventory> chest : findChests(from.worldObj, bp.x, bp.y, bp.z, dropdirections).entrySet())
+		for(Entry<ForgeDirection, IInventory> chest : findChests(world, bp.x, bp.y, bp.z, dropdirections).entrySet())
 		{
 			if(chest.getValue() instanceof IDeepStorageUnit)
 			{
@@ -185,10 +198,10 @@ public abstract class MFRInventoryUtil
 		// (3) Having failed to put it in a chest or a pipe, drop it in the air if airdropdirection is a valid direction.
 		bp.orientation = airdropdirection;
 		bp.moveForwards(1);
-		if(Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection) && !from.worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, airdropdirection.getOpposite()))
+		if(Arrays.asList(ForgeDirection.VALID_DIRECTIONS).contains(airdropdirection) && !world.isBlockSolidOnSide(bp.x, bp.y, bp.z, airdropdirection.getOpposite()))
 		{
 			bp.moveBackwards(1);
-			dropStackInAir(stack, bp, from.worldObj, airdropdirection);
+			dropStackInAir(stack, bp, world, airdropdirection);
 			return null;
 		}
 		// (4) Is the stack still here? :( Better give it back.
