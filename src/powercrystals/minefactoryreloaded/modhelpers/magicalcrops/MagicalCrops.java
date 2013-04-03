@@ -39,7 +39,7 @@ public class MagicalCrops
 			// the various plants are separated by type to make future changes easier (mostly considering magicFertilizer behavior)
 			String[] herbs = {"Guam", "Harr", "Marr", "Ran", "Tarr", "Toad"};
 			String[] crops = {"Sberry", "Tomato", "Sweetcorn", "Cucum", "Melon", "Bberry", "Rberry", "Grape", "Chil"};
-			String[] magicalCrops = {"Coal", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Dye"};
+			String[] magicalCrops = {"Coal", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Dye", "Nether"};
 			String[] soulCrops = {"Cow", "Pigmen", "Skele", "Spider"};
 			
 			for(String herb : herbs)
