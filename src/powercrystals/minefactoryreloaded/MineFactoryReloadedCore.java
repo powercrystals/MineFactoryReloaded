@@ -490,14 +490,10 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	@ForgeSubscribe
 	public void onBonemeal(BonemealEvent e)
 	{
-		if(e.world.getBlockId(e.X, e.Y, e.Z) == MineFactoryReloadedCore.rubberSaplingBlock.blockID)
+		if(!e.world.isRemote && e.world.getBlockId(e.X, e.Y, e.Z) == MineFactoryReloadedCore.rubberSaplingBlock.blockID)
 		{
 			((BlockRubberSapling)MineFactoryReloadedCore.rubberSaplingBlock).growTree(e.world, e.X, e.Y, e.Z, e.world.rand);
-			e.entityPlayer.inventory.mainInventory[e.entityPlayer.inventory.currentItem].stackSize--;
-			if(e.entityPlayer.inventory.mainInventory[e.entityPlayer.inventory.currentItem].stackSize <= 0)
-			{
-				e.entityPlayer.inventory.mainInventory[e.entityPlayer.inventory.currentItem] = null;
-			}
+			e.setResult(Result.ALLOW);
 		}
 	}
 	
