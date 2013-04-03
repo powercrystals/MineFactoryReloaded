@@ -1,7 +1,9 @@
 package powercrystals.minefactoryreloaded.tile;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -17,10 +19,11 @@ public class RedstoneNetwork
 	private int _id;
 	private boolean _invalid;
 	
-	private List<BlockPosition> _nodes = new LinkedList<BlockPosition>();
-	private List<BlockPosition> _poweringNodes = new LinkedList<BlockPosition>();
+	private Map<Integer, List<BlockPosition>> _nodes = new HashMap<Integer, List<BlockPosition>>();
+	private Map<Integer, List<BlockPosition>> _poweringNodes = new HashMap<Integer, List<BlockPosition>>();
 	private List<BlockPosition> _cables = new LinkedList<BlockPosition>();
-	private int _powerLevelOutput = 0;
+	
+	private int[] _powerLevelOutput = new int[16];
 	private World _world;
 	
 	public RedstoneNetwork(World world)
@@ -28,6 +31,12 @@ public class RedstoneNetwork
 		_world = world;
 		_id = _nextId;
 		_nextId++;
+		
+		for(int i = 0; i < 16; i++)
+		{
+			_nodes.put(i, new LinkedList<BlockPosition>());
+			_poweringNodes.put(i, new LinkedList<BlockPosition>());
+		}
 	}
 	
 	public void setInvalid()
@@ -40,9 +49,9 @@ public class RedstoneNetwork
 		return _invalid;
 	}
 	
-	public int getPowerLevelOutput()
+	public int getPowerLevelOutput(int subnet)
 	{
-		return _powerLevelOutput;
+		return _powerLevelOutput[subnet];
 	}
 	
 	public int getId()
@@ -50,24 +59,33 @@ public class RedstoneNetwork
 		return _id;
 	}
 	
-	public void addNode(BlockPosition node)
+	public void addNode(BlockPosition node, int subnet)
 	{
-		if(!_nodes.contains(node))
+		if(!_nodes.get(subnet).contains(node))
 		{
-			//System.out.println("Network with ID " + _id + " adding node " + node.toString());
-			_nodes.add(node);
+			//System.out.println("Network with ID " + _id + ":" + subnet + " adding node " + node.toString());
+			for(int i = 0; i < 16; i++)
+			{
+				if(i != subnet)
+				{
+					removeNode(node, i);
+				}
+			}
+			
+			_nodes.get(subnet).add(node);
 			notifyNode(node);
-			//System.out.println("Network with ID " + _id + " now has " + _nodes.size() + " nodes");
+			//System.out.println("Network with ID " + _id + ":" + subnet + " now has " + _nodes.size() + " nodes");
 		}
 	}
 	
-	public void removeNode(BlockPosition node)
+	public void removeNode(BlockPosition node, int subnet)
 	{
-		if(_nodes.contains(node))
+		if(_nodes.get(subnet).contains(node))
 		{
-			//System.out.println("Network with ID " + _id + " removing node " + node.toString());
-			_nodes.remove(node);
-			//System.out.println("Network with ID " + _id + " now has " + _nodes.size() + " nodes");
+			//System.out.println("Network with ID " + _id + ":" + subnet + " removing node " + node.toString());
+			removePoweringNode(node, subnet);
+			_nodes.get(subnet).remove(node);
+			//System.out.println("Network with ID " + _id + ":" + subnet + " now has " + _nodes.size() + " nodes");
 		}
 	}
 	
@@ -81,6 +99,36 @@ public class RedstoneNetwork
 		}
 	}
 	
+	public void addPoweringNode(BlockPosition node, int subnet)
+	{
+		if(!_poweringNodes.get(subnet).contains(node))
+		{
+			for(int i = 0; i < 16; i++)
+			{
+				if(i != subnet)
+				{
+					removePoweringNode(node, i);
+				}
+			}
+			
+			//System.out.println("Network with ID " + _id + ":" + subnet + " adding powering node " + node.toString());
+			_poweringNodes.get(subnet).add(node);
+			updatePowerLevels();
+			//System.out.println("Network with ID " + _id + ":" + subnet + " now has " + _poweringNodes.size() + " powering nodes");
+		}
+	}
+	
+	public void removePoweringNode(BlockPosition node, int subnet)
+	{
+		if(_poweringNodes.get(subnet).contains(node))
+		{
+			//System.out.println("Network with ID " + _id + ":" + subnet + " removing powering node " + node.toString());
+			_poweringNodes.get(subnet).remove(node);
+			updatePowerLevels();
+			//System.out.println("Network with ID " + _id + ":" + subnet + " now has " + _poweringNodes.size() + " powering nodes");
+		}
+	}
+	
 	public void mergeNetwork(RedstoneNetwork network)
 	{
 		if(_invalid)
@@ -89,15 +137,18 @@ public class RedstoneNetwork
 		}
 		//System.out.println("Network with ID " + _id + " merging with network " + network._id);
 		network.setInvalid();
-		for(BlockPosition node : network._nodes)
+		for(int subnet = 0; subnet < 16; subnet++)
 		{
-			//System.out.println("** adding node " + node.toString());
-			_nodes.add(node);
-		}
-		for(BlockPosition poweringNode : network._poweringNodes)
-		{
-			//System.out.println("** adding powering node " + poweringNode.toString());
-			_poweringNodes.add(poweringNode);
+			for(BlockPosition node : network._nodes.get(subnet))
+			{
+				//System.out.println("** adding node " + node.toString());
+				_nodes.get(subnet).add(node);
+			}
+			for(BlockPosition poweringNode : network._poweringNodes.get(subnet))
+			{
+				//System.out.println("** adding powering node " + poweringNode.toString());
+				_poweringNodes.get(subnet).add(poweringNode);
+			}
 		}
 		for(BlockPosition cable : network._cables)
 		{
@@ -110,63 +161,43 @@ public class RedstoneNetwork
 			}
 		}
 		updatePowerLevels();
-		notifyNodes();
-	}
-	
-	public void addPoweringNode(BlockPosition node)
-	{
-		int lastPowerLevel = _powerLevelOutput;
-		if(!_poweringNodes.contains(node))
+		for(int subnet = 0; subnet < 16; subnet++)
 		{
-			//System.out.println("Network with ID " + _id + " adding powering node " + node.toString());
-			_poweringNodes.add(node);
-			//System.out.println("Network with ID " + _id + " now has " + _poweringNodes.size() + " powering nodes");
-		}
-		updatePowerLevels();
-		if(_powerLevelOutput != lastPowerLevel)
-		{
-			notifyNodes();
-		}
-	}
-	
-	public void removePoweringNode(BlockPosition node)
-	{
-		if(_poweringNodes.contains(node))
-		{
-			//System.out.println("Network with ID " + _id + " removing powering node " + node.toString());
-			int lastPowerLevel = _powerLevelOutput;
-			_poweringNodes.remove(node);
-			updatePowerLevels();
-			//System.out.println("Network with ID " + _id + " now has " + _poweringNodes.size() + " powering nodes");
-			if(_powerLevelOutput != lastPowerLevel)
-			{
-				notifyNodes();
-			}
+			notifyNodes(subnet);
 		}
 	}
 	
 	private void updatePowerLevels()
 	{
-		_powerLevelOutput = 0;
-		
-		for(BlockPosition node : _poweringNodes)
+		for(int subnet = 0; subnet < 16; subnet++)
 		{
-			_powerLevelOutput = Math.max(_powerLevelOutput, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1);
-			_powerLevelOutput = Math.max(_powerLevelOutput, _world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1);
+			int lastPowerLevel = _powerLevelOutput[subnet];
+			_powerLevelOutput[subnet] = 0;
+			
+			for(BlockPosition node : _poweringNodes.get(subnet))
+			{
+				_powerLevelOutput[subnet] = Math.max(_powerLevelOutput[subnet], _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1);
+				_powerLevelOutput[subnet] = Math.max(_powerLevelOutput[subnet], _world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1);
+			}
+			
+			if(_powerLevelOutput[subnet] != lastPowerLevel)
+			{
+				//System.out.println("Network with ID " + _id + ":" + subnet + " recalculated power levels as: output: " + _powerLevelOutput[subnet]);
+				notifyNodes(subnet);
+			}
 		}
-		//System.out.println("Network with ID " + _id + " recalculated power levels as: output: " + _powerLevelOutput);
 	}
 	
-	private void notifyNodes()
+	private void notifyNodes(int subnet)
 	{
 		if(_ignoreUpdates)
 		{
 			return;
 		}
 		_ignoreUpdates = true;
-		for(int i = 0; i < _nodes.size(); i++)
+		for(int i = 0; i < _nodes.get(subnet).size(); i++)
 		{
-			BlockPosition bp = _nodes.get(i);
+			BlockPosition bp = _nodes.get(subnet).get(i);
 			if(_world.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.redstoneCableBlock.blockID)
 			{
 				//System.out.println("Network with ID " + _id + " notifying node " + bp.toString() + " of power state change to " + getPowerLevelOutput());

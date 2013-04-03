@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.tile;
 
 import net.minecraft.block.Block;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -31,6 +32,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			return;
 		}
 		_sideColors[side.ordinal()] = color;
+		updateNetwork();
 	}
 	
 	public int getSideColor(ForgeDirection side)
@@ -165,13 +167,15 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 				}
 			}
 			
+			int subnet = getSideColor(bp.orientation);
+			
 			//System.out.println("Checking status of block at " + bp.toString());
 			if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
 			{
 				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.redstoneCableBlock.blockID)
 				{
 					//System.out.println("** is valid node");
-					_network.addNode(bp);
+					_network.addNode(bp, subnet);
 				}
 				else
 				{
@@ -181,53 +185,54 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			else
 			{
 				//System.out.println("** is not valid node");
-				_network.removeNode(bp);
-				_network.removePoweringNode(bp);
+				_network.removeNode(bp, subnet);
 			}
 			
-			//getIndirectPowerLevelTo
-			//isBlockProvidingPowerTo
-			if(worldObj.getBlockId(bp.x, bp.y, bp.z) == Block.redstoneWire.blockID)
+			if(te != null && te instanceof TileRedstoneCable)
 			{
-				if(worldObj.getBlockMetadata(bp.x, bp.y, bp.z) < getNetwork().getPowerLevelOutput())
+				continue;
+			}
+			else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == Block.redstoneWire.blockID)
+			{
+				if(worldObj.getBlockMetadata(bp.x, bp.y, bp.z) < getNetwork().getPowerLevelOutput(subnet))
 				{
-					_network.removePoweringNode(bp);
+					_network.removePoweringNode(bp, subnet);
 				}
 				else
 				{
-					_network.addPoweringNode(bp);
+					_network.addPoweringNode(bp, subnet);
 				}
 			}
 			else if(worldObj.isBlockProvidingPowerTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) > 0)
 			{
-				_network.addPoweringNode(bp);
+				_network.addPoweringNode(bp, subnet);
 			}
 			else if(worldObj.getIndirectPowerLevelTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) > 0 && getConnectionState(bp.orientation) == ConnectionState.FlatSingle)
 			{
-				_network.addPoweringNode(bp);
+				_network.addPoweringNode(bp, subnet);
 			}
 			else
 			{
-				_network.removePoweringNode(bp);
+				_network.removePoweringNode(bp, subnet);
 			}
-			
-			/*if(worldObj.isBlockProvidingPowerTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) == 0 ||
-					(getConnectionState(bp.orientation) == ConnectionState.ConnectToInterface &&
-					worldObj.isBlockProvidingPowerTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) == 0) ||
-					(worldObj.getBlockId(bp.x, bp.y, bp.z) == Block.redstoneWire.blockID &&
-					worldObj.getBlockMetadata(bp.x, bp.y, bp.z) < getNetwork().getPowerLevelOutput()))
-			{
-				//System.out.println("** is not providing power");
-				_network.removePoweringNode(bp);
-			}
-			else
-			{
-				//System.out.println("** is providing power");
-				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.redstoneCableBlock.blockID)
-				{
-					_network.addPoweringNode(bp);
-				}
-			}*/
+		}
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setIntArray("sideSubnets", _sideColors);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		_sideColors = nbttagcompound.getIntArray("sideSubnets");
+		if(_sideColors.length == 0)
+		{
+			_sideColors = new int[6];
 		}
 	}
 }
