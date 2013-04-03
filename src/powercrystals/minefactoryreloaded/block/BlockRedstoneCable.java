@@ -236,12 +236,7 @@ public class BlockRedstoneCable extends BlockContainer
 	@Override
 	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
 	{
-		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
-		{
-			return ((TileRedstoneCable)te).getConnectionState(side) == ConnectionState.FlatSingle;
-		}
-		return false;
+		return true;
 	}
 	
 	@Override
