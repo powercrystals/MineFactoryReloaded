@@ -42,6 +42,7 @@ import powercrystals.minefactoryreloaded.block.BlockRailCargoDropoff;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoPickup;
 import powercrystals.minefactoryreloaded.block.BlockRailPassengerDropoff;
 import powercrystals.minefactoryreloaded.block.BlockRailPassengerPickup;
+import powercrystals.minefactoryreloaded.block.BlockRedstoneCable;
 import powercrystals.minefactoryreloaded.block.BlockRubberLeaves;
 import powercrystals.minefactoryreloaded.block.BlockRubberSapling;
 import powercrystals.minefactoryreloaded.block.BlockRubberWood;
@@ -85,6 +86,7 @@ import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
 import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
 import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -116,14 +118,16 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static final String modId = "MineFactoryReloaded";
 	public static final String modNetworkChannel = "MFReloaded";
-	public static final String version = "1.5.1R2.4.0B2";
+	public static final String version = "1.5.1R2.4.0B3";
 	public static final String modName = "Minefactory Reloaded";
 	
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
 	public static final String villagerFolder = "/powercrystals/minefactoryreloaded/textures/villager/";
+	public static final String tileEntityFolder = "/powercrystals/minefactoryreloaded/textures/tileentity/";
 	
 	public static int renderIdConveyor = 1000;
 	public static int renderIdFactoryGlassPane = 1001;
+	public static int renderIdRedstoneCable = 1002;
 	
 	public static Map<Integer, Block> machineBlocks = new HashMap<Integer, Block>();
 	
@@ -142,6 +146,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Block railDropoffCargoBlock;
 	public static Block railPickupPassengerBlock;
 	public static Block railDropoffPassengerBlock;
+	
+	public static BlockRedstoneCable redstoneCableBlock;
 	
 	public static Block milkFlowing;
 	public static Block milkStill;
@@ -208,6 +214,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property railDropoffCargoBlockId;
 	public static Property railPickupPassengerBlockId;
 	public static Property railDropoffPassengerBlockId;
+	
+	public static Property redstoneCableBlockId;
 	
 	public static Property milkFlowingBlockId;
 	public static Property milkStillBlockId;
@@ -319,6 +327,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		railPickupCargoBlock = new BlockRailCargoPickup(railPickupCargoBlockId.getInt());
 		railDropoffPassengerBlock = new BlockRailPassengerDropoff(railDropoffPassengerBlockId.getInt());
 		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt());
+		redstoneCableBlock = new BlockRedstoneCable(redstoneCableBlockId.getInt());
 		
 		milkStill = new BlockFactoryLiquidStill(milkFlowingBlockId.getInt(), milkStillBlockId.getInt(), "milk");
 		milkFlowing = new BlockFactoryLiquidFlowing(milkFlowingBlockId.getInt(), milkStillBlockId.getInt(), "milk");
@@ -378,6 +387,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerBlock(railDropoffCargoBlock, "blockRailDropoffCargo");
 		GameRegistry.registerBlock(railPickupPassengerBlock, "blockRailPickupPassenger");
 		GameRegistry.registerBlock(railDropoffPassengerBlock, "blockRailDropoffPassenger");
+		GameRegistry.registerBlock(redstoneCableBlock, "blockRedstoneCable");
 		
 		GameRegistry.registerBlock(milkStill, milkStill.getUnlocalizedName());
 		GameRegistry.registerBlock(milkFlowing, milkFlowing.getUnlocalizedName());
@@ -415,6 +425,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		}
 
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "factoryConveyor");
+		GameRegistry.registerTileEntity(TileRedstoneCable.class, "factoryRedstoneCable");
 		
 		EntityRegistry.registerModEntity(EntitySafariNet.class, "entitySafariNet", 0, instance, 160, 5, true);
 
@@ -551,6 +562,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		essenceStillBlockId = c.getBlock("ID.MobEssence.Still", 3141);
 		biofuelFlowingBlockId = c.getBlock("ID.BioFuel.Flowing", 3142);
 		biofuelStillBlockId = c.getBlock("ID.BioFuel.Still", 3143);
+		redstoneCableBlockId = c.getBlock("ID.RedstoneCable", 3144);
 
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
