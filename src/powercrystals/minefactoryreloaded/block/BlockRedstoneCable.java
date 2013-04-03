@@ -128,25 +128,29 @@ public class BlockRedstoneCable extends BlockContainer
 			
 			if(subHit >= 9)
 			{
-				if(!world.isRemote)
+				ItemStack s = player.inventory.getCurrentItem();
+				if(s != null && s.getItem() instanceof IToolHammer)
 				{
-					ItemStack s = player.inventory.getCurrentItem();
-					if(s != null && s.getItem() instanceof IToolHammer)
+					if(!world.isRemote)
 					{
 						side = _partSideMappings[subHit];
 						int nextColor = cable.getSideColor(ForgeDirection.VALID_DIRECTIONS[side]) + 1;
 						if(nextColor > 15) nextColor = 0;
 						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], nextColor);
 						world.markBlockForUpdate(x, y, z);
-					}
-					else if(s != null && s.itemID == Item.dyePowder.itemID)
-					{
-						side = _partSideMappings[subHit];
-						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], 16 - s.getItemDamage());
-						world.markBlockForUpdate(x, y, z);
+						return true;
 					}
 				}
-				return true;
+				else if(s != null && s.itemID == Item.dyePowder.itemID)
+				{
+					if(!world.isRemote)
+					{
+						side = _partSideMappings[subHit];
+						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], s.getItemDamage());
+						world.markBlockForUpdate(x, y, z);
+						return true;
+					}
+				}
 			}
 		}
 		return false;
