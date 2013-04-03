@@ -124,20 +124,17 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 	private void updateNetwork()
 	{
 		BlockPosition ourbp = new BlockPosition(this);
-		//System.out.println("Updating network for cable at " + ourbp.toString());
 		
 		if(_network == null)
 		{
 			for(BlockPosition bp : ourbp.getAdjacent(true))
 			{
-				//System.out.println("Checking for networks at " + bp.toString());
 				TileEntity te = bp.getTileEntity(worldObj);
 				if(te != null && te instanceof TileRedstoneCable)
 				{
 					TileRedstoneCable cable = ((TileRedstoneCable)te);
 					if(cable.getNetwork() != null && !cable.getNetwork().isInvalid())
 					{
-						//System.out.println("Found existing network " + cable.getNetwork().getId() + " at " + bp.toString());
 						_network = cable.getNetwork();
 						break;
 					}
@@ -157,34 +154,25 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 				TileRedstoneCable cable = ((TileRedstoneCable)te);
 				if(cable.getNetwork() == null)
 				{
-					//System.out.println("Found cable with no network at " + bp.toString());
 					cable.setNetwork(_network);
 				}
 				else if(cable.getNetwork() != _network && cable.getNetwork() != null && !cable.getNetwork().isInvalid())
 				{
-					//System.out.println("Found cable with existing network " + cable.getNetwork().getId() + " at " + bp.toString());
 					_network.mergeNetwork(cable.getNetwork());
 				}
 			}
 			
 			int subnet = getSideColor(bp.orientation);
 			
-			//System.out.println("Checking status of block at " + bp.toString());
 			if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
 			{
 				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.redstoneCableBlock.blockID)
 				{
-					//System.out.println("** is valid node");
 					_network.addNode(bp, subnet);
-				}
-				else
-				{
-					//System.out.println("** is redstone cable");
 				}
 			}
 			else
 			{
-				//System.out.println("** is not valid node");
 				_network.removeNode(bp, subnet);
 			}
 			

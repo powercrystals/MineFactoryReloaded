@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.block;
 
-import java.util.List;
-
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
@@ -10,7 +8,6 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AABBPool;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -90,7 +87,6 @@ public class BlockRedstoneCable extends BlockContainer
 		int closest = -1;
 		double closestdistance = Double.MAX_VALUE;
 		
-		//System.out.println("Calculating intercept from " + playerPosition.toString() + " with view offset " + playerViewOffset.toString());
 		for(int i = 0; i < wireparts.length; i++)
 		{
 			AxisAlignedBB part = wireparts[i];
@@ -101,17 +97,12 @@ public class BlockRedstoneCable extends BlockContainer
 			MovingObjectPosition hit = part.calculateIntercept(playerPosition, playerViewOffset);
 			if(hit != null)
 			{
-				//System.out.println("Hit part " + i + ": " + part.toString());
 				double distance = playerPosition.distanceTo(hit.hitVec);
 				if(distance < closestdistance)
 				{
 					distance = closestdistance;
 					closest = i;
 				}
-			}
-			else
-			{
-				//System.out.println("Did not hit part " + i + ": " + part.toString());
 			}
 		}
 		return closest;
@@ -207,10 +198,6 @@ public class BlockRedstoneCable extends BlockContainer
 			power = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet);
 			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
 		}
-		else
-		{
-			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - no tile or no network!");
-		}
 		return power;
 	}
 	
@@ -224,10 +211,6 @@ public class BlockRedstoneCable extends BlockContainer
 			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.VALID_DIRECTIONS[side].getOpposite());
 			power = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet);
 			//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
-		}
-		else
-		{
-			//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - no tile or no network!");
 		}
 		return power;
 	}

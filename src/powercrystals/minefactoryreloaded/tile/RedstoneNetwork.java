@@ -141,18 +141,15 @@ public class RedstoneNetwork
 		{
 			for(BlockPosition node : network._nodes.get(subnet))
 			{
-				//System.out.println("** adding node " + node.toString());
 				_nodes.get(subnet).add(node);
 			}
 			for(BlockPosition poweringNode : network._poweringNodes.get(subnet))
 			{
-				//System.out.println("** adding powering node " + poweringNode.toString());
 				_poweringNodes.get(subnet).add(poweringNode);
 			}
 		}
 		for(BlockPosition cable : network._cables)
 		{
-			//System.out.println("** adding cable " + cable.toString());
 			_cables.add(cable);
 			TileEntity te = cable.getTileEntity(_world);
 			if(te != null && te instanceof TileRedstoneCable)
@@ -202,7 +199,6 @@ public class RedstoneNetwork
 			{
 				//System.out.println("Network with ID " + _id + " notifying node " + bp.toString() + " of power state change to " + getPowerLevelOutput());
 				notifyNode(bp);
-				//System.out.println("** Block ID is now " + _world.getBlockId(bp.x, bp.y, bp.z));
 			}
 		}
 		_ignoreUpdates = false;
