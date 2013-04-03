@@ -9,7 +9,8 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -89,7 +90,7 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 	@Override
 	public boolean activateMachine()
 	{
-		MFRUtil.pumpLiquid(_tank, this);
+		MFRLiquidMover.pumpLiquid(_tank, this);
 		
 		boolean didDrop = false;
 		
@@ -101,7 +102,7 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 			{
 				if (o instanceof EntityItem)
 				{
-					MFRUtil.dropStack(this, ((EntityItem)o).getEntityItem());
+					MFRInventoryUtil.dropStack(this, ((EntityItem)o).getEntityItem(), this.getDropDirection());
 				}
 				continue;
 			}
@@ -122,7 +123,7 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 							continue;
 						}
 						
-						MFRUtil.dropStack(this, s);
+						MFRInventoryUtil.dropStack(this, s, this.getDropDirection());
 						didDrop = true;
 					}
 					if(didDrop)

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
@@ -187,7 +187,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			// boot improperly typed items from the input slots
 			else if(_inventory[slot].itemID != _storedId || _inventory[slot].getItemDamage() != _storedMeta || _inventory[slot].getTagCompound() != null)
 			{
-				MFRUtil.dropStack(this, _inventory[slot]);
+				MFRInventoryUtil.dropStack(this, _inventory[slot], this.getDropDirection());
 				_inventory[slot] = null;
 			}
 		}

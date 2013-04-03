@@ -57,7 +57,10 @@ public class BlockRailCargoDropoff extends BlockRailBase
 				if(remaining != null)
 				{
 					stackToAdd.stackSize -= remaining.stackSize;
-					minecart.removeItem(stackToAdd.stackSize, stackToAdd);
+					if(stackToAdd.stackSize > 0)
+					{
+						minecart.removeItem(stackToAdd.stackSize, stackToAdd);
+					}
 				}
 				else
 				{

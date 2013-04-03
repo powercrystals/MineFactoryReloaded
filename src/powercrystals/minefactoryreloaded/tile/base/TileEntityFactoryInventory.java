@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
-import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import buildcraft.core.IMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -48,7 +48,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 
 		if(!worldObj.isRemote && shouldPumpLiquid())
 		{
-			MFRUtil.pumpLiquid(getTank(), this);
+			MFRLiquidMover.pumpLiquid(getTank(), this);
 		}
 	}
 

@@ -55,8 +55,11 @@ public class BlockRailCargoPickup extends BlockRailBase
 				
 				if(remaining != null)
 				{
-					chest.removeItem(stackToAdd.stackSize, stackToAdd);
 					stackToAdd.stackSize -= remaining.stackSize;
+					if(stackToAdd.stackSize > 0)
+					{
+						chest.removeItem(stackToAdd.stackSize, stackToAdd);
+					}
 				}
 				else
 				{

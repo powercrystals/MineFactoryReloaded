@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityBlockBreaker extends TileEntityFactoryPowered
@@ -32,7 +32,7 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 			List<ItemStack> drops = b.getBlockDropped(worldObj, bp.x, bp.y, bp.z, blockMeta, 0);
 			for(ItemStack s : drops)
 			{
-				MFRUtil.dropStack(this, s);
+				MFRInventoryUtil.dropStack(this, s, this.getDropDirection());
 			}
 			
 			if(MineFactoryReloadedCore.playSounds.getBoolean(true))

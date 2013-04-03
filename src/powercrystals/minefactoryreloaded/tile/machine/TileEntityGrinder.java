@@ -24,7 +24,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -124,7 +124,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				ItemStack s = e.getCurrentItemOrArmor(slot);
 				if(s != null && s.hasTagCompound())
 				{
-					MFRUtil.dropStack(this, s);
+					MFRInventoryUtil.dropStack(this, s, this.getDropDirection());
 					foundMob = true;
 				}
 			}
@@ -135,7 +135,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				if(drops != null)
 				{
 					ItemStack drop = ((MobDrop)WeightedRandom.getRandomItem(_rand, drops)).getStack();
-					MFRUtil.dropStack(this, drop);
+					MFRInventoryUtil.dropStack(this, drop, this.getDropDirection());
 				}
 				
 				foundMob = true;

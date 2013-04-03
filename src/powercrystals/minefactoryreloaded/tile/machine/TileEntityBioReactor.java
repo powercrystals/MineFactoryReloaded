@@ -14,7 +14,7 @@ import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiBioReactor;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioReactor;
@@ -94,7 +94,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 					}
 					else
 					{
-						MFRUtil.mergeStacks(_inventory[targetSlot], _inventory[i]);
+						MFRInventoryUtil.mergeStacks(_inventory[targetSlot], _inventory[i]);
 						if(_inventory[i].stackSize <= 0)
 						{
 							_inventory[i] = null;

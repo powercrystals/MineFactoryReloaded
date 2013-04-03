@@ -10,7 +10,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiItemRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
@@ -68,12 +68,14 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		
 		if(filteredOutputs.size() > 0)
 		{
-			stack = MFRUtil.dropStackDirected(this, stack, filteredOutputs.get(_rand.nextInt(filteredOutputs.size())));
+			ForgeDirection outputside = filteredOutputs.get(_rand.nextInt(filteredOutputs.size()));
+			stack = MFRInventoryUtil.dropStack(this, stack, outputside, outputside);
 			return (stack == null || stack.stackSize == 0) ? null : stack;
 		}
 		else if(emptyOutputs.size() > 0)
 		{
-			stack = MFRUtil.dropStackDirected(this, stack, emptyOutputs.get(_rand.nextInt(emptyOutputs.size())));
+			ForgeDirection outputside = emptyOutputs.get(_rand.nextInt(emptyOutputs.size()));
+			stack = MFRInventoryUtil.dropStack(this, stack, outputside, outputside);
 			return (stack == null || stack.stackSize == 0) ? null : stack;
 		}
 		return stack;

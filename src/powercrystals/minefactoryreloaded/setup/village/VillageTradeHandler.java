@@ -24,7 +24,7 @@ public class VillageTradeHandler implements IVillageTradeHandler
 		recipeList.add(new MerchantRecipe(new ItemStack(Item.emerald), new ItemStack(MineFactoryReloadedCore.safariNetSingleItem), getHiddenNetStack()));
 	}
 	
-	private ItemStack getHiddenNetStack()
+	public static ItemStack getHiddenNetStack()
 	{
 		ItemStack s = new ItemStack(MineFactoryReloadedCore.safariNetSingleItem);
 		NBTTagCompound c = new NBTTagCompound();

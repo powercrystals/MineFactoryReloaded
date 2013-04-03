@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityEggInfo;
 import net.minecraft.entity.EntityList;
@@ -27,6 +28,7 @@ import powercrystals.minefactoryreloaded.api.IRandomMobProvider;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 import powercrystals.minefactoryreloaded.api.RandomMob;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
 
 public class ItemSafariNet extends ItemFactory
 {
@@ -336,5 +338,13 @@ public class ItemSafariNet extends ItemFactory
 	public static boolean isSingleUse(ItemStack s)
 	{
 		return s != null && s.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID;
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes)
+	{
+		super.getSubItems(itemId, creativeTab, subTypes);
+		subTypes.add(VillageTradeHandler.getHiddenNetStack());
 	}
 }
