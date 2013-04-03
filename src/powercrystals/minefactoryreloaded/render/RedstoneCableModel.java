@@ -11,7 +11,6 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class RedstoneCableModel extends ModelBase
 {
-	// fields
 	private ModelRenderer _base;
 	private ModelRenderer _cableConn;
 	private ModelRenderer _plate;
@@ -25,13 +24,13 @@ public class RedstoneCableModel extends ModelBase
 		textureWidth = 64;
 		textureHeight = 32;
 
-		_base = new ModelRenderer(this, 36, 0);
+		_base = new ModelRenderer(this, 32, 0);
 		_base.addBox(-2F, -2F, -2F, 4, 4, 4);
 		_base.setRotationPoint(0F, 0F, 0F);
 		_base.setTextureSize(64, 32);
 		_base.mirror = true;
 		setRotation(_base, 0F, 0F, 0F);
-		_cableConn = new ModelRenderer(this, 36, 8);
+		_cableConn = new ModelRenderer(this, 32, 8);
 		_cableConn.addBox(2F, -2F, -2F, 6, 4, 4);
 		_cableConn.setRotationPoint(0F, 0F, 0F);
 		_cableConn.setTextureSize(64, 32);
@@ -43,13 +42,13 @@ public class RedstoneCableModel extends ModelBase
 		_plate.setTextureSize(64, 32);
 		_plate.mirror = true;
 		setRotation(_plate, 0F, 0F, 0F);
-		_interfaceConn = new ModelRenderer(this, 36, 0);
+		_interfaceConn = new ModelRenderer(this, 48, 0);
 		_interfaceConn.addBox(2, -2, -2, 4, 4, 4);
 		_interfaceConn.setRotationPoint(0,0,0);
 		_interfaceConn.setTextureSize(64, 32);
 		_interfaceConn.mirror = true;
 		setRotation(_interfaceConn, 0F, 0F, 0F);
-		_bandWhite = new ModelRenderer(this, 36, 16);
+		_bandWhite = new ModelRenderer(this, 32, 16);
 		_bandWhite.addBox(5, -2.5f, -2.5f, 1, 5, 5);
 		_bandWhite.setRotationPoint(0,0,0);
 		_bandWhite.setTextureSize(64, 32);
@@ -57,21 +56,21 @@ public class RedstoneCableModel extends ModelBase
 		setRotation(_bandWhite, 0F, 0F, 0F);
 		
 		_bandColors[0] = new Vector3f(1.0f,1.0f,1.0f);
-		_bandColors[1] = new Vector3f(0.8633f, 0.5195f, 0.293f);
-		_bandColors[2] = new Vector3f(0.7578f, 0.4297f, 0.7891f);
-		_bandColors[3] = new Vector3f(0.4922f, 0.5977f, 0.8125f);
-		_bandColors[4] = new Vector3f(0.8086f, 0.7578f, 0.1914f);
-		_bandColors[5] = new Vector3f(0.3086f, 0.7578f, 0.2734f);
-		_bandColors[6] = new Vector3f(0.8398f, 0.5898f, 0.6563f);
-		_bandColors[7] = new Vector3f(0.2891f, 0.2891f, 0.2891f);
-		_bandColors[8] = new Vector3f(0.7031f, 0.7031f, 0.7031f);
-		_bandColors[9] = new Vector3f(0.2109f, 0.5f, 0.6172f);
-		_bandColors[10] = new Vector3f(0.5664f, 0.3203f, 0.7734f);
-		_bandColors[11] = new Vector3f(0.2031f, 0.2539f, 0.6328f);
-		_bandColors[12] = new Vector3f(0.3594f, 0.2266f, 0.1406f);
-		_bandColors[13] = new Vector3f(0.2383f, 0.3203f, 0.125f);
-		_bandColors[14] = new Vector3f(0.6797f, 0.2422f, 0.2188f);
-		_bandColors[15] = new Vector3f(0.1055f, 0.1055f, 0.1055f);
+		_bandColors[1] = new Vector3f(1.0f, 0.5f, 0.25f);
+		_bandColors[2] = new Vector3f(1.0f, 0.25f, 1.0f);
+		_bandColors[3] = new Vector3f(0.5f, 0.5f, 1.0f);
+		_bandColors[4] = new Vector3f(1.0f, 1.0f, 0f);
+		_bandColors[5] = new Vector3f(0.25f, 1.0f, 0.25f);
+		_bandColors[6] = new Vector3f(1.0f, 0.5f, 1.0f);
+		_bandColors[7] = new Vector3f(0.375f, 0.375f, 0.375f);
+		_bandColors[8] = new Vector3f(0.66f, 0.66f, 0.66f);
+		_bandColors[9] = new Vector3f(0.25f, 0.5f, 0.5f);
+		_bandColors[10] = new Vector3f(0.5f, 0.25f, 0.75f);
+		_bandColors[11] = new Vector3f(0f, 0f, 1f);
+		_bandColors[12] = new Vector3f(0.375f, 0.25f, 0.125f);
+		_bandColors[13] = new Vector3f(0, 0.5f, 0f);
+		_bandColors[14] = new Vector3f(1f, 0f, 0f);
+		_bandColors[15] = new Vector3f(0.125f, 0.125f, 0.125f);
 	}
 	
 	public void render(float f5)
