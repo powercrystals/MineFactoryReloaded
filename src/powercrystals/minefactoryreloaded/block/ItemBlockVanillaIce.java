@@ -12,8 +12,9 @@ public class ItemBlockVanillaIce extends ItemBlock
 	public ItemBlockVanillaIce(int blockId)
 	{
 		super(blockId);
-		this.setMaxDamage(0);
-		this.setHasSubtypes(true);
+		setMaxDamage(0);
+		setHasSubtypes(true);
+		setUnlocalizedName("ice");
 	}
 
 	@Override

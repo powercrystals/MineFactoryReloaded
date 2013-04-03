@@ -19,6 +19,7 @@ public class BlockVanillaIce extends BlockIce
 		setHardness(0.5F);
 		setLightOpacity(3);
 		setStepSound(soundGlassFootstep);
+		setUnlocalizedName("ice");
 	}
 	
 	@Override

@@ -40,6 +40,7 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 		bindTextureByName(MineFactoryReloadedCore.tileEntityFolder + "cable.png");
 		
 		GL11.glPushMatrix();
+		GL11.glRotatef(90, 0, 1, 0);
 		GL11.glTranslated(0.12, 0, 0);
 		GL11.glScalef(1.28f, 1.28f, 1.28f);
 		_model.render(0.0625f);
