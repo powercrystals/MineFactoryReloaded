@@ -29,7 +29,7 @@ public class RanchableCow implements IFactoryRanchable
 	public List<ItemStack> ranch(World world, EntityLiving entity, IInventory rancher)
 	{
 		List<ItemStack> drops = new LinkedList<ItemStack>();
-		IInventoryManager manager = InventoryManager.create(rancher, ForgeDirection.UNKNOWN);
+		IInventoryManager manager = InventoryManager.create(rancher, ForgeDirection.UP);
 		int bucketIndex = manager.findItem(new ItemStack(Item.bucketEmpty));
 		if(bucketIndex >= 0)
 		{

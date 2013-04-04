@@ -30,7 +30,7 @@ public class RanchableMooshroom implements IFactoryRanchable {
 	{
 		List<ItemStack> drops = new LinkedList<ItemStack>();
 
-		IInventoryManager manager = InventoryManager.create(rancher, ForgeDirection.UNKNOWN);
+		IInventoryManager manager = InventoryManager.create(rancher, ForgeDirection.UP);
 		int bowlIndex = manager.findItem(new ItemStack(Item.bowlEmpty));
 		if(bowlIndex >= 0)
 		{
