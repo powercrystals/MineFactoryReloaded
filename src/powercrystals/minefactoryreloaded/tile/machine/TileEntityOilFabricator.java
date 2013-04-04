@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.liquids.LiquidDictionary;
 import cpw.mods.fml.relauncher.Side;
@@ -13,7 +14,7 @@ public class TileEntityOilFabricator extends TileEntityLiquidFabricator
 {
 	public TileEntityOilFabricator()
 	{
-		super(LiquidDictionary.getCanonicalLiquid("oil").itemID, 5880, 1);
+		super((Integer)LiquidDictionary.getCanonicalLiquid("oil").itemID == null ? Block.waterStill.blockID : LiquidDictionary.getCanonicalLiquid("oil").itemID, 5880, 1);
 	}
 	
 	@Override
