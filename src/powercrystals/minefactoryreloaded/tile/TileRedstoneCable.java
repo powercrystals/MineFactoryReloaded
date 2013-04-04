@@ -182,7 +182,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			}
 			else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == Block.redstoneWire.blockID)
 			{
-				if(worldObj.getBlockMetadata(bp.x, bp.y, bp.z) < getNetwork().getPowerLevelOutput(subnet))
+				if(worldObj.getBlockMetadata(bp.x, bp.y, bp.z) <= getNetwork().getPowerLevelOutput(subnet))
 				{
 					_network.removePoweringNode(bp, subnet);
 				}

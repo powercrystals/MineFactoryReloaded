@@ -179,7 +179,7 @@ public class RedstoneNetwork
 			
 			if(_powerLevelOutput[subnet] != lastPowerLevel)
 			{
-				//System.out.println("Network with ID " + _id + ":" + subnet + " recalculated power levels as: output: " + _powerLevelOutput[subnet]);
+				//System.out.println("Network with ID " + _id + ":" + subnet + " recalculated power levels as: " + _powerLevelOutput[subnet]);
 				notifyNodes(subnet);
 			}
 		}
