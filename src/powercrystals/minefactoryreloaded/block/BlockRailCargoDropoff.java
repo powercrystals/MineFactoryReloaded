@@ -42,10 +42,20 @@ public class BlockRailCargoDropoff extends BlockRailBase
 		
 		for(Entry<Integer, ItemStack> contents : minecart.getContents().entrySet())
 		{
-			((EntityMinecartContainer)entity).setInventorySlotContents(
-					contents.getKey(),
-					MFRInventoryUtil.dropStack(world, new BlockPosition(x, y, z), contents.getValue(), ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN)
-					);
+			if(contents.getValue() == null)
+			{
+				continue;
+			}
+			
+			ItemStack stackToAdd = contents.getValue().copy();
+			ItemStack remaining = MFRInventoryUtil.dropStack(world, new BlockPosition(x, y, z), contents.getValue(), ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN);
+			
+			if(remaining != null)
+			{
+				stackToAdd.stackSize -= remaining.stackSize;
+			}
+			
+			minecart.removeItem(stackToAdd.stackSize, stackToAdd);
 		}
 	}
 	
