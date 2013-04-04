@@ -824,6 +824,51 @@ public class Vanilla
 					Character.valueOf('M'), Block.blockSnow,
 				} );
 		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 6), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.stoneBrick,
+					Character.valueOf('M'), Block.glowStone,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 7), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.stoneBrick,
+					Character.valueOf('M'), Block.ice,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 8), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.stoneBrick,
+					Character.valueOf('M'), Block.blockLapis,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 9), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.stoneBrick,
+					Character.valueOf('M'), Block.obsidian,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 10), new Object[]
+				{
+					"M M",
+					" B ",
+					"M M",
+					Character.valueOf('B'), Block.stoneBrick,
+					Character.valueOf('M'), Block.blockSnow,
+				} );
+		
 		if(MineFactoryReloadedCore.enableMossyCobbleRecipe.getBoolean(true))
 		{
 			GameRegistry.addShapelessRecipe(new ItemStack(Block.cobblestoneMossy), new Object[]
