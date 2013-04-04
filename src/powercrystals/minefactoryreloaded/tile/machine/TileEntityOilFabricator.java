@@ -14,7 +14,7 @@ public class TileEntityOilFabricator extends TileEntityLiquidFabricator
 {
 	public TileEntityOilFabricator()
 	{
-		super((Integer)LiquidDictionary.getCanonicalLiquid("oil").itemID == null ? Block.waterStill.blockID : LiquidDictionary.getCanonicalLiquid("oil").itemID, 5880, 1);
+		super(LiquidDictionary.getCanonicalLiquid("oil") == null ? Block.waterStill.blockID : LiquidDictionary.getCanonicalLiquid("oil").itemID, 5880, 1);
 	}
 	
 	@Override
