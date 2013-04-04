@@ -18,15 +18,15 @@ public class TwilightForestMobProvider implements IRandomMobProvider
 		
 		try
 		{
-			Class tfBoar = Class.forName("twilightforest.entity.EntityTFBoar");
+			Class tfBoar = Class.forName("twilightforest.entity.passive.EntityTFBoar");
 			Class tfDeathTome = Class.forName("twilightforest.entity.EntityTFDeathTome");
-			Class tfDeer = Class.forName("twilightforest.entity.EntityTFDeer");
+			Class tfDeer = Class.forName("twilightforest.entity.passive.EntityTFDeer");
 			Class tfMazeSlime = Class.forName("twilightforest.entity.EntityTFMazeSlime");
-			Class tfPenguin = Class.forName("twilightforest.entity.EntityTFPenguin");
+			Class tfPenguin = Class.forName("twilightforest.entity.passive.EntityTFPenguin");
 			Class tfPinchBeetle = Class.forName("twilightforest.entity.EntityTFPinchBeetle");
-			Class tfRaven = Class.forName("twilightforest.entity.EntityTFRaven");
-			Class tfSquirrel = Class.forName("twilightforest.entity.EntityTFSquirrel");
-			Class tfTinyBird = Class.forName("twilightforest.entity.EntityTFTinyBird");
+			Class tfRaven = Class.forName("twilightforest.entity.passive.EntityTFRaven");
+			Class tfSquirrel = Class.forName("twilightforest.entity.passive.EntityTFSquirrel");
+			Class tfTinyBird = Class.forName("twilightforest.entity.passive.EntityTFTinyBird");
 			Class tfWraith = Class.forName("twilightforest.entity.EntityTFWraith");
 			
 			mobs.add(new RandomMob(MFRUtil.prepareMob(tfBoar, world), 80));
