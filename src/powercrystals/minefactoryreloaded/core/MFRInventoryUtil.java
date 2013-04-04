@@ -98,7 +98,7 @@ public abstract class MFRInventoryUtil
 	
 	/**
 	 * Drops an ItemStack, checking all directions for pipes > chests. DOESN'T drop items into the world.
-	 * Example of this behavior: Cargo dropoff rail. (Doesn't actually use this method yet though).
+	 * Example of this behavior: Cargo dropoff rail, item collector.
 	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack)

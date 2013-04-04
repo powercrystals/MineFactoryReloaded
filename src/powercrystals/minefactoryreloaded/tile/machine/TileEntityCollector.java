@@ -27,5 +27,6 @@ public class TileEntityCollector extends TileEntityFactory
 			i.setDead();
 			return;
 		}
+		i.setEntityItemStack(s);
 	}
 }
