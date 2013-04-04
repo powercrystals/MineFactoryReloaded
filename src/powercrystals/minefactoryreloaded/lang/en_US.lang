@@ -91,6 +91,11 @@ tile.mfr.decorativebrick.lapis.name = Lapis Bricks
 tile.mfr.decorativebrick.obsidian.name = Obsidian Bricks
 tile.mfr.decorativebrick.pavedstone.name = Paved Stone Bricks
 tile.mfr.decorativebrick.snow.name = Snow Bricks
+tile.mfr.decorativebrick.glowstone_large.name = Large Glowstone Bricks
+tile.mfr.decorativebrick.ice_large.name = Large Ice Bricks
+tile.mfr.decorativebrick.lapis_large.name = Large Lapis Bricks
+tile.mfr.decorativebrick.obsidian_large.name = Large Obsidian Bricks
+tile.mfr.decorativebrick.snow_large.name = Large Snow Bricks
 
 tile.ice.unmelting.name = Ice (Unmelting)
 
