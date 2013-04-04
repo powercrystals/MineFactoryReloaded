@@ -19,6 +19,8 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IRandomMobProvider;
 import powercrystals.minefactoryreloaded.api.RandomMob;
@@ -57,6 +59,14 @@ public class VanillaMobProvider implements IRandomMobProvider
 		EntityTNTPrimed armedTNT = (EntityTNTPrimed)MFRUtil.prepareMob(EntityTNTPrimed.class, world);
 		armedTNT.fuse = 120;
 		mobs.add(new RandomMob(armedTNT, 5));
+		
+		EntitySlime invisislime = (EntitySlime)MFRUtil.prepareMob(EntitySlime.class, world);
+		invisislime.addPotionEffect(new PotionEffect(Potion.invisibility.id, 120 * 20));
+		mobs.add(new RandomMob(invisislime, 5));
+		
+		EntityMooshroom invisishroom = (EntityMooshroom)MFRUtil.prepareMob(EntityMooshroom.class, world);
+		invisishroom.addPotionEffect(new PotionEffect(Potion.invisibility.id, 120 * 20));
+		mobs.add(new RandomMob(invisishroom, 5));
 		
 		return mobs;
 	}
