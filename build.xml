@@ -45,7 +45,7 @@
 		<get src="http://ic2api.player.to:8080/job/IC2_lf/231/artifact/packages/industrialcraft-2-api_1.115.231-lf.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
 		
 		<echo message="Downloading BuildCraft API..." />
-		<get src="https://github.com/BuildCraft/BuildCraft/archive/mc1.5.zip" dest="${download.dir}/BuildCraft-master.zip"/>
+		<get src="https://github.com/BuildCraft/BuildCraft/archive/master.zip" dest="${download.dir}/BuildCraft-master.zip"/>
 		
 		<echo message="Downloading PowerCrystalsCore... " />
 		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
@@ -63,8 +63,8 @@
 		<echo message="Extracting BuildCraft API..." />
 		<unzip src="${download.dir}/BuildCraft-master.zip" dest="${download.dir}"/>
 		<mkdir dir="${mcpsrc.dir}/buildcraft/" />
-		<move file="${download.dir}/BuildCraft-mc1.5/common/buildcraft/api" todir="${mcpsrc.dir}/buildcraft"/>
-		<move file="${download.dir}/BuildCraft-mc1.5/common/buildcraft/core/IMachine.java" todir="${mcpsrc.dir}/buildcraft/core"/>
+		<move file="${download.dir}/BuildCraft-master/common/buildcraft/api" todir="${mcpsrc.dir}/buildcraft"/>
+		<move file="${download.dir}/BuildCraft-master/common/buildcraft/core/IMachine.java" todir="${mcpsrc.dir}/buildcraft/core"/>
 		
 		<echo message="Extracting IC2 API... " />
 		<unzip src="${download.dir}/industrialcraft-2-api.zip" dest="${download.dir}" />
