@@ -83,8 +83,8 @@ public class ExtraBiomes
 			
 			MFRRegistry.registerFertilizable(new FertilizableExtraBiomesTree(saplingBlockID, fert));
 			
-			MFRRegistry.registerSludgeDrop(5, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("QUICKSAND").get(null)), 1, 0));
-			MFRRegistry.registerSludgeDrop(5, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("CRACKEDSAND").get(null)), 1, 0));
+			MFRRegistry.registerSludgeDrop(15, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("QUICKSAND").get(null)), 1, 0));
+			MFRRegistry.registerSludgeDrop(15, new ItemStack((Integer)xbbs.getMethod("getID").invoke(xbbs.getField("CRACKEDSAND").get(null)), 1, 0));
 			
 			MFRRegistry.registerRubberTreeBiome("Autumn Woods");
 			MFRRegistry.registerRubberTreeBiome("Birch Forest");

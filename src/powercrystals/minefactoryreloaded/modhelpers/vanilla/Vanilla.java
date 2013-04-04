@@ -198,10 +198,11 @@ public class Vanilla
 		}));
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityZombie.class, new ItemStack(Item.rottenFlesh)));
 		
-		MFRRegistry.registerSludgeDrop(25, new ItemStack(Block.sand));
-		MFRRegistry.registerSludgeDrop(20, new ItemStack(Block.dirt));
-		MFRRegistry.registerSludgeDrop(15, new ItemStack(Item.clay, 4));
-		MFRRegistry.registerSludgeDrop(1, new ItemStack(Block.slowSand));
+		MFRRegistry.registerSludgeDrop(50, new ItemStack(Block.sand));
+		MFRRegistry.registerSludgeDrop(40, new ItemStack(Block.dirt));
+		MFRRegistry.registerSludgeDrop(30, new ItemStack(Item.clay, 4));
+		MFRRegistry.registerSludgeDrop(3, new ItemStack(Block.mycelium));
+		MFRRegistry.registerSludgeDrop(5, new ItemStack(Block.slowSand));
 		
 		MFRRegistry.registerBreederFood(EntityChicken.class, new ItemStack(Item.seeds));
 		MFRRegistry.registerBreederFood(EntityWolf.class, new ItemStack(Item.porkCooked));
