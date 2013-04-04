@@ -10,13 +10,13 @@ import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecartContainer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.inventory.IInventoryManager;
 import powercrystals.core.inventory.InventoryManager;
-import powercrystals.core.util.UtilInventory;
+import powercrystals.core.position.BlockPosition;
+import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRailCargoDropoff extends BlockRailBase
@@ -42,32 +42,10 @@ public class BlockRailCargoDropoff extends BlockRailBase
 		
 		for(Entry<Integer, ItemStack> contents : minecart.getContents().entrySet())
 		{
-			for(Entry<ForgeDirection, IInventory> inventory : UtilInventory.findChests(world, x, y, z).entrySet())
-			{
-				IInventoryManager chest = InventoryManager.create(inventory.getValue(), inventory.getKey().getOpposite());
-
-				if(contents.getValue() == null)
-				{
-					continue;
-				}
-				ItemStack stackToAdd = contents.getValue().copy();
-				
-				ItemStack remaining = chest.addItem(stackToAdd);
-				
-				if(remaining != null)
-				{
-					stackToAdd.stackSize -= remaining.stackSize;
-					if(stackToAdd.stackSize > 0)
-					{
-						minecart.removeItem(stackToAdd.stackSize, stackToAdd);
-					}
-				}
-				else
-				{
-					minecart.removeItem(stackToAdd.stackSize, stackToAdd);
-					break;
-				}
-			}
+			((EntityMinecartContainer)entity).setInventorySlotContents(
+					contents.getKey(),
+					MFRInventoryUtil.dropStack(world, new BlockPosition(x, y, z), contents.getValue(), ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN)
+					);
 		}
 	}
 	
