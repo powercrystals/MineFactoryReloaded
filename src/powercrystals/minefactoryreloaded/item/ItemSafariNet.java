@@ -345,6 +345,9 @@ public class ItemSafariNet extends ItemFactory
 	public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes)
 	{
 		super.getSubItems(itemId, creativeTab, subTypes);
-		subTypes.add(VillageTradeHandler.getHiddenNetStack());
+		if(itemId == MineFactoryReloadedCore.safariNetSingleItem.itemID)
+		{
+			subTypes.add(VillageTradeHandler.getHiddenNetStack());
+		}
 	}
 }
