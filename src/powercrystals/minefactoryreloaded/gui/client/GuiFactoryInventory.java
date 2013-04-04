@@ -63,7 +63,7 @@ public class GuiFactoryInventory extends GuiContainer
 	
 	protected void drawTooltips(int mouseX, int mouseY)
 	{
-		if(isPointInRegion(122, 15, 16, 60, mouseX, mouseY) && _tileEntity.getTank() != null && _tileEntity.getTank().getLiquid().amount > 0)
+		if(isPointInRegion(122, 15, 16, 60, mouseX, mouseY) && _tileEntity.getTank() != null && _tileEntity.getTank().getLiquid() != null && _tileEntity.getTank().getLiquid().amount > 0)
 		{
 			drawBarTooltip(_tileEntity.getTank().getLiquid().asItemStack().getDisplayName(),
 					"mB", _tileEntity.getTank().getLiquid().amount, _tileEntity.getTank().getCapacity(), mouseX, mouseY);
