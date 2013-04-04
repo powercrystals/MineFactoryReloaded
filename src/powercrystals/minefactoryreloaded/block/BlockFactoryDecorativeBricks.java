@@ -41,7 +41,7 @@ public class BlockFactoryDecorativeBricks extends Block
 	public int getLightValue(IBlockAccess world, int x, int y, int z)
 	{
 		int meta = world.getBlockMetadata(x, y, z);
-		return meta == 0 ? 15 : 0;
+		return (meta == 0 || meta == 6) ? 15 : 0;
 	}
 
 	@SideOnly(Side.CLIENT)
