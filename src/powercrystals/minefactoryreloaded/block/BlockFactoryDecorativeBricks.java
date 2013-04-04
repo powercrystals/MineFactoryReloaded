@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockFactoryDecorativeBricks extends Block
 {
-	private String[] _names = new String [] { "glowstone", "ice", "lapis", "obsidian", "pavedstone", "snow" };
+	private String[] _names = new String [] { "glowstone", "ice", "lapis", "obsidian", "pavedstone", "snow", "glowstone_large", "ice_large", "lapis_large", "obsidian_large", "snow_large" };
 	private Icon[] _icons = new Icon[_names.length];
 	
 	public BlockFactoryDecorativeBricks(int blockId)
