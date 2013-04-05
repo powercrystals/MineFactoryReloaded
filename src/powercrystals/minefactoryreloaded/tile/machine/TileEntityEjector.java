@@ -9,10 +9,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 
 import powercrystals.core.util.Util;
-import powercrystals.core.util.UtilInventory;
+import powercrystals.core.inventory.IInventoryManager;
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
+@SuppressWarnings("unused")
 public class TileEntityEjector extends TileEntityFactory
 {
 	private boolean _lastRedstoneState;
@@ -28,7 +30,7 @@ public class TileEntityEjector extends TileEntityFactory
 		boolean redstoneState = Util.isRedstonePowered(this);
 		if(redstoneState && !_lastRedstoneState)
 		{
-			Map<ForgeDirection, IInventory> chests = UtilInventory.findChests(worldObj, xCoord, yCoord, zCoord);
+			Map<ForgeDirection, IInventory> chests = MFRInventoryUtil.findChests(worldObj, xCoord, yCoord, zCoord);
 inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 			{
 				if(chest.getKey() == getDirectionFacing())
@@ -36,56 +38,18 @@ inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 					continue;
 				}
 				
-				IInventory inventory = chest.getValue();
-				ForgeDirection toSide = chest.getKey();
+				IInventoryManager inventory = InventoryManager.create(chest.getValue(), chest.getKey());
 				
-				if(toSide != ForgeDirection.UNKNOWN && inventory instanceof ISidedInventory)
+				ItemStack output = inventory.removeItem(1);
+				ItemStack remaining = MFRInventoryUtil.dropStack(this, output, this.getDirectionFacing(), this.getDirectionFacing());
+				if(remaining != null)
 				{
-					for(int i : ((ISidedInventory)inventory).getSizeInventorySide(toSide.getOpposite().ordinal()))
-					{
-						ItemStack targetStack = inventory.getStackInSlot(i);
-						if(targetStack != null)
-						{
-							ItemStack output = targetStack.copy();
-							output.stackSize = 1;
-							output = MFRInventoryUtil.dropStack(this, output, this.getDirectionFacing(), this.getDirectionFacing());
-							if(targetStack.stackSize == 1 && output != null && output.stackSize == 0)
-							{
-								inventory.setInventorySlotContents(i, null);
-							}
-							else if(output == null || output.stackSize == 0)
-							{
-								ItemStack newStack = targetStack.copy();
-								newStack.stackSize--;
-								inventory.setInventorySlotContents(i, newStack);
-							}
-							break inv;
-						}
-					}
+					// put the removed item back in its original container if it wasn't successfully dropped
+					inventory.addItem(remaining);
 				}
 				else
 				{
-					for(int i = 0; i < inventory.getSizeInventory(); i++)
-					{
-						ItemStack targetStack = inventory.getStackInSlot(i);
-						if(targetStack != null)
-						{
-							ItemStack output = targetStack.copy();
-							output.stackSize = 1;
-							output = MFRInventoryUtil.dropStack(this, output, this.getDirectionFacing(), this.getDirectionFacing());
-							if(targetStack.stackSize == 1 && (output == null || output.stackSize == 0))
-							{
-								inventory.setInventorySlotContents(i, null);
-							}
-							else if(output == null || output.stackSize == 0)
-							{
-								ItemStack newStack = targetStack.copy();
-								newStack.stackSize--;
-								inventory.setInventorySlotContents(i, newStack);
-							}
-							break inv;
-						}
-					}
+					break inv;
 				}
 			}
 		}
