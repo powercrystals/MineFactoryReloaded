@@ -31,7 +31,11 @@ public class ContainerAutoJukebox extends ContainerFactoryInventory
 		super.detectAndSendChanges();
 		for(int i = 0; i < crafters.size(); i++)
 		{
-			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 100, (_jukebox.getCanCopy() ? 1 : 0) | (_jukebox.getCanPlay() ? 2 : 0));
+			ICrafting crafter = (ICrafting)crafters.get(i);
+			if(crafter != null)
+			{
+				crafter.sendProgressBarUpdate(this, 100, (_jukebox.getCanCopy() ? 1 : 0) | (_jukebox.getCanPlay() ? 2 : 0));
+			}
 		}
 	}
 	
