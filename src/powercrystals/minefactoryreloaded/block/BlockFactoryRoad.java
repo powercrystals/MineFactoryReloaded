@@ -107,10 +107,4 @@ public class BlockFactoryRoad extends Block
 	{
 		onNeighborBlockChange(world, x, y, z, 0);
 	}
-	
-	@Override
-	public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
-	{
-		return world.getBlockMetadata(x, y, z) > 0;
-	}
 }
