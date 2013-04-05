@@ -39,17 +39,19 @@ inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 				}
 				
 				IInventoryManager inventory = InventoryManager.create(chest.getValue(), chest.getKey());
+				Map<Integer, ItemStack> contents = inventory.getContents();
 				
-				ItemStack output = inventory.removeItem(1);
-				ItemStack remaining = MFRInventoryUtil.dropStack(this, output, this.getDirectionFacing(), this.getDirectionFacing());
-				if(remaining != null)
+				for(ItemStack stack : contents.values())
 				{
-					// put the removed item back in its original container if it wasn't successfully dropped
-					inventory.addItem(remaining);
-				}
-				else
-				{
-					break inv;
+					ItemStack stackToDrop = stack.copy();
+					stackToDrop.stackSize = 1;
+					ItemStack remaining = MFRInventoryUtil.dropStack(this, stackToDrop, this.getDirectionFacing(), this.getDirectionFacing());
+					// remaining == null if dropped successfully.
+					if(remaining == null)
+					{
+						inventory.removeItem(1, stackToDrop);
+						break inv;
+					}
 				}
 			}
 		}
