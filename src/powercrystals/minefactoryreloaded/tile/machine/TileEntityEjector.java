@@ -43,9 +43,15 @@ inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 				
 				for(ItemStack stack : contents.values())
 				{
+					if(stack == null)
+					{
+						continue;
+					}
+					
 					ItemStack stackToDrop = stack.copy();
 					stackToDrop.stackSize = 1;
 					ItemStack remaining = MFRInventoryUtil.dropStack(this, stackToDrop, this.getDirectionFacing(), this.getDirectionFacing());
+
 					// remaining == null if dropped successfully.
 					if(remaining == null)
 					{
