@@ -134,9 +134,9 @@ public class BlockRedstoneCable extends BlockContainer
 					if(!world.isRemote)
 					{
 						side = _partSideMappings[subHit];
-						int nextColor = cable.getSideColor(ForgeDirection.VALID_DIRECTIONS[side]) + 1;
+						int nextColor = cable.getSideColor(ForgeDirection.getOrientation(side)) + 1;
 						if(nextColor > 15) nextColor = 0;
-						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], nextColor);
+						cable.setSideColor(ForgeDirection.getOrientation(side), nextColor);
 						world.markBlockForUpdate(x, y, z);
 						return true;
 					}
@@ -146,7 +146,7 @@ public class BlockRedstoneCable extends BlockContainer
 					if(!world.isRemote)
 					{
 						side = _partSideMappings[subHit];
-						cable.setSideColor(ForgeDirection.VALID_DIRECTIONS[side], 15 - s.getItemDamage());
+						cable.setSideColor(ForgeDirection.getOrientation(side), 15 - s.getItemDamage());
 						world.markBlockForUpdate(x, y, z);
 						return true;
 					}
@@ -216,7 +216,7 @@ public class BlockRedstoneCable extends BlockContainer
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
-			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.VALID_DIRECTIONS[side].getOpposite());
+			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
 			power = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet);
 			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
 		}
@@ -230,7 +230,7 @@ public class BlockRedstoneCable extends BlockContainer
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
-			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.VALID_DIRECTIONS[side].getOpposite());
+			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
 			power = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet);
 			//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
 		}

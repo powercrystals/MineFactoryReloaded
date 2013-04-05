@@ -213,8 +213,8 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	@Override
 	public int[] getSizeInventorySide(int side)
 	{
-		int start = getStartInventorySide(ForgeDirection.VALID_DIRECTIONS[side]);
-		int size = getSizeInventorySide(ForgeDirection.VALID_DIRECTIONS[side]);
+		int start = getStartInventorySide(ForgeDirection.getOrientation(side));
+		int size = getSizeInventorySide(ForgeDirection.getOrientation(side));
 		
 		int[] slots = new int[size];
 		for(int i = 0; i < size; i++)
