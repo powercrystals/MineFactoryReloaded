@@ -25,13 +25,6 @@ public class BlockFactoryDecorativeBricks extends Block
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass()
-	{
-		return 0;
-	}
-	
-	@Override
 	public int damageDropped(int meta)
 	{
 		return meta;
