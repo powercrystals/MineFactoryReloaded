@@ -16,6 +16,7 @@ public class ContainerAutoJukebox extends ContainerFactoryInventory
 	public ContainerAutoJukebox(TileEntityAutoJukebox tileentity, InventoryPlayer inv)
 	{
 		super(tileentity, inv);
+		_jukebox = tileentity;
 	}
 	
 	@Override
