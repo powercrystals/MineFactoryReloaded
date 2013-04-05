@@ -100,6 +100,7 @@ public class RendererFactoryGlassPane implements ISimpleBlockRenderingHandler
 					tessellator.addVertexWithUV(d11, (double)(y + 1), d19, d5, d7);
 					tessellator.addVertexWithUV(d11, (double)(y + 0), d19, d5, d9);
 					tessellator.addVertexWithUV(d11, (double)(y + 0), d18, d6, d9);
+					tessellator.addVertexWithUV(d11, (double)(y + 1), d18, d6, d7); 
 				}
 
 				if (renderTop || y < l - 1 && blockAccess.isAirBlock(x - 1, y + 1, z))
