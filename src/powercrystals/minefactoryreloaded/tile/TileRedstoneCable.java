@@ -54,7 +54,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		{
 			return ConnectionState.None;
 		}
-		else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == MineFactoryReloadedCore.redstoneCableBlock.blockID)
+		else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == MineFactoryReloadedCore.rednetCableBlock.blockID)
 		{
 			return ConnectionState.CableAll;
 		}
@@ -166,7 +166,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			
 			if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
 			{
-				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.redstoneCableBlock.blockID)
+				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.rednetCableBlock.blockID)
 				{
 					_network.addNode(bp, subnet);
 				}

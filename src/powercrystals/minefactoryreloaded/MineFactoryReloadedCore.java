@@ -147,7 +147,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Block railPickupPassengerBlock;
 	public static Block railDropoffPassengerBlock;
 	
-	public static BlockRedstoneCable redstoneCableBlock;
+	public static BlockRedstoneCable rednetCableBlock;
 	
 	public static Block milkFlowing;
 	public static Block milkStill;
@@ -215,7 +215,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property railPickupPassengerBlockId;
 	public static Property railDropoffPassengerBlockId;
 	
-	public static Property redstoneCableBlockId;
+	public static Property rednetCableBlockId;
 	
 	public static Property milkFlowingBlockId;
 	public static Property milkStillBlockId;
@@ -327,7 +327,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		railPickupCargoBlock = new BlockRailCargoPickup(railPickupCargoBlockId.getInt());
 		railDropoffPassengerBlock = new BlockRailPassengerDropoff(railDropoffPassengerBlockId.getInt());
 		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt());
-		redstoneCableBlock = new BlockRedstoneCable(redstoneCableBlockId.getInt());
+		rednetCableBlock = new BlockRedstoneCable(rednetCableBlockId.getInt());
 		
 		milkStill = new BlockFactoryLiquidStill(milkFlowingBlockId.getInt(), milkStillBlockId.getInt(), "milk");
 		milkFlowing = new BlockFactoryLiquidFlowing(milkFlowingBlockId.getInt(), milkStillBlockId.getInt(), "milk");
@@ -375,19 +375,19 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 			GameRegistry.registerBlock(machine.getValue(), ItemBlockFactoryMachine.class, machine.getValue().getUnlocalizedName());
 		}
 		
-		GameRegistry.registerBlock(conveyorBlock, ItemBlockConveyor.class, "blockConveyor");
-		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, "blockFactoryGlass");
-		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, "blockFactoryGlassPane");
-		GameRegistry.registerBlock(factoryRoadBlock, ItemBlockFactoryRoad.class, "blockFactoryRoad");
-		GameRegistry.registerBlock(factoryDecorativeBrickBlock, ItemBlockFactoryDecorativeBrick.class, "blockFactoryDecorativeBrick");
-		GameRegistry.registerBlock(rubberWoodBlock, "blockRubberWood");
-		GameRegistry.registerBlock(rubberLeavesBlock, "blockRubberLeaves");
-		GameRegistry.registerBlock(rubberSaplingBlock, "blockRubberSapling");
-		GameRegistry.registerBlock(railPickupCargoBlock, "blockRailPickupCargo");
-		GameRegistry.registerBlock(railDropoffCargoBlock, "blockRailDropoffCargo");
-		GameRegistry.registerBlock(railPickupPassengerBlock, "blockRailPickupPassenger");
-		GameRegistry.registerBlock(railDropoffPassengerBlock, "blockRailDropoffPassenger");
-		GameRegistry.registerBlock(redstoneCableBlock, "blockRedstoneCable");
+		GameRegistry.registerBlock(conveyorBlock, ItemBlockConveyor.class, conveyorBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(factoryGlassBlock, ItemBlockFactoryGlass.class, factoryGlassBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, factoryGlassPaneBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(factoryRoadBlock, ItemBlockFactoryRoad.class, factoryRoadBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(factoryDecorativeBrickBlock, ItemBlockFactoryDecorativeBrick.class, factoryDecorativeBrickBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(rubberWoodBlock, rubberWoodBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(rubberLeavesBlock, rubberLeavesBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(rubberSaplingBlock, rubberSaplingBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(railPickupCargoBlock, railPickupCargoBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(railDropoffCargoBlock, railDropoffCargoBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(railPickupPassengerBlock, railPickupPassengerBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(railDropoffPassengerBlock, railDropoffPassengerBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(rednetCableBlock, rednetCableBlock.getUnlocalizedName());
 		
 		GameRegistry.registerBlock(milkStill, milkStill.getUnlocalizedName());
 		GameRegistry.registerBlock(milkFlowing, milkFlowing.getUnlocalizedName());
@@ -408,7 +408,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 			Block.blocksList[Block.thinGlass.blockID] = null;
 			Item.itemsList[Block.thinGlass.blockID] = null;
 			Block.thinGlass = new BlockVanillaGlassPane();
-			GameRegistry.registerBlock(Block.thinGlass, "blockVanillaGlassPane");
+			GameRegistry.registerBlock(Block.thinGlass, Block.thinGlass.getUnlocalizedName());
 		}
 		if(vanillaOverrideIce.getBoolean(true))
 		{
@@ -558,7 +558,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		essenceStillBlockId = c.getBlock("ID.MobEssence.Still", 3141);
 		biofuelFlowingBlockId = c.getBlock("ID.BioFuel.Flowing", 3142);
 		biofuelStillBlockId = c.getBlock("ID.BioFuel.Still", 3143);
-		redstoneCableBlockId = c.getBlock("ID.RedstoneCable", 3144);
+		rednetCableBlockId = c.getBlock("ID.RedNet.Cable", 3144);
 
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);

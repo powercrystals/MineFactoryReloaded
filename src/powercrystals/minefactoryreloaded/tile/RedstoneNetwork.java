@@ -195,7 +195,7 @@ public class RedstoneNetwork
 		for(int i = 0; i < _nodes.get(subnet).size(); i++)
 		{
 			BlockPosition bp = _nodes.get(subnet).get(i);
-			if(_world.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.redstoneCableBlock.blockID)
+			if(_world.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.rednetCableBlock.blockID)
 			{
 				//System.out.println("Network with ID " + _id + " notifying node " + bp.toString() + " of power state change to " + getPowerLevelOutput());
 				notifyNode(bp);
@@ -208,7 +208,7 @@ public class RedstoneNetwork
 	{
 		if(_world.getChunkProvider().chunkExists(node.x >> 4, node.z >> 4))
 		{
-			_world.notifyBlockOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.redstoneCableBlock.blockID);
+			_world.notifyBlockOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
 		}
 	}
 }

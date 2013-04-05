@@ -925,7 +925,7 @@ public class Vanilla
 					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
 				} ));
 		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.redstoneCableBlock, 8), new Object[]
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.rednetCableBlock, 8), new Object[]
 				{
 					"PPP",
 					"RRR",
