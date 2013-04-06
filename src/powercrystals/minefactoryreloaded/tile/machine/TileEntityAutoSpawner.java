@@ -97,16 +97,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 		}
 		else
 		{
-			Entity spawnedEntity = null;
-			try
-			{
-				spawnedEntity = EntityList.createEntityByName((String)EntityList.classToStringMapping.get(Class.forName(_inventory[0].getTagCompound().getString("_class"))), worldObj);
-			}
-			catch(ClassNotFoundException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
+			Entity spawnedEntity = EntityList.createEntityByName(_inventory[0].getTagCompound().getString("id"), worldObj);
 			
 			if(!(spawnedEntity instanceof EntityLiving))
 			{
