@@ -9,6 +9,8 @@ import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.position.INeighboorUpdateTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.net.Packets;
 
 public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTile
@@ -16,14 +18,6 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 	private int[] _sideColors = new int [6];
 	private RedstoneNetwork _network;
 	private boolean _needsNetworkUpdate;
-	
-	public enum ConnectionState
-	{
-		None,
-		CableAll,
-		CableSingle,
-		FlatSingle
-	}
 	
 	public void setSideColor(ForgeDirection side, int color)
 	{
@@ -44,27 +38,34 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		return _sideColors[side.ordinal()];
 	}
 	
-	public ConnectionState getConnectionState(ForgeDirection side)
+	public RedNetConnectionType getConnectionState(ForgeDirection side)
 	{
 		BlockPosition bp = new BlockPosition(this);
 		bp.orientation = side;
 		bp.moveForwards(1);
 		
-		if(worldObj.isAirBlock(bp.x, bp.y, bp.z))
+		int blockId = worldObj.getBlockId(bp.x, bp.y, bp.z);
+		Block b = Block.blocksList[blockId];
+		
+		if(b == null || b.isAirBlock(worldObj, bp.x, bp.y, bp.z))
 		{
-			return ConnectionState.None;
+			return RedNetConnectionType.None;
 		}
-		else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == MineFactoryReloadedCore.redstoneCableBlock.blockID)
+		else if(blockId == MineFactoryReloadedCore.redstoneCableBlock.blockID)
 		{
-			return ConnectionState.CableAll;
+			return RedNetConnectionType.CableAll;
 		}
-		else if(worldObj.isBlockSolidOnSide(bp.x, bp.y, bp.z, side.getOpposite()))
+		else if(b instanceof IConnectableRedNet)
 		{
-			return ConnectionState.CableSingle;
+			return ((IConnectableRedNet)b).getConnectionType(worldObj, bp.x, bp.y, bp.z, side.getOpposite());
+		}
+		else if(b.isBlockSolidOnSide(worldObj, bp.x, bp.y, bp.z, side.getOpposite()))
+		{
+			return RedNetConnectionType.CableSingle;
 		}
 		else
 		{
-			return ConnectionState.FlatSingle;
+			return RedNetConnectionType.PlateSingle;
 		}
 	}
 	
@@ -123,7 +124,13 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 	
 	private void updateNetwork()
 	{
+		if(worldObj.isRemote)
+		{
+			return;
+		}
+		
 		BlockPosition ourbp = new BlockPosition(this);
+		//System.out.println("Cable at " + ourbp.toString() + " updating network");
 		
 		if(_network == null)
 		{
@@ -161,47 +168,26 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 					_network.mergeNetwork(cable.getNetwork());
 				}
 			}
-			
-			int subnet = getSideColor(bp.orientation);
-			
-			if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
-			{
-				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.redstoneCableBlock.blockID)
-				{
-					_network.addNode(bp, subnet);
-				}
-			}
 			else
 			{
-				_network.removeNode(bp, subnet);
-			}
+				int subnet = getSideColor(bp.orientation);
+				RedNetConnectionType connectionType = getConnectionState(bp.orientation);
 			
-			if(te != null && te instanceof TileRedstoneCable)
-			{
-				continue;
-			}
-			else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == Block.redstoneWire.blockID)
-			{
-				if(worldObj.getBlockMetadata(bp.x, bp.y, bp.z) < getNetwork().getPowerLevelOutput(subnet))
+				if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
 				{
-					_network.removePoweringNode(bp, subnet);
+					if(connectionType == RedNetConnectionType.CableSingle || connectionType == RedNetConnectionType.PlateSingle)
+					{
+						_network.addOrUpdateNode(bp, subnet);
+					}
+					else if(connectionType == RedNetConnectionType.CableAll || connectionType == RedNetConnectionType.PlateAll)
+					{
+						_network.addOrUpdateNode(bp);
+					}
 				}
 				else
 				{
-					_network.addPoweringNode(bp, subnet);
+					_network.removeNode(bp);
 				}
-			}
-			else if(worldObj.isBlockProvidingPowerTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) > 0)
-			{
-				_network.addPoweringNode(bp, subnet);
-			}
-			else if(worldObj.getIndirectPowerLevelTo(bp.x, bp.y, bp.z, bp.orientation.ordinal()) > 0 && getConnectionState(bp.orientation) == ConnectionState.FlatSingle)
-			{
-				_network.addPoweringNode(bp, subnet);
-			}
-			else
-			{
-				_network.removePoweringNode(bp, subnet);
 			}
 		}
 	}
