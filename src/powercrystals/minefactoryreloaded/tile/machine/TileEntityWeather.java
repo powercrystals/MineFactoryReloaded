@@ -106,6 +106,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 					}
 					else
 					{
+						setWorkDone(getWorkMax());
 						return false;
 					}
 				}
