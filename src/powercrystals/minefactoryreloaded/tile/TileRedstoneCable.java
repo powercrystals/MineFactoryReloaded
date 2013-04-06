@@ -51,11 +51,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		{
 			return RedNetConnectionType.None;
 		}
-<<<<<<< HEAD
-		else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == MineFactoryReloadedCore.rednetCableBlock.blockID)
-=======
-		else if(blockId == MineFactoryReloadedCore.redstoneCableBlock.blockID)
->>>>>>> rednet-logic
+		else if(blockId == MineFactoryReloadedCore.rednetCableBlock.blockID)
 		{
 			return RedNetConnectionType.CableAll;
 		}
@@ -172,35 +168,12 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 					_network.mergeNetwork(cable.getNetwork());
 				}
 			}
-<<<<<<< HEAD
-			
-			int subnet = getSideColor(bp.orientation);
-			
-			if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
-			{
-				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.rednetCableBlock.blockID)
-				{
-					_network.addNode(bp, subnet);
-				}
-			}
-=======
->>>>>>> rednet-logic
 			else
 			{
 				int subnet = getSideColor(bp.orientation);
 				RedNetConnectionType connectionType = getConnectionState(bp.orientation);
 			
-<<<<<<< HEAD
-			if(te != null && te instanceof TileRedstoneCable)
-			{
-				continue;
-			}
-			else if(worldObj.getBlockId(bp.x, bp.y, bp.z) == Block.redstoneWire.blockID)
-			{
-				if(worldObj.getBlockMetadata(bp.x, bp.y, bp.z) <= getNetwork().getPowerLevelOutput(subnet))
-=======
 				if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
->>>>>>> rednet-logic
 				{
 					if(connectionType == RedNetConnectionType.CableSingle || connectionType == RedNetConnectionType.PlateSingle)
 					{

@@ -66,7 +66,7 @@ public class RedstoneNetwork
 	public void addOrUpdateNode(BlockPosition node)
 	{
 		int blockId = _world.getBlockId(node.x, node.y, node.z);
-		if(blockId == MineFactoryReloadedCore.redstoneCableBlock.blockID)
+		if(blockId == MineFactoryReloadedCore.rednetCableBlock.blockID)
 		{
 			return;
 		}
@@ -98,7 +98,7 @@ public class RedstoneNetwork
 	public void addOrUpdateNode(BlockPosition node, int subnet)
 	{
 		int blockId = _world.getBlockId(node.x, node.y, node.z);
-		if(blockId == MineFactoryReloadedCore.redstoneCableBlock.blockID)
+		if(blockId == MineFactoryReloadedCore.rednetCableBlock.blockID)
 		{
 			return;
 		}
@@ -206,13 +206,8 @@ public class RedstoneNetwork
 			int power = getSingleNodePowerLevel(node);
 			if(power > _powerLevelOutput[subnet])
 			{
-<<<<<<< HEAD
-				//System.out.println("Network with ID " + _id + ":" + subnet + " recalculated power levels as: " + _powerLevelOutput[subnet]);
-				notifyNodes(subnet);
-=======
 				_powerLevelOutput[subnet] = power;
 				_powerProviders[subnet] = node;
->>>>>>> rednet-logic
 			}
 		}
 		
@@ -252,10 +247,6 @@ public class RedstoneNetwork
 		}
 		for(int i = 0; i < _omniNodes.size(); i++)
 		{
-<<<<<<< HEAD
-			BlockPosition bp = _nodes.get(subnet).get(i);
-			if(_world.getBlockId(bp.x, bp.y, bp.z) != MineFactoryReloadedCore.rednetCableBlock.blockID)
-=======
 			BlockPosition bp = _omniNodes.get(i);
 			//System.out.println("Network with ID " + _id + ":" + subnet + " notifying omni node " + bp.toString() + " of power state change to " + _powerLevelOutput[subnet]);
 			notifyOmniNode(bp);
@@ -273,14 +264,13 @@ public class RedstoneNetwork
 		if(isNodeLoaded(node))
 		{
 			int blockId = _world.getBlockId(node.x, node.y, node.z);
-			if(blockId == MineFactoryReloadedCore.redstoneCableBlock.blockID)
->>>>>>> rednet-logic
+			if(blockId == MineFactoryReloadedCore.rednetCableBlock.blockID)
 			{
 				return;
 			}
 			else
 			{
-				_world.notifyBlockOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.redstoneCableBlock.blockID);
+				_world.notifyBlockOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
 			}
 		}
 	}
@@ -323,12 +313,8 @@ public class RedstoneNetwork
 		}
 		else
 		{
-<<<<<<< HEAD
-			_world.notifyBlockOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
-=======
 			return Math.max(0, Math.max(_world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1,
 					_world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1));
->>>>>>> rednet-logic
 		}
 	}
 }
