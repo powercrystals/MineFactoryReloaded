@@ -14,7 +14,7 @@ public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 {
 	public TileEntityBioFuelGenerator()
 	{
-		super(12, 16, 0);
+		super(1, 160, 9);
 	}
 	
 	@Override

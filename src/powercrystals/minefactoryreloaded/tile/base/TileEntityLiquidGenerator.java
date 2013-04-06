@@ -88,6 +88,12 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 			_buffer += _powerProducedPerConsumption;
 		}
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return false;
+	}
 
 	@Override
 	public boolean allowBucketFill()
