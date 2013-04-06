@@ -3,8 +3,8 @@ package powercrystals.minefactoryreloaded.render;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable.ConnectionState;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.common.ForgeDirection;
@@ -76,8 +76,8 @@ public class RedstoneCableModel extends ModelBase
 	public void render(float f5)
 	{
 		_base.render(f5);
-		renderSide(ConnectionState.CableAll, 0, 0, 0, f5);
-		renderSide(ConnectionState.CableAll, 0, (float)Math.PI, 0, f5);
+		renderSide(RedNetConnectionType.CableAll, 0, 0, 0, f5);
+		renderSide(RedNetConnectionType.CableAll, 0, (float)Math.PI, 0, f5);
 	}
 
 	public void render(TileRedstoneCable entity, float f5)
@@ -92,7 +92,7 @@ public class RedstoneCableModel extends ModelBase
 		renderSide(entity.getConnectionState(ForgeDirection.DOWN), entity.getSideColor(ForgeDirection.DOWN),0,(float)-Math.PI/2, f5);
 	}
 	
-	private void renderSide(ConnectionState state, int color, float yRot, float zRot, float scale)
+	private void renderSide(RedNetConnectionType state, int color, float yRot, float zRot, float scale)
 	{
 		switch (state)
 		{
@@ -113,7 +113,16 @@ public class RedstoneCableModel extends ModelBase
 			_bandWhite.render(scale);
 			GL11.glColor3f(1.0f, 1.0f, 1.0f);
 			break;
-		case FlatSingle:
+		case PlateAll:
+			_interfaceConn.rotateAngleY = yRot;
+			_interfaceConn.rotateAngleZ = zRot;
+			_interfaceConn.render(scale);
+			
+			_plate.rotateAngleY = yRot;
+			_plate.rotateAngleZ = zRot;
+			_plate.render(scale);
+			break;
+		case PlateSingle:
 			_interfaceConn.rotateAngleY = yRot;
 			_interfaceConn.rotateAngleZ = zRot;
 			_interfaceConn.render(scale);

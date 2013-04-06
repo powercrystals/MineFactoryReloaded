@@ -4,9 +4,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable.ConnectionState;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -54,32 +54,32 @@ public class BlockRedstoneCable extends BlockContainer
 	
 	private AxisAlignedBB[] getParts(TileRedstoneCable cable)
 	{
-		ConnectionState csu = cable.getConnectionState(ForgeDirection.UP);
-		ConnectionState csd = cable.getConnectionState(ForgeDirection.DOWN);
-		ConnectionState csn = cable.getConnectionState(ForgeDirection.NORTH);
-		ConnectionState css = cable.getConnectionState(ForgeDirection.SOUTH);
-		ConnectionState csw = cable.getConnectionState(ForgeDirection.WEST);
-		ConnectionState cse = cable.getConnectionState(ForgeDirection.EAST); 
+		RedNetConnectionType csu = cable.getConnectionState(ForgeDirection.UP);
+		RedNetConnectionType csd = cable.getConnectionState(ForgeDirection.DOWN);
+		RedNetConnectionType csn = cable.getConnectionState(ForgeDirection.NORTH);
+		RedNetConnectionType css = cable.getConnectionState(ForgeDirection.SOUTH);
+		RedNetConnectionType csw = cable.getConnectionState(ForgeDirection.WEST);
+		RedNetConnectionType cse = cable.getConnectionState(ForgeDirection.EAST); 
 		
 		AxisAlignedBB[] parts = new AxisAlignedBB[15];
 		
-		parts[0] = AxisAlignedBB.getBoundingBox(csw != ConnectionState.None ? 0 : _wireStart, _wireStart, _wireStart, cse != ConnectionState.None ? 1 : _wireEnd, _wireEnd, _wireEnd);
-		parts[1] = AxisAlignedBB.getBoundingBox(_wireStart, csd != ConnectionState.None ? 0 : _wireStart, _wireStart, _wireEnd, csu != ConnectionState.None ? 1 : _wireEnd, _wireEnd);
-		parts[2] = AxisAlignedBB.getBoundingBox(_wireStart, _wireStart, csn != ConnectionState.None ? 0 : _wireStart, _wireEnd, _wireEnd, css != ConnectionState.None ? 1 : _wireEnd);
+		parts[0] = AxisAlignedBB.getBoundingBox(csw != RedNetConnectionType.None ? 0 : _wireStart, _wireStart, _wireStart, cse != RedNetConnectionType.None ? 1 : _wireEnd, _wireEnd, _wireEnd);
+		parts[1] = AxisAlignedBB.getBoundingBox(_wireStart, csd != RedNetConnectionType.None ? 0 : _wireStart, _wireStart, _wireEnd, csu != RedNetConnectionType.None ? 1 : _wireEnd, _wireEnd);
+		parts[2] = AxisAlignedBB.getBoundingBox(_wireStart, _wireStart, csn != RedNetConnectionType.None ? 0 : _wireStart, _wireEnd, _wireEnd, css != RedNetConnectionType.None ? 1 : _wireEnd);
 		
-		parts[3] = csw != ConnectionState.FlatSingle ? null : AxisAlignedBB.getBoundingBox(0, _plateStart, _plateStart, _plateDepth, _plateEnd, _plateEnd);
-		parts[4] = cse != ConnectionState.FlatSingle ? null : AxisAlignedBB.getBoundingBox(1.0F - _plateDepth, _plateStart, _plateStart, 1.0F, _plateEnd, _plateEnd);
-		parts[5] = csd != ConnectionState.FlatSingle ? null : AxisAlignedBB.getBoundingBox(_plateStart, 0 , _plateStart, _plateEnd, _plateDepth, _plateEnd);
-		parts[6] = csu != ConnectionState.FlatSingle ? null : AxisAlignedBB.getBoundingBox(_plateStart, 1.0F - _plateDepth, _plateStart, _plateEnd, 1.0F, _plateEnd);
-		parts[7] = csn != ConnectionState.FlatSingle ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 0, _plateEnd, _plateDepth, _plateEnd);
-		parts[8] = css != ConnectionState.FlatSingle ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 1.0F - _plateDepth, _plateEnd, _plateEnd, 1.0F);
+		parts[3] = csw != RedNetConnectionType.PlateSingle ? null : AxisAlignedBB.getBoundingBox(0, _plateStart, _plateStart, _plateDepth, _plateEnd, _plateEnd);
+		parts[4] = cse != RedNetConnectionType.PlateSingle ? null : AxisAlignedBB.getBoundingBox(1.0F - _plateDepth, _plateStart, _plateStart, 1.0F, _plateEnd, _plateEnd);
+		parts[5] = csd != RedNetConnectionType.PlateSingle ? null : AxisAlignedBB.getBoundingBox(_plateStart, 0 , _plateStart, _plateEnd, _plateDepth, _plateEnd);
+		parts[6] = csu != RedNetConnectionType.PlateSingle ? null : AxisAlignedBB.getBoundingBox(_plateStart, 1.0F - _plateDepth, _plateStart, _plateEnd, 1.0F, _plateEnd);
+		parts[7] = csn != RedNetConnectionType.PlateSingle ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 0, _plateEnd, _plateDepth, _plateEnd);
+		parts[8] = css != RedNetConnectionType.PlateSingle ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 1.0F - _plateDepth, _plateEnd, _plateEnd, 1.0F);
 		
-		parts[9]  = csw != ConnectionState.FlatSingle && csw != ConnectionState.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandDepthStart, _bandWidthStart, _bandWidthStart, _bandDepthEnd, _bandWidthEnd, _bandWidthEnd);
-		parts[10] = cse != ConnectionState.FlatSingle && cse != ConnectionState.CableSingle ? null : AxisAlignedBB.getBoundingBox(1.0F - _bandDepthEnd, _bandWidthStart, _bandWidthStart, 1.0F - _bandDepthStart, _bandDepthEnd, _bandWidthEnd);
-		parts[11] = csd != ConnectionState.FlatSingle && csd != ConnectionState.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, _bandDepthStart, _bandWidthStart, _bandWidthEnd, _bandDepthEnd, _bandWidthEnd);
-		parts[12] = csu != ConnectionState.FlatSingle && csu != ConnectionState.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, 1.0F - _bandDepthEnd, _bandWidthStart, _bandWidthEnd, 1.0F - _bandDepthStart, _bandWidthEnd);
-		parts[13] = csn != ConnectionState.FlatSingle && csn != ConnectionState.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, _bandWidthStart, _bandDepthStart, _bandWidthEnd, _bandWidthEnd, _bandDepthEnd);
-		parts[14] = css != ConnectionState.FlatSingle && css != ConnectionState.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, _bandWidthStart, 1.0F - _bandDepthEnd, _bandWidthEnd, _bandWidthEnd, 1.0F - _bandDepthStart);
+		parts[9]  = csw != RedNetConnectionType.PlateSingle && csw != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandDepthStart, _bandWidthStart, _bandWidthStart, _bandDepthEnd, _bandWidthEnd, _bandWidthEnd);
+		parts[10] = cse != RedNetConnectionType.PlateSingle && cse != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(1.0F - _bandDepthEnd, _bandWidthStart, _bandWidthStart, 1.0F - _bandDepthStart, _bandDepthEnd, _bandWidthEnd);
+		parts[11] = csd != RedNetConnectionType.PlateSingle && csd != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, _bandDepthStart, _bandWidthStart, _bandWidthEnd, _bandDepthEnd, _bandWidthEnd);
+		parts[12] = csu != RedNetConnectionType.PlateSingle && csu != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, 1.0F - _bandDepthEnd, _bandWidthStart, _bandWidthEnd, 1.0F - _bandDepthStart, _bandWidthEnd);
+		parts[13] = csn != RedNetConnectionType.PlateSingle && csn != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, _bandWidthStart, _bandDepthStart, _bandWidthEnd, _bandWidthEnd, _bandDepthEnd);
+		parts[14] = css != RedNetConnectionType.PlateSingle && css != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, _bandWidthStart, 1.0F - _bandDepthEnd, _bandWidthEnd, _bandWidthEnd, 1.0F - _bandDepthStart);
 				
 		return parts;
 	}
