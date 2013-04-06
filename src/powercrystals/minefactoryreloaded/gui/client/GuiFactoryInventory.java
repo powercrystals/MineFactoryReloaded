@@ -3,12 +3,10 @@ package powercrystals.minefactoryreloaded.gui.client;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.liquids.LiquidDictionary;
+import net.minecraftforge.liquids.LiquidStack;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -21,7 +19,7 @@ public class GuiFactoryInventory extends GuiContainer
 {
 	protected TileEntityFactoryInventory _tileEntity;
 	protected int _barSizeMax = 60;
-	protected int _tankSizeMax = 61;
+	protected int _tankSizeMax = 60;
 	
 	public GuiFactoryInventory(ContainerFactoryInventory container, TileEntityFactoryInventory tileentity)
 	{
@@ -78,22 +76,9 @@ public class GuiFactoryInventory extends GuiContainer
 	
 	protected void drawTank(int xOffset, int yOffset, int liquidId, int liquidMeta, int level)
 	{
-		Icon liquidTexture;
-		ItemStack tempStack = new ItemStack(liquidId, 1, liquidMeta);
+		LiquidStack stack = LiquidDictionary.getCanonicalLiquid(new LiquidStack(liquidId, 1, liquidMeta));
 
 		if(liquidId <= 0)
-		{
-			return;
-		}
-		if(liquidId < Block.blocksList.length && Block.blocksList[liquidId] != null)
-		{
-			liquidTexture = Block.blocksList[liquidId].getBlockTextureFromSide(0);
-		}
-		else if	(Item.itemsList[liquidId] != null)
-		{
-			liquidTexture = Item.itemsList[liquidId].getIconFromDamage(liquidMeta);
-		}
-		else
 		{
 			return;
 		}
@@ -104,7 +89,7 @@ public class GuiFactoryInventory extends GuiContainer
 		{
 			int texHeight = 0;
 	
-			if (level > 16)
+			if(level > 16)
 			{
 				texHeight = 16;
 				level -= 16;
@@ -115,16 +100,8 @@ public class GuiFactoryInventory extends GuiContainer
 				level = 0;
 			}
 			
-			if(tempStack.getItemSpriteNumber() == 0)
-			{
-				this.mc.renderEngine.bindTexture("/terrain.png");
-			}
-			else
-			{
-				this.mc.renderEngine.bindTexture("/gui/items.png");
-			}
-			
-			this.drawTexturedModelRectFromIcon(xOffset, yOffset - texHeight - vertOffset, liquidTexture, 16, texHeight);
+			mc.renderEngine.bindTexture(stack.getTextureSheet());
+			drawTexturedModelRectFromIcon(xOffset, yOffset - texHeight - vertOffset, stack.getRenderingIcon(), 16, texHeight);
 			vertOffset = vertOffset + 16;
 		}
 
