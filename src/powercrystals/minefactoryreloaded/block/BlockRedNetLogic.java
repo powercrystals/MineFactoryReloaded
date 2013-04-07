@@ -57,12 +57,17 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	}
 
 	@Override
-	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
+	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
 	{
 		TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
 		if(logic != null)
 		{
 			logic.onInputsChanged(inputValues);
 		}
+	}
+
+	@Override
+	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
+	{
 	}
 }
