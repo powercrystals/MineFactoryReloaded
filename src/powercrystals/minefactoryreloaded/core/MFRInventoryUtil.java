@@ -156,7 +156,7 @@ public abstract class MFRInventoryUtil
 	public static ItemStack dropStack(World world, BlockPosition bp, ItemStack stack, ForgeDirection[] dropdirections, ForgeDirection airdropdirection)
 	{
 		// (0) Sanity check. Don't bother dropping if there's nothing to drop, and never try to drop items on the client.
-		if(stack == null || stack.stackSize == 0 || world.isRemote)
+		if(stack == null || stack.stackSize == 0 || world.isRemote || stack.getItem() == null)
 		{
 			return stack;
 		}
