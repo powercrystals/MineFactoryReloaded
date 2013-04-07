@@ -284,6 +284,12 @@ public class BlockConveyor extends BlockContainer
 	{
 		return world.isBlockSolidOnSide(x, y - 1, z, ForgeDirection.UP);
 	}
+	
+	@Override
+	public boolean canBlockStay(World world, int x, int y, int z)
+	{
+		return world.isBlockSolidOnSide(x, y - 1, z, ForgeDirection.UP);
+	}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side, float xOffset, float yOffset, float zOffset)
@@ -302,9 +308,8 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
 	{
-		if(!world.isRemote && !world.isBlockOpaqueCube(x, y - 1, z))
+		if(!canBlockStay(world, x, y, z))
 		{
-			dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 			world.setBlockToAir(x, y, z);
 		}
 	}
