@@ -1,5 +1,8 @@
 package powercrystals.minefactoryreloaded.tile;
 
+import java.util.Arrays;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
@@ -18,6 +21,10 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 	private int[] _sideColors = new int [6];
 	private RedstoneNetwork _network;
 	private boolean _needsNetworkUpdate;
+	
+	private static final int _maxVanillaBlockId = 158;
+	private static List<Integer> _connectionWhitelist = Arrays.asList(23, 25, 27, 28, 29, 33, 46, 55, 64, 69, 70, 71, 72, 75, 76, 77, 93, 94, 96, 107, 123, 124, 131, 
+			147, 148, 149, 150, 151, 152, 157, 158);
 	
 	public void setSideColor(ForgeDirection side, int color)
 	{
@@ -47,7 +54,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		int blockId = worldObj.getBlockId(bp.x, bp.y, bp.z);
 		Block b = Block.blocksList[blockId];
 		
-		if(b == null || b.isAirBlock(worldObj, bp.x, bp.y, bp.z))
+		if(b == null || (blockId <= _maxVanillaBlockId && !_connectionWhitelist.contains(blockId)) || b.isAirBlock(worldObj, bp.x, bp.y, bp.z))
 		{
 			return RedNetConnectionType.None;
 		}
