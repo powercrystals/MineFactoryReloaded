@@ -37,7 +37,7 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	@Override
 	public boolean canRotate()
 	{
-		return true;
+		return false;
 	}
 	
 	@Override

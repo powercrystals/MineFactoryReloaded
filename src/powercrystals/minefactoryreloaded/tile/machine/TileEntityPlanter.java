@@ -51,12 +51,6 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	}
 	
 	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-	
-	@Override
 	protected void onFactoryInventoryChanged()
 	{
 		_areaManager.updateUpgradeLevel(_inventory[9]);

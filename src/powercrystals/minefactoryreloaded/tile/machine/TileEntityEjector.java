@@ -63,4 +63,10 @@ inv:		for(Entry<ForgeDirection, IInventory> chest : chests.entrySet())
 		}
 		_lastRedstoneState = redstoneState;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

@@ -207,12 +207,6 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	{
 		return 9;
 	}
-	
-	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
 
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
