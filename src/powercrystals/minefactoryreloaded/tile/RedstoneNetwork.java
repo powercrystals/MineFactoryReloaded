@@ -109,7 +109,7 @@ public class RedstoneNetwork
 			//System.out.println("Network with ID " + _id + ":" + subnet + " adding node " + node.toString());
 			
 			_singleNodes.get(subnet).add(node);
-			notifySingleNode(node);
+			notifySingleNode(node, subnet);
 		}
 		
 		int power = getSingleNodePowerLevel(node);
@@ -184,7 +184,7 @@ public class RedstoneNetwork
 		updatePowerLevels();
 	}
 	
-	private void updatePowerLevels()
+	public void updatePowerLevels()
 	{
 		for(int subnet = 0; subnet < 16; subnet++)
 		{
@@ -192,7 +192,7 @@ public class RedstoneNetwork
 		}
 	}
 	
-	private void updatePowerLevels(int subnet)
+	public void updatePowerLevels(int subnet)
 	{
 		_powerLevelOutput[subnet] = 0;
 		_powerProviders[subnet] = null;
@@ -243,7 +243,7 @@ public class RedstoneNetwork
 		{
 			BlockPosition bp = _singleNodes.get(subnet).get(i);
 			//System.out.println("Network with ID " + _id + ":" + subnet + " notifying node " + bp.toString() + " of power state change to " + _powerLevelOutput[subnet]);
-			notifySingleNode(bp);
+			notifySingleNode(bp, subnet);
 		}
 		for(int i = 0; i < _omniNodes.size(); i++)
 		{
@@ -259,7 +259,7 @@ public class RedstoneNetwork
 		return _world.getChunkProvider().chunkExists(node.x >> 4, node.z >> 4);
 	}
 	
-	private void notifySingleNode(BlockPosition node)
+	private void notifySingleNode(BlockPosition node, int subnet)
 	{
 		if(isNodeLoaded(node))
 		{
@@ -267,6 +267,10 @@ public class RedstoneNetwork
 			if(blockId == MineFactoryReloadedCore.rednetCableBlock.blockID)
 			{
 				return;
+			}
+			else if(Block.blocksList[blockId] instanceof IConnectableRedNet)
+			{
+				((IConnectableRedNet)Block.blocksList[blockId]).onInputChanged(_world, node.x, node.y, node.z, node.orientation.getOpposite(), _powerLevelOutput[subnet]);
 			}
 			else
 			{
@@ -280,7 +284,7 @@ public class RedstoneNetwork
 		if(isNodeLoaded(node))
 		{
 			int blockId = _world.getBlockId(node.x, node.y, node.z);
-			((IConnectableRedNet)Block.blocksList[blockId]).onInputChanged(_world, node.x, node.y, node.z, node.orientation.getOpposite(), _powerLevelOutput);
+			((IConnectableRedNet)Block.blocksList[blockId]).onInputsChanged(_world, node.x, node.y, node.z, node.orientation.getOpposite(), _powerLevelOutput);
 		}
 	}
 	

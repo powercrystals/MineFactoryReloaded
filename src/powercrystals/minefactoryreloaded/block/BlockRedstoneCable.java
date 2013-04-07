@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
+import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
@@ -21,7 +22,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class BlockRedstoneCable extends BlockContainer
+public class BlockRedstoneCable extends BlockContainer implements IRedNetNetworkContainer
 {
 	private static float _wireSize = 0.25F;
 	private static float _plateWidth = 14.0F / 16.0F;
@@ -266,5 +267,25 @@ public class BlockRedstoneCable extends BlockContainer
 	public void registerIcons(IconRegister ir)
 	{
 		blockIcon = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+	}
+
+	@Override
+	public void updateNetwork(World world, int x, int y, int z)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
+		{
+			((TileRedstoneCable)te).getNetwork().updatePowerLevels();
+		}
+	}
+
+	@Override
+	public void updateNetwork(World world, int x, int y, int z, int subnet)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
+		{
+			((TileRedstoneCable)te).getNetwork().updatePowerLevels(subnet);
+		}
 	}
 }

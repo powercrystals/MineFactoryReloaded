@@ -54,5 +54,16 @@ public interface IConnectableRedNet
 	 * @param side The side the input values are being changed on.
 	 * @param inputValues The new set of input values. This array will be 16 elements long.
 	 */
-	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues);
+	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues);
+	
+	/**
+	 * Called when the input value to this block changes. Only called if your block is connected in "Single" mode.
+	 * @param world The world this block is in.
+	 * @param x This block's X coordinate.
+	 * @param y This block's Y coordinate.
+	 * @param z This block's Z coordinate.
+	 * @param side The side the input values are being changed on.
+	 * @param inputValues The new set of input values. This array will be 16 elements long.
+	 */
+	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue);
 }
