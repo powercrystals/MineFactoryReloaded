@@ -64,12 +64,6 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 	}
 	
 	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-	
-	@Override
 	public ILiquidTank getTank()
 	{
 		return _tank;

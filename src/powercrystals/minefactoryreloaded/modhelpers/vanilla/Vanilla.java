@@ -27,6 +27,13 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.MobDrop;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerBiofuel;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerLava;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMilk;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMobEssence;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerSewage;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerSludge;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerWater;
 import powercrystals.minefactoryreloaded.farmables.egghandlers.VanillaEggHandler;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCocoa;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableCropPlant;
@@ -226,5 +233,20 @@ public class Vanilla
 		MFRRegistry.registerSafariNetBlacklist(EntityWither.class);
 		
 		MFRRegistry.registerRandomMobProvider(new VanillaMobProvider());
+		
+		MFRRegistry.registerLiquidDrinkHandler(Block.waterStill.blockID, new DrinkHandlerWater());
+		MFRRegistry.registerLiquidDrinkHandler(Block.waterMoving.blockID, new DrinkHandlerWater());
+		MFRRegistry.registerLiquidDrinkHandler(Block.lavaStill.blockID, new DrinkHandlerLava());
+		MFRRegistry.registerLiquidDrinkHandler(Block.lavaMoving.blockID, new DrinkHandlerLava());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.milkStill.blockID, new DrinkHandlerMilk());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.milkFlowing.blockID, new DrinkHandlerMilk());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.biofuelStill.blockID, new DrinkHandlerBiofuel());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.biofuelFlowing.blockID, new DrinkHandlerBiofuel());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sewageStill.blockID, new DrinkHandlerSewage());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sewageFlowing.blockID, new DrinkHandlerSewage());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sludgeStill.blockID, new DrinkHandlerSludge());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sludgeFlowing.blockID, new DrinkHandlerSludge());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.essenceFlowing.blockID, new DrinkHandlerMobEssence());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.essenceStill.blockID, new DrinkHandlerMobEssence());
 	}
 }

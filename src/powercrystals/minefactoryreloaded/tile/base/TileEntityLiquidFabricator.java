@@ -76,12 +76,6 @@ public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowere
 	{
 		return 0;
 	}
-	
-	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
 
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)

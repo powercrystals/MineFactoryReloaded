@@ -303,4 +303,21 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
+	
+	public static void registerLiquidDrinkHandler(int liquidId, ILiquidDrinkHandler liquidDrinkHandler)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerLiquidDrinkHandler", int.class, ILiquidDrinkHandler.class);
+				reg.invoke(registry, liquidId, liquidDrinkHandler);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }

@@ -5,17 +5,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
-public class PlantablePamRice implements IFactoryPlantable
+public class PlantablePamSpecial implements IFactoryPlantable
 {
 	private int _blockId;
 	private int _itemId;
-	
-	public PlantablePamRice(int blockId, int itemId)
+	private int _plantableBlockId;
+
+	public PlantablePamSpecial(int blockId, int itemId)
+	{
+		this(blockId, itemId, Block.tilledField.blockID);
+	}
+
+	public PlantablePamSpecial(int blockId, int itemId, int plantableBlockId)
 	{
 		_blockId = blockId;
 		_itemId = itemId;
+		_plantableBlockId = plantableBlockId;
 	}
-	
+
 	@Override
 	public int getSeedId()
 	{
@@ -37,7 +44,7 @@ public class PlantablePamRice implements IFactoryPlantable
 	@Override
 	public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack)
 	{
-		return world.getBlockId(x, y - 1, z) == Block.waterStill.blockID && world.getBlockId(x, y, z) == 0;
+		return world.getBlockId(x, y - 1, z) == _plantableBlockId && world.getBlockId(x, y, z) == 0;
 	}
 
 	@Override

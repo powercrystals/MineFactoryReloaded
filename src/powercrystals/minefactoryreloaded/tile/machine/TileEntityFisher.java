@@ -42,12 +42,6 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-	
-	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
 
 	@Override
 	public boolean activateMachine()

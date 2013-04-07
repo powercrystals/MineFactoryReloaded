@@ -64,12 +64,6 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	}
 	
 	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-	
-	@Override
 	public ILiquidTank getTank()
 	{
 		return _tank;

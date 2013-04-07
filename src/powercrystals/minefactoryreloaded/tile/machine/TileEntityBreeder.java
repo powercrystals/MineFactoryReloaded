@@ -122,4 +122,10 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 	{
 		return "Breeder";
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

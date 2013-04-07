@@ -121,12 +121,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	{
 		_storedMeta = meta;
 	}
-	
-	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
 
 	@Override
 	public ForgeDirection getDropDirection()
