@@ -226,4 +226,10 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		return true;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

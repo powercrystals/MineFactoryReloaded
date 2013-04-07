@@ -51,12 +51,6 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 	}
 	
 	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-	
-	@Override
 	public ILiquidTank getTank()
 	{
 		return _tank;

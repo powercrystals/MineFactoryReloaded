@@ -143,4 +143,10 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 	{
 		return 9;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

@@ -90,12 +90,6 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 	}
 	
 	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-
-	@Override
 	public boolean allowBucketFill()
 	{
 		return true;

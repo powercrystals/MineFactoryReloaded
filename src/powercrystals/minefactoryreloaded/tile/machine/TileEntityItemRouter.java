@@ -44,12 +44,6 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		}
 	}
 	
-	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-	
 	public ItemStack routeItem(ItemStack stack)
 	{
 		List<ForgeDirection> filteredOutputs = new ArrayList<ForgeDirection>();

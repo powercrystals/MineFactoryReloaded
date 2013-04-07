@@ -68,12 +68,6 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 		
 		return resource.amount - amountRemaining;
 	}
-	
-	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
 
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)

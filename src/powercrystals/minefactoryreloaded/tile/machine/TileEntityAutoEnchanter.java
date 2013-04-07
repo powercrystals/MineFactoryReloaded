@@ -58,12 +58,6 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	{
 		return new ContainerAutoEnchanter(this, inventoryPlayer);
 	}
-	
-	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
 
 	@Override
 	public int getWorkMax()

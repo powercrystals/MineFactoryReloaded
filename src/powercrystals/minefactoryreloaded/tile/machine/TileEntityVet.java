@@ -109,4 +109,10 @@ public class TileEntityVet extends TileEntityFactoryPowered
 	{
 		return 9;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

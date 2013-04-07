@@ -125,4 +125,10 @@ public class TileEntityChronotyper extends TileEntityFactoryPowered
 		super.readFromNBT(nbttagcompound);
 		_moveOld = nbttagcompound.getByte("moveOld") == 0 ? false : true;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

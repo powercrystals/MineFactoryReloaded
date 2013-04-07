@@ -192,4 +192,10 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 	{
 		return _tank;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

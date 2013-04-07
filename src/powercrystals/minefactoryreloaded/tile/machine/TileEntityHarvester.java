@@ -385,4 +385,10 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		return 0;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

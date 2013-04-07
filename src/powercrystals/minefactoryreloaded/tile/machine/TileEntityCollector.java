@@ -7,12 +7,6 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public class TileEntityCollector extends TileEntityFactory
 {
-	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-	
 	public void addToChests(EntityItem i)
 	{
 		if(i.isDead)

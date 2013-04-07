@@ -81,4 +81,10 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 	{
 		return true;
 	}
+	
+	@Override
+	public boolean canRotate()
+	{
+		return true;
+	}
 }

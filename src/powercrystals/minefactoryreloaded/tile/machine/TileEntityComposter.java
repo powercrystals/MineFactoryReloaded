@@ -48,12 +48,6 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	}
 	
 	@Override
-	public boolean canRotate()
-	{
-		return false;
-	}
-	
-	@Override
 	public ILiquidTank getTank()
 	{
 		return _tank;
