@@ -52,6 +52,7 @@ public class Pam
 			registerPamRice();
 			registerPamWhiteMushroom();
 		}
+
 		
 		if(!Loader.isModLoaded("PamWeeeFlowers"))
 		{
@@ -63,7 +64,7 @@ public class Pam
 			
 			try
 			{
-				Class<?> mod = Class.forName("pamsmods.common.weeeflowers.PamWeeeFlowers");
+				Class<?> mod = Class.forName("mods.PamWeeeFlowers.PamWeeeFlowers");
 				
 				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)mod.getField("pamFlower").get(null)).blockID, HarvestType.Normal));
 				
@@ -71,7 +72,7 @@ public class Pam
 				{
 					int seedId = ((Item)mod.getField(flower.toLowerCase() + "flowerseedItem").get(null)).itemID;
 					int blockId = ((Block)mod.getField("pam" + flower.toLowerCase() + "flowerCrop").get(null)).blockID;
-					Method fertilize = Class.forName("pamsmods.common.weeeflowers.BlockPam" + flower + "FlowerCrop").getMethod("fertilize", World.class, int.class, int.class, int.class);
+					Method fertilize = Class.forName("mods.PamWeeeFlowers.BlockPamFlowerCrop").getMethod("fertilize", World.class, int.class, int.class, int.class);
 					
 					MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 					MFRRegistry.registerHarvestable(new HarvestablePams(blockId));
@@ -80,7 +81,7 @@ public class Pam
 			}
 			catch(ClassNotFoundException x)
 			{
-				FMLLog.warning("Unable to load Pam support for Weee! Flowers even though HarvestCraft base was present");
+				FMLLog.warning("Unable to load Pam support for Weee! Flowers even though Weee! FLowers was present");
 			}
 			catch(Exception x)
 			{
