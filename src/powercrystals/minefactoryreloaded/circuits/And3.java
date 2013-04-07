@@ -1,0 +1,28 @@
+package powercrystals.minefactoryreloaded.circuits;
+
+import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
+
+public class And3 implements IRedNetLogicCircuit
+{
+	@Override
+	public int getInputCount()
+	{
+		return 3;
+	}
+
+	@Override
+	public int getOutputCount()
+	{
+		return 1;
+	}
+
+	@Override
+	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
+	{
+		if(inputValues[0] > 0 && inputValues[1] > 0 && inputValues[2] > 0)
+		{
+			return new int[] { 15 };
+		}
+		return new int[] { 0 };
+	}
+}
