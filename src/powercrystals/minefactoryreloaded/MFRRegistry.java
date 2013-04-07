@@ -15,6 +15,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
+import powercrystals.minefactoryreloaded.api.ILiquidDrinkHandler;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
 import powercrystals.minefactoryreloaded.api.IRandomMobProvider;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
@@ -27,9 +28,10 @@ public abstract class MFRRegistry
 	private static Map<Integer, IFactoryFertilizable> _fertilizables = new HashMap<Integer, IFactoryFertilizable>();
 	private static Map<Class<?>, IFactoryRanchable> _ranchables = new HashMap<Class<?>, IFactoryRanchable>();
 	private static Map<Class<?>, IFactoryGrindable> _grindables = new HashMap<Class<?>, IFactoryGrindable>();
-	private static List<WeightedRandomItem> _sludgeDrops  = new ArrayList<WeightedRandomItem>();
 	private static Map<Class<?>, ItemStack> _breederFoods = new HashMap<Class<?>, ItemStack>();
-	
+	private static Map<Integer, ILiquidDrinkHandler> _liquidDrinkHandlers = new HashMap<Integer, ILiquidDrinkHandler>();
+
+	private static List<WeightedRandomItem> _sludgeDrops  = new ArrayList<WeightedRandomItem>();
 	private static List<IMobEggHandler> _eggHandlers = new ArrayList<IMobEggHandler>();
 	private static List<ISafariNetHandler> _safariNetHandlers = new ArrayList<ISafariNetHandler>();
 	private static List<String> _rubberTreeBiomes = new ArrayList<String>();
@@ -168,5 +170,15 @@ public abstract class MFRRegistry
 	public static List<IRandomMobProvider> getRandomMobProviders()
 	{
 		return _randomMobProviders;
+	}
+	
+	public static void registerLiquidDrinkHandler(int liquidId, ILiquidDrinkHandler liquidDrinkHandler)
+	{
+		_liquidDrinkHandlers.put(liquidId, liquidDrinkHandler);
+	}
+	
+	public static Map<Integer, ILiquidDrinkHandler> getLiquidDrinkHandlers()
+	{
+		return _liquidDrinkHandlers;
 	}
 }
