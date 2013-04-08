@@ -105,7 +105,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid = MineFactoryReloadedCore.modId, name = MineFactoryReloadedCore.modName, version = MineFactoryReloadedCore.version,
 dependencies = "after:BuildCraft|Core;after:BuildCraft|Factory;after:BuildCraft|Energy;after:BuildCraft|Builders;after:BuildCraft|Transport;after:IC2;required-after:PowerCrystalsCore;before:Forestry")
@@ -432,6 +431,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		EntityRegistry.registerModEntity(EntitySafariNet.class, "entitySafariNet", 0, instance, 160, 5, true);
 
 		MinecraftForge.EVENT_BUS.register(instance);
+		MinecraftForge.EVENT_BUS.register(proxy);
 		
 		Vanilla.registerRecipes();
 		
@@ -463,11 +463,11 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	@PostInit
 	public void postInit(FMLPostInitializationEvent evt)
 	{
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("milk", new LiquidStack(milkStill,  LiquidContainerRegistry.BUCKET_VOLUME).setRenderingIcon(milkStill.getBlockTextureFromSide(1))), new ItemStack(Item.bucketMilk), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sludge", new LiquidStack(sludgeStill,  LiquidContainerRegistry.BUCKET_VOLUME).setRenderingIcon(milkStill.getBlockTextureFromSide(1))), new ItemStack(sludgeBucketItem), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sewage", new LiquidStack(sewageStill,  LiquidContainerRegistry.BUCKET_VOLUME).setRenderingIcon(milkStill.getBlockTextureFromSide(1))), new ItemStack(sewageBucketItem), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mobEssence", new LiquidStack(essenceStill,  LiquidContainerRegistry.BUCKET_VOLUME).setRenderingIcon(milkStill.getBlockTextureFromSide(1))), new ItemStack(mobEssenceBucketItem), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("biofuel", new LiquidStack(biofuelStill,  LiquidContainerRegistry.BUCKET_VOLUME).setRenderingIcon(milkStill.getBlockTextureFromSide(1))), new ItemStack(bioFuelBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("milk", new LiquidStack(milkStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(Item.bucketMilk), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sludge", new LiquidStack(sludgeStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sludgeBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sewage", new LiquidStack(sewageStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sewageBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mobEssence", new LiquidStack(essenceStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(mobEssenceBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("biofuel", new LiquidStack(biofuelStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(bioFuelBucketItem), new ItemStack(Item.bucketEmpty)));
 		
 		for(ItemStack s : OreDictionary.getOres("itemRubber"))
 		{
@@ -509,17 +509,6 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 			e.result = filledBucket;
 			e.setResult(Result.ALLOW);
 		}
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@ForgeSubscribe
-	public void onPostTextureStitch(TextureStitchEvent.Post e)
-	{
-		LiquidDictionary.getCanonicalLiquid("milk").setRenderingIcon(milkStill.getBlockTextureFromSide(1));
-		LiquidDictionary.getCanonicalLiquid("sludge").setRenderingIcon(sludgeStill.getBlockTextureFromSide(1));
-		LiquidDictionary.getCanonicalLiquid("sewage").setRenderingIcon(sewageStill.getBlockTextureFromSide(1));
-		LiquidDictionary.getCanonicalLiquid("mobEssence").setRenderingIcon(essenceStill.getBlockTextureFromSide(1));
-		LiquidDictionary.getCanonicalLiquid("biofuel").setRenderingIcon(biofuelStill.getBlockTextureFromSide(1));
 	}
 	
 	private ItemStack fillBucket(World world, MovingObjectPosition block)
