@@ -20,7 +20,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "MFReloaded|CompatMagicalCrops", name = "MFR Compat: Magical Crops", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:Magical-Crops")
+@Mod(modid = "MineFactoryReloaded|CompatMagicalCrops", name = "MFR Compat: Magical Crops", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:Magical-Crops")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class MagicalCrops
 {

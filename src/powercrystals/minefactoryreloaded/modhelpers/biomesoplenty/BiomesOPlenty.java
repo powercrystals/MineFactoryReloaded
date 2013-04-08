@@ -9,7 +9,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "MFReloaded|CompatBiomesOPlenty", name = "MFR Compat: Biomes O' Plenty", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:BiomesOPlenty")
+@Mod(modid = "MineFactoryReloaded|CompatBiomesOPlenty", name = "MFR Compat: Biomes O' Plenty", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:BiomesOPlenty")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class BiomesOPlenty
 {
