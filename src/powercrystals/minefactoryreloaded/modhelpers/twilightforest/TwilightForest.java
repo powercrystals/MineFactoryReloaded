@@ -23,7 +23,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 
-@Mod(modid = "MFReloaded|CompatTwilightForest", name = "MFR Compat: TwilightForest", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:TwilightForest")
+@Mod(modid = "MineFactoryReloaded|CompatTwilightForest", name = "MFR Compat: TwilightForest", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:TwilightForest")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class TwilightForest
 {

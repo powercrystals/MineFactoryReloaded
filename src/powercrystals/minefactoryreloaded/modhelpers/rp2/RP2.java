@@ -19,7 +19,7 @@ import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeL
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 
-@Mod(modid = "MFReloaded|CompatRP2", name = "MFR Compat: RP2", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:RedPowerWorld")
+@Mod(modid = "MineFactoryReloaded|CompatRP2", name = "MFR Compat: RP2", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:RedPowerWorld")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class RP2
 {

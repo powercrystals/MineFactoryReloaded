@@ -1,6 +1,6 @@
 [
 {
-  "modid": "MFReloaded",
+  "modid": "MineFactoryReloaded",
   "name": "MineFactory Reloaded",
   "description": "Automate everything!",
   "version": "2.1.2",
@@ -22,7 +22,7 @@
   ]
 },
 {
-  "modid": "MFReloaded|CompatBiomesOPlenty",
+  "modid": "MineFactoryReloaded|CompatBiomesOPlenty",
   "name": "MFR Compat: Biomes O' Plenty",
   "description": "Compatibility addon for Biomes O' Plenty",
   "version": "2.1.2",
@@ -38,11 +38,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatExtraBiomes",
+  "modid": "MineFactoryReloaded|CompatExtraBiomes",
   "name": "MFR Compat: ExtraBiomes",
   "description": "Compatibility addon for ExtraBiomes",
   "version": "2.1.2",
@@ -58,11 +58,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatForestry",
+  "modid": "MineFactoryReloaded|CompatForestry",
   "name": "MFR Compat: Forestry",
   "description": "Compatibility addon for Forestry",
   "version": "2.1.2",
@@ -78,11 +78,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatIC2",
+  "modid": "MineFactoryReloaded|CompatIC2",
   "name": "MFR Compat: IC2",
   "description": "Compatibility addon for IndustrialCraft2",
   "version": "2.1.2",
@@ -98,11 +98,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatPams",
+  "modid": "MineFactoryReloaded|CompatPams",
   "name": "MFR Compat: Pam's Mods",
   "description": "Compatibility addon for Pam's mods",
   "version": "2.1.2",
@@ -118,11 +118,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatRP2",
+  "modid": "MineFactoryReloaded|CompatRP2",
   "name": "MFR Compat: RP2",
   "description": "Compatibility addon for RedPower2",
   "version": "2.1.2",
@@ -138,11 +138,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatSoulShards",
+  "modid": "MineFactoryReloaded|CompatSoulShards",
   "name": "MFR Compat: SoulShards",
   "description": "Compatibility addon for SoulShards",
   "version": "2.1.2",
@@ -158,11 +158,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatTwilightForest",
+  "modid": "MineFactoryReloaded|CompatTwilightForest",
   "name": "MFR Compat: TwilightForest",
   "description": "Compatibility addon for Twilight Forest",
   "version": "2.1.2",
@@ -178,11 +178,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatVanilla",
+  "modid": "MineFactoryReloaded|CompatVanilla",
   "name": "MFR Compat: Vanilla",
   "description": "Compatibility addon for Vanilla MC",
   "version": "2.1.2",
@@ -198,11 +198,11 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 },
 {
-  "modid": "MFReloaded|CompatXyCraft",
+  "modid": "MineFactoryReloaded|CompatXyCraft",
   "name": "MFR Compat: XyCraft",
   "description": "Compatibility addon for XyCraft",
   "version": "2.1.2",
@@ -218,7 +218,7 @@
   ],
   "parent":"MFReloaded",
   "dependencies": [
-    "MFReloaded"
+    "MineFactoryReloaded"
   ]
 }
 ]

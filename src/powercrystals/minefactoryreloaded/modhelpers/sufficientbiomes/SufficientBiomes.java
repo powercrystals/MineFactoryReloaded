@@ -9,7 +9,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "MFReloaded|CompatSufficientBiomes", name = "MFR Compat: Sufficient Biomes", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:EmasherWorldGen")
+@Mod(modid = "MineFactoryReloaded|CompatSufficientBiomes", name = "MFR Compat: Sufficient Biomes", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:EmasherWorldGen")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class SufficientBiomes
 {
