@@ -12,7 +12,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "MFReloaded|CompatSoulShards", name = "MFR Compat: Soul Shards", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:SoulShards")
+@Mod(modid = "MineFactoryReloaded|CompatSoulShards", name = "MFR Compat: Soul Shards", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:SoulShards")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class SoulShards
 {

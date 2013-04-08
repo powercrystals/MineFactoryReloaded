@@ -23,7 +23,7 @@ import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStand
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 
-@Mod(modid = "MFReloaded|CompatExtraBiomes", name = "MFR Compat: ExtraBiomes", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:ExtrabiomesXL")
+@Mod(modid = "MineFactoryReloaded|CompatExtraBiomes", name = "MFR Compat: ExtraBiomes", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:ExtrabiomesXL")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class ExtraBiomes
 {

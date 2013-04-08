@@ -33,6 +33,8 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 	{
 		super(flowingId, Material.water);
 		setUnlocalizedName("mfr.liquid." + liquidName + ".flowing");
+		setHardness(100.0F);
+		setLightOpacity(3);
 		_stillId = stillId;
 	}
 	

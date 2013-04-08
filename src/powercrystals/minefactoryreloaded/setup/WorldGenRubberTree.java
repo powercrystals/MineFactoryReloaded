@@ -102,7 +102,7 @@ public class WorldGenRubberTree extends WorldGenerator
 			{
 				var8 = world.getBlockId(x, y - 1, z);
 
-				if ((var8 == Block.grass.blockID || var8 == Block.dirt.blockID || Block.blocksList[var8].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockSapling)MineFactoryReloadedCore.rubberSaplingBlock)))
+				if ((Block.blocksList[var8] != null && (var8 == Block.grass.blockID || var8 == Block.dirt.blockID || Block.blocksList[var8].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockSapling)MineFactoryReloadedCore.rubberSaplingBlock))))
 						&& y < 256 - treeHeight - 1)
 				{
 					this.setBlock(world, x, y - 1, z, Block.dirt.blockID);

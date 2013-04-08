@@ -33,9 +33,9 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 			}
 		}
 		
-		if(MineFactoryReloadedCore.mfrLakeWorldGen.getBoolean(true))
+		if(MineFactoryReloadedCore.mfrLakeWorldGen.getBoolean(true) && world.provider.canRespawnHere())
 		{
-			if(random.nextInt(11) == 0)
+			if(random.nextInt(16) == 0)
 			{
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
@@ -43,7 +43,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				new WorldGenLakes(MineFactoryReloadedCore.sludgeStill.blockID).generate(world, random, lakeX, lakeY, lakeZ);
 			}
 			
-			if(random.nextInt(11) == 0)
+			if(random.nextInt(16) == 0)
 			{
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);

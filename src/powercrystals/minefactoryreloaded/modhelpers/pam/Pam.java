@@ -18,8 +18,8 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "MFReloaded|CompatPams", name = "MFR Compat: Pam's Mods", version = MineFactoryReloadedCore.version,
-dependencies = "after:MFReloaded;after:PamHCAsparagus;after:PamHCBean;after:PamHCBeet;after:PamHCBellpepper;"
+@Mod(modid = "MineFactoryReloaded|CompatPams", name = "MFR Compat: Pam's Mods", version = MineFactoryReloadedCore.version,
+dependencies = "after:MineFactoryReloaded;after:PamHCAsparagus;after:PamHCBean;after:PamHCBeet;after:PamHCBellpepper;"
  + "after:PamHCBlackberry;after:PamHCBlueberry;after:PamHCBroccoli;after:PamHCCactusfruit;after:PamHCCandle;"
  + "after:PamHCCantaloupe;after:PamHCCelery;after:PamHCChilipepper;after:PamHCCoffee;after:PamHCCorn;after:PamHCCotton;"
  + "after:PamHCCranberry;after:PamHCCucumber;after:PamHCEggplant;after:PamHCGarlic;after:PamHCGinger;"

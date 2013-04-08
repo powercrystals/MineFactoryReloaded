@@ -12,7 +12,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "MFReloaded|CompatXyCraft", name = "MFR Compat: XyCraft", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:XyCraftWorld")
+@Mod(modid = "MineFactoryReloaded|CompatXyCraft", name = "MFR Compat: XyCraft", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:XyCraftWorld")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Xycraft 
 {

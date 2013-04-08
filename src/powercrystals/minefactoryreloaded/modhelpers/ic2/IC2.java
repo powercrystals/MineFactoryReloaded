@@ -17,7 +17,7 @@ import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStand
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 
-@Mod(modid = "MFReloaded|CompatIC2", name = "MFR Compat: IC2", version = MineFactoryReloadedCore.version, dependencies = "after:MFReloaded;after:IC2")
+@Mod(modid = "MineFactoryReloaded|CompatIC2", name = "MFR Compat: IC2", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:IC2")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class IC2
 {

@@ -26,6 +26,8 @@ public class BlockFactoryLiquidStill extends BlockStationary
 	{
 		super(stillId, Material.water);
 		setUnlocalizedName("mfr.liquid." + liquidName + ".still");
+		setHardness(100.0F);
+		setLightOpacity(3);
 		_flowingId = flowingId;
 	}
 	
