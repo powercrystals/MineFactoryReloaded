@@ -6,6 +6,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 
 public class GuiLiquiCrafter extends GuiFactoryInventory
@@ -53,5 +54,41 @@ public class GuiLiquiCrafter extends GuiFactoryInventory
 		int x = (width - xSize) / 2 - 56;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+	}
+	
+	@Override
+	protected void drawTank(int xOffset, int yOffset, int liquidId, int liquidMeta, int level)
+	{
+		LiquidStack stack = LiquidDictionary.getCanonicalLiquid(new LiquidStack(liquidId, 1, liquidMeta));
+
+		if(liquidId <= 0)
+		{
+			return;
+		}
+
+		int vertOffset = 0;
+
+		while(level > 0)
+		{
+			int texHeight = 0;
+	
+			if(level > 16)
+			{
+				texHeight = 16;
+				level -= 16;
+			}
+			else
+			{
+				texHeight = level;
+				level = 0;
+			}
+			
+			mc.renderEngine.bindTexture(stack.getTextureSheet());
+			drawTexturedModelRectFromIcon(xOffset, yOffset - texHeight - vertOffset, stack.getRenderingIcon(), 16, texHeight);
+			vertOffset = vertOffset + 16;
+		}
+
+		this.mc.renderEngine.bindTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
+		this.drawTexturedModalRect(xOffset, yOffset - 33, 232, 0, 16, 33);
 	}
 }

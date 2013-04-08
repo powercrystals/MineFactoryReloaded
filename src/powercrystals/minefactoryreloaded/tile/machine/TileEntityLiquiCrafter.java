@@ -436,8 +436,7 @@ inv:	for(int i = 0; i < 9; i++)
 			int j = nbttagcompound1.getByte("Tank") & 0xff;
 			if(j >= 0 && j < _tanks.length)
 			{
-				LiquidStack l = new LiquidStack(0, 0, 0);
-				LiquidStack.loadLiquidStackFromNBT(nbttagcompound1);
+				LiquidStack l = LiquidStack.loadLiquidStackFromNBT(nbttagcompound1);
 				if(LiquidContainerRegistry.isLiquid(l.asItemStack()))
 				{
 					_tanks[j].setLiquid(l);
