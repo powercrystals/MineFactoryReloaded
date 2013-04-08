@@ -25,4 +25,22 @@ public class And3 implements IRedNetLogicCircuit
 		}
 		return new int[] { 0 };
 	}
+
+	@Override
+	public String getUnlocalizedName()
+	{
+		return "circuit.mfr.and.3";
+	}
+
+	@Override
+	public String getInputPinLabel(int pin)
+	{
+		return ((Integer)pin).toString();
+	}
+
+	@Override
+	public String getOutputPinLabel(int pin)
+	{
+		return ((Integer)pin).toString();
+	}
 }
