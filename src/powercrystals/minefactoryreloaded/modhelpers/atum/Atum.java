@@ -52,6 +52,9 @@ public class Atum
 			
 			int atumLogID = ((Block)Atum.getField("atumLog").get(null)).blockID;
 			int atumLeavesID = ((Block)Atum.getField("atumLeaves").get(null)).blockID;
+			int papyrusID = ((Block)Atum.getField("atumPapyrus").get(null)).blockID;
+			int shrubID = ((Block)Atum.getField("atumShrub").get(null)).blockID;
+			int weedID = ((Block)Atum.getField("atumWeed").get(null)).blockID;
 			
 			MFRRegistry.registerSafariNetBlacklist(pharaoh);
 			
@@ -72,6 +75,9 @@ public class Atum
 			
 			MFRRegistry.registerHarvestable(new HarvestableStandard(atumLogID, HarvestType.Tree));
 			MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(atumLeavesID));
+			MFRRegistry.registerHarvestable(new HarvestableStandard(papyrusID, HarvestType.LeaveBottom));
+			MFRRegistry.registerHarvestable(new HarvestableStandard(shrubID, HarvestType.Normal));
+			MFRRegistry.registerHarvestable(new HarvestableStandard(weedID, HarvestType.Normal));
 		}
 		catch (Exception x)
 		{
