@@ -307,6 +307,16 @@ inv:	for(int i = 0; i < 9; i++)
 		return 18;
 	}
 	
+	/*
+	 * This is canAddItem
+	 * Shouldn't allow items to be added to the output slot.
+	 */
+	@Override
+    public boolean func_102007_a(int slot, ItemStack stack, int sideordinal)
+	{
+		return (sideordinal == 0 || sideordinal == 1) ? false : true;
+	}
+	
 	@Override
 	public boolean allowBucketFill()
 	{
