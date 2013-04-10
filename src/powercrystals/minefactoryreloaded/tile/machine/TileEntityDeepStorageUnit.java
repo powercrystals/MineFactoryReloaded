@@ -241,7 +241,8 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		if(sideordinal > 5) return false;
 		if(!_isSideOutput[sideordinal])
 		{
-			return (!stack.hasTagCompound() && stack.isItemEqual(getStoredItemType()));
+			ItemStack stored = getStoredItemType();
+			return (!stack.hasTagCompound() && (stored == null || stack.isItemEqual(stored)));
 		}
 		return false;
 	}
