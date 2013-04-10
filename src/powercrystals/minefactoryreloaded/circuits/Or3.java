@@ -35,12 +35,12 @@ public class Or3 implements IRedNetLogicCircuit
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return ((Integer)pin).toString();
+		return "I" + pin;
 	}
 
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return ((Integer)pin).toString();
+		return "O" + pin;
 	}
 }

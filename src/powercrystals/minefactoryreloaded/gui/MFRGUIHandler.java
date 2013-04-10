@@ -3,6 +3,9 @@ package powercrystals.minefactoryreloaded.gui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.gui.client.GuiRedNetLogic;
+import powercrystals.minefactoryreloaded.gui.container.ContainerRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import cpw.mods.fml.common.network.IGuiHandler;
 
@@ -16,6 +19,10 @@ public class MFRGUIHandler implements IGuiHandler
 		{
 			return ((TileEntityFactory)te).getContainer(player.inventory);
 		}
+		else if(te instanceof TileEntityRedNetLogic)
+		{
+			return new ContainerRedNetLogic((TileEntityRedNetLogic)te);
+		}
 		return null;
 	}
 
@@ -26,6 +33,10 @@ public class MFRGUIHandler implements IGuiHandler
 		if(te instanceof TileEntityFactory)
 		{
 			return ((TileEntityFactory)te).getGui(player.inventory);
+		}
+		else if(te instanceof TileEntityRedNetLogic)
+		{
+			return new GuiRedNetLogic(new ContainerRedNetLogic((TileEntityRedNetLogic)te), (TileEntityRedNetLogic)te);
 		}
 		return null;
 	}

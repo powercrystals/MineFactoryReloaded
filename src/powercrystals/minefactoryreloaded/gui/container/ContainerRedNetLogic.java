@@ -6,17 +6,13 @@ import net.minecraft.inventory.Container;
 
 public class ContainerRedNetLogic extends Container
 {
-	private TileEntityRedNetLogic _logic;
-	
 	public ContainerRedNetLogic(TileEntityRedNetLogic logic)
 	{
-		_logic = logic;
 	}
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer)
 	{
-		// TODO
 		return true;
 	}
 }

@@ -2,45 +2,55 @@ package powercrystals.minefactoryreloaded.circuits;
 
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
-public class And3 implements IRedNetLogicCircuit
+public class FlipFlopT implements IRedNetLogicCircuit
 {
+	private boolean _value;
+	
 	@Override
 	public int getInputCount()
-	{
-		return 3;
-	}
-
-	@Override
-	public int getOutputCount()
 	{
 		return 1;
 	}
 
 	@Override
+	public int getOutputCount()
+	{
+		return 2;
+	}
+
+	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
-		if(inputValues[0] > 0 && inputValues[1] > 0 && inputValues[2] > 0)
+		if(inputValues[0] > 0)
 		{
-			return new int[] { 15 };
+			_value = !_value;
 		}
-		return new int[] { 0 };
+		
+		if(_value)
+		{
+			return new int[] { 15, 0 };
+		}
+		else
+		{
+			return new int[] { 0, 15 };
+		}
 	}
 
 	@Override
 	public String getUnlocalizedName()
 	{
-		return "circuit.mfr.and.3";
+		return "circuit.mfr.flipflop.t";
 	}
 
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "I" + pin;
+		return "T";
 	}
 
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O" + pin;
+		return pin == 0 ? "Q" : "Q#";
 	}
 }

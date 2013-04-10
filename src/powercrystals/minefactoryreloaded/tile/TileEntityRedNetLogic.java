@@ -1,18 +1,29 @@
 package powercrystals.minefactoryreloaded.tile;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
 import org.bouncycastle.util.Arrays;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
+
+import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.Noop;
+import powercrystals.minefactoryreloaded.net.Packets;
 
 public class TileEntityRedNetLogic extends TileEntity
 {
-	private class PinMapping
+	public class PinMapping
 	{
 		public PinMapping(int pin, int buffer)
 		{
@@ -20,8 +31,8 @@ public class TileEntityRedNetLogic extends TileEntity
 			this.buffer = buffer;
 		}
 		
-		int pin;
-		int buffer;
+		public int pin;
+		public int buffer;
 	}
 	
 	private IRedNetLogicCircuit[] _circuits = new IRedNetLogicCircuit[4];
@@ -38,21 +49,38 @@ public class TileEntityRedNetLogic extends TileEntity
 		_buffers[1] = new int[16];
 		_buffers[2] = new int[16];
 		
-		_circuits[0] = new Noop();
-		_pinMappingInputs[0] = new PinMapping[_circuits[0].getInputCount()];
-		_pinMappingOutputs[0] = new PinMapping[_circuits[0].getOutputCount()];
-		_circuits[1] = new Noop();
-		_pinMappingInputs[1] = new PinMapping[_circuits[1].getInputCount()];
-		_pinMappingOutputs[1] = new PinMapping[_circuits[1].getOutputCount()];
-		_circuits[2] = new Noop();
-		_pinMappingInputs[2] = new PinMapping[_circuits[2].getInputCount()];
-		_pinMappingOutputs[2] = new PinMapping[_circuits[2].getOutputCount()];
-		_circuits[3] = new Noop();
-		_pinMappingInputs[3] = new PinMapping[_circuits[3].getInputCount()];
-		_pinMappingOutputs[3] = new PinMapping[_circuits[3].getOutputCount()];
+		initCircuit(0, new Noop());
+		initCircuit(1, new Noop());
+		initCircuit(2, new Noop());
+		initCircuit(3, new Noop());
 	}
 	
-	private IRedNetLogicCircuit getCircuit(String className)
+	public IRedNetLogicCircuit getCircuit(int index)
+	{
+		return _circuits[index];
+	}
+	
+	public PinMapping getInputPinMapping(int circuitIndex, int pinIndex)
+	{
+		return _pinMappingInputs[circuitIndex][pinIndex];
+	}
+	
+	public void setInputPinMapping(int circuitIndex, int pinIndex, int buffer, int pin)
+	{
+		_pinMappingInputs[circuitIndex][pinIndex] = new PinMapping(pin, buffer);
+	}
+	
+	public PinMapping getOutputPinMapping(int circuitIndex, int pinIndex)
+	{
+		return _pinMappingOutputs[circuitIndex][pinIndex];
+	}
+	
+	public void setOutputPinMapping(int circuitIndex, int pinIndex, int buffer, int pin)
+	{
+		_pinMappingOutputs[circuitIndex][pinIndex] = new PinMapping(pin, buffer);
+	}
+	
+	private IRedNetLogicCircuit getNewCircuit(String className)
 	{
 		try
 		{
@@ -63,6 +91,89 @@ public class TileEntityRedNetLogic extends TileEntity
 			e.printStackTrace();
 			return new Noop();
 		}
+	}
+	
+	public void initCircuit(int index, String circuitClassName)
+	{
+		initCircuit(index, getNewCircuit(circuitClassName));
+	}
+	
+	private void initCircuit(int index, IRedNetLogicCircuit circuit)
+	{
+		_circuits[index] = circuit;
+		_pinMappingInputs[index] = new PinMapping[_circuits[index].getInputCount()];
+		_pinMappingOutputs[index] = new PinMapping[_circuits[index].getOutputCount()];
+		for(int i = 0; i < _pinMappingInputs[index].length; i++)
+		{
+			_pinMappingInputs[index][i] = new PinMapping(0, 0);
+		}
+		for(int i = 0; i < _pinMappingOutputs[index].length; i++)
+		{
+			_pinMappingOutputs[index][i] = new PinMapping(2, 0);
+		}
+		
+		for(int i = 0; i < 16; i++)
+		{
+			_buffers[2][i] = 0;
+		}
+	}
+	
+	public void setCircuitFromPacket(DataInputStream packet)
+	{
+		try
+		{
+			int circuitIndex = packet.readInt();
+			String circuitName = packet.readUTF();
+			
+			initCircuit(circuitIndex, circuitName);
+			
+			int inputCount = packet.readInt();
+			for(int p = 0; p < inputCount; p++)
+			{
+				int buffer = packet.readInt();
+				int pin = packet.readInt();
+				_pinMappingInputs[circuitIndex][p] = new PinMapping(pin, buffer);
+			}
+			
+			int outputCount = packet.readInt();
+			for(int p = 0; p < outputCount; p++)
+			{
+				int buffer = packet.readInt();
+				int pin = packet.readInt();
+				_pinMappingOutputs[circuitIndex][p] = new PinMapping(pin, buffer);
+			}
+		}
+		catch(IOException x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	public void sendCircuitToPlayer(int circuit, EntityPlayer player)
+	{
+		List<Object> data = new ArrayList<Object>();
+		
+		data.add(xCoord);
+		data.add(yCoord);
+		data.add(zCoord);
+		
+		data.add(circuit);
+
+		data.add(_circuits[circuit].getClass().getName());
+		data.add(_circuits[circuit].getInputCount());
+		for(int p = 0; p < _pinMappingInputs[circuit].length; p++)
+		{
+			data.add(_pinMappingInputs[circuit][p].buffer);
+			data.add(_pinMappingInputs[circuit][p].pin);
+		}
+		data.add(_circuits[circuit].getOutputCount());
+		for(int p = 0; p < _pinMappingOutputs[circuit].length; p++)
+		{
+			data.add(_pinMappingOutputs[circuit][p].buffer);
+			data.add(_pinMappingOutputs[circuit][p].pin);
+		}
+		
+		PacketDispatcher.sendPacketToPlayer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.LogicCircuitDefinition, data.toArray()), (Player)player);
 	}
 	
 	@Override
@@ -90,7 +201,6 @@ public class TileEntityRedNetLogic extends TileEntity
 				_buffers[_pinMappingOutputs[circuitNum][pinNum].buffer][_pinMappingOutputs[circuitNum][pinNum].pin] = output[pinNum];
 			}
 		}
-		
 		
 		if(!Arrays.areEqual(lastOuput, _buffers[2]))
 		{
@@ -162,9 +272,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		{
 			for(int c = 0; c < circuits.tagCount(); c++)
 			{
-				_circuits[c] = getCircuit(((NBTTagCompound)circuits.tagAt(c)).getString("circuit"));
-				_pinMappingInputs[c] = new PinMapping[_circuits[c].getInputCount()];
-				_pinMappingOutputs[c] = new PinMapping[_circuits[c].getOutputCount()];
+				initCircuit(c, ((NBTTagCompound)circuits.tagAt(c)).getString("circuit"));
 				
 				NBTTagList inputPins = ((NBTTagCompound)circuits.tagAt(c)).getTagList("inputPins");
 				if(inputPins != null)

@@ -9,6 +9,7 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 
 import powercrystals.core.net.PacketWrapper;
+import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
@@ -96,6 +97,48 @@ public class ServerPacketHandler implements IPacketHandler
 			if(te instanceof TileEntityAutoSpawner)
 			{
 				((TileEntityAutoSpawner)te).setSpawnExact(!((TileEntityAutoSpawner)te).getSpawnExact());
+			}
+		}
+		else if(packetType == Packets.LogicRequestCircuitDefinition) // client -> server: request circuit from server
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityRedNetLogic)
+			{
+				((TileEntityRedNetLogic)te).sendCircuitToPlayer((Integer)packetReadout[3], ((EntityPlayer)player));
+			}
+		}
+		else if(packetType == Packets.LogicSetCircuit) // client -> server: set circuit
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, String.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityRedNetLogic)
+			{
+				((TileEntityRedNetLogic)te).initCircuit((Integer)packetReadout[3], (String)packetReadout[4]);
+				((TileEntityRedNetLogic)te).sendCircuitToPlayer((Integer)packetReadout[3], ((EntityPlayer)player));
+			}
+		}
+		else if(packetType == Packets.LogicSetPin) // client -> server: set pin
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityRedNetLogic)
+			{
+				if((Integer)packetReadout[3] == 0)
+				{
+					((TileEntityRedNetLogic)te).setInputPinMapping((Integer)packetReadout[4], (Integer)packetReadout[5], (Integer)packetReadout[6], (Integer)packetReadout[7]);
+				}
+				else if((Integer)packetReadout[3] == 1)
+				{
+					((TileEntityRedNetLogic)te).setOutputPinMapping((Integer)packetReadout[4], (Integer)packetReadout[5], (Integer)packetReadout[6], (Integer)packetReadout[7]);
+				}
+				((TileEntityRedNetLogic)te).sendCircuitToPlayer((Integer)packetReadout[4], ((EntityPlayer)player));
 			}
 		}
 	}

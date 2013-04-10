@@ -2,12 +2,14 @@ package powercrystals.minefactoryreloaded.circuits;
 
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
-public class And3 implements IRedNetLogicCircuit
+public class SineWaveGenerator implements IRedNetLogicCircuit
 {
+	private boolean _invert = false;
+	
 	@Override
 	public int getInputCount()
 	{
-		return 3;
+		return 0;
 	}
 
 	@Override
@@ -19,28 +21,30 @@ public class And3 implements IRedNetLogicCircuit
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
-		if(inputValues[0] > 0 && inputValues[1] > 0 && inputValues[2] > 0)
+		int value = (int)(worldTime % 16);
+		
+		if(value == 0)
 		{
-			return new int[] { 15 };
+			_invert = !_invert;
 		}
-		return new int[] { 0 };
+		return new int[] { _invert ? 15 - value : value };
 	}
 
 	@Override
 	public String getUnlocalizedName()
 	{
-		return "circuit.mfr.and.3";
+		return "circuit.mfr.wavegenerator.sine";
 	}
 
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "I" + pin;
+		return "";
 	}
 
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O" + pin;
+		return "Q";
 	}
 }

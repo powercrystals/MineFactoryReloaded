@@ -13,4 +13,8 @@ public final class Packets
 	public static final int AutoJukeboxButton = 9;
 	public static final int AutoSpawnerButton = 10;
 	public static final int CableDescription = 11;
+	public static final int LogicCircuitDefinition = 12;
+	public static final int LogicRequestCircuitDefinition = 13;
+	public static final int LogicSetCircuit = 14;
+	public static final int LogicSetPin = 15;
 }

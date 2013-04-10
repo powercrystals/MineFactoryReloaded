@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.circuits;
 
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
-public class And3 implements IRedNetLogicCircuit
+public class AdderDigitalFull implements IRedNetLogicCircuit
 {
 	@Override
 	public int getInputCount()
@@ -13,34 +13,32 @@ public class And3 implements IRedNetLogicCircuit
 	@Override
 	public int getOutputCount()
 	{
-		return 1;
+		return 2;
 	}
 
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
-		if(inputValues[0] > 0 && inputValues[1] > 0 && inputValues[2] > 0)
-		{
-			return new int[] { 15 };
-		}
-		return new int[] { 0 };
+		int s = ((inputValues[0] > 0 ^ inputValues[1] > 0) ^ inputValues[2] > 0) ? 15 : 0;
+		int c = ((inputValues[0] > 0 && inputValues[1] > 0) || ((inputValues[0] > 0 ^ inputValues[1] > 0) && inputValues[2] > 0)) ? 15 : 0;
+		return new int[] { s, c };
 	}
 
 	@Override
 	public String getUnlocalizedName()
 	{
-		return "circuit.mfr.and.3";
+		return "circuit.mfr.adder.digital.full";
 	}
 
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "I" + pin;
+		return pin == 0 ? "A" : pin == 1 ? "B" : "Cin";
 	}
 
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O" + pin;
+		return pin == 0 ? "S" : "Cout";
 	}
 }

@@ -1,10 +1,12 @@
 package powercrystals.minefactoryreloaded.block;
 
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -25,7 +27,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
-		return RedNetConnectionType.PlateAll;
+		return RedNetConnectionType.CableAll;
 	}
 
 	@Override
@@ -69,5 +71,12 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	@Override
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{
+	}
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
+	{
+		player.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
+		return true;
 	}
 }

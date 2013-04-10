@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.circuits;
 
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
-public class And3 implements IRedNetLogicCircuit
+public class Xnor3 implements IRedNetLogicCircuit
 {
 	@Override
 	public int getInputCount()
@@ -19,7 +19,7 @@ public class And3 implements IRedNetLogicCircuit
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
-		if(inputValues[0] > 0 && inputValues[1] > 0 && inputValues[2] > 0)
+		if(!(inputValues[0] > 0 ^ inputValues[1] > 0 ^ inputValues[2] > 0))
 		{
 			return new int[] { 15 };
 		}
@@ -29,7 +29,7 @@ public class And3 implements IRedNetLogicCircuit
 	@Override
 	public String getUnlocalizedName()
 	{
-		return "circuit.mfr.and.3";
+		return "circuit.mfr.xnor.3";
 	}
 
 	@Override
