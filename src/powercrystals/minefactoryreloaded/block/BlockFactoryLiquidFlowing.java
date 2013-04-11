@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.Random;
 
+import net.minecraftforge.liquids.ILiquid;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
 import cpw.mods.fml.relauncher.Side;
@@ -19,7 +20,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockFactoryLiquidFlowing extends BlockFlowing
+public class BlockFactoryLiquidFlowing extends BlockFlowing implements ILiquid
 {
 	protected int numAdjacentSources = 0;
 	protected boolean[] isOptimalFlowDirection = new boolean[4];
@@ -411,5 +412,23 @@ public class BlockFactoryLiquidFlowing extends BlockFlowing
 		}
 
 		return j1;
+	}
+
+	@Override
+	public int stillLiquidId()
+	{
+		return this._stillId;
+	}
+
+	@Override
+	public boolean isMetaSensitive()
+	{
+		return false;
+	}
+
+	@Override
+	public int stillLiquidMeta()
+	{
+		return 0;
 	}
 }
