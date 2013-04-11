@@ -34,10 +34,9 @@ import powercrystals.minefactoryreloaded.block.BlockConveyor;
 import powercrystals.minefactoryreloaded.block.BlockFactoryDecorativeBricks;
 import powercrystals.minefactoryreloaded.block.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.block.BlockFactoryGlassPane;
-import powercrystals.minefactoryreloaded.block.BlockFactoryLiquidFlowing;
-import powercrystals.minefactoryreloaded.block.BlockFactoryLiquidStill;
 import powercrystals.minefactoryreloaded.block.BlockFactoryMachine;
 import powercrystals.minefactoryreloaded.block.BlockFactoryRoad;
+import powercrystals.minefactoryreloaded.block.BlockFluidFactory;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoDropoff;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoPickup;
 import powercrystals.minefactoryreloaded.block.BlockRailPassengerDropoff;
@@ -118,7 +117,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static final String modId = "MineFactoryReloaded";
 	public static final String modNetworkChannel = "MFReloaded";
-	public static final String version = "1.5.1R2.4.0B3";
+	public static final String version = "1.5.1R2.4.0RC1";
 	public static final String modName = "Minefactory Reloaded";
 	
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
@@ -128,6 +127,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static int renderIdConveyor = 1000;
 	public static int renderIdFactoryGlassPane = 1001;
 	public static int renderIdRedstoneCable = 1002;
+	public static int renderIdFluidClassic = 1003;
 	
 	public static Map<Integer, Block> machineBlocks = new HashMap<Integer, Block>();
 	
@@ -149,16 +149,11 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static BlockRedstoneCable rednetCableBlock;
 	
-	public static Block milkFlowing;
-	public static Block milkStill;
-	public static Block sludgeFlowing;
-	public static Block sludgeStill;
-	public static Block sewageFlowing;
-	public static Block sewageStill;
-	public static Block essenceFlowing;
-	public static Block essenceStill;
-	public static Block biofuelFlowing;
-	public static Block biofuelStill;
+	public static Block milkLiquid;
+	public static Block sludgeLiquid;
+	public static Block sewageLiquid;
+	public static Block essenceLiquid;
+	public static Block biofuelLiquid;
 
 	public static Item machineItem;
 
@@ -217,15 +212,10 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static Property rednetCableBlockId;
 	
-	public static Property milkFlowingBlockId;
 	public static Property milkStillBlockId;
-	public static Property sludgeFlowingBlockId;
 	public static Property sludgeStillBlockId;
-	public static Property sewageFlowingBlockId;
 	public static Property sewageStillBlockId;
-	public static Property essenceFlowingBlockId;
 	public static Property essenceStillBlockId;
-	public static Property biofuelFlowingBlockId;
 	public static Property biofuelStillBlockId;
 
 	public static Property hammerItemId;
@@ -329,25 +319,20 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt());
 		rednetCableBlock = new BlockRedstoneCable(rednetCableBlockId.getInt());
 		
-		milkStill = new BlockFactoryLiquidStill(milkFlowingBlockId.getInt(), milkStillBlockId.getInt(), "milk");
-		milkFlowing = new BlockFactoryLiquidFlowing(milkFlowingBlockId.getInt(), milkStillBlockId.getInt(), "milk");
-		sludgeStill = new BlockFactoryLiquidStill(sludgeFlowingBlockId.getInt(), sludgeStillBlockId.getInt(), "sludge");
-		sludgeFlowing = new BlockFactoryLiquidFlowing(sludgeFlowingBlockId.getInt(), sludgeStillBlockId.getInt(), "sludge");
-		sewageStill = new BlockFactoryLiquidStill(sewageFlowingBlockId.getInt(), sewageStillBlockId.getInt(), "sewage");
-		sewageFlowing = new BlockFactoryLiquidFlowing(sewageFlowingBlockId.getInt(), sewageStillBlockId.getInt(), "sewage");
-		essenceStill = new BlockFactoryLiquidStill(essenceFlowingBlockId.getInt(), essenceStillBlockId.getInt(), "essence");
-		essenceFlowing = new BlockFactoryLiquidFlowing(essenceFlowingBlockId.getInt(), essenceStillBlockId.getInt(), "essence");
-		biofuelStill = new BlockFactoryLiquidStill(biofuelFlowingBlockId.getInt(), biofuelStillBlockId.getInt(), "biofuel");
-		biofuelFlowing = new BlockFactoryLiquidFlowing(biofuelFlowingBlockId.getInt(), biofuelStillBlockId.getInt(), "biofuel");
+		milkLiquid = new BlockFluidFactory(milkStillBlockId.getInt(), "milk");
+		sludgeLiquid = new BlockFluidFactory(sludgeStillBlockId.getInt(), "sludge");
+		sewageLiquid = new BlockFluidFactory(sewageStillBlockId.getInt(), "sewage");
+		essenceLiquid = new BlockFluidFactory(essenceStillBlockId.getInt(), "essence");
+		biofuelLiquid = new BlockFluidFactory(biofuelStillBlockId.getInt(), "biofuel");
 
 		factoryHammerItem = (new ItemFactoryHammer(hammerItemId.getInt())).setUnlocalizedName("mfr.hammer").setMaxStackSize(1);
 		fertilizerItem = (new ItemFactory(fertilizerItemId.getInt())).setUnlocalizedName("mfr.fertilizer");
 		plasticSheetItem = (new ItemFactory(plasticSheetItemId.getInt())).setUnlocalizedName("mfr.plastic.sheet");
 		rawPlasticItem = (new ItemFactory(rawPlasticItemId.getInt())).setUnlocalizedName("mfr.plastic.raw");
 		rubberBarItem = (new ItemFactory(rubberBarItemId.getInt())).setUnlocalizedName("mfr.rubber.bar");
-		sewageBucketItem = (new ItemFactoryBucket(sewageBucketItemId.getInt(), sewageFlowing.blockID)).setUnlocalizedName("mfr.bucket.sewage").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		sludgeBucketItem = (new ItemFactoryBucket(sludgeBucketItemId.getInt(), sludgeFlowing.blockID)).setUnlocalizedName("mfr.bucket.sludge").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
-		mobEssenceBucketItem = (new ItemFactoryBucket(mobEssenceBucketItemId.getInt(), essenceFlowing.blockID)).setUnlocalizedName("mfr.bucket.essence").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		sewageBucketItem = (new ItemFactoryBucket(sewageBucketItemId.getInt(), sewageLiquid.blockID)).setUnlocalizedName("mfr.bucket.sewage").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		sludgeBucketItem = (new ItemFactoryBucket(sludgeBucketItemId.getInt(), sludgeLiquid.blockID)).setUnlocalizedName("mfr.bucket.sludge").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		mobEssenceBucketItem = (new ItemFactoryBucket(mobEssenceBucketItemId.getInt(), essenceLiquid.blockID)).setUnlocalizedName("mfr.bucket.essence").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		syringeEmptyItem = (new ItemFactory(syringeEmptyItemId.getInt())).setUnlocalizedName("mfr.syringe.empty");
 		syringeHealthItem = (new ItemSyringeHealth()).setUnlocalizedName("mfr.syringe.health").setContainerItem(syringeEmptyItem);
 		syringeGrowthItem = (new ItemSyringeGrowth()).setUnlocalizedName("mfr.syringe.growth").setContainerItem(syringeEmptyItem);
@@ -358,7 +343,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		blankRecordItem = (new ItemFactory(blankRecordId.getInt())).setUnlocalizedName("mfr.record.blank").setMaxStackSize(1);
 		syringeZombieItem = (new ItemSyringeZombie()).setUnlocalizedName("mfr.syringe.zombie").setContainerItem(syringeEmptyItem);
 		safariNetSingleItem = (new ItemSafariNet(safariNetSingleItemId.getInt())).setUnlocalizedName("mfr.safarinet.singleuse");
-		bioFuelBucketItem = (new ItemFactoryBucket(bioFuelBucketItemId.getInt(), biofuelFlowing.blockID)).setUnlocalizedName("mfr.bucket.biofuel").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+		bioFuelBucketItem = (new ItemFactoryBucket(bioFuelBucketItemId.getInt(), biofuelLiquid.blockID)).setUnlocalizedName("mfr.bucket.biofuel").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		upgradeItem = (new ItemUpgrade(upgradeItemId.getInt())).setUnlocalizedName("mfr.upgrade.radius").setMaxStackSize(1);
 		safariNetLauncherItem = (new ItemSafariNetLauncher(safariNetLauncherItemId.getInt())).setUnlocalizedName("mfr.safarinet.launcher").setMaxStackSize(1);
 		sugarCharcoalItem = (new ItemFactory(sugarCharcoalItemId.getInt())).setUnlocalizedName("mfr.sugarcharcoal");
@@ -389,16 +374,11 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerBlock(railDropoffPassengerBlock, railDropoffPassengerBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(rednetCableBlock, rednetCableBlock.getUnlocalizedName());
 		
-		GameRegistry.registerBlock(milkStill, milkStill.getUnlocalizedName());
-		GameRegistry.registerBlock(milkFlowing, milkFlowing.getUnlocalizedName());
-		GameRegistry.registerBlock(sludgeStill, sludgeStill.getUnlocalizedName());
-		GameRegistry.registerBlock(sludgeFlowing, sludgeFlowing.getUnlocalizedName());
-		GameRegistry.registerBlock(sewageStill, sewageStill.getUnlocalizedName());
-		GameRegistry.registerBlock(sewageFlowing, sewageFlowing.getUnlocalizedName());
-		GameRegistry.registerBlock(essenceStill, essenceStill.getUnlocalizedName());
-		GameRegistry.registerBlock(essenceFlowing, essenceFlowing.getUnlocalizedName());
-		GameRegistry.registerBlock(biofuelStill, biofuelStill.getUnlocalizedName());
-		GameRegistry.registerBlock(biofuelFlowing, biofuelFlowing.getUnlocalizedName());
+		GameRegistry.registerBlock(milkLiquid, milkLiquid.getUnlocalizedName());
+		GameRegistry.registerBlock(sludgeLiquid, sludgeLiquid.getUnlocalizedName());
+		GameRegistry.registerBlock(sewageLiquid, sewageLiquid.getUnlocalizedName());
+		GameRegistry.registerBlock(essenceLiquid, essenceLiquid.getUnlocalizedName());
+		GameRegistry.registerBlock(biofuelLiquid, biofuelLiquid.getUnlocalizedName());
 		
 		Block.setBurnProperties(rubberWoodBlock.blockID, 4, 20);
 		Block.setBurnProperties(rubberLeavesBlock.blockID, 30, 20);
@@ -421,7 +401,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		{
 			int milkBucketId = Item.bucketMilk.itemID;
 			Item.itemsList[milkBucketId] = null;
-			Item.bucketMilk = new ItemFactoryBucket(milkBucketId, milkFlowing.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+			Item.bucketMilk = new ItemFactoryBucket(milkBucketId, milkLiquid.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		}
 
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "factoryConveyor");
@@ -462,11 +442,11 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	@PostInit
 	public void postInit(FMLPostInitializationEvent evt)
 	{
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("milk", new LiquidStack(milkStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(Item.bucketMilk), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sludge", new LiquidStack(sludgeStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sludgeBucketItem), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sewage", new LiquidStack(sewageStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sewageBucketItem), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mobEssence", new LiquidStack(essenceStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(mobEssenceBucketItem), new ItemStack(Item.bucketEmpty)));
-		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("biofuel", new LiquidStack(biofuelStill,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(bioFuelBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("milk", new LiquidStack(milkLiquid,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(Item.bucketMilk), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sludge", new LiquidStack(sludgeLiquid,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sludgeBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("sewage", new LiquidStack(sewageLiquid,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(sewageBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mobEssence", new LiquidStack(essenceLiquid,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(mobEssenceBucketItem), new ItemStack(Item.bucketEmpty)));
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("biofuel", new LiquidStack(biofuelLiquid,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(bioFuelBucketItem), new ItemStack(Item.bucketEmpty)));
 		
 		for(ItemStack s : OreDictionary.getOres("itemRubber"))
 		{
@@ -513,11 +493,11 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	private ItemStack fillBucket(World world, MovingObjectPosition block)
 	{
 		int blockId = world.getBlockId(block.blockX, block.blockY, block.blockZ);
-		if(blockId == milkFlowing.blockID || blockId == milkStill.blockID) return new ItemStack(Item.bucketMilk);
-		else if(blockId == sludgeFlowing.blockID || blockId == sludgeStill.blockID) return new ItemStack(sludgeBucketItem);
-		else if(blockId == sewageFlowing.blockID || blockId == sewageStill.blockID) return new ItemStack(sewageBucketItem);
-		else if(blockId == essenceFlowing.blockID || blockId == essenceStill.blockID) return new ItemStack(mobEssenceBucketItem);
-		else if(blockId == biofuelFlowing.blockID || blockId == biofuelStill.blockID) return new ItemStack(bioFuelBucketItem);
+		if(blockId == milkLiquid.blockID) return new ItemStack(Item.bucketMilk);
+		else if(blockId == sludgeLiquid.blockID) return new ItemStack(sludgeBucketItem);
+		else if(blockId == sewageLiquid.blockID) return new ItemStack(sewageBucketItem);
+		else if(blockId == essenceLiquid.blockID) return new ItemStack(mobEssenceBucketItem);
+		else if(blockId == biofuelLiquid.blockID) return new ItemStack(bioFuelBucketItem);
 		else return null;
 	}
 
@@ -549,15 +529,10 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		machineBlock1Id = c.getBlock("ID.MachineBlock1", 3131);
 		factoryRoadBlockId = c.getBlock("ID.Road", 3132);
 		factoryDecorativeBrickBlockId = c.getBlock("ID.Bricks", 3133);
-		milkFlowingBlockId = c.getBlock("ID.Milk.Flowing", 3134);
 		milkStillBlockId = c.getBlock("ID.Milk.Still", 3135);
-		sludgeFlowingBlockId = c.getBlock("ID.Sludge.Flowing", 3136);
 		sludgeStillBlockId = c.getBlock("ID.Sludge.Still", 3137);
-		sewageFlowingBlockId = c.getBlock("ID.Sewage.Flowing", 3138);
 		sewageStillBlockId = c.getBlock("ID.Sewage.Still", 3139);
-		essenceFlowingBlockId = c.getBlock("ID.MobEssence.Flowing", 3140);
 		essenceStillBlockId = c.getBlock("ID.MobEssence.Still", 3141);
-		biofuelFlowingBlockId = c.getBlock("ID.BioFuel.Flowing", 3142);
 		biofuelStillBlockId = c.getBlock("ID.BioFuel.Still", 3143);
 		rednetCableBlockId = c.getBlock("ID.RedNet.Cable", 3144);
 

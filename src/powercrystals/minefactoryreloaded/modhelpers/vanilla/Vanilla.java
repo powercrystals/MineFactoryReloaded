@@ -238,15 +238,10 @@ public class Vanilla
 		MFRRegistry.registerLiquidDrinkHandler(Block.waterMoving.blockID, new DrinkHandlerWater());
 		MFRRegistry.registerLiquidDrinkHandler(Block.lavaStill.blockID, new DrinkHandlerLava());
 		MFRRegistry.registerLiquidDrinkHandler(Block.lavaMoving.blockID, new DrinkHandlerLava());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.milkStill.blockID, new DrinkHandlerMilk());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.milkFlowing.blockID, new DrinkHandlerMilk());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.biofuelStill.blockID, new DrinkHandlerBiofuel());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.biofuelFlowing.blockID, new DrinkHandlerBiofuel());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sewageStill.blockID, new DrinkHandlerSewage());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sewageFlowing.blockID, new DrinkHandlerSewage());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sludgeStill.blockID, new DrinkHandlerSludge());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sludgeFlowing.blockID, new DrinkHandlerSludge());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.essenceFlowing.blockID, new DrinkHandlerMobEssence());
-		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.essenceStill.blockID, new DrinkHandlerMobEssence());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.milkLiquid.blockID, new DrinkHandlerMilk());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.biofuelLiquid.blockID, new DrinkHandlerBiofuel());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sewageLiquid.blockID, new DrinkHandlerSewage());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sludgeLiquid.blockID, new DrinkHandlerSludge());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.essenceLiquid.blockID, new DrinkHandlerMobEssence());
 	}
 }

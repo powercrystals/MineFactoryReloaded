@@ -25,10 +25,10 @@ public class ClientProxy implements IMFRProxy
 	@ForgeSubscribe
 	public void onPostTextureStitch(TextureStitchEvent.Post e)
 	{
-		LiquidDictionary.getCanonicalLiquid("milk").setRenderingIcon(MineFactoryReloadedCore.milkStill.getBlockTextureFromSide(1));
-		LiquidDictionary.getCanonicalLiquid("sludge").setRenderingIcon(MineFactoryReloadedCore.sludgeStill.getBlockTextureFromSide(1));
-		LiquidDictionary.getCanonicalLiquid("sewage").setRenderingIcon(MineFactoryReloadedCore.sewageStill.getBlockTextureFromSide(1));
-		LiquidDictionary.getCanonicalLiquid("mobEssence").setRenderingIcon(MineFactoryReloadedCore.essenceStill.getBlockTextureFromSide(1));
-		LiquidDictionary.getCanonicalLiquid("biofuel").setRenderingIcon(MineFactoryReloadedCore.biofuelStill.getBlockTextureFromSide(1));
+		LiquidDictionary.getCanonicalLiquid("milk").setRenderingIcon(MineFactoryReloadedCore.milkLiquid.getBlockTextureFromSide(1));
+		LiquidDictionary.getCanonicalLiquid("sludge").setRenderingIcon(MineFactoryReloadedCore.sludgeLiquid.getBlockTextureFromSide(1));
+		LiquidDictionary.getCanonicalLiquid("sewage").setRenderingIcon(MineFactoryReloadedCore.sewageLiquid.getBlockTextureFromSide(1));
+		LiquidDictionary.getCanonicalLiquid("mobEssence").setRenderingIcon(MineFactoryReloadedCore.essenceLiquid.getBlockTextureFromSide(1));
+		LiquidDictionary.getCanonicalLiquid("biofuel").setRenderingIcon(MineFactoryReloadedCore.biofuelLiquid.getBlockTextureFromSide(1));
 	}
 }
