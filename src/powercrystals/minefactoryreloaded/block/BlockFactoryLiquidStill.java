@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.block;
 
+import net.minecraftforge.liquids.ILiquid;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,7 +16,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockFactoryLiquidStill extends BlockStationary
+public class BlockFactoryLiquidStill extends BlockStationary implements ILiquid
 {
 	private int _flowingId;
 
@@ -107,5 +108,23 @@ public class BlockFactoryLiquidStill extends BlockStationary
 		int meta = world.getBlockMetadata(x, y, z);
 		world.setBlock(x, y, z, _flowingId, meta, 2);
 		world.scheduleBlockUpdate(x, y, z, _flowingId, this.tickRate(world));
+	}
+
+	@Override
+	public int stillLiquidId()
+	{
+		return this.blockID;
+	}
+
+	@Override
+	public boolean isMetaSensitive()
+	{
+		return false;
+	}
+
+	@Override
+	public int stillLiquidMeta()
+	{
+		return 0;
 	}
 }
