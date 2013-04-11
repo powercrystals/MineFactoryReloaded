@@ -776,7 +776,7 @@ public class Vanilla
 					" B ",
 					"M M",
 					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.glowStone,
+					Character.valueOf('M'), Block.ice,
 				} );
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 1), new Object[]
@@ -785,7 +785,7 @@ public class Vanilla
 					" B ",
 					"M M",
 					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.ice,
+					Character.valueOf('M'), Block.glowStone,
 				} );
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 2), new Object[]
