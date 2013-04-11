@@ -204,7 +204,7 @@ public class BlockFactoryMachine extends BlockContainer
 			world.markBlockForUpdate(x, y, z);
 			return true;
 		}
-		else if(te instanceof TileEntityFactory && ((TileEntityFactory)te).getGui(entityplayer.inventory) != null)
+		else if(te instanceof TileEntityFactory && ((TileEntityFactory)te).getContainer(entityplayer.inventory) != null)
 		{
 			entityplayer.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
 			return true;
