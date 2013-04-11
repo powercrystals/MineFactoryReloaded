@@ -63,10 +63,10 @@ public class BiomesOPlenty
 			MFRRegistry.registerRubberTreeBiome("Woodland");
 			
 			String[] bopLeaves = {"acacia", "apple", "autumn", "bamboo", "dark", "dead", "blue", "fir", "holy", "mangrove", "orange", "origin", "palm", "pink", "red", "redwood", "white", "willow"};
-			String[] bopLogs = {"acacia", "bamboo", "cherry", "dark", "dead", "fir", "holy", "magic", "mangrove", "palm", "redwood", "willow"};
+			String[] bopLogs = {"acacia", "cherry", "dark", "dead", "fir", "holy", "magic", "mangrove", "palm", "redwood", "willow"};
 			String[] bopSaplings = {"acacia", "apple", "brown", "dark", "fir", "holy", "magic", "mangrove", "orange", "origin", "palm", "pink", "red", "redwood", "willow", "yellow"};
 			
-			String[] bopMiscTrunks = {"giantFlowerStem"};
+			String[] bopMiscTrunks = {"giantFlowerStem", "bamboo"};
 			String[] bopMiscLeaves = {"appleLeavesFruitless", "treeMoss", "giantFlowerRed", "giantFlowerYellow"}; 
 			String[] bopMiscStandardHarvestables = {"deadGrass", "desertGrass", "whiteFlower", "blueFlower", "purpleFlower", "orangeFlower", "tinyFlower", "glowFlower", "cattail", "willow", "thorn", "toadstool", "shortGrass", "bush", "originGrass", "barley", "tinyCactus", "deathbloom", "hydrangea", "violet", "mediumGrass", "duneGrass", "desertSprouts", "holyGrass", "holyTallGrass", "moss", "algae", "smolderingGrass"};   
 			String[] bopLeaveBottom = {"highGrassBottom", "highGrassTop"};
