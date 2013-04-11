@@ -5,7 +5,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 
@@ -43,7 +42,6 @@ public class FertilizableSaplingReflection implements IFactoryFertilizable
 		{
 			e.printStackTrace();
 		}
-		//return true if the target coords no longer contain a fertilizable block
-		return !MFRRegistry.getFertilizables().containsKey(world.getBlockId(x, y, z));
+		return world.getBlockId(x, y, z) != _blockId;
 	}
 }
