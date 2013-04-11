@@ -34,7 +34,7 @@ public class BlockFactoryLiquidStill extends BlockStationary
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if(entity instanceof EntityPlayer)
+		if(entity instanceof EntityPlayer || entity instanceof EntityLiving && !((EntityLiving)entity).isEntityUndead())
 		{
 			if(blockID == MineFactoryReloadedCore.sludgeStill.blockID)
 			{

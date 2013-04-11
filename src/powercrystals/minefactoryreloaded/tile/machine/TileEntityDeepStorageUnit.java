@@ -231,6 +231,33 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		return _isSideOutput[side.ordinal()] ? 1 : 2;
 	}
 	
+	/*
+	 * This is canAddItem
+	 * Should only allow matching items to be inserted in the "in" slot. Nothing goes in the "out" slot.
+	 */
+	@Override
+    public boolean func_102007_a(int slot, ItemStack stack, int sideordinal)
+	{
+		if(sideordinal > 5) return false;
+		if(!_isSideOutput[sideordinal])
+		{
+			ItemStack stored = getStoredItemType();
+			return (!stack.hasTagCompound() && (stored == null || stack.isItemEqual(stored)));
+		}
+		return false;
+	}
+
+	/*
+	 * This is canRemoveItem
+	 * Should only allow removal from the output slot.
+	 */
+	@Override
+    public boolean func_102008_b(int slot, ItemStack itemstack, int sideordinal)
+	{
+		if(sideordinal > 5) return false;
+		return _isSideOutput[sideordinal];
+	}
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{

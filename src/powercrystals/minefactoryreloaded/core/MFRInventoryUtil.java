@@ -17,7 +17,6 @@ import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.inventory.IInventoryManager;
 import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.position.BlockPosition;
-import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
 
 public abstract class MFRInventoryUtil
 {
@@ -173,21 +172,6 @@ public abstract class MFRInventoryUtil
 		// (2) Try to put stack in chests that are in valid directions
 		for(Entry<ForgeDirection, IInventory> chest : findChests(world, bp.x, bp.y, bp.z, dropdirections).entrySet())
 		{
-			if(chest.getValue() instanceof IDeepStorageUnit)
-			{
-				IDeepStorageUnit idsu = (IDeepStorageUnit)chest.getValue();
-				// don't put stack in a DSU if it has NBT data
-				if(stack.getTagCompound() != null)
-				{
-					continue;
-				}
-				// don't put stack in a DSU if the stored quantity is nonzero and it's mismatched with the stored item type
-				if(idsu.getStoredItemType() != null && (idsu.getStoredItemType().itemID != stack.itemID || idsu.getStoredItemType().getItemDamage() != stack.getItemDamage()))
-				{
-					continue;
-				}
-			}
-			// Try to put stack in all non-DSU inventories.
 			IInventoryManager manager = InventoryManager.create((IInventory)chest.getValue(), chest.getKey().getOpposite());
 			stack = manager.addItem(stack);
 			if(stack == null || stack.stackSize == 0)

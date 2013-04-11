@@ -1,9 +1,15 @@
 package powercrystals.minefactoryreloaded.modhelpers.forestry;
 
 import net.minecraft.item.Item;
+import net.minecraft.block.Block;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
+import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSapling;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
+import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -29,6 +35,24 @@ public class Forestry
 			if(fertilizer != null)
 			{
 				MFRRegistry.registerFertilizer(new FertilizerStandard(fertilizer.itemID, 0));
+			}
+			Class forestryBlocks = Class.forName("forestry.core.config.ForestryBlock");
+			if(forestryBlocks != null)
+			{
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log1").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log2").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log3").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log4").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log5").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log6").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log7").get(null)).blockID, HarvestType.Tree));
+				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log8").get(null)).blockID, HarvestType.Tree));
+				
+				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)forestryBlocks.getField("leaves").get(null)).blockID));
+				
+				MFRRegistry.registerPlantable(new PlantableStandard(((Block)forestryBlocks.getField("saplingGE").get(null)).blockID, ((Block)forestryBlocks.getField("saplingGE").get(null)).blockID));
+				
+				MFRRegistry.registerFertilizable(new FertilizableSapling(((Block)forestryBlocks.getField("saplingGE").get(null)).blockID));
 			}
 		}
 		catch (Exception x)
