@@ -81,6 +81,8 @@ public class Vanilla
 					Character.valueOf('S'), MineFactoryReloadedCore.syringeEmptyItem,
 				} );
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeCureItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleGold });
+		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
 				{
 					"WBW",
@@ -776,7 +778,7 @@ public class Vanilla
 					" B ",
 					"M M",
 					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.glowStone,
+					Character.valueOf('M'), Block.ice,
 				} );
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 1), new Object[]
@@ -785,7 +787,7 @@ public class Vanilla
 					" B ",
 					"M M",
 					Character.valueOf('B'), Block.brick,
-					Character.valueOf('M'), Block.ice,
+					Character.valueOf('M'), Block.glowStone,
 				} );
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 8, 2), new Object[]

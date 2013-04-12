@@ -8,22 +8,15 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 
-public class FertilizableCropReflection implements IFactoryFertilizable
+public class FertilizableSaplingReflection implements IFactoryFertilizable
 {
 	private Method _fertilize;
 	private int _blockId;
-	private int _targetMeta;
 	
-	public FertilizableCropReflection(int blockId, Method fertilize)
-	{
-		this(blockId, fertilize, 7);
-	}
-	
-	public FertilizableCropReflection(int blockId, Method fertilize, int targetMeta)
+	public FertilizableSaplingReflection(int blockId, Method fertilize)
 	{
 		_blockId = blockId;
 		_fertilize = fertilize;
-		_targetMeta = targetMeta;
 	}
 	
 	@Override
@@ -35,7 +28,7 @@ public class FertilizableCropReflection implements IFactoryFertilizable
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		return world.getBlockMetadata(x, y, z) < _targetMeta && fertilizerType == FertilizerType.GrowPlant;
+		return fertilizerType == FertilizerType.GrowPlant;
 	}
 
 	@Override
@@ -49,6 +42,6 @@ public class FertilizableCropReflection implements IFactoryFertilizable
 		{
 			e.printStackTrace();
 		}
-		return world.getBlockMetadata(x, y, z) >= _targetMeta;
+		return world.getBlockId(x, y, z) != _blockId;
 	}
 }

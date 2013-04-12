@@ -50,8 +50,8 @@ public class TwilightForest
 			
 			Class tfBighorn = Class.forName("twilightforest.entity.passive.EntityTFBighorn");
 			Class tfBoar = Class.forName("twilightforest.entity.passive.EntityTFBoar");
-			Class tfBoggard = Class.forName("twilightforest.entity.passive.EntityTFBoggard");
-			Class tfBunny = Class.forName("twilightforest.entity.EntityTFBunny");
+			Class tfBoggard = Class.forName("twilightforest.entity.EntityTFBoggard");
+			Class tfBunny = Class.forName("twilightforest.entity.passive.EntityTFBunny");
 			Class tfDeathTome = Class.forName("twilightforest.entity.EntityTFDeathTome");
 			Class tfDeer = Class.forName("twilightforest.entity.passive.EntityTFDeer");
 			Class tfFireBeetle = Class.forName("twilightforest.entity.EntityTFFireBeetle");

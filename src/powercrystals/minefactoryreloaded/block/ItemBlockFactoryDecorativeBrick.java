@@ -7,6 +7,6 @@ public class ItemBlockFactoryDecorativeBrick extends ItemBlockFactory
 		super(id);
 		setMaxDamage(0);
 		setHasSubtypes(true);
-		setNames(new String[] { "glowstone", "ice", "lapis", "obsidian", "pavedstone", "snow", "glowstone_large", "ice_large", "lapis_large", "obsidian_large", "snow_large" });
+		setNames(new String[] { "ice", "glowstone", "lapis", "obsidian", "pavedstone", "snow", "glowstone_large", "ice_large", "lapis_large", "obsidian_large", "snow_large" });
 	}
 }

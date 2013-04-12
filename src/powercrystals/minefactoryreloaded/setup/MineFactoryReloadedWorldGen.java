@@ -40,7 +40,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
 				int lakeZ = z - 8 + random.nextInt(16);
-				new WorldGenLakes(MineFactoryReloadedCore.sludgeStill.blockID).generate(world, random, lakeX, lakeY, lakeZ);
+				new WorldGenLakes(MineFactoryReloadedCore.sludgeLiquid.blockID).generate(world, random, lakeX, lakeY, lakeZ);
 			}
 			
 			if(random.nextInt(16) == 0)
@@ -48,7 +48,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
 				int lakeZ = z - 8 + random.nextInt(16);
-				new WorldGenLakes(MineFactoryReloadedCore.sewageStill.blockID).generate(world, random, lakeX, lakeY, lakeZ);
+				new WorldGenLakes(MineFactoryReloadedCore.sewageLiquid.blockID).generate(world, random, lakeX, lakeY, lakeZ);
 			}
 		}
 	}
