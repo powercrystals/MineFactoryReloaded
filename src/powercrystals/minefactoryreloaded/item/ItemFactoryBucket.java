@@ -9,13 +9,17 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemFactoryBucket extends ItemBucket
 {
+	private int _liquidId;
+	
 	public ItemFactoryBucket(int id, int liquidId)
 	{
 		super(id, liquidId);
 		setCreativeTab(MFRCreativeTab.tab);
+		_liquidId = liquidId;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -23,6 +27,24 @@ public class ItemFactoryBucket extends ItemBucket
 	public void updateIcons(IconRegister par1IconRegister)
 	{
 		this.iconIndex = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+	}
+	
+	@Override
+	public boolean tryPlaceContainedLiquid(World world, double xOffset, double yOffset, double zOffset, int x, int y, int z)
+	{
+		if(_liquidId <= 0)
+		{
+			return false;
+		}
+		else if(!world.isAirBlock(x, y, z) && world.getBlockMaterial(x, y, z).isSolid())
+		{
+			return false;
+		}
+		else
+		{
+			 world.setBlock(x, y, z, _liquidId, 7, 3);
+			return true;
+		}
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
