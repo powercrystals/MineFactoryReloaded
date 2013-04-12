@@ -294,7 +294,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		loadCommonConfig(getCommonConfig());
 		loadClientConfig(getClientConfig());
 		
-		extractLang(new String[] { "en_US" });
+		extractLang(new String[] { "en_US", "es_AR", "es_ES", "es_MX", "es_UY", "es_VE" });
 		loadLang();
 	}
 
