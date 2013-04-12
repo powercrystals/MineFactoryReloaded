@@ -297,22 +297,15 @@ public class TileEntityRedNetLogic extends TileEntity
 				}
 			}
 		}
-		
-		/*_circuits[0] = getCircuit("powercrystals.minefactoryreloaded.circuits.And3");
-		_pinMappingInputs[0] = new PinMapping[_circuits[0].getInputCount()];
-		_pinMappingOutputs[0] = new PinMapping[_circuits[0].getOutputCount()];
-		_pinMappingInputs[0][0] = new PinMapping(0, 0);
-		_pinMappingInputs[0][1] = new PinMapping(2, 0);
-		_pinMappingInputs[0][2] = new PinMapping(4, 0);
-		_pinMappingOutputs[0][0] = new PinMapping(6, 2);
-		
-		_circuits[1] = getCircuit("powercrystals.minefactoryreloaded.circuits.Or3");
-		_pinMappingInputs[1] = new PinMapping[_circuits[1].getInputCount()];
-		_pinMappingOutputs[1] = new PinMapping[_circuits[1].getOutputCount()];
-		_pinMappingInputs[1][0] = new PinMapping(1, 0);
-		_pinMappingInputs[1][1] = new PinMapping(3, 0);
-		_pinMappingInputs[1][2] = new PinMapping(5, 0);
-		_pinMappingOutputs[1][0] = new PinMapping(7, 2);*/
 	}
 	
+	public int getLevelForSlot(int slot)
+	{
+		return slot / 2;
+	}
+	
+	public int getRotation()
+	{
+		return 0;
+	}
 }

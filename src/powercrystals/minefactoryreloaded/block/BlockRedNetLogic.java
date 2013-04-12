@@ -79,4 +79,28 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		player.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
 		return true;
 	}
+	
+	@Override
+	public int getRenderType()
+	{
+		return MineFactoryReloadedCore.renderIdRedNetLogic;
+	}
+	
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isBlockNormalCube(World world, int x, int y, int z)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return true;
+	}
 }

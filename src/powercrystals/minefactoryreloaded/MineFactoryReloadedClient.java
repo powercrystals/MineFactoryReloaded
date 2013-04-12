@@ -1,10 +1,12 @@
 package powercrystals.minefactoryreloaded;
 
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
+import powercrystals.minefactoryreloaded.render.RedNetLogicRenderer;
 import powercrystals.minefactoryreloaded.render.RedstoneCableRenderer;
 import powercrystals.minefactoryreloaded.render.RenderEntitySafariNet;
 import powercrystals.minefactoryreloaded.render.RendererConveyor;
 import powercrystals.minefactoryreloaded.render.RendererFactoryGlassPane;
+import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -25,5 +27,9 @@ public class MineFactoryReloadedClient
 		RedstoneCableRenderer renderer = new RedstoneCableRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileRedstoneCable.class, renderer);
 		RenderingRegistry.registerBlockHandler(renderer);
+		
+		RedNetLogicRenderer logicRender = new RedNetLogicRenderer();
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRedNetLogic.class, logicRender);
+		RenderingRegistry.registerBlockHandler(logicRender);
 	}
 }
