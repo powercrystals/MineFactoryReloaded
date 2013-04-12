@@ -301,7 +301,7 @@ public class TileEntityRedNetLogic extends TileEntity
 	
 	public int getLevelForSlot(int slot)
 	{
-		return slot / 2;
+		return Math.max(zCoord % 16, 2);
 	}
 	
 	public int getRotation()
