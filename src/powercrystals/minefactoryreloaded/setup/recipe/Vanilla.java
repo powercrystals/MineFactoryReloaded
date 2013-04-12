@@ -81,6 +81,8 @@ public class Vanilla
 					Character.valueOf('S'), MineFactoryReloadedCore.syringeEmptyItem,
 				} );
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeCureItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleGold });
+		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
 				{
 					"WBW",
