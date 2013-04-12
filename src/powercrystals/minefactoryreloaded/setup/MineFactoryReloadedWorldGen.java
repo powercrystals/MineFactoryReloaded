@@ -9,7 +9,6 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.feature.WorldGenLakes;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class MineFactoryReloadedWorldGen implements IWorldGenerator
@@ -40,7 +39,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
 				int lakeZ = z - 8 + random.nextInt(16);
-				new WorldGenLakes(MineFactoryReloadedCore.sludgeLiquid.blockID).generate(world, random, lakeX, lakeY, lakeZ);
+				new WorldGenLakesMeta(MineFactoryReloadedCore.sludgeLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
 			}
 			
 			if(random.nextInt(16) == 0)
@@ -48,7 +47,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
 				int lakeZ = z - 8 + random.nextInt(16);
-				new WorldGenLakes(MineFactoryReloadedCore.sewageLiquid.blockID).generate(world, random, lakeX, lakeY, lakeZ);
+				new WorldGenLakesMeta(MineFactoryReloadedCore.sewageLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
 			}
 		}
 	}
