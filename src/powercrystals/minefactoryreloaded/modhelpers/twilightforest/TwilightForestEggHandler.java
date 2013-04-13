@@ -15,6 +15,11 @@ public class TwilightForestEggHandler implements IMobEggHandler
 	public EntityEggInfo getEgg(ItemStack safariNet)
 	{
 		Class<? extends Entity> entityClass = (Class<? extends Entity>)EntityList.stringToClassMapping.get(safariNet.getTagCompound().getString("id"));
+		if(entityClass == null)
+		{
+			return null;
+		}
+		
 		EntityRegistration er = EntityRegistry.instance().lookupModSpawn(entityClass, true);
 		if(er != null && er.getContainer() == TwilightForest.twilightForestContainer)
 		{
