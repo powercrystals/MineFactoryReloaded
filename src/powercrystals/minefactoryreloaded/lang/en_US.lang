@@ -97,6 +97,19 @@ tile.mfr.decorativebrick.lapis_large.name = Large Lapis Bricks
 tile.mfr.decorativebrick.obsidian_large.name = Large Obsidian Bricks
 tile.mfr.decorativebrick.snow_large.name = Large Snow Bricks
 
+tile.mfr.decorativestone.black.smooth.name = Smooth Blackstone
+tile.mfr.decorativestone.black.cobble.name = Cobble Blackstone
+tile.mfr.decorativestone.black.brick.small.name = Small Blackstone Bricks
+tile.mfr.decorativestone.black.brick.large.name = Large Blackstone Bricks
+tile.mfr.decorativestone.black.gravel.name = Blackstone Gravel
+tile.mfr.decorativestone.black.paved.name = Paved Blackstone
+tile.mfr.decorativestone.white.smooth.name = Smooth Whitestone
+tile.mfr.decorativestone.white.cobble.name = Cobble Whitestone
+tile.mfr.decorativestone.white.brick.small.name = Small Whitestone Bricks
+tile.mfr.decorativestone.white.brick.large.name = Large Whitestone Bricks
+tile.mfr.decorativestone.white.gravel.name = Whitestone Gravel
+tile.mfr.decorativestone.white.paved.name = Paved Whitestone
+
 tile.ice.unmelting.name = Ice (Unmelting)
 
 tile.mfr.rubberwood.sapling.name = Rubber Sapling

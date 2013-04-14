@@ -716,6 +716,114 @@ public class Vanilla
 					Character.valueOf('B'), Block.stoneBrick,
 					Character.valueOf('M'), Block.blockSnow,
 				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 0), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.stone,
+					Character.valueOf('D'), new ItemStack(Item.dyePowder, 1, 0),
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 1), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.stone,
+					Character.valueOf('D'), Item.sugar,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 2), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.cobblestone,
+					Character.valueOf('D'), new ItemStack(Item.dyePowder, 1, 0),
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 3), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.cobblestone,
+					Character.valueOf('D'), Item.sugar,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 4), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.stoneBrick,
+					Character.valueOf('D'), new ItemStack(Item.dyePowder, 1, 0),
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 5), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.stoneBrick,
+					Character.valueOf('D'), Item.sugar,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 6), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.brick,
+					Character.valueOf('D'), new ItemStack(Item.dyePowder, 1, 0),
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 7), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.brick,
+					Character.valueOf('D'), Item.sugar,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 8), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.gravel,
+					Character.valueOf('D'), new ItemStack(Item.dyePowder, 1, 0),
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 9), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), Block.gravel,
+					Character.valueOf('D'), Item.sugar,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 10), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), new ItemStack(Block.stoneSingleSlab, 1, 0),
+					Character.valueOf('D'), new ItemStack(Item.dyePowder, 1, 0),
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 11), new Object[]
+				{
+					"SSS",
+					"SDS",
+					"SSS",
+					Character.valueOf('S'), new ItemStack(Block.stoneSingleSlab, 1, 0),
+					Character.valueOf('D'), Item.sugar,
+				} );
 	}
 	
 	private static void registerSyringes()
