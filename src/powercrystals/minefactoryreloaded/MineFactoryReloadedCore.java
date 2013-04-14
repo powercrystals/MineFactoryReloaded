@@ -383,6 +383,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		Block.setBurnProperties(rubberWoodBlock.blockID, 4, 20);
 		Block.setBurnProperties(rubberLeavesBlock.blockID, 30, 20);
 		
+		MinecraftForge.setBlockHarvestLevel(MineFactoryReloadedCore.rednetCableBlock, 0, "pickaxe", 0);
+		
 		if(vanillaOverrideGlassPane.getBoolean(true))
 		{
 			Block.blocksList[Block.thinGlass.blockID] = null;
