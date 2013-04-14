@@ -12,163 +12,20 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class Vanilla
 {
 	public static void registerRecipes()
-	{	
-		FurnaceRecipes.smelting().addSmelting(MineFactoryReloadedCore.rawRubberItem.itemID, 0, new ItemStack(MineFactoryReloadedCore.rubberBarItem), 0.1F);
-		FurnaceRecipes.smelting().addSmelting(MineFactoryReloadedCore.rubberWoodBlock.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.1F);
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 3, 3), new ItemStack(MineFactoryReloadedCore.rubberWoodBlock));
-		
-		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 4), new Object[]
-				{
-					"R",
-					"S",
-					Character.valueOf('R'), MineFactoryReloadedCore.rawRubberItem,
-					Character.valueOf('S'), Item.stick
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(Block.pistonStickyBase), new Object[]
-				{
-					"R",
-					"P",
-					Character.valueOf('R'), MineFactoryReloadedCore.rawRubberItem,
-					Character.valueOf('P'), Block.pistonBase
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.plasticSheetItem, 4), new Object[]
-				{
-					"##",
-					"##",
-					Character.valueOf('#'), MineFactoryReloadedCore.rawPlasticItem,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBaseItem, 3), new Object[]
-				{
-					"PPP",
-					"SSS",
-					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('S'), Block.stone,
-				} );
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.syringeEmptyItem, 1), new Object[]
-				{
-					"PRP",
-					"P P",
-					" I ",
-					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('R'), "itemRubber",
-					Character.valueOf('I'), Item.ingotIron,
-				} ));
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeHealthItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleRed });
-		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeGrowthItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.goldenCarrot });
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.syringeZombieItem, 1), new Object[]
-				{
-					"FFF",
-					"FSF",
-					"FFF",
-					Character.valueOf('F'), Item.rottenFlesh,
-					Character.valueOf('S'), MineFactoryReloadedCore.syringeEmptyItem,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.syringeSlimeItem, 1), new Object[]
-				{
-					"   ",
-					" S ",
-					"BLB",
-					Character.valueOf('B'), Item.slimeBall,
-					Character.valueOf('L'), new ItemStack(Item.dyePowder, 1, 4),
-					Character.valueOf('S'), MineFactoryReloadedCore.syringeEmptyItem,
-				} );
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeCureItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleGold });
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
-				{
-					"WBW",
-					"STS",
-					"WBW",
-					Character.valueOf('W'), Item.wheat,
-					Character.valueOf('B'), new ItemStack(Item.dyePowder, 1, 15),
-					Character.valueOf('S'), Item.silk,
-					Character.valueOf('T'), Item.stick,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetItem, 1), new Object[]
-				{
-					" E ",
-					"EGE",
-					" E ",
-					Character.valueOf('E'), Item.enderPearl,
-					Character.valueOf('G'), Item.ghastTear,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetSingleItem, 1), new Object[]
-				{
-					"SLS",
-					" B ",
-					"S S",
-					Character.valueOf('S'), Item.silk,
-					Character.valueOf('L'), Item.leather,
-					Character.valueOf('B'), Item.slimeBall,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetLauncherItem, 1), new Object[]
-				{
-					"PGP",
-					"LGL",
-					"IRI",
-					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('L'), Item.lightStoneDust,
-					Character.valueOf('G'), Item.gunpowder,
-					Character.valueOf('I'), Item.ingotIron,
-					Character.valueOf('R'), Item.redstone,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryHammerItem, 1), new Object[]
-				{
-					"PPP",
-					" S ",
-					" S ",
-					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('S'), Item.stick,
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 16), new Object[]
-				{
-					"BBB",
-					"BPB",
-					"BBB",
-					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('B'), new ItemStack(Block.stoneBrick, 1, 0),
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 4, 1), new Object[]
-				{
-					"R R",
-					" G ",
-					"R R",
-					Character.valueOf('R'), new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 0),
-					Character.valueOf('G'), Block.redstoneLampIdle,
-				} );
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 4), new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 1));
-		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 1), new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 4));
-		
-		if(MineFactoryReloadedCore.vanillaOverrideIce.getBoolean(true))
-		{
-			GameRegistry.addShapelessRecipe(new ItemStack(Block.ice, 1, 1), new ItemStack(Block.ice, 1, 0), new ItemStack(MineFactoryReloadedCore.rawPlasticItem, 1));
-		}
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.blankRecordItem, 1), new Object[]
-				{
-					"RRR",
-					"RPR",
-					"RRR",
-					Character.valueOf('R'), MineFactoryReloadedCore.rawPlasticItem,
-					Character.valueOf('P'), Item.paper,
-				} );
-		
+	{
+		registerMachines();
+		registerMachineUpgrades();
+		registerConveyors();
+		registerDecorative();
+		registerSyringes();
+		registerMiscItems();
+		registerVanillaImprovements();
+		registerRails();
+		registerRedNet();
+	}
+	
+	private static void registerMachines()
+	{
 		if(Machine.Planter.getIsRecipeEnabled())
 		{
 			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 0), new Object[]
@@ -579,7 +436,10 @@ public class Vanilla
 						Character.valueOf('M'), MineFactoryReloadedCore.machineBaseItem,
 					} );
 		}
-		
+	}
+	
+	private static void registerMachineUpgrades()
+	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), new Object[]
 				{
 					"III",
@@ -700,11 +560,10 @@ public class Vanilla
 					Character.valueOf('R'), Item.redstone,
 					Character.valueOf('G'), Item.goldNugget,
 				} ));
-		
-		
-		
-		
-		
+	}
+	
+	private static void registerConveyors()
+	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 16, 16), new Object[]
 				{
 					"UUU",
@@ -714,53 +573,40 @@ public class Vanilla
 					Character.valueOf('I'), Item.ingotIron,
 				} ));
 		
-
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railPickupCargoBlock, 2), new Object[]
+		for(int i = 0; i < 16; i++)
+		{
+			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, i), new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, 16), new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 1, i));
+		}
+	}
+	
+	private static void registerDecorative()
+	{
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 16), new Object[]
 				{
-					" C ",
-					"SDS",
-					"SSS",
-					Character.valueOf('C'), Block.chest,
-					Character.valueOf('S'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('D'), Block.railDetector
+					"BBB",
+					"BPB",
+					"BBB",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('B'), new ItemStack(Block.stoneBrick, 1, 0),
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffCargoBlock, 2), new Object[]
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 4, 1), new Object[]
 				{
-					"SSS",
-					"SDS",
-					" C ",
-					Character.valueOf('C'), Block.chest,
-					Character.valueOf('S'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('D'), Block.railDetector
+					"R R",
+					" G ",
+					"R R",
+					Character.valueOf('R'), new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 0),
+					Character.valueOf('G'), Block.redstoneLampIdle,
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railPickupPassengerBlock, 3), new Object[]
-				{
-					" L ",
-					"SDS",
-					"SSS",
-					Character.valueOf('L'), Block.blockLapis,
-					Character.valueOf('S'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('D'), Block.railDetector
-				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffPassengerBlock, 3), new Object[]
-				{
-					"SSS",
-					"SDS",
-					" L ",
-					Character.valueOf('L'), Block.blockLapis,
-					Character.valueOf('S'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('D'), Block.railDetector
-				} );
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 4), new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 1), new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 1, 4));
 		
 		for(int i = 0; i < 16; i++)
 		{
 			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 4, i), new ItemStack(Item.clay), new ItemStack(Item.dyePowder, 1, 15 - i));
 			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryGlassBlock, 1, i), new ItemStack(Block.glass), new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 1, i));
 			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryGlassPaneBlock, 1, i), new ItemStack(Block.thinGlass), new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 1, i));
-			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, i), new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, 16), new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 1, i));
 			
 			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryGlassPaneBlock, 16, i), new Object[]
 					{
@@ -870,22 +716,121 @@ public class Vanilla
 					Character.valueOf('B'), Block.stoneBrick,
 					Character.valueOf('M'), Block.blockSnow,
 				} );
+	}
+	
+	private static void registerSyringes()
+	{
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.syringeEmptyItem, 1), new Object[]
+				{
+					"PRP",
+					"P P",
+					" I ",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('R'), "itemRubber",
+					Character.valueOf('I'), Item.ingotIron,
+				} ));
 		
-		if(MineFactoryReloadedCore.enableMossyCobbleRecipe.getBoolean(true))
-		{
-			GameRegistry.addShapelessRecipe(new ItemStack(Block.cobblestoneMossy), new Object[]
-					{
-						Block.cobblestone,
-						Item.bucketWater,
-						Item.wheat
-					} );
-		}
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeHealthItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleRed });
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeGrowthItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.goldenCarrot });
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.milkBottleItem), new Object[]
-					{
-						Item.bucketMilk,
-						Item.glassBottle
-					} );
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.syringeZombieItem, 1), new Object[]
+				{
+					"FFF",
+					"FSF",
+					"FFF",
+					Character.valueOf('F'), Item.rottenFlesh,
+					Character.valueOf('S'), MineFactoryReloadedCore.syringeEmptyItem,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.syringeSlimeItem, 1), new Object[]
+				{
+					"   ",
+					" S ",
+					"BLB",
+					Character.valueOf('B'), Item.slimeBall,
+					Character.valueOf('L'), new ItemStack(Item.dyePowder, 1, 4),
+					Character.valueOf('S'), MineFactoryReloadedCore.syringeEmptyItem,
+				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeCureItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleGold });
+	}
+	
+	private static void registerMiscItems()
+	{
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.plasticSheetItem, 4), new Object[]
+				{
+					"##",
+					"##",
+					Character.valueOf('#'), MineFactoryReloadedCore.rawPlasticItem,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBaseItem, 3), new Object[]
+				{
+					"PPP",
+					"SSS",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('S'), Block.stone,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
+				{
+					"WBW",
+					"STS",
+					"WBW",
+					Character.valueOf('W'), Item.wheat,
+					Character.valueOf('B'), new ItemStack(Item.dyePowder, 1, 15),
+					Character.valueOf('S'), Item.silk,
+					Character.valueOf('T'), Item.stick,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetItem, 1), new Object[]
+				{
+					" E ",
+					"EGE",
+					" E ",
+					Character.valueOf('E'), Item.enderPearl,
+					Character.valueOf('G'), Item.ghastTear,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetSingleItem, 1), new Object[]
+				{
+					"SLS",
+					" B ",
+					"S S",
+					Character.valueOf('S'), Item.silk,
+					Character.valueOf('L'), Item.leather,
+					Character.valueOf('B'), Item.slimeBall,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetLauncherItem, 1), new Object[]
+				{
+					"PGP",
+					"LGL",
+					"IRI",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('L'), Item.lightStoneDust,
+					Character.valueOf('G'), Item.gunpowder,
+					Character.valueOf('I'), Item.ingotIron,
+					Character.valueOf('R'), Item.redstone,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryHammerItem, 1), new Object[]
+				{
+					"PPP",
+					" S ",
+					" S ",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('S'), Item.stick,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.blankRecordItem, 1), new Object[]
+				{
+					"RRR",
+					"RPR",
+					"RRR",
+					Character.valueOf('R'), MineFactoryReloadedCore.rawPlasticItem,
+					Character.valueOf('P'), Item.paper,
+				} );
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.spyglassItem), new Object[]
 				{
@@ -926,6 +871,98 @@ public class Vanilla
 					Character.valueOf('L'), Block.glass,
 					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
 				} ));
+	}
+	
+	private static void registerVanillaImprovements()
+	{
+		FurnaceRecipes.smelting().addSmelting(MineFactoryReloadedCore.rawRubberItem.itemID, 0, new ItemStack(MineFactoryReloadedCore.rubberBarItem), 0.1F);
+		FurnaceRecipes.smelting().addSmelting(MineFactoryReloadedCore.rubberWoodBlock.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.1F);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 3, 3), new ItemStack(MineFactoryReloadedCore.rubberWoodBlock));
+		
+		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 4), new Object[]
+				{
+					"R",
+					"S",
+					Character.valueOf('R'), MineFactoryReloadedCore.rawRubberItem,
+					Character.valueOf('S'), Item.stick
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(Block.pistonStickyBase), new Object[]
+				{
+					"R",
+					"P",
+					Character.valueOf('R'), MineFactoryReloadedCore.rawRubberItem,
+					Character.valueOf('P'), Block.pistonBase
+				} );
+		
+		if(MineFactoryReloadedCore.vanillaOverrideIce.getBoolean(true))
+		{
+			GameRegistry.addShapelessRecipe(new ItemStack(Block.ice, 1, 1), new ItemStack(Block.ice, 1, 0), new ItemStack(MineFactoryReloadedCore.rawPlasticItem, 1));
+		}
+		
+		if(MineFactoryReloadedCore.enableMossyCobbleRecipe.getBoolean(true))
+		{
+			GameRegistry.addShapelessRecipe(new ItemStack(Block.cobblestoneMossy), new Object[]
+					{
+						Block.cobblestone,
+						Item.bucketWater,
+						Item.wheat
+					} );
+		}
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.milkBottleItem), new Object[]
+				{
+					Item.bucketMilk,
+					Item.glassBottle
+				} );
+	}
+	
+	private static void registerRails()
+	{
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railPickupCargoBlock, 2), new Object[]
+				{
+					" C ",
+					"SDS",
+					"SSS",
+					Character.valueOf('C'), Block.chest,
+					Character.valueOf('S'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('D'), Block.railDetector
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffCargoBlock, 2), new Object[]
+				{
+					"SSS",
+					"SDS",
+					" C ",
+					Character.valueOf('C'), Block.chest,
+					Character.valueOf('S'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('D'), Block.railDetector
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railPickupPassengerBlock, 3), new Object[]
+				{
+					" L ",
+					"SDS",
+					"SSS",
+					Character.valueOf('L'), Block.blockLapis,
+					Character.valueOf('S'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('D'), Block.railDetector
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffPassengerBlock, 3), new Object[]
+				{
+					"SSS",
+					"SDS",
+					" L ",
+					Character.valueOf('L'), Block.blockLapis,
+					Character.valueOf('S'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('D'), Block.railDetector
+				} );
+	}
+	
+	private static void registerRedNet()
+	{
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.rednetCableBlock, 8), new Object[]
 				{
