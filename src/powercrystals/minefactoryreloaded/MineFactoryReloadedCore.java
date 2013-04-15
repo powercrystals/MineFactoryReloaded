@@ -119,7 +119,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static final String modId = "MineFactoryReloaded";
 	public static final String modNetworkChannel = "MFReloaded";
-	public static final String version = "1.5.1R2.4.1";
+	public static final String version = "1.5.1R2.4.2";
 	public static final String modName = "Minefactory Reloaded";
 	
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
@@ -407,9 +407,9 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		}
 		if(vanillaOverrideMilkBucket.getBoolean(true))
 		{
-			int milkBucketId = Item.bucketMilk.itemID - 256;
+			int milkBucketId = Item.bucketMilk.itemID;
 			Item.itemsList[milkBucketId] = null;
-			Item.bucketMilk = new ItemFactoryBucket(milkBucketId, milkLiquid.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+			Item.bucketMilk = new ItemFactoryBucket(milkBucketId - 256, milkLiquid.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		}
 
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "factoryConveyor");
