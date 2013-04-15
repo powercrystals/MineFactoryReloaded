@@ -72,7 +72,7 @@
 		
 		<echo message="Exctracting UniversalElectricity API... " />
 		<unzip src="${download.dir}/ue-api.zip" dest="${download.dir}/universalelectricity/" />
-		<move file="${download.dir}/universalelectricity/minecraft/universalelectricity" todir="${mcpsrc.dir}" />
+		<move file="${download.dir}/universalelectricity/universalelectricity" todir="${mcpsrc.dir}" />
 	</target>
 
 
@@ -130,7 +130,7 @@
 
 		<!-- Reobf -->
 		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
-			<arg line="/c reobfuscate.bat --sgrnames"/>
+			<arg line="/c reobfuscate.bat --srgnames"/>
 		</exec>
 
 		<exec dir="${mcp.dir}" executable="sh" osfamily="unix">
