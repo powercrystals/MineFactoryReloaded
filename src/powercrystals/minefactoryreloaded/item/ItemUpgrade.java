@@ -45,7 +45,7 @@ public class ItemUpgrade extends ItemFactory
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateIcons(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
 		for(int i = 0; i < _upgradeIcons.length; i++)
 		{

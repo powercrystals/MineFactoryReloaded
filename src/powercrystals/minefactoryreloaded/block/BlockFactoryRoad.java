@@ -45,7 +45,7 @@ public class BlockFactoryRoad extends Block
 	}
 
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+	public Icon getIcon(int side, int meta)
 	{
 		if(meta == 1 || meta == 3) return _iconRoadOff;
 		if(meta == 2 || meta == 4) return _iconRoadOn;

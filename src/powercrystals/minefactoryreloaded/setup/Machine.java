@@ -44,6 +44,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
 
 public class Machine
@@ -196,7 +197,8 @@ public class Machine
 	public void load(Configuration c)
 	{
 		_isRecipeEnabled = c.get("Machine", _name + ".Recipe.Enabled", true);
-		
+
+		MinecraftForge.setBlockHarvestLevel(MineFactoryReloadedCore.machineBlocks.get(_blockIndex), _meta, "pickaxe", 0);
 		GameRegistry.registerTileEntity(_tileEntityClass, _tileEntityName);
 	}
 	

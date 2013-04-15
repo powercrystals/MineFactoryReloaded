@@ -7,8 +7,12 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.item.ItemStack;
+
+import ic2.api.Ic2Recipes;
+import ic2.api.Items;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -31,38 +35,45 @@ public class IC2
 		}
 		try
 		{
-			Class<?> ic2Items = Class.forName("ic2.core.Ic2Items");
-			if(ic2Items != null)
+			ItemStack crop = Items.getItem("crop");
+			ItemStack rubber = Items.getItem("rubber");
+			ItemStack rubberSapling = Items.getItem("rubberSapling");
+			ItemStack rubberLeaves = Items.getItem("rubberLeaves");
+			ItemStack rubberWood = Items.getItem("rubberWood");
+			ItemStack stickyResin = Items.getItem("resin");
+			ItemStack plantBall = Items.getItem("plantBall");
+			
+			if(rubberSapling != null)
 			{
-				ItemStack rubberSapling = (ItemStack)ic2Items.getField("rubberSapling").get(null);
-				ItemStack rubberLeaves = (ItemStack)ic2Items.getField("rubberLeaves").get(null);
-				ItemStack rubberWood = (ItemStack)ic2Items.getField("rubberWood").get(null);
-				ItemStack stickyResin = (ItemStack)ic2Items.getField("resin").get(null);
-				
-				ItemStack crop = (ItemStack)ic2Items.getField("crop").get(null);
-				
-				if(rubberSapling != null)
-				{
-					MFRRegistry.registerPlantable(new PlantableStandard(rubberSapling.itemID, rubberSapling.itemID));
-					MFRRegistry.registerFertilizable(new FertilizableIC2RubberTree(rubberSapling.itemID));
-				}
-				if(rubberLeaves != null)
-				{
-					MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(rubberLeaves.itemID));
-				}
-				if(rubberWood != null)
-				{
-					MFRRegistry.registerHarvestable(new HarvestableIC2RubberWood(rubberWood.itemID, HarvestType.Tree, stickyResin.itemID));
-				}
-				
-				ItemStack fertilizer = (ItemStack)ic2Items.getField("fertilizer").get(null);
-				if(fertilizer != null)
-				{
-					MFRRegistry.registerFertilizer(new FertilizerStandard(fertilizer.itemID, fertilizer.getItemDamage()));
-				}
-				
-				MFRRegistry.registerHarvestable(new HarvestableIC2Crop(crop.itemID));
+				MFRRegistry.registerPlantable(new PlantableStandard(rubberSapling.itemID, rubberSapling.itemID));
+				MFRRegistry.registerFertilizable(new FertilizableIC2RubberTree(rubberSapling.itemID));
 			}
+			if(rubberLeaves != null)
+			{
+				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(rubberLeaves.itemID));
+			}
+			if(rubberWood != null)
+			{
+				MFRRegistry.registerHarvestable(new HarvestableIC2RubberWood(rubberWood.itemID, HarvestType.Tree, stickyResin.itemID));
+			}
+			
+			ItemStack fertilizer = Items.getItem("fertilizer");
+			if(fertilizer != null)
+			{
+				MFRRegistry.registerFertilizer(new FertilizerStandard(fertilizer.itemID, fertilizer.getItemDamage()));
+			}
+			
+			MFRRegistry.registerHarvestable(new HarvestableIC2Crop(crop.itemID));
+			
+			GameRegistry.addShapedRecipe(plantBall, new Object[]
+				{
+				"LLL",
+                "L L",
+                "LLL",
+                Character.valueOf('L'), new ItemStack(MineFactoryReloadedCore.rubberLeavesBlock)
+                } );
+			
+			Ic2Recipes.addExtractorRecipe(new ItemStack(MineFactoryReloadedCore.rubberSaplingBlock), rubber);
 		}
 		catch (Exception x)
 		{

@@ -25,7 +25,7 @@ public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 	}
 	
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+	public Icon getIcon(int side, int meta)
 	{
 		return _iconPane;
 	}

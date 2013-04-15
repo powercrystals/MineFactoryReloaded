@@ -130,8 +130,8 @@ public class TwilightForest
 				MFRRegistry.registerGrindable(new GrindableStandard(tfBoggard, new MobDrop[]
 				{
 					new MobDrop(20, mazeMapFocus),
-					new MobDrop(17, new ItemStack(Item.bootsSteel)),
-					new MobDrop(11, new ItemStack(Item.pickaxeSteel)),
+					new MobDrop(17, new ItemStack(Item.bootsIron)),
+					new MobDrop(11, new ItemStack(Item.pickaxeIron)),
 					new MobDrop(52, null)
 				}));
 				MFRRegistry.registerGrindable(new GrindableStandard(tfBunny));

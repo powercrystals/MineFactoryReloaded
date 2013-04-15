@@ -1,26 +1,26 @@
 package powercrystals.minefactoryreloaded.block;
 
-import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockFactoryDecorativeBricks extends Block
+public class BlockDecorativeStone extends Block
 {
-	private String[] _names = new String [] { "ice", "glowstone", "lapis", "obsidian", "pavedstone", "snow", "glowstone_large", "ice_large", "lapis_large", "obsidian_large", "snow_large" };
+	private String[] _names = new String [] { "black.smooth", "white.smooth", "black.cobble", "white.cobble", "black.brick.large", "white.brick.large",
+			"black.brick.small", "white.brick.small", "black.gravel", "white.gravel", "black.paved", "white.paved" };
 	private Icon[] _icons = new Icon[_names.length];
 	
-	public BlockFactoryDecorativeBricks(int blockId)
+	public BlockDecorativeStone(int blockId)
 	{
 		super(blockId, Material.rock);
 		setHardness(2.0F);
 		setResistance(10.0F);
 		setStepSound(soundStoneFootstep);
-		setUnlocalizedName("mfr.decorativebrick");
+		setUnlocalizedName("mfr.decorativestone");
 		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
@@ -28,13 +28,6 @@ public class BlockFactoryDecorativeBricks extends Block
 	public int damageDropped(int meta)
 	{
 		return meta;
-	}
-	
-	@Override
-	public int getLightValue(IBlockAccess world, int x, int y, int z)
-	{
-		int meta = world.getBlockMetadata(x, y, z);
-		return meta == 1 || meta == 6 ? 15 : 0;
 	}
 
 	@SideOnly(Side.CLIENT)

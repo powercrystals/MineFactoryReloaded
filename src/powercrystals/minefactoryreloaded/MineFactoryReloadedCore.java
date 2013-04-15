@@ -31,6 +31,7 @@ import powercrystals.core.mod.BaseMod;
 import powercrystals.core.updater.IUpdateableMod;
 import powercrystals.core.updater.UpdateManager;
 import powercrystals.minefactoryreloaded.block.BlockConveyor;
+import powercrystals.minefactoryreloaded.block.BlockDecorativeStone;
 import powercrystals.minefactoryreloaded.block.BlockFactoryDecorativeBricks;
 import powercrystals.minefactoryreloaded.block.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.block.BlockFactoryGlassPane;
@@ -49,6 +50,7 @@ import powercrystals.minefactoryreloaded.block.BlockRubberWood;
 import powercrystals.minefactoryreloaded.block.BlockVanillaGlassPane;
 import powercrystals.minefactoryreloaded.block.BlockVanillaIce;
 import powercrystals.minefactoryreloaded.block.ItemBlockConveyor;
+import powercrystals.minefactoryreloaded.block.ItemBlockDecorativeStone;
 import powercrystals.minefactoryreloaded.block.ItemBlockFactoryDecorativeBrick;
 import powercrystals.minefactoryreloaded.block.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.block.ItemBlockFactoryGlassPane;
@@ -141,6 +143,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Block factoryGlassPaneBlock;
 	public static Block factoryRoadBlock;
 	public static Block factoryDecorativeBrickBlock;
+	public static Block factoryDecorativeStoneBlock;
 	
 	public static Block rubberWoodBlock;
 	public static Block rubberLeavesBlock;
@@ -205,6 +208,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property factoryGlassPaneBlockId;
 	public static Property factoryRoadBlockId;
 	public static Property factoryDecorativeBrickBlockId;
+	public static Property factoryDecorativeStoneBlockId;
 	
 	public static Property rubberWoodBlockId;
 	public static Property rubberLeavesBlockId;
@@ -300,7 +304,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		loadCommonConfig(getCommonConfig());
 		loadClientConfig(getClientConfig());
 		
-		extractLang(new String[] { "en_US" });
+		extractLang(new String[] { "en_US", "es_AR", "es_ES", "es_MX", "es_UY", "es_VE" });
 		loadLang();
 	}
 
@@ -316,6 +320,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt());
 		factoryRoadBlock = new BlockFactoryRoad(factoryRoadBlockId.getInt());
 		factoryDecorativeBrickBlock = new BlockFactoryDecorativeBricks(factoryDecorativeBrickBlockId.getInt());
+		factoryDecorativeStoneBlock = new BlockDecorativeStone(factoryDecorativeStoneBlockId.getInt());
 		rubberWoodBlock = new BlockRubberWood(rubberWoodBlockId.getInt());
 		rubberLeavesBlock = new BlockRubberLeaves(rubberLeavesBlockId.getInt());
 		rubberSaplingBlock = new BlockRubberSapling(rubberSaplingBlockId.getInt());
@@ -372,6 +377,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerBlock(factoryGlassPaneBlock, ItemBlockFactoryGlassPane.class, factoryGlassPaneBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(factoryRoadBlock, ItemBlockFactoryRoad.class, factoryRoadBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(factoryDecorativeBrickBlock, ItemBlockFactoryDecorativeBrick.class, factoryDecorativeBrickBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(factoryDecorativeStoneBlock, ItemBlockDecorativeStone.class, factoryDecorativeStoneBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(rubberWoodBlock, rubberWoodBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(rubberLeavesBlock, rubberLeavesBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(rubberSaplingBlock, rubberSaplingBlock.getUnlocalizedName());
@@ -391,6 +397,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		Block.setBurnProperties(rubberWoodBlock.blockID, 4, 20);
 		Block.setBurnProperties(rubberLeavesBlock.blockID, 30, 20);
 		
+		MinecraftForge.setBlockHarvestLevel(MineFactoryReloadedCore.rednetCableBlock, 0, "pickaxe", 0);
+		
 		if(vanillaOverrideGlassPane.getBoolean(true))
 		{
 			Block.blocksList[Block.thinGlass.blockID] = null;
@@ -407,7 +415,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		}
 		if(vanillaOverrideMilkBucket.getBoolean(true))
 		{
-			int milkBucketId = Item.bucketMilk.itemID;
+			int milkBucketId = Item.bucketMilk.itemID - 256;
 			Item.itemsList[milkBucketId] = null;
 			Item.bucketMilk = new ItemFactoryBucket(milkBucketId, milkLiquid.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		}
@@ -544,6 +552,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		essenceStillBlockId = c.getBlock("ID.MobEssence.Still", 3141);
 		biofuelStillBlockId = c.getBlock("ID.BioFuel.Still", 3143);
 		rednetCableBlockId = c.getBlock("ID.RedNet.Cable", 3144);
+		factoryDecorativeStoneBlockId = c.getBlock("ID.Stone", 3134);
 		rednetLogicBlockId = c.getBlock("ID.RedNet.Logic", 3145);
 
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);

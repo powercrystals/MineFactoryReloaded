@@ -120,7 +120,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			
 			spawnedLiving.setLocationAndAngles(x, y, z, worldObj.rand.nextFloat() * 360.0F, 0.0F);
 			
-			if(!this.worldObj.checkIfAABBIsClear(spawnedLiving.boundingBox) ||
+			if(!this.worldObj.checkNoEntityCollision(spawnedLiving.boundingBox) ||
 					!this.worldObj.getCollidingBoundingBoxes(spawnedLiving, spawnedLiving.boundingBox).isEmpty() ||
 					(this.worldObj.isAnyLiquid(spawnedLiving.boundingBox) && !(spawnedLiving instanceof EntityWaterMob)) ||
 					(!this.worldObj.isAnyLiquid(spawnedLiving.boundingBox) && spawnedLiving instanceof EntityWaterMob))

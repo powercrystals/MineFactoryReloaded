@@ -83,12 +83,12 @@ public class ItemXpExtractor extends ItemFactory
 	}
 	
 	@Override
-	public void updateIcons(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
 		_icon1 = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".1");
 		_icon2 = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".2");
 		_icon3 = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".3");
 		
-		iconIndex = _icon1;
+		itemIcon = _icon1;
 	}
 }

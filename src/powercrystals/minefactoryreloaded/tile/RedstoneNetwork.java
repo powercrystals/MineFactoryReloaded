@@ -141,7 +141,7 @@ public class RedstoneNetwork
 				_singleNodes.get(subnet).remove(node);
 			}
 			
-			if(_powerProviders[subnet] == node)
+			if(node.equals(_powerProviders[subnet]))
 			{
 				//System.out.println("Network with ID " + _id + ":" + subnet + " removing power provider node, recalculating");
 				updatePowerLevels(subnet);
