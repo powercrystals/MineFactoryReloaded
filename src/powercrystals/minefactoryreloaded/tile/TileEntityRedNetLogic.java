@@ -35,24 +35,42 @@ public class TileEntityRedNetLogic extends TileEntity
 		public int buffer;
 	}
 	
-	private IRedNetLogicCircuit[] _circuits = new IRedNetLogicCircuit[4];
+	private IRedNetLogicCircuit[] _circuits;
 	
-	// 0 in, 1 internal, 2 out
-	private int[][] _buffers = new int[3][];
+	// 0-5 in, 6-11 out, 12 const, 13 var, 14 null
+	private int[][] _buffers = new int[15][];
 	
 	private PinMapping[][] _pinMappingInputs = new PinMapping[_circuits.length][];
 	private PinMapping[][] _pinMappingOutputs = new PinMapping[_circuits.length][];
 	
 	public TileEntityRedNetLogic()
 	{
-		_buffers[0] = new int[16];
-		_buffers[1] = new int[16];
-		_buffers[2] = new int[16];
+		// init I/O and constant buffers
+		for(int i = 0; i < 13; i++)
+		{
+			_buffers[i] = new int[16];
+		}
+		// init variable buffer
+		_buffers[13] = new int[getVariableBufferSize()];
+		// init null buffer
+		_buffers[14] = new int[1];
 		
-		initCircuit(0, new Noop());
-		initCircuit(1, new Noop());
-		initCircuit(2, new Noop());
-		initCircuit(3, new Noop());
+		_circuits = new IRedNetLogicCircuit[getCircuitCount()];
+		
+		for(int i = 0; i < _circuits.length; i++)
+		{
+			initCircuit(i, new Noop());
+		}
+	}
+	
+	private int getVariableBufferSize()
+	{
+		return 16;
+	}
+	
+	private int getCircuitCount()
+	{
+		return 4;
 	}
 	
 	public IRedNetLogicCircuit getCircuit(int index)
@@ -109,12 +127,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		}
 		for(int i = 0; i < _pinMappingOutputs[index].length; i++)
 		{
-			_pinMappingOutputs[index][i] = new PinMapping(2, 0);
-		}
-		
-		for(int i = 0; i < 16; i++)
-		{
-			_buffers[2][i] = 0;
+			_pinMappingOutputs[index][i] = new PinMapping(6, 0);
 		}
 	}
 	
