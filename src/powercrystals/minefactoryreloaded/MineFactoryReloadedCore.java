@@ -407,7 +407,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		}
 		if(vanillaOverrideMilkBucket.getBoolean(true))
 		{
-			int milkBucketId = Item.bucketMilk.itemID;
+			int milkBucketId = Item.bucketMilk.itemID - 256;
 			Item.itemsList[milkBucketId] = null;
 			Item.bucketMilk = new ItemFactoryBucket(milkBucketId, milkLiquid.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		}
