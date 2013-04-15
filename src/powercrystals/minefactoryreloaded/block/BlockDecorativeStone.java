@@ -41,7 +41,7 @@ public class BlockDecorativeStone extends Block
 	}
 	
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+	public Icon getIcon(int side, int meta)
 	{
 		return _icons[Math.min(meta, _icons.length)];
 	}

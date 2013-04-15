@@ -24,9 +24,9 @@ public class ItemFactoryBucket extends ItemBucket
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateIcons(IconRegister par1IconRegister)
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.iconIndex = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
+		this.itemIcon = par1IconRegister.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 	
 	@Override

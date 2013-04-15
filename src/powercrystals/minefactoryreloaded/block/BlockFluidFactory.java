@@ -101,7 +101,7 @@ public class BlockFluidFactory extends BlockFluidClassic implements ILiquid
 	}
 
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+	public Icon getIcon(int side, int meta)
 	{
 		return side <= 1 ? _iconStill : _iconFlowing;
 	}

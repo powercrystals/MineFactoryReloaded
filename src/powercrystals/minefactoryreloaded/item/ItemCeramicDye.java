@@ -29,7 +29,7 @@ public class ItemCeramicDye extends ItemFactory
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateIcons(IconRegister ir)
+	public void registerIcons(IconRegister ir)
 	{
 		for(int i = 0; i < _dyeIcons.length; i++)
 		{

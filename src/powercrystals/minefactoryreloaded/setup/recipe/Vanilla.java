@@ -522,7 +522,7 @@ public class Vanilla
 					"III",
 					"PPP",
 					"RGR",
-					Character.valueOf('I'), Item.field_94583_ca,
+					Character.valueOf('I'), Item.netherQuartz,
 					Character.valueOf('P'), MineFactoryReloadedCore.rawPlasticItem,
 					Character.valueOf('R'), Item.redstone,
 					Character.valueOf('G'), Item.goldNugget,

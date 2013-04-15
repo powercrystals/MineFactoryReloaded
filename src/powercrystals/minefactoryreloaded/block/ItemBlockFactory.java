@@ -28,7 +28,7 @@ public class ItemBlockFactory extends ItemBlock
 	@Override
 	public Icon getIconFromDamage(int damage)
 	{
-		return Block.blocksList[getBlockID()].getBlockTextureFromSideAndMetadata(2, damage);
+		return Block.blocksList[getBlockID()].getIcon(2, damage);
 	}
 
 	@Override
