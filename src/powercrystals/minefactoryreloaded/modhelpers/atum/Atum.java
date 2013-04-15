@@ -47,6 +47,7 @@ public class Atum
 			Class banditArcher = Class.forName(entityprefix + "BanditArcher");
 			Class banditWarlord = Class.forName(entityprefix + "BanditWarlord");
 			Class banditWarrior = Class.forName(entityprefix + "BanditWarrior");
+			Class bonestorm = Class.forName(entityprefix + "Bonestorm");
 			Class dustySkeleton = Class.forName(entityprefix + "DustySkeleton");
 			Class desertWolf = Class.forName(entityprefix + "DesertWolf");
 			Class ghost = Class.forName(entityprefix + "Ghost");
@@ -54,7 +55,7 @@ public class Atum
 			Class pharaoh = Class.forName(entityprefix + "Pharaoh");
 			Class stoneSoldier = Class.forName(entityprefix + "StoneSoldier");
 			
-			
+			ItemStack bow = new ItemStack((Item)Atum.getField("itemBow").get(null));
 			ItemStack clothScrap = new ItemStack((Item)Atum.getField("itemClothScrap").get(null));
 			ItemStack ectoplasm = new ItemStack((Item)Atum.getField("itemEctoplasm").get(null));
 			ItemStack pelt = new ItemStack((Item)Atum.getField("itemPelt").get(null));
@@ -78,12 +79,19 @@ public class Atum
 			MFRRegistry.registerSafariNetBlacklist(banditWarlord);
 			MFRRegistry.registerSafariNetBlacklist(pharaoh);
 						
-			MFRRegistry.registerGrindable(new GrindableStandard(banditArcher, new ItemStack(Item.arrow, 2)));
+			MFRRegistry.registerGrindable(new GrindableStandard(banditArcher, new MobDrop[]
+					{
+						new MobDrop(1, bow),
+						new MobDrop(2, new ItemStack(Item.goldNugget)),
+						new MobDrop(17, new ItemStack(Item.arrow))
+					}));
 			MFRRegistry.registerGrindable(new GrindableStandard(banditWarrior, new MobDrop[]
 					{
 						new MobDrop(1, scimitar),
-						new MobDrop(9, null)
+						new MobDrop(2, new ItemStack(Item.goldNugget)),
+						new MobDrop(17, null)
 					}));
+			MFRRegistry.registerGrindable(new GrindableStandard(bonestorm, new ItemStack(Item.blazeRod)));
 			MFRRegistry.registerGrindable(new GrindableStandard(desertWolf, new MobDrop[]
 					{
 						new MobDrop(1, pelt),
