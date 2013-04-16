@@ -5,14 +5,8 @@ import powercrystals.core.gui.GuiRender;
 import powercrystals.core.gui.controls.Button;
 import powercrystals.minefactoryreloaded.gui.client.GuiRedNetLogic;
 
-public class ButtonLogicIOColor extends Button
-{
-	public enum ButtonType
-	{
-		Input,
-		Output
-	}
-	
+public class ButtonLogicPinSelect extends Button
+{	
 	private static GuiColor[] _pinColors = new GuiColor[]
 			{
 				new GuiColor(223, 223, 223), // white
@@ -34,14 +28,14 @@ public class ButtonLogicIOColor extends Button
 			};
 	
 	private int _pinIndex;
-	private ButtonType _buttonType;
+	private LogicButtonType _buttonType;
 	private GuiRedNetLogic _containerScreen;
 	
 	private int _pin;
 	
-	public ButtonLogicIOColor(GuiRedNetLogic containerScreen, int x, int y, int pinIndex, ButtonType buttonType)
+	public ButtonLogicPinSelect(GuiRedNetLogic containerScreen, int x, int y, int pinIndex, LogicButtonType buttonType)
 	{
-		super(containerScreen, x, y, 30, 10, "");
+		super(containerScreen, x, y, 30, 14, "");
 		_pinIndex = pinIndex;
 		_buttonType = buttonType;
 		_containerScreen = containerScreen;
@@ -66,7 +60,7 @@ public class ButtonLogicIOColor extends Button
 			_pin = 0;
 		}
 		
-		if(_buttonType == ButtonType.Input)
+		if(_buttonType == LogicButtonType.Input)
 		{
 			_containerScreen.setInputPinMapping(_pinIndex, 0, _pin);
 		}

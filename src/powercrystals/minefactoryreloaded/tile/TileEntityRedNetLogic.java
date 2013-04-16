@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
 import org.bouncycastle.util.Arrays;
 
@@ -16,8 +18,10 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
 import powercrystals.core.net.PacketWrapper;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
+import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.circuits.Noop;
 import powercrystals.minefactoryreloaded.net.Packets;
 
@@ -35,7 +39,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		public int buffer;
 	}
 	
-	private IRedNetLogicCircuit[] _circuits;
+	private IRedNetLogicCircuit[] _circuits = new IRedNetLogicCircuit[getCircuitCount()];
 	
 	// 0-5 in, 6-11 out, 12 const, 13 var, 14 null
 	private int[][] _buffers = new int[15][];
@@ -55,8 +59,6 @@ public class TileEntityRedNetLogic extends TileEntity
 		// init null buffer
 		_buffers[14] = new int[1];
 		
-		_circuits = new IRedNetLogicCircuit[getCircuitCount()];
-		
 		for(int i = 0; i < _circuits.length; i++)
 		{
 			initCircuit(i, new Noop());
@@ -68,9 +70,14 @@ public class TileEntityRedNetLogic extends TileEntity
 		return 16;
 	}
 	
-	private int getCircuitCount()
+	public int getCircuitCount()
 	{
 		return 4;
+	}
+	
+	public int getBufferLength(int buffer)
+	{
+		return _buffers[buffer].length;
 	}
 	
 	public IRedNetLogicCircuit getCircuit(int index)
@@ -197,7 +204,12 @@ public class TileEntityRedNetLogic extends TileEntity
 			return;
 		}
 		
-		int[] lastOuput = Arrays.clone(_buffers[2]);
+		int[][] lastOuput = new int[6][]; 
+		for(int i = 0; i < 6; i++)
+		{
+			lastOuput[i] = _buffers[i + 6];
+			_buffers[i + 6] = new int[16];
+		}
 		
 		for(int circuitNum = 0; circuitNum < _circuits.length; circuitNum++)
 		{	
@@ -214,26 +226,43 @@ public class TileEntityRedNetLogic extends TileEntity
 				_buffers[_pinMappingOutputs[circuitNum][pinNum].buffer][_pinMappingOutputs[circuitNum][pinNum].pin] = output[pinNum];
 			}
 		}
-		
-		if(!Arrays.areEqual(lastOuput, _buffers[2]))
+
+		for(int i = 0; i < 6; i++)
 		{
-			worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, MineFactoryReloadedCore.rednetLogicBlock.blockID);
+			if(!Arrays.areEqual(lastOuput[i], _buffers[i + 6]))
+			{
+				BlockPosition bp = new BlockPosition(this);
+				bp.orientation = ForgeDirection.VALID_DIRECTIONS[i];
+				bp.moveForwards(1);
+				Block b = Block.blocksList[worldObj.getBlockId(bp.x, bp.y, bp.z)];
+				if(b instanceof IRedNetNetworkContainer)
+				{
+					((IRedNetNetworkContainer)b).updateNetwork(worldObj, bp.x, bp.y, bp.z);
+				}
+			}
 		}
 	}
 	
-	public int getOutputValue(int subnet)
+	public int getOutputValue(ForgeDirection side, int subnet)
 	{
-		return _buffers[2][subnet];
+		return getOutputValues(side)[subnet];
 	}
 	
-	public int[] getOutputValues()
+	public int[] getOutputValues(ForgeDirection side)
 	{
-		return _buffers[2];
+		if(side == ForgeDirection.UNKNOWN)
+		{
+			return null;
+		}
+		return _buffers[side.ordinal() + 6];
 	}
 	
-	public void onInputsChanged(int[] values)
+	public void onInputsChanged(ForgeDirection side, int[] values)
 	{
-		_buffers[0] = values;
+		if(side != ForgeDirection.UNKNOWN)
+		{
+			_buffers[side.ordinal()] = values;
+		}
 	}
 	
 	@Override

@@ -36,7 +36,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
 		if(logic != null)
 		{
-			return logic.getOutputValue(subnet);
+			return logic.getOutputValue(side, subnet);
 		}
 		else
 		{
@@ -50,7 +50,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
 		if(logic != null)
 		{
-			return logic.getOutputValues();
+			return logic.getOutputValues(side);
 		}
 		else
 		{
@@ -64,7 +64,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
 		if(logic != null)
 		{
-			logic.onInputsChanged(inputValues);
+			logic.onInputsChanged(side, inputValues);
 		}
 	}
 

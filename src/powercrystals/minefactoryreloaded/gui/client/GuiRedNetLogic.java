@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.StatCollector;
 import powercrystals.core.gui.GuiScreenBase;
@@ -16,9 +17,10 @@ import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
-import powercrystals.minefactoryreloaded.gui.control.ButtonLogicIOColor;
-import powercrystals.minefactoryreloaded.gui.control.ButtonLogicIOColor.ButtonType;
+import powercrystals.minefactoryreloaded.gui.control.ButtonLogicBufferSelect;
+import powercrystals.minefactoryreloaded.gui.control.ButtonLogicPinSelect;
 import powercrystals.minefactoryreloaded.gui.control.ListBoxElementCircuit;
+import powercrystals.minefactoryreloaded.gui.control.LogicButtonType;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 
@@ -38,9 +40,12 @@ public class GuiRedNetLogic extends GuiScreenBase
 	private int _selectedCircuit;
 	
 	private ListBox _circuitList;
+
+	private ButtonLogicBufferSelect[] _inputIOBufferButtons = new ButtonLogicBufferSelect[16];
+	private ButtonLogicBufferSelect[] _outputIOBufferButtons = new ButtonLogicBufferSelect[16];
 	
-	private ButtonLogicIOColor[] _inputIOButtons = new ButtonLogicIOColor[16];
-	private ButtonLogicIOColor[] _outputIOButtons = new ButtonLogicIOColor[16];
+	private ButtonLogicPinSelect[] _inputIOPinButtons = new ButtonLogicPinSelect[16];
+	private ButtonLogicPinSelect[] _outputIOPinButtons = new ButtonLogicPinSelect[16];
 	
 	private Button _nextCircuit;
 	private Button _prevCircuit;
@@ -48,12 +53,12 @@ public class GuiRedNetLogic extends GuiScreenBase
 	public GuiRedNetLogic(Container container, TileEntityRedNetLogic logic)
 	{	
 		super(container, MineFactoryReloadedCore.guiFolder + "rednetlogic.png");
-		xSize = 256;
+		xSize = 384;
 		ySize = 256;
 		
 		_logic = logic;
 		
-		_circuitList = new ListBox(this, 56, 16, 120, 200)
+		_circuitList = new ListBox(this, 86, 16, 120, 200)
 		{
 			@Override
 			protected void onSelectionChanged(int newIndex, IListBoxElement newElement)
@@ -78,7 +83,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		
 		addControl(_circuitList);
 		
-		_prevCircuit = new Button(this, 220, 16, 30, 30, "Prev")
+		_prevCircuit = new Button(this, 344, 16, 30, 30, "Prev")
 		{
 			
 			@Override
@@ -93,7 +98,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 			}
 		};
 
-		_nextCircuit = new Button(this, 220, 76, 30, 30, "Next")
+		_nextCircuit = new Button(this, 344, 76, 30, 30, "Next")
 		{
 			
 			@Override
@@ -111,15 +116,18 @@ public class GuiRedNetLogic extends GuiScreenBase
 		addControl(_prevCircuit);
 		addControl(_nextCircuit);
 		
-		for(int i = 0; i < _inputIOButtons.length; i++)
+		for(int i = 0; i < _inputIOPinButtons.length; i++)
 		{
-			_inputIOButtons[i] = new ButtonLogicIOColor(this, 22, 16 + i * 12, i, ButtonType.Input);
-			_outputIOButtons[i] = new ButtonLogicIOColor(this, 190, 16 + i * 12, i, ButtonType.Output);
-			
-			_inputIOButtons[i].setPin(i);
-			
-			addControl(_inputIOButtons[i]);
-			addControl(_outputIOButtons[i]);
+			_inputIOBufferButtons[i]  = new ButtonLogicBufferSelect(this,  22, 16 + i * 14, i, LogicButtonType.Input);
+			_inputIOPinButtons[i]	 = new ButtonLogicPinSelect(   this,  52, 16 + i * 14, i, LogicButtonType.Input);
+
+			_outputIOBufferButtons[i] = new ButtonLogicBufferSelect(this, 250, 16 + i * 14, i, LogicButtonType.Output);
+			_outputIOPinButtons[i]	= new ButtonLogicPinSelect(   this, 280, 16 + i * 14, i, LogicButtonType.Output);
+
+			addControl(_inputIOBufferButtons[i]);
+			addControl(_outputIOBufferButtons[i]);
+			addControl(_inputIOPinButtons[i]);
+			addControl(_outputIOPinButtons[i]);
 		}
 		requestCircuit();
 	}
@@ -145,29 +153,33 @@ public class GuiRedNetLogic extends GuiScreenBase
 			}
 		}
 		
-		for(int i = 0; i < _inputIOButtons.length; i++)
+		for(int i = 0; i < _inputIOPinButtons.length; i++)
 		{
 			if(i < _logic.getCircuit(_selectedCircuit).getInputCount())
 			{
-				_inputIOButtons[i].setVisible(true);
-				_inputIOButtons[i].setPin(_logic.getInputPinMapping(_selectedCircuit, i).pin);
+				_inputIOPinButtons[i].setVisible(true);
+				_inputIOBufferButtons[i].setVisible(true);
+				_inputIOPinButtons[i].setPin(_logic.getInputPinMapping(_selectedCircuit, i).pin);
 			}
 			else
 			{
-				_inputIOButtons[i].setVisible(false);
+				_inputIOBufferButtons[i].setVisible(false);
+				_inputIOPinButtons[i].setVisible(false);
 			}
 		}
 		
-		for(int i = 0; i < _outputIOButtons.length; i++)
+		for(int i = 0; i < _outputIOPinButtons.length; i++)
 		{
 			if(i < _logic.getCircuit(_selectedCircuit).getOutputCount())
 			{
-				_outputIOButtons[i].setVisible(true);
-				_outputIOButtons[i].setPin(_logic.getOutputPinMapping(_selectedCircuit, i).pin);
+				_outputIOBufferButtons[i].setVisible(true);
+				_outputIOPinButtons[i].setVisible(true);
+				_outputIOPinButtons[i].setPin(_logic.getOutputPinMapping(_selectedCircuit, i).pin);
 			}
 			else
 			{
-				_outputIOButtons[i].setVisible(false);
+				_outputIOBufferButtons[i].setVisible(false);
+				_outputIOPinButtons[i].setVisible(false);
 			}
 		}
 	}
@@ -178,21 +190,21 @@ public class GuiRedNetLogic extends GuiScreenBase
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		fontRenderer.drawString("Programmable RedNet Controller", 8, 6, 4210752);
-		fontRenderer.drawString((_selectedCircuit + 1) + " of 4", 220, 60, 4210752);
+		fontRenderer.drawString((_selectedCircuit + 1) + " of 4", 344, 60, 4210752);
 		
-		for(int i = 0; i < _inputIOButtons.length; i++)
+		for(int i = 0; i < _inputIOPinButtons.length; i++)
 		{
 			if(i < _logic.getCircuit(_selectedCircuit).getInputCount())
 			{
-				fontRenderer.drawString(_logic.getCircuit(_selectedCircuit).getInputPinLabel(i), 4, 18 + i * 12, 4210752);
+				fontRenderer.drawString(_logic.getCircuit(_selectedCircuit).getInputPinLabel(i), 4, 20 + i * 14, 4210752);
 			}
 		}
 		
-		for(int i = 0; i < _outputIOButtons.length; i++)
+		for(int i = 0; i < _outputIOPinButtons.length; i++)
 		{
 			if(i < _logic.getCircuit(_selectedCircuit).getOutputCount())
 			{
-				fontRenderer.drawString(_logic.getCircuit(_selectedCircuit).getOutputPinLabel(i), 178, 18 + i * 12, 4210752);
+				fontRenderer.drawString(_logic.getCircuit(_selectedCircuit).getOutputPinLabel(i), 236, 20 + i * 14, 4210752);
 			}
 		}
 	}
@@ -207,5 +219,19 @@ public class GuiRedNetLogic extends GuiScreenBase
 	{
 		PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.LogicSetPin, new Object[]
 				{ _logic.xCoord, _logic.yCoord, _logic.zCoord, 1, _selectedCircuit, index, buffer, pin }));
+	}
+	
+	@Override
+	public void drawTexturedModalRect(int x, int y, int u, int v, int xSize, int ySize)
+	{
+		float uScale = 1.0F/384.0F;
+		float vScale = 1.0F/256.0F;
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV((double)(x + 0), (double)(y + ySize), (double)this.zLevel, (double)((float)(u + 0) * uScale), (double)((float)(v + ySize) * vScale));
+		tessellator.addVertexWithUV((double)(x + xSize), (double)(y + ySize), (double)this.zLevel, (double)((float)(u + xSize) * uScale), (double)((float)(v + ySize) * vScale));
+		tessellator.addVertexWithUV((double)(x + xSize), (double)(y + 0), (double)this.zLevel, (double)((float)(u + xSize) * uScale), (double)((float)(v + 0) * vScale));
+		tessellator.addVertexWithUV((double)(x + 0), (double)(y + 0), (double)this.zLevel, (double)((float)(u + 0) * uScale), (double)((float)(v + 0) * vScale));
+		tessellator.draw();
 	}
 }
