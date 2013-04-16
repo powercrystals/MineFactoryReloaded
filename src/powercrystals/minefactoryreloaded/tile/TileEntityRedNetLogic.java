@@ -8,6 +8,9 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -310,6 +313,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		}
 		
 		nbttagcompound.setTag("circuits", circuits);
+		nbttagcompound.setIntArray("upgrades", _upgradeLevel);
 	}
 	
 	@Override
@@ -347,6 +351,27 @@ public class TileEntityRedNetLogic extends TileEntity
 				}
 			}
 		}
+		
+		int[] upgrades = nbttagcompound.getIntArray("upgrades");
+		if(upgrades != null && upgrades.length == _upgradeLevel.length)
+		{
+			_upgradeLevel = upgrades;
+		}
+	}
+	
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound data = new NBTTagCompound();
+		data.setIntArray("upgrades", _upgradeLevel);
+		Packet132TileEntityData packet = new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, data);
+		return packet;
+	}
+	
+	@Override
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+	{
+		_upgradeLevel = pkt.customParam1.getIntArray("upgrades");
 	}
 	
 	public boolean insertUpgrade(int level)
@@ -355,11 +380,20 @@ public class TileEntityRedNetLogic extends TileEntity
 		{
 			if(_upgradeLevel[i] == 0)
 			{
-				_upgradeLevel[i] = level;
+				if(!worldObj.isRemote)
+				{
+					_upgradeLevel[i] = level;
+				}
+				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public void setUpgrade(int slot, int level)
+	{
+		_upgradeLevel[slot] = level;
 	}
 	
 	public int getLevelForSlot(int slot)
