@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
@@ -15,7 +14,6 @@ import net.minecraftforge.common.ForgeDirection;
 import org.bouncycastle.util.Arrays;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
 
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.BlockPosition;
@@ -61,9 +59,16 @@ public class TileEntityRedNetLogic extends TileEntity
 		// init null buffer
 		_buffers[14] = new int[1];
 		
+		// init circuits
 		for(int i = 0; i < _circuits.length; i++)
 		{
 			initCircuit(i, new Noop());
+		}
+		
+		//init constants
+		for(int i = 0; i < 16; i++)
+		{
+			_buffers[12][i] = i;
 		}
 	}
 	
