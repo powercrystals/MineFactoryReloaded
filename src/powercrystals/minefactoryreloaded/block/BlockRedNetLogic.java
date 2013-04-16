@@ -42,19 +42,19 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			int facing = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 			if(facing == 0)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 3, 6);
+				world.setBlockMetadataWithNotify(x, y, z, 3, 3);
 			}
 			else if(facing == 1)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 0, 6);
+				world.setBlockMetadataWithNotify(x, y, z, 0, 3);
 			}
 			else if(facing == 2)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 1, 6);
+				world.setBlockMetadataWithNotify(x, y, z, 1, 3);
 			}
 			else if(facing == 3)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 2, 6);
+				world.setBlockMetadataWithNotify(x, y, z, 2, 3);
 			}
 		}
 	}
@@ -132,7 +132,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			{
 				nextMeta = 0;
 			}
-			world.setBlockMetadataWithNotify(x, y, z, nextMeta, 6);
+			world.setBlockMetadataWithNotify(x, y, z, nextMeta, 3);
 		}
 		else if(MFRUtil.isHolding(player, ItemLogicUpgradeCard.class))
 		{
