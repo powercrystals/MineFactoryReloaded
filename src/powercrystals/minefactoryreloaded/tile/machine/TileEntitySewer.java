@@ -7,6 +7,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
@@ -116,9 +118,9 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 			double massFound = 0;
 			for(Object o : entities)
 			{
-				if(o != null && o instanceof EntityAnimal)
+				if(o instanceof EntityAnimal || o instanceof EntityVillager || o instanceof EntityPlayer)
 				{
-					massFound += Math.pow(((EntityAnimal)o).boundingBox.getAverageEdgeLength(), 2);
+					massFound += Math.pow(((EntityLiving)o).boundingBox.getAverageEdgeLength(), 2);
 				}
 			}
 			_tank.fill(LiquidDictionary.getLiquid("sewage", (int)(25 * massFound)), true);
