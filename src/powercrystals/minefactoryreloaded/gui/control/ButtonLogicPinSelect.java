@@ -90,7 +90,7 @@ public class ButtonLogicPinSelect extends Button
 		{
 			GuiRender.drawRect(x + 3, y + 3, x + width - 3, y + height - 3, _pinColors[_pin].getColor());
 		}
-		else
+		else if(_buffer < 14)
 		{
 			super.drawForeground(mouseX, mouseY);
 		}
