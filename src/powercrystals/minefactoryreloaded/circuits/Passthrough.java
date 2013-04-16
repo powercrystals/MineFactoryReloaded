@@ -31,12 +31,12 @@ public class Passthrough implements IRedNetLogicCircuit
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "In" + pin;
+		return "I" + pin;
 	}
 
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "Out" + pin;
+		return "O" + pin;
 	}
 }

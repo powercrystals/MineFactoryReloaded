@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.circuits;
 
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
-public class SineWaveGenerator implements IRedNetLogicCircuit
+public class TriangleWaveGenerator implements IRedNetLogicCircuit
 {
 	private boolean _invert = false;
 	
@@ -33,7 +33,7 @@ public class SineWaveGenerator implements IRedNetLogicCircuit
 	@Override
 	public String getUnlocalizedName()
 	{
-		return "circuit.mfr.wavegenerator.sine";
+		return "circuit.mfr.wavegenerator.triangle";
 	}
 
 	@Override

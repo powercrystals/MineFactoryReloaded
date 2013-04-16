@@ -274,7 +274,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new Or3());
 		MFRRegistry.registerRedNetLogicCircuit(new Or4());
 		MFRRegistry.registerRedNetLogicCircuit(new Passthrough());
-		MFRRegistry.registerRedNetLogicCircuit(new SineWaveGenerator());
+		MFRRegistry.registerRedNetLogicCircuit(new TriangleWaveGenerator());
 		MFRRegistry.registerRedNetLogicCircuit(new SquareWaveGenerator());
 		MFRRegistry.registerRedNetLogicCircuit(new Xnor2());
 		MFRRegistry.registerRedNetLogicCircuit(new Xnor3());
