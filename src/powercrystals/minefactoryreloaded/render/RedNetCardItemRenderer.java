@@ -42,7 +42,7 @@ public class RedNetCardItemRenderer implements IItemRenderer
 		{
 			case EQUIPPED:
 				GL11.glRotatef(45, 0, 1, 0);
-				GL11.glTranslatef(-0.8f, 0.2f, 1.25f);
+				GL11.glTranslatef(-0.8f, 0.5f, 1.25f);
 				break;
 			case INVENTORY:
 				GL11.glTranslatef(0, -0.2f, 0);
@@ -56,13 +56,13 @@ public class RedNetCardItemRenderer implements IItemRenderer
 		switch(item.getItemDamage())
 		{
 		case 0:
-			_cardsModel.renderLevel1(0.0625f);
+			_cardsModel.renderLevel3(0.0625f);
 			break;
 		case 1:
-			_cardsModel.renderLevel2(0.0625f);
+			_cardsModel.renderLevel1(0.0625f);
 			break;
 		case 2:
-			_cardsModel.renderLevel3(0.0625f);
+			_cardsModel.renderLevel2(0.0625f);
 			break;
 		default:
 			_cardsModel.renderEmptySlot(0.0625f);

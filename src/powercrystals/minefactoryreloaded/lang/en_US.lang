@@ -193,6 +193,10 @@ item.mfr.upgrade.radius.diamond.name = Upgrade (Diamond)
 item.mfr.upgrade.radius.platinum.name = Upgrade (Platinum)
 item.mfr.upgrade.radius.emerald.name = Upgrade (Emerald)
 
+item.mfr.upgrade.logic.100.name = PRC LX-100
+item.mfr.upgrade.logic.300.name = PRC LX-300
+item.mfr.upgrade.logic.500.name = PRC LX-500
+
 circuit.mfr.adder.analog = Adder (Analog)
 circuit.mfr.adder.digital.full = Adder (Digital, Full)
 circuit.mfr.adder.digital.half = Adder (Digital, Half)

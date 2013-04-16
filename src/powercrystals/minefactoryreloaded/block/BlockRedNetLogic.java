@@ -41,19 +41,19 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			int facing = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 			if(facing == 0)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+				world.setBlockMetadataWithNotify(x, y, z, 3, 6);
 			}
 			else if(facing == 1)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+				world.setBlockMetadataWithNotify(x, y, z, 0, 6);
 			}
 			else if(facing == 2)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+				world.setBlockMetadataWithNotify(x, y, z, 1, 6);
 			}
 			else if(facing == 3)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+				world.setBlockMetadataWithNotify(x, y, z, 2, 6);
 			}
 		}
 	}
@@ -131,7 +131,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			{
 				nextMeta = 0;
 			}
-			world.setBlockMetadataWithNotify(x, y, z, nextMeta, 2);
+			world.setBlockMetadataWithNotify(x, y, z, nextMeta, 6);
 		}
 		else
 		{

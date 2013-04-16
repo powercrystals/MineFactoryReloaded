@@ -343,6 +343,6 @@ public class TileEntityRedNetLogic extends TileEntity
 	
 	public int getLevelForSlot(int slot)
 	{
-		return Math.max(zCoord % 16, 2);
+		return 0;
 	}
 }

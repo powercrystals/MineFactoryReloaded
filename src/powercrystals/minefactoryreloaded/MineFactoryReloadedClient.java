@@ -1,7 +1,9 @@
 package powercrystals.minefactoryreloaded;
 
+import net.minecraftforge.client.MinecraftForgeClient;
 import powercrystals.core.render.RenderBlockFluidClassic;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
+import powercrystals.minefactoryreloaded.render.RedNetCardItemRenderer;
 import powercrystals.minefactoryreloaded.render.RedNetLogicRenderer;
 import powercrystals.minefactoryreloaded.render.RedstoneCableRenderer;
 import powercrystals.minefactoryreloaded.render.RenderEntitySafariNet;
@@ -34,5 +36,7 @@ public class MineFactoryReloadedClient
 		RedNetLogicRenderer logicRender = new RedNetLogicRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRedNetLogic.class, logicRender);
 		RenderingRegistry.registerBlockHandler(logicRender);
+		
+		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.logicCardItem.itemID, new RedNetCardItemRenderer());
 	}
 }
