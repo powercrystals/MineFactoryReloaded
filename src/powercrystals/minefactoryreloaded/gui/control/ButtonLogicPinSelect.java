@@ -60,16 +60,18 @@ public class ButtonLogicPinSelect extends Button
 	public void setPin(int pin)
 	{
 		_pin = pin;
+		setText(((Integer)_pin).toString());
 	}
 	
 	@Override
 	public void onClick()
 	{
 		_pin++;
-		if(_pin > 15)
+		if((_buffer == 14 && _pin > 0) || _pin > 15)
 		{
 			_pin = 0;
 		}
+		setText(((Integer)_pin).toString());
 		
 		if(_buttonType == LogicButtonType.Input)
 		{
@@ -84,6 +86,13 @@ public class ButtonLogicPinSelect extends Button
 	@Override
 	public void drawForeground(int mouseX, int mouseY)
 	{
-		GuiRender.drawRect(x + 3, y + 3, x + width - 3, y + height - 3, _pinColors[_pin].getColor());
+		if(_buffer < 12)
+		{
+			GuiRender.drawRect(x + 3, y + 3, x + width - 3, y + height - 3, _pinColors[_pin].getColor());
+		}
+		else
+		{
+			super.drawForeground(mouseX, mouseY);
+		}
 	}
 }
