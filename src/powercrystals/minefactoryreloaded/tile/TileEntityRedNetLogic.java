@@ -79,7 +79,7 @@ public class TileEntityRedNetLogic extends TileEntity
 	
 	public int getCircuitCount()
 	{
-		return 4;
+		return 6;
 	}
 	
 	public int getBufferLength(int buffer)

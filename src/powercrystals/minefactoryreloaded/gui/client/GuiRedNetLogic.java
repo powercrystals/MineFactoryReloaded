@@ -5,10 +5,13 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.StatCollector;
+import powercrystals.core.gui.Control;
 import powercrystals.core.gui.GuiScreenBase;
 import powercrystals.core.gui.controls.Button;
 import powercrystals.core.gui.controls.IListBoxElement;
@@ -61,7 +64,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		
 		_logic = logic;
 		
-		_circuitList = new ListBox(this, 86, 16, 130, 200)
+		_circuitList = new ListBox(this, 86, 16, 130, 234)
 		{
 			@Override
 			protected void onSelectionChanged(int newIndex, IListBoxElement newElement)
@@ -86,7 +89,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		
 		addControl(_circuitList);
 		
-		_circuitScroll = new SliderVertical(this, 216, 16, 10, 200, circuits.size() - 1)
+		_circuitScroll = new SliderVertical(this, 218, 16, 10, 234, circuits.size() - 1)
 		{
 			@Override
 			public void onValueChanged(int value)
@@ -208,7 +211,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		fontRenderer.drawString("Programmable RedNet Controller", 8, 6, 4210752);
-		fontRenderer.drawString((_selectedCircuit + 1) + " of 4", 344, 60, 4210752);
+		fontRenderer.drawString((_selectedCircuit + 1) + " of 6", 344, 60, 4210752);
 		
 		for(int i = 0; i < _inputIOPinButtons.length; i++)
 		{
@@ -240,7 +243,27 @@ public class GuiRedNetLogic extends GuiScreenBase
 	}
 	
 	@Override
-	public void drawTexturedModalRect(int x, int y, int u, int v, int xSize, int ySize)
+	protected void drawGuiContainerBackgroundLayer(float gameTicks, int mouseX, int mouseY)
+	{
+		mouseX -= guiLeft;
+		mouseY -= guiTop;
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		mc.renderEngine.bindTexture(_backgroundTexture);
+		drawLargeTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		
+		GL11.glPushMatrix();
+		GL11.glTranslatef(guiLeft, guiTop, 0.0F);
+		for(Control c : _controls)
+		{
+			if(c.getVisible())
+			{
+				c.drawBackground(mouseX, mouseY, gameTicks);
+			}
+		}
+		GL11.glPopMatrix();
+	}
+	
+	public void drawLargeTexturedModalRect(int x, int y, int u, int v, int xSize, int ySize)
 	{
 		float uScale = 1.0F/384.0F;
 		float vScale = 1.0F/256.0F;
