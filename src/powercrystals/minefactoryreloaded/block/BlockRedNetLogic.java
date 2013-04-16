@@ -5,6 +5,7 @@ import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
 import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -132,6 +133,15 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 				nextMeta = 0;
 			}
 			world.setBlockMetadataWithNotify(x, y, z, nextMeta, 6);
+		}
+		else if(MFRUtil.isHolding(player, ItemLogicUpgradeCard.class))
+		{
+			TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
+			if(logic != null)
+			{
+				return logic.insertUpgrade(player.inventory.getCurrentItem().getItemDamage() + 1);
+			}
+			return false;
 		}
 		else
 		{

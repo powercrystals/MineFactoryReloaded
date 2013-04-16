@@ -47,6 +47,8 @@ public class TileEntityRedNetLogic extends TileEntity
 	private PinMapping[][] _pinMappingInputs = new PinMapping[_circuits.length][];
 	private PinMapping[][] _pinMappingOutputs = new PinMapping[_circuits.length][];
 	
+	private int[] _upgradeLevel = new int[6];
+	
 	public TileEntityRedNetLogic()
 	{
 		// init I/O and constant buffers
@@ -341,8 +343,21 @@ public class TileEntityRedNetLogic extends TileEntity
 		}
 	}
 	
+	public boolean insertUpgrade(int level)
+	{
+		for(int i = 0; i < 6; i++)
+		{
+			if(_upgradeLevel[i] == 0)
+			{
+				_upgradeLevel[i] = level;
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public int getLevelForSlot(int slot)
 	{
-		return 0;
+		return _upgradeLevel[slot];
 	}
 }

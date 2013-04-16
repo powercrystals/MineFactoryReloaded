@@ -98,13 +98,13 @@ public class RedNetLogicRenderer extends TileEntitySpecialRenderer implements IS
 		switch(cardLevel)
 		{
 		case 1:
-			_cardsModel.renderLevel1(0.0625f);
+			_cardsModel.renderLevel3(0.0625f);
 			break;
 		case 2:
-			_cardsModel.renderLevel2(0.0625f);
+			_cardsModel.renderLevel1(0.0625f);
 			break;
 		case 3:
-			_cardsModel.renderLevel3(0.0625f);
+			_cardsModel.renderLevel2(0.0625f);
 			break;
 		default:
 			_cardsModel.renderEmptySlot(0.0625f);
