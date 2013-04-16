@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.block;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -16,6 +17,9 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	public BlockRedNetLogic(int id)
 	{
 		super(id, Material.clay);
+		setUnlocalizedName("mfr.rednet.logic");
+		setHardness(0.8F);
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 
 	@Override
