@@ -9,7 +9,7 @@ public class LatchDGated implements IRedNetLogicCircuit
 	@Override
 	public int getInputCount()
 	{
-		return 3;
+		return 2;
 	}
 
 	@Override
