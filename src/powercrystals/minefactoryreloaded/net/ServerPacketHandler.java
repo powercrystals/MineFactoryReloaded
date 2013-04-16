@@ -107,7 +107,7 @@ public class ServerPacketHandler implements IPacketHandler
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
 			if(te instanceof TileEntityRedNetLogic)
 			{
-				((TileEntityRedNetLogic)te).sendCircuitToPlayer((Integer)packetReadout[3], ((EntityPlayer)player));
+				((TileEntityRedNetLogic)te).sendCircuitDefinition((Integer)packetReadout[3]);
 			}
 		}
 		else if(packetType == Packets.LogicSetCircuit) // client -> server: set circuit
@@ -119,7 +119,7 @@ public class ServerPacketHandler implements IPacketHandler
 			if(te instanceof TileEntityRedNetLogic)
 			{
 				((TileEntityRedNetLogic)te).initCircuit((Integer)packetReadout[3], (String)packetReadout[4]);
-				((TileEntityRedNetLogic)te).sendCircuitToPlayer((Integer)packetReadout[3], ((EntityPlayer)player));
+				((TileEntityRedNetLogic)te).sendCircuitDefinition((Integer)packetReadout[3]);
 			}
 		}
 		else if(packetType == Packets.LogicSetPin) // client -> server: set pin
@@ -138,7 +138,7 @@ public class ServerPacketHandler implements IPacketHandler
 				{
 					((TileEntityRedNetLogic)te).setOutputPinMapping((Integer)packetReadout[4], (Integer)packetReadout[5], (Integer)packetReadout[6], (Integer)packetReadout[7]);
 				}
-				((TileEntityRedNetLogic)te).sendCircuitToPlayer((Integer)packetReadout[4], ((EntityPlayer)player));
+				((TileEntityRedNetLogic)te).sendCircuitDefinition((Integer)packetReadout[4]);
 			}
 		}
 	}

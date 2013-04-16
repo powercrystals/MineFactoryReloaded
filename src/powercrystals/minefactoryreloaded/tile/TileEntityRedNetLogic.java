@@ -171,7 +171,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		}
 	}
 	
-	public void sendCircuitToPlayer(int circuit, EntityPlayer player)
+	public void sendCircuitDefinition(int circuit)
 	{
 		List<Object> data = new ArrayList<Object>();
 		
@@ -195,7 +195,8 @@ public class TileEntityRedNetLogic extends TileEntity
 			data.add(_pinMappingOutputs[circuit][p].pin);
 		}
 		
-		PacketDispatcher.sendPacketToPlayer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.LogicCircuitDefinition, data.toArray()), (Player)player);
+		PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 5, worldObj.getWorldInfo().getDimension(),
+				PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.LogicCircuitDefinition, data.toArray()));
 	}
 	
 	@Override
