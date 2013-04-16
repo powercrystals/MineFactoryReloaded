@@ -345,9 +345,4 @@ public class TileEntityRedNetLogic extends TileEntity
 	{
 		return Math.max(zCoord % 16, 2);
 	}
-	
-	public int getRotation()
-	{
-		return 0;
-	}
 }

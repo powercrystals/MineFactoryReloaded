@@ -56,6 +56,7 @@ public class RedNetLogicRenderer extends TileEntitySpecialRenderer implements IS
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f)
 	{
 		TileEntityRedNetLogic logic = (TileEntityRedNetLogic) tileentity;
+		int rotation = tileentity.worldObj.getBlockMetadata(tileentity.xCoord, tileentity.yCoord, tileentity.zCoord);
 		bindTextureByName(MineFactoryReloadedCore.tileEntityFolder + "redcomp.png");
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5f, (float) z + 0.5F);
@@ -63,7 +64,7 @@ public class RedNetLogicRenderer extends TileEntitySpecialRenderer implements IS
 		// Techne sucks so do some crazy rotations to turn techne coords into
 		// real coords
 		GL11.glRotatef(180, 0, 0, 1);
-		GL11.glRotatef(180 + (90 * logic.getRotation()), 0, 1, 0);
+		GL11.glRotatef(180 + (90 * rotation), 0, 1, 0);
 
 		// Render the base, with no cards or slots
 		_logicModel.render(0.0625f);
