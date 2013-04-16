@@ -32,6 +32,7 @@ public class ButtonLogicPinSelect extends Button
 	private GuiRedNetLogic _containerScreen;
 	
 	private int _pin;
+	private int _buffer;
 	
 	public ButtonLogicPinSelect(GuiRedNetLogic containerScreen, int x, int y, int pinIndex, LogicButtonType buttonType)
 	{
@@ -39,6 +40,16 @@ public class ButtonLogicPinSelect extends Button
 		_pinIndex = pinIndex;
 		_buttonType = buttonType;
 		_containerScreen = containerScreen;
+	}
+	
+	public int getBuffer()
+	{
+		return _buffer;
+	}
+	
+	public void setBuffer(int buffer)
+	{
+		_buffer = buffer;
 	}
 	
 	public int getPin()
@@ -62,11 +73,11 @@ public class ButtonLogicPinSelect extends Button
 		
 		if(_buttonType == LogicButtonType.Input)
 		{
-			_containerScreen.setInputPinMapping(_pinIndex, 0, _pin);
+			_containerScreen.setInputPinMapping(_pinIndex, _buffer, _pin);
 		}
 		else
 		{
-			_containerScreen.setOutputPinMapping(_pinIndex, 2, _pin);
+			_containerScreen.setOutputPinMapping(_pinIndex, _buffer, _pin);
 		}
 	}
 

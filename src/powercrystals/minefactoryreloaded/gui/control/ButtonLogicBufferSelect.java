@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.gui.control;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
 import powercrystals.core.gui.controls.ButtonOption;
 import powercrystals.minefactoryreloaded.gui.client.GuiRedNetLogic;
 
@@ -8,12 +7,17 @@ public class ButtonLogicBufferSelect extends ButtonOption
 {
 	private LogicButtonType _buttonType;
 	private GuiRedNetLogic _logicScreen;
+	private int _pinIndex;
+	private boolean _ignoreChanges;
 	
 	public ButtonLogicBufferSelect(GuiRedNetLogic containerScreen, int x, int y, int pinIndex, LogicButtonType buttonType)
 	{
 		super(containerScreen, x, y, 30, 14);
+		_logicScreen = containerScreen;
 		_buttonType = buttonType;
-		
+		_pinIndex = pinIndex;
+
+		_ignoreChanges = true;
 		if(_buttonType == LogicButtonType.Input)
 		{
 			setValue(0, "I/O D");
@@ -38,13 +42,45 @@ public class ButtonLogicBufferSelect extends ButtonOption
 			setValue(14, "NULL");
 			setSelectedIndex(6);
 		}
-		
+		_ignoreChanges = false;
+	}
+	
+	public int getBuffer()
+	{
+		return getSelectedIndex();
+	}
+	
+	public void setBuffer(int buffer)
+	{
+		_ignoreChanges = true;
+		setSelectedIndex(buffer);
+		_ignoreChanges = false;
 	}
 
 	@Override
 	public void onValueChanged(int value, String label)
 	{
-		// TODO Auto-generated method stub
-		
+		if(_ignoreChanges)
+		{
+			return;
+		}
+		if(_buttonType == LogicButtonType.Input)
+		{
+			_logicScreen.setInputPinMapping(_pinIndex, value, 0);
+		}
+		else
+		{
+			_logicScreen.setOutputPinMapping(_pinIndex, value, 0);
+		}
+	}
+	
+	@Override
+	public void drawForeground(int mouseX, int mouseY)
+	{
+		if(getValue() == null)
+		{
+			System.out.println("Buffer selection of " + getSelectedIndex() + " on " + _buttonType + " has null value!");
+		}
+		super.drawForeground(mouseX, mouseY);
 	}
 }

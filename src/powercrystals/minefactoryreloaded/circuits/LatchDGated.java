@@ -39,7 +39,7 @@ public class LatchDGated implements IRedNetLogicCircuit
 	@Override
 	public String getUnlocalizedName()
 	{
-		return "circuit.mfr.latch.gated.d";
+		return "circuit.mfr.latch.d.gated";
 	}
 
 	@Override

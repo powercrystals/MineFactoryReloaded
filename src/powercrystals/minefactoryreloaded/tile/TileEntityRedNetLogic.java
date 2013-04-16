@@ -134,7 +134,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		}
 		for(int i = 0; i < _pinMappingOutputs[index].length; i++)
 		{
-			_pinMappingOutputs[index][i] = new PinMapping(6, 0);
+			_pinMappingOutputs[index][i] = new PinMapping(0, 6);
 		}
 	}
 	

@@ -13,6 +13,7 @@ import powercrystals.core.gui.GuiScreenBase;
 import powercrystals.core.gui.controls.Button;
 import powercrystals.core.gui.controls.IListBoxElement;
 import powercrystals.core.gui.controls.ListBox;
+import powercrystals.core.gui.controls.SliderVertical;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -40,6 +41,8 @@ public class GuiRedNetLogic extends GuiScreenBase
 	private int _selectedCircuit;
 	
 	private ListBox _circuitList;
+	
+	private SliderVertical _circuitScroll;
 
 	private ButtonLogicBufferSelect[] _inputIOBufferButtons = new ButtonLogicBufferSelect[16];
 	private ButtonLogicBufferSelect[] _outputIOBufferButtons = new ButtonLogicBufferSelect[16];
@@ -58,7 +61,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		
 		_logic = logic;
 		
-		_circuitList = new ListBox(this, 86, 16, 120, 200)
+		_circuitList = new ListBox(this, 86, 16, 130, 200)
 		{
 			@Override
 			protected void onSelectionChanged(int newIndex, IListBoxElement newElement)
@@ -82,6 +85,17 @@ public class GuiRedNetLogic extends GuiScreenBase
 		}
 		
 		addControl(_circuitList);
+		
+		_circuitScroll = new SliderVertical(this, 216, 16, 10, 200, circuits.size() - 1)
+		{
+			@Override
+			public void onValueChanged(int value)
+			{
+				_circuitList.scrollTo(value);
+			}
+		};
+		
+		addControl(_circuitScroll);
 		
 		_prevCircuit = new Button(this, 344, 16, 30, 30, "Prev")
 		{
@@ -160,6 +174,8 @@ public class GuiRedNetLogic extends GuiScreenBase
 				_inputIOPinButtons[i].setVisible(true);
 				_inputIOBufferButtons[i].setVisible(true);
 				_inputIOPinButtons[i].setPin(_logic.getInputPinMapping(_selectedCircuit, i).pin);
+				_inputIOPinButtons[i].setBuffer(_logic.getInputPinMapping(_selectedCircuit, i).buffer);
+				_inputIOBufferButtons[i].setBuffer(_logic.getInputPinMapping(_selectedCircuit, i).buffer);
 			}
 			else
 			{
@@ -175,6 +191,8 @@ public class GuiRedNetLogic extends GuiScreenBase
 				_outputIOBufferButtons[i].setVisible(true);
 				_outputIOPinButtons[i].setVisible(true);
 				_outputIOPinButtons[i].setPin(_logic.getOutputPinMapping(_selectedCircuit, i).pin);
+				_outputIOPinButtons[i].setBuffer(_logic.getOutputPinMapping(_selectedCircuit, i).buffer);
+				_outputIOBufferButtons[i].setBuffer(_logic.getOutputPinMapping(_selectedCircuit, i).buffer);
 			}
 			else
 			{
