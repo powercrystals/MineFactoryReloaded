@@ -118,7 +118,7 @@ public class ButtonLogicPinSelect extends Button
 			else
 			{
 
-				GuiRender.drawCenteredString(containerScreen.fontRenderer, _pinColorNames[_pin], x + width / 2, y + height / 2 - 6, getTextColor(mouseX, mouseY));
+				GuiRender.drawCenteredString(containerScreen.fontRenderer, _pinColorNames[_pin], x + width / 2, y + height / 2 - 4, getTextColor(mouseX, mouseY));
 			}
 		}
 		else if(_buffer < 14)
