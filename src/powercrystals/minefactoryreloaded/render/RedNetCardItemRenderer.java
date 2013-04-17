@@ -58,13 +58,13 @@ public class RedNetCardItemRenderer implements IItemRenderer
 		switch(item.getItemDamage())
 		{
 		case 0:
-			_cardsModel.renderLevel3(0.0625f);
-			break;
-		case 1:
 			_cardsModel.renderLevel1(0.0625f);
 			break;
-		case 2:
+		case 1:
 			_cardsModel.renderLevel2(0.0625f);
+			break;
+		case 2:
+			_cardsModel.renderLevel3(0.0625f);
 			break;
 		default:
 			_cardsModel.renderEmptySlot(0.0625f);
