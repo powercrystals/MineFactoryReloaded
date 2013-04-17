@@ -41,8 +41,10 @@ public class RedNetCardItemRenderer implements IItemRenderer
 		switch(type)
 		{
 			case EQUIPPED:
-				GL11.glRotatef(45, 0, 1, 0);
-				GL11.glTranslatef(-0.8f, 0.5f, 1.25f);
+				GL11.glRotatef(60, 0, 1, 0);
+				GL11.glRotatef(200, 1, 0, 0);
+				GL11.glRotatef(120, 0, 0, 1);
+				GL11.glTranslatef(-1.8f, 0.5f, -1.0f);
 				break;
 			case INVENTORY:
 				GL11.glTranslatef(0, -0.2f, 0);
