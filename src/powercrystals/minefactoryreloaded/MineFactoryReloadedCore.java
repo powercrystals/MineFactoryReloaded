@@ -56,6 +56,7 @@ import powercrystals.minefactoryreloaded.block.ItemBlockFactoryGlass;
 import powercrystals.minefactoryreloaded.block.ItemBlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.block.ItemBlockFactoryMachine;
 import powercrystals.minefactoryreloaded.block.ItemBlockFactoryRoad;
+import powercrystals.minefactoryreloaded.block.ItemBlockRedNetLogic;
 import powercrystals.minefactoryreloaded.block.ItemBlockVanillaIce;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
 import powercrystals.minefactoryreloaded.gui.MFRGUIHandler;
@@ -390,7 +391,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerBlock(railPickupPassengerBlock, railPickupPassengerBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(railDropoffPassengerBlock, railDropoffPassengerBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(rednetCableBlock, rednetCableBlock.getUnlocalizedName());
-		GameRegistry.registerBlock(rednetLogicBlock, rednetLogicBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(rednetLogicBlock, ItemBlockRedNetLogic.class, rednetLogicBlock.getUnlocalizedName());
 		
 		GameRegistry.registerBlock(milkLiquid, milkLiquid.getUnlocalizedName());
 		GameRegistry.registerBlock(sludgeLiquid, sludgeLiquid.getUnlocalizedName());
