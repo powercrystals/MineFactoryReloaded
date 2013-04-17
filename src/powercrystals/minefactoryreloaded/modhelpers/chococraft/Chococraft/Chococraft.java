@@ -6,15 +6,10 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
-import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
-import powercrystals.minefactoryreloaded.modhelpers.FertilizableCropReflection;
-
-import java.lang.reflect.Method;
 
 @Mod(modid="MineFactoryReloaded|CompatChococraft", name = "MFR Compat: Chococraft",
 		version = MineFactoryReloadedCore.version,
@@ -38,11 +33,10 @@ public class Chococraft
 			FMLLog.info("Registering Gysahls for Planter/Harvester/Fertilizer");
 			int blockId = ((Block)(mod.getField("gysahlStemBlock").get(null))).blockID;
 			int seedId = ((Item)(mod.getField("gysahlSeedsItem").get(null))).itemID;
-			Method fertilize = Class.forName("chococraft.common.items.BlockGysahlStem").getMethod("onBonemealUse", World.class, int.class, int.class, int.class);
 
 			MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 			MFRRegistry.registerHarvestable(new HarvestableChococraft(blockId));
-			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 4));
+			MFRRegistry.registerFertilizable(new FertilizableChococraft(blockId));
 
 			// Chocobo List
 			FMLLog.info("Registering Chocobos for Grinder...");
