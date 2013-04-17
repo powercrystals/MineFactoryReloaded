@@ -141,7 +141,10 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			{
 				if(logic.insertUpgrade(player.inventory.getCurrentItem().getItemDamage() + 1));
 				{
+					if(!player.capabilities.isCreativeMode)
+					{
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+					}
 					return true;
 				}
 			}
