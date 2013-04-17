@@ -11,12 +11,17 @@ public class MFRUtil
 {
 	public static boolean isHoldingWrench(EntityPlayer player)
 	{
+		return isHolding(player, IToolHammer.class);
+	}
+	
+	public static boolean isHolding(EntityPlayer player, Class<?> itemClass)
+	{
 		if(player.inventory.getCurrentItem() == null)
 		{
 			return false;
 		}
 		Item currentItem = Item.itemsList[player.inventory.getCurrentItem().itemID];
-		if(currentItem != null && currentItem instanceof IToolHammer)
+		if(currentItem != null && itemClass.isAssignableFrom(currentItem.getClass()))
 		{
 			return true;
 		}

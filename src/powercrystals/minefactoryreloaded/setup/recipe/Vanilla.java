@@ -6,12 +6,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.block.ItemBlockRedNetLogic;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Vanilla
 {
-	public static void registerRecipes()
+	public static final void registerRecipes()
 	{
 		registerMachines();
 		registerMachineUpgrades();
@@ -22,6 +23,7 @@ public class Vanilla
 		registerVanillaImprovements();
 		registerRails();
 		registerRedNet();
+		registerRedNetManual();
 	}
 	
 	private static void registerMachines()
@@ -1080,5 +1082,10 @@ public class Vanilla
 					Character.valueOf('R'), Item.redstone,
 					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
 				} );
+	}
+	
+	private static final void registerRedNetManual()
+	{
+		GameRegistry.addShapelessRecipe(ItemBlockRedNetLogic.manual, new ItemStack(MineFactoryReloadedCore.rednetLogicBlock, 1, 0), Item.book);
 	}
 }

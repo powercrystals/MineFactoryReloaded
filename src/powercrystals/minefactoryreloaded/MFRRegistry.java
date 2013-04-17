@@ -19,6 +19,7 @@ import powercrystals.minefactoryreloaded.api.ILiquidDrinkHandler;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
 import powercrystals.minefactoryreloaded.api.IRandomMobProvider;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
+import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
 public abstract class MFRRegistry
 {
@@ -37,6 +38,7 @@ public abstract class MFRRegistry
 	private static List<String> _rubberTreeBiomes = new ArrayList<String>();
 	private static List<Class<?>> _safariNetBlacklist = new ArrayList<Class<?>>();
 	private static List<IRandomMobProvider> _randomMobProviders = new ArrayList<IRandomMobProvider>();
+	private static List<IRedNetLogicCircuit> _redNetLogicCircuits = new ArrayList<IRedNetLogicCircuit>();
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
@@ -180,5 +182,15 @@ public abstract class MFRRegistry
 	public static Map<Integer, ILiquidDrinkHandler> getLiquidDrinkHandlers()
 	{
 		return _liquidDrinkHandlers;
+	}
+	
+	public static void registerRedNetLogicCircuit(IRedNetLogicCircuit circuit)
+	{
+		_redNetLogicCircuits.add(circuit);
+	}
+	
+	public static List<IRedNetLogicCircuit> getRedNetLogicCircuits()
+	{
+		return _redNetLogicCircuits;
 	}
 }

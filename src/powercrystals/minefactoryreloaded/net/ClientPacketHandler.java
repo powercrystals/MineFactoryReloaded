@@ -15,6 +15,7 @@ import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
@@ -90,6 +91,17 @@ public class ClientPacketHandler implements IPacketHandler
 				tec.setSideColor(ForgeDirection.SOUTH, (Integer)packetReadout[6]);
 				tec.setSideColor(ForgeDirection.WEST, (Integer)packetReadout[7]);
 				tec.setSideColor(ForgeDirection.EAST, (Integer)packetReadout[8]);
+			}
+		}
+		else if(packetType == Packets.LogicCircuitDefinition) // server -> client: logic circuit (class and pins)
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityRedNetLogic)
+			{
+				((TileEntityRedNetLogic)te).setCircuitFromPacket(data);
 			}
 		}
 	}
