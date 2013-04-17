@@ -26,8 +26,8 @@ public class ItemLogicUpgradeCard extends ItemFactory
 	public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedTooltips)
 	{
 		super.addInformation(stack, player, infoList, advancedTooltips);
-		infoList.add("Circuits: " + (1 + 2 * stack.getItemDamage()));
-		infoList.add("Variables: " + (8 * (1 + stack.getItemDamage())));
+		infoList.add("Circuits: " + getCircuitsForLevel(stack.getItemDamage() + 1));
+		infoList.add("Variables: " + getVariablesForLevel(stack.getItemDamage() + 1));
 	}
 	
 	@Override
@@ -35,5 +35,15 @@ public class ItemLogicUpgradeCard extends ItemFactory
 	{
 		int md = Math.min(s.getItemDamage(), _upgradeNames.length);
 		return getUnlocalizedName() + "." + _upgradeNames[md];
+	}
+	
+	public static int getCircuitsForLevel(int level)
+	{
+		return level == 0 ? 0 : 1 + 2 * (level - 1);
+	}
+	
+	public static int getVariablesForLevel(int level)
+	{
+		return level == 0 ? 0 : 8 * level;
 	}
 }

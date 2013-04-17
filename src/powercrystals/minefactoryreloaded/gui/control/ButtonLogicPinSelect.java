@@ -67,7 +67,7 @@ public class ButtonLogicPinSelect extends Button
 	public void onClick()
 	{
 		_pin++;
-		if((_buffer == 14 && _pin > 0) || _pin > 15)
+		if((_buffer == 14 && _pin > 0) || (_buffer == 13 && _pin >= _containerScreen.getVariableCount()) || (_buffer < 13 && _pin > 15))
 		{
 			_pin = 0;
 		}

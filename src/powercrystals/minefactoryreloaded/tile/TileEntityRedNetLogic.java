@@ -24,6 +24,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.circuits.Noop;
+import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
 import powercrystals.minefactoryreloaded.net.Packets;
 
 public class TileEntityRedNetLogic extends TileEntity
@@ -39,8 +40,12 @@ public class TileEntityRedNetLogic extends TileEntity
 		public int pin;
 		public int buffer;
 	}
+
+	private int _circuitCount = 6;
 	
-	private IRedNetLogicCircuit[] _circuits = new IRedNetLogicCircuit[getCircuitCount()];
+	private int _variableCount = 16;
+	
+	private IRedNetLogicCircuit[] _circuits = new IRedNetLogicCircuit[_circuitCount];
 	
 	// 0-5 in, 6-11 out, 12 const, 13 var, 14 null
 	private int[][] _buffers = new int[15][];
@@ -51,14 +56,14 @@ public class TileEntityRedNetLogic extends TileEntity
 	private int[] _upgradeLevel = new int[6];
 	
 	public TileEntityRedNetLogic()
-	{
+	{	
 		// init I/O and constant buffers
 		for(int i = 0; i < 13; i++)
 		{
 			_buffers[i] = new int[16];
 		}
 		// init variable buffer
-		_buffers[13] = new int[getVariableBufferSize()];
+		_buffers[13] = new int[_variableCount];
 		// init null buffer
 		_buffers[14] = new int[1];
 		
@@ -75,14 +80,14 @@ public class TileEntityRedNetLogic extends TileEntity
 		}
 	}
 	
-	private int getVariableBufferSize()
+	public int getVariableBufferSize()
 	{
-		return 16;
+		return _variableCount;
 	}
 	
 	public int getCircuitCount()
 	{
-		return 6;
+		return _circuitCount;
 	}
 	
 	public int getBufferLength(int buffer)
@@ -357,6 +362,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		{
 			_upgradeLevel = upgrades;
 		}
+		updateUpgradeLevels();
 	}
 	
 	@Override
@@ -372,6 +378,7 @@ public class TileEntityRedNetLogic extends TileEntity
 	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
 	{
 		_upgradeLevel = pkt.customParam1.getIntArray("upgrades");
+		updateUpgradeLevels();
 	}
 	
 	public boolean insertUpgrade(int level)
@@ -383,6 +390,7 @@ public class TileEntityRedNetLogic extends TileEntity
 				if(!worldObj.isRemote)
 				{
 					_upgradeLevel[i] = level;
+					updateUpgradeLevels();
 				}
 				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 				return true;
@@ -399,5 +407,54 @@ public class TileEntityRedNetLogic extends TileEntity
 	public int getLevelForSlot(int slot)
 	{
 		return _upgradeLevel[slot];
+	}
+	
+	private void updateUpgradeLevels()
+	{
+		// recalculate sizes
+		int circuitCount = 6;
+		int variableCount = 16;
+		for(int i = 0; i < _upgradeLevel.length; i++)
+		{
+			circuitCount += ItemLogicUpgradeCard.getCircuitsForLevel(_upgradeLevel[i]);
+			variableCount += ItemLogicUpgradeCard.getVariablesForLevel(_upgradeLevel[i]);
+		}
+		
+		_circuitCount = circuitCount;
+		_variableCount = variableCount;
+		
+		// re-init circuit array and variable buffer
+		_circuits = java.util.Arrays.copyOf(_circuits, _circuitCount);
+		_buffers[13] = Arrays.copyOf(_buffers[13], _variableCount);
+		
+		// re-init pinmapping arrays
+		PinMapping[][] inputMappings = new PinMapping[_circuitCount][];
+		for(int i = 0; i < inputMappings.length; i++)
+		{
+			if(i < _pinMappingInputs.length && _pinMappingInputs[i] != null)
+			{
+				inputMappings[i] = _pinMappingInputs[i];
+			}
+		}
+		_pinMappingInputs = inputMappings;
+		
+		PinMapping[][] outputMappings = new PinMapping[_circuitCount][];
+		for(int i = 0; i < outputMappings.length; i++)
+		{
+			if(i < _pinMappingOutputs.length && _pinMappingOutputs[i] != null)
+			{
+				outputMappings[i] = _pinMappingOutputs[i];
+			}
+		}
+		_pinMappingOutputs = outputMappings;
+		
+		// finally, init any new circuits
+		for(int i = 0; i < _circuits.length; i++)
+		{
+			if(_circuits[i] == null)
+			{
+				initCircuit(i, new Noop());
+			}
+		}
 	}
 }

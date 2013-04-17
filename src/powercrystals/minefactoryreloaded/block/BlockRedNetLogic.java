@@ -139,7 +139,11 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
 			if(logic != null)
 			{
-				return logic.insertUpgrade(player.inventory.getCurrentItem().getItemDamage() + 1);
+				if(logic.insertUpgrade(player.inventory.getCurrentItem().getItemDamage() + 1));
+				{
+					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+					return true;
+				}
 			}
 			return false;
 		}

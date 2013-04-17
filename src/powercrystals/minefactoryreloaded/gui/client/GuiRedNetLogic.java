@@ -109,7 +109,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 				_selectedCircuit--;
 				if(_selectedCircuit < 0)
 				{
-					_selectedCircuit = 3;
+					_selectedCircuit = _logic.getCircuitCount() - 1;
 				}
 				requestCircuit();
 			}
@@ -122,7 +122,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 			public void onClick()
 			{
 				_selectedCircuit++;
-				if(_selectedCircuit > 3)
+				if(_selectedCircuit >= _logic.getCircuitCount())
 				{
 					_selectedCircuit = 0;
 				}
@@ -211,7 +211,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		fontRenderer.drawString("Programmable RedNet Controller", 8, 6, 4210752);
-		fontRenderer.drawString((_selectedCircuit + 1) + " of 6", 344, 60, 4210752);
+		fontRenderer.drawString((_selectedCircuit + 1) + " of " + _logic.getCircuitCount(), 344, 60, 4210752);
 		
 		for(int i = 0; i < _inputIOPinButtons.length; i++)
 		{
@@ -240,6 +240,11 @@ public class GuiRedNetLogic extends GuiScreenBase
 	{
 		PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.LogicSetPin, new Object[]
 				{ _logic.xCoord, _logic.yCoord, _logic.zCoord, 1, _selectedCircuit, index, buffer, pin }));
+	}
+	
+	public int getVariableCount()
+	{
+		return _logic.getVariableBufferSize();
 	}
 	
 	@Override
