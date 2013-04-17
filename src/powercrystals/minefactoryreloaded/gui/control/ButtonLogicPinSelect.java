@@ -1,9 +1,12 @@
 package powercrystals.minefactoryreloaded.gui.control;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.gui.GuiColor;
 import powercrystals.core.gui.GuiRender;
 import powercrystals.core.gui.controls.Button;
 import powercrystals.minefactoryreloaded.gui.client.GuiRedNetLogic;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
 public class ButtonLogicPinSelect extends Button
 {	
@@ -25,6 +28,26 @@ public class ButtonLogicPinSelect extends Button
 				new GuiColor( 53,  71,  28), // green
 				new GuiColor(151,  52,  49), // red
 				new GuiColor( 22,  22,  26), // black
+			};
+	
+	private static String[] _pinColorNames = new String[]
+			{
+				"WT",
+				"ORNG",
+				"MGTA",
+				"L_BL",
+				"YLLW",
+				"LIME",
+				"PINK",
+				"D_GR",
+				"L_GR",
+				"CYAN",
+				"PURP",
+				"BLUE",
+				"BRWN",
+				"GRN",
+				"RED",
+				"BLK",
 			};
 	
 	private int _pinIndex;
@@ -88,7 +111,15 @@ public class ButtonLogicPinSelect extends Button
 	{
 		if(_buffer < 12)
 		{
-			GuiRender.drawRect(x + 3, y + 3, x + width - 3, y + height - 3, _pinColors[_pin].getColor());
+			if(!MineFactoryReloadedCore.colorblindMode.getBoolean(false))
+			{
+				GuiRender.drawRect(x + 3, y + 3, x + width - 3, y + height - 3, _pinColors[_pin].getColor());
+			}
+			else
+			{
+
+				GuiRender.drawCenteredString(containerScreen.fontRenderer, _pinColorNames[_pin], x + width / 2, y + height / 2 - 6, getTextColor(mouseX, mouseY));
+			}
 		}
 		else if(_buffer < 14)
 		{

@@ -269,6 +269,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 
 	public static Property zoolologistEntityId;
 	
+	public static Property colorblindMode;
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
 	public static Property verticalHarvestSearchMaxVertical;
@@ -598,6 +599,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 
+		colorblindMode = c.get(Configuration.CATEGORY_GENERAL, "RedNet.EnableColorblindMode", false);
+		colorblindMode.comment = "Set to true to enable the RedNet GUI's colorblind mode.";
 		treeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxHoriztonal", 8);
 		treeSearchMaxHorizontal.comment = "When searching for parts of a tree, how far out to the sides (radius) to search";
 		treeSearchMaxVertical = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxVertical", 40);
