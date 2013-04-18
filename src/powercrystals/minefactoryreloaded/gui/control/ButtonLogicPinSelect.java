@@ -103,6 +103,39 @@ public class ButtonLogicPinSelect extends Button
 			_containerScreen.setOutputPinMapping(_pinIndex, _buffer, _pin);
 		}
 	}
+	
+	@Override
+	public void onRightClick()
+	{
+		_pin--;
+		
+		if(_pin < 0)
+		{
+			if(_buffer == 14)
+			{
+				_pin = 0;
+			}
+			else if(_buffer == 13)
+			{
+				_pin = _containerScreen.getVariableCount() - 1;
+			}
+			else
+			{
+				_pin = 15;
+			}
+		}
+		
+		setText(((Integer)_pin).toString());
+		
+		if(_buttonType == LogicButtonType.Input)
+		{
+			_containerScreen.setInputPinMapping(_pinIndex, _buffer, _pin);
+		}
+		else
+		{
+			_containerScreen.setOutputPinMapping(_pinIndex, _buffer, _pin);
+		}
+	}
 
 	@Override
 	public void drawForeground(int mouseX, int mouseY)
