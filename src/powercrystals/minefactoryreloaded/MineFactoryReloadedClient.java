@@ -1,6 +1,9 @@
 package powercrystals.minefactoryreloaded;
 
+import java.util.HashMap;
+
 import net.minecraftforge.client.MinecraftForgeClient;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.core.render.RenderBlockFluidClassic;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
 import powercrystals.minefactoryreloaded.render.RedNetCardItemRenderer;
@@ -17,6 +20,8 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class MineFactoryReloadedClient
 {
+	public static HashMap<BlockPosition, Integer> prcPages = new HashMap<BlockPosition, Integer>();
+	
 	public static void init()
 	{
 		MineFactoryReloadedCore.renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();

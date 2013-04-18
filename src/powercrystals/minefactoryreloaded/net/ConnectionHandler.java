@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.net;
 
+import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
 import net.minecraft.network.packet.NetHandler;
@@ -10,7 +11,6 @@ import cpw.mods.fml.common.network.Player;
 
 public class ConnectionHandler implements IConnectionHandler
 {
-
 	@Override
 	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager)
 	{
@@ -40,6 +40,6 @@ public class ConnectionHandler implements IConnectionHandler
 	@Override
 	public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login)
 	{
+		MineFactoryReloadedClient.prcPages.clear();
 	}
-
 }

@@ -18,7 +18,9 @@ import powercrystals.core.gui.controls.IListBoxElement;
 import powercrystals.core.gui.controls.ListBox;
 import powercrystals.core.gui.controls.SliderVertical;
 import powercrystals.core.net.PacketWrapper;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.gui.control.ButtonLogicBufferSelect;
@@ -111,6 +113,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 				{
 					_selectedCircuit = _logic.getCircuitCount() - 1;
 				}
+				MineFactoryReloadedClient.prcPages.put(new BlockPosition(_logic), _selectedCircuit);
 				requestCircuit();
 			}
 		};
@@ -126,6 +129,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 				{
 					_selectedCircuit = 0;
 				}
+				MineFactoryReloadedClient.prcPages.put(new BlockPosition(_logic), _selectedCircuit);
 				requestCircuit();
 			}
 		};
@@ -145,6 +149,13 @@ public class GuiRedNetLogic extends GuiScreenBase
 			addControl(_outputIOBufferButtons[i]);
 			addControl(_inputIOPinButtons[i]);
 			addControl(_outputIOPinButtons[i]);
+		}
+		
+		
+		Integer lastPage = MineFactoryReloadedClient.prcPages.get(new BlockPosition(_logic));
+		if(lastPage != null && lastPage < _logic.getCircuitCount())
+		{
+			_selectedCircuit = lastPage;
 		}
 		requestCircuit();
 	}
