@@ -92,7 +92,7 @@ public class RedstoneCableModel extends ModelBase
 		renderSide(entity.getConnectionState(ForgeDirection.DOWN), entity.getSideColor(ForgeDirection.DOWN),0,(float)-Math.PI/2, f5);
 	}
 	
-	private void renderSide(RedNetConnectionType state, int color, float yRot, float zRot, float scale)
+	private void renderModelState(RedNetConnectionType state, float yRot, float zRot, float scale)
 	{
 		switch (state)
 		{
@@ -108,10 +108,7 @@ public class RedstoneCableModel extends ModelBase
 			
 			_bandWhite.rotateAngleY = yRot;
 			_bandWhite.rotateAngleZ = zRot;
-			
-			GL11.glColor3f(_bandColors[color].x, _bandColors[color].y, _bandColors[color].z);
 			_bandWhite.render(scale);
-			GL11.glColor3f(1.0f, 1.0f, 1.0f);
 			break;
 		case PlateAll:
 			_interfaceConn.rotateAngleY = yRot;
@@ -133,12 +130,38 @@ public class RedstoneCableModel extends ModelBase
 			
 			_bandWhite.rotateAngleY = yRot;
 			_bandWhite.rotateAngleZ = zRot;
-			GL11.glColor3f(_bandColors[color].x, _bandColors[color].y, _bandColors[color].z);
 			_bandWhite.render(scale);
-			GL11.glColor3f(1.0f, 1.0f, 1.0f);
 			break;
 		default:
 			break;
+		}
+	}
+	
+	private void renderSide(RedNetConnectionType state, int color, float yRot, float zRot, float scale)
+	{
+		if (state == RedNetConnectionType.CableSingle || state == RedNetConnectionType.PlateSingle)
+		{
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glDisable(GL11.GL_LIGHTING);
+			GL11.glColor3f(_bandColors[color].x, _bandColors[color].y, _bandColors[color].z);
+			renderModelState(state, yRot, zRot, scale);
+			
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			GL11.glEnable(GL11.GL_LIGHTING);
+			GL11.glColor3f(1.0f, 1.0f, 1.0f);
+			
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			GL11.glEnable(GL11.GL_POLYGON_OFFSET_FILL);
+			GL11.glPolygonOffset(0, -1);
+		}
+		
+		renderModelState(state, yRot, zRot, scale);
+		
+		if (state == RedNetConnectionType.CableSingle || state == RedNetConnectionType.PlateSingle)
+		{
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glDisable(GL11.GL_POLYGON_OFFSET_FILL);
 		}
 	}
 
