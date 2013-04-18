@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.item;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
@@ -45,5 +46,11 @@ public class ItemLogicUpgradeCard extends ItemFactory
 	public static int getVariablesForLevel(int level)
 	{
 		return level == 0 ? 0 : 8 * level;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
 	}
 }
