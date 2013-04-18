@@ -29,7 +29,9 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5f, (float) z + 0.5F);
 		
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		_model.render(cable,0.0625f);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
 
 		GL11.glPopMatrix();
 	}
@@ -43,7 +45,11 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 		GL11.glRotatef(90, 0, 1, 0);
 		GL11.glTranslated(0.12, 0, 0);
 		GL11.glScalef(1.28f, 1.28f, 1.28f);
+		
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		_model.render(0.0625f);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		
 		GL11.glPopMatrix();
 		
 		return;
