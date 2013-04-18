@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.gui.control;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.gui.GuiColor;
 import powercrystals.core.gui.GuiRender;
 import powercrystals.core.gui.controls.Button;
