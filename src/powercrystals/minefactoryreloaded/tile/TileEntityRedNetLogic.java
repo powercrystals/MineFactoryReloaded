@@ -337,11 +337,16 @@ public class TileEntityRedNetLogic extends TileEntity
 			}
 			circuit.setTag("outputPins", outputPins);
 			
+			NBTTagCompound circuitState = new NBTTagCompound();
+			_circuits[c].writeToNBT(circuitState);
+			circuit.setTag("state", circuitState);
+			
 			circuits.appendTag(circuit);
 		}
 		
 		nbttagcompound.setTag("circuits", circuits);
 		nbttagcompound.setIntArray("upgrades", _upgradeLevel);
+		nbttagcompound.setIntArray("vars", _buffers[13]);
 	}
 	
 	@Override
@@ -355,6 +360,12 @@ public class TileEntityRedNetLogic extends TileEntity
 			_upgradeLevel = upgrades;
 		}
 		updateUpgradeLevels();
+		
+		int[] vars = nbttagcompound.getIntArray("vars");
+		if(vars != null && vars.length == _buffers[13].length)
+		{
+			_buffers[13] = vars;
+		}
 		
 		NBTTagList circuits = nbttagcompound.getTagList("circuits");
 		if(circuits != null)
@@ -383,6 +394,12 @@ public class TileEntityRedNetLogic extends TileEntity
 						int buffer = ((NBTTagCompound)outputPins.tagAt(i)).getInteger("buffer");
 						_pinMappingOutputs[c][i] = new PinMapping(pin, buffer);
 					}
+				}
+				
+				NBTTagCompound circuitState = ((NBTTagCompound)circuits.tagAt(c)).getCompoundTag("state");
+				if(circuitState != null)
+				{
+					_circuits[c].readFromNBT(circuitState);
 				}
 			}
 		}

@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.circuits;
 
+import net.minecraft.nbt.NBTTagCompound;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
 public class SquareWaveGenerator implements IRedNetLogicCircuit
@@ -45,5 +46,17 @@ public class SquareWaveGenerator implements IRedNetLogicCircuit
 	public String getOutputPinLabel(int pin)
 	{
 		return "Q";
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		_value = tag.getBoolean("state");
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		tag.setBoolean("state", _value);
 	}
 }

@@ -1,8 +1,9 @@
 package powercrystals.minefactoryreloaded.circuits;
 
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
+import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class SevenSegmentEncoder implements IRedNetLogicCircuit
+public class SevenSegmentEncoder extends StatelessCircuit implements IRedNetLogicCircuit
 {
 	private static String[] _outputPinNames = new String[] { "A", "B", "C", "D", "E", "F", "G" };
 	

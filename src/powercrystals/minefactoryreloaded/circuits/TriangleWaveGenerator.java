@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.circuits;
 
+import net.minecraft.nbt.NBTTagCompound;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
 public class TriangleWaveGenerator implements IRedNetLogicCircuit
@@ -46,5 +47,17 @@ public class TriangleWaveGenerator implements IRedNetLogicCircuit
 	public String getOutputPinLabel(int pin)
 	{
 		return "Q";
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		_invert = tag.getBoolean("inverted");
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		tag.setBoolean("inverted", _invert);
 	}
 }
