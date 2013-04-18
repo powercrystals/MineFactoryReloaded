@@ -319,10 +319,6 @@ public class RedstoneNetwork
 		{
 			offset = -1;
 		}
-		else
-		{
-			System.out.println("Offset remaining 0 for node with ID " + _world.getBlockId(node.x, node.y, node.z));
-		}
 		
 		if(_world.isBlockSolidOnSide(node.x, node.y, node.z, node.orientation.getOpposite()))
 		{
