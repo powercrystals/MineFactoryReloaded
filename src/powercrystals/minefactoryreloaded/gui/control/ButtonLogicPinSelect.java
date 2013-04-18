@@ -61,6 +61,7 @@ public class ButtonLogicPinSelect extends Button
 		_pinIndex = pinIndex;
 		_buttonType = buttonType;
 		_containerScreen = containerScreen;
+		setVisible(false);
 	}
 	
 	public int getBuffer()

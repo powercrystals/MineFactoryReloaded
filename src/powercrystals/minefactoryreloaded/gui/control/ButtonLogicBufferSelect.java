@@ -43,6 +43,7 @@ public class ButtonLogicBufferSelect extends ButtonOption
 			setSelectedIndex(6);
 		}
 		_ignoreChanges = false;
+		setVisible(false);
 	}
 	
 	public int getBuffer()
