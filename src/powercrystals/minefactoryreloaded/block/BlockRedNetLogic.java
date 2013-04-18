@@ -1,10 +1,13 @@
 package powercrystals.minefactoryreloaded.block;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import powercrystals.minefactoryreloaded.core.BlockNBTManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
@@ -59,9 +62,24 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 2, 3);
 			}
+			
+			if(stack.hasTagCompound())
+			{
+				stack.getTagCompound().setInteger("x", x);
+				stack.getTagCompound().setInteger("y", y);
+				stack.getTagCompound().setInteger("z", z);
+				te.readFromNBT(stack.getTagCompound());
+			}
 		}
 	}
 
+	@Override
+	public void breakBlock(World world, int x, int y, int z, int blockId, int meta)
+	{
+		BlockNBTManager.setForBlock(world.getBlockTileEntity(x, y, z));
+		super.breakBlock(world, x, y, z, blockId, meta);
+	}
+	
 	@Override
 	public TileEntity createNewTileEntity(World world)
 	{
@@ -189,5 +207,15 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return true;
+	}
+	
+	@Override
+	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
+	{
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		ItemStack prc = new ItemStack(idDropped(blockID, world.rand, fortune), 1, damageDropped(0));
+		prc.setTagCompound(BlockNBTManager.getForBlock(x, y, z));
+		drops.add(prc);
+		return drops;
 	}
 }

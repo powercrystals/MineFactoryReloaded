@@ -83,6 +83,7 @@ public class ItemBlockRedNetLogic extends ItemBlock
 		super(id);
 		setContainerItem(this);
 		setCreativeTab(MFRCreativeTab.tab);
+		setMaxStackSize(1);
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

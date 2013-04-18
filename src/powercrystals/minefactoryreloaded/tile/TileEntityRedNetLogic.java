@@ -349,6 +349,13 @@ public class TileEntityRedNetLogic extends TileEntity
 	{
 		super.readFromNBT(nbttagcompound);
 		
+		int[] upgrades = nbttagcompound.getIntArray("upgrades");
+		if(upgrades != null && upgrades.length == _upgradeLevel.length)
+		{
+			_upgradeLevel = upgrades;
+		}
+		updateUpgradeLevels();
+		
 		NBTTagList circuits = nbttagcompound.getTagList("circuits");
 		if(circuits != null)
 		{
@@ -379,13 +386,6 @@ public class TileEntityRedNetLogic extends TileEntity
 				}
 			}
 		}
-		
-		int[] upgrades = nbttagcompound.getIntArray("upgrades");
-		if(upgrades != null && upgrades.length == _upgradeLevel.length)
-		{
-			_upgradeLevel = upgrades;
-		}
-		updateUpgradeLevels();
 	}
 	
 	@Override
