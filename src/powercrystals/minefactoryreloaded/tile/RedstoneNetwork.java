@@ -313,14 +313,25 @@ public class RedstoneNetwork
 		{
 			return 0;
 		}
-		if(_world.isBlockSolidOnSide(node.x, node.y, node.z, node.orientation.getOpposite()))
+		
+		int offset = 0;
+		if(_world.getBlockId(node.x, node.y, node.z) == Block.redstoneWire.blockID)
 		{
-			return Math.max(0, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1);
+			offset = -1;
 		}
 		else
 		{
-			return Math.max(0, Math.max(_world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1,
-					_world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) - 1));
+			System.out.println("Offset remaining 0 for node with ID " + _world.getBlockId(node.x, node.y, node.z));
+		}
+		
+		if(_world.isBlockSolidOnSide(node.x, node.y, node.z, node.orientation.getOpposite()))
+		{
+			return Math.max(0, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset);
+		}
+		else
+		{
+			return Math.max(0, Math.max(_world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset,
+					_world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset));
 		}
 	}
 }
