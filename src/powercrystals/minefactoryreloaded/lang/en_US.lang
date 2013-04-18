@@ -197,6 +197,7 @@ item.mfr.upgrade.logic.100.name = PRC LX-100
 item.mfr.upgrade.logic.300.name = PRC LX-300
 item.mfr.upgrade.logic.500.name = PRC LX-500
 
+circuit.mfr.noop = (No-Op)
 circuit.mfr.adder.analog = Adder (Analog)
 circuit.mfr.adder.digital.full = Adder (Digital, Full)
 circuit.mfr.adder.digital.half = Adder (Digital, Half)
@@ -226,7 +227,6 @@ circuit.mfr.mux.4 = Multiplexer (4-Output)
 circuit.mfr.nand.2 = Nand (2-Input)
 circuit.mfr.nand.3 = Nand (3-Input)
 circuit.mfr.nand.4 = Nand (4-Input)
-circuit.mfr.noop = No-Op
 circuit.mfr.nor.2 = Nor (2-Input)
 circuit.mfr.nor.3 = Nor (3-Input)
 circuit.mfr.nor.4 = Nor (4-Input)
