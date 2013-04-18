@@ -283,6 +283,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new Or4());
 		MFRRegistry.registerRedNetLogicCircuit(new Passthrough());
 		MFRRegistry.registerRedNetLogicCircuit(new PassthroughGated());
+		MFRRegistry.registerRedNetLogicCircuit(new SevenSegmentEncoder());
 		MFRRegistry.registerRedNetLogicCircuit(new SawtoothFallingWaveGenerator());
 		MFRRegistry.registerRedNetLogicCircuit(new SawtoothRisingWaveGenerator());
 		MFRRegistry.registerRedNetLogicCircuit(new SquareWaveGenerator());
