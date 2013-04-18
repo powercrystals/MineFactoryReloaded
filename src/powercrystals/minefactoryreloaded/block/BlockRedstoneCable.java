@@ -44,7 +44,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	private static float _bandDepthStart = _bandOffset;
 	private static float _bandDepthEnd = _bandOffset + _bandDepth;
 	
-	private static int[] _partSideMappings = new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, 4, 5, 0, 1, 2, 3 };
+	private static int[] _partSideMappings = new int[] { -1, -1, -1, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3 };
 	
 	public BlockRedstoneCable(int id)
 	{
@@ -130,14 +130,19 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 
 			int subHit = getPartClicked(player, 3.0F, cable);
 			
-			if(subHit >= 9)
+			if(subHit < 0)
+			{
+				return false;
+			}
+			side = _partSideMappings[subHit];
+					
+			if(side >= 0)
 			{
 				ItemStack s = player.inventory.getCurrentItem();
 				if(s != null && s.getItem() instanceof IToolHammer)
 				{
 					if(!world.isRemote)
 					{
-						side = _partSideMappings[subHit];
 						int nextColor = cable.getSideColor(ForgeDirection.getOrientation(side)) + 1;
 						if(nextColor > 15) nextColor = 0;
 						cable.setSideColor(ForgeDirection.getOrientation(side), nextColor);
@@ -149,7 +154,6 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 				{
 					if(!world.isRemote)
 					{
-						side = _partSideMappings[subHit];
 						cable.setSideColor(ForgeDirection.getOrientation(side), 15 - s.getItemDamage());
 						world.markBlockForUpdate(x, y, z);
 						return true;
