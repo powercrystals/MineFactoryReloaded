@@ -141,15 +141,38 @@ public class TileEntityRedNetLogic extends TileEntity
 	private void initCircuit(int index, IRedNetLogicCircuit circuit)
 	{
 		_circuits[index] = circuit;
-		_pinMappingInputs[index] = new PinMapping[_circuits[index].getInputCount()];
-		_pinMappingOutputs[index] = new PinMapping[_circuits[index].getOutputCount()];
+		if(_pinMappingInputs[index] == null)
+		{
+			_pinMappingInputs[index] = new PinMapping[_circuits[index].getInputCount()];
+		}
+		else
+		{
+			_pinMappingInputs[index] = java.util.Arrays.copyOf(_pinMappingInputs[index], _circuits[index].getInputCount());
+		}
+		
+		if(_pinMappingOutputs[index] == null)
+		{
+			_pinMappingOutputs[index] = new PinMapping[_circuits[index].getOutputCount()];
+		}
+		else
+		{
+			_pinMappingOutputs[index] = java.util.Arrays.copyOf(_pinMappingOutputs[index], _circuits[index].getOutputCount());
+		}
+		
 		for(int i = 0; i < _pinMappingInputs[index].length; i++)
 		{
-			_pinMappingInputs[index][i] = new PinMapping(0, 0);
+			if(_pinMappingInputs[index][i] == null)
+			{
+				_pinMappingInputs[index][i] = new PinMapping(0, 0);
+			}
 		}
+		
 		for(int i = 0; i < _pinMappingOutputs[index].length; i++)
 		{
-			_pinMappingOutputs[index][i] = new PinMapping(0, 14);
+			if(_pinMappingOutputs[index][i] == null)
+			{
+				_pinMappingOutputs[index][i] = new PinMapping(0, 14);
+			}
 		}
 	}
 	
