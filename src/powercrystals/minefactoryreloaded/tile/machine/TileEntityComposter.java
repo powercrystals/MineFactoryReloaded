@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityComposter extends TileEntityFactoryPowered implements ITankContainerBucketable
@@ -24,7 +25,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	
 	public TileEntityComposter()
 	{
-		super(20);
+		super(Machine.Composter);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 	}
 	

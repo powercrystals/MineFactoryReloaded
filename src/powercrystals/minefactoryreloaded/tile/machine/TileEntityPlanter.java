@@ -13,6 +13,7 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 import net.minecraft.entity.player.InventoryPlayer;
@@ -26,7 +27,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	
 	public TileEntityPlanter() 
 	{
-		super(160);
+		super(Machine.Planter);
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 		_areaManager.setOverrideDirection(ForgeDirection.UP);
 	}

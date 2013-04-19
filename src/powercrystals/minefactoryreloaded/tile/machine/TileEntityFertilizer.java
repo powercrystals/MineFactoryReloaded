@@ -17,6 +17,7 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityFertilizer extends TileEntityFactoryPowered
@@ -27,7 +28,7 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 
 	public TileEntityFertilizer()
 	{
-		super(960);
+		super(Machine.Fertilizer);
 		_rand = new Random();
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 	}

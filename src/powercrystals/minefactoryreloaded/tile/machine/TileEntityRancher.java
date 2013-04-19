@@ -14,6 +14,7 @@ import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 import net.minecraft.entity.EntityLiving;
@@ -33,7 +34,7 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 	
 	public TileEntityRancher()
 	{
-		super(320);
+		super(Machine.Rancher);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 	}

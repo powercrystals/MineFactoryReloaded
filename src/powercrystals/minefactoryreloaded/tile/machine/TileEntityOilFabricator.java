@@ -8,13 +8,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityLiquidFabricator;
 
 public class TileEntityOilFabricator extends TileEntityLiquidFabricator
 {
 	public TileEntityOilFabricator()
 	{
-		super(LiquidDictionary.getCanonicalLiquid("Oil") == null ? Block.waterStill.blockID : LiquidDictionary.getCanonicalLiquid("Oil").itemID, 5880, 1);
+		super(LiquidDictionary.getCanonicalLiquid("Oil") == null ? Block.waterStill.blockID : LiquidDictionary.getCanonicalLiquid("Oil").itemID, 1, Machine.OilFabricator);
 	}
 	
 	@Override

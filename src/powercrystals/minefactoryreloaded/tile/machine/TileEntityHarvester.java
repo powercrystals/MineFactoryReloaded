@@ -25,6 +25,7 @@ import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiHarvester;
 import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 import net.minecraft.entity.player.InventoryPlayer;
@@ -51,7 +52,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	
 	public TileEntityHarvester()
 	{
-		super(240);
+		super(Machine.Harvester);
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		_settings = new HashMap<String, Boolean>();

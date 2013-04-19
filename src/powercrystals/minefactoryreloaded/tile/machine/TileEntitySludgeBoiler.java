@@ -28,6 +28,7 @@ import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements ITankContainerBucketable
@@ -38,7 +39,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	
 	public TileEntitySludgeBoiler()
 	{
-		super(20);
+		super(Machine.SludgeBoiler);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		
 		_rand = new Random();

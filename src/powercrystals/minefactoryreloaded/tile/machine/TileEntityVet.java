@@ -17,6 +17,7 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityVet extends TileEntityFactoryPowered
@@ -25,7 +26,7 @@ public class TileEntityVet extends TileEntityFactoryPowered
 	
 	public TileEntityVet()
 	{
-		super(320);
+		super(Machine.Vet);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 	}
 	

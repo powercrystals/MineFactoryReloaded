@@ -9,13 +9,14 @@ import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 {
 	public TileEntityBlockBreaker()
 	{
-		super(960);
+		super(Machine.BlockBreaker);
 	}
 
 	@Override

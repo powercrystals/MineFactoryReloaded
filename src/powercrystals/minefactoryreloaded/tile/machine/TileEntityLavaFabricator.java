@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityLiquidFabricator;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,7 +14,7 @@ public class TileEntityLavaFabricator extends TileEntityLiquidFabricator
 {
 	public TileEntityLavaFabricator()
 	{
-		super(Block.lavaStill.blockID, 200, 20);
+		super(Block.lavaStill.blockID, 20, Machine.LavaFabricator);
 	}
 	
 	@Override

@@ -8,6 +8,7 @@ import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 import net.minecraft.block.Block;
@@ -27,7 +28,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 	
 	public TileEntityWeather()
 	{
-		super(40);
+		super(Machine.WeatherCollector);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 	}
 	

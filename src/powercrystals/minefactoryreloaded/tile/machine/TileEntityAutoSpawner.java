@@ -19,6 +19,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements ITankContainerBucketable
@@ -29,7 +30,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	
 	public TileEntityAutoSpawner()
 	{
-		super(512);
+		super(Machine.AutoSpawner);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 	}
 	

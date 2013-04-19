@@ -23,6 +23,7 @@ import powercrystals.minefactoryreloaded.core.AutoEnchantmentHelper;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements ITankContainerBucketable
@@ -33,7 +34,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	
 	public TileEntityAutoEnchanter()
 	{
-		super(160);
+		super(Machine.AutoEnchanter);
 		_rand = new Random();
 		
 		_targetLevel = 30;

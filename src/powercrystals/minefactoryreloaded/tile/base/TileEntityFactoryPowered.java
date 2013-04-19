@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.tile.base;
 
 import powercrystals.core.power.PowerProviderAdvanced;
 import powercrystals.core.util.Util;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import universalelectricity.core.block.IConnector;
 import universalelectricity.core.block.IVoltage;
 import universalelectricity.core.electricity.ElectricityNetworkHelper;
@@ -57,14 +58,14 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	// constructors
 	
-	protected TileEntityFactoryPowered()
+	protected TileEntityFactoryPowered(Machine machine)
 	{
-		this(100);
+		this(machine.getActivationEnergyMJ());
 	}
 	
-	protected TileEntityFactoryPowered(int energyActivation)
+	protected TileEntityFactoryPowered(int activationCostMJ)
 	{
-		this._energyActivation = energyActivation;
+		this._energyActivation = activationCostMJ * energyPerMJ;
 		_powerProvider = new PowerProviderAdvanced();
 		_powerProvider.configure(25, 10, 10, 1, 1000);
 		setIsActive(false);

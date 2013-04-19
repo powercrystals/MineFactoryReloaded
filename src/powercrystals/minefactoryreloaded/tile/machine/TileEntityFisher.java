@@ -8,6 +8,7 @@ import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 import net.minecraft.block.Block;
@@ -21,7 +22,7 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 {
 	public TileEntityFisher()
 	{
-		super(20);
+		super(Machine.Fisher);
 	}
 	
 	@Override

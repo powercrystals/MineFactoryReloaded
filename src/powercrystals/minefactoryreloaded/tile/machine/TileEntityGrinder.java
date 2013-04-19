@@ -28,6 +28,7 @@ import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable
@@ -57,7 +58,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	
 	public TileEntityGrinder()
 	{
-		super(3200);
+		super(Machine.Grinder);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		_rand = new Random();

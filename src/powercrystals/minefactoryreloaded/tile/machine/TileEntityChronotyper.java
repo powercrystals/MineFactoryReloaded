@@ -14,6 +14,7 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiChronotyper;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerChronotyper;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 public class TileEntityChronotyper extends TileEntityFactoryPowered
@@ -23,7 +24,7 @@ public class TileEntityChronotyper extends TileEntityFactoryPowered
 	
 	public TileEntityChronotyper()
 	{
-		super(1280);
+		super(Machine.Chronotyper);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 	}
 	
