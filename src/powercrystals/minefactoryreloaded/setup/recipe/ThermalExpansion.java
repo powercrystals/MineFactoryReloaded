@@ -39,7 +39,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Block.pistonBase,
 							'F', machineFrame,
 							'O', "ingotCopper",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -55,7 +55,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.bucketEmpty,
 							'F', machineFrame,
 							'O', "ingotIron",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -71,7 +71,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.shears,
 							'F', machineFrame,
 							'O', "ingotGold",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -87,7 +87,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.shears,
 							'F', machineFrame,
 							'O', "ingotTin",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -103,7 +103,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.leather,
 							'F', machineFrame,
 							'O', "ingotSilver",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -119,7 +119,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.shears,
 							'F', machineFrame,
 							'O', "ingotCopper",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -132,7 +132,7 @@ public class ThermalExpansion extends Vanilla
 							"PCP",
 							'P', MineFactoryReloadedCore.plasticSheetItem,
 							'F', machineFrame,
-							"C", Block.chest
+							'C', Block.chest
 						} );
 			}
 			
@@ -148,7 +148,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.pickaxeIron,
 							'F', machineFrame,
 							'O', "ingotIron",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -163,7 +163,7 @@ public class ThermalExpansion extends Vanilla
 							'T', Item.bucketEmpty,
 							'F', machineFrame,
 							'O', "ingotTin",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -179,7 +179,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Block.furnaceIdle,
 							'F', machineFrame,
 							'O', "ingotIron",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -209,7 +209,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Block.pistonBase,
 							'F', machineFrame,
 							'O', Item.brick,
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -225,7 +225,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.goldenCarrot,
 							'F', machineFrame,
 							'O', new ItemStack(Item.dyePowder, 1, 5),
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -241,7 +241,7 @@ public class ThermalExpansion extends Vanilla
 							'S', gearTin,
 							'F', machineFrame,
 							'O', Item.book,
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -257,7 +257,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.book,
 							'F', machineFrame,
 							'O', Item.diamond,
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -272,7 +272,7 @@ public class ThermalExpansion extends Vanilla
 							'T', Item.emerald,
 							'F', machineFrame,
 							'O', new ItemStack(Item.dyePowder, 1, 5),
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -356,7 +356,7 @@ public class ThermalExpansion extends Vanilla
 							'S', conduitLiquid,
 							'F', machineFrame,
 							'O', Item.book,
-							"C", pneumaticServo
+							'C', pneumaticServo
 						} );
 			}
 			
@@ -372,7 +372,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.magmaCream,
 							'F', machineFrame,
 							'O', Item.blazeRod,
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -387,7 +387,7 @@ public class ThermalExpansion extends Vanilla
 							'T', Block.tnt,
 							'F', machineFrame,
 							'O', Block.obsidian,
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -416,7 +416,7 @@ public class ThermalExpansion extends Vanilla
 							'S', "ingotSilver",
 							'F', machineFrame,
 							'O', "ingotGold",
-							"C", Block.chest
+							'C', Block.chest
 						} );
 			}
 			
@@ -432,7 +432,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Item.magmaCream,
 							'F', machineFrame,
 							'O', "emerald",
-							"C", powerCoilGold
+							'C', powerCoilGold
 						} );
 			}
 			
@@ -464,7 +464,7 @@ public class ThermalExpansion extends Vanilla
 							'S', Block.pistonBase,
 							'F', machineFrame,
 							'O', Item.blazeRod,
-							"C", powerCoilSilver
+							'C', powerCoilSilver
 						} );
 			}
 		}
