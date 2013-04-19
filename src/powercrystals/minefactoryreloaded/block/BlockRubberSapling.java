@@ -12,12 +12,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.WorldGenRubberTree;
 
-public class BlockRubberSapling extends BlockSapling
+public class BlockRubberSapling extends BlockSapling implements IConnectableRedNet
 {
 	public BlockRubberSapling(int id)
 	{
@@ -66,5 +69,33 @@ public class BlockRubberSapling extends BlockSapling
 	public void getSubBlocks(int blockId, CreativeTabs tab, List subBlocks)
 	{
 		subBlocks.add(new ItemStack(blockId, 1, 0));
+	}
+
+	@Override
+	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return RedNetConnectionType.None;
+	}
+
+	@Override
+	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return null;
+	}
+
+	@Override
+	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
+	{
+		return 0;
+	}
+
+	@Override
+	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
+	{
+	}
+
+	@Override
+	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
+	{
 	}
 }

@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.block;
 
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -8,8 +10,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
-public class BlockFactoryDecorativeBricks extends Block
+public class BlockFactoryDecorativeBricks extends Block implements IConnectableRedNet
 {
 	private String[] _names = new String [] { "ice", "glowstone", "lapis", "obsidian", "pavedstone", "snow", "glowstone_large", "ice_large", "lapis_large", "obsidian_large", "snow_large" };
 	private Icon[] _icons = new Icon[_names.length];
@@ -51,5 +55,33 @@ public class BlockFactoryDecorativeBricks extends Block
 	public Icon getIcon(int side, int meta)
 	{
 		return _icons[Math.min(meta, _icons.length)];
+	}
+
+	@Override
+	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return RedNetConnectionType.None;
+	}
+
+	@Override
+	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return null;
+	}
+
+	@Override
+	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
+	{
+		return 0;
+	}
+
+	@Override
+	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
+	{
+	}
+
+	@Override
+	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
+	{
 	}
 }
