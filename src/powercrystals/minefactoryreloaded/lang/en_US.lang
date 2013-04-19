@@ -240,6 +240,7 @@ circuit.mfr.pulselengthener = Pulse Lengthener
 circuit.mfr.sevensegmentencoder = Seven-Segment Encoder
 circuit.mfr.wavegenerator.sawtooth.falling = Wave (Sawtooth, Falling)
 circuit.mfr.wavegenerator.sawtooth.rising = Wave (Sawtooth, Rising)
+circuit.mfr.wavegenerator.sine = Wave (Sine)
 circuit.mfr.wavegenerator.square = Wave (Square)
 circuit.mfr.wavegenerator.triangle = Wave (Triangle)
 circuit.mfr.xnor.2 = Xnor (2-Input)
