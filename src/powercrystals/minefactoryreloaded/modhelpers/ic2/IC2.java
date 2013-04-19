@@ -11,7 +11,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.item.ItemStack;
 
-import ic2.api.Ic2Recipes;
+import ic2.api.recipe.Recipes;
 import ic2.api.Items;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -73,7 +73,7 @@ public class IC2
                 Character.valueOf('L'), new ItemStack(MineFactoryReloadedCore.rubberLeavesBlock)
                 } );
 			
-			Ic2Recipes.addExtractorRecipe(new ItemStack(MineFactoryReloadedCore.rubberSaplingBlock), rubber);
+			Recipes.extractor.addRecipe(new ItemStack(MineFactoryReloadedCore.rubberSaplingBlock), rubber);
 		}
 		catch (Exception x)
 		{
