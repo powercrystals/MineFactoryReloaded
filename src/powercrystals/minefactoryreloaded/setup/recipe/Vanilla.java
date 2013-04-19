@@ -12,7 +12,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Vanilla
 {
-	public static final void registerRecipes()
+	public final void registerRecipes()
 	{
 		registerMachines();
 		registerMachineUpgrades();
@@ -26,7 +26,7 @@ public class Vanilla
 		registerRedNetManual();
 	}
 	
-	private static void registerMachines()
+	protected void registerMachines()
 	{
 		System.out.println("EMYDEBUG vanilla recipes loading!");
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBaseItem, 3), new Object[]
@@ -449,7 +449,7 @@ public class Vanilla
 		}
 	}
 	
-	private static void registerMachineUpgrades()
+	protected void registerMachineUpgrades()
 	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), new Object[]
 				{
@@ -573,7 +573,7 @@ public class Vanilla
 				} ));
 	}
 	
-	private static void registerConveyors()
+	protected void registerConveyors()
 	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 16, 16), new Object[]
 				{
@@ -590,7 +590,7 @@ public class Vanilla
 		}
 	}
 	
-	private static void registerDecorative()
+	protected void registerDecorative()
 	{
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 16), new Object[]
 				{
@@ -837,7 +837,7 @@ public class Vanilla
 				} );
 	}
 	
-	private static void registerSyringes()
+	protected void registerSyringes()
 	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.syringeEmptyItem, 1), new Object[]
 				{
@@ -874,7 +874,7 @@ public class Vanilla
 		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeCureItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleGold });
 	}
 	
-	private static void registerMiscItems()
+	protected void registerMiscItems()
 	{
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.plasticSheetItem, 4), new Object[]
 				{
@@ -984,7 +984,7 @@ public class Vanilla
 				} ));
 	}
 	
-	private static void registerVanillaImprovements()
+	protected void registerVanillaImprovements()
 	{
 		FurnaceRecipes.smelting().addSmelting(MineFactoryReloadedCore.rawRubberItem.itemID, 0, new ItemStack(MineFactoryReloadedCore.rubberBarItem), 0.1F);
 		FurnaceRecipes.smelting().addSmelting(MineFactoryReloadedCore.rubberWoodBlock.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.1F);
@@ -1029,7 +1029,7 @@ public class Vanilla
 				} );
 	}
 	
-	private static void registerRails()
+	protected void registerRails()
 	{
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railPickupCargoBlock, 2), new Object[]
 				{
@@ -1072,7 +1072,7 @@ public class Vanilla
 				} );
 	}
 	
-	private static void registerRedNet()
+	protected void registerRedNet()
 	{
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.rednetCableBlock, 8), new Object[]
@@ -1085,7 +1085,7 @@ public class Vanilla
 				} );
 	}
 	
-	private static final void registerRedNetManual()
+	private final void registerRedNetManual()
 	{
 		GameRegistry.addShapelessRecipe(ItemBlockRedNetLogic.manual, new ItemStack(MineFactoryReloadedCore.rednetLogicBlock, 1, 0), Item.book);
 	}

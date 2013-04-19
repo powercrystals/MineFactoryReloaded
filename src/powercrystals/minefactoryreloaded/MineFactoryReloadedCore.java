@@ -86,6 +86,8 @@ import powercrystals.minefactoryreloaded.setup.BehaviorDispenseSafariNet;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedFuelHandler;
 import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedWorldGen;
+import powercrystals.minefactoryreloaded.setup.recipe.ThermalExpansion;
+import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
 import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
 import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
@@ -461,6 +463,16 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerWorldGenerator(new MineFactoryReloadedWorldGen());
 		
 		TickRegistry.registerScheduledTickHandler(new UpdateManager(this), Side.CLIENT);
+		
+		if(vanillaRecipes.getBoolean(true))
+		{
+			new Vanilla().registerRecipes();
+		}
+		
+		if(thermalExpansionRecipes.getBoolean(false))
+		{
+			new ThermalExpansion().registerRecipes();
+		}
 	}
 	
 	@PostInit
@@ -561,11 +573,6 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		rednetCableBlockId = c.getBlock("ID.RedNet.Cable", 3144);
 		factoryDecorativeStoneBlockId = c.getBlock("ID.Stone", 3134);
 		rednetLogicBlockId = c.getBlock("ID.RedNet.Logic", 3145);
-
-		vanillaRecipes = c.get("recipeSets", "RecipeSet.enableVanillaRecipes", true);
-		vanillaRecipes.comment = "If true, MFR will register its standard recipes.";
-		thermalExpansionRecipes = c.get("recipeSets", "RecipeSet.enableThermalExpansionRecipes", false);
-		thermalExpansionRecipes.comment = "If true, MFR will register its Thermal Expansion-based recipes.";
 		
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
@@ -649,6 +656,11 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		rubberTreeBiomeWhitelist.comment = "A comma-separated list of biomes to allow rubber trees to spawn in. Does nothing if rubber tree worldgen is disabled.";
 		rubberTreeBiomeBlacklist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTreeBiomeBlacklist", "");
 		rubberTreeBiomeBlacklist.comment = "A comma-separated list of biomes to disallow rubber trees to spawn in. Overrides any other biomes added.";
+
+		vanillaRecipes = c.get("RecipeSets", "EnableVanillaRecipes", true);
+		vanillaRecipes.comment = "If true, MFR will register its standard (vanilla-item-only) recipes.";
+		thermalExpansionRecipes = c.get("RecipeSets", "EnableThermalExpansionRecipes", false);
+		thermalExpansionRecipes.comment = "If true, MFR will register its Thermal Expansion-based recipes.";
 
 		for(Machine machine : Machine.values())
 		{

@@ -13,10 +13,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ThermalExpansion extends Vanilla
 {
-	@SuppressWarnings("unused")
-	private static void registerMachines()
+	@Override
+	protected void registerMachines()
 	{
-		System.out.print("EMYDEBUG registering TE recipes!");
 		try
 		{
 			ItemStack conduitLiquid = ItemRegistry.getItem("conduitLiquid", 1);
