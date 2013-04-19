@@ -24,11 +24,13 @@ public class TileEntityCollector extends TileEntityFactoryInventory
 		i.setEntityItemStack(s);
 	}
 	
+	@Override
 	public int getSizeInventory()
 	{
 		return 0;
 	}
 	
+	@Override
 	public String getInvName()
 	{
 		return "Item Collector";
