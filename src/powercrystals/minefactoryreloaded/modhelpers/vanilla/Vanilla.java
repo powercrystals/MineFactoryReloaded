@@ -293,6 +293,8 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new Passthrough());
 		MFRRegistry.registerRedNetLogicCircuit(new PassthroughGated());
 		MFRRegistry.registerRedNetLogicCircuit(new PulseLengthener());
+		MFRRegistry.registerRedNetLogicCircuit(new RandomizerAnalog());
+		MFRRegistry.registerRedNetLogicCircuit(new RandomizerDigital());
 		MFRRegistry.registerRedNetLogicCircuit(new SevenSegmentEncoder());
 		MFRRegistry.registerRedNetLogicCircuit(new SawtoothFalling());
 		MFRRegistry.registerRedNetLogicCircuit(new SawtoothRising());
