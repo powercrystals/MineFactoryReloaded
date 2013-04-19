@@ -89,6 +89,11 @@ public class Vanilla
 	@Init
 	public void load(FMLInitializationEvent event)
 	{
+		if(MineFactoryReloadedCore.vanillaRecipes.getBoolean(true))
+		{
+			powercrystals.minefactoryreloaded.setup.recipe.Vanilla.registerRecipes();
+		}
+		
 		MFRRegistry.registerPlantable(new PlantableStandard(Block.sapling.blockID, Block.sapling.blockID));
 		MFRRegistry.registerPlantable(new PlantableStandard(Item.pumpkinSeeds.itemID, Block.pumpkinStem.blockID));
 		MFRRegistry.registerPlantable(new PlantableStandard(Item.melonSeeds.itemID, Block.melonStem.blockID));

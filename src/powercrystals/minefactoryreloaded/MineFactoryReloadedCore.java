@@ -293,6 +293,10 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static Property passengerRailSearchMaxHorizontal;
 	public static Property passengerRailSearchMaxVertical;
+	
+	//recipes config
+	public static Property vanillaRecipes;
+	public static Property thermalExpansionRecipes;
 
 	private static MineFactoryReloadedCore instance;
 
@@ -435,8 +439,6 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		MinecraftForge.EVENT_BUS.register(instance);
 		MinecraftForge.EVENT_BUS.register(proxy);
 		
-		Vanilla.registerRecipes();
-		
 		OreDictionary.registerOre("itemRubber", MineFactoryReloadedCore.rubberBarItem);
 		OreDictionary.registerOre("woodRubber", MineFactoryReloadedCore.rubberWoodBlock);
 		
@@ -561,6 +563,9 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		factoryDecorativeStoneBlockId = c.getBlock("ID.Stone", 3134);
 		rednetLogicBlockId = c.getBlock("ID.RedNet.Logic", 3145);
 
+		vanillaRecipes = c.get("recipeSets", "RecipeSet.enableVanillaRecipes", true);
+		thermalExpansionRecipes = c.get("recipeSets", "RecipeSet.enableThermalExpansionRecipes", false);
+		
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
 		sludgeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Sludge", 11989);

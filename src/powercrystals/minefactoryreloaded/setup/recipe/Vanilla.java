@@ -28,6 +28,14 @@ public class Vanilla
 	
 	private static void registerMachines()
 	{
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBaseItem, 3), new Object[]
+				{
+					"PPP",
+					"SSS",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('S'), Block.stone,
+				} );
+		
 		if(Machine.Planter.getIsRecipeEnabled())
 		{
 			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 0), new Object[]
@@ -873,15 +881,7 @@ public class Vanilla
 					"##",
 					Character.valueOf('#'), MineFactoryReloadedCore.rawPlasticItem,
 				} );
-		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBaseItem, 3), new Object[]
-				{
-					"PPP",
-					"SSS",
-					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
-					Character.valueOf('S'), Block.stone,
-				} );
-		
+
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
 				{
 					"WBW",
