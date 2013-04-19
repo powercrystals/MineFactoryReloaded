@@ -86,7 +86,6 @@ import powercrystals.minefactoryreloaded.setup.BehaviorDispenseSafariNet;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedFuelHandler;
 import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedWorldGen;
-import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
 import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
 import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;

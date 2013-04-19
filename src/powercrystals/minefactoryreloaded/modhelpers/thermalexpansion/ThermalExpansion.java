@@ -6,18 +6,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.registry.GameRegistry;
-
-import net.minecraft.item.ItemStack;
-
-import thermalexpansion.api.item.ItemRegistry;
-
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
-import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
-import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 
 @Mod(modid = "MineFactoryReloaded|CompatThermalExpansion", name = "MFR Compat: ThermalExpansion", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:ThermalExpansion")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
@@ -36,6 +25,7 @@ public class ThermalExpansion
 		{
 			if(MineFactoryReloadedCore.thermalExpansionRecipes.getBoolean(false))
 			{
+				System.out.println("EMYDEBUG Alright, let's do TE recipes hoo-ah!");
 				powercrystals.minefactoryreloaded.setup.recipe.ThermalExpansion.registerRecipes();
 			}
 		}

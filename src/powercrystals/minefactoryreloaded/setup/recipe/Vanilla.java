@@ -28,6 +28,7 @@ public class Vanilla
 	
 	private static void registerMachines()
 	{
+		System.out.println("EMYDEBUG vanilla recipes loading!");
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBaseItem, 3), new Object[]
 				{
 					"PPP",
