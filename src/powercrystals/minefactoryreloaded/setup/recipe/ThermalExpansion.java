@@ -20,6 +20,8 @@ public class ThermalExpansion extends Vanilla
 		try
 		{
 			ItemStack conduitLiquid = ItemRegistry.getItem("conduitLiquid", 1);
+			ItemStack gearTin = ItemRegistry.getItem("gearTin", 1);
+			ItemStack gearInvar = ItemRegistry.getItem("gearInvar", 1);
 			ItemStack machineFrame = ItemRegistry.getItem("machineFrame", 1);
 			ItemStack pneumaticServo = ItemRegistry.getItem("pneumaticServo", 1);
 			ItemStack powerCoilGold = ItemRegistry.getItem("powerCoilGold", 1);
@@ -143,7 +145,7 @@ public class ThermalExpansion extends Vanilla
 							"SFS",
 							"OCO",
 							'P', MineFactoryReloadedCore.plasticSheetItem,
-							'T', "gearGold",
+							'T', gearInvar,
 							'S', Item.pickaxeIron,
 							'F', machineFrame,
 							'O', "ingotIron",
@@ -237,7 +239,7 @@ public class ThermalExpansion extends Vanilla
 							"OCO",
 							'P', MineFactoryReloadedCore.plasticSheetItem,
 							'T', Item.swordGold,
-							'S', "gearIron",
+							'S', gearTin,
 							'F', machineFrame,
 							'O', Item.book,
 							"C", powerCoilGold
