@@ -210,6 +210,7 @@ circuit.mfr.boolean.greaterequal = Greater Than Or Equal
 circuit.mfr.boolean.less = Less Than
 circuit.mfr.boolean.lessequal = Less Than Or Equal
 circuit.mfr.boolean.notequal = Not Equals
+circuit.mfr.counter = Counter
 circuit.mfr.fanout = Fanout
 circuit.mfr.flipflop.jk = JK-FlipFlop
 circuit.mfr.flipflop.t = T-FlipFlop
