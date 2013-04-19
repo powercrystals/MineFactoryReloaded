@@ -463,16 +463,6 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerWorldGenerator(new MineFactoryReloadedWorldGen());
 		
 		TickRegistry.registerScheduledTickHandler(new UpdateManager(this), Side.CLIENT);
-		
-		if(vanillaRecipes.getBoolean(true))
-		{
-			new Vanilla().registerRecipes();
-		}
-		
-		if(thermalExpansionRecipes.getBoolean(false))
-		{
-			new ThermalExpansion().registerRecipes();
-		}
 	}
 	
 	@PostInit
@@ -501,6 +491,16 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		for(String biome : biomeBlacklist)
 		{
 			MFRRegistry.getRubberTreeBiomes().remove(biome);
+		}
+		
+		if(vanillaRecipes.getBoolean(true))
+		{
+			new Vanilla().registerRecipes();
+		}
+		
+		if(thermalExpansionRecipes.getBoolean(false))
+		{
+			new ThermalExpansion().registerRecipes();
 		}
 	}
 	
