@@ -564,7 +564,9 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		rednetLogicBlockId = c.getBlock("ID.RedNet.Logic", 3145);
 
 		vanillaRecipes = c.get("recipeSets", "RecipeSet.enableVanillaRecipes", true);
+		vanillaRecipes.comment = "If true, MFR will register its standard recipes.";
 		thermalExpansionRecipes = c.get("recipeSets", "RecipeSet.enableThermalExpansionRecipes", false);
+		thermalExpansionRecipes.comment = "If true, MFR will register its Thermal Expansion-based recipes.";
 		
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
