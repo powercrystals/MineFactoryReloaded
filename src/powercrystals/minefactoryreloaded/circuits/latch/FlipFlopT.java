@@ -6,11 +6,12 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 public class FlipFlopT implements IRedNetLogicCircuit
 {
 	private boolean _value;
+	private boolean _lastClockState;
 	
 	@Override
 	public int getInputCount()
 	{
-		return 1;
+		return 2;
 	}
 
 	@Override
@@ -22,10 +23,15 @@ public class FlipFlopT implements IRedNetLogicCircuit
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
-		if(inputValues[0] > 0)
+		if(inputValues[1] > 0 && !_lastClockState)
 		{
-			_value = !_value;
+			if(inputValues[0] > 0)
+			{
+				_value = !_value;
+			}
 		}
+		
+		_lastClockState = inputValues[1] > 0;
 		
 		if(_value)
 		{
@@ -46,7 +52,7 @@ public class FlipFlopT implements IRedNetLogicCircuit
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "T";
+		return pin == 0 ? "T" : "CLK";
 	}
 
 	@Override
@@ -59,11 +65,13 @@ public class FlipFlopT implements IRedNetLogicCircuit
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		_value = tag.getBoolean("state");
+		_lastClockState = tag.getBoolean("lastClockState");
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		tag.setBoolean("state", _value);
+		tag.setBoolean("lastClockState", _lastClockState);
 	}
 }

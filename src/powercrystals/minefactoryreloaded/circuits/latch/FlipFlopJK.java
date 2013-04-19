@@ -6,11 +6,12 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 public class FlipFlopJK implements IRedNetLogicCircuit
 {
 	private boolean _value;
+	private boolean _lastClockState;
 	
 	@Override
 	public int getInputCount()
 	{
-		return 2;
+		return 3;
 	}
 
 	@Override
@@ -22,18 +23,23 @@ public class FlipFlopJK implements IRedNetLogicCircuit
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
-		if(inputValues[0] > 0 && inputValues[1] == 0)
+		if(inputValues[2] > 0 && !_lastClockState)
 		{
-			_value = true;
+			if(inputValues[0] > 0 && inputValues[1] == 0)
+			{
+				_value = true;
+			}
+			else if(inputValues[0] == 0 && inputValues[1] > 0)
+			{
+				_value = false;
+			}
+			else if(inputValues[0] > 0 && inputValues[1] > 0)
+			{
+				_value = !_value;
+			}
 		}
-		else if(inputValues[0] == 0 && inputValues[1] > 0)
-		{
-			_value = false;
-		}
-		else if(inputValues[0] > 0 && inputValues[1] > 0)
-		{
-			_value = !_value;
-		}
+		
+		_lastClockState = inputValues[2] > 0;
 		
 		if(_value)
 		{
@@ -54,7 +60,7 @@ public class FlipFlopJK implements IRedNetLogicCircuit
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return pin == 0 ? "J" : "K";
+		return pin == 0 ? "J" : pin == 1 ? "K" : "CLK";
 	}
 
 	@Override
@@ -67,11 +73,13 @@ public class FlipFlopJK implements IRedNetLogicCircuit
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		_value = tag.getBoolean("state");
+		_lastClockState = tag.getBoolean("lastClockState");
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		tag.setBoolean("state", _value);
+		tag.setBoolean("lastClockState", _lastClockState);
 	}
 }
