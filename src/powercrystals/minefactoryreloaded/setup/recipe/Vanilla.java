@@ -12,6 +12,18 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Vanilla
 {
+	// prevent derived recipe sets from double-registering this one if multiple sets are enabled
+	private boolean _registeredMachines;
+	private boolean _registeredMachineUpgrades;
+	private boolean _registeredConveyors;
+	private boolean _registeredDecorative;
+	private boolean _registeredSyringes;
+	private boolean _registeredMiscItems;
+	private boolean _registeredVanillaImprovements;
+	private boolean _registeredRails;
+	private boolean _registeredRedNet;
+	private boolean _registeredRedNetManual;
+	
 	public final void registerRecipes()
 	{
 		registerMachines();
@@ -28,7 +40,12 @@ public class Vanilla
 	
 	protected void registerMachines()
 	{
-		System.out.println("EMYDEBUG vanilla recipes loading!");
+		if(_registeredMachines)
+		{
+			return;
+		}
+		_registeredMachines = true;
+		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.machineBaseItem, 3), new Object[]
 				{
 					"PPP",
@@ -451,6 +468,12 @@ public class Vanilla
 	
 	protected void registerMachineUpgrades()
 	{
+		if(_registeredMachineUpgrades)
+		{
+			return;
+		}
+		_registeredMachineUpgrades = true;
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), new Object[]
 				{
 					"III",
@@ -575,6 +598,12 @@ public class Vanilla
 	
 	protected void registerConveyors()
 	{
+		if(_registeredConveyors)
+		{
+			return;
+		}
+		_registeredConveyors = true;
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 16, 16), new Object[]
 				{
 					"UUU",
@@ -592,6 +621,12 @@ public class Vanilla
 	
 	protected void registerDecorative()
 	{
+		if(_registeredDecorative)
+		{
+			return;
+		}
+		_registeredDecorative = true;
+		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryRoadBlock, 16), new Object[]
 				{
 					"BBB",
@@ -839,6 +874,12 @@ public class Vanilla
 	
 	protected void registerSyringes()
 	{
+		if(_registeredSyringes)
+		{
+			return;
+		}
+		_registeredSyringes = true;
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.syringeEmptyItem, 1), new Object[]
 				{
 					"PRP",
@@ -876,6 +917,12 @@ public class Vanilla
 	
 	protected void registerMiscItems()
 	{
+		if(_registeredMiscItems)
+		{
+			return;
+		}
+		_registeredMiscItems = true;
+		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.plasticSheetItem, 4), new Object[]
 				{
 					"##",
@@ -986,6 +1033,12 @@ public class Vanilla
 	
 	protected void registerVanillaImprovements()
 	{
+		if(_registeredVanillaImprovements)
+		{
+			return;
+		}
+		_registeredVanillaImprovements = true;
+		
 		FurnaceRecipes.smelting().addSmelting(MineFactoryReloadedCore.rawRubberItem.itemID, 0, new ItemStack(MineFactoryReloadedCore.rubberBarItem), 0.1F);
 		FurnaceRecipes.smelting().addSmelting(MineFactoryReloadedCore.rubberWoodBlock.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.1F);
 		
@@ -1031,6 +1084,12 @@ public class Vanilla
 	
 	protected void registerRails()
 	{
+		if(_registeredRails)
+		{
+			return;
+		}
+		_registeredRails = true;
+		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.railPickupCargoBlock, 2), new Object[]
 				{
 					" C ",
@@ -1074,6 +1133,11 @@ public class Vanilla
 	
 	protected void registerRedNet()
 	{
+		if(_registeredRedNet)
+		{
+			return;
+		}
+		_registeredRedNet = true;
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.rednetCableBlock, 8), new Object[]
 				{
@@ -1087,6 +1151,12 @@ public class Vanilla
 	
 	private final void registerRedNetManual()
 	{
+		if(_registeredRedNetManual)
+		{
+			return;
+		}
+		_registeredRedNetManual = true;
+		
 		GameRegistry.addShapelessRecipe(ItemBlockRedNetLogic.manual, new ItemStack(MineFactoryReloadedCore.rednetLogicBlock, 1, 0), Item.book);
 	}
 }
