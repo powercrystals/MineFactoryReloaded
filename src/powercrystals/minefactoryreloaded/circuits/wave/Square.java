@@ -6,12 +6,12 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 public class Square implements IRedNetLogicCircuit
 {
 	private boolean _value;
-	private int _period = 4;
+	private int _period;
 	
 	@Override
 	public int getInputCount()
 	{
-		return 0;
+		return 1;
 	}
 
 	@Override
@@ -23,6 +23,12 @@ public class Square implements IRedNetLogicCircuit
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
+		_period = inputValues[0];
+		if(_period == 0)
+		{
+			_period = 1;
+		}
+		
 		if(worldTime % _period == 0)
 		{
 			_value = !_value;
@@ -39,7 +45,7 @@ public class Square implements IRedNetLogicCircuit
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "";
+		return "Pd";
 	}
 
 	@Override
