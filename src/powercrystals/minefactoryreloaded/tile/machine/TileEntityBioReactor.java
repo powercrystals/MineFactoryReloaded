@@ -25,8 +25,8 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	private LiquidTank _tank;
 	private int _burnTime;
 	private static final int _burnTimeMax = 8000;
-	private static final int _bioFuelPerTick = 10;
-	private static final int _burnTimeDecreasePerTick = 10;
+	private static final int _bioFuelPerTick = 1;
+	private static final int _burnTimeDecreasePerTick = 1;
 	
 	// start at 80, +20 for each slot after the first
 	private static final int[] _outputValues = { 0, 80, 180, 300, 440, 600, 780, 980, 1200, 1440 };
