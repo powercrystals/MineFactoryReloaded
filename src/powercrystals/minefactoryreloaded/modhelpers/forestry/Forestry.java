@@ -56,7 +56,6 @@ public class Forestry
 				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log5").get(null)).blockID, HarvestType.Tree));
 				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log6").get(null)).blockID, HarvestType.Tree));
 				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log7").get(null)).blockID, HarvestType.Tree));
-				MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)forestryBlocks.getField("log8").get(null)).blockID, HarvestType.Tree));
 				
 				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)forestryBlocks.getField("leaves").get(null)).blockID));
 				
