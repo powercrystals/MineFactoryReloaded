@@ -43,6 +43,11 @@ public class SevenSegmentEncoder extends StatelessCircuit implements IRedNetLogi
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
+		if(inputValues[0] < 0 || inputValues[0] > 15)
+		{
+			return new int[] { 0, 0, 0, 0, 0, 0, 0 };
+		}
+		
 		return new int[]
 				{
 					_outputMatrix[inputValues[0]][0],
