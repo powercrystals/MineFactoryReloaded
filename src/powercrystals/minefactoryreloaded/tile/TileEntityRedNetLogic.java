@@ -95,6 +95,11 @@ public class TileEntityRedNetLogic extends TileEntity
 		return _buffers[buffer].length;
 	}
 	
+	public int getVariableValue(int var)
+	{
+		return _buffers[13][var];
+	}
+	
 	public IRedNetLogicCircuit getCircuit(int index)
 	{
 		return _circuits[index];

@@ -164,6 +164,7 @@ item.mfr.spyglass.name = Spyglass
 item.mfr.xpextractor.name = XP Extractor
 item.mfr.portaspawner.name = PortaSpawner
 item.mfr.straw.name = Straw
+item.mfr.rednet.meter.name = RedNet Meter
 
 item.mfr.ceramicdye.white.name = Ceramic Dye (White)
 item.mfr.ceramicdye.orange.name = Ceramic Dye (Orange)
