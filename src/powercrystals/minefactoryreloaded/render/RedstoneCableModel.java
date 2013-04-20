@@ -55,22 +55,22 @@ public class RedstoneCableModel extends ModelBase
 		_bandWhite.mirror = true;
 		setRotation(_bandWhite, 0F, 0F, 0F);
 		
-		_bandColors[0] = new Vector3f(1.0f,1.0f,1.0f);
-		_bandColors[1] = new Vector3f(1.0f, 0.5f, 0.25f);
-		_bandColors[2] = new Vector3f(1.0f, 0.25f, 1.0f);
-		_bandColors[3] = new Vector3f(0.5f, 0.5f, 1.0f);
-		_bandColors[4] = new Vector3f(1.0f, 1.0f, 0f);
-		_bandColors[5] = new Vector3f(0.25f, 1.0f, 0.25f);
-		_bandColors[6] = new Vector3f(1.0f, 0.5f, 1.0f);
-		_bandColors[7] = new Vector3f(0.375f, 0.375f, 0.375f);
-		_bandColors[8] = new Vector3f(0.66f, 0.66f, 0.66f);
-		_bandColors[9] = new Vector3f(0.25f, 0.5f, 0.5f);
-		_bandColors[10] = new Vector3f(0.5f, 0.25f, 0.75f);
-		_bandColors[11] = new Vector3f(0f, 0f, 1f);
-		_bandColors[12] = new Vector3f(0.375f, 0.25f, 0.125f);
-		_bandColors[13] = new Vector3f(0, 0.5f, 0f);
-		_bandColors[14] = new Vector3f(1f, 0f, 0f);
-		_bandColors[15] = new Vector3f(0.125f, 0.125f, 0.125f);
+		_bandColors[0]  = new Vector3f(255.0f/255.0f, 255.0f/255.0f, 255.0f/255.0f); // white
+		_bandColors[1]  = new Vector3f(255.0f/255.0f, 128.0f/255.0f,  64.0f/255.0f); // orange
+		_bandColors[2]  = new Vector3f(255.0f/255.0f,  64.0f/255.0f, 255.0f/255.0f); // magenta
+		_bandColors[3]  = new Vector3f(128.0f/255.0f, 128.0f/255.0f, 255.0f/255.0f); // light blue
+		_bandColors[4]  = new Vector3f(255.0f/255.0f, 255.0f/255.0f,   0.0f/255.0f); // yellow
+		_bandColors[5]  = new Vector3f( 64.0f/255.0f, 255.0f/255.0f,  64.0f/255.0f); // lime
+		_bandColors[6]  = new Vector3f(255.0f/255.0f, 196.0f/255.0f, 255.0f/255.0f); // pink
+		_bandColors[7]  = new Vector3f( 96.0f/255.0f,  96.0f/255.0f,  96.0f/255.0f); // gray
+		_bandColors[8]  = new Vector3f(168.0f/255.0f, 168.0f/255.0f, 168.0f/255.0f); // light gray
+		_bandColors[9]  = new Vector3f( 64.0f/255.0f, 128.0f/255.0f, 128.0f/255.0f); // cyan
+		_bandColors[10] = new Vector3f(128.0f/255.0f,   0.0f/255.0f, 192.0f/255.0f); // purple
+		_bandColors[11] = new Vector3f(  0.0f/255.0f,   0.0f/255.0f, 255.0f/255.0f); // blue
+		_bandColors[12] = new Vector3f( 96.0f/255.0f,  64.0f/255.0f,  32.0f/255.0f); // brown
+		_bandColors[13] = new Vector3f(  0.0f/255.0f, 128.0f/255.0f,   0.0f/255.0f); // green
+		_bandColors[14] = new Vector3f(255.0f/255.0f,   0.0f/255.0f,   0.0f/255.0f); // red
+		_bandColors[15] = new Vector3f( 32.0f/255.0f,  32.0f/255.0f,  32.0f/255.0f); // black
 	}
 	
 	public void render(float f5)
