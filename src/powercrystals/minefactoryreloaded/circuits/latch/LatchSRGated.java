@@ -24,11 +24,11 @@ public class LatchSRGated implements IRedNetLogicCircuit
 	{
 		if(inputValues[2] > 0 && inputValues[0] > 0 && inputValues[1] == 0)
 		{
-			_value = true;
+			_value = false;
 		}
 		else if(inputValues[2] > 0 && inputValues[0] == 0 && inputValues[1] > 0)
 		{
-			_value = false;
+			_value = true;
 		}
 		
 		if(_value)
