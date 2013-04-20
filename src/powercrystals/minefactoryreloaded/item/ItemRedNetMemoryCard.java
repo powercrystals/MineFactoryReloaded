@@ -26,6 +26,7 @@ public class ItemRedNetMemoryCard extends ItemFactory
 		if(stack.getTagCompound() != null)
 		{
 			infoList.add("Programmed, " + stack.getTagCompound().getTagList("circuits").tagCount() + " circuits");
+			infoList.add("Place in crafting grid to wipe");
 		}
 	}
 	

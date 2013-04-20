@@ -1204,6 +1204,28 @@ public class Vanilla
 					Character.valueOf('D'), Item.diamond,
 					Character.valueOf('R'), Item.redstone,
 				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.rednetMeterItem, 1, 0), new Object[]
+				{
+					" G",
+					"PR",
+					"PP",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('G'), Item.goldNugget,
+					Character.valueOf('R'), Item.redstone,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.rednetMemoryCardItem, 1, 0), new Object[]
+				{
+					"GGG",
+					"PRP",
+					"PPP",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('G'), Item.goldNugget,
+					Character.valueOf('R'), Item.redstone,
+				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.rednetMemoryCardItem, 1, 0), new ItemStack(MineFactoryReloadedCore.rednetMemoryCardItem, 1, 0));
 	}
 	
 	private final void registerRedNetManual()
