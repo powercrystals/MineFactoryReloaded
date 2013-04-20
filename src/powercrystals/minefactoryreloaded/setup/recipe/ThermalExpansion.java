@@ -113,11 +113,10 @@ public class ThermalExpansion extends Vanilla
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 5), new Object[]
 						{
 							"PTP",
-							" F ",
+							"TFT",
 							"OCO",
 							'P', MineFactoryReloadedCore.plasticSheetItem,
 							'T', MineFactoryReloadedCore.syringeEmptyItem,
-							'S', Item.shears,
 							'F', machineFrame,
 							'O', "ingotCopper",
 							'C', powerCoilGold
