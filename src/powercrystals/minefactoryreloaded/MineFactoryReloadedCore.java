@@ -450,6 +450,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		
 		OreDictionary.registerOre("itemRubber", MineFactoryReloadedCore.rubberBarItem);
 		OreDictionary.registerOre("woodRubber", MineFactoryReloadedCore.rubberWoodBlock);
+		OreDictionary.registerOre("sheetPlastic", MineFactoryReloadedCore.plasticSheetItem);
+		OreDictionary.registerOre("dustPlastic", MineFactoryReloadedCore.rawPlasticItem);
 		
 		GameRegistry.registerFuelHandler(new MineFactoryReloadedFuelHandler());
 		
