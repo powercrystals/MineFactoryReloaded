@@ -415,8 +415,8 @@ public class ThermalExpansion extends Vanilla
 							'T', "ingotCopper",
 							'S', "ingotSilver",
 							'F', machineFrame,
-							'O', "ingotGold",
-							'C', Block.chest
+							'O', Item.ingotGold,
+							'C', Item.book
 						} ));
 			}
 			
@@ -431,7 +431,7 @@ public class ThermalExpansion extends Vanilla
 							'T', Item.netherStalkSeeds,
 							'S', Item.magmaCream,
 							'F', machineFrame,
-							'O', "emerald",
+							'O', Item.emerald,
 							'C', powerCoilGold
 						} ));
 			}
