@@ -272,7 +272,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
 			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
-			power = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet);
+			power = Math.min(Math.max(((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet), 0), 15);
 			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
 		}
 		return power;
@@ -286,7 +286,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
 			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
-			power = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet);
+			power = Math.min(Math.max(((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet), 0), 15);
 			//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
 		}
 		return power;
