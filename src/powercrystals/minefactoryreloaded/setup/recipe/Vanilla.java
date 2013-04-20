@@ -1157,6 +1157,6 @@ public class Vanilla
 		}
 		_registeredRedNetManual = true;
 		
-		GameRegistry.addShapelessRecipe(ItemBlockRedNetLogic.manual, new ItemStack(MineFactoryReloadedCore.rednetLogicBlock, 1, 0), Item.book);
+		GameRegistry.addShapelessRecipe(ItemBlockRedNetLogic.manual, MineFactoryReloadedCore.plasticSheetItem, Item.redstone, Item.book);
 	}
 }
