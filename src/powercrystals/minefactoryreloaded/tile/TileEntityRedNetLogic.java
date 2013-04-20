@@ -57,11 +57,14 @@ public class TileEntityRedNetLogic extends TileEntity
 	
 	public TileEntityRedNetLogic()
 	{	
-		// init I/O and constant buffers
-		for(int i = 0; i < 13; i++)
+		// init I/O buffers
+		for(int i = 0; i < 12; i++)
 		{
 			_buffers[i] = new int[16];
 		}
+		
+		// init constant buffer
+		_buffers[12] = new int[256];
 		// init variable buffer
 		_buffers[13] = new int[_variableCount];
 		// init null buffer
@@ -74,7 +77,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		}
 		
 		//init constants
-		for(int i = 0; i < 16; i++)
+		for(int i = 0; i < 256; i++)
 		{
 			_buffers[12][i] = i;
 		}

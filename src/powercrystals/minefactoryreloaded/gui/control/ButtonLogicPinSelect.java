@@ -30,14 +30,14 @@ public class ButtonLogicPinSelect extends Button
 	
 	private static String[] _pinColorNames = new String[]
 			{
-				"WT",
+				"WHIT",
 				"ORNG",
 				"MGTA",
 				"L_BL",
 				"YLLW",
 				"LIME",
 				"PINK",
-				"D_GR",
+				"GRAY",
 				"L_GR",
 				"CYAN",
 				"PURP",
@@ -89,20 +89,12 @@ public class ButtonLogicPinSelect extends Button
 	public void onClick()
 	{
 		_pin++;
-		if((_buffer == 14 && _pin > 0) || (_buffer == 13 && _pin >= _containerScreen.getVariableCount()) || (_buffer < 13 && _pin > 15))
+		if((_buffer == 14 && _pin > 0) || (_buffer == 13 && _pin >= _containerScreen.getVariableCount()) || (_buffer == 12 && _pin > 255) || (_buffer < 12 && _pin > 15))
 		{
 			_pin = 0;
 		}
-		setText(((Integer)_pin).toString());
 		
-		if(_buttonType == LogicButtonType.Input)
-		{
-			_containerScreen.setInputPinMapping(_pinIndex, _buffer, _pin);
-		}
-		else
-		{
-			_containerScreen.setOutputPinMapping(_pinIndex, _buffer, _pin);
-		}
+		updatePin();
 	}
 	
 	@Override
@@ -120,14 +112,49 @@ public class ButtonLogicPinSelect extends Button
 			{
 				_pin = _containerScreen.getVariableCount() - 1;
 			}
+			else if(_buffer == 12)
+			{
+				_pin = 255;
+			}
 			else
 			{
 				_pin = 15;
 			}
 		}
 		
+		updatePin();
+	}
+	
+	@Override
+	public void onMiddleClick()
+	{
+		if(_buffer == 13)
+		{
+			_pin += 16;
+			if(_pin >= _containerScreen.getVariableCount())
+			{
+				_pin = _pin - _containerScreen.getVariableCount();
+			}
+			updatePin();
+		}
+		else if(_buffer == 12)
+		{
+			_pin += 16;
+			if(_pin >= 256)
+			{
+				_pin = _pin - 256;
+			}
+			updatePin();
+		}
+		else
+		{
+			onClick();
+		}
+	}
+	
+	private void updatePin()
+	{
 		setText(((Integer)_pin).toString());
-		
 		if(_buttonType == LogicButtonType.Input)
 		{
 			_containerScreen.setInputPinMapping(_pinIndex, _buffer, _pin);
