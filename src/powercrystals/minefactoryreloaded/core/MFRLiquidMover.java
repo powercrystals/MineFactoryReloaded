@@ -9,6 +9,7 @@ import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import powercrystals.core.position.BlockPosition;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public abstract class MFRLiquidMover
@@ -30,7 +31,7 @@ public abstract class MFRLiquidMover
 				itcb.fill(ForgeDirection.UNKNOWN, liquid, true);
 				if(!entityplayer.capabilities.isCreativeMode)
 				{
-					entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, MFRInventoryUtil.consumeItem(ci));					
+					entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, UtilInventory.consumeItem(ci));					
 				}
 				return true;
 			}

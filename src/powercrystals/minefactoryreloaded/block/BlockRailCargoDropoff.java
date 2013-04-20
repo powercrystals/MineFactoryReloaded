@@ -16,7 +16,7 @@ import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.inventory.IInventoryManager;
 import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.position.BlockPosition;
-import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 
 public class BlockRailCargoDropoff extends BlockRailBase
@@ -48,7 +48,7 @@ public class BlockRailCargoDropoff extends BlockRailBase
 			}
 			
 			ItemStack stackToAdd = contents.getValue().copy();
-			ItemStack remaining = MFRInventoryUtil.dropStack(world, new BlockPosition(x, y, z), contents.getValue(), ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN);
+			ItemStack remaining = UtilInventory.dropStack(world, new BlockPosition(x, y, z), contents.getValue(), ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN);
 			
 			if(remaining != null)
 			{

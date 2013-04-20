@@ -22,9 +22,9 @@ import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.random.WeightedRandomItemStack;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
-import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -102,7 +102,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 				ItemStack s = ((WeightedRandomItemStack)WeightedRandom.getRandomItem(_rand, MFRRegistry.getSludgeDrops())).getStack();
 				if(s != null)
 				{
-					MFRInventoryUtil.dropStack(this, s, this.getDropDirection());
+					UtilInventory.dropStack(this, s, this.getDropDirection());
 				}
 				setWorkDone(0);
 			}

@@ -5,11 +5,11 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
@@ -103,7 +103,7 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 			{
 				if (o instanceof EntityItem)
 				{
-					MFRInventoryUtil.dropStack(this, ((EntityItem)o).getEntityItem(), this.getDropDirection());
+					UtilInventory.dropStack(this, ((EntityItem)o).getEntityItem(), this.getDropDirection());
 				}
 				continue;
 			}
@@ -124,7 +124,7 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 							continue;
 						}
 						
-						MFRInventoryUtil.dropStack(this, s, this.getDropDirection());
+						UtilInventory.dropStack(this, s, this.getDropDirection());
 						didDrop = true;
 					}
 					if(didDrop)

@@ -10,9 +10,9 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
-import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -64,7 +64,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 			
 			if(getWorkDone() >= getWorkMax())
 			{
-				MFRInventoryUtil.dropStack(this, new ItemStack(MineFactoryReloadedCore.fertilizerItem), this.getDropDirection());
+				UtilInventory.dropStack(this, new ItemStack(MineFactoryReloadedCore.fertilizerItem), this.getDropDirection());
 				setWorkDone(0);
 			}
 			return true;

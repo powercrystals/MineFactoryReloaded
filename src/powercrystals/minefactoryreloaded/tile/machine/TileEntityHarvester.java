@@ -13,13 +13,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.MFRInventoryUtil;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -153,7 +153,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		{
 			for(ItemStack dropStack : drops)
 			{
-				MFRInventoryUtil.dropStack(this, dropStack, this.getDropDirection());
+				UtilInventory.dropStack(this, dropStack, this.getDropDirection());
 			}
 		}
 		
