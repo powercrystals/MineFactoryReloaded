@@ -69,15 +69,16 @@ public class EntitySafariNet extends EntityThrowable
 			}
 			else
 			{
-				ItemSafariNet.releaseEntity(storedEntity, worldObj, (int)mop.entityHit.posX, (int)mop.entityHit.posY, (int)mop.entityHit.posZ, 1);
-				if(ItemSafariNet.isSingleUse(storedEntity))
+				if(!ItemSafariNet.isEmpty(storedEntity))
 				{
-					dropAsStack(null);
+					ItemSafariNet.releaseEntity(storedEntity, worldObj, (int)mop.entityHit.posX, (int)mop.entityHit.posY, (int)mop.entityHit.posZ, 1);
+					if(ItemSafariNet.isSingleUse(storedEntity))
+					{
+						dropAsStack(null);
+						return;
+					}
 				}
-				else
-				{
-					dropAsStack(storedEntity);
-				}
+				dropAsStack(storedEntity);
 			}
 		}
 	}
