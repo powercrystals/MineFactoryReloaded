@@ -13,16 +13,16 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class Vanilla
 {
 	// prevent derived recipe sets from double-registering this one if multiple sets are enabled
-	private boolean _registeredMachines;
-	private boolean _registeredMachineUpgrades;
-	private boolean _registeredConveyors;
-	private boolean _registeredDecorative;
-	private boolean _registeredSyringes;
-	private boolean _registeredMiscItems;
-	private boolean _registeredVanillaImprovements;
-	private boolean _registeredRails;
-	private boolean _registeredRedNet;
-	private boolean _registeredRedNetManual;
+	private static boolean _registeredMachines;
+	private static boolean _registeredMachineUpgrades;
+	private static boolean _registeredConveyors;
+	private static boolean _registeredDecorative;
+	private static boolean _registeredSyringes;
+	private static boolean _registeredMiscItems;
+	private static boolean _registeredVanillaImprovements;
+	private static boolean _registeredRails;
+	private static boolean _registeredRedNet;
+	private static boolean _registeredRedNetManual;
 	
 	public final void registerRecipes()
 	{
@@ -1146,6 +1146,63 @@ public class Vanilla
 					"PPP",
 					Character.valueOf('R'), Item.redstone,
 					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 11), new Object[]
+				{
+					"PRP",
+					"RGR",
+					"PIP",
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('G'), Block.glass,
+					Character.valueOf('I'), Item.ingotIron,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.rednetLogicBlock), new Object[]
+				{
+					"RDR",
+					"LGL",
+					"PHP",
+					Character.valueOf('H'), new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 11),
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('L'), new ItemStack(Item.dyePowder, 1, 4),
+					Character.valueOf('D'), Item.diamond,
+					Character.valueOf('R'), Item.redstone,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.logicCardItem, 1, 0), new Object[]
+				{
+					"RPR",
+					"PGP",
+					"RPR",
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('R'), Item.redstone,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.logicCardItem, 1, 1), new Object[]
+				{
+					"GPG",
+					"PCP",
+					"RGR",
+					Character.valueOf('C'), new ItemStack(MineFactoryReloadedCore.logicCardItem, 1, 0),
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('R'), Item.redstone,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.logicCardItem, 1, 2), new Object[]
+				{
+					"DPD",
+					"RCR",
+					"GDG",
+					Character.valueOf('C'), new ItemStack(MineFactoryReloadedCore.logicCardItem, 1, 1),
+					Character.valueOf('P'), MineFactoryReloadedCore.plasticSheetItem,
+					Character.valueOf('G'), Item.ingotGold,
+					Character.valueOf('D'), Item.diamond,
+					Character.valueOf('R'), Item.redstone,
 				} );
 	}
 	

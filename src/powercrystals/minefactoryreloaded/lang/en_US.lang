@@ -96,6 +96,7 @@ tile.mfr.decorativebrick.ice_large.name = Large Ice Bricks
 tile.mfr.decorativebrick.lapis_large.name = Large Lapis Bricks
 tile.mfr.decorativebrick.obsidian_large.name = Large Obsidian Bricks
 tile.mfr.decorativebrick.snow_large.name = Large Snow Bricks
+tile.mfr.decorativebrick.prc.name = Programmable RedNet Controller Housing
 
 tile.mfr.decorativestone.black.smooth.name = Smooth Blackstone
 tile.mfr.decorativestone.black.cobble.name = Cobble Blackstone

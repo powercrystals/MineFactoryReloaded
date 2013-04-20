@@ -7,6 +7,7 @@ import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -84,6 +85,14 @@ public class ItemBlockRedNetLogic extends ItemBlock
 		setContainerItem(this);
 		setCreativeTab(MFRCreativeTab.tab);
 		setMaxStackSize(1);
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedTooltips)
+	{
+		infoList.add("If you're lost, read the (in-game) manual");
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
