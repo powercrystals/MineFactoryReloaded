@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.tile;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
+import powercrystals.core.block.IAirDropTarget;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -12,7 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityConveyor extends TileEntity implements IRotateableTile
+public class TileEntityConveyor extends TileEntity implements IRotateableTile, IAirDropTarget
 {
 	private int _dye = -1;
 	
