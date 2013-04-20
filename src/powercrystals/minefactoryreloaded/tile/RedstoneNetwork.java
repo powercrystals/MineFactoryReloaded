@@ -315,12 +315,13 @@ public class RedstoneNetwork
 		}
 		
 		int offset = 0;
-		if(_world.getBlockId(node.x, node.y, node.z) == Block.redstoneWire.blockID)
+		int blockId = _world.getBlockId(node.x, node.y, node.z);
+		if(blockId == Block.redstoneWire.blockID)
 		{
 			offset = -1;
 		}
 		
-		if(_world.isBlockSolidOnSide(node.x, node.y, node.z, node.orientation.getOpposite()))
+		if(blockId != Block.blockRedstone.blockID && _world.isBlockSolidOnSide(node.x, node.y, node.z, node.orientation.getOpposite()))
 		{
 			return Math.max(0, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset);
 		}
