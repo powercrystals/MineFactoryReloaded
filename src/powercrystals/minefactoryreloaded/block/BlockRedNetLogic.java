@@ -11,6 +11,7 @@ import powercrystals.minefactoryreloaded.core.BlockNBTManager;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
+import powercrystals.minefactoryreloaded.item.ItemRedNetMemoryCard;
 import powercrystals.minefactoryreloaded.item.ItemRedNetMeter;
 import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import net.minecraft.block.BlockContainer;
@@ -173,7 +174,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			}
 			return false;
 		}
-		else if(!MFRUtil.isHolding(player, ItemRedNetMeter.class))
+		else if(!MFRUtil.isHolding(player, ItemRedNetMeter.class) && !MFRUtil.isHolding(player, ItemRedNetMemoryCard.class))
 		{
 			player.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
 			return true;

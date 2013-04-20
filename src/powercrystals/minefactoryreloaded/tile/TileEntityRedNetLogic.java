@@ -372,6 +372,11 @@ public class TileEntityRedNetLogic extends TileEntity
 			_buffers[13] = vars;
 		}
 		
+		readCircuitsOnly(nbttagcompound);
+	}
+	
+	public void readCircuitsOnly(NBTTagCompound nbttagcompound)
+	{
 		NBTTagList circuits = nbttagcompound.getTagList("circuits");
 		if(circuits != null)
 		{

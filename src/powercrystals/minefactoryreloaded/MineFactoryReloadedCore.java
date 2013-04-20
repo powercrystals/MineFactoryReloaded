@@ -67,6 +67,7 @@ import powercrystals.minefactoryreloaded.item.ItemFactoryHammer;
 import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
 import powercrystals.minefactoryreloaded.item.ItemMilkBottle;
 import powercrystals.minefactoryreloaded.item.ItemPortaSpawner;
+import powercrystals.minefactoryreloaded.item.ItemRedNetMemoryCard;
 import powercrystals.minefactoryreloaded.item.ItemRedNetMeter;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import powercrystals.minefactoryreloaded.item.ItemSafariNetLauncher;
@@ -200,6 +201,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item syringeCureItem;
 	public static Item logicCardItem;
 	public static Item rednetMeterItem;
+	public static Item rednetMemoryCardItem;
 
 	// client config
 	public static Property spyglassRange;
@@ -270,6 +272,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property syringeCureItemId;
 	public static Property logicCardItemId;
 	public static Property rednetMeterItemId;
+	public static Property rednetMemoryCardItemId;
 
 	public static Property zoolologistEntityId;
 	
@@ -381,6 +384,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		syringeCureItem = (new ItemSyringeCure(syringeCureItemId.getInt())).setUnlocalizedName("mfr.syringe.cure").setContainerItem(syringeEmptyItem);
 		logicCardItem = (new ItemLogicUpgradeCard(logicCardItemId.getInt())).setUnlocalizedName("mfr.upgrade.logic").setMaxStackSize(1);
 		rednetMeterItem = (new ItemRedNetMeter(rednetMeterItemId.getInt())).setUnlocalizedName("mfr.rednet.meter").setMaxStackSize(1);
+		rednetMemoryCardItem = (new ItemRedNetMemoryCard(rednetMemoryCardItemId.getInt())).setUnlocalizedName("mfr.rednet.memorycard").setMaxStackSize(1);
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -614,6 +618,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		syringeCureItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeCure", 12020);
 		logicCardItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Upgrade.PRC", 12021);
 		rednetMeterItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.RedNet.Meter", 12022);
+		rednetMemoryCardItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.RedNet.MemoryCard", 12023);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 
