@@ -259,6 +259,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new And3());
 		MFRRegistry.registerRedNetLogicCircuit(new And4());
 		MFRRegistry.registerRedNetLogicCircuit(new Counter());
+		MFRRegistry.registerRedNetLogicCircuit(new DeMux4());
 		MFRRegistry.registerRedNetLogicCircuit(new Equal());
 		MFRRegistry.registerRedNetLogicCircuit(new Fanout());
 		MFRRegistry.registerRedNetLogicCircuit(new FlipFlopJK());

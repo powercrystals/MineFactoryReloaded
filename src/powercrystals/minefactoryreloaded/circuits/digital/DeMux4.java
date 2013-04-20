@@ -3,49 +3,48 @@ package powercrystals.minefactoryreloaded.circuits.digital;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Mux4 extends StatelessCircuit implements IRedNetLogicCircuit
+public class DeMux4 extends StatelessCircuit implements IRedNetLogicCircuit
 {
-	private static String[] _inputPinNames = new String[] { "I0", "I1", "I2", "I3", "S0", "S1" };
-	
 	@Override
 	public int getInputCount()
 	{
-		return 6;
+		return 3;
 	}
 
 	@Override
 	public int getOutputCount()
 	{
-		return 1;
+		return 4;
 	}
 
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
 		int channel = 0;
+		if(inputValues[1] > 0 && inputValues[2] == 0) channel = 1;
+		else if(inputValues[1] > 0 && inputValues[2] == 0) channel = 2;
+		else if(inputValues[1] > 0 && inputValues[2] > 0) channel = 3;
+		int[] output = new int[4];
+		output[channel] = inputValues[0];
 		
-		if(inputValues[4] > 0 && inputValues[5] == 0) channel = 1;
-		else if(inputValues[4] > 0 && inputValues[5] == 0) channel = 2;
-		else if(inputValues[4] > 0 && inputValues[5] > 0) channel = 3;
-		
-		return new int[] { inputValues[channel] };
+		return output;
 	}
 
 	@Override
 	public String getUnlocalizedName()
 	{
-		return "circuit.mfr.mux.4";
+		return "circuit.mfr.demux.4";
 	}
 
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return _inputPinNames[pin];
+		return pin == 0 ? "Z" : pin == 1 ? "S0" : "S1";
 	}
 
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O";
+		return "O" + pin;
 	}
 }
