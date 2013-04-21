@@ -55,7 +55,7 @@
 		<get src="http://www.powercrystalsmods.com/build/UniversalElectricity_v1.3.1.67.zip" dest="${download.dir}/ue-api.zip" />
 		
 		<echo message="Downloading ThermalExpansion API... " />
-		<get src="https://dl.dropboxusercontent.com/u/57416963/Minecraft/Beta/ThermalExpansion-API-2.3.0.zip" dest="${download.dir}/te-api.zip" />
+		<get src="https://dl.dropboxusercontent.com/u/57416963/Minecraft/Mods/ThermalExpansion/api/ThermalExpansion-API-2.3.0.zip" dest="${download.dir}/te-api.zip" />
 	</target>
 
 	<target name="extract-dependencies" depends="setup-forge,get-dependencies">
