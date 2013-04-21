@@ -60,7 +60,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 		if(_tank.getLiquid() != null && _tank.getLiquid().amount > 20)
 		{
 			_tank.drain(20, true);
-			setWorkDone(getWorkDone() + 20);
+			setWorkDone(getWorkDone() + 1);
 			
 			if(getWorkDone() >= getWorkMax())
 			{
@@ -87,7 +87,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int getWorkMax()
 	{
-		return 8000;
+		return 100;
 	}
 
 	@Override

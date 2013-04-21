@@ -79,7 +79,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	@Override
 	public int getWorkMax()
 	{
-		return 1000;
+		return 100;
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 		if(_tank.getLiquid() != null && _tank.getLiquid().amount > 10)
 		{
 			_tank.drain(10, true);
-			setWorkDone(getWorkDone() + 10);
+			setWorkDone(getWorkDone() + 1);
 			_tick++;
 			
 			if(getWorkDone() >= getWorkMax())
