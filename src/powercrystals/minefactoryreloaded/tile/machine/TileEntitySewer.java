@@ -118,7 +118,11 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 			double massFound = 0;
 			for(Object o : entities)
 			{
-				if(o instanceof EntityAnimal || o instanceof EntityVillager || o instanceof EntityPlayer)
+				if(o instanceof EntityAnimal || o instanceof EntityVillager)
+				{
+					massFound += Math.pow(((EntityLiving)o).boundingBox.getAverageEdgeLength(), 2);
+				}
+				else if(o instanceof EntityPlayer && ((EntityPlayer)o).isSneaking())
 				{
 					massFound += Math.pow(((EntityLiving)o).boundingBox.getAverageEdgeLength(), 2);
 				}
