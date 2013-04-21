@@ -4,6 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
@@ -260,6 +261,14 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
 			((TileRedstoneCable)te).getNetwork().setInvalid();
+		}
+		for(ForgeDirection d : ForgeDirection.VALID_DIRECTIONS)
+		{
+			BlockPosition bp = new BlockPosition(x, y, z);
+			bp.orientation = d;
+			bp.moveForwards(1);
+			world.notifyBlockOfNeighborChange(bp.x, bp.y, bp.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
+			world.notifyBlocksOfNeighborChange(bp.x, bp.y, bp.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
 		}
 		super.breakBlock(world, x, y, z, id, meta);
 	}
