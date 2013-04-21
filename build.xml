@@ -165,7 +165,7 @@
 			<fileset dir="${mcp.dir}/reobf/minecraft"/>
 		</copy>
 		
-		<copy todir="${classes.dir}" file="${mcpsrc.dir}/mcmod.info"/>
+		<copy todir="${classes.dir}" file="mcmod.info"/>
 
 		
 		<copy todir="${classes.dir}/textures/blocks/powercrystals/minefactoryreloaded">
