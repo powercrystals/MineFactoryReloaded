@@ -285,6 +285,10 @@ public class TileEntityRedNetLogic extends TileEntity
 		
 		for(int circuitNum = 0; circuitNum < _circuits.length; circuitNum++)
 		{	
+			if(_circuits[circuitNum] instanceof Noop)
+			{
+				continue;
+			}
 			int[] input = new int[_circuits[circuitNum].getInputCount()];
 			for(int pinNum = 0; pinNum < input.length; pinNum++)
 			{
