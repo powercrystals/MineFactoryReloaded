@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.item;
 
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +21,7 @@ public class ItemSpyglass extends ItemFactory
 	{
 		if(world.isRemote)
 		{
-			MovingObjectPosition mop = player.rayTrace(256, 1.0F);
+			MovingObjectPosition mop = player.rayTrace(MineFactoryReloadedCore.spyglassRange.getInt(), 1.0F);
 			if(mop == null || (mop.typeOfHit == EnumMovingObjectType.ENTITY && mop.entityHit == null))
 			{
 				player.sendChatToPlayer("Nothing in sight");
