@@ -32,12 +32,12 @@ public class Passthrough extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "I" + pin;
+		return "I";
 	}
 
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O" + pin;
+		return "O";
 	}
 }

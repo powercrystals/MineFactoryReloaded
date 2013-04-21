@@ -39,6 +39,6 @@ public class PassthroughGated extends StatelessCircuit implements IRedNetLogicCi
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O" + pin;
+		return "O";
 	}
 }

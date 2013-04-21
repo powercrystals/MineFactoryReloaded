@@ -241,6 +241,7 @@ circuit.mfr.or.3 = Or (3-Input)
 circuit.mfr.or.4 = Or (4-Input)
 circuit.mfr.passthrough = Passthrough
 circuit.mfr.passthrough.gated = Passthrough (Gated)
+circuit.mfr.passthrough.roundrobin = Passthrough (Ring)
 circuit.mfr.pulselengthener = Pulse Lengthener
 circuit.mfr.randomizer.analog = Randomizer (Analog)
 circuit.mfr.randomizer.digital = Randomizer (Digital)
