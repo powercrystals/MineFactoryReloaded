@@ -111,6 +111,13 @@ public class BiomesOPlenty
 				{
 					MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)BOPBlocks.getField(harvestable).get(null)).blockID, HarvestType.LeaveBottom));
 				}
+				
+				MFRRegistry.registerSludgeDrop(25, new ItemStack((Block)BOPBlocks.getField("mud").get(null)));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("ash").get(null)));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("driedDirt").get(null)));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("hardSand").get(null)));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("hardDirt").get(null)));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("quicksand").get(null)));
 			}
 			
 			Class bopJungleSpider = Class.forName("tdwp_ftw.biomesop.mobs.EntityJungleSpider");
