@@ -5,7 +5,11 @@ import net.minecraftforge.common.ForgeDirection;
 
 /**
  * Defines a Block that can connect to RedNet wires. This must be implemented on your Block class.
- *
+ * Note that when you implement this, the RedNet network makes several assumptions about your code -
+ * primarily, it will not clamp values to 0 <= x <= 15. This means you must be able to accept any
+ * possible integer without crashing, even negatives. It will also assume that calling the onInput(s)Changed()
+ * methods are sufficient, and will not issue block updates. Finally, it will never call the vanilla redstone
+ * output methods, and will only query the methods contained in this interface.
  */
 public interface IConnectableRedNet
 {
