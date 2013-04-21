@@ -141,5 +141,16 @@ public class ServerPacketHandler implements IPacketHandler
 				((TileEntityRedNetLogic)te).sendCircuitDefinition((Integer)packetReadout[4]);
 			}
 		}
+		else if(packetType == Packets.LogicReinitialize) // client -> server: set circuit
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityRedNetLogic)
+			{
+				((TileEntityRedNetLogic)te).reinitialize((EntityPlayer)player);
+			}
+		}
 	}
 }

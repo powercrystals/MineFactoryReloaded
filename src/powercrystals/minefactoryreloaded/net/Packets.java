@@ -17,4 +17,5 @@ public final class Packets
 	public static final int LogicRequestCircuitDefinition = 13;
 	public static final int LogicSetCircuit = 14;
 	public static final int LogicSetPin = 15;
+	public static final int LogicReinitialize = 16;
 }

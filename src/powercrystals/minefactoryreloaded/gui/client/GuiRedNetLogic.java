@@ -58,6 +58,11 @@ public class GuiRedNetLogic extends GuiScreenBase
 	private Button _nextCircuit;
 	private Button _prevCircuit;
 	
+	private Button _reinit;
+	private Button _reinitConfirm;
+	
+	private int _reinitCountdown;
+	
 	public GuiRedNetLogic(Container container, TileEntityRedNetLogic logic)
 	{	
 		super(container, MineFactoryReloadedCore.guiFolder + "rednetlogic.png");
@@ -104,7 +109,6 @@ public class GuiRedNetLogic extends GuiScreenBase
 		
 		_prevCircuit = new Button(this, 344, 16, 30, 30, "Prev")
 		{
-			
 			@Override
 			public void onClick()
 			{
@@ -120,7 +124,6 @@ public class GuiRedNetLogic extends GuiScreenBase
 
 		_nextCircuit = new Button(this, 344, 76, 30, 30, "Next")
 		{
-			
 			@Override
 			public void onClick()
 			{
@@ -136,6 +139,31 @@ public class GuiRedNetLogic extends GuiScreenBase
 		
 		addControl(_prevCircuit);
 		addControl(_nextCircuit);
+		
+		_reinit = new Button(this, 316, 228, 60, 20, "Reinitialize")
+		{
+			@Override
+			public void onClick()
+			{
+				_reinitCountdown = 40;
+			}
+		};
+		
+		_reinitConfirm = new Button(this, 316, 228, 60, 20, "Confirm")
+		{
+			@Override
+			public void onClick()
+			{
+				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.LogicReinitialize,
+						new Object[] { _logic.xCoord, _logic.yCoord, _logic.zCoord }));
+				_reinitCountdown = 0;
+			}
+		};
+		
+		addControl(_reinit);
+		addControl(_reinitConfirm);
+		
+		_reinitConfirm.setVisible(false);
 		
 		for(int i = 0; i < _inputIOPinButtons.length; i++)
 		{
@@ -214,6 +242,14 @@ public class GuiRedNetLogic extends GuiScreenBase
 				_outputIOPinButtons[i].setVisible(false);
 			}
 		}
+		
+		if(_reinitCountdown > 0)
+		{
+			_reinitCountdown--;
+		}
+		
+		_reinit.setVisible(_reinitCountdown == 0);
+		_reinitConfirm.setVisible(_reinitCountdown > 0);
 	}
 	
 	@Override

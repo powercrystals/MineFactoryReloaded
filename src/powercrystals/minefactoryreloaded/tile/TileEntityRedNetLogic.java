@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.INetworkManager;
@@ -182,6 +184,29 @@ public class TileEntityRedNetLogic extends TileEntity
 				_pinMappingOutputs[index][i] = new PinMapping(0, 14);
 			}
 		}
+	}
+	
+	public void reinitialize(EntityPlayer player)
+	{
+		for(int i = 0; i < _upgradeLevel.length; i++)
+		{
+			if(_upgradeLevel[i] > 0)
+			{
+				ItemStack card = new ItemStack(MineFactoryReloadedCore.logicCardItem.itemID, 1, _upgradeLevel[i] - 1);
+				if(!player.inventory.addItemStackToInventory(card))
+				{
+					player.entityDropItem(card, 0.0F);
+				}
+				_upgradeLevel[i] = 0;
+			}
+		}
+		updateUpgradeLevels();
+		for(int i = 0; i < _circuits.length; i++)
+		{
+			initCircuit(i, new Noop());
+			sendCircuitDefinition(i);
+		}
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 	
 	public void setCircuitFromPacket(DataInputStream packet)
