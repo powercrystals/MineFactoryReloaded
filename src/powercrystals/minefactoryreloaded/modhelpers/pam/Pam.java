@@ -131,7 +131,7 @@ public class Pam
 					
 					MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 					MFRRegistry.registerHarvestable(new HarvestablePams(blockId));
-					MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
+					MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
 				}
 			}
 			catch(ClassNotFoundException x)
@@ -207,7 +207,7 @@ public class Pam
 			}
 
 			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockIdCrop,
-					Class.forName(String.format("%s.BlockPam%sCrop", baseClassPath, cropName)).getMethod("fertilize", World.class, int.class, int.class, int.class)));
+					Class.forName(String.format("%s.BlockPam%sCrop", baseClassPath, cropName)).getMethod("fertilize", World.class, int.class, int.class, int.class), 7));
 		}
 		catch(ClassNotFoundException x)
 		{

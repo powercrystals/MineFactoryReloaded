@@ -8,14 +8,15 @@ import powercrystals.minefactoryreloaded.modhelpers.FertilizableCropReflection;
 
 public class FertilizableMagicalCropReflection extends FertilizableCropReflection
 {
-	public FertilizableMagicalCropReflection(int blockId, Method fertilize)
+	
+	public FertilizableMagicalCropReflection(int blockId, Method fertilize, int targetMeta)
 	{
-		super(blockId, fertilize);
+		super(blockId, fertilize, targetMeta);
 	}
 	
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		return world.getBlockMetadata(x, y, z) < 7 && fertilizerType == FertilizerType.GrowMagicalCrop;
+		return world.getBlockMetadata(x, y, z) < _targetMeta && fertilizerType == FertilizerType.GrowMagicalCrop;
 	}
 }

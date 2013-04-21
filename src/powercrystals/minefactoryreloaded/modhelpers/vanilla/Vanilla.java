@@ -125,9 +125,9 @@ public class Vanilla
 		MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(MineFactoryReloadedCore.rubberLeavesBlock.blockID));
 
 		MFRRegistry.registerFertilizable(new FertilizableSapling(Block.sapling.blockID));
-		MFRRegistry.registerFertilizable(new FertilizableCropPlant(Block.crops.blockID));
-		MFRRegistry.registerFertilizable(new FertilizableCropPlant(Block.carrot.blockID));
-		MFRRegistry.registerFertilizable(new FertilizableCropPlant(Block.potato.blockID));
+		MFRRegistry.registerFertilizable(new FertilizableCropPlant(Block.crops.blockID, 7));
+		MFRRegistry.registerFertilizable(new FertilizableCropPlant(Block.carrot.blockID, 7));
+		MFRRegistry.registerFertilizable(new FertilizableCropPlant(Block.potato.blockID, 7));
 		MFRRegistry.registerFertilizable(new FertilizableGiantMushroom(Block.mushroomBrown.blockID));
 		MFRRegistry.registerFertilizable(new FertilizableGiantMushroom(Block.mushroomRed.blockID));
 		MFRRegistry.registerFertilizable(new FertilizableStemPlants(Block.pumpkinStem.blockID));

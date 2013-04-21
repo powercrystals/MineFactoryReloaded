@@ -12,10 +12,12 @@ import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 public class FertilizableCropPlant implements IFactoryFertilizable
 {
 	private final int blockID;
+	private int _targetMeta;
 	
-	public FertilizableCropPlant(int blockID)
+	public FertilizableCropPlant(int blockID, int targetMeta)
 	{
 		this.blockID = blockID;
+		this._targetMeta = targetMeta;
 	}
 	
 	@Override
@@ -27,7 +29,7 @@ public class FertilizableCropPlant implements IFactoryFertilizable
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		return fertilizerType == FertilizerType.GrowPlant && world.getBlockMetadata(x, y, z) < 7;
+		return fertilizerType == FertilizerType.GrowPlant && world.getBlockMetadata(x, y, z) < _targetMeta;
 	}
 
 	@Override

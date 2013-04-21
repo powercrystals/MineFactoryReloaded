@@ -53,7 +53,7 @@ public class MagicalCrops
 				fertilize = Class.forName("magicCrop.PlantHerb" + herb).getMethod("fertilize", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
-				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
+				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
 			}
 			
 			for(String crop : crops)
@@ -63,7 +63,7 @@ public class MagicalCrops
 				fertilize = Class.forName("magicCrop.crop" + crop).getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
-				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
+				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
 			}
 			
 			/*
@@ -75,7 +75,7 @@ public class MagicalCrops
 			fertilize = Class.forName("magicCrop.mCropDye").getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
 			MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 			MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
-			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize));
+			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
 			
 			for(String magicalCrop : magicalCrops)
 			{
@@ -84,7 +84,7 @@ public class MagicalCrops
 				fertilize = Class.forName("magicCrop.mCrop" + magicalCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
-				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize));
+				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize, 7));
 			}
 			
 			for(String soulCrop : soulCrops)
@@ -94,7 +94,7 @@ public class MagicalCrops
 				fertilize = Class.forName("magicCrop.soulCrop" + soulCrop).getMethod("fertilize", World.class, int.class, int.class, int.class);
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
-				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize));
+				MFRRegistry.registerFertilizable(new FertilizableMagicalCropReflection(blockId, fertilize, 7));
 			}
 			
 			Item magicalFertilizer = (Item)mod.getField("magicFertilizer").get(null);

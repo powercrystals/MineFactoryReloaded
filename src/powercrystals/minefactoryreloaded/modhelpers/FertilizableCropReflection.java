@@ -12,13 +12,8 @@ public class FertilizableCropReflection implements IFactoryFertilizable
 {
 	private Method _fertilize;
 	private int _blockId;
-	private int _targetMeta;
-	
-	public FertilizableCropReflection(int blockId, Method fertilize)
-	{
-		this(blockId, fertilize, 7);
-	}
-	
+	protected int _targetMeta;
+
 	public FertilizableCropReflection(int blockId, Method fertilize, int targetMeta)
 	{
 		_blockId = blockId;
