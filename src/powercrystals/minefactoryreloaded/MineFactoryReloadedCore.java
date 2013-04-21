@@ -69,6 +69,7 @@ import powercrystals.minefactoryreloaded.item.ItemMilkBottle;
 import powercrystals.minefactoryreloaded.item.ItemPortaSpawner;
 import powercrystals.minefactoryreloaded.item.ItemRedNetMemoryCard;
 import powercrystals.minefactoryreloaded.item.ItemRedNetMeter;
+import powercrystals.minefactoryreloaded.item.ItemRuler;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import powercrystals.minefactoryreloaded.item.ItemSafariNetLauncher;
 import powercrystals.minefactoryreloaded.item.ItemSpyglass;
@@ -202,6 +203,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item logicCardItem;
 	public static Item rednetMeterItem;
 	public static Item rednetMemoryCardItem;
+	public static Item rulerItem;
 
 	// client config
 	public static Property spyglassRange;
@@ -273,6 +275,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property logicCardItemId;
 	public static Property rednetMeterItemId;
 	public static Property rednetMemoryCardItemId;
+	public static Property rulerItemId;
 
 	public static Property zoolologistEntityId;
 	
@@ -395,6 +398,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		logicCardItem = (new ItemLogicUpgradeCard(logicCardItemId.getInt())).setUnlocalizedName("mfr.upgrade.logic").setMaxStackSize(1);
 		rednetMeterItem = (new ItemRedNetMeter(rednetMeterItemId.getInt())).setUnlocalizedName("mfr.rednet.meter").setMaxStackSize(1);
 		rednetMemoryCardItem = (new ItemRedNetMemoryCard(rednetMemoryCardItemId.getInt())).setUnlocalizedName("mfr.rednet.memorycard").setMaxStackSize(1);
+		rulerItem = (new ItemRuler(rulerItemId.getInt())).setUnlocalizedName("mfr.ruler").setMaxStackSize(1);
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -556,7 +560,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		Configuration c = new Configuration(configFile);
 
 		spyglassRange = c.get(Configuration.CATEGORY_GENERAL, "SpyglassRange", 200);
-		spyglassRange.comment = "The maximum number of blocks the spyglass can look to find something. This calculation is performed only on the client side.";
+		spyglassRange.comment = "The maximum number of blocks the spyglass and ruler can look to find something. This calculation is performed only on the client side.";
 		
 		c.save();
 	}
@@ -625,6 +629,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		logicCardItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Upgrade.PRC", 12021);
 		rednetMeterItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.RedNet.Meter", 12022);
 		rednetMemoryCardItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.RedNet.MemoryCard", 12023);
+		rulerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Ruler", 12024);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 
