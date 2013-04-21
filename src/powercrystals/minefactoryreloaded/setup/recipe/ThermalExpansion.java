@@ -415,7 +415,7 @@ public class ThermalExpansion extends Vanilla
 							'T', "ingotCopper",
 							'S', "ingotSilver",
 							'F', machineFrame,
-							'O', Item.ingotGold,
+							'O', Item.comparator,
 							'C', Item.book
 						} ));
 			}
