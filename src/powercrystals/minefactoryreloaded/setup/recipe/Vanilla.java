@@ -1030,6 +1030,15 @@ public class Vanilla
 					Character.valueOf('L'), Block.glass,
 					Character.valueOf('P'), "sheetPlastic",
 				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.rulerItem), new Object[]
+				{
+					"P",
+					"A",
+					"P",
+					Character.valueOf('P'), "sheetPlastic",
+					Character.valueOf('A'), Item.paper,
+				} ));
 	}
 	
 	protected void registerVanillaImprovements()
