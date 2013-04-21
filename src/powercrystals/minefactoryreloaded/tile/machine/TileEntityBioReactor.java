@@ -263,4 +263,21 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 		super.readFromNBT(nbttagcompound);
 		_burnTime = nbttagcompound.getInteger("burnTime");
 	}
+	
+	@Override
+	public boolean isStackValidForSlot(int slot, ItemStack itemstack)
+	{
+		if(itemstack == null)
+		{
+			return false;
+		}
+		for(int i = 0; i < 9; i++)
+		{
+			if(i != slot && _inventory[i] != null && _inventory[i].isItemEqual(itemstack))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }
