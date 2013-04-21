@@ -152,8 +152,9 @@
 			<arg value="reobfuscate.sh" />
 			<arg value="--srgnames" />
 		</exec>
-		
+
 		<delete dir="${mcp.dir}/reobf/minecraft/thaumcraft"/>
+		<delete dir="${mcp.dir}/reobf/minecraft/thermalexpansion"/>
 		<delete dir="${mcp.dir}/reobf/minecraft/powercrystals/core"/>
 		<delete dir="${mcp.dir}/reobf/minecraft/universalelectricity/components"/>
 		

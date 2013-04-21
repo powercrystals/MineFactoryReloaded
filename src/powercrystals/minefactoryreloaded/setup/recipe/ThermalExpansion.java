@@ -10,6 +10,7 @@ import thermalexpansion.api.item.ItemRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.setup.Machine;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ThermalExpansion extends Vanilla
@@ -17,6 +18,10 @@ public class ThermalExpansion extends Vanilla
 	@Override
 	protected void registerMachines()
 	{
+		if(!Loader.isModLoaded("ThermalExpansion"))
+		{
+			return;
+		}
 		try
 		{
 			ItemStack conduitLiquid = ItemRegistry.getItem("conduitLiquid", 1);
