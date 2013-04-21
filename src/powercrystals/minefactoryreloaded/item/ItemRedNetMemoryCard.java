@@ -66,4 +66,11 @@ public class ItemRedNetMemoryCard extends ItemFactory
 		}
 		return false;
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack)
+	{
+		return stack.getTagCompound() != null;
+	}
 }
