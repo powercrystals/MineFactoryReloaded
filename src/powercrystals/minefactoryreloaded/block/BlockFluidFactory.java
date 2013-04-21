@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquid;
@@ -62,6 +63,18 @@ public class BlockFluidFactory extends BlockFluidClassic implements ILiquid, ICo
 			}
 		}
 		super.onEntityCollidedWithBlock(world, x, y, z, entity);
+	}
+	
+	public int getLightValue(IBlockAccess world, int x, int y, int z)
+	{
+		if(blockID == MineFactoryReloadedCore.essenceLiquid.blockID)
+		{
+			return 7;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 
 	@Override
