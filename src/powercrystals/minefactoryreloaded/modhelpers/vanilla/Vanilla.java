@@ -115,9 +115,9 @@ public class Vanilla
 		MFRRegistry.registerHarvestable(new HarvestableMushroom(Block.mushroomRed.blockID));
 		MFRRegistry.registerHarvestable(new HarvestableStemPlant(Block.pumpkin.blockID, HarvestType.Normal));
 		MFRRegistry.registerHarvestable(new HarvestableStemPlant(Block.melon.blockID, HarvestType.Normal));
-		MFRRegistry.registerHarvestable(new HarvestableCropPlant(Block.crops.blockID));
-		MFRRegistry.registerHarvestable(new HarvestableCropPlant(Block.carrot.blockID));
-		MFRRegistry.registerHarvestable(new HarvestableCropPlant(Block.potato.blockID));
+		MFRRegistry.registerHarvestable(new HarvestableCropPlant(Block.crops.blockID, 7));
+		MFRRegistry.registerHarvestable(new HarvestableCropPlant(Block.carrot.blockID, 7));
+		MFRRegistry.registerHarvestable(new HarvestableCropPlant(Block.potato.blockID, 7));
 		MFRRegistry.registerHarvestable(new HarvestableVine());
 		MFRRegistry.registerHarvestable(new HarvestableNetherWart());
 		MFRRegistry.registerHarvestable(new HarvestableCocoa());
