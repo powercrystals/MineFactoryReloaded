@@ -84,6 +84,12 @@ public class GuiRedNetLogic extends GuiScreenBase
 				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.LogicSetCircuit, new Object[]
 						{ _logic.xCoord, _logic.yCoord, _logic.zCoord, _selectedCircuit, element.getValue().getClass().getName() }));
 			}
+			
+			@Override
+			protected void onScroll(int newStartIndex)
+			{
+				_circuitScroll.setValue(newStartIndex);
+			}
 		};
 		
 		List<IRedNetLogicCircuit> circuits = new LinkedList<IRedNetLogicCircuit>(MFRRegistry.getRedNetLogicCircuits());
@@ -96,7 +102,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		
 		addControl(_circuitList);
 		
-		_circuitScroll = new SliderVertical(this, 218, 16, 10, 234, circuits.size() - 1)
+		_circuitScroll = new SliderVertical(this, 218, 16, 10, 234, _circuitList.getLastScrollPosition())
 		{
 			@Override
 			public void onValueChanged(int value)
@@ -204,6 +210,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 				if(((IRedNetLogicCircuit)_circuitList.getElement(i).getValue()).getClass() == _logic.getCircuit(_selectedCircuit).getClass())
 				{
 					_circuitList.setSelectedIndex(i);
+					_circuitScroll.setValue(Math.min(i, _circuitList.getLastScrollPosition()));
 					break;
 				}
 			}
