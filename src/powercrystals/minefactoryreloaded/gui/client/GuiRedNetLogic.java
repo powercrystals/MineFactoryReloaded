@@ -170,8 +170,8 @@ public class GuiRedNetLogic extends GuiScreenBase
 			_inputIOBufferButtons[i]  = new ButtonLogicBufferSelect(this,  22, 16 + i * 14, i, LogicButtonType.Input);
 			_inputIOPinButtons[i]	 = new ButtonLogicPinSelect(   this,  52, 16 + i * 14, i, LogicButtonType.Input);
 
-			_outputIOBufferButtons[i] = new ButtonLogicBufferSelect(this, 250, 16 + i * 14, i, LogicButtonType.Output);
-			_outputIOPinButtons[i]	= new ButtonLogicPinSelect(   this, 280, 16 + i * 14, i, LogicButtonType.Output);
+			_outputIOBufferButtons[i] = new ButtonLogicBufferSelect(this, 254, 16 + i * 14, i, LogicButtonType.Output);
+			_outputIOPinButtons[i]	= new ButtonLogicPinSelect(   this, 284, 16 + i * 14, i, LogicButtonType.Output);
 
 			addControl(_inputIOBufferButtons[i]);
 			addControl(_outputIOBufferButtons[i]);
@@ -272,7 +272,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		{
 			if(i < _logic.getCircuit(_selectedCircuit).getOutputCount())
 			{
-				fontRenderer.drawString(_logic.getCircuit(_selectedCircuit).getOutputPinLabel(i), 236, 20 + i * 14, 4210752);
+				fontRenderer.drawString(_logic.getCircuit(_selectedCircuit).getOutputPinLabel(i), 232, 20 + i * 14, 4210752);
 			}
 		}
 	}
