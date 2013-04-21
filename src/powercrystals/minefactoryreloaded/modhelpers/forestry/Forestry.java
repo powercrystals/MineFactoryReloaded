@@ -83,6 +83,8 @@ public class Forestry
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mobEssence", new LiquidStack(MineFactoryReloadedCore.essenceLiquid,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(MineFactoryReloadedCore.mobEssenceBucketItem), new ItemStack(Item.bucketEmpty)));
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("biofuel", new LiquidStack(MineFactoryReloadedCore.biofuelLiquid,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(MineFactoryReloadedCore.bioFuelBucketItem), new ItemStack(Item.bucketEmpty)));
 		
+		MineFactoryReloadedCore.proxy.onPostTextureStitch(null);
+		
 		try
 		{
 			Class<?> forestryItems = Class.forName("forestry.core.config.ForestryItem");
