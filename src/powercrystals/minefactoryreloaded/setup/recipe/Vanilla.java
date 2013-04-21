@@ -411,11 +411,11 @@ public class Vanilla
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 8), new Object[]
 					{
 						"GGG",
-						"PBP",
+						"CBC",
 						" M ",
 						Character.valueOf('G'), "sheetPlastic",
 						Character.valueOf('B'), Item.book,
-						Character.valueOf('P'), Block.pumpkin,
+						Character.valueOf('C'), Item.comparator,
 						Character.valueOf('M'), MineFactoryReloadedCore.machineBaseItem,
 					} ));
 		}
