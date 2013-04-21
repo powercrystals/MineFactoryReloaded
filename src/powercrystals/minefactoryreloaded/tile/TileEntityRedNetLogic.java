@@ -23,6 +23,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.circuits.Noop;
@@ -314,6 +315,10 @@ public class TileEntityRedNetLogic extends TileEntity
 				if(b instanceof IRedNetNetworkContainer)
 				{
 					((IRedNetNetworkContainer)b).updateNetwork(worldObj, bp.x, bp.y, bp.z);
+				}
+				else if(b instanceof IConnectableRedNet)
+				{
+					((IConnectableRedNet)b).onInputsChanged(worldObj, bp.x, bp.y, bp.z, bp.orientation.getOpposite(), _buffers[i + 6]);
 				}
 			}
 		}
