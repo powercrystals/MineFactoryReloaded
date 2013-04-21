@@ -9,7 +9,9 @@ import net.minecraftforge.common.ForgeDirection;
  * primarily, it will not clamp values to 0 <= x <= 15. This means you must be able to accept any
  * possible integer without crashing, even negatives. It will also assume that calling the onInput(s)Changed()
  * methods are sufficient, and will not issue block updates. Finally, it will never call the vanilla redstone
- * output methods, and will only query the methods contained in this interface.
+ * output methods in All mode, and will only query the methods contained in this interface in that case. In Single
+ * mode, it will call onInputChanged, and will check for strong power (or weak if in Plate mode) through the vanilla
+ * method calls.
  */
 public interface IConnectableRedNet
 {
@@ -72,7 +74,7 @@ public interface IConnectableRedNet
 	 * @param y This block's Y coordinate.
 	 * @param z This block's Z coordinate.
 	 * @param side The side the input values are being changed on.
-	 * @param inputValues The new set of input values. This array will be 16 elements long.
+	 * @param inputValue The new input value
 	 */
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue);
 }
