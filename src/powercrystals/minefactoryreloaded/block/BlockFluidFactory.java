@@ -27,7 +27,7 @@ public class BlockFluidFactory extends BlockFluidClassic implements ILiquid, ICo
 	public BlockFluidFactory(int id, String liquidName)
 	{
 		super(id, Material.water);
-		setUnlocalizedName("mfr.liquid." + liquidName + ".flowing");
+		setUnlocalizedName("mfr.liquid." + liquidName + ".still");
 		setHardness(100.0F);
 		setLightOpacity(3);
 	}
