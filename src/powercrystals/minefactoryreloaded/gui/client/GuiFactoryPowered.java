@@ -34,7 +34,7 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 		
 		if(isPointInRegion(141, 15, 8, 60, mouseX, mouseY))
 		{
-			drawBarTooltip("Energy", "MJ", _tePowered.getEnergyStored() / 4, _tePowered.getEnergyStoredMax() / 4, mouseX, mouseY);
+			drawBarTooltip("Energy", "MJ", _tePowered.getEnergyStored() / 10, _tePowered.getEnergyStoredMax() / 10, mouseX, mouseY);
 		}
 		else if(isPointInRegion(151, 15, 8, 60, mouseX, mouseY))
 		{
