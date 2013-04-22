@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.modhelpers.natura;
 
-import java.lang.reflect.Method;
 import java.util.Random;
 
 import cpw.mods.fml.common.FMLLog;
@@ -16,6 +15,7 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSapling;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
@@ -54,8 +54,8 @@ public class Natura
 			int floraLeavesNoColorId = ((Block)naturaContent.getField("floraLeavesNoColor").get(null)).blockID;
 			int bloodwoodId = ((Block)naturaContent.getField("floraLeaves").get(null)).blockID;
 			
-			Method cropFertilize = Class.forName("mods.natura.blocks.crops.CropBlock").getMethod("fertilize", World.class, int.class, int.class, int.class);
-			Method saplingFertilize = Class.forName("mods.natura.blocks.trees.NSaplingBlock").getMethod("fertilize", World.class, int.class, int.class, int.class, Random.class);
+			Class.forName("mods.natura.blocks.crops.CropBlock").getMethod("fertilize", World.class, int.class, int.class, int.class);
+			Class.forName("mods.natura.blocks.trees.NSaplingBlock").getMethod("fertilize", World.class, int.class, int.class, int.class, Random.class);
 			
 			MFRRegistry.registerPlantable(new PlantableCropPlant(seedsId, cropsId));
 			MFRRegistry.registerPlantable(new PlantableStandard(berryBushId, berryBushId));
@@ -72,8 +72,8 @@ public class Natura
 			MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(floraLeavesId));
 			MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(floraLeavesNoColorId));
 			
-			MFRRegistry.registerFertilizable(new FertilizableNaturaCropReflection(cropsId, cropFertilize));
-			MFRRegistry.registerFertilizable(new FertilizableNaturaSaplingReflection(floraSaplingId, saplingFertilize));
+			MFRRegistry.registerFertilizable(new FertilizableNaturaCrop(cropsId));
+			MFRRegistry.registerFertilizable(new FertilizableSapling(floraSaplingId));
 		}
 		catch(Exception e)
 		{
