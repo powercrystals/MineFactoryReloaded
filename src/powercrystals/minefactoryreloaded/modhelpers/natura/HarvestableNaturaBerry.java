@@ -1,0 +1,65 @@
+package powercrystals.minefactoryreloaded.modhelpers.natura;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
+
+public class HarvestableNaturaBerry implements IFactoryHarvestable
+{
+	private int _sourceBlockId;
+	private int _berryItemId;
+	
+	public HarvestableNaturaBerry(int sourceBlockId, int berryItemId)
+	{
+		_sourceBlockId = sourceBlockId;
+		_berryItemId = berryItemId;
+	}
+
+	@Override
+	public int getPlantId()
+	{
+		return _sourceBlockId;
+	}
+
+	@Override
+	public HarvestType getHarvestType()
+	{
+		return HarvestType.Tree;
+	}
+	
+	@Override
+	public boolean breakBlock()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
+	{
+		return world.getBlockMetadata(x, y, z) >= 12;
+	}
+
+	@Override
+	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
+	{
+		ItemStack[] returnItems = {new ItemStack(_berryItemId, world.getBlockMetadata(x, y, z) % 4, 1)}; 
+		return Arrays.asList(returnItems);
+	}
+
+	@Override
+	public void preHarvest(World world, int x, int y, int z)
+	{
+	}
+
+	@Override
+	public void postHarvest(World world, int x, int y, int z)
+	{
+		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x,y,z) - 4, 2);
+	}
+}
