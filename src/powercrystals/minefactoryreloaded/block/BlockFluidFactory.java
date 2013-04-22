@@ -65,6 +65,7 @@ public class BlockFluidFactory extends BlockFluidClassic implements ILiquid, ICo
 		super.onEntityCollidedWithBlock(world, x, y, z, entity);
 	}
 	
+	@Override
 	public int getLightValue(IBlockAccess world, int x, int y, int z)
 	{
 		if(blockID == MineFactoryReloadedCore.essenceLiquid.blockID)
