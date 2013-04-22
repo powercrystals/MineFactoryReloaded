@@ -26,6 +26,7 @@ tile.mfr.machine.unifier.name = Unifier
 tile.mfr.machine.autospawner.name = Auto-Spawner
 tile.mfr.machine.bioreactor.name = BioReactor
 tile.mfr.machine.biofuelgenerator.name = BioFuel Generator
+tile.mfr.machine.autodisenchanter.name = Auto-Disenchanter
 
 tile.mfr.conveyor.default.name = Conveyor Belt
 tile.mfr.conveyor.white.name = Conveyor Belt (White)

@@ -200,14 +200,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
-		if(side == ForgeDirection.UP || side == ForgeDirection.DOWN)
-		{
-			return 1;
-		}
-		else
-		{
-			return 1;
-		}
+		return 1;
 	}
 	
 	@Override
