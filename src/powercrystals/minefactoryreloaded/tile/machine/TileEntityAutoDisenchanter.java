@@ -108,6 +108,16 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 					}
 				}
 				
+				int damage = worldObj.rand.nextInt((int)(_inventory[2].getMaxDamage() * 0.25)) + (int)(_inventory[2].getMaxDamage() * 0.1);
+				if(_inventory[2].isItemStackDamageable())
+				{
+					_inventory[2].setItemDamage(_inventory[2].getItemDamage() + damage);
+					if(_inventory[2].getItemDamage() >= _inventory[2].getMaxDamage())
+					{
+						_inventory[2] = null;
+					}
+				}
+				
 				setWorkDone(0);
 			}
 			else
