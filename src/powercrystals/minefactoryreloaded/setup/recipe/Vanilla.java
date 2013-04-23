@@ -465,6 +465,21 @@ public class Vanilla
 						'M', MineFactoryReloadedCore.machineBaseItem,
 					} ));
 		}
+		
+		if(Machine.AutoDisenchanter.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 12), new Object[]
+					{
+						"GGG",
+						"RDR",
+						"BMB",
+						'G', "sheetPlastic",
+						'B', Item.book,
+						'D', Item.diamond,
+						'R', Block.netherBrick,
+						'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
 	}
 	
 	protected void registerMachineUpgrades()
