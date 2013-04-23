@@ -60,7 +60,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 	@Override
 	public int getEnergyStoredMax()
 	{
-		return 64000;
+		return 16000;
 	}
 
 	@Override
@@ -108,6 +108,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 				else
 				{
 					UtilInventory.dropStack(this, new ItemStack(Item.snowball), this.getDropDirection());
+					setWorkDone(0);
 				}
 			}
 			return true;
