@@ -89,6 +89,7 @@ import powercrystals.minefactoryreloaded.setup.BehaviorDispenseSafariNet;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedFuelHandler;
 import powercrystals.minefactoryreloaded.setup.MineFactoryReloadedWorldGen;
+import powercrystals.minefactoryreloaded.setup.recipe.GregTech;
 import powercrystals.minefactoryreloaded.setup.recipe.ThermalExpansion;
 import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
 import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
@@ -307,6 +308,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	//recipes config
 	public static Property vanillaRecipes;
 	public static Property thermalExpansionRecipes;
+	public static Property gregTechRecipes;
 
 	private static MineFactoryReloadedCore instance;
 
@@ -520,6 +522,11 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		{
 			new ThermalExpansion().registerRecipes();
 		}
+		
+		if(gregTechRecipes.getBoolean(false))
+		{
+			new GregTech().registerRecipes();
+		}
 	}
 	
 	@ForgeSubscribe
@@ -682,6 +689,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		vanillaRecipes.comment = "If true, MFR will register its standard (vanilla-item-only) recipes.";
 		thermalExpansionRecipes = c.get("RecipeSets", "EnableThermalExpansionRecipes", false);
 		thermalExpansionRecipes.comment = "If true, MFR will register its Thermal Expansion-based recipes.";
+		gregTechRecipes = c.get("RecipeSets", "EnableGregTechRecipes", false);
+		gregTechRecipes.comment = "If true, MFR will register its GregTech-based recipes.";
 
 		for(Machine machine : Machine.values())
 		{
