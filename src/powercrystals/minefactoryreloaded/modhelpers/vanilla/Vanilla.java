@@ -282,6 +282,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new Nand2());
 		MFRRegistry.registerRedNetLogicCircuit(new Nand3());
 		MFRRegistry.registerRedNetLogicCircuit(new Nand4());
+		MFRRegistry.registerRedNetLogicCircuit(new Negator());
 		MFRRegistry.registerRedNetLogicCircuit(new Noop());
 		MFRRegistry.registerRedNetLogicCircuit(new Nor2());
 		MFRRegistry.registerRedNetLogicCircuit(new Nor3());
@@ -300,8 +301,10 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new SevenSegmentEncoder());
 		MFRRegistry.registerRedNetLogicCircuit(new SawtoothFalling());
 		MFRRegistry.registerRedNetLogicCircuit(new SawtoothRising());
+		MFRRegistry.registerRedNetLogicCircuit(new Scaler());
 		MFRRegistry.registerRedNetLogicCircuit(new Sine());
 		MFRRegistry.registerRedNetLogicCircuit(new Square());
+		MFRRegistry.registerRedNetLogicCircuit(new Subtractor());
 		MFRRegistry.registerRedNetLogicCircuit(new Triangle());
 		MFRRegistry.registerRedNetLogicCircuit(new Xnor2());
 		MFRRegistry.registerRedNetLogicCircuit(new Xnor3());
