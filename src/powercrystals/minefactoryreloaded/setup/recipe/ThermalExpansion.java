@@ -472,6 +472,22 @@ public class ThermalExpansion extends Vanilla
 							'C', powerCoilSilver
 						} ));
 			}
+			
+			if(Machine.AutoDisenchanter.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 12), new Object[]
+						{
+							"PTP",
+							"SFS",
+							"OCO",
+							'P', "sheetPlastic",
+							'T', Block.netherBrick,
+							'S', Item.book,
+							'F', machineFrame,
+							'O', Item.diamond,
+							'C', powerCoilGold
+						} ));
+			}
 		}
 		catch (Exception x)
 		{
