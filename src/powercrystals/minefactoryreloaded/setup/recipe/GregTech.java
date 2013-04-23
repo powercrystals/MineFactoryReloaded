@@ -122,7 +122,7 @@ public class GregTech extends Vanilla
 			
 			if(Machine.ItemCollector.getIsRecipeEnabled())
 			{
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 8, 6), new Object[]
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 6), new Object[]
 						{
 							"P P",
 							" F ",
@@ -182,7 +182,7 @@ public class GregTech extends Vanilla
 			
 			if(Machine.Sewer.getIsRecipeEnabled())
 			{
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 4, 10), new Object[]
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 10), new Object[]
 						{
 							"PTP",
 							"SFS",
@@ -275,7 +275,7 @@ public class GregTech extends Vanilla
 			
 			if(Machine.Ejector.getIsRecipeEnabled())
 			{
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 8, 0), new Object[]
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 0), new Object[]
 						{							
 							"PTP",
 							" F ",
@@ -289,7 +289,7 @@ public class GregTech extends Vanilla
 			
 			if(Machine.ItemRouter.getIsRecipeEnabled())
 			{
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 8, 1), new Object[]
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 1), new Object[]
 						{					
 							"PTP",
 							"SFS",
@@ -303,7 +303,7 @@ public class GregTech extends Vanilla
 			
 			if(Machine.LiquidRouter.getIsRecipeEnabled())
 			{
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 8, 2), new Object[]
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 2), new Object[]
 						{					
 							"PTP",
 							"SFS",
@@ -317,7 +317,7 @@ public class GregTech extends Vanilla
 			
 			if(Machine.DeepStorageUnit.getIsRecipeEnabled())
 			{
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 4, 3), new Object[]
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 3), new Object[]
 						{					
 							"PEP",
 							"CFC",
@@ -462,6 +462,22 @@ public class GregTech extends Vanilla
 							'F', generator,
 							'O', Item.blazeRod,
 							'C', "advancedCircuit"
+						} ));
+			}
+			
+			if(Machine.AutoDisenchanter.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 12), new Object[]
+						{
+							"PTP",
+							"SFS",
+							"OCO",
+							'P', "sheetPlastic",
+							'T', "plateAlloyIridium",
+							'S', Item.book,
+							'F', "craftingRawMachineTier03",
+							'O', "eliteCircuit",
+							'C', Block.netherBrick
 						} ));
 			}
 		}
@@ -830,7 +846,7 @@ public class GregTech extends Vanilla
 		}
 		try
 		{
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railPickupCargoBlock, 2), new Object[]
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railPickupCargoBlock, 1), new Object[]
 					{
 						" C ",
 						"SDS",
@@ -840,7 +856,7 @@ public class GregTech extends Vanilla
 						'D', Block.railDetector
 					} ));
 			
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffCargoBlock, 2), new Object[]
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffCargoBlock, 1), new Object[]
 					{
 						"SSS",
 						"SDS",
@@ -850,7 +866,7 @@ public class GregTech extends Vanilla
 						'D', Block.railDetector
 					} ));
 			
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railPickupPassengerBlock, 3), new Object[]
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railPickupPassengerBlock, 1), new Object[]
 					{
 						" L ",
 						"SDS",
@@ -860,7 +876,7 @@ public class GregTech extends Vanilla
 						'D', Block.railDetector
 					} ));
 			
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffPassengerBlock, 3), new Object[]
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffPassengerBlock, 1), new Object[]
 					{
 						"SSS",
 						"SDS",
