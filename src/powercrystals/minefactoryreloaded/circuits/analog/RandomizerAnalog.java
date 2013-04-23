@@ -12,7 +12,7 @@ public class RandomizerAnalog extends StatelessCircuit implements IRedNetLogicCi
 	@Override
 	public int getInputCount()
 	{
-		return 0;
+		return 2;
 	}
 
 	@Override
@@ -29,7 +29,14 @@ public class RandomizerAnalog extends StatelessCircuit implements IRedNetLogicCi
 			_rand = new Random(worldTime);
 		}
 
-		return new int[] { _rand.nextInt(16) };
+		if(inputValues[1] - inputValues[0] <= 0)
+		{
+			return new int[] { inputValues[0] };
+		}
+		else
+		{
+			return new int[] { _rand.nextInt(inputValues[1] - inputValues[0]) + inputValues[0] };
+		}
 	}
 
 	@Override
@@ -41,7 +48,7 @@ public class RandomizerAnalog extends StatelessCircuit implements IRedNetLogicCi
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "";
+		return pin == 0 ? "Min" : "Max";
 	}
 
 	@Override
