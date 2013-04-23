@@ -35,10 +35,7 @@ public class PlantableCropPlant extends PlantableStandard implements IFactoryPla
 	public void prePlant(World world, int x, int y, int z, ItemStack stack)
 	{
 		int groundId = world.getBlockId(x, y - 1, z);
-		if(
-			groundId != Block.tilledField.blockID &&
-			(groundId == Block.dirt.blockID ||
-			groundId == Block.grass.blockID))
+		if(groundId == Block.dirt.blockID || groundId == Block.grass.blockID)
 		{
 			world.setBlock(x, y - 1, z, Block.tilledField.blockID);
 		}
