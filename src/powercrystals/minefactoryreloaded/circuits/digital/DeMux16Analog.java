@@ -3,28 +3,26 @@ package powercrystals.minefactoryreloaded.circuits.digital;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class DeMux4 extends StatelessCircuit implements IRedNetLogicCircuit
+public class DeMux16Analog extends StatelessCircuit implements IRedNetLogicCircuit
 {
 	@Override
 	public int getInputCount()
 	{
-		return 3;
+		return 2;
 	}
 
 	@Override
 	public int getOutputCount()
 	{
-		return 4;
+		return 16;
 	}
 
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
-		int channel = 0;
-		if(inputValues[1] > 0 && inputValues[2] == 0) channel = 1;
-		else if(inputValues[1] > 0 && inputValues[2] == 0) channel = 2;
-		else if(inputValues[1] > 0 && inputValues[2] > 0) channel = 3;
-		int[] output = new int[4];
+		int channel = Math.max(Math.min(inputValues[1], 15), 0);
+		
+		int[] output = new int[16];
 		output[channel] = inputValues[0];
 		
 		return output;
@@ -33,13 +31,13 @@ public class DeMux4 extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public String getUnlocalizedName()
 	{
-		return "circuit.mfr.demux.4";
+		return "circuit.mfr.demux.16.analog";
 	}
 
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return pin == 0 ? "I" : pin == 1 ? "S0" : "S1";
+		return pin == 0 ? "I" : "S";
 	}
 
 	@Override
