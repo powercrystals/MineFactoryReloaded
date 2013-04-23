@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-
 import ic2.api.Items;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -465,6 +464,411 @@ public class GregTech extends Vanilla
 							'C', "advancedCircuit"
 						} ));
 			}
+		}
+		catch (Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	@Override
+	protected void registerMachineUpgrades()
+	{
+		if(!Loader.isModLoaded("GregTech_Addon") || !Loader.isModLoaded("IC2"))
+		{
+			return;
+		}
+		try
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', "dyeBlue",
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "basicCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 1), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', Item.ingotIron,
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "basicCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 2), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', "ingotTin",
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "basicCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 3), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', "ingotCopper",
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "advancedCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 4), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', "ingotBronze",
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "advancedCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 5), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', "ingotSilver",
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "advancedCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 6), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', Item.ingotGold,
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "advancedCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 7), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', Item.netherQuartz,
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "eliteCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 8), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', Item.diamond,
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "eliteCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 9), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', "ingotPlatinum",
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "eliteCircuit",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 10), new Object[]
+					{
+						"III",
+						"PPP",
+						"RGR",
+						'I', Item.emerald,
+						'P', "dustPlastic",
+						'R', "copperWire",
+						'G', "eliteCircuit",
+					} ));
+		}
+		catch (Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	@Override
+	protected void registerConveyors()
+	{
+		if(!Loader.isModLoaded("GregTech_Addon") || !Loader.isModLoaded("IC2"))
+		{
+			return;
+		}
+		try
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 16, 16), new Object[]
+					{
+						"UUU",
+						"RIR",
+						'U', "itemRubber",
+						'R', Item.redstone,
+						'I', "plateIron",
+					} ));
+			
+			for(int i = 0; i < 16; i++)
+			{
+				GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, i), new ItemStack(MineFactoryReloadedCore.conveyorBlock, 1, 16), new ItemStack(MineFactoryReloadedCore.ceramicDyeItem, 1, i));
+			}
+		}
+		catch (Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	@Override
+	protected void registerSyringes()
+	{
+		if(!Loader.isModLoaded("GregTech_Addon") || !Loader.isModLoaded("IC2"))
+		{
+			return;
+		}
+		try
+		{
+			ItemStack cell = Items.getItem("cell");
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.syringeEmptyItem, 1), new Object[]
+					{
+						"PRP",
+						"PCP",
+						" I ",
+						'P', "sheetPlastic",
+						'R', "itemRubber",
+						'I', Item.ingotIron,
+						'C', cell
+					} ));
+			
+			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeHealthItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleRed });
+			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeGrowthItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.goldenCarrot });
+			
+			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.syringeZombieItem, 1), new Object[]
+					{
+						"FFF",
+						"FSF",
+						"FFF",
+						'F', Item.rottenFlesh,
+						'S', MineFactoryReloadedCore.syringeEmptyItem,
+					} );
+			
+			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.syringeSlimeItem, 1), new Object[]
+					{
+						"   ",
+						" S ",
+						"BLB",
+						'B', Item.slimeBall,
+						'L', new ItemStack(Item.dyePowder, 1, 4),
+						'S', MineFactoryReloadedCore.syringeEmptyItem,
+					} );
+			
+			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.syringeCureItem), new Object[] { MineFactoryReloadedCore.syringeEmptyItem, Item.appleGold });
+		}
+		catch (Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	@Override
+	protected void registerMiscItems()
+	{
+		if(!Loader.isModLoaded("GregTech_Addon") || !Loader.isModLoaded("IC2"))
+		{
+			return;
+		}
+		try
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.plasticSheetItem, 4), new Object[]
+					{
+						"##",
+						"##",
+						'#', "dustPlastic",
+					} ));
+	
+			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
+					{
+						"WBW",
+						"STS",
+						"WBW",
+						'W', Item.wheat,
+						'B', new ItemStack(Item.dyePowder, 1, 15),
+						'S', Item.silk,
+						'T', Item.stick,
+					} );
+			
+			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetItem, 1), new Object[]
+					{
+						" E ",
+						"CGC",
+						" E ",
+						'E', Item.enderPearl,
+						'G', Item.ghastTear,
+						'C', "advancedCircuit"
+					} );
+			
+			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetSingleItem, 1), new Object[]
+					{
+						"SLS",
+						"CBC",
+						"S S",
+						'S', Item.silk,
+						'L', Item.leather,
+						'B', Item.slimeBall,
+						'C', "basicCircuit"
+					} );
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetLauncherItem, 1), new Object[]
+					{
+						"PGP",
+						"LGL",
+						"IRI",
+						'P', "sheetPlastic",
+						'L', Item.lightStoneDust,
+						'G', Item.gunpowder,
+						'I', "plateIron",
+						'R', "craftingItemValve"
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.factoryHammerItem, 1), new Object[]
+					{
+						"PPP",
+						" S ",
+						" S ",
+						'P', "sheetPlastic",
+						'S', Item.stick,
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.blankRecordItem, 1), new Object[]
+					{
+						"RRR",
+						"RPR",
+						"RRR",
+						'R', "plasticDust",
+						'P', Item.paper,
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.spyglassItem), new Object[]
+					{
+						"GLG",
+						"PLP",
+						" S ",
+						'G', Item.ingotGold,
+						'L', Block.glass,
+						'P', "sheetPlastic",
+						'S', Item.stick
+					} ));
+			
+			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.portaSpawnerItem), new Object[]
+					{
+						"GLG",
+						"DND",
+						"GLG",
+						'G', "plateGold",
+						'L', "plateAlloyIridium",
+						'D', Item.diamond,
+						'N', Item.netherStar
+					} );
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.strawItem), new Object[]
+					{
+						"PP",
+						"P ",
+						"P ",
+						'P', "sheetPlastic",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.xpExtractorItem), new Object[]
+					{
+						"PLP",
+						"PLP",
+						"RPR",
+						'R', "itemRubber",
+						'L', Block.glass,
+						'P', "sheetPlastic",
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.rulerItem), new Object[]
+					{
+						"P",
+						"A",
+						"P",
+						'P', "sheetPlastic",
+						'A', Item.paper,
+					} ));
+		}
+		catch (Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	@Override
+	protected void registerRails()
+	{
+		if(!Loader.isModLoaded("GregTech_Addon") || !Loader.isModLoaded("IC2"))
+		{
+			return;
+		}
+		try
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railPickupCargoBlock, 2), new Object[]
+					{
+						" C ",
+						"SDS",
+						"SSS",
+						'C', "craftingItemValve",
+						'S', "sheetPlastic",
+						'D', Block.railDetector
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffCargoBlock, 2), new Object[]
+					{
+						"SSS",
+						"SDS",
+						" C ",
+						'C', "craftingItemValve",
+						'S', "sheetPlastic",
+						'D', Block.railDetector
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railPickupPassengerBlock, 3), new Object[]
+					{
+						" L ",
+						"SDS",
+						"SSS",
+						'L', Block.blockLapis,
+						'S', "sheetPlastic",
+						'D', Block.railDetector
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.railDropoffPassengerBlock, 3), new Object[]
+					{
+						"SSS",
+						"SDS",
+						" L ",
+						'L', Block.blockLapis,
+						'S', "sheetPlastic",
+						'D', Block.railDetector
+					} ));
 		}
 		catch (Exception x)
 		{
