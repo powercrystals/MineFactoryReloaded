@@ -18,6 +18,6 @@ public class HarvestablePamsPerennial extends HarvestablePams
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{
-		world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+		world.setBlockMetadataWithNotify(x, y, z, 4, 2);
 	}
 }
