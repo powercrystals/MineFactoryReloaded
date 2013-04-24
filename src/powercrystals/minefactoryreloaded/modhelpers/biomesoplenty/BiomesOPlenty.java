@@ -71,7 +71,7 @@ public class BiomesOPlenty
 			String[] bopMiscStandardHarvestables = {"deadGrass", "desertGrass", "whiteFlower", "blueFlower", "purpleFlower", "orangeFlower", "tinyFlower", "glowFlower", "cattail", "willow", "thorn", "toadstool", "shortGrass", "bush", "originGrass", "barley", "tinyCactus", "deathbloom", "hydrangea", "violet", "mediumGrass", "duneGrass", "desertSprouts", "holyGrass", "holyTallGrass", "moss", "algae", "smolderingGrass"};   
 			String[] bopLeaveBottom = {"highGrassBottom", "highGrassTop"};
 		
-			Class BOPBlocks = Class.forName("tdwp_ftw.biomesop.declarations.BOPBlocks");
+			Class BOPBlocks = Class.forName("tdwp_ftw.biomesop.configuration.BOPBlocks");
 			if(BOPBlocks != null)
 			{
 				for(String leaves : bopLeaves)
