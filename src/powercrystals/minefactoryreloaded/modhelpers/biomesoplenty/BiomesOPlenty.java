@@ -64,7 +64,7 @@ public class BiomesOPlenty
 			
 			String[] bopLeaves = {"acacia", "apple", "autumn", "bamboo", "dark", "dead", "blue", "fir", "holy", "mangrove", "orange", "origin", "palm", "pink", "red", "redwood", "white", "willow"};
 			String[] bopLogs = {"acacia", "cherry", "dark", "dead", "fir", "holy", "magic", "mangrove", "palm", "redwood", "willow"};
-			String[] bopSaplings = {"acacia", "apple", "brown", "dark", "fir", "holy", "magic", "mangrove", "orange", "origin", "palm", "pink", "red", "redwood", "willow", "yellow"};
+			String[] bopSaplings = {"acacia", "apple", "bamboo", "brown", "dark", "fir", "holy", "magic", "mangrove", "orange", "origin", "palm", "pink", "red", "redwood", "willow", "yellow"};
 			
 			String[] bopMiscTrunks = {"giantFlowerStem", "bamboo"};
 			String[] bopMiscLeaves = {"appleLeavesFruitless", "treeMoss", "giantFlowerRed", "giantFlowerYellow"}; 
