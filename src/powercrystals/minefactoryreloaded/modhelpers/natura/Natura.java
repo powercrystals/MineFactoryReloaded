@@ -54,9 +54,6 @@ public class Natura
 			int floraLeavesNoColorId = ((Block)naturaContent.getField("floraLeavesNoColor").get(null)).blockID;
 			int bloodwoodId = ((Block)naturaContent.getField("floraLeaves").get(null)).blockID;
 			
-			Class.forName("mods.natura.blocks.crops.CropBlock").getMethod("fertilize", World.class, int.class, int.class, int.class);
-			Class.forName("mods.natura.blocks.trees.NSaplingBlock").getMethod("fertilize", World.class, int.class, int.class, int.class, Random.class);
-			
 			MFRRegistry.registerPlantable(new PlantableCropPlant(seedsId, cropsId));
 			MFRRegistry.registerPlantable(new PlantableStandard(berryBushId, berryBushId));
 			MFRRegistry.registerPlantable(new PlantableStandard(netherBerryBushId, netherBerryBushId));
