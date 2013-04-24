@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.modhelpers.chococraft.Chococraft;
+package powercrystals.minefactoryreloaded.modhelpers.chococraft;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;

@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.modhelpers.chococraft.Chococraft;
+package powercrystals.minefactoryreloaded.modhelpers.chococraft;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
