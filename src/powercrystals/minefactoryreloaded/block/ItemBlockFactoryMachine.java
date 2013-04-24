@@ -51,5 +51,9 @@ public class ItemBlockFactoryMachine extends ItemBlockFactory
 			ItemStack storedItem = new ItemStack(storedId, 1, storedMeta);
 			info.add("Contains " + c.getInteger("storedQuantity") + " " + Item.itemsList[storedId].getItemDisplayName(storedItem) + " (" + storedId + ":" + storedMeta + ")");
 		}
+		else if(getBlockID() == Machine.BioFuelGenerator.getBlockId() && stack.getItemDamage() == Machine.BioFuelGenerator.getMeta())
+		{
+			info.add("Produces MJ only.");
+		}
 	}
 }
