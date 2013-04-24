@@ -36,7 +36,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -56,7 +56,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -76,7 +76,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -96,7 +96,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -116,7 +116,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -136,7 +136,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -156,7 +156,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -176,7 +176,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -196,7 +196,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
@@ -216,7 +216,7 @@
   "logoFile": "",
   "screenshots": [
   ],
-  "parent":"MFReloaded",
+  "parent":"MineFactoryReloaded",
   "dependencies": [
     "MineFactoryReloaded"
   ]
