@@ -731,7 +731,7 @@ public class GregTech extends Vanilla
 						'T', Item.stick,
 					} );
 			
-			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetItem, 1), new Object[]
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetItem, 1), new Object[]
 					{
 						" E ",
 						"CGC",
@@ -739,9 +739,9 @@ public class GregTech extends Vanilla
 						'E', Item.enderPearl,
 						'G', Item.ghastTear,
 						'C', "advancedCircuit"
-					} );
+					} ));
 			
-			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetSingleItem, 1), new Object[]
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetSingleItem, 1), new Object[]
 					{
 						"SLS",
 						"CBC",
@@ -750,7 +750,7 @@ public class GregTech extends Vanilla
 						'L', Item.leather,
 						'B', Item.slimeBall,
 						'C', "basicCircuit"
-					} );
+					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetLauncherItem, 1), new Object[]
 					{
@@ -793,7 +793,7 @@ public class GregTech extends Vanilla
 						'S', Item.stick
 					} ));
 			
-			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.portaSpawnerItem), new Object[]
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.portaSpawnerItem), new Object[]
 					{
 						"GLG",
 						"DND",
@@ -802,7 +802,7 @@ public class GregTech extends Vanilla
 						'L', "plateAlloyIridium",
 						'D', "gemDiamond",
 						'N', Item.netherStar
-					} );
+					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.strawItem), new Object[]
 					{

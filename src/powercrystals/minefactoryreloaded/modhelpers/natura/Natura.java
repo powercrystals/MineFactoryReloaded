@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.modhelpers.natura;
 
-import java.util.Random;
-
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -11,7 +9,6 @@ import cpw.mods.fml.common.network.NetworkMod;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
