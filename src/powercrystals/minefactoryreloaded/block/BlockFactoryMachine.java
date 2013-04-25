@@ -1,8 +1,11 @@
 package powercrystals.minefactoryreloaded.block;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.core.BlockNBTManager;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
@@ -12,6 +15,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -136,6 +140,14 @@ public class BlockFactoryMachine extends BlockContainer
 			return;
 		}
 		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(stack.getTagCompound() != null)
+		{
+			stack.getTagCompound().setInteger("x", x);
+			stack.getTagCompound().setInteger("y", y);
+			stack.getTagCompound().setInteger("z", z);
+			te.readFromNBT(stack.getTagCompound());
+		}
+		
 		if(te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
 		{
 			int facing = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
@@ -216,9 +228,8 @@ public class BlockFactoryMachine extends BlockContainer
 	public void breakBlock(World world, int x, int y, int z, int blockId, int meta)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof IInventory)
+		if(te instanceof IInventory && !(te instanceof TileEntityDeepStorageUnit))
 		{
-		
 			IInventory inventory = ((IInventory)te);
 inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 			{
@@ -260,13 +271,27 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 				} while(true);
 			}
 		}
-		
+		else if(te instanceof TileEntityDeepStorageUnit)
+		{
+			BlockNBTManager.setForBlock(te);
+		}
+			
 		if(te != null && te instanceof TileEntityFactoryPowered)
 		{
 			((TileEntityFactoryPowered)te).onBlockBroken();
 		}
 
 		super.breakBlock(world, x, y, z, blockId, meta);
+	}
+	
+	@Override
+	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
+	{
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		ItemStack machine = new ItemStack(idDropped(blockID, world.rand, fortune), 1, damageDropped(metadata));
+		machine.setTagCompound(BlockNBTManager.getForBlock(x, y, z));
+		drops.add(machine);
+		return drops;
 	}
 
 	@Override
