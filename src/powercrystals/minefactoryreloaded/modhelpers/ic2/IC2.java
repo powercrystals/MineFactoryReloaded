@@ -11,8 +11,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.item.ItemStack;
 
+import ic2.api.item.Items;
 import ic2.api.recipe.Recipes;
-import ic2.api.Items;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;

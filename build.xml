@@ -44,7 +44,7 @@
 
 	<target name="get-dependencies" depends="get-version" unless="${have-apis}">
 		<echo message="Downloading IC2 API... " />
-		<get src="http://ic2api.player.to:8080/job/IC2_lf/294/artifact/packages/industrialcraft-2-api_1.115.294-lf.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
+		<get src="http://www.powercrystalsmods.com/build/ic2-api.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
 		
 		<echo message="Downloading BuildCraft API..." />
 		<get src="https://github.com/BuildCraft/BuildCraft/archive/master.zip" dest="${download.dir}/BuildCraft-master.zip"/>

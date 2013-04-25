@@ -1,7 +1,7 @@
 package powercrystals.minefactoryreloaded.modhelpers.ic2;
 
-import ic2.api.CropCard;
-import ic2.api.TECrop;
+import ic2.api.crops.CropCard;
+import ic2.api.crops.ICropTile;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -51,16 +51,16 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te == null || !(te instanceof TECrop))
+		if(te == null || !(te instanceof ICropTile))
 		{
 			return false;
 		}
-		TECrop tec = (TECrop)te;
+		ICropTile tec = (ICropTile)te;
 		CropCard crop;
 		try
 		{
 			crop = (CropCard)_getCropMethod.invoke(tec);
-			if(tec.id < 0 || !crop.canBeHarvested(tec))
+			if(tec.getID() < 0 || !crop.canBeHarvested(tec))
 			{
 				return false;
 			}
@@ -78,14 +78,14 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 	{
 		List<ItemStack> drops = new ArrayList<ItemStack>();
 
-		TECrop tec = (TECrop)world.getBlockTileEntity(x, y, z);
+		ICropTile tec = (ICropTile)world.getBlockTileEntity(x, y, z);
 		CropCard crop;
 		try
 		{
 			crop = (CropCard)_getCropMethod.invoke(tec);
 
 			float chance = crop.dropGainChance();
-			for (int i = 0; i < tec.statGain; i++)
+			for (int i = 0; i < tec.getGain(); i++)
 			{
 				chance *= 1.03F;
 			}
@@ -101,13 +101,13 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 			for (int i = 0; i < numDrops; i++)
 			{
 				cropDrops[i] = crop.getGain(tec);
-				if((cropDrops[i] != null) && (rand.nextInt(100) <= tec.statGain))
+				if((cropDrops[i] != null) && (rand.nextInt(100) <= tec.getGain()))
 				{
 					cropDrops[i].stackSize += 1;
 				}
 			}
 			
-			tec.size = crop.getSizeAfterHarvest(tec);
+			tec.setSize(crop.getSizeAfterHarvest(tec));
 			_dirtyField.setBoolean(tec, true);
 			if(cropDrops != null)
 			{
