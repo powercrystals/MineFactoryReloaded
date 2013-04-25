@@ -38,6 +38,7 @@ import powercrystals.minefactoryreloaded.block.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.block.BlockFactoryMachine;
 import powercrystals.minefactoryreloaded.block.BlockFactoryRoad;
 import powercrystals.minefactoryreloaded.block.BlockFluidFactory;
+import powercrystals.minefactoryreloaded.block.BlockPinkSlimeFluid;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoDropoff;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoPickup;
 import powercrystals.minefactoryreloaded.block.BlockRailPassengerDropoff;
@@ -58,6 +59,7 @@ import powercrystals.minefactoryreloaded.block.ItemBlockFactoryMachine;
 import powercrystals.minefactoryreloaded.block.ItemBlockFactoryRoad;
 import powercrystals.minefactoryreloaded.block.ItemBlockRedNetLogic;
 import powercrystals.minefactoryreloaded.block.ItemBlockVanillaIce;
+import powercrystals.minefactoryreloaded.entity.EntityPinkSlime;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
 import powercrystals.minefactoryreloaded.gui.MFRGUIHandler;
 import powercrystals.minefactoryreloaded.item.ItemCeramicDye;
@@ -135,6 +137,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
 	public static final String villagerFolder = "/powercrystals/minefactoryreloaded/textures/villager/";
 	public static final String tileEntityFolder = "/powercrystals/minefactoryreloaded/textures/tileentity/";
+	public static final String mobTextureFolder = "/textures/mob/powercrystals/minefactoryreloaded/";
 	
 	public static int renderIdConveyor = 1000;
 	public static int renderIdFactoryGlassPane = 1001;
@@ -214,6 +217,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item meatNuggetCookedItem;
 	public static Item meatBucketItem;
 	public static Item pinkSlimeBucketItem;
+	public static Item pinkSlimeballItem;
 
 	// client config
 	public static Property spyglassRange;
@@ -294,6 +298,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property meatNuggetCookedItemId;
 	public static Property meatBucketItemId;
 	public static Property pinkSlimeBucketItemId;
+	public static Property pinkSlimeballItemId;
 
 	public static Property zoolologistEntityId;
 	
@@ -353,7 +358,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		essenceLiquid = new BlockFluidFactory(essenceStillBlockId.getInt(), "essence");
 		biofuelLiquid = new BlockFluidFactory(biofuelStillBlockId.getInt(), "biofuel");
 		meatLiquid = new BlockFluidFactory(meatStillBlockId.getInt(), "meat");
-		pinkSlimeLiquid = new BlockFluidFactory(pinkslimeStillBlockId.getInt(), "pinkslime");
+		pinkSlimeLiquid = new BlockPinkSlimeFluid(pinkslimeStillBlockId.getInt(), "pinkslime");
 
 		sewageBucketItem = (new ItemFactoryBucket(sewageBucketItemId.getInt(), sewageLiquid.blockID)).setUnlocalizedName("mfr.bucket.sewage").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		sludgeBucketItem = (new ItemFactoryBucket(sludgeBucketItemId.getInt(), sludgeLiquid.blockID)).setUnlocalizedName("mfr.bucket.sludge").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
@@ -426,6 +431,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		meatIngotCookedItem = (new ItemFactoryFood(meatIngotCookedItemId.getInt(), 10, 0.1F)).setUnlocalizedName("mfr.meat.ingot.cooked");
 		meatNuggetRawItem = (new ItemFactoryFood(meatNuggetRawItemId.getInt(), 1, 0.1F)).setUnlocalizedName("mfr.meat.nugget.raw");
 		meatNuggetCookedItem = (new ItemFactoryFood(meatNuggetCookedItemId.getInt(), 4, 0.1F)).setUnlocalizedName("mfr.meat.nugget.cooked");
+		pinkSlimeballItem = (new ItemFactory(pinkSlimeballItemId.getInt())).setUnlocalizedName("mfr.pinkslimeball");
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -481,6 +487,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityRedNetLogic.class, "factoryRednetLogic");
 		
 		EntityRegistry.registerModEntity(EntitySafariNet.class, "entitySafariNet", 0, instance, 160, 5, true);
+		EntityRegistry.registerModEntity(EntityPinkSlime.class, "mfrEntityPinkSlime", 1, instance, 160, 5, true);
 
 		MinecraftForge.EVENT_BUS.register(instance);
 		MinecraftForge.EVENT_BUS.register(proxy);
@@ -678,6 +685,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		meatNuggetCookedItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MeatNuggetCooked", 12028);
 		meatBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MeatBucket", 12029);
 		pinkSlimeBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeBucket", 12030);
+		pinkSlimeballItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeball", 12031);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 
