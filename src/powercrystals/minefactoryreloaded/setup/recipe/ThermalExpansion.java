@@ -488,6 +488,37 @@ public class ThermalExpansion extends Vanilla
 							'C', powerCoilGold
 						} ));
 			}
+			
+			if(Machine.Slaughterhouse.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 13), new Object[]
+						{
+							"GIG",
+							"SFS",
+							"XCX",
+							'G', "sheetPlastic",
+							'S', Item.swordGold,
+							'X', Item.axeGold,
+							'I', gearInvar,
+							'F', machineFrame,
+							'C', powerCoilGold
+						} ));
+			}
+			
+			if(Machine.MeatPacker.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 14), new Object[]
+						{
+							"GSG",
+							"BFB",
+							"BCB",
+							'G', "sheetPlastic",
+							'B', Block.brick,
+							'S', Item.flintAndSteel,
+							'F', machineFrame,
+							'C', powerCoilGold
+						} ));
+			}
 		}
 		catch (Exception x)
 		{
