@@ -24,6 +24,7 @@ public class GregTech extends Vanilla
 		try
 		{
 			ItemStack generator = Items.getItem("generator");
+			ItemStack compressor = Items.getItem("compressor");
 			
 			if(Machine.Planter.getIsRecipeEnabled())
 			{
@@ -478,6 +479,38 @@ public class GregTech extends Vanilla
 							'F', "craftingRawMachineTier03",
 							'O', "eliteCircuit",
 							'C', Block.netherBrick
+						} ));
+			}
+			
+			if(Machine.Slaughterhouse.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 13), new Object[]
+						{
+							"GIG",
+							"SFS",
+							"XCX",
+							'G', "sheetPlastic",
+							'S', "craftingPump",
+							'X', "craftingGrinder",
+							'I', "craftingDiamond",
+							'F', "craftingRawMachineTier02",
+							'C', "advancedCircuit"
+						} ));
+			}
+			
+			if(Machine.MeatPacker.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 14), new Object[]
+						{
+							"GSG",
+							"BFB",
+							"TCT",
+							'G', "sheetPlastic",
+							'B', "craftingHeatingCoilTier01",
+							'S', "craftingPump",
+							'F', compressor,
+							'C', "craftingMachineParts",
+							'T', "craftingPump"
 						} ));
 			}
 		}
