@@ -30,5 +30,7 @@ public class ClientProxy implements IMFRProxy
 		LiquidDictionary.getCanonicalLiquid("sewage").setRenderingIcon(MineFactoryReloadedCore.sewageLiquid.getBlockTextureFromSide(1)).setTextureSheet("/terrain.png");
 		LiquidDictionary.getCanonicalLiquid("mobEssence").setRenderingIcon(MineFactoryReloadedCore.essenceLiquid.getBlockTextureFromSide(1)).setTextureSheet("/terrain.png");
 		LiquidDictionary.getCanonicalLiquid("biofuel").setRenderingIcon(MineFactoryReloadedCore.biofuelLiquid.getBlockTextureFromSide(1)).setTextureSheet("/terrain.png");
+		LiquidDictionary.getCanonicalLiquid("meat").setRenderingIcon(MineFactoryReloadedCore.meatLiquid.getBlockTextureFromSide(1)).setTextureSheet("/terrain.png");
+		LiquidDictionary.getCanonicalLiquid("pinkslime").setRenderingIcon(MineFactoryReloadedCore.pinkSlimeLiquid.getBlockTextureFromSide(1)).setTextureSheet("/terrain.png");
 	}
 }

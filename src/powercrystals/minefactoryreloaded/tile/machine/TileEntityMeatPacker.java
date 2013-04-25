@@ -1,38 +1,50 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
-public class TileEntityComposter extends TileEntityFactoryPowered implements ITankContainerBucketable
+public class TileEntityMeatPacker extends TileEntityFactoryPowered implements ITankContainer
 {
 	private LiquidTank _tank;
 	
-	public TileEntityComposter()
+	public TileEntityMeatPacker()
 	{
-		super(Machine.Composter);
+		super(Machine.MeatPacker);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
+	}
+
+	@Override
+	public int getSizeInventory()
+	{
+		return 0;
+	}
+
+	@Override
+	public String getInvName()
+	{
+		return "Meat Packer";
 	}
 	
 	@Override
 	public String getGuiBackground()
 	{
-		return "composter.png";
+		return "meatpacker.png";
 	}
 	
 	@Override
@@ -47,35 +59,30 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-	
-	@Override
-	public ILiquidTank getTank()
-	{
-		return _tank;
-	}
-	
+
 	@Override
 	protected boolean activateMachine()
 	{
-		if(_tank.getLiquid() != null && _tank.getLiquid().amount >= 20)
+		if(_tank.getLiquid() != null && _tank.getLiquid().amount >= 2)
 		{
 			setWorkDone(getWorkDone() + 1);
 			
 			if(getWorkDone() >= getWorkMax())
 			{
-				UtilInventory.dropStack(this, new ItemStack(MineFactoryReloadedCore.fertilizerItem), this.getDropDirection());
+				if(_tank.getLiquid().itemID == LiquidDictionary.getCanonicalLiquid("meat").itemID)
+				{
+					UtilInventory.dropStack(this, new ItemStack(MineFactoryReloadedCore.meatIngotRawItem), this.getDropDirection());
+				}
+				else
+				{
+					UtilInventory.dropStack(this, new ItemStack(MineFactoryReloadedCore.meatNuggetRawItem), this.getDropDirection());
+				}
 				setWorkDone(0);
 			}
-			_tank.drain(20, true);
+			_tank.drain(2, true);
 			return true;
 		}
 		return false;
-	}
-	
-	@Override
-	public ForgeDirection getDropDirection()
-	{
-		return ForgeDirection.UP;
 	}
 
 	@Override
@@ -87,13 +94,13 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int getWorkMax()
 	{
-		return 100;
+		return 50;
 	}
 
 	@Override
 	public int getIdleTicksMax()
 	{
-		return 1;
+		return 0;
 	}
 	
 	@Override
@@ -105,7 +112,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		if(resource == null || (resource.itemID != LiquidDictionary.getCanonicalLiquid("sewage").itemID))
+		if(resource == null || (resource.itemID != LiquidDictionary.getCanonicalLiquid("meat").itemID && resource.itemID != LiquidDictionary.getCanonicalLiquid("pinkslime").itemID))
 		{
 			return 0;
 		}
@@ -113,6 +120,12 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 		{
 			return _tank.fill(resource, doFill);
 		}
+	}
+	
+	@Override
+	public ILiquidTank getTank()
+	{
+		return _tank;
 	}
 
 	@Override
@@ -149,17 +162,6 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 		return null;
 	}
 
-	@Override
-	public String getInvName()
-	{
-		return "Composter";
-	}
-	
-	@Override
-	public int getSizeInventory()
-	{
-		return 0;
-	}
 
 	@Override
 	public boolean manageSolids()

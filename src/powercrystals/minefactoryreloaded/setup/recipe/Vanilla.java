@@ -480,6 +480,34 @@ public class Vanilla
 						'M', MineFactoryReloadedCore.machineBaseItem,
 					} ));
 		}
+		
+		if(Machine.Slaughterhouse.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 13), new Object[]
+					{
+						"GGG",
+						"SSS",
+						"XMX",
+						'G', "sheetPlastic",
+						'S', Item.swordGold,
+						'X', Item.axeGold,
+						'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
+		
+		if(Machine.MeatPacker.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 14), new Object[]
+					{
+						"GGG",
+						"BFB",
+						"BMB",
+						'G', "sheetPlastic",
+						'B', Block.brick,
+						'F', Item.flintAndSteel,
+						'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
 	}
 	
 	protected void registerMachineUpgrades()
@@ -878,13 +906,65 @@ public class Vanilla
 					'D', new ItemStack(Item.dyePowder, 1, 0),
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 11), new Object[]
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 11), new Object[]
 				{
 					"SSS",
 					"SDS",
 					"SSS",
 					'S', new ItemStack(Block.stoneSingleSlab, 1, 0),
 					'D', Item.sugar,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 12), new Object[]
+				{
+					"MMM",
+					"MMM",
+					"MMM",
+					'M', MineFactoryReloadedCore.meatIngotRawItem,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 4, 13), new Object[]
+				{
+					"MMM",
+					"MMM",
+					"MMM",
+					'M', MineFactoryReloadedCore.meatIngotCookedItem,
+				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.meatIngotRawItem, 9), new Object[]
+				{
+					new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 12)
+				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.meatIngotCookedItem, 9), new Object[]
+				{
+					new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 13)
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.meatIngotRawItem), new Object[]
+				{
+					"MMM",
+					"MMM",
+					"MMM",
+					'M', MineFactoryReloadedCore.meatNuggetRawItem,
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.meatIngotCookedItem), new Object[]
+				{
+					"MMM",
+					"MMM",
+					"MMM",
+					'M', MineFactoryReloadedCore.meatNuggetCookedItem,
+				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.meatNuggetRawItem, 9), new Object[]
+				{
+					new ItemStack(MineFactoryReloadedCore.meatIngotRawItem)
+				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.meatNuggetCookedItem, 9), new Object[]
+				{
+					new ItemStack(MineFactoryReloadedCore.meatIngotCookedItem)
 				} );
 	}
 	

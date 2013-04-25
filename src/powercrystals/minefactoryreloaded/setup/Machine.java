@@ -29,10 +29,12 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLavaFabricator;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquidRouter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityMeatPacker;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityOilFabricator;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityPlanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityRancher;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntitySewer;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntitySlaughterhouse;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntitySludgeBoiler;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityUnifier;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityVet;
@@ -80,6 +82,8 @@ public class Machine
 	public static Machine BioReactor = new Machine(1, 10, "BioReactor", TileEntityBioReactor.class, "factoryBioReactor", 0);
 	public static Machine BioFuelGenerator = new Machine(1, 11, "BioFuelGenerator", TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator", 0);
 	public static Machine AutoDisenchanter = new Machine(1, 12, "AutoDisenchanter", TileEntityAutoDisenchanter.class, "factoryDisenchanter", 32);
+	public static Machine Slaughterhouse = new Machine(1, 13, "Slaughterhouse", TileEntitySlaughterhouse.class, "factorySlaughterhouse", 100);
+	public static Machine MeatPacker = new Machine(1, 14, "MeatPacker", TileEntityMeatPacker.class, "factoryMeatPacker", 2);
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;

@@ -16,7 +16,7 @@ import net.minecraftforge.common.ForgeDirection;
 public class BlockFactoryDecorativeBricks extends Block implements IConnectableRedNet
 {
 	private String[] _names = new String [] { "ice", "glowstone", "lapis", "obsidian", "pavedstone", "snow",
-			"glowstone_large", "ice_large", "lapis_large", "obsidian_large", "snow_large", "prc" };
+			"glowstone_large", "ice_large", "lapis_large", "obsidian_large", "snow_large", "prc", "meat.raw", "meat.cooked" };
 	private Icon[] _icons = new Icon[_names.length];
 	
 	public BlockFactoryDecorativeBricks(int blockId)

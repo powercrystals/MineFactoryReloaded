@@ -27,6 +27,8 @@ tile.mfr.machine.autospawner.name = Auto-Spawner
 tile.mfr.machine.bioreactor.name = BioReactor
 tile.mfr.machine.biofuelgenerator.name = BioFuel Generator
 tile.mfr.machine.autodisenchanter.name = Auto-Disenchanter
+tile.mfr.machine.slaughterhouse.name = Slaughterhouse
+tile.mfr.machine.meatpacker.name = Meat Packer
 
 tile.mfr.conveyor.default.name = Conveyor Belt
 tile.mfr.conveyor.white.name = Conveyor Belt (White)
@@ -98,6 +100,8 @@ tile.mfr.decorativebrick.lapis_large.name = Large Lapis Bricks
 tile.mfr.decorativebrick.obsidian_large.name = Large Obsidian Bricks
 tile.mfr.decorativebrick.snow_large.name = Large Snow Bricks
 tile.mfr.decorativebrick.prc.name = Programmable RedNet Controller Housing
+tile.mfr.decorativebrick.meat.raw.name = Raw Meat Block
+tile.mfr.decorativebrick.meat.cooked.name = Cooked Meat Block
 
 tile.mfr.decorativestone.black.smooth.name = Smooth Blackstone
 tile.mfr.decorativestone.black.cobble.name = Cobble Blackstone
@@ -126,16 +130,13 @@ tile.mfr.rail.passenger.pickup.name = Passenger Pickup Rail
 tile.mfr.cable.redstone.name = RedNet Cable
 tile.mfr.rednet.logic.name = Programmable RedNet Controller
 
-tile.mfr.liquid.milk.flowing.name = Milk
 tile.mfr.liquid.milk.still.name = Milk
-tile.mfr.liquid.sludge.flowing.name = Sludge
 tile.mfr.liquid.sludge.still.name = Sludge
-tile.mfr.liquid.sewage.flowing.name = Sewage
 tile.mfr.liquid.sewage.still.name = Sewage
-tile.mfr.liquid.essence.flowing.name = Essence
 tile.mfr.liquid.essence.still.name = Essence
-tile.mfr.liquid.biofuel.flowing.name = BioFuel
 tile.mfr.liquid.biofuel.still.name = BioFuel
+tile.mfr.liquid.meat.still.name = Meat
+tile.mfr.liquid.pinkslime.still.name = Pink Slime
 
 item.mfr.hammer.name = Precision Sledgehammer
 item.mfr.fertilizer.name = Industrial Fertilizer
@@ -148,6 +149,8 @@ item.mfr.bucket.sewage.name = Sewage Bucket
 item.mfr.bucket.sludge.name = Sludge Bucket
 item.mfr.bucket.essence.name = Mob Essence Bucket
 item.mfr.bucket.biofuel.name = BioFuel Bucket
+item.mfr.bucket.meat.name = Meat Bucket
+item.mfr.bucket.pinkslime.name = Pink Slime Bucket
 item.mfr.syringe.cure.name = De-Zombification Syringe
 item.mfr.syringe.empty.name = Empty Syringe
 item.mfr.syringe.growth.name = Growth Syringe
@@ -168,6 +171,10 @@ item.mfr.straw.name = Straw
 item.mfr.rednet.meter.name = RedNet Meter
 item.mfr.rednet.memorycard.name = PRC Memory Card
 item.mfr.ruler.name = Ruler
+item.mfr.meat.ingot.raw.name = Raw Meat Ingot
+item.mfr.meat.ingot.cooked.name = Cooked Meat Ingot
+item.mfr.meat.nugget.raw.name = Raw "Meat" Nugget
+item.mfr.meat.nugget.cooked.name = Cooked "Meat" Nugget
 
 item.mfr.ceramicdye.white.name = Ceramic Dye (White)
 item.mfr.ceramicdye.orange.name = Ceramic Dye (Orange)
