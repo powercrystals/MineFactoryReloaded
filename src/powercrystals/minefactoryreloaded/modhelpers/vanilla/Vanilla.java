@@ -37,8 +37,10 @@ import powercrystals.minefactoryreloaded.circuits.timing.*;
 import powercrystals.minefactoryreloaded.circuits.wave.*;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerBiofuel;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerLava;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMeat;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMilk;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMobEssence;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerPinkSlime;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerSewage;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerSludge;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerWater;
@@ -251,6 +253,8 @@ public class Vanilla
 		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sewageLiquid.blockID, new DrinkHandlerSewage());
 		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.sludgeLiquid.blockID, new DrinkHandlerSludge());
 		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.essenceLiquid.blockID, new DrinkHandlerMobEssence());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.meatLiquid.blockID, new DrinkHandlerMeat());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.pinkSlimeLiquid.blockID, new DrinkHandlerPinkSlime());
 
 		MFRRegistry.registerRedNetLogicCircuit(new AdderAnalog());
 		MFRRegistry.registerRedNetLogicCircuit(new AdderDigitalFull());
