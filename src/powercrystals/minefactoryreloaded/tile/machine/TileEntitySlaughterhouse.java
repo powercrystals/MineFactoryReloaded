@@ -117,11 +117,11 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 		{
 			if(worldObj.rand.nextInt(8) == 0)
 			{
-				_tank.fill(LiquidDictionary.getLiquid("pinkslime", 100), true);
+				_tank.fill(LiquidDictionary.getLiquid("pinkslime", (int)(100 * massFound)), true);
 			}
 			else
 			{
-				_tank.fill(LiquidDictionary.getLiquid("meat", 100), true);
+				_tank.fill(LiquidDictionary.getLiquid("meat", (int)(100 * massFound)), true);
 			}
 			setIdleTicks(10);
 			return true;
