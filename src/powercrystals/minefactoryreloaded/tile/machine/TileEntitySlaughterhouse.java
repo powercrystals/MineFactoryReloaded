@@ -88,7 +88,6 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 				continue;
 			}
 			massFound = Math.pow(e.boundingBox.getAverageEdgeLength(), 2);
-			System.out.println("Found mob with " + massFound + " mass");
 			if(worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
 			{
 				try
