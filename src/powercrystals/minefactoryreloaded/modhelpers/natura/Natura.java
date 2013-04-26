@@ -39,6 +39,7 @@ public class Natura
 			int berryItemId = ((Item)naturaContent.getField("berryItem").get(null)).itemID;
 			int netherBerryItemId = ((Item)naturaContent.getField("netherBerryItem").get(null)).itemID;
 			int saguaroFruitId = ((Item)naturaContent.getField("seedFood").get(null)).itemID;
+			int cottonItemId = ((Item)naturaContent.getField("plantItem").get(null)).itemID;
 			
 			int cropsId = ((Block)naturaContent.getField("crops").get(null)).blockID;
 			int berryBushId = ((Block)naturaContent.getField("berryBush").get(null)).blockID;
@@ -57,7 +58,7 @@ public class Natura
 			MFRRegistry.registerPlantable(new PlantableStandard(saguaroFruitId, saguaroId));
 			MFRRegistry.registerPlantable(new PlantableStandard(floraSaplingId, floraSaplingId));
 			
-			MFRRegistry.registerHarvestable(new HarvestableNaturaCropPlant(cropsId));
+			MFRRegistry.registerHarvestable(new HarvestableNaturaCropPlant(cropsId, cottonItemId));
 			MFRRegistry.registerHarvestable(new HarvestableNaturaBerry(berryBushId, berryItemId));
 			MFRRegistry.registerHarvestable(new HarvestableNaturaBerry(netherBerryBushId, netherBerryItemId));
 			MFRRegistry.registerHarvestable(new HarvestableStandard(treeId, HarvestType.Tree));
