@@ -923,7 +923,7 @@ public class Vanilla
 					'M', MineFactoryReloadedCore.meatIngotRawItem,
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 4, 13), new Object[]
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 13), new Object[]
 				{
 					"MMM",
 					"MMM",
