@@ -224,6 +224,7 @@ circuit.mfr.boolean.less = Less Than
 circuit.mfr.boolean.lessequal = Less Than Or Equal
 circuit.mfr.boolean.notequal = Not Equals
 circuit.mfr.counter = Counter
+circuit.mfr.decompose.decimal = Decompose Int -> Decimal
 circuit.mfr.demux.16.analog = DeMux (16-Out, Analog)
 circuit.mfr.demux.4 = DeMux (4-Output)
 circuit.mfr.fanout = Fanout

@@ -263,6 +263,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new And3());
 		MFRRegistry.registerRedNetLogicCircuit(new And4());
 		MFRRegistry.registerRedNetLogicCircuit(new Counter());
+		MFRRegistry.registerRedNetLogicCircuit(new DecomposeIntToDecimal());
 		MFRRegistry.registerRedNetLogicCircuit(new DeMux16Analog());
 		MFRRegistry.registerRedNetLogicCircuit(new DeMux4());
 		MFRRegistry.registerRedNetLogicCircuit(new Equal());
