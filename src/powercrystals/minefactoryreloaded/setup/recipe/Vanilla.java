@@ -1082,7 +1082,7 @@ public class Vanilla
 					"RRR",
 					"RPR",
 					"RRR",
-					'R', "plasticDust",
+					'R', "dustPlastic",
 					'P', Item.paper,
 				} ));
 		
