@@ -33,7 +33,14 @@ public class ItemSpyglass extends ItemFactory
 			else
 			{
 				ItemStack tempStack = new ItemStack(world.getBlockId(mop.blockX, mop.blockY, mop.blockZ), 1, world.getBlockMetadata(mop.blockX, mop.blockY, mop.blockZ));
-				player.sendChatToPlayer("Found " + tempStack.getDisplayName() + " at " + mop.blockX + ", " + mop.blockY + ", " + mop.blockZ);
+				if(tempStack.getItem() != null)
+				{
+					player.sendChatToPlayer("Found " + tempStack.getDisplayName() + " at " + mop.blockX + ", " + mop.blockY + ", " + mop.blockZ);
+				}
+				else
+				{
+					player.sendChatToPlayer("Found UNKNOWN (bugged mod?) at " + mop.blockX + ", " + mop.blockY + ", " + mop.blockZ);
+				}
 			}
 		}
 		
