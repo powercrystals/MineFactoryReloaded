@@ -7,6 +7,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -36,6 +37,13 @@ public class TConstruct
 			Class skyla = Class.forName("mods.tinker.tconstruct.entity.Skyla");
 			
 			ItemStack strangeFood = new ItemStack((Item)tContent.getField("strangeFood").get(null));
+			
+			int oreBerryBushId = ((Block)tContent.getField("oreBerry").get(null)).blockID;
+			int oreBerrySecondBushId = ((Block)tContent.getField("oreBerrySecond").get(null)).blockID;
+			int oreBerryItemId = ((Item)tContent.getField("oreBerries").get(null)).itemID;
+			
+			MFRRegistry.registerHarvestable(new HarvestableOreBerry(oreBerryBushId, oreBerryItemId, 0));
+			MFRRegistry.registerHarvestable(new HarvestableOreBerry(oreBerrySecondBushId, oreBerryItemId, 4));
 			
 			MFRRegistry.registerGrindable(new GrindableStandard(blueSlime, strangeFood));
 			MFRRegistry.registerGrindable(new GrindableStandard(metalSlime, strangeFood));
