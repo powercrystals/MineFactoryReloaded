@@ -155,7 +155,7 @@ public class ItemPortaSpawner extends ItemFactory
 			tag.setInteger("y", y);
 			tag.setInteger("z", z);
 			te.readFromNBT(tag);
-			PacketDispatcher.sendPacketToAllAround(x, y, z, 50, ((EntityPlayer)player).worldObj.getWorldInfo().getDimension(), te.getDescriptionPacket());
+			PacketDispatcher.sendPacketToAllAround(x, y, z, 50, ((EntityPlayer)player).worldObj.provider.dimensionId, te.getDescriptionPacket());
 		}
 		return true;
 	}

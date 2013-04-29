@@ -27,7 +27,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		if(worldObj != null && !worldObj.isRemote && _dye != dye)
 		{
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(), getDescriptionPacket());
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.provider.dimensionId, getDescriptionPacket());
 		}
 		_dye = dye;
 	}

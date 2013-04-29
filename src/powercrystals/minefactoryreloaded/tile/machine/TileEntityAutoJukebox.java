@@ -91,7 +91,7 @@ public class TileEntityAutoJukebox extends TileEntityFactoryInventory
 		if(_inventory[0] != null && _inventory[0].getItem() instanceof ItemRecord)
 		{
 			worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1005, xCoord, yCoord, zCoord, _inventory[0].itemID);
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(),
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.provider.dimensionId,
 					PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.AutoJukeboxPlay, new Object[] { xCoord, yCoord, zCoord, _inventory[0].itemID } ));
 		}
 		worldObj.notifyBlockChange(xCoord, yCoord, zCoord, worldObj.getBlockId(xCoord, yCoord, zCoord));

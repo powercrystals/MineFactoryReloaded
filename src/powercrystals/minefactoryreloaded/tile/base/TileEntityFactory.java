@@ -67,7 +67,7 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 			}
 			
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(), getDescriptionPacket());
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.provider.dimensionId, getDescriptionPacket());
 		}
 	}
 	
@@ -131,7 +131,7 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 		if(worldObj != null && !worldObj.isRemote && _isActive != isActive)
 		{
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.getWorldInfo().getDimension(), getDescriptionPacket());
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.provider.dimensionId, getDescriptionPacket());
 		}
 		_isActive = isActive;
 	}

@@ -265,7 +265,7 @@ public class TileEntityRedNetLogic extends TileEntity
 			data.add(_pinMappingOutputs[circuit][p].pin);
 		}
 		
-		PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 5, worldObj.getWorldInfo().getDimension(),
+		PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 5, worldObj.provider.dimensionId,
 				PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.LogicCircuitDefinition, data.toArray()));
 	}
 	
