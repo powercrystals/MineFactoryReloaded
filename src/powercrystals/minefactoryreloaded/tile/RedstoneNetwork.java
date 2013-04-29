@@ -18,7 +18,10 @@ import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 public class RedstoneNetwork
 {
 	private static int _nextId = 0;
-	private static boolean _ignoreUpdates;
+	
+	private boolean _ignoreUpdates;
+	
+	private boolean _mustUpdate;
 	
 	private int _id;
 	private boolean _invalid;
@@ -42,6 +45,15 @@ public class RedstoneNetwork
 		for(int i = 0; i < 16; i++)
 		{
 			_singleNodes.put(i, new LinkedList<BlockPosition>());
+		}
+	}
+	
+	public void tick()
+	{
+		if(_mustUpdate)
+		{
+			updatePowerLevels();
+			_mustUpdate = false;
 		}
 	}
 	
@@ -237,6 +249,7 @@ public class RedstoneNetwork
 		if(_ignoreUpdates)
 		{
 			//System.out.println("**** NETWORK INGORING UPDATES");
+			_mustUpdate = true;
 			return;
 		}
 		_ignoreUpdates = true;

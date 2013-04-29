@@ -110,6 +110,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			updateNetwork();
 			_needsNetworkUpdate = false;
 		}
+		_network.tick();
 	}
 	
 	@Override
