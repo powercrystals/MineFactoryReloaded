@@ -325,7 +325,8 @@ public class ThermalExpansion extends Vanilla
 			
 			if(Machine.DeepStorageUnit.getIsRecipeEnabled())
 			{
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 4, 3), new Object[]
+				int dsuCount = MineFactoryReloadedCore.craftSingleDSU.getBoolean(false) ? 1 : 4;
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), dsuCount, 3), new Object[]
 						{					
 							"PCP",
 							"CFC",

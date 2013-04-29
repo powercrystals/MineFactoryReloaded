@@ -310,6 +310,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property mfrLakeWorldGen;
 	public static Property enableBonemealFertilizing;
 	public static Property enableCheapDSU;
+	public static Property craftSingleDSU;
 	public static Property enableMossyCobbleRecipe;
 	public static Property conveyorCaptureNonItems;
 	public static Property playSounds;
@@ -709,6 +710,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		enableBonemealFertilizing.comment = "If true, the fertilizer will use bonemeal as well as MFR fertilizer. Provided for those who want a less work-intensive farm.";
 		enableCheapDSU = c.get(Configuration.CATEGORY_GENERAL, "DSU.EnableCheaperRecipe", false);
 		enableCheapDSU.comment = "If true, DSU can be built out of chests instead of ender pearls. Does nothing if the DSU recipe is disabled.";
+		craftSingleDSU = c.get(Configuration.CATEGORY_GENERAL, "DSU.CraftSingle", false);
+		craftSingleDSU.comment = "DSU recipes will always craft one DSU. Does nothing for recipes that already only craft one DSU (cheap mode, GT recipes, etc).";
 		enableMossyCobbleRecipe = c.get(Configuration.CATEGORY_GENERAL, "EnableMossyCobbleRecipe", true);
 		enableMossyCobbleRecipe.comment = "If true, mossy cobble can be crafted.";
 		conveyorCaptureNonItems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.CaptureNonItems", true);
