@@ -271,7 +271,7 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 				} while(true);
 			}
 		}
-		else if(te instanceof TileEntityDeepStorageUnit)
+		else if(te instanceof TileEntityDeepStorageUnit && ((TileEntityDeepStorageUnit)te).getQuantityAdjusted() > 0)
 		{
 			BlockNBTManager.setForBlock(te);
 		}
