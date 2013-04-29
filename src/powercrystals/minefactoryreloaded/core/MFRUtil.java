@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
-import powercrystals.minefactoryreloaded.api.rednet.IToolHammerAdvanced;
+import powercrystals.minefactoryreloaded.api.IToolHammerAdvanced;
 
 public class MFRUtil
 {

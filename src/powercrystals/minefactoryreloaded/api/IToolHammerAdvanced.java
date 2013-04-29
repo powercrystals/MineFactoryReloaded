@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.api.rednet;
+package powercrystals.minefactoryreloaded.api;
 
 import net.minecraft.item.ItemStack;
 
