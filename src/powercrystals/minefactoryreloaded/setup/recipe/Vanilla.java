@@ -509,6 +509,20 @@ public class Vanilla
 						'M', MineFactoryReloadedCore.machineBaseItem,
 					} ));
 		}
+		
+		if(Machine.EnchantmentRouter.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 15), new Object[]
+					{
+						"GGG",
+						"RBR",
+						" M ",
+						'G', "sheetPlastic",
+						'B', Item.book,
+						'R', Item.redstoneRepeater,
+						'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
 	}
 	
 	protected void registerMachineUpgrades()

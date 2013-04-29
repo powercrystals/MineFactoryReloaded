@@ -513,6 +513,20 @@ public class GregTech extends Vanilla
 							'T', "craftingPump"
 						} ));
 			}
+			
+			if(Machine.EnchantmentRouter.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 15), new Object[]
+						{					
+							"PBP",
+							"SFS",
+							"PSP",
+							'P', "sheetPlastic",
+							'B', Item.book,
+							'S', Item.redstoneRepeater,
+							'F', "craftingRawMachineTier01"
+						} ));
+			}
 		}
 		catch (Exception x)
 		{
