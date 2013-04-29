@@ -29,7 +29,7 @@ public abstract class MFRRegistry
 	private static Map<Integer, IFactoryFertilizable> _fertilizables = new HashMap<Integer, IFactoryFertilizable>();
 	private static Map<Class<?>, IFactoryRanchable> _ranchables = new HashMap<Class<?>, IFactoryRanchable>();
 	private static Map<Class<?>, IFactoryGrindable> _grindables = new HashMap<Class<?>, IFactoryGrindable>();
-	private static Map<Class<?>, ItemStack> _breederFoods = new HashMap<Class<?>, ItemStack>();
+	private static Map<Class<?>, List<ItemStack>> _breederFoods = new HashMap<Class<?>, List<ItemStack>>();
 	private static Map<Integer, ILiquidDrinkHandler> _liquidDrinkHandlers = new HashMap<Integer, ILiquidDrinkHandler>();
 
 	private static List<WeightedRandomItem> _sludgeDrops  = new ArrayList<WeightedRandomItem>();
@@ -116,10 +116,19 @@ public abstract class MFRRegistry
 
 	public static void registerBreederFood(Class<?> entityToBreed, ItemStack food)
 	{
-		_breederFoods.put(entityToBreed, food.copy());
+		if(_breederFoods.containsKey(entityToBreed))
+		{
+			_breederFoods.get(entityToBreed).add(food);
+		}
+		else
+		{
+			ArrayList<ItemStack> foodToAdd = new ArrayList<ItemStack>();
+			foodToAdd.add(food.copy());
+			_breederFoods.put(entityToBreed, foodToAdd);
+		}
 	}
 	
-	public static Map<Class<?>, ItemStack> getBreederFoods()
+	public static Map<Class<?>, List<ItemStack>> getBreederFoods()
 	{
 		return _breederFoods;
 	}

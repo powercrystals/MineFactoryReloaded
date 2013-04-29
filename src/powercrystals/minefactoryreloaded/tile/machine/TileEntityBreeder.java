@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
@@ -81,30 +82,39 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 			if(o != null && o instanceof EntityAnimal)
 			{
 				EntityAnimal a = ((EntityAnimal)o);
-				ItemStack food = MFRRegistry.getBreederFoods().get(a.getClass());
-				if(food == null)
-				{
-					food = new ItemStack(Item.wheat);
-				}
-				int stackIndex = manager.findItem(food);
-				if(stackIndex < 0)
-				{
-					continue;
-				}
 				
-				if(!a.isInLove() && a.getGrowingAge() == 0)
+				List<ItemStack> foodList;
+				if(MFRRegistry.getBreederFoods().containsKey(a))
 				{
-					a.inLove = 600;
-					decrStackSize(stackIndex, 1);
-					
-					for (int var3 = 0; var3 < 7; ++var3)
+					foodList = MFRRegistry.getBreederFoods().get(a.getClass());
+				}
+				else
+				{
+					foodList = new ArrayList<ItemStack>();
+					foodList.add(new ItemStack(Item.wheat));
+				}
+				for(ItemStack food : foodList)
+				{
+					int stackIndex = manager.findItem(food);
+					if(stackIndex < 0)
 					{
-						double var4 = a.getRNG().nextGaussian() * 0.02D;
-						double var6 = a.getRNG().nextGaussian() * 0.02D;
-						double var8 = a.getRNG().nextGaussian() * 0.02D;
-						this.worldObj.spawnParticle("heart", a.posX + (double)(a.getRNG().nextFloat() * a.width * 2.0F) - (double)a.width, a.posY + 0.5D + (double)(a.getRNG().nextFloat() * a.height), a.posZ + (double)(a.getRNG().nextFloat() * a.width * 2.0F) - (double)a.width, var4, var6, var8);
+						continue;
 					}
-					return true;
+					
+					if(!a.isInLove() && a.getGrowingAge() == 0)
+					{
+						a.inLove = 600;
+						decrStackSize(stackIndex, 1);
+						
+						for (int var3 = 0; var3 < 7; ++var3)
+						{
+							double var4 = a.getRNG().nextGaussian() * 0.02D;
+							double var6 = a.getRNG().nextGaussian() * 0.02D;
+							double var8 = a.getRNG().nextGaussian() * 0.02D;
+							this.worldObj.spawnParticle("heart", a.posX + (double)(a.getRNG().nextFloat() * a.width * 2.0F) - (double)a.width, a.posY + 0.5D + (double)(a.getRNG().nextFloat() * a.height), a.posZ + (double)(a.getRNG().nextFloat() * a.width * 2.0F) - (double)a.width, var4, var6, var8);
+						}
+						return true;
+					}
 				}
 			}
 		}
