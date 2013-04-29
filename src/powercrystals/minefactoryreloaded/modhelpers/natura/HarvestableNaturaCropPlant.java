@@ -52,7 +52,7 @@ public class HarvestableNaturaCropPlant implements IFactoryHarvestable
 	{
 		if(world.getBlockMetadata(x, y, z) == 8)
 		{
-			ItemStack[] returnItems = {new ItemStack(_cottonItemId, 1, 4)};
+			ItemStack[] returnItems = {new ItemStack(_cottonItemId, 1, 3)};
 			return Arrays.asList(returnItems);
 		}
 		else
