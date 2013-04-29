@@ -15,7 +15,6 @@ import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSapling;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
-import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 
 @Mod(modid = "MineFactoryReloaded|CompatNatura", name = "MFR Compat: Natura", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:Natura")
@@ -52,7 +51,7 @@ public class Natura
 			int floraLeavesNoColorId = ((Block)naturaContent.getField("floraLeavesNoColor").get(null)).blockID;
 			int bloodwoodId = ((Block)naturaContent.getField("floraLeaves").get(null)).blockID;
 			
-			MFRRegistry.registerPlantable(new PlantableCropPlant(seedsId, cropsId));
+			MFRRegistry.registerPlantable(new PlantableNaturaCrop(seedsId, cropsId));
 			MFRRegistry.registerPlantable(new PlantableStandard(berryBushId, berryBushId));
 			MFRRegistry.registerPlantable(new PlantableStandard(netherBerryBushId, netherBerryBushId));
 			MFRRegistry.registerPlantable(new PlantableStandard(saguaroFruitId, saguaroId));

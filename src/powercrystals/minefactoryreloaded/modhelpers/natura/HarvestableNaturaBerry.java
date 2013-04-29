@@ -48,7 +48,7 @@ public class HarvestableNaturaBerry implements IFactoryHarvestable
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
-		ItemStack[] returnItems = {new ItemStack(_berryItemId, world.getBlockMetadata(x, y, z) % 4, 1)}; 
+		ItemStack[] returnItems = {new ItemStack(_berryItemId, 1, world.getBlockMetadata(x, y, z) - 12)}; 
 		return Arrays.asList(returnItems);
 	}
 
