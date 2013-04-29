@@ -222,6 +222,9 @@ public class Vanilla
 		MFRRegistry.registerSludgeDrop(5, new ItemStack(Block.slowSand));
 		
 		MFRRegistry.registerBreederFood(EntityChicken.class, new ItemStack(Item.seeds));
+		MFRRegistry.registerBreederFood(EntityChicken.class, new ItemStack(Item.melonSeeds));
+		MFRRegistry.registerBreederFood(EntityChicken.class, new ItemStack(Item.pumpkinSeeds));
+		MFRRegistry.registerBreederFood(EntityChicken.class, new ItemStack(Item.netherStalkSeeds));
 		MFRRegistry.registerBreederFood(EntityWolf.class, new ItemStack(Item.porkCooked));
 		MFRRegistry.registerBreederFood(EntityOcelot.class, new ItemStack(Item.fishRaw));
 		MFRRegistry.registerBreederFood(EntityPig.class, new ItemStack(Item.carrot));
