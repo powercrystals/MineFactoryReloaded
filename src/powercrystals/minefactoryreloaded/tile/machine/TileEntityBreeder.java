@@ -84,7 +84,7 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 				EntityAnimal a = ((EntityAnimal)o);
 				
 				List<ItemStack> foodList;
-				if(MFRRegistry.getBreederFoods().containsKey(a))
+				if(MFRRegistry.getBreederFoods().containsKey(a.getClass()))
 				{
 					foodList = MFRRegistry.getBreederFoods().get(a.getClass());
 				}
