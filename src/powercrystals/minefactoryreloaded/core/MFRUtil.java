@@ -6,12 +6,27 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
+import powercrystals.minefactoryreloaded.api.rednet.IToolHammerAdvanced;
 
 public class MFRUtil
 {
 	public static boolean isHoldingWrench(EntityPlayer player)
 	{
-		return isHolding(player, IToolHammer.class);
+		if(player.inventory.getCurrentItem() == null)
+		{
+			return false;
+		}
+		Item currentItem = Item.itemsList[player.inventory.getCurrentItem().itemID];
+		if(currentItem != null && currentItem instanceof IToolHammerAdvanced)
+		{
+			return ((IToolHammerAdvanced)currentItem).isActive(player.inventory.getCurrentItem());
+		}
+		else if(currentItem instanceof IToolHammer)
+		{
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public static boolean isHolding(EntityPlayer player, Class<?> itemClass)
