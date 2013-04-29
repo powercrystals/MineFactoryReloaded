@@ -167,16 +167,8 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			}
 			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta && _inventory[slot].getTagCompound() == null && (Integer.MAX_VALUE - 66) - _inventory[slot].stackSize > _storedQuantity)
 			{
-				if(_inventory[slot].getMaxStackSize() > 1)
-				{
-					_storedQuantity += (_inventory[slot].stackSize - 1);
-					_inventory[slot].stackSize = 1;
-				}
-				else
-				{
-					_storedQuantity += _inventory[slot].stackSize;
-					_inventory[slot] = null;
-				}
+				_storedQuantity += _inventory[slot].stackSize;
+				_inventory[slot] = null;
 			}
 			// boot improperly typed items from the input slots
 			else if(_inventory[slot].itemID != _storedId || _inventory[slot].getItemDamage() != _storedMeta || _inventory[slot].getTagCompound() != null)
@@ -184,12 +176,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 				UtilInventory.dropStack(this, _inventory[slot], this.getDropDirection());
 				_inventory[slot] = null;
 			}
-		}
-		
-		if(_inventory[slot] == null && _storedQuantity > 1 && _inventory[2] != null && _inventory[2].getMaxStackSize() > 1)
-		{
-			_inventory[slot] = new ItemStack(_storedId, 1, _storedMeta);
-			_storedQuantity--;
 		}
 	}
 	
@@ -242,6 +228,10 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		if(!_isSideOutput[sideordinal])
 		{
 			ItemStack stored = getStoredItemType();
+			if(stored == null && _inventory[2] != null)
+			{
+				stored = _inventory[2];
+			}
 			return (!stack.hasTagCompound() && (stored == null || stack.isItemEqual(stored)));
 		}
 		return false;
