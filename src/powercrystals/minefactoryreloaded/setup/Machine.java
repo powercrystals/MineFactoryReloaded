@@ -21,6 +21,7 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityComposter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityEjector;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityEnchantmentRouter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityFertilizer;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityFisher;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityGrinder;
@@ -84,6 +85,7 @@ public class Machine
 	public static Machine AutoDisenchanter = new Machine(1, 12, "AutoDisenchanter", TileEntityAutoDisenchanter.class, "factoryDisenchanter", 32);
 	public static Machine Slaughterhouse = new Machine(1, 13, "Slaughterhouse", TileEntitySlaughterhouse.class, "factorySlaughterhouse", 100);
 	public static Machine MeatPacker = new Machine(1, 14, "MeatPacker", TileEntityMeatPacker.class, "factoryMeatPacker", 2);
+	public static Machine EnchantmentRouter = new Machine(1, 15, "EnchantmentRouter", TileEntityEnchantmentRouter.class, "factoryEnchantmentRouter", 0);
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;

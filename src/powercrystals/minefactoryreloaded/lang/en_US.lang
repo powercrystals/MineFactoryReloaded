@@ -29,6 +29,7 @@ tile.mfr.machine.biofuelgenerator.name = BioFuel Generator
 tile.mfr.machine.autodisenchanter.name = Auto-Disenchanter
 tile.mfr.machine.slaughterhouse.name = Slaughterhouse
 tile.mfr.machine.meatpacker.name = Meat Packer
+tile.mfr.machine.enchantmentrouter.name = Enchantment Router
 
 tile.mfr.conveyor.default.name = Conveyor Belt
 tile.mfr.conveyor.white.name = Conveyor Belt (White)

@@ -18,7 +18,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 public class TileEntityItemRouter extends TileEntityFactoryInventory
 {
-	private static final int[] _invOffsets = new int[] { 0, 0, 9, 18, 36, 27 };
+	protected static final int[] _invOffsets = new int[] { 0, 0, 9, 18, 36, 27 };
 	private static final ForgeDirection[] _outputDirections = new ForgeDirection[]
 			{ ForgeDirection.DOWN, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };
 	private Random _rand;
@@ -88,7 +88,7 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		return false;
 	}
 	
-	private boolean isSideValidForItem(ItemStack stack, ForgeDirection side)
+	protected boolean isSideValidForItem(ItemStack stack, ForgeDirection side)
 	{
 		if(side == ForgeDirection.UNKNOWN || side == ForgeDirection.UP)
 		{
