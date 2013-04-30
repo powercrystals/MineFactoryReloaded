@@ -15,7 +15,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 
 public class TileEntityEnchantmentRouter extends TileEntityItemRouter
 {
-	private boolean _matchLevels = true;
+	private boolean _matchLevels = false;
 	
 	public TileEntityEnchantmentRouter()
 	{
