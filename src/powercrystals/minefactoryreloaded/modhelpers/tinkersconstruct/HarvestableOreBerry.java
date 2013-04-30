@@ -32,7 +32,7 @@ public class HarvestableOreBerry implements IFactoryHarvestable
 	@Override
 	public HarvestType getHarvestType()
 	{
-		return HarvestType.Tree;
+		return HarvestType.Normal;
 	}
 	
 	@Override
