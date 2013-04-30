@@ -35,9 +35,16 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			_connectionBlackList = new LinkedList<Integer>();
 			for(String s : MineFactoryReloadedCore.redNetConnectionBlacklist.getString().replace("\"", "").split(","))
 			{
-				int i = Integer.parseInt(s.trim());
-				System.out.println("Adding ID " + i + " to rednet blacklist");
-				_connectionBlackList.add(i);
+				try
+				{
+					int i = Integer.parseInt(s.trim());
+					System.out.println("Adding ID " + i + " to rednet blacklist");
+					_connectionBlackList.add(i);
+				}
+				catch(NumberFormatException x)
+				{
+					System.out.println("Empty or invalid rednet blacklist entry found. Not adding to rednet blacklist.");
+				}
 			}
 		}
 	}
