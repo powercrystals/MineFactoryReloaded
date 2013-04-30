@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.tile;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -25,6 +26,21 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 	private static final int _maxVanillaBlockId = 158;
 	private static List<Integer> _connectionWhitelist = Arrays.asList(23, 25, 27, 28, 29, 33, 46, 55, 64, 69, 70, 71, 72, 75, 76, 77, 93, 94, 96, 107, 123, 124, 131, 
 			147, 148, 149, 150, 151, 152, 157, 158);
+	private static List<Integer> _connectionBlackList;
+	
+	public TileRedstoneCable()
+	{
+		if(_connectionBlackList == null)
+		{
+			_connectionBlackList = new LinkedList<Integer>();
+			for(String s : MineFactoryReloadedCore.redNetConnectionBlacklist.getString().replace("\"", "").split(","))
+			{
+				int i = Integer.parseInt(s.trim());
+				System.out.println("Adding ID " + i + " to rednet blacklist");
+				_connectionBlackList.add(i);
+			}
+		}
+	}
 	
 	public void setSideColor(ForgeDirection side, int color)
 	{
@@ -54,7 +70,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		int blockId = worldObj.getBlockId(bp.x, bp.y, bp.z);
 		Block b = Block.blocksList[blockId];
 		
-		if(b == null || (blockId <= _maxVanillaBlockId && !_connectionWhitelist.contains(blockId)) || b.isAirBlock(worldObj, bp.x, bp.y, bp.z))
+		if(b == null || (blockId <= _maxVanillaBlockId && !_connectionWhitelist.contains(blockId)) || _connectionBlackList.contains(blockId) || b.isAirBlock(worldObj, bp.x, bp.y, bp.z))
 		{
 			return RedNetConnectionType.None;
 		}
