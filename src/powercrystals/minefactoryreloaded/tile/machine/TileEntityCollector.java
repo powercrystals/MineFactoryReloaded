@@ -35,4 +35,10 @@ public class TileEntityCollector extends TileEntityFactoryInventory
 	{
 		return "Item Collector";
 	}
+	
+	@Override
+	public boolean manageSolids()
+	{
+		return true;
+	}
 }
