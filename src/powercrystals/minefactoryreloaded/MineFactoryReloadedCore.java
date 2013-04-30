@@ -131,7 +131,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static final String modId = "MineFactoryReloaded";
 	public static final String modNetworkChannel = "MFReloaded";
-	public static final String version = "1.5.1R2.5.2B2";
+	public static final String version = "1.5.1R2.5.3B1";
 	public static final String modName = "Minefactory Reloaded";
 	
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
@@ -581,6 +581,10 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	@ForgeSubscribe
 	public void onBucketFill(FillBucketEvent e)
 	{
+		if(e.current.itemID != Item.bucketEmpty.itemID)
+		{
+			return;
+		}
 		ItemStack filledBucket = fillBucket(e.world, e.target);
 		if(filledBucket != null)
 		{
