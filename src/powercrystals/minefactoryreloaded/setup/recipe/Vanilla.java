@@ -921,7 +921,7 @@ public class Vanilla
 					'D', new ItemStack(Item.dyePowder, 1, 0),
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 11), new Object[]
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 11), new Object[]
 				{
 					"SSS",
 					"SDS",
