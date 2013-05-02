@@ -84,26 +84,5 @@ public class Forestry
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("biofuel", new LiquidStack(MineFactoryReloadedCore.biofuelLiquid,  LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(MineFactoryReloadedCore.bioFuelBucketItem), new ItemStack(Item.bucketEmpty)));
 		
 		MineFactoryReloadedCore.proxy.onPostTextureStitch(null);
-		
-		try
-		{
-			Class<?> forestryItems = Class.forName("forestry.core.config.ForestryItem");
-			int forestryBiofuelId = ((Item)forestryItems.getField("liquidBiofuel").get(null)).itemID;
-			
-			for(RefineryRecipe rr : RefineryRecipe.getRecipes())
-			{
-				if(rr.result.itemID == forestryBiofuelId)
-				{
-					LiquidStack newResult = new LiquidStack(LiquidDictionary.getCanonicalLiquid("biofuel").itemID, rr.result.amount, LiquidDictionary.getCanonicalLiquid("biofuel").itemMeta);
-					Field result = RefineryRecipe.class.getField("result");
-					result.setAccessible(true);
-					result.set(rr, newResult);
-				}
-			}
-		}
-		catch(Exception x)
-		{
-			x.printStackTrace();
-		}
 	}
 }
