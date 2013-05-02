@@ -35,6 +35,7 @@ import powercrystals.minefactoryreloaded.circuits.logic.*;
 import powercrystals.minefactoryreloaded.circuits.logicboolean.*;
 import powercrystals.minefactoryreloaded.circuits.timing.*;
 import powercrystals.minefactoryreloaded.circuits.wave.*;
+import powercrystals.minefactoryreloaded.entity.EntityPinkSlime;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerBiofuel;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerLava;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMeat;
@@ -214,6 +215,8 @@ public class Vanilla
 			new MobDrop(10, new ItemStack(Item.sugar, 2))
 		}));
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityZombie.class, new ItemStack(Item.rottenFlesh)));
+		
+		MFRRegistry.registerGrindable(new GrindableStandard(EntityPinkSlime.class, new ItemStack(MineFactoryReloadedCore.pinkSlimeballItem)));
 		
 		MFRRegistry.registerSludgeDrop(50, new ItemStack(Block.sand));
 		MFRRegistry.registerSludgeDrop(40, new ItemStack(Block.dirt));
