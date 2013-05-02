@@ -162,11 +162,16 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		if(resource != null && resource.itemID == _ethanol.itemID && resource.itemMeta == _ethanol.itemMeta)
+		if(_biofuel == null || _ethanol == null || resource == null)
+		{
+			return 0;
+		}
+		
+		if(resource.itemID == _ethanol.itemID && resource.itemMeta == _ethanol.itemMeta)
 		{
 			return _tank.fill(new LiquidStack(_biofuel.itemID, resource.amount, _biofuel.itemMeta), doFill);
 		}
-		else if(resource != null && resource.itemID == _biofuel.itemID && resource.itemMeta == _biofuel.itemMeta)
+		else if(resource.itemID == _biofuel.itemID && resource.itemMeta == _biofuel.itemMeta)
 		{
 			return _tank.fill(new LiquidStack(_ethanol.itemID, resource.amount, _ethanol.itemMeta), doFill);
 		}
