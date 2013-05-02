@@ -274,6 +274,14 @@ inv:	for(int i = 0; i < 9; i++)
 		_inventory[slot] = stack;
 		if(slot < 9) calculateOutput();
 	}
+	
+	@Override
+	public ItemStack decrStackSize(int slot, int size)
+	{
+		ItemStack result = super.decrStackSize(slot, size);
+		if(slot < 9) calculateOutput();
+		return result;
+	}
 
 	@Override
 	public String getInvName()
