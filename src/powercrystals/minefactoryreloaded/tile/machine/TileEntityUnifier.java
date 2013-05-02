@@ -166,6 +166,10 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 		{
 			return _tank.fill(new LiquidStack(_biofuel.itemID, resource.amount, _biofuel.itemMeta), doFill);
 		}
+		else if(resource != null && resource.itemID == _biofuel.itemID && resource.itemMeta == _biofuel.itemMeta)
+		{
+			return _tank.fill(new LiquidStack(_ethanol.itemID, resource.amount, _ethanol.itemMeta), doFill);
+		}
 		return 0;
 	}
 
