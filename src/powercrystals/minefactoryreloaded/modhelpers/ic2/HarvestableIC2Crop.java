@@ -60,7 +60,7 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 		try
 		{
 			crop = (CropCard)_getCropMethod.invoke(tec);
-			if(tec.getID() < 0 || !crop.canBeHarvested(tec))
+			if(tec.getID() < 0 || !crop.canBeHarvested(tec) || crop.canGrow(tec))
 			{
 				return false;
 			}
