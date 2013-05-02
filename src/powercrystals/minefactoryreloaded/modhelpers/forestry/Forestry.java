@@ -1,8 +1,5 @@
 package powercrystals.minefactoryreloaded.modhelpers.forestry;
 
-import java.lang.reflect.Field;
-
-import buildcraft.api.recipes.RefineryRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.block.Block;
