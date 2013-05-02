@@ -327,6 +327,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static Property redNetConnectionBlacklist;
 	
+	public static Property worldGenDimensionBlacklist;
+	
 	public static Property passengerRailSearchMaxHorizontal;
 	public static Property passengerRailSearchMaxVertical;
 	
@@ -608,7 +610,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		else if(blockId == pinkSlimeLiquid.blockID) return new ItemStack(pinkSlimeBucketItem);
 		else return null;
 	}
-
+	
 	private static void loadClientConfig(File configFile)
 	{
 		Configuration c = new Configuration(configFile);
@@ -744,6 +746,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		rubberTreeBiomeBlacklist.comment = "A comma-separated list of biomes to disallow rubber trees to spawn in. Overrides any other biomes added.";
 		redNetConnectionBlacklist = c.get(Configuration.CATEGORY_GENERAL, "RedNet.ConnectionBlackList", "");
 		redNetConnectionBlacklist.comment = "A comma-separated list of block IDs to prevent RedNet cables from connecting to.";
+		worldGenDimensionBlacklist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.DimensionBlacklist", "");
+		worldGenDimensionBlacklist.comment = "A comma-separated list of dimension IDs to disable MFR worldgen in. By default, MFR will not attempt worldgen in dimensions where the player cannot respawn.";
 
 		vanillaRecipes = c.get("RecipeSets", "EnableVanillaRecipes", true);
 		vanillaRecipes.comment = "If true, MFR will register its standard (vanilla-item-only) recipes.";

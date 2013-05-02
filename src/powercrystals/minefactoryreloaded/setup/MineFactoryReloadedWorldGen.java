@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.setup;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -13,9 +15,21 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class MineFactoryReloadedWorldGen implements IWorldGenerator
 {
+	private static List<Integer> _blacklistedDimensions;
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
+		if(_blacklistedDimensions == null)
+		{
+			_blacklistedDimensions = buildBlacklistedDimensions();
+		}
+		
+		if(_blacklistedDimensions.contains(world.provider.dimensionId))
+		{
+			return;
+		}
+		
 		int x = chunkX * 16 + random.nextInt(16);
 		int z = chunkZ * 16 + random.nextInt(16);
 		
@@ -50,5 +64,31 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				new WorldGenLakesMeta(MineFactoryReloadedCore.sewageLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
 			}
 		}
+	}
+
+	private static List<Integer> buildBlacklistedDimensions()
+	{
+		String blacklist = MineFactoryReloadedCore.worldGenDimensionBlacklist.getString();
+		List<Integer> dims = new ArrayList<Integer>();
+		
+		if(blacklist == null)
+		{
+			return dims;
+		}
+		blacklist = blacklist.trim();
+		
+		for(String dim : blacklist.split(","))
+		{
+			try
+			{
+				Integer dimId = Integer.parseInt(dim);
+				dims.add(dimId);
+			}
+			catch(Exception x)
+			{
+			}
+		}
+		
+		return dims;
 	}
 }
