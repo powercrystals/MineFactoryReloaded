@@ -29,9 +29,10 @@ public class TConstruct
 		}
 		try
 		{
-			Class tContent = Class.forName("mods.tinker.tconstruct.TContent");
+			Class tContent = Class.forName("mods.tinker.tconstruct.common.TContent");
 			
 			Class blueSlime = Class.forName("mods.tinker.tconstruct.entity.BlueSlime");
+			Class crystal = Class.forName("mods.tinker.tconstruct.entity.Crystal");
 			Class metalSlime = Class.forName("mods.tinker.tconstruct.entity.MetalSlime");
 			Class nitroCreeper = Class.forName("mods.tinker.tconstruct.entity.NitroCreeper");
 			Class skyla = Class.forName("mods.tinker.tconstruct.entity.Skyla");
@@ -46,6 +47,7 @@ public class TConstruct
 			MFRRegistry.registerHarvestable(new HarvestableOreBerry(oreBerrySecondBushId, oreBerryItemId, 4));
 			
 			MFRRegistry.registerGrindable(new GrindableStandard(blueSlime, strangeFood));
+			MFRRegistry.registerGrindable(new GrindableStandard(crystal, new ItemStack(Item.gunpowder)));
 			MFRRegistry.registerGrindable(new GrindableStandard(metalSlime, strangeFood));
 			MFRRegistry.registerGrindable(new GrindableStandard(nitroCreeper, new ItemStack(Item.gunpowder)));
 			MFRRegistry.registerGrindable(new GrindableStandard(skyla, new ItemStack(Item.gunpowder)));
