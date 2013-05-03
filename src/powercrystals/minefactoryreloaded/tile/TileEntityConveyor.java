@@ -200,6 +200,12 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	}
 	
 	@Override
+	public boolean canUpdate()
+	{
+		return false;
+	}
+	
+	@Override
 	public void writeToNBT(NBTTagCompound nbtTagCompound)
 	{
 		super.writeToNBT(nbtTagCompound);
