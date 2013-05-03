@@ -32,7 +32,7 @@ public class Natura
 		}
 		try
 		{
-			Class naturaContent = Class.forName("mods.natura.common.NaturaContent");
+			Class naturaContent = Class.forName("mods.natura.common.NContent");
 			
 			int seedsId = ((Item)naturaContent.getField("seeds").get(null)).itemID;
 			int berryItemId = ((Item)naturaContent.getField("berryItem").get(null)).itemID;
