@@ -1,1 +1,1 @@
-1.5.1R2.5.3 Minor bugfixes, RedNet connection blacklist and worldgen dimension blacklist
+1.5.1R2.5.4 Fixed LiquiCrafter item duplication bug; Unifier can convert MFR and Forestry biofuels to each other as that is no longer natively available due to Forestry changes
