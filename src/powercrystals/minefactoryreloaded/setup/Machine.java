@@ -27,6 +27,8 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityFisher;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityGrinder;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrillPrecharger;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLavaFabricator;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquidRouter;
@@ -86,6 +88,9 @@ public class Machine
 	public static Machine Slaughterhouse = new Machine(1, 13, "Slaughterhouse", TileEntitySlaughterhouse.class, "factorySlaughterhouse", 100);
 	public static Machine MeatPacker = new Machine(1, 14, "MeatPacker", TileEntityMeatPacker.class, "factoryMeatPacker", 2);
 	public static Machine EnchantmentRouter = new Machine(1, 15, "EnchantmentRouter", TileEntityEnchantmentRouter.class, "factoryEnchantmentRouter", 0);
+	
+	public static Machine LaserDrill = new Machine(2, 0, "LaserDrill", TileEntityLaserDrill.class, "factoryLaserDrill", 0);
+	public static Machine LaserDrillPrecharger = new Machine(2, 1, "LaserDrillPrecharger", TileEntityLaserDrillPrecharger.class, "factoryLaserDrillPrecharger", 128);
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;

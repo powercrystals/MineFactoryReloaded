@@ -30,6 +30,8 @@ tile.mfr.machine.autodisenchanter.name = Auto-Disenchanter
 tile.mfr.machine.slaughterhouse.name = Slaughterhouse
 tile.mfr.machine.meatpacker.name = Meat Packer
 tile.mfr.machine.enchantmentrouter.name = Enchantment Router
+tile.mfr.machine.laserdrill.name = Laser Drill
+tile.mfr.machine.laserdrillprecharger.name = Laser Drill Precharger
 
 tile.mfr.conveyor.default.name = Conveyor Belt
 tile.mfr.conveyor.white.name = Conveyor Belt (White)

@@ -37,6 +37,7 @@ import powercrystals.minefactoryreloaded.block.BlockFactoryGlass;
 import powercrystals.minefactoryreloaded.block.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.block.BlockFactoryMachine;
 import powercrystals.minefactoryreloaded.block.BlockFactoryRoad;
+import powercrystals.minefactoryreloaded.block.BlockFakeLaser;
 import powercrystals.minefactoryreloaded.block.BlockFluidFactory;
 import powercrystals.minefactoryreloaded.block.BlockPinkSlimeFluid;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoDropoff;
@@ -175,6 +176,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Block biofuelLiquid;
 	public static Block meatLiquid;
 	public static Block pinkSlimeLiquid;
+	
+	public static Block fakeLaserBlock;
 
 	public static Item machineItem;
 
@@ -225,6 +228,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	// common config
 	public static Property machineBlock0Id;
 	public static Property machineBlock1Id;
+	public static Property machineBlock2Id;
 	
 	public static Property conveyorBlockId;
 	
@@ -245,6 +249,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static Property rednetCableBlockId;
 	public static Property rednetLogicBlockId;
+	
+	public static Property fakeLaserBlockId;
 	
 	public static Property milkStillBlockId;
 	public static Property sludgeStillBlockId;
@@ -388,6 +394,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		conveyorBlock = new BlockConveyor(conveyorBlockId.getInt());
 		machineBlocks.put(0, new BlockFactoryMachine(machineBlock0Id.getInt(), 0));
 		machineBlocks.put(1, new BlockFactoryMachine(machineBlock1Id.getInt(), 1));
+		machineBlocks.put(2, new BlockFactoryMachine(machineBlock2Id.getInt(), 2));
 		factoryGlassBlock = new BlockFactoryGlass(factoryGlassBlockId.getInt());
 		factoryGlassPaneBlock = new BlockFactoryGlassPane(factoryGlassPaneBlockId.getInt());
 		factoryRoadBlock = new BlockFactoryRoad(factoryRoadBlockId.getInt());
@@ -402,6 +409,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		railPickupPassengerBlock = new BlockRailPassengerPickup(railPickupPassengerBlockId.getInt());
 		rednetCableBlock = new BlockRedstoneCable(rednetCableBlockId.getInt());
 		rednetLogicBlock = new BlockRedNetLogic(rednetLogicBlockId.getInt());
+		fakeLaserBlock = new BlockFakeLaser(fakeLaserBlockId.getInt());
 
 		factoryHammerItem = (new ItemFactoryHammer(hammerItemId.getInt())).setUnlocalizedName("mfr.hammer").setMaxStackSize(1);
 		fertilizerItem = (new ItemFactory(fertilizerItemId.getInt())).setUnlocalizedName("mfr.fertilizer");
@@ -649,6 +657,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		biofuelStillBlockId = c.getBlock("ID.BioFuel.Still", 3143);
 		rednetCableBlockId = c.getBlock("ID.RedNet.Cable", 3144);
 		rednetLogicBlockId = c.getBlock("ID.RedNet.Logic", 3145);
+		machineBlock2Id = c.getBlock("ID.MachineBlock2", 3146);
+		fakeLaserBlockId = c.getBlock("ID.FakeLaser", 3147);
 		
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);

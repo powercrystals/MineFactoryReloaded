@@ -32,12 +32,12 @@ import buildcraft.api.power.IPowerReceptor;
 
 public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventory implements IPowerReceptor, IEnergySink, IVoltage, IConnector
 {	
-	private static int energyPerEU = 4;
-	private static int energyPerMJ = 10;
-	private static int wPerEnergy = 7;
+	protected static final int energyPerEU = 4;
+	protected static final int energyPerMJ = 10;
+	protected static final int wPerEnergy = 7;
 	
 	private int _energyStored;
-	private int _energyActivation;
+	protected int _energyActivation;
 	
 	private int _workDone;
 	
