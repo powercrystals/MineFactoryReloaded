@@ -1,5 +1,8 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import buildcraft.core.IMachine;
@@ -24,8 +27,17 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	private static final int _workStoredMax = 300;
 	private int _workStored;
 	
+	private List<ItemStack> _drops = new ArrayList<ItemStack>();
+	
 	public TileEntityLaserDrill()
 	{
+		_drops.add(new ItemStack(Block.oreCoal));
+		_drops.add(new ItemStack(Block.oreDiamond));
+		_drops.add(new ItemStack(Block.oreEmerald));
+		_drops.add(new ItemStack(Block.oreGold));
+		_drops.add(new ItemStack(Block.oreIron));
+		_drops.add(new ItemStack(Block.oreLapis));
+		_drops.add(new ItemStack(Block.oreRedstone));
 	}
 	
 	public int addEnergy(int energy)
@@ -85,7 +97,7 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	
 	private ItemStack getRandomDrop()
 	{
-		return new ItemStack(Block.oreIron);
+		return _drops.get(worldObj.rand.nextInt(_drops.size())).copy();
 	}
 	
 	@Override
