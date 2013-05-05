@@ -57,8 +57,6 @@ public class Forestry
 				MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)forestryBlocks.getField("leaves").get(null)).blockID));
 				
 				MFRRegistry.registerPlantable(new PlantableStandard(((Block)forestryBlocks.getField("saplingGE").get(null)).blockID, ((Block)forestryBlocks.getField("saplingGE").get(null)).blockID));
-				
-				MFRRegistry.registerFertilizable(new FertilizableSapling(((Block)forestryBlocks.getField("saplingGE").get(null)).blockID));
 			}
 		}
 		catch (Exception x)
