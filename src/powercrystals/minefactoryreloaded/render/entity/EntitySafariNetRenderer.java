@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.render;
+package powercrystals.minefactoryreloaded.render.entity;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Icon;
 
-public class RenderEntitySafariNet extends Render
+public class EntitySafariNetRenderer extends Render
 {
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float par8, float par9)

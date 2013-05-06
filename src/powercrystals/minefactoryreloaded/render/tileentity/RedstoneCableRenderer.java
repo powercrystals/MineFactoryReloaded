@@ -1,10 +1,11 @@
-package powercrystals.minefactoryreloaded.render;
+package powercrystals.minefactoryreloaded.render.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.render.model.RedstoneCableModel;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;

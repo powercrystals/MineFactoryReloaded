@@ -1,8 +1,10 @@
-package powercrystals.minefactoryreloaded.render;
+package powercrystals.minefactoryreloaded.render.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.render.model.RedNetCardsModel;
+import powercrystals.minefactoryreloaded.render.model.RedNetLogicModel;
 import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;

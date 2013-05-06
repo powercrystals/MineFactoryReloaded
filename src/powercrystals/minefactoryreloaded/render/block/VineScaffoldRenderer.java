@@ -1,6 +1,8 @@
-package powercrystals.minefactoryreloaded.render;
+package powercrystals.minefactoryreloaded.render.block;
 
 import org.lwjgl.opengl.GL11;
+
+import powercrystals.minefactoryreloaded.render.RenderBlocksInverted;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;

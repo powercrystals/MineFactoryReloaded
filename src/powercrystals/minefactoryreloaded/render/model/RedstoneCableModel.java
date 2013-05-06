@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.render;
+package powercrystals.minefactoryreloaded.render.model;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;

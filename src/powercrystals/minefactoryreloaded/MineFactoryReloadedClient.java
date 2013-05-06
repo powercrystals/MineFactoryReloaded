@@ -9,13 +9,13 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.render.RenderBlockFluidClassic;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
-import powercrystals.minefactoryreloaded.render.RedNetCardItemRenderer;
-import powercrystals.minefactoryreloaded.render.RedNetLogicRenderer;
-import powercrystals.minefactoryreloaded.render.RedstoneCableRenderer;
-import powercrystals.minefactoryreloaded.render.RenderEntitySafariNet;
-import powercrystals.minefactoryreloaded.render.RendererConveyor;
-import powercrystals.minefactoryreloaded.render.RendererFactoryGlassPane;
-import powercrystals.minefactoryreloaded.render.VineScaffoldRenderer;
+import powercrystals.minefactoryreloaded.render.block.ConveyorRenderer;
+import powercrystals.minefactoryreloaded.render.block.FactoryGlassPaneRenderer;
+import powercrystals.minefactoryreloaded.render.block.VineScaffoldRenderer;
+import powercrystals.minefactoryreloaded.render.entity.EntitySafariNetRenderer;
+import powercrystals.minefactoryreloaded.render.tileentity.RedNetCardItemRenderer;
+import powercrystals.minefactoryreloaded.render.tileentity.RedNetLogicRenderer;
+import powercrystals.minefactoryreloaded.render.tileentity.RedstoneCableRenderer;
 import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 
@@ -43,9 +43,9 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		MineFactoryReloadedCore.renderIdRedNetLogic = RenderingRegistry.getNextAvailableRenderId();
 		MineFactoryReloadedCore.renderIdVineScaffold = RenderingRegistry.getNextAvailableRenderId();
 		
-		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdConveyor, new RendererConveyor());
-		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlassPane, new RendererFactoryGlassPane());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySafariNet.class, new RenderEntitySafariNet());	
+		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdConveyor, new ConveyorRenderer());
+		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlassPane, new FactoryGlassPaneRenderer());
+		RenderingRegistry.registerEntityRenderingHandler(EntitySafariNet.class, new EntitySafariNetRenderer());	
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFluidClassic, new RenderBlockFluidClassic(MineFactoryReloadedCore.renderIdFluidClassic));
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdVineScaffold, new VineScaffoldRenderer());
 		

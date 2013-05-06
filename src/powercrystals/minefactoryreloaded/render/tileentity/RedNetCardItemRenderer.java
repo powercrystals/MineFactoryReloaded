@@ -1,8 +1,9 @@
-package powercrystals.minefactoryreloaded.render;
+package powercrystals.minefactoryreloaded.render.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.render.model.RedNetCardsModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderEngine;
 import net.minecraft.item.ItemStack;
