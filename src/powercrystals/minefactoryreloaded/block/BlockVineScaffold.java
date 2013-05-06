@@ -39,7 +39,6 @@ public class BlockVineScaffold extends Block
 		if(par5Entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)par5Entity;
-			System.out.println("Entity collided with momentum" + player.motionX + ", " + player.motionY + ", " + player.motionZ);
 			if(player.isSneaking())
 			{
 				player.motionY = 0;
