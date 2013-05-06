@@ -9,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.ColorizerFoliage;
@@ -34,25 +35,13 @@ public class BlockVineScaffold extends Block
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if(par5Entity instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer)par5Entity;
-			if(player.isSneaking())
-			{
-				player.motionY = 0;
-			}
-			else if(Math.abs(player.motionX) + Math.abs(player.motionZ) > 0.001)
-			{
-				player.motionY = 0.2D;
-			}
-			else
-			{
-				player.motionY = -0.15D;
-			}
-			player.fallDistance = 0;
-		}
+        if(entity instanceof EntityPlayerMP)
+        {
+            ((EntityPlayerMP)entity).playerNetServerHandler.ticksForFloatKick = 0;
+            entity.fallDistance = 0;
+        }
 	}
 	
 	@Override
