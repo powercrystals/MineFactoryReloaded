@@ -1,9 +1,7 @@
 #zh_CN
 #translated by crafteverywhere
-
 #version=2.5.4.X
 
-#zh_CN
 
 tile.mfr.machine.planter.name = \u64ad\u79cd\u673a
 tile.mfr.machine.fisher.name = \u9493\u9c7c\u673a
