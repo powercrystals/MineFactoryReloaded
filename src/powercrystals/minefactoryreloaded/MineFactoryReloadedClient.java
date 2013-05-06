@@ -67,12 +67,11 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 	{
 		EntityPlayerSP player = (EntityPlayerSP)tickData[0];
 		int frontX = MathHelper.floor_double(player.posX + player.getLookVec().xCoord);
-		int frontY = MathHelper.floor_double(player.posY + player.getLookVec().yCoord);
+		int frontY = MathHelper.floor_double(player.boundingBox.minY);
 		int frontZ = MathHelper.floor_double(player.posZ + player.getLookVec().zCoord);
 		
 		int blockId = player.worldObj.getBlockId(frontX, frontY, frontZ);
-		int lowerId = player.worldObj.getBlockId(frontX, frontY - 1, frontZ);
-		if(blockId == MineFactoryReloadedCore.vineScaffoldBlock.blockID || (player.worldObj.isAirBlock(frontX, frontY, frontZ) && lowerId == MineFactoryReloadedCore.vineScaffoldBlock.blockID))
+		if(blockId == MineFactoryReloadedCore.vineScaffoldBlock.blockID)
 		{
 			if(player.movementInput.moveForward > 0)
 			{
