@@ -95,7 +95,7 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 				NBTTagCompound baseTag = new NBTTagCompound();
 				NBTTagList enchList = new NBTTagList();
 				enchList.appendTag(enchTag);
-				baseTag.setTag("ench", enchList);
+				baseTag.setTag("StoredEnchantments", enchList);
 				_inventory[3].setTagCompound(baseTag);
 				
 				((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).removeTag(enchIndex);
