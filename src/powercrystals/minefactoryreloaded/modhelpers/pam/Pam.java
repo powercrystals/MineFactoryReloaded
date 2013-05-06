@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -106,6 +107,16 @@ public class Pam
 			registerPamMod("Whitemushroom", "Whitemushroom", Category.BUSH, false, true, Block.wood.blockID);
 			registerPamMod("Rotten", "Rotten", Category.CROP, false, false, Block.slowSand.blockID);
 			registerPamMod("Cactusfruit", "Cactusfruit", Category.BUSH, true, true, Block.sand.blockID);
+			
+			try
+			{
+				Class<?> mod = Class.forName("mods.PamHarvestCraft.PamHarvestCraft");
+				MFRRegistry.registerSludgeDrop(25, new ItemStack((Item)mod.getField("saltItem").get(null)));
+			}
+			catch(Exception x)
+			{
+				x.printStackTrace();
+			}
 		}
 
 		
