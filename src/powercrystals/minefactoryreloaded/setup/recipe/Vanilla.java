@@ -1149,6 +1149,14 @@ public class Vanilla
 					'P', "sheetPlastic",
 					'A', Item.paper,
 				} ));
+		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.vineScaffoldBlock, 8), new Object[]
+				{
+					"VV",
+					"VV",
+					"VV",
+					'V', Block.vine,
+				} );
 	}
 	
 	protected void registerVanillaImprovements()

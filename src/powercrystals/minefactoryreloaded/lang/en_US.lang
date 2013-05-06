@@ -121,6 +121,8 @@ tile.mfr.decorativestone.white.paved.name = Paved Whitestone
 
 tile.ice.unmelting.name = Ice (Unmelting)
 
+tile.mfr.vinescaffold = Vine Scaffolding
+
 tile.mfr.rubberwood.sapling.name = Rubber Sapling
 tile.mfr.rubberwood.log.name = Rubber Wood
 tile.mfr.rubberwood.leaves.name = Rubber Leaves
