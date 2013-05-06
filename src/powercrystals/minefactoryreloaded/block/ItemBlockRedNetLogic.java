@@ -23,81 +23,84 @@ public class ItemBlockRedNetLogic extends ItemBlock
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setString("author", "powercrystals");
-		nbt.setString("title", "PRC使用手册");
+		nbt.setString("title", "PRC Owner's Manual");
 		
 		NBTTagList pages = new NBTTagList();
-		pages.appendTag(new NBTTagString("1", "     可编程\n        红石网络\n      控制器\n\n用户手册v1.0\n\n\n" + 
-				"警告: 为正常阅读该说明书也许你需要将GUI大小适当调小。"));
-		pages.appendTag(new NBTTagString("2", "恭喜你购买安装（或者从别处偷窃）这台全新的可编程红石网络控制器(PRC)。 " +
-				"这本手册将指导你学习其特性以及操作。"));
-		pages.appendTag(new NBTTagString("3", "特性\n\n* 每个方向均有16个I/O端口\n\n* 16个内部变量\n\n* 6种用户定义元件\n\n" +
-				"* 可使用LX-100,300,500等型号的逻辑扩展模块扩展(扩展部分独立出售)\n\n"));
-		pages.appendTag(new NBTTagString("4", "电路元件\n\nPRC可以看作多个元器件的组合。\n每个元件都安装每个PRC的时钟周期依次运行。\n" +
-				"每个元件都有不等数目的输入和输出"));
-		pages.appendTag(new NBTTagString("5", "电路元件\n\n输入可以是I/O端口，变量或者常量。输出连接到对应的I/O端口, " +
-				"变量,或者为空(无相连部分). 这些选项均可独立设定。"));
-		pages.appendTag(new NBTTagString("6", "电路元件\n\nPRC初始化以后，所有的元件默认为No-Op。"));
-		pages.appendTag(new NBTTagString("7", "常量\n\nPRC可以使用常量作为输入。" +
-				"可用常量为0-15的16个常数。"));
-		pages.appendTag(new NBTTagString("8", "I/O端口\n\nPRC的前方不能连接电路，其余各面可以各链接到16个I/O口。" +
-				"可以使用精密工业锤改变其朝向。"));
-		pages.appendTag(new NBTTagString("9", "I/O端口\n\n每个I/O口对应一种颜色(从白到黑包括16种MC自带颜色) 。 " +
-				"在每次PRC新的时钟周期开始时会更新一次会检查一次输入的I/O口更新。"));
-		pages.appendTag(new NBTTagString("10", "变量\n\nPRC包含若干被其元件使用的变量。变量在时钟周期内可变化。 " +
-				"不像I/O口数据那样有延迟。"));
-		pages.appendTag(new NBTTagString("11", "空值\n\n如果你不想使用某数值，输出则为空值。"));
-		pages.appendTag(new NBTTagString("12", "界面\n\nPRC的界面包括4部分-从左到右依次是输入引脚，元件类型， " +
-				"输出引脚以及元件设置。"));
-		pages.appendTag(new NBTTagString("13", "界面: 元件类型\n\n从列表中选择元件类型来使得PRC变成该种功能的元件。 " +
-				"使用下一个以及上一个的按钮来选择编辑哪一个元件。"));
-		pages.appendTag(new NBTTagString("14", "界面: 引脚映射\n\nPRC的引脚设定有两个部分：缓冲区和引脚数值。 缓冲区选择该引脚连接哪个方向的I/O口，或者属于变量，常量或者空值类型。 " +
-				"引脚数值选择I/O口颜色，或者具体某个变量/常量。"));
-		pages.appendTag(new NBTTagString("15", "界面：引脚映射\n\n用鼠标改变引脚数值：左击增加一个，右击减少一个 " +
-				"，中键增加16(使用变量/常量类型时)或1（I/O颜色类型）。"));
-		pages.appendTag(new NBTTagString("16", "红石网络读数表\n\n正如其名，它可以用来读取红石线缆上的数据,亦可以" +
-				"用于读取PRC某状态的变量。"));
-		pages.appendTag(new NBTTagString("17", "内存卡\n\n如果你需要备份PRC设置或者将其复制到其它PRC上，可以考虑使用内存卡。 " +
-				"使用空白的内存卡会复制PRC上的程序，而使用已经编程过的内存卡则会向PRC写入程序。"));
-		pages.appendTag(new NBTTagString("18", "范例\n\n本手册下面的部分将提供部分实例。如需要照样操作，请先用精密工业锤将PRC设置为面朝西方。 " +
-				"下面将提供一些实际的应用范例。"));
-		pages.appendTag(new NBTTagString("19", "范例\n\n为实践这些例子，你需要:\n* 若干红石线缆\n* 一些拉杆\n* 一些按钮\n* 一些红石灯\n" +
-				"* 一个日光感应器\n* 一个活塞\n* 一个音符盒\n* 一个精密工业锤"));
-		pages.appendTag(new NBTTagString("20", "例1: 与门\n\n在PRC北边连接红石线缆，并用线缆连接两个拉杆和一个红石灯。用精密工业锤设置拉杆输入分别为橙色和品红色。"));
-		pages.appendTag(new NBTTagString("21", "例1: 与门\n\n打开PRC。设置元件1类型为与门(2输入)，设置输入为I/O N,橙色和品红色" +
-				",设置输出为I/O N,白色。"));
-		pages.appendTag(new NBTTagString("22", "例1: 与门\n\n多次使用拉杆，观察红石灯变化。 当拉杆同时打开的时候灯会亮，否则则会熄灭。"));
-		pages.appendTag(new NBTTagString("23", "例2: 定时器\n\n在PRC南边连接红石线缆,并连接上红石灯" +
-				"打开PRC设置元件2类型为矩形波发射器。设置输入为CNST 40。设置输出为I/O S,白色。"));
-		pages.appendTag(new NBTTagString("24", "例2: 定时器\n\n红石灯大约会每秒闪一次。你可以使用矩形波发生器来控制" +
-				"任何需要红石脉冲的机器。"));
-		pages.appendTag(new NBTTagString("25", "例2: 定时器\n\nPRC每秒大概运行20个时钟周期。调整定时器的周期，让它变快或者变慢，" +
-				"当数值小于5的时候，定时器闪烁过快，将不能正确控制设备。"));
-		pages.appendTag(new NBTTagString("26", "例3: 门的触发控制\n\n在PRC东边连接线缆，并连接上设置为白色位的按钮和橙色位的活塞。" +
-				"如果还有其余部分，你可以扩建成一个真实的门。"));
-		pages.appendTag(new NBTTagString("27", "例3: 门的触发控制\n\n打开PRC，并设置元件3为T-触发器。将输入都设置为I/O E,白色" +
-				"Q端口则设置为I/O E,橙色。 按下按钮。"));
-		pages.appendTag(new NBTTagString("28", "例3: 门的触发控制\n\n注意观察按钮按下时活塞的反应。本例子中T触发器的输入采样在个时钟周期的上升沿，" +
-				"因此不介意的话，可以都连接到输入端"));
-		pages.appendTag(new NBTTagString("29", "例4: 日光感应器/变量\n\n在PRC顶部连接红石线缆，并连上设置为白色位的日光感应器，" +
-				"以及设置为橙色的音符盒。右击三下为音符盒设置一个音符。"));
-		pages.appendTag(new NBTTagString("30", "例4: 日光感应器/变量\n\n打开PRC。选择元件4类型为判断器：等于,输入为I/O U,白色；CNST 3而输出" +
-				"为VARS 0。设置元件5类型为单次脉冲发生器，输入为VARS 0，输出为I/O U,橙色。"));
-		pages.appendTag(new NBTTagString("31", "例4: 日光感应器/变量\n\n日出或者日落时,日光感应器输出为3。 当" +
-				"输出为3的时候，则会发出一次脉冲激活音符盒。用这个可以做闹钟呢：)!!"));
-		pages.appendTag(new NBTTagString("32", "例5: 日光钟\n\n建造一个 \"8\"形状的红石灯建筑。看上去像这样:\n" +
-				" XX \nX  X\nX  X\n XX \nX  X\nX  X\n XX \n确保没有其他方块与之相连。"));
-		pages.appendTag(new NBTTagString("33", "例5: 日光钟\n\n从左上开始,顺时针用红色线缆与之相连，颜色设置各部分则如下:" +
-				"青色,紫色,蓝色,棕色,绿色,红色,黑色。红色对应左上部分，而黑色为中间的一横。 "));
-		pages.appendTag(new NBTTagString("34", "例5: 日光钟\n\n将这些线缆连接到顶部(依然包括一个日光感应器)。" +
-				"打开PRC,选择元件6类型为七段译码器。"));
-		pages.appendTag(new NBTTagString("35", "例5: 日光钟\n\n设置I为I/O U 白色,而A到G则分别按顺序设置为从青到黑。" +
-				"若你连线都正确，那么红石灯会显示出当前的光照值。"));
-		pages.appendTag(new NBTTagString("36", "例5: 日光钟\n\n注意到日光光感应器的输出为0-15,而红石灯会显示十六进制的数字，即" +
-				"0-9以及A-F。"));
-		pages.appendTag(new NBTTagString("37", "其他建议\n\n* 试试用各种波形发生器连接红石粉\n* 试试使用计数器。" +
-				"\n* 试试用测重压力盘连接比较器。"));
-		pages.appendTag(new NBTTagString("38", "结束语\n\n注意这些例子的功能都是独立的。而PRC可以同时包含多个元件并同时运作，因此用PRC可以造出非常神奇的东西。"));
-		pages.appendTag(new NBTTagString("39", "衷心希望你使用PRC愉快!"));
+		pages.appendTag(new NBTTagString("1", "     Programmable\n        RedNet\n      Controller\n\nOwner's Manual v1.0\n\n\n" + 
+				"WARNING: YOU MAY NEED TO ADJUST YOUR GUI SCALE SMALLER TO APPROPRIATELY USE THIS PRODUCT"));
+		pages.appendTag(new NBTTagString("2", "Congratulations on your purchase, assembly, or theft of your new Programmable RedNet Controller (PRC). " +
+				"This manual will attempt to guide you through its features and operations."));
+		pages.appendTag(new NBTTagString("3", "Features\n\n* 16 I/O points on\n  each side\n* 16 internal\n  variables\n* 6 user-defined\n  circuits\n" +
+				"* Expandable with\n  LX-100, 300, 500\n  expansion modules\n  (sold separately)"));
+		pages.appendTag(new NBTTagString("4", "Circuits\n\nThe PRC is composed of one or more circuits. Each circuit is executed sequentially on every " +
+				"PRC clock cycle. Circuits are composed of inputs and outputs."));
+		pages.appendTag(new NBTTagString("5", "Circuits\n\nInputs can come from I/O, variables, or constant values. Outputs can be routed to I/O, " +
+				"variables, or null (disconnected). These options are discussed separately."));
+		pages.appendTag(new NBTTagString("6", "Circuits\n\nAll circuits default to No-Op when the PRC is initialized."));
+		pages.appendTag(new NBTTagString("7", "Constants\n\nThe PRC can use constant values for its inputs. It contains 16 constants, with values " +
+				"0-15 in them."));
+		pages.appendTag(new NBTTagString("8", "I/O\n\nEach face of the PRC can be connected to up to 16 I/O points. The front face cannot be connected, " +
+				"but the PRC can be rotated by using your standard sledgehammer."));
+		pages.appendTag(new NBTTagString("9", "I/O\n\nEach I/O point is indicated by a color, ranging from white to black as per the standard elements. " +
+				"I/O inputs will update on the next PRC clock cycle."));
+		pages.appendTag(new NBTTagString("10", "Variables\n\nThe PRC contains variables that can be used by its circuits. Variables propagate between " +
+				"circuits on the same clock cycle; unlike the I/O delay."));
+		pages.appendTag(new NBTTagString("11", "Null\n\nRoute outputs to Null if you do not want to use the value."));
+		pages.appendTag(new NBTTagString("12", "GUI\n\nThe PRC GUI has four sections - from left to right they are input pins, circuit type, output pins, " +
+				"and circuit selection."));
+		pages.appendTag(new NBTTagString("13", "GUI: Circuit Type\n\nSelect a circuit type from the list to change the selected circuit in the PRC to that " +
+				"circuit type. Use the Next and Prev buttons to change which circuit is being edited."));
+		pages.appendTag(new NBTTagString("14", "GUI: Pin Mapping\n\nPRC pins are connected in two parts, buffer and pin number. Buffer selects I/O and face, " +
+				"variables, constants, or null, as applicable. Pin chooses which I/O color, or which variable/constant."));
+		pages.appendTag(new NBTTagString("15", "GUI: Pin Mapping\n\nLeft click advances by one, and right click reverses by one. Middle click " +
+				"advances by 16 when using variables or constants (one for I/O)."));
+		pages.appendTag(new NBTTagString("16", "RedNet Meter\n\nMuch like it can be used to read out values of RedNet cables, the RedNet Meter can " +
+				"be used to read out the state of the PRC's variables."));
+		pages.appendTag(new NBTTagString("17", "Memory Cards\n\nIf you need to back up your PRC or copy it to another PRC, use a memory card. Using " +
+				"a blank card on a PRC will copy its program, and using a programmed card will write its program."));
+		pages.appendTag(new NBTTagString("18", "Examples\n\nThe next sections cover some basic PRC scenarios. Face your PRC West with your sledgehammer " +
+				"before beginning. These examples assume access to some supplies (next page)."));
+		pages.appendTag(new NBTTagString("19", "Examples\n\nYou will need:\n* A few dozen cables\n* Several levers\n* Several buttons\n* Several lamps\n" +
+				"* A daylight sensor\n* A piston\n* A note block\n* A sledgehammer"));
+		pages.appendTag(new NBTTagString("20", "Example 1: AND gate\n\nConnect RedNet cabling to the North face of your PRC, and place two levers and a lamp on " +
+				"the cable. Set the levers to Orange and Magenta with your sledgehammer."));
+		pages.appendTag(new NBTTagString("21", "Ex 1: AND gate\n\nOpen your PRC. Set circuit one to And (2 Input). Set the input I/Os to I/O N, Orange and " +
+				"Magenta, and the output to I/O N, White."));
+		pages.appendTag(new NBTTagString("22", "Ex 1: AND gate\n\nManipulate the levers. Watch the lamp. It will light when both levers are on " +
+				"and deactivate when they are turned off."));
+		pages.appendTag(new NBTTagString("23", "Ex 2: Timer\n\nConnect RedNet cabling to the South face of your PRC, and attach a lamp to it. " +
+				"Open your PRC and set circuit 2 to Wave (Square). Set the input to CNST 40. Set the output to I/O S, White."));
+		pages.appendTag(new NBTTagString("24", "Ex 2: Timer\n\nThe lamp will blink about once per second. You can use the square wave generator for any device " +
+				"that requires an alternating redstone signal."));
+		pages.appendTag(new NBTTagString("25", "Ex 2: Timer\n\nThe PRC runs at a clock rate of 20 cycles per second. Adjust the period (Pd) of the " +
+				"timer to make it faster or slower. Values too fast (<5 t) may not work correctly with all devices."));
+		pages.appendTag(new NBTTagString("26", "Ex 3: Door Toggle\n\nConnect cabling to the East face of your PRC. Attach a button to White and a piston to Orange. " +
+				"If you have extra parts, you may want to build a real door."));
+		pages.appendTag(new NBTTagString("27", "Ex 3: Door Toggle\n\nOpen your PRC and set circuit 3 to a T-FlipFlop. Connect I/O E, White to both inputs, " +
+				"and I/O E Orange to Q. Press the button."));
+		pages.appendTag(new NBTTagString("28", "Ex 3: Door Toggle\n\nNote the piston extends and retracts on each button press. The T-FlipFlop samples the input " +
+				"value on a rising edge of CLK - if you don't care, connect both to the same input as here."));
+		pages.appendTag(new NBTTagString("29", "Ex 4: Daylight Sensor/Variables\n\nConnect RedNet cabling to the top of your PRC. Attach a daylight sensor to White, " +
+				"and a note block to Orange. Set a pleasing tone on the note block."));
+		pages.appendTag(new NBTTagString("30", "Ex 4: Daylight Sensor/Variables\n\nOpen the PRC. Set circuit 4 to Equals, with I/O U White and CNST 3 as inputs, and the " +
+				"output to VARS 0. Set circuit 5 to a One-Shot Pulse, with input VARS 0 and output I/O U Orange."));
+		pages.appendTag(new NBTTagString("31", "Ex 4: Daylight Sensor/Variables\n\nWhen the sun rises and sets, the daylight sensor's output level will reach 3. As it " +
+				"arrives at that value, the note block will be pulsed. Use it as an alarm clock!"));
+		pages.appendTag(new NBTTagString("32", "Ex 5: Daylight Clock\n\nConstruct an \"8\" out of redstone lamps. It should look like this:\n" +
+				" XX \nX  X\nX  X\n XX \nX  X\nX  X\n XX \nEnsure no blocks connect the lamps."));
+		pages.appendTag(new NBTTagString("33", "Ex 5: Daylight Clock\n\nStarting with the top section and proceeding clockwise, connect them as follows: " +
+				" cyan, purple, blue, brown, green, red, black. Red should be the top-left pair and black the center pair."));
+		pages.appendTag(new NBTTagString("34", "Ex 5: Daylight Clock\n\nConnect those wires to the top face of the PRC (along with the daylight sensor). " +
+				"Open the PRC, and set circuit 6 to Seven-Segment Encoder."));
+		pages.appendTag(new NBTTagString("35", "Ex 5: Daylight Clock\n\nConnect I to I/O U White, and A through G to cyan through black in order. If you " +
+				"have wired everything correctly, the clock will display the current daylight value."));
+		pages.appendTag(new NBTTagString("36", "Ex 5: Daylight Clock\n\nNote that as the daylight sensor has outputs 0-15, these are reprsented as hex characters " +
+				"as 0-9 and A-F."));
+		pages.appendTag(new NBTTagString("37", "Additional Suggestions\n\n* Try the various wave generators connected to redstone dust\n* Try using the counter - " +
+				"PRE is the rollover target.\n* Try using weighted pressure plates combined with greater/less than."));
+		pages.appendTag(new NBTTagString("38", "Summary\n\nNote that the examples all function independently, as the PRC has multiple circuits and " +
+				"can process many tasks at once. Amazing things can be accomplished using the PRC."));
+		pages.appendTag(new NBTTagString("39", "We hope you enjoy your new Programmable RedNet Controller!"));
 		
 		nbt.setTag("pages", pages);
 		manual = new ItemStack(Item.writtenBook);
