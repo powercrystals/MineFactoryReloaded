@@ -364,7 +364,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		loadCommonConfig(getCommonConfig());
 		loadClientConfig(getClientConfig());
 		
-		extractLang(new String[] { "en_US", "es_AR", "es_ES", "es_MX", "es_UY", "es_VE","zh_CN","zh-TW" });
+		extractLang(new String[] { "en_US", "es_AR", "es_ES", "es_MX", "es_UY", "es_VE", "zh_CN", "zh_TW" });
 		loadLang();
 		
 		// this stuff has to go in pre-init in order for MFR to play nice with Forestry
