@@ -8,6 +8,7 @@ import java.util.Map;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.block.BlockFactoryMachine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoAnvil;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoDisenchanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
@@ -91,6 +92,7 @@ public class Machine
 	
 	public static Machine LaserDrill = new Machine(2, 0, "LaserDrill", TileEntityLaserDrill.class, "factoryLaserDrill", 0);
 	public static Machine LaserDrillPrecharger = new Machine(2, 1, "LaserDrillPrecharger", TileEntityLaserDrillPrecharger.class, "factoryLaserDrillPrecharger", 128);
+	public static Machine AutoAnvil = new Machine(2, 2, "AutoAnvil", TileEntityAutoAnvil.class, "factoryAnvil", 16);
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;
