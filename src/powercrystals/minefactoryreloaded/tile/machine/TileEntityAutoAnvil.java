@@ -336,11 +336,6 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 				outputItem = null;
 			}
 
-			if(this.maximumCost >= 40)
-			{
-				outputItem = null;
-			}
-
 			if(outputItem != null)
 			{
 				EnchantmentHelper.setEnchantments(existingEnchantments, outputItem);
