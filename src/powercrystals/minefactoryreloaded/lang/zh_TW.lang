@@ -36,6 +36,7 @@ tile.mfr.machine.meatpacker.name = \u8089\u584a\u6253\u5305\u6a5f
 tile.mfr.machine.enchantmentrouter.name = \u9644\u9b54\u8def\u7531\u5668
 tile.mfr.machine.laserdrill.name = \u9433\u5c04\u947d
 tile.mfr.machine.laserdrillprecharger.name = \u9433\u5c04\u947d\u5145\u80fd\u53f0
+tile.mfr.machine.autoanvil.name = \u81ea\u52d5\u9435\u7827
 
 tile.mfr.conveyor.default.name = \u50b3\u9001\u5e36
 tile.mfr.conveyor.white.name = \u767d\u8272\u50b3\u9001\u5e36
