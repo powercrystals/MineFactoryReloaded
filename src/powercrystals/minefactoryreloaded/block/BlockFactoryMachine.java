@@ -17,6 +17,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -87,6 +88,16 @@ public class BlockFactoryMachine extends BlockContainer
 			}
 		}
 		return Machine.getMachineFromIndex(_mfrMachineBlockIndex, meta).getIcon(side, false);
+	}
+	
+	@Override
+	public int getLightOpacity(World world, int x, int y, int z)
+	{
+		if(world.getBlockTileEntity(x, y, z) instanceof TileEntityLaserDrill)
+		{
+			return 0;
+		}
+		return super.getLightOpacity(world, x, y, z);
 	}
 
 	@Override
