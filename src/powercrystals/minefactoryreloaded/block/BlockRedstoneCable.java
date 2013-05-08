@@ -213,7 +213,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 				{
 					continue;
 				}
-				aabb = aabb.copy();
+				aabb = AxisAlignedBB.getBoundingBox(aabb.minX, aabb.minY, aabb.minZ, aabb.maxX, aabb.maxY, aabb.maxZ);
 				aabb.minX += x;
 				aabb.maxX += x;
 				aabb.minY += y;
