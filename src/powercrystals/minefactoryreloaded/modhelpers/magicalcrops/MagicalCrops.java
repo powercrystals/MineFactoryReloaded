@@ -37,7 +37,6 @@ public class MagicalCrops
 			Class<?> mod = Class.forName("magicCrop.mod_mCrops");
 			
 			// the various plants are separated by type to make future changes easier (mostly considering magicFertilizer behavior)
-			String[] herbs = {"Guam", "Harr", "Marr", "Ran", "Tarr", "Toad"};
 			String[] crops = {"Sberry", "Tomato", "Sweetcorn", "Cucum", "Melon", "Bberry", "Rberry", "Grape", "Chil"};
 			String[] magicalCrops = {"Coal", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Nether"};
 			String[] soulCrops = {"Cow", "Pigmen", "Skele", "Spider"};
@@ -45,16 +44,6 @@ public class MagicalCrops
 			int seedId;
 			int blockId;
 			Method fertilize;
-			
-			for(String herb : herbs)
-			{
-				seedId = ((Item)mod.getField("SeedHerb" + herb).get(null)).itemID;
-				blockId = ((Block)mod.getField("PlantHerb" + herb).get(null)).blockID;
-				fertilize = Class.forName("magicCrop.PlantHerb" + herb).getMethod("fertilize", World.class, int.class, int.class, int.class);
-				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
-				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
-				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
-			}
 			
 			for(String crop : crops)
 			{
