@@ -32,7 +32,12 @@ public class FertilizableNaturaCrop implements IFactoryFertilizable
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
-		((BlockCrops)Block.crops).fertilize(world, x, y, z);
-		return true;
+		int meta = world.getBlockMetadata(x, y, z);
+        if (meta != 3 && meta != 8)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
+            return true;
+        }
+		return false;
 	}
 }
