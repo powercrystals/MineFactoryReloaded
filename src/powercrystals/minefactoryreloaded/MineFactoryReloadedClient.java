@@ -72,6 +72,10 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData)
 	{
+		if(!tickData[0] instanceof EntityPlayerSP)
+		{
+			return;
+		}
 		EntityPlayerSP player = (EntityPlayerSP)tickData[0];
 		int frontX = MathHelper.floor_double(player.posX + player.getLookVec().xCoord);
 		int frontY = MathHelper.floor_double(player.boundingBox.minY);
