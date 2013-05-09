@@ -332,5 +332,6 @@ public class Vanilla
 		MFRRegistry.registerLaserOre(150, new ItemStack(Block.oreIron));
 		MFRRegistry.registerLaserOre(80, new ItemStack(Block.oreLapis));
 		MFRRegistry.registerLaserOre(100, new ItemStack(Block.oreRedstone));
+		MFRRegistry.registerLaserOre(50, new ItemStack(Block.oreNetherQuartz));
 	}
 }
