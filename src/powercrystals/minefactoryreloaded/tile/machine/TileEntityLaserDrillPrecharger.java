@@ -66,8 +66,11 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 		}
 		else
 		{
-			drill.addEnergy(_energyActivation);
-			return true;
+			if(drill.addEnergy(_energyActivation) == 0)
+			{
+				return true;
+			}
+			return false;
 		}
 		return false;
 	}

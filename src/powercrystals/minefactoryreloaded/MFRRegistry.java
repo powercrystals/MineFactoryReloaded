@@ -39,6 +39,7 @@ public abstract class MFRRegistry
 	private static List<Class<?>> _safariNetBlacklist = new ArrayList<Class<?>>();
 	private static List<IRandomMobProvider> _randomMobProviders = new ArrayList<IRandomMobProvider>();
 	private static List<IRedNetLogicCircuit> _redNetLogicCircuits = new ArrayList<IRedNetLogicCircuit>();
+	private static List<WeightedRandomItem> _laserOres  = new ArrayList<WeightedRandomItem>();
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
@@ -201,5 +202,15 @@ public abstract class MFRRegistry
 	public static List<IRedNetLogicCircuit> getRedNetLogicCircuits()
 	{
 		return _redNetLogicCircuits;
+	}
+	
+	public static void registerLaserOre(int weight, ItemStack ore)
+	{
+		_laserOres.add(new WeightedRandomItemStack(weight, ore.copy()));
+	}
+	
+	public static List<WeightedRandomItem> getLaserOres()
+	{
+		return _laserOres;
 	}
 }

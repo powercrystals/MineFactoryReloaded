@@ -1,7 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,8 +10,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.core.util.UtilInventory;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
@@ -21,25 +23,19 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	private static final int _energyPerWork = 2500;
 	private static final int _energyDrawMax = 10000;
 	
-	private static final int _energyStoredMax = 100000;
+	private static final int _energyStoredMax = 1000000;
 	private int _energyStored;
 	
 	private static final int _workStoredMax = 300;
 	private int _workStored;
 	
-	private List<ItemStack> _drops = new ArrayList<ItemStack>();
-	
 	private int _bedrockLevel;
+	
+	private Random _rand;
 	
 	public TileEntityLaserDrill()
 	{
-		_drops.add(new ItemStack(Block.oreCoal));
-		_drops.add(new ItemStack(Block.oreDiamond));
-		_drops.add(new ItemStack(Block.oreEmerald));
-		_drops.add(new ItemStack(Block.oreGold));
-		_drops.add(new ItemStack(Block.oreIron));
-		_drops.add(new ItemStack(Block.oreLapis));
-		_drops.add(new ItemStack(Block.oreRedstone));
+		_rand = new Random();
 	}
 	
 	public int addEnergy(int energy)
@@ -118,7 +114,7 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	
 	private ItemStack getRandomDrop()
 	{
-		return _drops.get(worldObj.rand.nextInt(_drops.size())).copy();
+		return ((WeightedRandomItemStack)WeightedRandom.getRandomItem(_rand, MFRRegistry.getLaserOres())).getStack();
 	}
 	
 	@Override

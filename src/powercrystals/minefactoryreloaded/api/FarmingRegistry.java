@@ -304,6 +304,12 @@ public class FarmingRegistry
 		}
 	}
 	
+	/**
+	 * Registers a handler for drinking liquids with the straw.
+	 * 
+	 * @param liquidId The block ID the handler handles.
+	 * @param liquidDrinkHandler The drink handler instance.
+	 */
 	public static void registerLiquidDrinkHandler(int liquidId, ILiquidDrinkHandler liquidDrinkHandler)
 	{
 		try
@@ -313,6 +319,29 @@ public class FarmingRegistry
 			{
 				Method reg = registry.getMethod("registerLiquidDrinkHandler", int.class, ILiquidDrinkHandler.class);
 				reg.invoke(registry, liquidId, liquidDrinkHandler);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers a possible output with the laser drill.
+	 * 
+	 * @param weight Likelihood that this item will be produced. Lower means rarer. 
+	 * @param drop The thing being produced by the laser drill.
+	 */
+	public static void registerLaserOre(int weight, ItemStack drop)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerLaserOre", int.class, ItemStack.class);
+				reg.invoke(registry, weight, drop);
 			}
 		}
 		catch(Exception e)
