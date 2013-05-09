@@ -75,9 +75,11 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 		}
 		
 		int energyToDraw = Math.min(_energyDrawMax, _energyStored / 4);
-		int workDone = energyToDraw / _energyPerWork;
+		int energyPerWorkHere = (int)(_energyPerWork * (1 - 0.2 * Math.min((double)(yCoord - _bedrockLevel), 128.0) / 128.0));
+		
+		int workDone = energyToDraw / energyPerWorkHere;
 		_workStored += workDone;
-		_energyStored -= workDone * _energyPerWork;
+		_energyStored -= workDone * energyPerWorkHere;
 		
 		while(_workStored >= _workStoredMax)
 		{
