@@ -523,6 +523,48 @@ public class Vanilla
 						'M', MineFactoryReloadedCore.machineBaseItem,
 					} ));
 		}
+		
+		if(Machine.LaserDrill.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 0), new Object[]
+					{
+						"GGG",
+						"LLL",
+						"DMD",
+						'G', "sheetPlastic",
+						'L', Block.glowStone,
+						'D', Item.diamond,
+						'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
+		
+		if(Machine.LaserDrillPrecharger.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 1), new Object[]
+					{
+						"GGG",
+						"LSL",
+						"DMD",
+						'G', "sheetPlastic",
+						'L', Block.glowStone,
+						'D', Item.diamond,
+						'S', MineFactoryReloadedCore.pinkSlimeballItem,
+						'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
+		
+		if(Machine.AutoAnvil.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 2), new Object[]
+					{
+						"GGG",
+						"AAA",
+						" M ",
+						'G', "sheetPlastic",
+						'A', Block.anvil,
+						'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
 	}
 	
 	protected void registerMachineUpgrades()
