@@ -72,7 +72,7 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData)
 	{
-		if(!tickData[0] instanceof EntityPlayerSP)
+		if(!(tickData[0] instanceof EntityPlayerSP))
 		{
 			return;
 		}
