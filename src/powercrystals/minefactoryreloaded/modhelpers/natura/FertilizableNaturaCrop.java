@@ -2,8 +2,6 @@ package powercrystals.minefactoryreloaded.modhelpers.natura;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
@@ -33,7 +31,7 @@ public class FertilizableNaturaCrop implements IFactoryFertilizable
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
 		int meta = world.getBlockMetadata(x, y, z);
-        if (meta != 3 && meta != 8)
+        if (meta != 3 && meta >= 8)
         {
             world.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
             return true;
