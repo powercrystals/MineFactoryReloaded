@@ -265,7 +265,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		
 		fontRenderer.drawString("Programmable RedNet Controller", 8, 6, 4210752);
-		fontRenderer.drawString((_selectedCircuit + 1) + " of " + _logic.getCircuitCount(), 344, 60, 4210752);
+		fontRenderer.drawString((_selectedCircuit + 1) + " of " + _logic.getCircuitCount(), 336, 60, 4210752);
 		
 		for(int i = 0; i < _inputIOPinButtons.length; i++)
 		{
