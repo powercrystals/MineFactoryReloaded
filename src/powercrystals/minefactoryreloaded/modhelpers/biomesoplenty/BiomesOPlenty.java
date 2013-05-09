@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.modhelpers.biomesoplenty;
 
+import com.google.common.base.Optional;
+
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
@@ -23,7 +25,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class BiomesOPlenty
 {
-
+	private static Class<?> _BOPBlocks;
+	
 	@SuppressWarnings("rawtypes")
 	@Init
 	public static void load(FMLInitializationEvent ev)
@@ -62,66 +65,58 @@ public class BiomesOPlenty
 			MFRRegistry.registerRubberTreeBiome("Tropical Rainforest");
 			MFRRegistry.registerRubberTreeBiome("Woodland");
 			
-			String[] bopLeaves = {"acacia", "apple", "autumn", "bamboo", "dark", "dead", "blue", "fir", "holy", "mangrove", "orange", "origin", "palm", "pink", "red", "redwood", "white", "willow"};
-			String[] bopLogs = {"acacia", "cherry", "dark", "dead", "fir", "holy", "magic", "mangrove", "palm", "redwood", "willow"};
-			String[] bopSaplings = {"acacia", "apple", "bamboo", "brown", "dark", "fir", "holy", "magic", "mangrove", "orange", "origin", "palm", "pink", "red", "redwood", "willow", "yellow"};
+			String[] bopLeaves = { "leaves1", "leaves2" };
+			String[] bopLogs = { "logs1", "logs2", "logs3" };
+			String[] bopSaplings = { "saplings", "colorizedSaplings" };
 			
-			String[] bopMiscTrunks = {"giantFlowerStem", "bamboo"};
-			String[] bopMiscLeaves = {"appleLeavesFruitless", "treeMoss", "giantFlowerRed", "giantFlowerYellow"}; 
-			String[] bopMiscStandardHarvestables = {"deadGrass", "desertGrass", "whiteFlower", "blueFlower", "purpleFlower", "orangeFlower", "tinyFlower", "glowFlower", "cattail", "willow", "thorn", "toadstool", "shortGrass", "bush", "originGrass", "barley", "tinyCactus", "deathbloom", "hydrangea", "violet", "mediumGrass", "duneGrass", "desertSprouts", "holyGrass", "holyTallGrass", "moss", "algae", "smolderingGrass"};   
-			String[] bopLeaveBottom = {"highGrassBottom", "highGrassTop"};
+			String[] bopMiscTrunks = { "flowers", "bamboo"};
+			String[] bopMiscLeaves = { "treeMoss" };
+			String[] bopMiscStandardHarvestables = { "plants", "foliage" };
 		
-			Class BOPBlocks = Class.forName("tdwp_ftw.biomesop.configuration.BOPBlocks");
-			if(BOPBlocks != null)
+			_BOPBlocks = Class.forName("biomesoplenty.api.Blocks");
+			if(_BOPBlocks != null)
 			{
 				for(String leaves : bopLeaves)
 				{
-					MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(
-							((Block)BOPBlocks.getField(leaves + "Leaves").get(null)).blockID
-							));
+					MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(getBOPBlock(leaves).blockID));
 				}
 				
 				for(String log : bopLogs)
 				{
-					MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)BOPBlocks.getField(log + "Wood").get(null)).blockID, HarvestType.Tree));
+					MFRRegistry.registerHarvestable(new HarvestableStandard(getBOPBlock(log).blockID, HarvestType.Tree));
 				}
 				
 				for(String sapling : bopSaplings)
 				{
-					MFRRegistry.registerPlantable(new PlantableStandard(((Block)BOPBlocks.getField(sapling + "Sapling").get(null)).blockID, ((Block)BOPBlocks.getField(sapling + "Sapling").get(null)).blockID));
-					MFRRegistry.registerFertilizable(new FertilizableSapling(((Block)BOPBlocks.getField(sapling + "Sapling").get(null)).blockID));
+					MFRRegistry.registerPlantable(new PlantableStandard(getBOPBlock(sapling).blockID, getBOPBlock(sapling).blockID));
+					MFRRegistry.registerFertilizable(new FertilizableSapling(getBOPBlock(sapling).blockID));
 				}
 				
 				for(String trunk : bopMiscTrunks)
 				{
-					MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)BOPBlocks.getField(trunk).get(null)).blockID, HarvestType.Tree));
+					MFRRegistry.registerHarvestable(new HarvestableStandard(getBOPBlock(trunk).blockID, HarvestType.Tree));
 				}
 				
 				for(String leaves : bopMiscLeaves)
 				{
-					MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(((Block)BOPBlocks.getField(leaves).get(null)).blockID));
+					MFRRegistry.registerHarvestable(new HarvestableTreeLeaves(getBOPBlock(leaves).blockID));
 				}
 				
 				for(String harvestable : bopMiscStandardHarvestables)
 				{
-					MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)BOPBlocks.getField(harvestable).get(null)).blockID, HarvestType.Normal));
+					MFRRegistry.registerHarvestable(new HarvestableStandard(getBOPBlock(harvestable).blockID, HarvestType.Normal));
 				}
 				
-				for(String harvestable : bopLeaveBottom)
-				{
-					MFRRegistry.registerHarvestable(new HarvestableStandard(((Block)BOPBlocks.getField(harvestable).get(null)).blockID, HarvestType.LeaveBottom));
-				}
-				
-				MFRRegistry.registerSludgeDrop(25, new ItemStack((Block)BOPBlocks.getField("mud").get(null)));
-				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("ash").get(null)));
-				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("driedDirt").get(null)));
-				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("hardSand").get(null)));
-				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("hardDirt").get(null)));
-				MFRRegistry.registerSludgeDrop(15, new ItemStack((Block)BOPBlocks.getField("quicksand").get(null)));
+				MFRRegistry.registerSludgeDrop(25, new ItemStack(getBOPBlock("mud")));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack(getBOPBlock("ash")));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack(getBOPBlock("driedDirt")));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack(getBOPBlock("hardSand")));
+				MFRRegistry.registerSludgeDrop(15, new ItemStack(getBOPBlock("hardDirt")));
+				MFRRegistry.registerSludgeDrop(25, new ItemStack(getBOPBlock("mud"), 1, 1));
 			}
 			
-			Class bopJungleSpider = Class.forName("tdwp_ftw.biomesop.mobs.EntityJungleSpider");
-			Class bopRosester = Class.forName("tdwp_ftw.biomesop.mobs.EntityRosester");
+			Class bopJungleSpider = Class.forName("biomesoplenty.mobs.EntityJungleSpider");
+			Class bopRosester = Class.forName("biomesoplenty.mobs.EntityRosester");
 			
 			MFRRegistry.registerGrindable(new GrindableStandard(bopJungleSpider, new MobDrop[]
 				{
@@ -139,5 +134,10 @@ public class BiomesOPlenty
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	private static Block getBOPBlock(String field) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException
+	{
+		return ((Block)((Optional<?>)_BOPBlocks.getField("mud").get(null)).get());
 	}
 }
