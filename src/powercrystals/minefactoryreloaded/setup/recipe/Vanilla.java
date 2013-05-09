@@ -863,7 +863,10 @@ public class Vanilla
 					'B', Block.stoneBrick,
 					'M', Block.blockSnow,
 				} );
-		
+
+		/**
+		 * Smooth:
+		**/
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 0), new Object[]
 				{
 					"SSS",
@@ -872,7 +875,7 @@ public class Vanilla
 					'S', Block.stone,
 					'D', new ItemStack(Item.dyePowder, 1, 0),
 				} );
-		
+
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 1), new Object[]
 				{
 					"SSS",
@@ -881,7 +884,15 @@ public class Vanilla
 					'S', Block.stone,
 					'D', Item.sugar,
 				} );
-		
+
+		// cobble->smooth
+		int stoneID = MineFactoryReloadedCore.factoryDecorativeStoneBlock.blockID;
+		FurnaceRecipes.smelting().addSmelting(stoneID, 2, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 0), 0.0001F);
+		FurnaceRecipes.smelting().addSmelting(stoneID, 3, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 1), 0.0001F);
+
+		/**
+		 * Cobble:
+		**/
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 2), new Object[]
 				{
 					"SSS",
@@ -890,7 +901,7 @@ public class Vanilla
 					'S', Block.cobblestone,
 					'D', new ItemStack(Item.dyePowder, 1, 0),
 				} );
-		
+
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 3), new Object[]
 				{
 					"SSS",
@@ -899,7 +910,13 @@ public class Vanilla
 					'S', Block.cobblestone,
 					'D', Item.sugar,
 				} );
-		
+
+		// meta-sensitive optional override in block code?
+		// TE pulveriser?
+
+		/**
+		 * Large brick:
+		**/
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 4), new Object[]
 				{
 					"SSS",
@@ -908,7 +925,7 @@ public class Vanilla
 					'S', Block.stoneBrick,
 					'D', new ItemStack(Item.dyePowder, 1, 0),
 				} );
-		
+
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 5), new Object[]
 				{
 					"SSS",
@@ -917,7 +934,25 @@ public class Vanilla
 					'S', Block.stoneBrick,
 					'D', Item.sugar,
 				} );
-		
+
+		// smooth->large brick
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 4), new Object[]
+				{
+					"SS",
+					"SS",
+					'S', new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 0),
+				} );
+
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 5), new Object[]
+				{
+					"SS",
+					"SS",
+					'S', new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 1),
+				} );
+
+		/**
+		 * Small brick:
+		**/
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 6), new Object[]
 				{
 					"SSS",
@@ -926,7 +961,7 @@ public class Vanilla
 					'S', Block.brick,
 					'D', new ItemStack(Item.dyePowder, 1, 0),
 				} );
-		
+
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 7), new Object[]
 				{
 					"SSS",
@@ -935,7 +970,25 @@ public class Vanilla
 					'S', Block.brick,
 					'D', Item.sugar,
 				} );
-		
+
+		// large brick->small brick
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 6), new Object[]
+				{
+					"SS",
+					"SS",
+					'S', new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 4),
+				} );
+
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 7), new Object[]
+				{
+					"SS",
+					"SS",
+					'S', new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 5),
+				} );
+
+		/**
+		 * Gravel:
+		**/
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 8), new Object[]
 				{
 					"SSS",
@@ -944,7 +997,7 @@ public class Vanilla
 					'S', Block.gravel,
 					'D', new ItemStack(Item.dyePowder, 1, 0),
 				} );
-		
+
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 9), new Object[]
 				{
 					"SSS",
@@ -953,7 +1006,13 @@ public class Vanilla
 					'S', Block.gravel,
 					'D', Item.sugar,
 				} );
-		
+
+		// Railcraft Rock Crusher?
+		// FZ grinder?
+
+		/**
+		 * Paved:
+		**/
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 10), new Object[]
 				{
 					"SSS",
@@ -962,7 +1021,7 @@ public class Vanilla
 					'S', new ItemStack(Block.stoneSingleSlab, 1, 0),
 					'D', new ItemStack(Item.dyePowder, 1, 0),
 				} );
-		
+
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 4, 11), new Object[]
 				{
 					"SSS",
@@ -971,7 +1030,19 @@ public class Vanilla
 					'S', new ItemStack(Block.stoneSingleSlab, 1, 0),
 					'D', Item.sugar,
 				} );
+
+		// smooth->paved
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 10), 
+				new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 0));
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 11), 
+				new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 1));
 		
+		// paved->smooth
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 0), 
+				new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 10));
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 1), 
+				new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 11));
+
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 12), new Object[]
 				{
 					"MMM",
