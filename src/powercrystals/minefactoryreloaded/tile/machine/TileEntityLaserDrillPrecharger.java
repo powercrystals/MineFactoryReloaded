@@ -59,22 +59,14 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 	@Override
 	protected boolean activateMachine()
 	{
-		BlockPosition bp = new BlockPosition(this);
-		bp.orientation = getDirectionFacing();
-		bp.moveForwards(1);
-		
-		if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
+		TileEntityLaserDrill drill = getDrill();
+		if(drill == null)
 		{
 			setIdleTicks(getIdleTicksMax());
-			return false;
 		}
-		
-		bp.moveForwards(1);
-		
-		TileEntity te = worldObj.getBlockTileEntity(bp.x, bp.y, bp.z);
-		if(te instanceof TileEntityLaserDrill)
+		else
 		{
-			((TileEntityLaserDrill)te).addEnergy(_energyActivation);
+			drill.addEnergy(_energyActivation);
 			return true;
 		}
 		return false;
@@ -100,7 +92,29 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 	
 	public boolean shouldDrawBeam()
 	{
-		return true;
+		return getDrill() != null;
+	}
+	
+	private TileEntityLaserDrill getDrill()
+	{
+		BlockPosition bp = new BlockPosition(this);
+		bp.orientation = getDirectionFacing();
+		bp.moveForwards(1);
+		
+		if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
+		{
+			return null;
+		}
+		
+		bp.moveForwards(1);
+		
+		TileEntity te = worldObj.getBlockTileEntity(bp.x, bp.y, bp.z);
+		if(te instanceof TileEntityLaserDrill)
+		{
+			return ((TileEntityLaserDrill)te);
+		}
+		
+		return null;
 	}
 	
 	@Override

@@ -29,6 +29,8 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	
 	private List<ItemStack> _drops = new ArrayList<ItemStack>();
 	
+	private int _bedrockLevel;
+	
 	public TileEntityLaserDrill()
 	{
 		_drops.add(new ItemStack(Block.oreCoal));
@@ -54,25 +56,23 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 		{
 			return;
 		}
-		
-		int lowerId = worldObj.getBlockId(xCoord, yCoord - 1, zCoord);
-		
+
 		if(shouldCheckDrill())
 		{
-			for(int y = yCoord - 1; y >= 0; y--)
-			{
-				int id = worldObj.getBlockId(xCoord, y, zCoord);
-				if(id != MineFactoryReloadedCore.fakeLaserBlock.blockID && id != Block.bedrock.blockID && id != 0)
-				{
-					if(lowerId == MineFactoryReloadedCore.fakeLaserBlock.blockID)
-					{
-						worldObj.setBlockToAir(xCoord, yCoord - 1, zCoord);
-					}
-					return;
-				}
-			}
+			updateDrill();
 		}
+
+		int lowerId = worldObj.getBlockId(xCoord, yCoord - 1, zCoord);
 		
+		if(_bedrockLevel < 0)
+		{
+			if(lowerId == MineFactoryReloadedCore.fakeLaserBlock.blockID)
+			{
+				worldObj.setBlockToAir(xCoord, yCoord - 1, zCoord);
+			}
+			return;
+		}
+			
 		if(lowerId != MineFactoryReloadedCore.fakeLaserBlock.blockID && (Block.blocksList[lowerId] == null || Block.blocksList[lowerId].isAirBlock(worldObj, xCoord, yCoord - 1, zCoord)))
 		{
 			worldObj.setBlock(xCoord, yCoord - 1, zCoord, MineFactoryReloadedCore.fakeLaserBlock.blockID);
@@ -92,7 +92,28 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	
 	private boolean shouldCheckDrill()
 	{
-		return true;
+		return worldObj.getWorldTime() % 32 == 0;
+	}
+	
+	private void updateDrill()
+	{
+		int y = Integer.MAX_VALUE;
+		for(y = yCoord - 1; y >= 0; y--)
+		{
+			int id = worldObj.getBlockId(xCoord, y, zCoord);
+			if(id != MineFactoryReloadedCore.fakeLaserBlock.blockID && id != Block.bedrock.blockID && id != 0)
+			{
+				_bedrockLevel = -1;
+				return;
+			}
+			else if(id == Block.bedrock.blockID)
+			{
+				_bedrockLevel = y;
+				return;
+			}
+		}
+
+		_bedrockLevel = -1;
 	}
 	
 	private ItemStack getRandomDrop()
@@ -116,12 +137,13 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	
 	public boolean shouldDrawBeam()
 	{
-		return true;
+		updateDrill();
+		return _bedrockLevel >= 0;
 	}
 	
 	public int getBeamHeight()
 	{
-		return yCoord - 1;
+		return yCoord - _bedrockLevel;
 	}
 	
 	// IInventory
