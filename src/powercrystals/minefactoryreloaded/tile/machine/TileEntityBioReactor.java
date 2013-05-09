@@ -11,6 +11,7 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.util.Util;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -273,7 +274,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 		}
 		for(int i = 0; i < 9; i++)
 		{
-			if(i != slot && _inventory[i] != null && _inventory[i].isItemEqual(itemstack))
+			if(i != slot && _inventory[i] != null && InventoryManager.stacksEqual(_inventory[i], itemstack))
 			{
 				return false;
 			}
