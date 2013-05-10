@@ -188,6 +188,12 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	}
 	
 	@Override
+	public boolean allowBucketFill()
+	{
+		return true;
+	}
+	
+	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
 		if(resource == null || (resource.itemID != LiquidDictionary.getCanonicalLiquid("mobEssence").itemID))
@@ -221,7 +227,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
