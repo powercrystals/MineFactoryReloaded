@@ -361,6 +361,7 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 		if(te instanceof TileEntityFactory)
 		{
 			((TileEntityFactory)te).onRedNetChanged(inputValue);
+			onNeighborBlockChange(world, x, y, z, MineFactoryReloadedCore.rednetCableBlock.blockID);
 		}
 	}
 }
