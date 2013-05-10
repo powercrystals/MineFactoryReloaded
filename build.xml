@@ -80,6 +80,8 @@
 		<echo message="Exctracting UniversalElectricity API... " />
 		<unzip src="${download.dir}/ue-api.zip" dest="${download.dir}/universalelectricity/" />
 		<move file="${download.dir}/universalelectricity/universalelectricity" todir="${mcpsrc.dir}" />
+		<echo message="Deleting stuff from the UE API that isn't actually the API... " />
+		<delete dir="${mcpsrc.dir}/minecraft/universalelectricity/components"/>
 		
 		<echo message="Exctracting ThermalExpansion API... " />
 		<unzip src="${download.dir}/te-api.zip" dest="${download.dir}/thermalexpansion/" />
@@ -156,7 +158,6 @@
 		<delete dir="${mcp.dir}/reobf/minecraft/thaumcraft"/>
 		<delete dir="${mcp.dir}/reobf/minecraft/thermalexpansion"/>
 		<delete dir="${mcp.dir}/reobf/minecraft/powercrystals/core"/>
-		<delete dir="${mcp.dir}/reobf/minecraft/universalelectricity/components"/>
 		
 		<copy todir="${apiclasses.dir}/powercrystals/minefactoryreloaded/api">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/api" />
