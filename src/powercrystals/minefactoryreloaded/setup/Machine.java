@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioFuelGenerator;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioReactor;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityBlockBreaker;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBlockSmasher;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityBreeder;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
@@ -93,6 +94,7 @@ public class Machine
 	public static Machine LaserDrill = new Machine(2, 0, "LaserDrill", TileEntityLaserDrill.class, "factoryLaserDrill", 0);
 	public static Machine LaserDrillPrecharger = new Machine(2, 1, "LaserDrillPrecharger", TileEntityLaserDrillPrecharger.class, "factoryLaserDrillPrecharger", 500);
 	public static Machine AutoAnvil = new Machine(2, 2, "AutoAnvil", TileEntityAutoAnvil.class, "factoryAnvil", 16);
+	public static Machine BlockSmasher = new Machine(2, 3, "BlockSmasher", TileEntityBlockSmasher.class, "factoryBlockSmasher", 1);
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;

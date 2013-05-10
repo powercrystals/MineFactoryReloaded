@@ -13,6 +13,7 @@ import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityBlockSmasher;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityEnchantmentRouter;
@@ -29,15 +30,19 @@ public class ServerPacketHandler implements IPacketHandler
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
 		int packetType = PacketWrapper.readPacketID(data);
 		
-		if (packetType == Packets.EnchanterButton) // client -> server: autoenchanter GUI buttons
+		if(packetType == Packets.EnchanterButton) // client -> server: autoenchanter GUI buttons
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
-			if (te instanceof TileEntityAutoEnchanter)
+			if(te instanceof TileEntityAutoEnchanter)
 			{
 				((TileEntityAutoEnchanter)te).setTargetLevel(((TileEntityAutoEnchanter)te).getTargetLevel() + (Integer)packetReadout[3]);
+			}
+			else if(te instanceof TileEntityBlockSmasher)
+			{
+				((TileEntityBlockSmasher)te).setFortune(((TileEntityBlockSmasher)te).getFortune() + (Integer)packetReadout[3]);
 			}
 		}
 		else if(packetType == Packets.HarvesterButton) // client -> server: harvester setting
