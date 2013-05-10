@@ -180,11 +180,24 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 		return 1;
 	}
 	
+	/*
+	 * This is canInsertItem
+	 */
 	@Override
-	public int getStartInventorySide(ForgeDirection side)
+    public boolean func_102007_a(int slot, ItemStack stack, int sideordinal)
 	{
-		if(side.ordinal() < 2) return 0;
-		return 1;
+		if(slot == 0) return true;
+		return false;
+	}
+
+	/*
+	 * This is canExtractItem
+	 */
+	@Override
+    public boolean func_102008_b(int slot, ItemStack itemstack, int sideordinal)
+	{
+		if(slot == 1) return true;
+		return false;
 	}
 	
 	@Override
