@@ -61,7 +61,7 @@ public class ItemSafariNet extends ItemFactory
 		
 		if(stack.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID)
 		{
-			infoList.add("Released creatures don't despawn normally.");
+			infoList.add("Released creatures don't despawn normally");
 		}
 		
 		else
@@ -70,7 +70,7 @@ public class ItemSafariNet extends ItemFactory
 			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
 			{
 				Class c = (Class)EntityList.stringToClassMapping.get(stack.getTagCompound().getString("id"));
-				if(c != null &&handler.validFor().isAssignableFrom(c))
+				if(c != null && handler.validFor().isAssignableFrom(c))
 				{
 					handler.addInformation(stack, player, infoList, advancedTooltips);
 				}
