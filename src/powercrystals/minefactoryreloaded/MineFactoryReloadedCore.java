@@ -225,6 +225,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item meatBucketItem;
 	public static Item pinkSlimeBucketItem;
 	public static Item pinkSlimeballItem;
+	public static Item safariNetJailerItem;
 
 	// client config
 	public static Property spyglassRange;
@@ -311,6 +312,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property meatBucketItemId;
 	public static Property pinkSlimeBucketItemId;
 	public static Property pinkSlimeballItemId;
+	public static Property safariNetJailerItemId;
 
 	public static Property zoolologistEntityId;
 	
@@ -452,6 +454,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		meatNuggetRawItem = (new ItemFactoryFood(meatNuggetRawItemId.getInt(), 1, 0.1F)).setUnlocalizedName("mfr.meat.nugget.raw");
 		meatNuggetCookedItem = (new ItemFactoryFood(meatNuggetCookedItemId.getInt(), 4, 0.1F)).setUnlocalizedName("mfr.meat.nugget.cooked");
 		pinkSlimeballItem = (new ItemFactory(pinkSlimeballItemId.getInt())).setUnlocalizedName("mfr.pinkslimeball");
+		safariNetJailerItem = (new ItemSafariNet(safariNetJailerItemId.getInt())).setUnlocalizedName("mfr.safarinet.jailer");
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{
@@ -718,6 +721,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		meatBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MeatBucket", 12029);
 		pinkSlimeBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeBucket", 12030);
 		pinkSlimeballItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeball", 12031);
+		safariNetJailerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetJailer", 12032);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 

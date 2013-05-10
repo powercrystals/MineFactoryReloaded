@@ -58,6 +58,12 @@ public class ItemSafariNet extends ItemFactory
 		{
 			infoList.add("It is a mystery");
 		}
+		
+		if(stack.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID)
+		{
+			infoList.add("Released creatures don't despawn normally.");
+		}
+		
 		else
 		{
 			infoList.add(stack.getTagCompound().getString("id"));
@@ -193,7 +199,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
 			{
-				if(itemstack.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)
+				if(isSingleUse(itemstack))
 				{
 					itemstack.stackSize--;
 				}
@@ -207,7 +213,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			if(spawnCreature(world, itemstack.getTagCompound(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
 			{
-				if(itemstack.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID)
+				if(isSingleUse(itemstack))
 				{
 					itemstack.stackSize--;
 				}
@@ -315,6 +321,10 @@ public class ItemSafariNet extends ItemFactory
 			entity.writeToNBT(c);
 
 			c.setString("id", (String)EntityList.classToStringMapping.get(entity.getClass()));
+			if(itemstack.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID)
+			{
+				c.setBoolean("PersistenceRequired", true);
+			}
 			
 			entity.setDead();
 			if(entity.isDead)
@@ -337,7 +347,7 @@ public class ItemSafariNet extends ItemFactory
 	
 	public static boolean isSingleUse(ItemStack s)
 	{
-		return s != null && s.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID;
+		return s != null && (s.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID || s.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
