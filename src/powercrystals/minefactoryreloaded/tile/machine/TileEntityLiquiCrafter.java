@@ -304,25 +304,35 @@ inv:	for(int i = 0; i < 9; i++)
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
-		if(side == ForgeDirection.UP || side == ForgeDirection.DOWN) return 10;
-		return 11;
+		return 10;
 	}
 
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
-		if(side == ForgeDirection.UP || side == ForgeDirection.DOWN) return 1;
-		return 18;
+		return 19;
+		//if(side == ForgeDirection.UP || side == ForgeDirection.DOWN) return 1;
+		//return 18;
 	}
 	
 	/*
-	 * This is canAddItem
-	 * Shouldn't allow items to be added to the output slot.
+	 * This is canInsertItem
 	 */
 	@Override
     public boolean func_102007_a(int slot, ItemStack stack, int sideordinal)
 	{
-		return (sideordinal == 0 || sideordinal == 1) ? false : true;
+		if(slot > 10) return true;
+		return false;
+	}
+
+	/*
+	 * This is canExtractItem
+	 */
+	@Override
+    public boolean func_102008_b(int slot, ItemStack itemstack, int sideordinal)
+	{
+		if(slot == 10) return true;
+		return false;
 	}
 	
 	@Override
