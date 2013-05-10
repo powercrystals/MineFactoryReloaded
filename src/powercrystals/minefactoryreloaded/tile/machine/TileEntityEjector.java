@@ -12,7 +12,6 @@ import powercrystals.core.util.Util;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
-@SuppressWarnings("unused")
 public class TileEntityEjector extends TileEntityFactory
 {
 	private boolean _lastRedstoneState;
