@@ -23,6 +23,8 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	
 	private boolean _isActive;
 	
+	protected int _rednetState;
+	
 	protected TileEntityFactory()
 	{
 		_forwardDirection = ForgeDirection.NORTH;
@@ -177,5 +179,10 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	public void onEntityCollidedWithBlock(Entity entity)
 	{
 		
+	}
+	
+	public void onRedNetChanged(int value)
+	{
+		_rednetState = value;
 	}
 }

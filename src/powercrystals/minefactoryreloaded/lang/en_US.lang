@@ -33,6 +33,8 @@ tile.mfr.machine.enchantmentrouter.name = Enchantment Router
 tile.mfr.machine.laserdrill.name = Laser Drill
 tile.mfr.machine.laserdrillprecharger.name = Laser Drill Precharger
 tile.mfr.machine.autoanvil.name = Auto-Anvil
+tile.mfr.machine.blocksmasher.name = Block Smasher
+tile.mfr.machine.rednote.name = RedNote Block
 
 tile.mfr.conveyor.default.name = Conveyor Belt
 tile.mfr.conveyor.white.name = Conveyor Belt (White)

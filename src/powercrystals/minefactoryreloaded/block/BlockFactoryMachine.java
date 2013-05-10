@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.BlockNBTManager;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
@@ -36,7 +38,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 
-public class BlockFactoryMachine extends BlockContainer
+public class BlockFactoryMachine extends BlockContainer implements IConnectableRedNet
 {
 	private int _mfrMachineBlockIndex;
 	
@@ -327,5 +329,38 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side)
 	{
 		return 0;
+	}
+
+	@Override
+	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return RedNetConnectionType.CableSingle;
+	}
+
+	@Override
+	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return null;
+	}
+
+	@Override
+	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
+	{
+		return 0;
+	}
+
+	@Override
+	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
+	{
+	}
+
+	@Override
+	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te instanceof TileEntityFactory)
+		{
+			((TileEntityFactory)te).onRedNetChanged(inputValue);
+		}
 	}
 }

@@ -38,6 +38,7 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityMeatPacker;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityOilFabricator;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityPlanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityRancher;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityRedNote;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntitySewer;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntitySlaughterhouse;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntitySludgeBoiler;
@@ -95,6 +96,7 @@ public class Machine
 	public static Machine LaserDrillPrecharger = new Machine(2, 1, "LaserDrillPrecharger", TileEntityLaserDrillPrecharger.class, "factoryLaserDrillPrecharger", 500);
 	public static Machine AutoAnvil = new Machine(2, 2, "AutoAnvil", TileEntityAutoAnvil.class, "factoryAnvil", 16);
 	public static Machine BlockSmasher = new Machine(2, 3, "BlockSmasher", TileEntityBlockSmasher.class, "factoryBlockSmasher", 1);
+	public static Machine RedNote = new Machine(2, 4, "RedNote", TileEntityRedNote.class, "factoryRedNote", 0);
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;
