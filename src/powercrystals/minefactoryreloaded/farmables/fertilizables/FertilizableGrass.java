@@ -2,11 +2,11 @@ package powercrystals.minefactoryreloaded.farmables.fertilizables;
 
 import java.util.Random;
 
-import powercrystals.minefactoryreloaded.api.FertilizerType;
-import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import powercrystals.minefactoryreloaded.api.FertilizerType;
+import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 
 public class FertilizableGrass implements IFactoryFertilizable
 {
@@ -15,7 +15,7 @@ public class FertilizableGrass implements IFactoryFertilizable
 	{
 		return (fertilizerType == FertilizerType.GrowPlant || fertilizerType == FertilizerType.Grass) && world.getBlockId(x, y + 1, z) == 0;
 	}
-
+	
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
@@ -36,10 +36,10 @@ public class FertilizableGrass implements IFactoryFertilizable
 				}
 			}
 		}
-
+		
 		return world.getBlockId(x, y + 1, z) != 0;
 	}
-
+	
 	@Override
 	public int getFertilizableBlockId()
 	{

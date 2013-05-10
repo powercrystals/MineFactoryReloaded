@@ -13,13 +13,13 @@ public class Square implements IRedNetLogicCircuit
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -35,31 +35,31 @@ public class Square implements IRedNetLogicCircuit
 		}
 		return new int[] { _value ? 15 : 0 };
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.wavegenerator.square";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return "Pd";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
 		return "Q";
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		_value = tag.getBoolean("state");
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{

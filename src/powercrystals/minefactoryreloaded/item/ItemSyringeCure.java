@@ -11,13 +11,13 @@ public class ItemSyringeCure extends ItemSyringe
 	{
 		super(id);
 	}
-
+	
 	@Override
 	public boolean canInject(World world, EntityLiving entity, ItemStack syringe)
 	{
 		return (entity instanceof EntityZombie && ((EntityZombie)entity).isVillager()); 
 	}
-
+	
 	@Override
 	public boolean inject(World world, EntityLiving entity, ItemStack syringe)
 	{

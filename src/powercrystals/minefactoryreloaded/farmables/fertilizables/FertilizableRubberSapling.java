@@ -15,13 +15,13 @@ public class FertilizableRubberSapling implements IFactoryFertilizable
 	{
 		return MineFactoryReloadedCore.rubberSaplingBlock.blockID;
 	}
-
+	
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
 		return fertilizerType == FertilizerType.GrowPlant;
 	}
-
+	
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{

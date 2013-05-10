@@ -1,7 +1,7 @@
 package powercrystals.minefactoryreloaded.setup;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.item.ItemStack;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import cpw.mods.fml.common.IFuelHandler;
 
 public class MineFactoryReloadedFuelHandler implements IFuelHandler

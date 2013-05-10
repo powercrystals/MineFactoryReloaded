@@ -2,13 +2,9 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiChronotyper;
@@ -16,6 +12,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerChronotyper;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityChronotyper extends TileEntityFactoryPowered
 {
@@ -58,7 +56,7 @@ public class TileEntityChronotyper extends TileEntityFactoryPowered
 	{
 		return "Chronotyper";
 	}
-
+	
 	@Override
 	protected boolean activateMachine()
 	{
@@ -93,25 +91,25 @@ public class TileEntityChronotyper extends TileEntityFactoryPowered
 	{
 		_moveOld = moveOld;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
 		return 200;
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{

@@ -1,7 +1,10 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.UtilInventory;
@@ -10,13 +13,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.common.ForgeDirection;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityFisher extends TileEntityFactoryPowered
 {
@@ -43,7 +41,7 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	public boolean activateMachine()
 	{
@@ -74,25 +72,25 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 	{
 		return ForgeDirection.UP;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 900;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
 		return 200;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -104,7 +102,7 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{

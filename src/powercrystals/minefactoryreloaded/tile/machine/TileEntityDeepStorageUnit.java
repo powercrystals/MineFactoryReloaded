@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,6 +11,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implements IDeepStorageUnit
 {
@@ -121,13 +121,13 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	{
 		_storedMeta = meta;
 	}
-
+	
 	@Override
 	public ForgeDirection getDropDirection()
 	{
-			return ForgeDirection.UP;
+		return ForgeDirection.UP;
 	}
-
+	
 	@Override
 	public void updateEntity()
 	{
@@ -157,7 +157,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		{
 			if(_storedQuantity == 0 &&
 					(_inventory[2] == null ||
-						(_inventory[2].itemID == _inventory[slot].itemID &&	_inventory[2].getItemDamage() == _inventory[slot].getItemDamage()))
+					(_inventory[2].itemID == _inventory[slot].itemID &&	_inventory[2].getItemDamage() == _inventory[slot].getItemDamage()))
 					&& _inventory[slot].getTagCompound() == null)
 			{
 				_storedId = _inventory[slot].itemID;
@@ -184,32 +184,32 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	{
 		return 3;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Deep Storage Unit";
 	}
-
+	
 	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
-
+	
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
 		return player.getDistanceSq(xCoord, yCoord, zCoord) <= 64D;
 	}
-
+	
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
 		if(side.ordinal() > 5) return 0;
 		return _isSideOutput[side.ordinal()] ? 2 : 0;
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
@@ -225,7 +225,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	 * Should only allow matching items to be inserted in the "in" slot. Nothing goes in the "out" slot.
 	 */
 	@Override
-    public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
+	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
 		if(sideordinal > 5) return false;
 		if(!_isSideOutput[sideordinal])
@@ -239,7 +239,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		}
 		return false;
 	}
-
+	
 	/*
 <<<<<<< HEAD
 	 * This is canExtractItem, in newer forge versions
@@ -248,7 +248,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	 * Should only allow removal from the output slot.
 	 */
 	@Override
-    public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
+	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
 		if(sideordinal > 5) return false;
 		return _isSideOutput[sideordinal];
@@ -287,7 +287,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		_isSideOutput[4] = nbttagcompound.getBoolean("side4output");
 		_isSideOutput[5] = nbttagcompound.getBoolean("side5output");
 	}
-
+	
 	@Override
 	public ItemStack getStoredItemType()
 	{
@@ -297,7 +297,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		}
 		return null;
 	}
-
+	
 	@Override
 	public void setStoredItemCount(int amount)
 	{
@@ -322,7 +322,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		}
 		_storedQuantity = amount;
 	}
-
+	
 	@Override
 	public void setStoredItemType(int itemID, int meta, int Count)
 	{
@@ -331,7 +331,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		_storedMeta = meta;
 		_storedQuantity = Count;
 	}
-
+	
 	@Override
 	public int getMaxStoredCount()
 	{

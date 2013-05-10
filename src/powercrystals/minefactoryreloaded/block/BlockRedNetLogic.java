@@ -2,18 +2,6 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
-import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
-import powercrystals.minefactoryreloaded.core.BlockNBTManager;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
-import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
-import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
-import powercrystals.minefactoryreloaded.item.ItemRedNetMemoryCard;
-import powercrystals.minefactoryreloaded.item.ItemRedNetMeter;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -24,6 +12,18 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import powercrystals.minefactoryreloaded.core.BlockNBTManager;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
+import powercrystals.minefactoryreloaded.item.ItemRedNetMemoryCard;
+import powercrystals.minefactoryreloaded.item.ItemRedNetMeter;
+import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockRedNetLogic extends BlockContainer implements IConnectableRedNet
 {
@@ -47,7 +47,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te instanceof TileEntityRedNetLogic)
 		{
-			int facing = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+			int facing = MathHelper.floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
 			if(facing == 0)
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 3, 3);
@@ -74,7 +74,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			}
 		}
 	}
-
+	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, int blockId, int meta)
 	{
@@ -87,7 +87,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	{
 		return new TileEntityRedNetLogic();
 	}
-
+	
 	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
@@ -101,7 +101,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		}
 		return RedNetConnectionType.CableAll;
 	}
-
+	
 	@Override
 	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
 	{
@@ -115,7 +115,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			return 0;
 		}
 	}
-
+	
 	@Override
 	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
 	{
@@ -129,7 +129,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			return new int[16];
 		}
 	}
-
+	
 	@Override
 	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
 	{
@@ -139,7 +139,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			logic.onInputsChanged(side, inputValues);
 		}
 	}
-
+	
 	@Override
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{
@@ -167,7 +167,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 				{
 					if(!player.capabilities.isCreativeMode)
 					{
-					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+						player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 					}
 					return true;
 				}

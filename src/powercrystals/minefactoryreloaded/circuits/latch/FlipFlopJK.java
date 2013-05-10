@@ -13,13 +13,13 @@ public class FlipFlopJK implements IRedNetLogicCircuit
 	{
 		return 3;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -50,32 +50,32 @@ public class FlipFlopJK implements IRedNetLogicCircuit
 			return new int[] { 0, 15 };
 		}
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.flipflop.jk";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return pin == 0 ? "J" : pin == 1 ? "K" : "CLK";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
 		return pin == 0 ? "Q" : "Q#";
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		_value = tag.getBoolean("state");
 		_lastClockState = tag.getBoolean("lastClockState");
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{

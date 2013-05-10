@@ -19,11 +19,11 @@ public class RedNetCardsModel extends ModelBase {
 	ModelRenderer Lvl3Cord2;
 	ModelRenderer Lvl3Cord3;
 	ModelRenderer Lvl3Bit2;
-
+	
 	public RedNetCardsModel() {
 		textureWidth = 48;
 		textureHeight = 24;
-
+		
 		Empty = new ModelRenderer(this, 42, 16);
 		Empty.addBox(0F, 0F, 0F, 1, 5, 1);
 		Empty.setRotationPoint(0F, 0F, 0F);
@@ -95,23 +95,23 @@ public class RedNetCardsModel extends ModelBase {
 		Lvl3Bit2.setTextureSize(48, 24);
 		setRotation(Lvl3Bit2, 0F, 0F, 0F);
 	}
-
+	
 	public void renderEmptySlot(float scale) {
 		Empty.render(scale);
 	}
-
+	
 	public void renderLevel1(float scale) {
 		Lvl1Base.render(scale);
 		Lvl1Fan.render(scale);
 	}
-
+	
 	public void renderLevel2(float scale) {
 		Lvl2Base.render(scale);
 		Lvl2Fan.render(scale);
 		Lvl2Bit1.render(scale);
 		Lvl2Bit2.render(scale);
 	}
-
+	
 	public void renderLevel3(float scale) {
 		Lvl3Base.render(scale);
 		Lvl3Fan.render(scale);
@@ -121,7 +121,7 @@ public class RedNetCardsModel extends ModelBase {
 		Lvl3Cord2.render(scale);
 		Lvl3Cord3.render(scale);
 	}
-
+	
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;

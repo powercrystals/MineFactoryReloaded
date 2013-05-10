@@ -25,7 +25,7 @@ public class HarvestableRedPowerFlax implements IFactoryHarvestable
 	{
 		return _sourceId;
 	}
-
+	
 	@Override
 	public HarvestType getHarvestType()
 	{
@@ -37,13 +37,13 @@ public class HarvestableRedPowerFlax implements IFactoryHarvestable
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		return world.getBlockId(x, y + 1, z) == _sourceId;
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
@@ -52,13 +52,13 @@ public class HarvestableRedPowerFlax implements IFactoryHarvestable
 		drops.addAll(Block.blocksList[_sourceId].getBlockDropped(world, x, y + 1, z, world.getBlockMetadata(x, y + 1, z), 0));
 		return drops;
 	}
-
+	
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
 		world.setBlockToAir(x, y + 1, z);
 	}
-
+	
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{

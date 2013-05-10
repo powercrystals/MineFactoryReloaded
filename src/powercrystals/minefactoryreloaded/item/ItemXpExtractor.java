@@ -2,9 +2,6 @@ package powercrystals.minefactoryreloaded.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -12,6 +9,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemXpExtractor extends ItemFactory
 {
@@ -43,7 +43,7 @@ public class ItemXpExtractor extends ItemFactory
 	{
 		return 32;
 	}
-
+	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
@@ -51,7 +51,7 @@ public class ItemXpExtractor extends ItemFactory
 		{
 			player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 		}
-
+		
 		return stack;
 	}
 	

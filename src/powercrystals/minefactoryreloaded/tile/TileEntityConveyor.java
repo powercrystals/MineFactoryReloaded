@@ -1,17 +1,17 @@
 package powercrystals.minefactoryreloaded.tile;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-import powercrystals.core.block.IAirDropTarget;
-import powercrystals.core.net.PacketWrapper;
-import powercrystals.core.position.IRotateableTile;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.net.Packets;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.block.IAirDropTarget;
+import powercrystals.core.net.PacketWrapper;
+import powercrystals.core.position.IRotateableTile;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.net.Packets;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class TileEntityConveyor extends TileEntity implements IRotateableTile, IAirDropTarget
 {
@@ -76,7 +76,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 			rotateTo(worldObj, xCoord, yCoord, zCoord, 1);
 		}
 		
-
+		
 		if(md == 1)
 		{
 			int nextBlockId = worldObj.getBlockId(xCoord, yCoord, zCoord + 1);
@@ -111,7 +111,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 			rotateTo(worldObj, xCoord, yCoord, zCoord, 2);
 		}
 		
-
+		
 		if(md == 2)
 		{
 			int nextBlockId = worldObj.getBlockId(xCoord - 1, yCoord, zCoord);
@@ -146,7 +146,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 			rotateTo(worldObj, xCoord, yCoord, zCoord, 3);
 		}
 		
-
+		
 		if(md == 3)
 		{
 			int nextBlockId = worldObj.getBlockId(xCoord, yCoord, zCoord - 1);
@@ -186,13 +186,13 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	{
 		world.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, newmd, 2);
 	}
-
+	
 	@Override
 	public boolean canRotate()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public ForgeDirection getDirectionFacing() 
 	{

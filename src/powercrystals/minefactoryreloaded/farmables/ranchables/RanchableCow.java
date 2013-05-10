@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
-
 import powercrystals.core.inventory.IInventoryManager;
 import powercrystals.core.inventory.InventoryManager;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
@@ -24,7 +23,7 @@ public class RanchableCow implements IFactoryRanchable
 	{
 		return EntityCow.class;
 	}
-
+	
 	@Override
 	public List<ItemStack> ranch(World world, EntityLiving entity, IInventory rancher)
 	{

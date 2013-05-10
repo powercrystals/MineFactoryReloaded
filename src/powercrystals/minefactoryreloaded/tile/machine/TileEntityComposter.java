@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
@@ -18,6 +16,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityComposter extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
@@ -77,19 +77,19 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	{
 		return ForgeDirection.UP;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 100;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -101,7 +101,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
@@ -114,31 +114,31 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 			return _tank.fill(resource, doFill);
 		}
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction) 
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
@@ -148,7 +148,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 		}
 		return null;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -160,7 +160,7 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{

@@ -12,13 +12,13 @@ public class OneShot implements IRedNetLogicCircuit
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -34,31 +34,31 @@ public class OneShot implements IRedNetLogicCircuit
 		_lastState = inputValues[0] > 0;
 		return new int[] { output };
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.oneshot";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return "I";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
 		return "O";
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		_lastState = tag.getBoolean("lastState");
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{

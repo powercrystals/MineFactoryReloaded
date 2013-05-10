@@ -21,13 +21,13 @@ public class ConveyorRenderer implements ISimpleBlockRenderingHandler
 		renderConveyorWorld(renderer, world, x, y, z, block, modelId);
 		return true;
 	}
-
+	
 	@Override
 	public boolean shouldRender3DInInventory()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public int getRenderId()
 	{
@@ -59,10 +59,10 @@ public class ConveyorRenderer implements ISimpleBlockRenderingHandler
 		float vert3z = blockZ + 1;
 		float vert4z = blockZ + 0;
 		
-		float vert1y = (float)blockY + renderHeight;
-		float vert2y = (float)blockY + renderHeight;
-		float vert3y = (float)blockY + renderHeight;
-		float vert4y = (float)blockY + renderHeight;
+		float vert1y = blockY + renderHeight;
+		float vert2y = blockY + renderHeight;
+		float vert3y = blockY + renderHeight;
+		float vert4y = blockY + renderHeight;
 		
 		if(conveyorMetadata == 0 || conveyorMetadata == 4 || conveyorMetadata == 8)
 		{

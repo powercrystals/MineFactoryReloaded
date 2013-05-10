@@ -11,13 +11,13 @@ public class ItemSyringeSlime extends ItemSyringe
 	{
 		super(id);
 	}
-
+	
 	@Override
 	public boolean canInject(World world, EntityLiving entity, ItemStack syringe)
 	{
 		return entity instanceof EntitySlime && ((EntitySlime)entity).getSlimeSize() < 8;
 	}
-
+	
 	@Override
 	public boolean inject(World world, EntityLiving entity, ItemStack syringe)
 	{
@@ -25,5 +25,5 @@ public class ItemSyringeSlime extends ItemSyringe
 		slime.setSlimeSize(slime.getSlimeSize() << 1);
 		return true;
 	}
-
+	
 }

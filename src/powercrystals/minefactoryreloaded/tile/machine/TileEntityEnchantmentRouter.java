@@ -2,16 +2,15 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.Map;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeDirection;
 import powercrystals.minefactoryreloaded.gui.client.GuiEnchantmentRouter;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerEnchantmentRouter;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.InventoryPlayer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityEnchantmentRouter extends TileEntityItemRouter
 {
@@ -21,7 +20,7 @@ public class TileEntityEnchantmentRouter extends TileEntityItemRouter
 	{
 		super();
 	}
-
+	
 	@Override
 	@SuppressWarnings("rawtypes")
 	protected boolean isSideValidForItem(ItemStack stack, ForgeDirection side)

@@ -2,9 +2,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import buildcraft.core.IMachine;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -17,6 +14,9 @@ import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
+import buildcraft.core.IMachine;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityLaserDrill extends TileEntityFactory implements IInventory, IMachine
 {
@@ -52,12 +52,12 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 		{
 			return;
 		}
-
+		
 		if(shouldCheckDrill())
 		{
 			updateDrill();
 		}
-
+		
 		int lowerId = worldObj.getBlockId(xCoord, yCoord - 1, zCoord);
 		
 		if(_bedrockLevel < 0)
@@ -68,14 +68,14 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 			}
 			return;
 		}
-			
+		
 		if(lowerId != MineFactoryReloadedCore.fakeLaserBlock.blockID && (Block.blocksList[lowerId] == null || Block.blocksList[lowerId].isAirBlock(worldObj, xCoord, yCoord - 1, zCoord)))
 		{
 			worldObj.setBlock(xCoord, yCoord - 1, zCoord, MineFactoryReloadedCore.fakeLaserBlock.blockID);
 		}
 		
 		int energyToDraw = Math.min(_energyDrawMax, _energyStored / 4);
-		int energyPerWorkHere = (int)(_energyPerWork * (1 - 0.2 * Math.min((double)(yCoord - _bedrockLevel), 128.0) / 128.0));
+		int energyPerWorkHere = (int)(_energyPerWork * (1 - 0.2 * Math.min(yCoord - _bedrockLevel, 128.0) / 128.0));
 		
 		int workDone = energyToDraw / energyPerWorkHere;
 		_workStored += workDone;
@@ -110,7 +110,7 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 				return;
 			}
 		}
-
+		
 		_bedrockLevel = -1;
 	}
 	
@@ -145,76 +145,76 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	}
 	
 	// IInventory
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public ItemStack getStackInSlot(int i)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ItemStack decrStackSize(int i, int j)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ItemStack getStackInSlotOnClosing(int i)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public void setInventorySlotContents(int i, ItemStack itemstack)
 	{
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Laser Drill";
 	}
-
+	
 	@Override
 	public boolean isInvNameLocalized()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
-
+	
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer)
 	{
 		return entityplayer.getDistanceSq(xCoord, yCoord, zCoord) <= 64;
 	}
-
+	
 	@Override
 	public void openChest()
 	{
 	}
-
+	
 	@Override
 	public void closeChest()
 	{
 	}
-
+	
 	@Override
 	public boolean isStackValidForSlot(int i, ItemStack itemstack)
 	{
 		return false;
 	}
-
+	
 	// IMachine
 	
 	@Override
@@ -222,19 +222,19 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean manageLiquids()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean allowActions()
 	{

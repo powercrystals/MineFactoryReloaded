@@ -2,13 +2,9 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
-
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
@@ -19,13 +15,15 @@ import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityFertilizer extends TileEntityFactoryPowered
 {
 	private Random _rand;
 	
 	private HarvestAreaManager _areaManager;
-
+	
 	public TileEntityFertilizer()
 	{
 		super(Machine.Fertilizer);
@@ -57,7 +55,7 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 	{
 		return new ContainerUpgradable(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	public boolean activateMachine()
 	{
@@ -98,11 +96,11 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 				return true;
 			}
 		}
-			
+		
 		setIdleTicks(getIdleTicksMax());
 		return false;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -114,31 +112,31 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 	{
 		return 10;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 32000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
 		return 20;
 	}
-
+	
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{

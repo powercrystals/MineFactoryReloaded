@@ -14,7 +14,7 @@ public class EntityLivingHandler implements ISafariNetHandler
 	{
 		return EntityLiving.class;
 	}
-
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips)

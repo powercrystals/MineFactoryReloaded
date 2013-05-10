@@ -14,13 +14,13 @@ public class RandomizerDigital extends StatelessCircuit implements IRedNetLogicC
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -37,19 +37,19 @@ public class RandomizerDigital extends StatelessCircuit implements IRedNetLogicC
 			return new int[] { 0 };
 		}
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.randomizer.digital";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return "";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

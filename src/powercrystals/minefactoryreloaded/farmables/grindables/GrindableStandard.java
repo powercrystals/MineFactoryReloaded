@@ -7,7 +7,6 @@ import java.util.Random;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 
@@ -44,7 +43,7 @@ public class GrindableStandard implements IFactoryGrindable
 	{
 		return _grindableClass;
 	}
-
+	
 	@Override
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{

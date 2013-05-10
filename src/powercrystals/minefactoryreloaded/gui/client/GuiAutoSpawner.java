@@ -1,12 +1,12 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.client.gui.GuiButton;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiAutoSpawner extends GuiFactoryPowered
 {
@@ -22,7 +22,7 @@ public class GuiAutoSpawner extends GuiFactoryPowered
 	public void initGui()
 	{
 		super.initGui();
-
+		
 		int xOffset = (this.width - this.xSize) / 2;
 		int yOffset = (this.height - this.ySize) / 2;
 		

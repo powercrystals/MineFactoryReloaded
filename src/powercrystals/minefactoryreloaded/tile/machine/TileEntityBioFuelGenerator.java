@@ -1,14 +1,14 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraftforge.liquids.LiquidDictionary;
+import net.minecraftforge.liquids.LiquidStack;
 import powercrystals.minefactoryreloaded.gui.client.GuiBioFuelGenerator;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioFuelGenerator;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityLiquidGenerator;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraftforge.liquids.LiquidDictionary;
-import net.minecraftforge.liquids.LiquidStack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 {
@@ -22,13 +22,13 @@ public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 	{
 		return LiquidDictionary.getLiquid("biofuel", 1);
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{

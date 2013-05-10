@@ -3,9 +3,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 import java.util.LinkedList;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.InventoryCrafting;
@@ -25,6 +22,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 // slots 0-8 craft grid, 9 craft grid output, 10 output, 11-28 resources
 public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implements ITankContainerBucketable
@@ -86,9 +85,9 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 			if(!worldObj.isRemote &&
 					_inventory[9] != null &&
 					(_inventory[10] == null ||
-						(_inventory[10].stackSize + _inventory[9].stackSize <= _inventory[9].getMaxStackSize() &&
-						_inventory[9].itemID == _inventory[10].itemID &&
-						_inventory[9].getItemDamage() == _inventory[10].getItemDamage())))
+					(_inventory[10].stackSize + _inventory[9].stackSize <= _inventory[9].getMaxStackSize() &&
+					_inventory[9].itemID == _inventory[10].itemID &&
+					_inventory[9].getItemDamage() == _inventory[10].getItemDamage())))
 			{
 				checkResources();
 			}
@@ -101,7 +100,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	{
 		List<ItemResourceTracker> requiredItems = new LinkedList<ItemResourceTracker>();
 		
-inv:	for(int i = 0; i < 9; i++)
+		inv:	for(int i = 0; i < 9; i++)
 		{
 			if(_inventory[i] != null)
 			{
@@ -170,7 +169,7 @@ inv:	for(int i = 0; i < 9; i++)
 				}
 			}
 		}
-
+		
 		for(ItemResourceTracker t : requiredItems)
 		{
 			if(t.found < t.required)
@@ -261,13 +260,13 @@ inv:	for(int i = 0; i < 9; i++)
 	{
 		_inventory[9] = findMatchingRecipe();
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 29;
 	}
-
+	
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
@@ -282,31 +281,31 @@ inv:	for(int i = 0; i < 9; i++)
 		if(slot < 9) calculateOutput();
 		return result;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "LiquiCrafter";
 	}
-
+	
 	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
-
+	
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
 		return player.getDistanceSq(xCoord, yCoord, zCoord) <= 64D;
 	}
-
+	
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
 		return 10;
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
@@ -316,14 +315,14 @@ inv:	for(int i = 0; i < 9; i++)
 	}
 	
 	@Override
-    public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
+	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
 		if(slot > 10) return true;
 		return false;
 	}
-
+	
 	@Override
-    public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
+	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
 		if(slot == 10) return true;
 		return false;
@@ -334,7 +333,7 @@ inv:	for(int i = 0; i < 9; i++)
 	{
 		return false;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
@@ -344,7 +343,7 @@ inv:	for(int i = 0; i < 9; i++)
 		if(match >= 0) return _tanks[match].fill(resource, doFill);
 		return 0;
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
@@ -360,7 +359,7 @@ inv:	for(int i = 0; i < 9; i++)
 	{
 		return false;
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
@@ -368,19 +367,19 @@ inv:	for(int i = 0; i < 9; i++)
 		if(match >= 0) return _tanks[match].drain(maxDrain, doDrain);
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return _tanks[tankIndex].drain(maxDrain, doDrain);
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return _tanks;
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
@@ -390,7 +389,7 @@ inv:	for(int i = 0; i < 9; i++)
 		if(match >= 0) return _tanks[match];
 		return null;
 	}
-
+	
 	private int findFirstEmptyTank()
 	{
 		for(int i = 0; i < 9; i++)
@@ -403,7 +402,7 @@ inv:	for(int i = 0; i < 9; i++)
 		
 		return -1;
 	}
-
+	
 	private int findFirstNonEmptyTank()
 	{
 		for(int i = 0; i < 9; i++)
@@ -466,12 +465,12 @@ inv:	for(int i = 0; i < 9; i++)
 			}
 		}
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeToNBT(nbttagcompound);
-
+		
 		NBTTagList tanks = new NBTTagList();
 		for(int i = 0; i < _tanks.length; i++)
 		{

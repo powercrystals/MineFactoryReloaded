@@ -31,16 +31,16 @@ public class AutoEnchantmentHelper extends EnchantmentHelper
 		Map<Integer, Integer> existingEnchants = getEnchantments(stack);
 		
 		boolean isBook = stack.itemID == Item.book.itemID;
-
+		
 		if(isBook)
 		{
 			stack.itemID = Item.enchantedBook.itemID;
 		}
-
+		
 		Collections.shuffle(enchantments);
 		if(enchantments != null)
 		{
-outerlist:	for(EnchantmentData newEnchant : enchantments)
+			outerlist:	for(EnchantmentData newEnchant : enchantments)
 			{
 				if(isBook)
 				{
@@ -64,7 +64,7 @@ outerlist:	for(EnchantmentData newEnchant : enchantments)
 				}
 			}
 		}
-
+		
 		return stack;
 	}
 	
@@ -80,11 +80,11 @@ outerlist:	for(EnchantmentData newEnchant : enchantments)
 		}
 		stack.getTagCompound().setTag("ench", tagList);
 	}
-
+	
 	public static List<EnchantmentData> buildEnchantmentList(Random rand, ItemStack stack, int level)
 	{
 		int itemEnchantability = stack.getItem().getItemEnchantability();
-
+		
 		if(itemEnchantability <= 0)
 		{
 			return null;
@@ -95,25 +95,25 @@ outerlist:	for(EnchantmentData newEnchant : enchantments)
 			itemEnchantability = 1 + rand.nextInt((itemEnchantability >> 1) + 1) + rand.nextInt((itemEnchantability >> 1) + 1);
 			int var5 = itemEnchantability + level;
 			float var6 = (rand.nextFloat() + rand.nextFloat() - 1.0F) * 0.15F;
-			int targetEnchantability = (int)((float)var5 * (1.0F + var6) + 0.5F);
-
+			int targetEnchantability = (int)(var5 * (1.0F + var6) + 0.5F);
+			
 			if(targetEnchantability < 1)
 			{
 				targetEnchantability = 1;
 			}
-
+			
 			List<EnchantmentData> enchantmentList = null;
 			Map<Integer, EnchantmentData> enchantmentMap = mapEnchantmentData(targetEnchantability, stack);
-
+			
 			if(enchantmentMap != null && !enchantmentMap.isEmpty())
 			{
 				EnchantmentData enchData = (EnchantmentData)WeightedRandom.getRandomItem(rand, enchantmentMap.values());
-
+				
 				if(enchData != null)
 				{
 					enchantmentList = new ArrayList<EnchantmentData>();
 					enchantmentList.add(enchData);
-
+					
 					for(int i = targetEnchantability; rand.nextInt(50) <= i; i >>= 1)
 					{
 						for(Integer enchIndex : enchantmentMap.keySet())
@@ -125,17 +125,17 @@ outerlist:	for(EnchantmentData newEnchant : enchantments)
 								{
 									continue;
 								}
-
+								
 								validWithPreviousEnchants = false;
 							}
 							if(!validWithPreviousEnchants)
 							{
 								enchantmentMap.remove(enchIndex);
 							}
-
+							
 							break;
 						}
-
+						
 						if(!enchantmentMap.isEmpty())
 						{
 							EnchantmentData randomEnchant = (EnchantmentData)WeightedRandom.getRandomItem(rand, enchantmentMap.values());
@@ -144,7 +144,7 @@ outerlist:	for(EnchantmentData newEnchant : enchantments)
 					}
 				}
 			}
-
+			
 			return enchantmentList;
 		}
 	}
@@ -153,11 +153,11 @@ outerlist:	for(EnchantmentData newEnchant : enchantments)
 	{
 		HashMap<Integer, EnchantmentData> enchantmentMap = null;
 		boolean isBook = stack.itemID == Item.book.itemID;
-
+		
 		for(int var7 = 0; var7 < Enchantment.enchantmentsList.length; ++var7)
 		{
 			Enchantment enchantment = Enchantment.enchantmentsList[var7];
-
+			
 			if(enchantment != null && (enchantment.canApplyAtEnchantingTable(stack) || isBook))
 			{
 				for(int enchLevel = enchantment.getMinLevel(); enchLevel <= enchantment.getMaxLevel(); ++enchLevel)
@@ -168,13 +168,13 @@ outerlist:	for(EnchantmentData newEnchant : enchantments)
 						{
 							enchantmentMap = new HashMap<Integer, EnchantmentData>();
 						}
-
+						
 						enchantmentMap.put(Integer.valueOf(enchantment.effectId), new EnchantmentData(enchantment, enchLevel));
 					}
 				}
 			}
 		}
-
+		
 		return enchantmentMap;
 	}
 }

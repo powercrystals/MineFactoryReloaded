@@ -2,10 +2,6 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.List;
 
-import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,6 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockRedNetLogic extends ItemBlock
 {

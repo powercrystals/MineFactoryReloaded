@@ -6,8 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
@@ -21,14 +21,14 @@ import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = "MineFactoryReloaded|CompatPams", name = "MFR Compat: Pam's Mods", version = MineFactoryReloadedCore.version,
 dependencies = "after:MineFactoryReloaded;after:PamHCAsparagus;after:PamHCBean;after:PamHCBeet;after:PamHCBellpepper;"
- + "after:PamHCBlackberry;after:PamHCBlueberry;after:PamHCBroccoli;after:PamHCCactusfruit;after:PamHCCandle;"
- + "after:PamHCCantaloupe;after:PamHCCelery;after:PamHCChilipepper;after:PamHCCoffee;after:PamHCCorn;after:PamHCCotton;"
- + "after:PamHCCranberry;after:PamHCCucumber;after:PamHCEggplant;after:PamHCGarlic;after:PamHCGinger;"
- + "after:PamHCGrape;after:PamHCKiwi;after:PamHCLettuce;after:PamHCMustard;after:PamHCOnion;"
- + "after:PamHCPeanut;after:PamHCPeas;after:PamHCPineapple;after:PamHCRadish;after:PamHCRaspberry;"
- + "after:PamHCRice;after:PamHCRotten;after:PamHCSpiceleaf;after:PamHCStrawberry;after:PamHCSunflower;"
- + "after:PamHCSweetpotato;after:PamHCTea;after:PamHCTomato;after:PamHCTurnip;after:PamHCWhitemushroom;"
- + "after:PamHCZucchini;after:PamHarvestCraft;after:PamWeeeFlowers")
+		+ "after:PamHCBlackberry;after:PamHCBlueberry;after:PamHCBroccoli;after:PamHCCactusfruit;after:PamHCCandle;"
+		+ "after:PamHCCantaloupe;after:PamHCCelery;after:PamHCChilipepper;after:PamHCCoffee;after:PamHCCorn;after:PamHCCotton;"
+		+ "after:PamHCCranberry;after:PamHCCucumber;after:PamHCEggplant;after:PamHCGarlic;after:PamHCGinger;"
+		+ "after:PamHCGrape;after:PamHCKiwi;after:PamHCLettuce;after:PamHCMustard;after:PamHCOnion;"
+		+ "after:PamHCPeanut;after:PamHCPeas;after:PamHCPineapple;after:PamHCRadish;after:PamHCRaspberry;"
+		+ "after:PamHCRice;after:PamHCRotten;after:PamHCSpiceleaf;after:PamHCStrawberry;after:PamHCSunflower;"
+		+ "after:PamHCSweetpotato;after:PamHCTea;after:PamHCTomato;after:PamHCTurnip;after:PamHCWhitemushroom;"
+		+ "after:PamHCZucchini;after:PamHarvestCraft;after:PamWeeeFlowers")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Pam
 {
@@ -37,19 +37,19 @@ public class Pam
 		BUSH("bushes"),
 		CROP("crops"),
 		MISC("misc");
-
+		
 		private String packageName;
 		Category(String packageName)
 		{
 			this.packageName = packageName;
 		}
-
+		
 		public String getPackageName()
 		{
 			return packageName;
 		}
 	}
-
+	
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
@@ -68,7 +68,7 @@ public class Pam
 			registerBush("Spiceleaf", true, true);
 			registerBush("Strawberry", true, true);
 			registerBush("Sunflower", false, true);
-
+			
 			// Crops
 			registerCrop("Asparagus", false, false);
 			registerCrop("Bean", false, false);
@@ -96,11 +96,11 @@ public class Pam
 			registerCrop("Tomato", true, false);
 			registerCrop("Turnip", false, false);
 			registerCrop("Zucchini", true, false);
-
+			
 			// misc types
 			registerPamMod("Candle", "Candleberry", Category.MISC, true, true, Block.tilledField.blockID);
 			registerMisc("Cotton", true, true);
-
+			
 			// plants that require different base soils
 			registerPamMod("Rice", "Rice", Category.CROP, false, false, Block.waterStill.blockID);
 			registerPamMod("Cranberry", "Cranberry", Category.BUSH, false, true, Block.waterStill.blockID);
@@ -118,7 +118,7 @@ public class Pam
 				x.printStackTrace();
 			}
 		}
-
+		
 		
 		if(!Loader.isModLoaded("PamWeeeFlowers"))
 		{
@@ -160,22 +160,22 @@ public class Pam
 	{
 		registerPamModBasic(modName, Category.BUSH, isPerennial, hasWild);
 	}
-
+	
 	private static void registerCrop(String modName, boolean isPerennial, boolean hasWild)
 	{
 		registerPamModBasic(modName, Category.CROP, isPerennial, hasWild);
 	}
-
+	
 	private static void registerMisc(String modName, boolean isPerennial, boolean hasWild)
 	{
 		registerPamModBasic(modName, Category.MISC, isPerennial, hasWild);
 	}
-
+	
 	private static void registerPamModBasic(String modName, Category category, boolean isPerennial, boolean hasWild)
 	{
 		registerPamMod(modName, modName, category, isPerennial, hasWild, Block.tilledField.blockID);
 	}
-
+	
 	private static void registerPamMod(String modName, String cropName, Category category, boolean isPerennial, boolean hasWild, int plantableBlockId)
 	{
 		try
@@ -188,11 +188,11 @@ public class Pam
 			cropNameLC = cropName.toLowerCase();
 			final String baseClassPath;
 			baseClassPath = String.format("mods.PamHarvestCraft.%s.%s", category.getPackageName(), modName.toLowerCase());
-
+			
 			mod = Class.forName(String.format("%s.PamHC%s", baseClassPath, modName));
 			blockIdCrop = ((Block)mod.getField(String.format("pam%sCrop", cropNameLC)).get(null)).blockID;
 			seedId = ((Item)mod.getField(String.format("%sseedItem", cropNameLC)).get(null)).itemID;
-
+			
 			if (plantableBlockId == Block.tilledField.blockID)
 			{
 				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockIdCrop));
@@ -201,13 +201,13 @@ public class Pam
 			{
 				MFRRegistry.registerPlantable(new PlantablePamSpecial(blockIdCrop, seedId, plantableBlockId));
 			}
-
+			
 			if(hasWild)
 			{
 				blockIdWild = ((Block)mod.getField(String.format("pam%sWild", cropNameLC)).get(null)).blockID;
 				MFRRegistry.registerHarvestable(new HarvestableStandard(blockIdWild, HarvestType.Normal));
 			}
-
+			
 			if(isPerennial)
 			{
 				MFRRegistry.registerHarvestable(new HarvestablePamsPerennial(blockIdCrop));
@@ -216,7 +216,7 @@ public class Pam
 			{
 				MFRRegistry.registerHarvestable(new HarvestablePams(blockIdCrop));
 			}
-
+			
 			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockIdCrop,
 					Class.forName(String.format("%s.BlockPam%sCrop", baseClassPath, cropName)).getMethod("fertilize", World.class, int.class, int.class, int.class), 7));
 		}

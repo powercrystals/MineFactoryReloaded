@@ -2,9 +2,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.Map;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -23,11 +20,13 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerAutoAnvil;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITankContainer
 {
 	private LiquidTank _tank;
-
+	
 	private int maximumCost;
 	private int stackSizeToBeUsedInRepair;
 	
@@ -38,7 +37,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 		super(Machine.AutoAnvil);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
@@ -50,7 +49,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -75,7 +74,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 	{
 		return new ContainerAutoAnvil(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	protected boolean activateMachine()
 	{
@@ -127,13 +126,13 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 		_output = getAnvilOutput();
 		setWorkDone(0);
 	}
-
+	
 	private ItemStack getAnvilOutput()
 	{
 		ItemStack startingItem = _inventory[0];
 		this.maximumCost = 0;
 		int totalEnchCost = 0;
-
+		
 		if(startingItem == null)
 		{
 			return null;
@@ -149,20 +148,20 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 			boolean enchantingWithBook = false;
 			int repairCost = outputItem.getRepairCost() + (addedItem == null ? 0 : addedItem.getRepairCost());
 			this.stackSizeToBeUsedInRepair = 0;
-
+			
 			if(addedItem != null)
 			{
 				enchantingWithBook = addedItem.itemID == Item.enchantedBook.itemID && Item.enchantedBook.func_92110_g(addedItem).tagCount() > 0;
-
+				
 				if(outputItem.isItemStackDamageable() && Item.itemsList[outputItem.itemID].getIsRepairable(outputItem, addedItem))
 				{
 					int currentDamage = Math.min(outputItem.getItemDamageForDisplay(), outputItem.getMaxDamage() / 4);
-
+					
 					if(currentDamage <= 0)
 					{
 						return null;
 					}
-
+					
 					int repairStackSize;
 					for(repairStackSize = 0; currentDamage > 0 && repairStackSize < addedItem.stackSize; repairStackSize++)
 					{
@@ -170,7 +169,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 						totalEnchCost += Math.max(1, currentDamage / 100) + existingEnchantments.size();
 						currentDamage = Math.min(outputItem.getItemDamageForDisplay(), outputItem.getMaxDamage() / 4);
 					}
-
+					
 					this.stackSizeToBeUsedInRepair = repairStackSize;
 				}
 				else
@@ -179,7 +178,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 					{
 						return null;
 					}
-
+					
 					if(outputItem.isItemStackDamageable() && !enchantingWithBook)
 					{
 						int currentDamage = outputItem.getMaxDamage() - outputItem.getItemDamageForDisplay();
@@ -187,29 +186,29 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 						int newDamage = addedItemDamage + outputItem.getMaxDamage() * 12 / 100;
 						int leftoverDamage = currentDamage + newDamage;
 						int repairedDamage = outputItem.getMaxDamage() - leftoverDamage;
-
+						
 						if(repairedDamage < 0)
 						{
 							repairedDamage = 0;
 						}
-
+						
 						if(repairedDamage < outputItem.getItemDamage())
 						{
 							outputItem.setItemDamage(repairedDamage);
 							totalEnchCost += Math.max(1, newDamage / 100);
 						}
 					}
-
+					
 					@SuppressWarnings("unchecked")
 					Map<Integer, Integer> addedEnchantments = EnchantmentHelper.getEnchantments(addedItem);
-
+					
 					for(Integer addedEnchId : addedEnchantments.keySet())
 					{
 						Enchantment enchantment = Enchantment.enchantmentsList[addedEnchId];
 						int existingEnchLevel = existingEnchantments.containsKey(addedEnchId) ? existingEnchantments.get(addedEnchId) : 0;
 						int addedEnchLevel = addedEnchantments.get(addedEnchId);
 						int newEnchLevel;
-
+						
 						if(existingEnchLevel == addedEnchLevel)
 						{
 							++addedEnchLevel;
@@ -219,16 +218,16 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 						{
 							newEnchLevel = Math.max(addedEnchLevel, existingEnchLevel);
 						}
-
+						
 						addedEnchLevel = newEnchLevel;
 						int levelDifference = addedEnchLevel - existingEnchLevel;
 						boolean canEnchantmentBeAdded = enchantment.canApply(outputItem);
-
+						
 						if(outputItem.itemID == ItemEnchantedBook.enchantedBook.itemID)
 						{
 							canEnchantmentBeAdded = true;
 						}
-
+						
 						for(Integer existingEnchId : existingEnchantments.keySet())
 						{
 							if(existingEnchId != addedEnchId && !enchantment.canApplyTogether(Enchantment.enchantmentsList[existingEnchId]))
@@ -237,17 +236,17 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 								totalEnchCost += levelDifference;
 							}
 						}
-
+						
 						if(canEnchantmentBeAdded)
 						{
 							if(newEnchLevel > enchantment.getMaxLevel())
 							{
 								newEnchLevel = enchantment.getMaxLevel();
 							}
-
+							
 							existingEnchantments.put(Integer.valueOf(addedEnchId), Integer.valueOf(newEnchLevel));
 							int enchCost = 0;
-
+							
 							switch(enchantment.getWeight())
 							{
 							case 1:
@@ -269,27 +268,27 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 							case 10:
 								enchCost = 1;
 							}
-
+							
 							if(enchantingWithBook)
 							{
 								enchCost = Math.max(1, enchCost / 2);
 							}
-
+							
 							totalEnchCost += enchCost * levelDifference;
 						}
 					}
 				}
 			}
-
+			
 			int enchCount = 0;
-
+			
 			for(Integer existingEnchId : existingEnchantments.keySet())
 			{
 				Enchantment enchantment = Enchantment.enchantmentsList[existingEnchId];
 				int existingEnchLevel = existingEnchantments.get(existingEnchId);
 				int enchCost = 0;
 				++enchCount;
-
+				
 				switch(enchantment.getWeight())
 				{
 				case 1:
@@ -311,58 +310,58 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 				case 10:
 					enchCost = 1;
 				}
-
+				
 				if(enchantingWithBook)
 				{
 					enchCost = Math.max(1, enchCost / 2);
 				}
 				repairCost += enchCount + existingEnchLevel * enchCost;
 			}
-
+			
 			if(enchantingWithBook)
 			{
 				repairCost = Math.max(1, repairCost / 2);
 			}
-
+			
 			if(enchantingWithBook && outputItem != null && !Item.itemsList[outputItem.itemID].isBookEnchantable(outputItem, addedItem))
 			{
 				outputItem = null;
 			}
-
+			
 			this.maximumCost = repairCost + totalEnchCost;
-
+			
 			if(totalEnchCost <= 0)
 			{
 				outputItem = null;
 			}
-
+			
 			if(outputItem != null)
 			{
 				EnchantmentHelper.setEnchantments(existingEnchantments, outputItem);
 			}
-
+			
 			return outputItem;
 		}
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 100 * maximumCost;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public ILiquidTank getTank()
 	{
@@ -382,34 +381,34 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 		{
 			return 0;
 		}
-
+		
 		return _tank.fill(resource, doFill);
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{

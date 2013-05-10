@@ -5,6 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.util.Icon;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Property;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.block.BlockFactoryMachine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
@@ -45,16 +51,8 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntitySludgeBoiler;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityUnifier;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityVet;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityWeather;
-
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameRegistry;
-
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.Property;
 
 public class Machine
 {
@@ -101,7 +99,7 @@ public class Machine
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;
 	private static Map<Integer, Integer> _highestMetas;
-
+	
 	private int _blockIndex;
 	private int _meta;
 	private String _name;
@@ -123,7 +121,7 @@ public class Machine
 		_tileEntityClass = tileEntityClass;
 		_tileEntityName = tileEntityName;
 		_activationEnergyMJ = activationEnergyMJ;
-
+		
 		if(_machines == null) _machines = new LinkedList<Machine>();
 		if(_machineMappingss == null) _machineMappingss = new HashMap<Integer, Machine>();
 		if(_highestMetas == null) _highestMetas = new HashMap<Integer, Integer>();
@@ -227,7 +225,7 @@ public class Machine
 		{
 			_activationEnergyMJ = c.get("Machine", _name + ".ActivationCostMJ", _activationEnergyMJ).getInt();
 		}
-
+		
 		MinecraftForge.setBlockHarvestLevel(MineFactoryReloadedCore.machineBlocks.get(_blockIndex), _meta, "pickaxe", 0);
 		GameRegistry.registerTileEntity(_tileEntityClass, _tileEntityName);
 	}

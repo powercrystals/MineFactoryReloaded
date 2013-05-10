@@ -7,8 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
@@ -41,9 +41,9 @@ public class Atum
 		{
 			// The line after this comment is the worst. There must be a better way to do this, right?
 			Class Atum = Class.forName("rebelkeithy.mods.atum.Atum");
-
+			
 			String entityprefix = "rebelkeithy.mods.atum.entities.Entity";
-						
+			
 			Class banditArcher = Class.forName(entityprefix + "BanditArcher");
 			Class banditWarlord = Class.forName(entityprefix + "BanditWarlord");
 			Class banditWarrior = Class.forName(entityprefix + "BanditWarrior");
@@ -78,31 +78,31 @@ public class Atum
 			
 			MFRRegistry.registerSafariNetBlacklist(banditWarlord);
 			MFRRegistry.registerSafariNetBlacklist(pharaoh);
-						
+			
 			MFRRegistry.registerGrindable(new GrindableStandard(banditArcher, new MobDrop[]
 					{
-						new MobDrop(1, bow),
-						new MobDrop(2, new ItemStack(Item.goldNugget)),
-						new MobDrop(17, new ItemStack(Item.arrow))
+					new MobDrop(1, bow),
+					new MobDrop(2, new ItemStack(Item.goldNugget)),
+					new MobDrop(17, new ItemStack(Item.arrow))
 					}));
 			MFRRegistry.registerGrindable(new GrindableStandard(banditWarrior, new MobDrop[]
 					{
-						new MobDrop(1, scimitar),
-						new MobDrop(2, new ItemStack(Item.goldNugget)),
-						new MobDrop(17, null)
+					new MobDrop(1, scimitar),
+					new MobDrop(2, new ItemStack(Item.goldNugget)),
+					new MobDrop(17, null)
 					}));
 			MFRRegistry.registerGrindable(new GrindableStandard(bonestorm, new ItemStack(Item.blazeRod)));
 			MFRRegistry.registerGrindable(new GrindableStandard(desertWolf, new MobDrop[]
 					{
-						new MobDrop(1, pelt),
-						new MobDrop(1, new ItemStack(Item.bone))
+					new MobDrop(1, pelt),
+					new MobDrop(1, new ItemStack(Item.bone))
 					}));
 			MFRRegistry.registerGrindable(new GrindableStandard(dustySkeleton, new ItemStack(Item.bone, 1)));
 			MFRRegistry.registerGrindable(new GrindableStandard(ghost, ectoplasm));
 			MFRRegistry.registerGrindable(new GrindableStandard(mummy, new MobDrop[]
 					{
-						new MobDrop(3, new ItemStack(Item.rottenFlesh)),
-						new MobDrop(1, clothScrap),
+					new MobDrop(3, new ItemStack(Item.rottenFlesh)),
+					new MobDrop(1, clothScrap),
 					}));
 			MFRRegistry.registerGrindable(new GrindableStandard(stoneSoldier, stoneChunk));
 			

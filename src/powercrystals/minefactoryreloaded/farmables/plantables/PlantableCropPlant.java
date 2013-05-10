@@ -1,12 +1,11 @@
 package powercrystals.minefactoryreloaded.farmables.plantables;
 
-import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 public class PlantableCropPlant extends PlantableStandard implements IFactoryPlantable
 {
@@ -28,9 +27,9 @@ public class PlantableCropPlant extends PlantableStandard implements IFactoryPla
 				groundId == Block.grass.blockID ||
 				groundId == Block.tilledField.blockID ||
 				(Block.blocksList[_plantedBlockId] instanceof IPlantable && Block.blocksList[groundId] != null &&
-						Block.blocksList[groundId].canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable)Block.blocksList[_plantedBlockId]))));
+				Block.blocksList[groundId].canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable)Block.blocksList[_plantedBlockId]))));
 	}
-
+	
 	@Override
 	public void prePlant(World world, int x, int y, int z, ItemStack stack)
 	{

@@ -6,22 +6,20 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = "MineFactoryReloaded|CompatExtraBiomes", name = "MFR Compat: ExtraBiomes", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:ExtrabiomesXL")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
@@ -74,10 +72,10 @@ public class ExtraBiomes
 				MFRRegistry.registerPlantable(new PlantableStandard(blockID, blockID));
 			}
 			
-
+			
 			Class<?> xbs = Class.forName("extrabiomes.blocks.BlockCustomSapling");
 			Method fert = xbs.getMethod("growTree", World.class, int.class, int.class, int.class, Random.class);
-
+			
 			Object o = xbbs.getField("SAPLING").get(null);
 			int saplingBlockID = (Integer)xbbs.getMethod("getID").invoke(o);
 			

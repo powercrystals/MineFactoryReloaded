@@ -34,7 +34,7 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 	{
 		return _blockId;
 	}
-
+	
 	@Override
 	public HarvestType getHarvestType()
 	{
@@ -46,7 +46,7 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
@@ -72,18 +72,18 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 		
 		return true;
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		List<ItemStack> drops = new ArrayList<ItemStack>();
-
+		
 		ICropTile tec = (ICropTile)world.getBlockTileEntity(x, y, z);
 		CropCard crop;
 		try
 		{
 			crop = (CropCard)_getCropMethod.invoke(tec);
-
+			
 			float chance = crop.dropGainChance();
 			for (int i = 0; i < tec.getGain(); i++)
 			{
@@ -124,12 +124,12 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 		
 		return drops;
 	}
-
+	
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
 	}
-
+	
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{

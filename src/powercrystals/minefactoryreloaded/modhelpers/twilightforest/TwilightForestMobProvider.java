@@ -39,7 +39,7 @@ public class TwilightForestMobProvider implements IRandomMobProvider
 			mobs.add(new RandomMob(MFRUtil.prepareMob(tfPinchBeetle, world), 15));
 			mobs.add(new RandomMob(MFRUtil.prepareMob(tfWraith, world), 5));
 			mobs.add(new RandomMob(MFRUtil.prepareMob(tfDeathTome, world), 10));
-		
+			
 		}
 		catch(ClassNotFoundException e)
 		{
@@ -47,5 +47,5 @@ public class TwilightForestMobProvider implements IRandomMobProvider
 		}
 		return mobs;
 	}
-
+	
 }

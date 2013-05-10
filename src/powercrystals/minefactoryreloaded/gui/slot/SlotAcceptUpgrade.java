@@ -1,9 +1,9 @@
 package powercrystals.minefactoryreloaded.gui.slot;
 
-import powercrystals.minefactoryreloaded.item.ItemUpgrade;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import powercrystals.minefactoryreloaded.item.ItemUpgrade;
 
 public class SlotAcceptUpgrade extends Slot
 {

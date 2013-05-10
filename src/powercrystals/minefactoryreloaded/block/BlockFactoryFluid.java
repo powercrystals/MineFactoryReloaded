@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
@@ -18,6 +16,8 @@ import powercrystals.core.block.BlockFluidClassic;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, IConnectableRedNet
 {
@@ -77,7 +77,7 @@ public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, ICo
 			return 0;
 		}
 	}
-
+	
 	@Override
 	public int getRenderType()
 	{
@@ -90,19 +90,19 @@ public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, ICo
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int stillLiquidId()
 	{
 		return blockID;
 	}
-
+	
 	@Override
 	public boolean isMetaSensitive()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public int stillLiquidMeta()
 	{
@@ -116,36 +116,36 @@ public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, ICo
 		_iconStill = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 		_iconFlowing = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName().replace(".still", ".flowing"));
 	}
-
+	
 	@Override
 	public Icon getIcon(int side, int meta)
 	{
 		return side <= 1 ? _iconStill : _iconFlowing;
 	}
-
+	
 	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return RedNetConnectionType.None;
 	}
-
+	
 	@Override
 	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
 	{
 	}
-
+	
 	@Override
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{

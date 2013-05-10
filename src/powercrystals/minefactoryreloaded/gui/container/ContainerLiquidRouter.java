@@ -1,10 +1,10 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquidRouter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquidRouter;
 
 public class ContainerLiquidRouter extends ContainerFactoryInventory
 {

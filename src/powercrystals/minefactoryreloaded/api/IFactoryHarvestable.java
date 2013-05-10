@@ -29,7 +29,7 @@ public interface IFactoryHarvestable
 	 * @return Whether or not the Harvester should break the block when harvesting. If false, no changes will be performed by the Harvester itself.
 	 */
 	public boolean breakBlock();
-
+	
 	/**
 	 * @param world The world this block is in.
 	 * @param harvesterSettings The harvester's current settings. Do not modify these.

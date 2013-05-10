@@ -16,7 +16,7 @@ public class SheepHandler implements ISafariNetHandler
 	{
 		return EntitySheep.class;
 	}
-
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips)

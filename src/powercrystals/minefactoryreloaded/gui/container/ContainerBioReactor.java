@@ -1,15 +1,14 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityBioReactor;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerBioReactor extends ContainerFactoryInventory
 {
@@ -58,8 +57,8 @@ public class ContainerBioReactor extends ContainerFactoryInventory
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-		int machInvSize = ((TileEntityFactoryInventory)_te).getSizeInventory();
-
+		int machInvSize = _te.getSizeInventory();
+		
 		if(slotObject != null && slotObject.getHasStack())
 		{
 			ItemStack stackInSlot = slotObject.getStack();
@@ -93,7 +92,7 @@ public class ContainerBioReactor extends ContainerFactoryInventory
 			
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-
+		
 		return stack;
 	}
 }

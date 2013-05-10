@@ -16,13 +16,13 @@ public class ItemBlockVanillaIce extends ItemBlock
 		setHasSubtypes(true);
 		setUnlocalizedName("ice");
 	}
-
+	
 	@Override
 	public int getMetadata(int meta)
 	{
 		return meta;
 	}
-
+	
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{

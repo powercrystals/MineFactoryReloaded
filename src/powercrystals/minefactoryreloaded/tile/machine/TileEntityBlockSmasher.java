@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemBlock;
@@ -19,6 +17,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiBlockSmasher;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBlockSmasher;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements ITankContainer
 {
@@ -34,13 +34,13 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 		super(Machine.BlockSmasher);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -65,7 +65,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	{
 		return new GuiBlockSmasher(getContainer(inventoryPlayer), this);
 	}
-
+	
 	@Override
 	protected boolean activateMachine()
 	{
@@ -144,7 +144,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 		}
 		return null;
 	}
-
+	
 	public int getFortune()
 	{
 		return _fortune;
@@ -167,13 +167,13 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 60;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -181,14 +181,14 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	}
 	
 	@Override
-    public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
+	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
 		if(slot == 0) return true;
 		return false;
 	}
-
+	
 	@Override
-    public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
+	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
 		if(slot == 1) return true;
 		return false;
@@ -207,28 +207,28 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 		{
 			return 0;
 		}
-
+		
 		return _tank.fill(resource, doFill);
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{

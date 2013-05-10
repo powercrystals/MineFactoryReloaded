@@ -15,31 +15,31 @@ public class PlantableCocoa implements IFactoryPlantable
 	{
 		return Item.dyePowder.itemID;
 	}
-
+	
 	@Override
 	public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack)
 	{
 		return Block.cocoaPlant.blockID;
 	}
-
+	
 	@Override
 	public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack)
 	{
 		return world.isAirBlock(x, y, z) && isNextToJungleLog(world, x, y, z);
 	}
-
+	
 	private boolean isNextToJungleLog(World world, int x, int y, int z)
 	{
 		if (isJungleLog(world, x+1, y, z)
-		|| isJungleLog(world, x-1, y, z)
-		|| isJungleLog(world, x, y, z+1)
-		|| isJungleLog(world, x, y, z-1))
+				|| isJungleLog(world, x-1, y, z)
+				|| isJungleLog(world, x, y, z+1)
+				|| isJungleLog(world, x, y, z-1))
 		{
 			return true;
 		}
@@ -51,12 +51,12 @@ public class PlantableCocoa implements IFactoryPlantable
 	{
 		return world.getBlockId(x, y, z) == Block.wood.blockID && BlockLog.limitToValidMetadata(world.getBlockMetadata(x, y, z)) == 3;
 	}
-
+	
 	@Override
 	public void prePlant(World world, int x, int y, int z, ItemStack stack)
 	{
 	}
-
+	
 	@Override
 	public void postPlant(World world, int x, int y, int z, ItemStack stack)
 	{
@@ -76,5 +76,5 @@ public class PlantableCocoa implements IFactoryPlantable
 		
 		world.setBlockMetadataWithNotify(x, y, z, Direction.rotateOpposite[Direction.facingToDirection[blockDirection]], 2);
 	}
-
+	
 }

@@ -3,9 +3,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -30,6 +27,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
@@ -69,19 +68,19 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 100;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -140,7 +139,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
@@ -153,31 +152,31 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 			return _tank.fill(resource, doFill);
 		}
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction) 
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
@@ -187,7 +186,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 		}
 		return null;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -199,7 +198,7 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{

@@ -11,13 +11,13 @@ public class DecomposeIntToDecimal extends StatelessCircuit implements IRedNetLo
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 11;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -44,19 +44,19 @@ public class DecomposeIntToDecimal extends StatelessCircuit implements IRedNetLo
 		}
 		return returnArray;
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.decompose.decimal";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return "I";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

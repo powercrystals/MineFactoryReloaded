@@ -2,12 +2,11 @@ package powercrystals.minefactoryreloaded.farmables.harvestables;
 
 import java.util.Map;
 
-import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
 public class HarvestableWood extends HarvestableStandard implements IFactoryHarvestable
 {
@@ -23,7 +22,7 @@ public class HarvestableWood extends HarvestableStandard implements IFactoryHarv
 		{
 			return true;
 		}
-
+		
 		if(harvesterSettings.get("harvestJungleWood") == null) return false;
 		return harvesterSettings.get("harvestJungleWood");
 	}

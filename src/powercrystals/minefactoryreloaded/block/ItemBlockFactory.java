@@ -2,13 +2,13 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockFactory extends ItemBlock
 {
@@ -23,20 +23,20 @@ public class ItemBlockFactory extends ItemBlock
 	{
 		_names = names;
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public Icon getIconFromDamage(int damage)
 	{
 		return Block.blocksList[getBlockID()].getIcon(2, damage);
 	}
-
+	
 	@Override
 	public int getMetadata(int meta)
 	{
 		return meta;
 	}
-
+	
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{

@@ -13,7 +13,7 @@ public class ContainerChronotyper extends ContainerFactoryPowered
 		super(te, inv);
 		_chronotyper = te;
 	}
-
+	
 	@Override
 	public void detectAndSendChanges()
 	{

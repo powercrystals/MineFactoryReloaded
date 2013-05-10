@@ -1,18 +1,19 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.liquids.LiquidDictionary;
+import net.minecraftforge.liquids.LiquidStack;
+
 import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.liquids.LiquidDictionary;
-import net.minecraftforge.liquids.LiquidStack;
 
 public class GuiLiquiCrafter extends GuiFactoryInventory
 {
 	private TileEntityLiquiCrafter _crafter;
-
+	
 	public GuiLiquiCrafter(ContainerLiquiCrafter container, TileEntityLiquiCrafter router)
 	{
 		super(container, router);
@@ -44,11 +45,11 @@ public class GuiLiquiCrafter extends GuiFactoryInventory
 			this.drawTexturedModalRect(-50 + (i % 3 * 18), 10 + (i / 3 * 35), 232, 0, 16, 33);
 		}
 	}
-
+	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float gameTicks, int mouseX, int mouseY)
 	{
-
+		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.renderEngine.bindTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 		int x = (width - xSize) / 2 - 56;
@@ -60,18 +61,18 @@ public class GuiLiquiCrafter extends GuiFactoryInventory
 	protected void drawTank(int xOffset, int yOffset, int liquidId, int liquidMeta, int level)
 	{
 		LiquidStack stack = LiquidDictionary.getCanonicalLiquid(new LiquidStack(liquidId, 1, liquidMeta));
-
+		
 		if(liquidId <= 0 || stack == null)
 		{
 			return;
 		}
-
+		
 		int vertOffset = 0;
-
+		
 		while(level > 0)
 		{
 			int texHeight = 0;
-	
+			
 			if(level > 16)
 			{
 				texHeight = 16;
@@ -87,7 +88,7 @@ public class GuiLiquiCrafter extends GuiFactoryInventory
 			drawTexturedModelRectFromIcon(xOffset, yOffset - texHeight - vertOffset, stack.getRenderingIcon(), 16, texHeight);
 			vertOffset = vertOffset + 16;
 		}
-
+		
 		this.mc.renderEngine.bindTexture(MineFactoryReloadedCore.guiFolder + _tileEntity.getGuiBackground());
 		this.drawTexturedModalRect(xOffset, yOffset - 33, 232, 0, 16, 33);
 	}

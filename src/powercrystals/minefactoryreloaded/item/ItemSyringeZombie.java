@@ -1,11 +1,11 @@
 package powercrystals.minefactoryreloaded.item;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
 public class ItemSyringeZombie extends ItemSyringe
 {
@@ -19,7 +19,7 @@ public class ItemSyringeZombie extends ItemSyringe
 	{
 		return entity instanceof EntityAgeable && ((EntityAgeable)entity).getGrowingAge() < 0;
 	}
-
+	
 	@Override
 	public boolean inject(World world, EntityLiving entity, ItemStack syringe)
 	{
@@ -36,5 +36,5 @@ public class ItemSyringeZombie extends ItemSyringe
 		}
 		return true;
 	}
-
+	
 }

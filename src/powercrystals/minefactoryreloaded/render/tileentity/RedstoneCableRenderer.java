@@ -1,17 +1,17 @@
 package powercrystals.minefactoryreloaded.render.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.render.model.RedstoneCableModel;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.render.model.RedstoneCableModel;
+import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler
 {
@@ -33,10 +33,10 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		_model.render(cable,0.0625f);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
-
+		
 		GL11.glPopMatrix();
 	}
-
+	
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
 	{
@@ -55,19 +55,19 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 		
 		return;
 	}
-
+	
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean shouldRender3DInInventory()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int getRenderId()
 	{

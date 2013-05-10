@@ -30,7 +30,7 @@ public class GuiBioReactor extends GuiFactoryInventory
 			int tankSize = _tileEntity.getTank().getLiquid().amount * _tankSizeMax / _tileEntity.getTank().getCapacity();
 			drawTank(132, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
 		}
-
+		
 		drawBar(150, 75, ((TileEntityBioReactor)_tileEntity).getOutputValueMax(), ((TileEntityBioReactor)_tileEntity).getOutputValue(), _barColorValue);
 		drawBar(160, 75, ((TileEntityBioReactor)_tileEntity).getBurnTimeMax(), ((TileEntityBioReactor)_tileEntity).getBurnTime(), _barColorBurn);
 	}
@@ -43,7 +43,7 @@ public class GuiBioReactor extends GuiFactoryInventory
 			drawBarTooltip(_tileEntity.getTank().getLiquid().asItemStack().getDisplayName(),
 					"mB", _tileEntity.getTank().getLiquid().amount, _tileEntity.getTank().getCapacity(), mouseX, mouseY);
 		}
-
+		
 		else if(isPointInRegion(151, 15, 8, 60, mouseX, mouseY))
 		{
 			drawBarTooltip("Efficiency", "", ((TileEntityBioReactor)_tileEntity).getOutputValue(), ((TileEntityBioReactor)_tileEntity).getOutputValueMax(), mouseX, mouseY);

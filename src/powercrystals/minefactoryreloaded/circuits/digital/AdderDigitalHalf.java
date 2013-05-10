@@ -10,13 +10,13 @@ public class AdderDigitalHalf extends StatelessCircuit implements IRedNetLogicCi
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -24,19 +24,19 @@ public class AdderDigitalHalf extends StatelessCircuit implements IRedNetLogicCi
 		int s = (inputValues[0] > 0 ^ inputValues[1] > 0) ? 15 : 0;
 		return new int[] { s, c };
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.adder.digital.half";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return pin == 0 ? "A" : "B";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

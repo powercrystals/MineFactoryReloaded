@@ -1,13 +1,13 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
-import powercrystals.core.util.Util;
-import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.core.util.Util;
+import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 
 public abstract class TileEntityLiquidGenerator extends TileEntityGenerator implements ITankContainerBucketable
 {
@@ -104,31 +104,31 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 		}
 		return _tank.fill(resource, doFill);
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{

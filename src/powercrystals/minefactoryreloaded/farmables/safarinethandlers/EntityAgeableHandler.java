@@ -14,7 +14,7 @@ public class EntityAgeableHandler implements ISafariNetHandler
 	{
 		return EntityAgeable.class;
 	}
-
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips)

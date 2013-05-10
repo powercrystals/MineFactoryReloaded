@@ -3,9 +3,6 @@ package powercrystals.minefactoryreloaded.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -24,7 +21,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -32,6 +28,8 @@ import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockConveyor extends BlockContainer
 {
@@ -89,7 +87,7 @@ public class BlockConveyor extends BlockContainer
 	{
 		return _iconsStopped[meta];
 	}
-
+	
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entity, ItemStack stack)
 	{
@@ -97,7 +95,7 @@ public class BlockConveyor extends BlockContainer
 		{
 			return;
 		}
-		int facing = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+		int facing = MathHelper.floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
 		if(facing == 0)
 		{
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
@@ -121,7 +119,7 @@ public class BlockConveyor extends BlockContainer
 			((TileEntityConveyor)te).setDyeColor(stack.getItemDamage() == 16 ? -1 : stack.getItemDamage());
 		}
 	}
-
+	
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
@@ -212,12 +210,12 @@ public class BlockConveyor extends BlockContainer
 			((EntityItem)entity).delayBeforeCanPickup = 40;
 		}
 	}
-
+	
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		int md = world.getBlockMetadata(x, y, z);
-
+		
 		if((md & 0x0C) == 0)
 		{
 			return AxisAlignedBB.getAABBPool().getAABB(x + 0.05F, y, z + 0.05F, (x + 1) - 0.05F, y + 0.1F, z + 1 - 0.05F);
@@ -227,26 +225,26 @@ public class BlockConveyor extends BlockContainer
 			return AxisAlignedBB.getAABBPool().getAABB(x + 0.2F, y, z + 0.2F, (x + 1) - 0.2F, y + 0.1F, z + 1 - 0.2F);
 		}
 	}
-
+	
 	@Override
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		return getCollisionBoundingBoxFromPool(world, x, y, z);
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public MovingObjectPosition collisionRayTrace(World world, int i, int j, int k, Vec3 vec3d, Vec3 vec3d1)
 	{
 		setBlockBoundsBasedOnState(world, i, j, k);
 		return super.collisionRayTrace(world, i, j, k, vec3d, vec3d1);
 	}
-
+	
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess iblockaccess, int i, int j, int k)
 	{
@@ -260,25 +258,25 @@ public class BlockConveyor extends BlockContainer
 			setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 		}
 	}
-
+	
 	@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public int getRenderType()
 	{
 		return MineFactoryReloadedCore.renderIdConveyor;
 	}
-
+	
 	@Override
 	public int quantityDropped(Random random)
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z)
 	{
@@ -290,7 +288,7 @@ public class BlockConveyor extends BlockContainer
 	{
 		return world.isBlockSolidOnSide(x, y - 1, z, ForgeDirection.UP);
 	}
-
+	
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side, float xOffset, float yOffset, float zOffset)
 	{
@@ -304,7 +302,7 @@ public class BlockConveyor extends BlockContainer
 		}
 		return true;
 	}
-
+	
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
 	{
@@ -320,13 +318,13 @@ public class BlockConveyor extends BlockContainer
 		e.motionY = y;
 		e.motionZ = z;
 	}
-
+	
 	@Override
 	public boolean canProvidePower()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public TileEntity createNewTileEntity(World world)
 	{

@@ -1,7 +1,8 @@
 package powercrystals.minefactoryreloaded.modhelpers.biomesoplenty;
 
-import com.google.common.base.Optional;
-
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
@@ -11,9 +12,9 @@ import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+
+import com.google.common.base.Optional;
+
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -72,7 +73,7 @@ public class BiomesOPlenty
 			String[] bopMiscTrunks = { "flowers", "bamboo"};
 			String[] bopMiscLeaves = { "treeMoss" };
 			String[] bopMiscStandardHarvestables = { "plants", "foliage" };
-		
+			
 			_BOPBlocks = Class.forName("biomesoplenty.api.Blocks");
 			if(_BOPBlocks != null)
 			{
@@ -119,15 +120,15 @@ public class BiomesOPlenty
 			Class bopRosester = Class.forName("biomesoplenty.mobs.EntityRosester");
 			
 			MFRRegistry.registerGrindable(new GrindableStandard(bopJungleSpider, new MobDrop[]
-				{
+					{
 					new MobDrop(3, new ItemStack(Item.silk)),
 					new MobDrop(1, new ItemStack(Item.spiderEye))
-				}));
+					}));
 			MFRRegistry.registerGrindable(new GrindableStandard(bopRosester, new MobDrop[]
-				{
+					{
 					new MobDrop(1, new ItemStack(Item.chickenRaw)),
 					new MobDrop(1, new ItemStack(Item.dyePowder, 1, 1))
-				}));
+					}));
 			
 		}
 		catch(Exception e)

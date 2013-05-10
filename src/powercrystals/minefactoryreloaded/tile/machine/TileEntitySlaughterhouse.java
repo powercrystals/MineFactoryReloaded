@@ -2,8 +2,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +20,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implements ITankContainer
 {
@@ -34,13 +34,13 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -65,7 +65,7 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	protected boolean activateMachine()
 	{
@@ -126,19 +126,19 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 			return true;
 		}
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -150,13 +150,13 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
@@ -168,25 +168,25 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 	{
 		return true;
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{

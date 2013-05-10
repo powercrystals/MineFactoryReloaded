@@ -15,7 +15,7 @@ public class ContainerAutoSpawner extends ContainerFactoryPowered
 	@Override
 	protected void addSlots()
 	{
-		addSlotToContainer(new Slot((TileEntityAutoSpawner)_te, 0, 8, 24));
+		addSlotToContainer(new Slot(_te, 0, 8, 24));
 	}
 	
 	@Override

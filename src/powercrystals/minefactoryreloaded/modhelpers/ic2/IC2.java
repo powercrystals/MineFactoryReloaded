@@ -1,6 +1,15 @@
 package powercrystals.minefactoryreloaded.modhelpers.ic2;
 
 
+import ic2.api.item.Items;
+import ic2.api.recipe.Recipes;
+import net.minecraft.item.ItemStack;
+import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
+import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
+import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -8,18 +17,6 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
-
-import net.minecraft.item.ItemStack;
-
-import ic2.api.item.Items;
-import ic2.api.recipe.Recipes;
-
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
-import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
-import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 
 @Mod(modid = "MineFactoryReloaded|CompatIC2", name = "MFR Compat: IC2", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:IC2")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
@@ -66,12 +63,12 @@ public class IC2
 			MFRRegistry.registerHarvestable(new HarvestableIC2Crop(crop.itemID));
 			
 			GameRegistry.addShapedRecipe(plantBall, new Object[]
-				{
-				"LLL",
-                "L L",
-                "LLL",
-                Character.valueOf('L'), new ItemStack(MineFactoryReloadedCore.rubberLeavesBlock)
-                } );
+					{
+					"LLL",
+					"L L",
+					"LLL",
+					Character.valueOf('L'), new ItemStack(MineFactoryReloadedCore.rubberLeavesBlock)
+					} );
 			
 			Recipes.extractor.addRecipe(new ItemStack(MineFactoryReloadedCore.rubberSaplingBlock), rubber);
 		}

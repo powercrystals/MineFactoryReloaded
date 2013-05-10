@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.item;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
 public class ItemSpyglass extends ItemFactory
 {
@@ -15,7 +15,7 @@ public class ItemSpyglass extends ItemFactory
 	{
 		super(id);
 	}
-
+	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{

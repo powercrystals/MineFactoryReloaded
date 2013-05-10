@@ -2,13 +2,6 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
-import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
-import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
@@ -20,6 +13,12 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedNet
 {
@@ -57,7 +56,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 	{
 		return _icons[Math.min(meta, _icons.length - 1)];
 	}
-
+	
 	@Override
 	public int getRenderBlockPass()
 	{
@@ -89,7 +88,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 		boolean connectedSouth = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z + 1));
 		boolean connectedWest = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x - 1, y, z));
 		boolean connectedEast = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x + 1, y, z));
-
+		
 		if ((!connectedWest || !connectedEast) && (connectedWest || connectedEast || connectedNorth || connectedSouth))
 		{
 			if (connectedWest && !connectedEast)
@@ -106,7 +105,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 			xStart = 0.0F;
 			zStart = 1.0F;
 		}
-
+		
 		if ((!connectedNorth || !connectedSouth) && (connectedWest || connectedEast || connectedNorth || connectedSouth))
 		{
 			if (connectedNorth && !connectedSouth)
@@ -123,7 +122,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 			xStop = 0.0F;
 			zStop = 1.0F;
 		}
-
+		
 		this.setBlockBounds(xStart, 0.0F, xStop, zStart, 1.0F, zStop);
 	}
 	
@@ -135,7 +134,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 		boolean connectedSouth = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z + 1));
 		boolean connectedWest = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x - 1, y, z));
 		boolean connectedEast = this.canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x + 1, y, z));
-
+		
 		if ((!connectedWest || !connectedEast) && (connectedWest || connectedEast || connectedNorth || connectedSouth))
 		{
 			if (connectedWest && !connectedEast)
@@ -154,7 +153,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 			this.setBlockBounds(0.0F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
 			addCollidingBlockToList_do(world, x, y, z, aabb, blockList, e);
 		}
-
+		
 		if ((!connectedNorth || !connectedSouth) && (connectedWest || connectedEast || connectedNorth || connectedSouth))
 		{
 			if (connectedNorth && !connectedSouth)
@@ -179,42 +178,42 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 	protected void addCollidingBlockToList_do(World world, int x, int y, int z, AxisAlignedBB aabb, List blockList, Entity e)
 	{
 		AxisAlignedBB newAABB = this.getCollisionBoundingBoxFromPool(world, x, y, z);
-	
+		
 		if (newAABB != null && aabb.intersectsWith(newAABB))
 		{
 			blockList.add(newAABB);
 		}
 	}
-
+	
 	@Override
 	public int getRenderType()
 	{
 		return MineFactoryReloadedCore.renderIdFactoryGlassPane;
 	}
-
+	
 	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return RedNetConnectionType.None;
 	}
-
+	
 	@Override
 	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
 	{
 	}
-
+	
 	@Override
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{

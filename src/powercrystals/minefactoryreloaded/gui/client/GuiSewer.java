@@ -28,7 +28,7 @@ public class GuiSewer extends GuiFactoryInventory
 			drawTank(152, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
 		}
 	}
-
+	
 	@Override
 	protected void drawTooltips(int mouseX, int mouseY)
 	{

@@ -18,8 +18,6 @@ import net.minecraftforge.common.ForgeDirection;
 
 import org.bouncycastle.util.Arrays;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -29,6 +27,7 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.circuits.Noop;
 import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
 import powercrystals.minefactoryreloaded.net.Packets;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class TileEntityRedNetLogic extends TileEntity
 {
@@ -43,7 +42,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		public int pin;
 		public int buffer;
 	}
-
+	
 	private int _circuitCount = 6;
 	
 	private int _variableCount = 16;
@@ -250,7 +249,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		data.add(zCoord);
 		
 		data.add(circuit);
-
+		
 		data.add(_circuits[circuit].getClass().getName());
 		data.add(_circuits[circuit].getInputCount());
 		for(int p = 0; p < _pinMappingInputs[circuit].length; p++)
@@ -297,13 +296,13 @@ public class TileEntityRedNetLogic extends TileEntity
 			}
 			
 			int[] output = _circuits[circuitNum].recalculateOutputValues(worldObj.getTotalWorldTime(), input);
-
+			
 			for(int pinNum = 0; pinNum < output.length; pinNum++)
 			{
 				_buffers[_pinMappingOutputs[circuitNum][pinNum].buffer][_pinMappingOutputs[circuitNum][pinNum].pin] = output[pinNum];
 			}
 		}
-
+		
 		for(int i = 0; i < 6; i++)
 		{
 			if(!Arrays.areEqual(lastOuput[i], _buffers[i + 6]))

@@ -1,11 +1,11 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityEnchantmentRouter;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerEnchantmentRouter extends ContainerItemRouter
 {
@@ -35,7 +35,7 @@ public class ContainerEnchantmentRouter extends ContainerItemRouter
 		
 		if(var == 100) _router.setMatchLevels(value == 1 ? true : false);
 	}
-
+	
 	@Override
 	protected void addSlots()
 	{

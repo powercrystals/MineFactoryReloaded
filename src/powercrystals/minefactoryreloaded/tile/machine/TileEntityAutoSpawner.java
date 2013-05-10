@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -21,6 +19,8 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
@@ -68,13 +68,13 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Auto-Spawner";
 	}
-
+	
 	@Override
 	protected boolean activateMachine()
 	{
@@ -107,7 +107,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			
 			EntityLiving spawnedLiving = (EntityLiving)spawnedEntity;
 			spawnedLiving.initCreature();
-
+			
 			if(_spawnExact)
 			{
 				NBTTagCompound tag = (NBTTagCompound)_inventory[0].getTagCompound().copy();
@@ -139,28 +139,28 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			{
 				return false;
 			}
-
+			
 			worldObj.spawnEntityInWorld(spawnedLiving);
 			worldObj.playAuxSFX(2004, this.xCoord, this.yCoord, this.zCoord, 0);
-
+			
 			spawnedLiving.spawnExplosionParticle();
 			setWorkDone(0);
 			return true;
 		}
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 32000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return _spawnExact ? 50 : 15;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -172,7 +172,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
@@ -182,13 +182,13 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 		}
 		return _tank.fill(resource, doFill);
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public boolean allowBucketFill()
 	{
@@ -200,19 +200,19 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{

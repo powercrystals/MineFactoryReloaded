@@ -1,12 +1,12 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
 import net.minecraft.client.gui.GuiButton;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityChronotyper;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiChronotyper extends GuiFactoryPowered
 {
@@ -24,7 +24,7 @@ public class GuiChronotyper extends GuiFactoryPowered
 	public void initGui()
 	{
 		super.initGui();
-
+		
 		int xOffset = (this.width - this.xSize) / 2;
 		int yOffset = (this.height - this.ySize) / 2;
 		

@@ -16,7 +16,7 @@ public interface ISafariNetHandler
 	 * @return The class of mob that this handler applies to.
 	 */
 	public Class<?> validFor();
-
+	
 	/**
 	 * @param safariNetStack The Safari Net that is requesting information.
 	 * @param player The player holding the Safari Net.

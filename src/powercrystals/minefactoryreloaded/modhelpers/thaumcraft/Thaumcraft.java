@@ -34,7 +34,7 @@ public class Thaumcraft
 			Block tcSapling = (Block)Class.forName("thaumcraft.common.Config").getField("blockCustomPlant").get(null);
 			Block tcLog = (Block)Class.forName("thaumcraft.common.Config").getField("blockMagicalLog").get(null);
 			Block tcLeaves = (Block)Class.forName("thaumcraft.common.Config").getField("blockMagicalLeaves").get(null);
-		
+			
 			FarmingRegistry.registerHarvestable(new HarvestableStandard(tcLog.blockID, HarvestType.Tree));
 			FarmingRegistry.registerHarvestable(new HarvestableStandard(tcLeaves.blockID, HarvestType.TreeLeaf));
 			FarmingRegistry.registerHarvestable(new HarvestableThaumcraftPlant(tcSapling.blockID));

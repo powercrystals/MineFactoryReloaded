@@ -9,7 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import powercrystals.minefactoryreloaded.api.HarvestType;
 
 public class HarvestableTreeLeaves extends HarvestableStandard
@@ -18,7 +17,7 @@ public class HarvestableTreeLeaves extends HarvestableStandard
 	{
 		super(id, HarvestType.TreeLeaf);
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{

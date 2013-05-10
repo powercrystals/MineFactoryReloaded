@@ -22,13 +22,13 @@ public class HarvestableNaturaCropPlant implements IFactoryHarvestable
 		_sourceId = sourceId;
 		_cottonItemId = cottonItemId;
 	}
-
+	
 	@Override
 	public int getPlantId()
 	{
 		return _sourceId;
 	}
-
+	
 	@Override
 	public HarvestType getHarvestType()
 	{
@@ -40,13 +40,13 @@ public class HarvestableNaturaCropPlant implements IFactoryHarvestable
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		return world.getBlockMetadata(x, y, z) == 3 || world.getBlockMetadata(x, y, z) == 8;
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
@@ -60,12 +60,12 @@ public class HarvestableNaturaCropPlant implements IFactoryHarvestable
 			return Block.blocksList[_sourceId].getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 		}
 	}
-
+	
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
 	}
-
+	
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{

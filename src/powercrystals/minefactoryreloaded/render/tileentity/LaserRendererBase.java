@@ -58,8 +58,8 @@ public class LaserRendererBase
 		GL11.glDepthMask(true);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
 		float ticks = host.worldObj.getTotalWorldTime() + partialTicks;
-		float f3 = -ticks * 0.2F - (float)MathHelper.floor_float(-ticks * 0.1F);
-		double d3 = (double)ticks * 0.025D * (1.0D - 2.5D);
+		float f3 = -ticks * 0.2F - MathHelper.floor_float(-ticks * 0.1F);
+		double d3 = ticks * 0.025D * (1.0D - 2.5D);
 		tessellator.startDrawingQuads();
 		tessellator.setColorRGBA(255, 255, 255, 32);
 		double d4 = 0.2D;
@@ -74,8 +74,8 @@ public class LaserRendererBase
 		double height = length;
 		double uStart = 0.0D;
 		double uEnd = 1.0D;
-		double vStart = (double)(-1.0F + f3);
-		double vEnd = (double)(256.0F) * (0.5D / d4) + vStart;
+		double vStart = -1.0F + f3;
+		double vEnd = (256.0F) * (0.5D / d4) + vStart;
 		tessellator.addVertexWithUV(xStart + d5, yStart + height, zStart + d6, uEnd, vEnd);
 		tessellator.addVertexWithUV(xStart + d5, yStart, zStart + d6, uEnd, vStart);
 		tessellator.addVertexWithUV(xStart + d7, yStart, zStart + d8, uStart, vStart);
@@ -106,8 +106,8 @@ public class LaserRendererBase
 		double d23 = 0.8D;
 		double d24 = 0.8D;
 		double d25 = 0.8D;
-		double d29 = (double)(-1.0F + f3);
-		double d30 = (double)(256.0F) + d29;
+		double d29 = -1.0F + f3;
+		double d30 = (256.0F) + d29;
 		tessellator.addVertexWithUV(xStart + d18, yStart + height, zStart + d19, uEnd, d30);
 		tessellator.addVertexWithUV(xStart + d18, yStart, zStart + d19, uEnd, d29);
 		tessellator.addVertexWithUV(xStart + d20, yStart, zStart + d21, uStart, d29);

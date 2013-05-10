@@ -16,7 +16,7 @@ public class ButtonLogicBufferSelect extends ButtonOption
 		_logicScreen = containerScreen;
 		_buttonType = buttonType;
 		_pinIndex = pinIndex;
-
+		
 		_ignoreChanges = true;
 		if(_buttonType == LogicButtonType.Input)
 		{
@@ -57,7 +57,7 @@ public class ButtonLogicBufferSelect extends ButtonOption
 		setSelectedIndex(buffer);
 		_ignoreChanges = false;
 	}
-
+	
 	@Override
 	public void onValueChanged(int value, String label)
 	{

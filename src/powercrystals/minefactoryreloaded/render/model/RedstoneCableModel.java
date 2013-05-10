@@ -1,13 +1,14 @@
 package powercrystals.minefactoryreloaded.render.model;
 
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.common.ForgeDirection;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraftforge.common.ForgeDirection;
 
 public class RedstoneCableModel extends ModelBase
 {
@@ -18,12 +19,12 @@ public class RedstoneCableModel extends ModelBase
 	private ModelRenderer _bandWhite;
 	
 	private Vector3f[] _bandColors = new Vector3f[16];
-
+	
 	public RedstoneCableModel()
 	{
 		textureWidth = 64;
 		textureHeight = 32;
-
+		
 		_base = new ModelRenderer(this, 32, 0);
 		_base.addBox(-2F, -2F, -2F, 4, 4, 4);
 		_base.setRotationPoint(0F, 0F, 0F);
@@ -79,7 +80,7 @@ public class RedstoneCableModel extends ModelBase
 		renderSide(RedNetConnectionType.CableAll, 0, 0, 0, f5);
 		renderSide(RedNetConnectionType.CableAll, 0, (float)Math.PI, 0, f5);
 	}
-
+	
 	public void render(TileRedstoneCable entity, float f5)
 	{
 		_base.render(f5);
@@ -164,14 +165,14 @@ public class RedstoneCableModel extends ModelBase
 			GL11.glDisable(GL11.GL_POLYGON_OFFSET_FILL);
 		}
 	}
-
+	
 	private void setRotation(ModelRenderer model, float x, float y, float z)
 	{
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
-
+	
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
 	{
 	}

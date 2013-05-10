@@ -1,6 +1,5 @@
 package powercrystals.minefactoryreloaded.entity;
 
-import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -10,6 +9,7 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 
 public class EntitySafariNet extends EntityThrowable
 {
@@ -24,7 +24,7 @@ public class EntitySafariNet extends EntityThrowable
 		super(world, x, y, z);
 		dataWatcher.addObject(13, netStack);
 	}
-
+	
 	public EntitySafariNet(World world, EntityLiving owner, ItemStack netStack)
 	{
 		super(world, owner);
@@ -35,7 +35,7 @@ public class EntitySafariNet extends EntityThrowable
 	{
 		dataWatcher.updateObject(13, s);
 	}
-
+	
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{

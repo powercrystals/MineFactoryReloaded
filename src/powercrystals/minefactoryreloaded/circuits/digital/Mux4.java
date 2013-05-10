@@ -12,13 +12,13 @@ public class Mux4 extends StatelessCircuit implements IRedNetLogicCircuit
 	{
 		return 6;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -30,19 +30,19 @@ public class Mux4 extends StatelessCircuit implements IRedNetLogicCircuit
 		
 		return new int[] { inputValues[channel] };
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.mux.4";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return _inputPinNames[pin];
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

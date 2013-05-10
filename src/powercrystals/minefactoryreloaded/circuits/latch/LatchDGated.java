@@ -12,13 +12,13 @@ public class LatchDGated implements IRedNetLogicCircuit
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -36,31 +36,31 @@ public class LatchDGated implements IRedNetLogicCircuit
 			return new int[] { 0, 15 };
 		}
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.latch.d.gated";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return pin == 0 ? "D" : "E";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
 		return pin == 0 ? "Q" : "Q#";
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		_value = tag.getBoolean("state");
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{

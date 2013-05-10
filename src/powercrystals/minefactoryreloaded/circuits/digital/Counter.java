@@ -16,13 +16,13 @@ public class Counter implements IRedNetLogicCircuit
 	{
 		return 3;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -40,7 +40,7 @@ public class Counter implements IRedNetLogicCircuit
 		_lastIncrementState = inputValues[0] > 0;
 		_lastDecrementState = inputValues[1] > 0;
 		
-
+		
 		if(_count >= _preset)
 		{
 			_count = 0;
@@ -53,25 +53,25 @@ public class Counter implements IRedNetLogicCircuit
 		}
 		return new int[] { 0, _count };
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.counter";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return pin == 0 ? "INC" : pin == 1 ? "DEC" : "PRE";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
 		return pin == 0 ? "Q" : "V";
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
@@ -79,7 +79,7 @@ public class Counter implements IRedNetLogicCircuit
 		_lastIncrementState = tag.getBoolean("lastIncrementState");
 		_lastDecrementState = tag.getBoolean("lastDecrementState");
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{

@@ -13,12 +13,12 @@ public class ItemSafariNetLauncher extends ItemFactory
 		super(id);
 		setCreativeTab(MFRCreativeTab.tab);
 	}
-
+	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-
+		
 		for(int i = 0; i < player.inventory.getSizeInventory(); i++)
 		{
 			ItemStack ammo = player.inventory.getStackInSlot(i);

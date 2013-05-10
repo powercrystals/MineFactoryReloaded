@@ -1,8 +1,8 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 /* packet values:
  * 0: current work
@@ -19,7 +19,7 @@ public class ContainerFactoryPowered extends ContainerFactoryInventory
 	{
 		super(te, inv);
 	}
-
+	
 	@Override
 	public void detectAndSendChanges()
 	{

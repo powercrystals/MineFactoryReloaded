@@ -104,7 +104,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 	{
 		return PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.CableDescription, new Object[]
 				{
-					xCoord, yCoord, zCoord, _sideColors[0], _sideColors[1], _sideColors[2], _sideColors[3], _sideColors[4], _sideColors[5]
+				xCoord, yCoord, zCoord, _sideColors[0], _sideColors[1], _sideColors[2], _sideColors[3], _sideColors[4], _sideColors[5]
 				});
 	}
 	
@@ -114,7 +114,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		super.validate();
 		_needsNetworkUpdate = true;
 	}
-
+	
 	@Override
 	public void updateEntity()
 	{
@@ -203,7 +203,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			{
 				int subnet = getSideColor(bp.orientation);
 				RedNetConnectionType connectionType = getConnectionState(bp.orientation);
-			
+				
 				if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
 				{
 					if(connectionType == RedNetConnectionType.CableSingle || connectionType == RedNetConnectionType.PlateSingle)

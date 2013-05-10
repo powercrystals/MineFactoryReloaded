@@ -2,8 +2,8 @@ package powercrystals.minefactoryreloaded.modhelpers.soulshards;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;

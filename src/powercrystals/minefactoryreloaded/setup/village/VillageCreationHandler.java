@@ -14,13 +14,13 @@ public class VillageCreationHandler implements IVillageCreationHandler
 	{
 		return new StructureVillagePieceWeight(ComponentZoologistHouse.class, 20, random.nextInt(1) + i);
 	}
-
+	
 	@Override
 	public Class<?> getComponentClass()
 	{
 		return ComponentZoologistHouse.class;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object buildComponent(StructureVillagePieceWeight villagePiece, ComponentVillageStartPiece startPiece, List pieces, Random random, int p1, int p2, int p3, int p4, int p5)

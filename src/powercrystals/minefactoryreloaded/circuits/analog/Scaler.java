@@ -12,13 +12,13 @@ public class Scaler extends StatelessCircuit implements IRedNetLogicCircuit
 	{
 		return 5;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -28,22 +28,22 @@ public class Scaler extends StatelessCircuit implements IRedNetLogicCircuit
 		}
 		else
 		{
-		return new int[] { (inputValues[0] - inputValues[1]) * (inputValues[4] - inputValues[3]) / (inputValues[2] - inputValues[1]) + inputValues[3] };
+			return new int[] { (inputValues[0] - inputValues[1]) * (inputValues[4] - inputValues[3]) / (inputValues[2] - inputValues[1]) + inputValues[3] };
 		}
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.scaler";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return _inputPinNames[pin];
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

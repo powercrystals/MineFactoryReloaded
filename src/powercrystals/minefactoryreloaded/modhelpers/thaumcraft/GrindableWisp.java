@@ -28,7 +28,7 @@ public class GrindableWisp implements IFactoryGrindable
 	{
 		return _wispClass;
 	}
-
+	
 	@Override
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
@@ -38,7 +38,7 @@ public class GrindableWisp implements IFactoryGrindable
 		try
 		{
 			wispType = Class.forName("thaumcraft.common.entities.monster.EntityWisp").getField("type").getByte(entity);
-		
+			
 			while(EnumTag.get(wispType) == EnumTag.UNKNOWN)
 			{
 				wispType = ((byte)random.nextInt(64));
@@ -52,5 +52,5 @@ public class GrindableWisp implements IFactoryGrindable
 		
 		return drops;
 	}
-
+	
 }

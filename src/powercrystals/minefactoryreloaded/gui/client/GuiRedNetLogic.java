@@ -5,12 +5,12 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.StatCollector;
+
+import org.lwjgl.opengl.GL11;
+
 import powercrystals.core.gui.Control;
 import powercrystals.core.gui.GuiScreenBase;
 import powercrystals.core.gui.controls.Button;
@@ -29,6 +29,7 @@ import powercrystals.minefactoryreloaded.gui.control.ListBoxElementCircuit;
 import powercrystals.minefactoryreloaded.gui.control.LogicButtonType;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiRedNetLogic extends GuiScreenBase
 {
@@ -48,7 +49,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 	private ListBox _circuitList;
 	
 	private SliderVertical _circuitScroll;
-
+	
 	private ButtonLogicBufferSelect[] _inputIOBufferButtons = new ButtonLogicBufferSelect[16];
 	private ButtonLogicBufferSelect[] _outputIOBufferButtons = new ButtonLogicBufferSelect[16];
 	
@@ -127,7 +128,7 @@ public class GuiRedNetLogic extends GuiScreenBase
 				requestCircuit();
 			}
 		};
-
+		
 		_nextCircuit = new Button(this, 344, 76, 30, 30, "Next")
 		{
 			@Override
@@ -175,10 +176,10 @@ public class GuiRedNetLogic extends GuiScreenBase
 		{
 			_inputIOBufferButtons[i]  = new ButtonLogicBufferSelect(this,  22, 16 + i * 14, i, LogicButtonType.Input);
 			_inputIOPinButtons[i]	 = new ButtonLogicPinSelect(   this,  52, 16 + i * 14, i, LogicButtonType.Input);
-
+			
 			_outputIOBufferButtons[i] = new ButtonLogicBufferSelect(this, 254, 16 + i * 14, i, LogicButtonType.Output);
 			_outputIOPinButtons[i]	= new ButtonLogicPinSelect(   this, 284, 16 + i * 14, i, LogicButtonType.Output);
-
+			
 			addControl(_inputIOBufferButtons[i]);
 			addControl(_outputIOBufferButtons[i]);
 			addControl(_inputIOPinButtons[i]);
@@ -328,10 +329,10 @@ public class GuiRedNetLogic extends GuiScreenBase
 		float vScale = 1.0F/256.0F;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV((double)(x + 0), (double)(y + ySize), (double)this.zLevel, (double)((float)(u + 0) * uScale), (double)((float)(v + ySize) * vScale));
-		tessellator.addVertexWithUV((double)(x + xSize), (double)(y + ySize), (double)this.zLevel, (double)((float)(u + xSize) * uScale), (double)((float)(v + ySize) * vScale));
-		tessellator.addVertexWithUV((double)(x + xSize), (double)(y + 0), (double)this.zLevel, (double)((float)(u + xSize) * uScale), (double)((float)(v + 0) * vScale));
-		tessellator.addVertexWithUV((double)(x + 0), (double)(y + 0), (double)this.zLevel, (double)((float)(u + 0) * uScale), (double)((float)(v + 0) * vScale));
+		tessellator.addVertexWithUV(x + 0, y + ySize, this.zLevel, (u + 0) * uScale, (v + ySize) * vScale);
+		tessellator.addVertexWithUV(x + xSize, y + ySize, this.zLevel, (u + xSize) * uScale, (v + ySize) * vScale);
+		tessellator.addVertexWithUV(x + xSize, y + 0, this.zLevel, (u + xSize) * uScale, (v + 0) * vScale);
+		tessellator.addVertexWithUV(x + 0, y + 0, this.zLevel, (u + 0) * uScale, (v + 0) * vScale);
 		tessellator.draw();
 	}
 }

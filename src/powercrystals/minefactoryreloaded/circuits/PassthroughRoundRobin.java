@@ -13,13 +13,13 @@ public class PassthroughRoundRobin extends StatelessCircuit implements IRedNetLo
 	{
 		return 3;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 16;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -31,26 +31,26 @@ public class PassthroughRoundRobin extends StatelessCircuit implements IRedNetLo
 				_currentOutput = 0;
 			}
 		}
-
+		
 		_lastClockState = inputValues[2] > 0;
 		
 		int[] outputs = new int[16];
 		outputs[_currentOutput] = inputValues[0];
 		return outputs;
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.passthrough.roundrobin";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return pin == 0 ? "I" : pin == 1 ? "CNT" : "CLK";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

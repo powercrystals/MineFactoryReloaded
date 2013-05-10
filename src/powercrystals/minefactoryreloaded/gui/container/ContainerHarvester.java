@@ -17,7 +17,7 @@ public class ContainerHarvester extends ContainerUpgradable
 	{
 		addSlotToContainer(new SlotAcceptUpgrade(_te, 0, 152, 79));
 	}
-
+	
 	@Override
 	public void detectAndSendChanges()
 	{

@@ -8,7 +8,7 @@ public class BlockPinkSlimeFluid extends BlockFactoryFluid
 	{
 		super(id, liquidName);
 	}
-
+	
 	@Override
 	public void updateTick(net.minecraft.world.World world, int x, int y, int z, java.util.Random rand)
 	{

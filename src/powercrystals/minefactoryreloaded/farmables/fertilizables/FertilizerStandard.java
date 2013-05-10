@@ -1,7 +1,6 @@
 package powercrystals.minefactoryreloaded.farmables.fertilizables;
 
 import net.minecraft.item.ItemStack;
-
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
 
@@ -28,19 +27,19 @@ public class FertilizerStandard implements IFactoryFertilizer
 	{
 		return _id;
 	}
-
+	
 	@Override
 	public int getFertilizerMeta()
 	{
 		return _meta;
 	}
-
+	
 	@Override
 	public FertilizerType getFertilizerType()
 	{
 		return  _type;
 	}
-
+	
 	@Override
 	public void consume(ItemStack fertilizer)
 	{

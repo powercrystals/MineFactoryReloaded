@@ -14,7 +14,7 @@ public class ClientProxy implements IMFRProxy
 	{
 		MineFactoryReloadedClient.init();
 	}
-
+	
 	@Override
 	public void movePlayerToCoordinates(EntityPlayer e, double x, double y, double z)
 	{

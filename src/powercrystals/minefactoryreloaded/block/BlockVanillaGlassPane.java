@@ -1,9 +1,9 @@
 package powercrystals.minefactoryreloaded.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 {
@@ -29,12 +29,12 @@ public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 	{
 		return _iconPane;
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IconRegister ir)
 	{
 		_iconPane = ir.registerIcon("glass");
-    	_iconSide = ir.registerIcon("thinglass_top");
+		_iconSide = ir.registerIcon("thinglass_top");
 	}
 }

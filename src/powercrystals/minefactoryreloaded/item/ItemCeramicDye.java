@@ -1,10 +1,10 @@
 package powercrystals.minefactoryreloaded.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCeramicDye extends ItemFactory
 {
@@ -26,7 +26,7 @@ public class ItemCeramicDye extends ItemFactory
 		int md = Math.min(s.getItemDamage(), _dyeNames.length);
 		return getUnlocalizedName() + "." + _dyeNames[md];
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IconRegister ir)

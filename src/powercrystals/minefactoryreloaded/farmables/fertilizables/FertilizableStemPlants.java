@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStem;
 import net.minecraft.world.World;
-
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 
@@ -17,19 +16,19 @@ public class FertilizableStemPlants implements IFactoryFertilizable
 	{
 		this.fertilizableId = fertilizableId;
 	}
-
+	
 	@Override
 	public int getFertilizableBlockId()
 	{
 		return fertilizableId;
 	}
-
+	
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
 		return fertilizerType == FertilizerType.GrowPlant && world.getBlockMetadata(x, y, z) < 7;
 	}
-
+	
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
@@ -37,5 +36,5 @@ public class FertilizableStemPlants implements IFactoryFertilizable
 		((BlockStem)Block.blocksList[blockId]).fertilizeStem(world, x, y, z);
 		return world.getBlockMetadata(x, y, z) == 7;
 	}
-
+	
 }

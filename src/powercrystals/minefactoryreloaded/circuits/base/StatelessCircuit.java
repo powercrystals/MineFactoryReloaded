@@ -9,7 +9,7 @@ public abstract class StatelessCircuit implements IRedNetLogicCircuit
 	public void readFromNBT(NBTTagCompound tag)
 	{
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{

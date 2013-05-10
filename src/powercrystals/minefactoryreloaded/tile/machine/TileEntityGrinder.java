@@ -3,9 +3,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,13 +20,15 @@ import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
-import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable
 {	
@@ -74,19 +73,19 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 32000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -98,7 +97,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public boolean activateMachine()
 	{
@@ -167,7 +166,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		setIdleTicks(getIdleTicksMax());
 		return false;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -179,19 +178,19 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean allowBucketDrain()
 	{
@@ -203,25 +202,25 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{

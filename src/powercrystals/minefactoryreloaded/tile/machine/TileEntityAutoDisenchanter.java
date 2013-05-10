@@ -6,13 +6,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoDisenchanter;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 {
@@ -39,13 +39,13 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 	{
 		return new ContainerAutoDisenchanter(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 4;
 	}
-
+	
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
@@ -58,19 +58,19 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 			return 2;
 		}
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Auto-Disenchanter";
 	}
-
+	
 	@Override
 	protected boolean activateMachine()
 	{
@@ -146,23 +146,23 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 			return false;
 		}
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 600;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
 		return 1;
 	}
-
+	
 }

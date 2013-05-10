@@ -13,13 +13,13 @@ public class PulseLengthener implements IRedNetLogicCircuit
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -42,32 +42,32 @@ public class PulseLengthener implements IRedNetLogicCircuit
 		}
 		return new int[] { output };
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.pulselengthener";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return pin == 0 ? "I" : "L";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
 		return "O";
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		_pulseLength = tag.getInteger("pulseLength");
 		_pulseCountdown = tag.getInteger("pulseCountdown");
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{

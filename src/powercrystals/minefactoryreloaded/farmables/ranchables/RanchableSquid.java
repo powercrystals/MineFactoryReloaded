@@ -18,7 +18,7 @@ public class RanchableSquid implements IFactoryRanchable
 	{
 		return EntitySquid.class;
 	}
-
+	
 	@Override
 	public List<ItemStack> ranch(World world, EntityLiving entity, IInventory rancher)
 	{
@@ -26,5 +26,5 @@ public class RanchableSquid implements IFactoryRanchable
 		drops.add(new ItemStack(Item.dyePowder, 1, 0));
 		return drops;
 	}
-
+	
 }

@@ -14,7 +14,7 @@ public class HarvestablePamsPerennial extends HarvestablePams
 	{
 		return false;
 	}
-
+	
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{

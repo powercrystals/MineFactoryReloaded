@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -15,13 +13,15 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquidRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquidRouter;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityLiquidRouter extends TileEntityFactoryInventory implements ITankContainer
 {
 	private LiquidTank[] _bufferTanks = new LiquidTank[6];
 	private static final ForgeDirection[] _outputDirections = new ForgeDirection[]
 			{ ForgeDirection.DOWN, ForgeDirection.UP, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };
-
+	
 	public TileEntityLiquidRouter()
 	{
 		for(int i = 0; i < 6; i++)
@@ -68,37 +68,37 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 		
 		return resource.amount - amountRemaining;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
 		return pumpLiquid(resource, doFill);
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return pumpLiquid(resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _bufferTanks[direction.ordinal()] };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
@@ -108,13 +108,13 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 		}
 		return null;
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 6;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{

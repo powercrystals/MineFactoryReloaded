@@ -1,10 +1,5 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
-import powercrystals.minefactoryreloaded.gui.slot.SlotViewOnly;
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -14,6 +9,11 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
+import powercrystals.minefactoryreloaded.gui.slot.SlotViewOnly;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerLiquiCrafter extends ContainerFactoryInventory
 {
@@ -22,7 +22,7 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 	private int _tempTankIndex;
 	private int _tempLiquidId;
 	private int _tempLiquidMeta;
-
+	
 	public ContainerLiquiCrafter(TileEntityLiquiCrafter crafter, InventoryPlayer inventoryPlayer)
 	{
 		super(crafter, inventoryPlayer);
@@ -39,7 +39,7 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 				addSlotToContainer(new Slot(_te, j + i * 3, 8 + j * 18, 20 + i * 18));
 			}
 		}
-
+		
 		addSlotToContainer(new SlotViewOnly(_te, 9, 80, 38));
 		addSlotToContainer(new SlotRemoveOnly(_te, 10, 134, 38));
 		
@@ -97,7 +97,7 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-
+		
 		if(slotObject != null && slotObject.getHasStack())
 		{
 			ItemStack stackInSlot = slotObject.getStack();
@@ -131,7 +131,7 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 			
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-
+		
 		return stack;
 	}
 	

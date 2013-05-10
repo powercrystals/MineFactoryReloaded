@@ -29,7 +29,7 @@ public class GuiBioFuelGenerator extends GuiFactoryInventory
 			int tankSize = _tileEntity.getTank().getLiquid().amount * _tankSizeMax / _tileEntity.getTank().getCapacity();
 			drawTank(142, 75, _tileEntity.getTank().getLiquid().itemID, _tileEntity.getTank().getLiquid().itemMeta, tankSize);
 		}
-
+		
 		drawBar(160, 75, ((TileEntityBioFuelGenerator)_tileEntity).getBufferMax(), ((TileEntityBioFuelGenerator)_tileEntity).getBuffer(), _barColorEnergy);
 	}
 	
@@ -41,7 +41,7 @@ public class GuiBioFuelGenerator extends GuiFactoryInventory
 			drawBarTooltip(_tileEntity.getTank().getLiquid().asItemStack().getDisplayName(),
 					"mB", _tileEntity.getTank().getLiquid().amount, _tileEntity.getTank().getCapacity(), mouseX, mouseY);
 		}
-
+		
 		else if(isPointInRegion(161, 15, 8, 60, mouseX, mouseY))
 		{
 			drawBarTooltip("Energy", "MJ", ((TileEntityBioFuelGenerator)_tileEntity).getBuffer(), ((TileEntityBioFuelGenerator)_tileEntity).getBufferMax(), mouseX, mouseY);

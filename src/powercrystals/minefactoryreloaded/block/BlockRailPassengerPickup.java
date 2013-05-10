@@ -2,9 +2,6 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -16,6 +13,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockRailPassengerPickup extends BlockRailBase
 {
@@ -27,7 +26,7 @@ public class BlockRailPassengerPickup extends BlockRailBase
 		setStepSound(Block.soundMetalFootstep);
 		setCreativeTab(MFRCreativeTab.tab);
 	}
-
+	
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{

@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -11,6 +9,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 {
@@ -18,7 +18,7 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 	{
 		super(Machine.LaserDrillPrecharger);
 	}
-
+	
 	@Override
 	public String getGuiBackground()
 	{
@@ -49,13 +49,13 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Laser Drill Precharger";
 	}
-
+	
 	@Override
 	protected boolean activateMachine()
 	{
@@ -74,19 +74,19 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 		}
 		return false;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{

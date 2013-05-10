@@ -10,13 +10,13 @@ public class DeMux16Analog extends StatelessCircuit implements IRedNetLogicCircu
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 16;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -27,19 +27,19 @@ public class DeMux16Analog extends StatelessCircuit implements IRedNetLogicCircu
 		
 		return output;
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.demux.16.analog";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return pin == 0 ? "I" : "S";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

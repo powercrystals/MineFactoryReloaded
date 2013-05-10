@@ -2,10 +2,10 @@ package powercrystals.minefactoryreloaded.core;
 
 import java.util.HashMap;
 
-import powercrystals.core.position.BlockPosition;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.position.BlockPosition;
 
 public final class BlockNBTManager
 {

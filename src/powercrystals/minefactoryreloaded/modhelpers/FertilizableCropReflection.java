@@ -13,7 +13,7 @@ public class FertilizableCropReflection implements IFactoryFertilizable
 	private Method _fertilize;
 	private int _blockId;
 	protected int _targetMeta;
-
+	
 	public FertilizableCropReflection(int blockId, Method fertilize, int targetMeta)
 	{
 		_blockId = blockId;
@@ -26,13 +26,13 @@ public class FertilizableCropReflection implements IFactoryFertilizable
 	{
 		return _blockId;
 	}
-
+	
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
 		return world.getBlockMetadata(x, y, z) < _targetMeta && fertilizerType == FertilizerType.GrowPlant;
 	}
-
+	
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{

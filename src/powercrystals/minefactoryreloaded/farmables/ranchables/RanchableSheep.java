@@ -9,7 +9,6 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 
 public class RanchableSheep implements IFactoryRanchable
@@ -19,7 +18,7 @@ public class RanchableSheep implements IFactoryRanchable
 	{
 		return EntitySheep.class;
 	}
-
+	
 	@Override
 	public List<ItemStack> ranch(World world, EntityLiving entity, IInventory rancher)
 	{

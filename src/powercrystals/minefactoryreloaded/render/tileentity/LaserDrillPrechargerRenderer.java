@@ -1,8 +1,8 @@
 package powercrystals.minefactoryreloaded.render.tileentity;
 
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrillPrecharger;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrillPrecharger;
 
 public class LaserDrillPrechargerRenderer extends TileEntitySpecialRenderer
 {

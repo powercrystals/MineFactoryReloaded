@@ -9,7 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
@@ -26,7 +25,7 @@ public class HarvestableCocoa extends HarvestableStandard implements IFactoryHar
 		int blockMetadata = world.getBlockMetadata(x, y, z);
 		return ((blockMetadata & 12) >> 2) >= 2;
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{

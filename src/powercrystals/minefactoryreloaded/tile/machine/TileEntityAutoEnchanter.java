@@ -3,9 +3,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 import java.util.Map;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
@@ -18,13 +15,15 @@ import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.AutoEnchantmentHelper;
+import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoEnchanter;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoEnchanter;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
@@ -59,7 +58,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	{
 		return new ContainerAutoEnchanter(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
@@ -67,9 +66,9 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 		{
 			return 250;
 		}
-		return (_targetLevel + (int)(Math.pow(((double)_targetLevel) / 7.5, 4) * 10 * getEnchantmentMultiplier()));
+		return (_targetLevel + (int)(Math.pow((_targetLevel) / 7.5, 4) * 10 * getEnchantmentMultiplier()));
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	private double getEnchantmentMultiplier()
 	{
@@ -87,13 +86,13 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 		
 		return Math.pow(enchantments.size() + 1.0, 2);
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -165,7 +164,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 			return false;
 		}
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -183,7 +182,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	{
 		return MineFactoryReloadedCore.enableCompatibleAutoEnchanter.getBoolean(false) ? 64 : 1;
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
@@ -191,14 +190,14 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	}
 	
 	@Override
-    public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
+	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
 		if(slot == 0) return true;
 		return false;
 	}
-
+	
 	@Override
-    public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
+	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
 		if(slot == 1) return true;
 		return false;
@@ -217,7 +216,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 		super.readFromNBT(nbttagcompound);
 		_targetLevel = nbttagcompound.getInteger("targetLevel");
 	}
-
+	
 	@Override
 	public boolean allowBucketFill()
 	{
@@ -231,34 +230,34 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 		{
 			return 0;
 		}
-
+		
 		return _tank.fill(resource, doFill);
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{

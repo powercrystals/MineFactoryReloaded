@@ -23,7 +23,7 @@ public class HarvestableRedPowerPlant implements IFactoryHarvestable
 	{
 		return _blockId;
 	}
-
+	
 	@Override
 	public HarvestType getHarvestType()
 	{
@@ -35,24 +35,24 @@ public class HarvestableRedPowerPlant implements IFactoryHarvestable
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		return world.getBlockMetadata(x, y, z) != 1;
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
 	}
-
+	
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{

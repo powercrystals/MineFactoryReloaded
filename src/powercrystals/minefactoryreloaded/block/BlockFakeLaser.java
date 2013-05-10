@@ -2,8 +2,6 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.Random;
 
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -11,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
 
 public class BlockFakeLaser extends Block
 {
@@ -33,7 +32,7 @@ public class BlockFakeLaser extends Block
 	{
 		return null;
 	}
-
+	
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{

@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
-import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
-import buildcraft.core.IMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -14,6 +12,8 @@ import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
+import buildcraft.core.IMachine;
 
 public abstract class TileEntityFactoryInventory extends TileEntityFactory implements IInventory, ISidedInventory, IMachine
 {
@@ -46,15 +46,15 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	public void updateEntity()
 	{
 		super.updateEntity();
-
+		
 		if(!worldObj.isRemote && shouldPumpLiquid())
 		{
 			MFRLiquidMover.pumpLiquid(getTank(), this);
 		}
 	}
-
+	
 	protected ItemStack[] _inventory;
-
+	
 	@Override
 	public ItemStack getStackInSlot(int i)
 	{
@@ -70,7 +70,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	public void closeChest()
 	{
 	}
-
+	
 	@Override
 	public ItemStack decrStackSize(int slot, int size)
 	{
@@ -97,7 +97,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 			return null;
 		}
 	}
-
+	
 	@Override
 	public void setInventorySlotContents(int i, ItemStack itemstack)
 	{
@@ -108,7 +108,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		}
 		onFactoryInventoryChanged();
 	}
-
+	
 	protected void onFactoryInventoryChanged()
 	{
 	}
@@ -118,19 +118,19 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	{
 		return 64;
 	}
-
+	
 	@Override
 	public boolean isInvNameLocalized()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean isStackValidForSlot(int i, ItemStack itemstack)
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer)
 	{
@@ -138,7 +138,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		{
 			return false;
 		}
-		return entityplayer.getDistanceSq((double)xCoord + 0.5D, (double)yCoord + 0.5D, (double)zCoord + 0.5D) <= 64D;
+		return entityplayer.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
 	}
 	
 	@Override
@@ -167,14 +167,14 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		if(getTank() != null && Item.itemsList[tankItemId] != null && LiquidContainerRegistry.isLiquid(new ItemStack(tankItemId, 1, tankItemMeta)))
 		{
 			((LiquidTank)getTank()).setLiquid(new LiquidStack(tankItemId, tankAmount, tankItemMeta));
-
+			
 			if(getTank().getLiquid() != null && getTank().getLiquid().amount > getTank().getCapacity())
 			{
 				getTank().getLiquid().amount = getTank().getCapacity();
 			}
 		}
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{
@@ -196,7 +196,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 			nbttagcompound.setInteger("tankItemId", getTank().getLiquid().itemID);
 			nbttagcompound.setInteger("tankMeta", getTank().getLiquid().itemMeta);
 		}
-
+		
 		nbttagcompound.setTag("Items", nbttaglist);
 	}
 	
@@ -229,42 +229,42 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	{
 		return 0;
 	}
-
+	
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return getSizeInventory();
 	}
-
+	
 	@Override
 	public boolean canInsertItem(int i, ItemStack itemstack, int j)
 	{
 		return this.isStackValidForSlot(i, itemstack);
 	}
-
+	
 	@Override
 	public boolean canExtractItem(int i, ItemStack itemstack, int j)
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean isActive()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean manageLiquids()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean allowActions()
 	{

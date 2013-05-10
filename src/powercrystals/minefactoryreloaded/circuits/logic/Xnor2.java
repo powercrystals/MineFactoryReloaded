@@ -10,13 +10,13 @@ public class Xnor2 extends StatelessCircuit implements IRedNetLogicCircuit
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -26,19 +26,19 @@ public class Xnor2 extends StatelessCircuit implements IRedNetLogicCircuit
 		}
 		return new int[] { 0 };
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.xnor.2";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return "I" + pin;
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

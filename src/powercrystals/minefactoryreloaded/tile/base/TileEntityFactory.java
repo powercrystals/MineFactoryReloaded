@@ -1,21 +1,20 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.core.net.PacketWrapper;
-import powercrystals.core.position.IRotateableTile;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
-import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
-import powercrystals.minefactoryreloaded.net.Packets;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.net.PacketWrapper;
+import powercrystals.core.position.IRotateableTile;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
+import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
+import powercrystals.minefactoryreloaded.net.Packets;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class TileEntityFactory extends TileEntity implements IRotateableTile
 {
@@ -29,7 +28,7 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	{
 		_forwardDirection = ForgeDirection.NORTH;
 	}
-
+	
 	@Override
 	public ForgeDirection getDirectionFacing()
 	{

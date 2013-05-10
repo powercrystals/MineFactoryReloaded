@@ -9,13 +9,13 @@ public class RemoteInventoryCrafting extends InventoryCrafting
 	public RemoteInventoryCrafting()
 	{
 		super(new Container()
+		{
+			@Override
+			public boolean canInteractWith(EntityPlayer var1)
 			{
-				@Override
-				public boolean canInteractWith(EntityPlayer var1)
-				{
-					return false;
-				}
-			},
-			3, 3);
+				return false;
+			}
+		},
+		3, 3);
 	}
 }

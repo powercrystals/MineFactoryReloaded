@@ -3,16 +3,12 @@ package powercrystals.minefactoryreloaded.tile.machine;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
-
 import powercrystals.core.inventory.IInventoryManager;
 import powercrystals.core.inventory.InventoryManager;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -22,6 +18,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityBreeder extends TileEntityFactoryPowered
 {
@@ -51,19 +49,19 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 32000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -111,7 +109,7 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 							double var4 = a.getRNG().nextGaussian() * 0.02D;
 							double var6 = a.getRNG().nextGaussian() * 0.02D;
 							double var8 = a.getRNG().nextGaussian() * 0.02D;
-							this.worldObj.spawnParticle("heart", a.posX + (double)(a.getRNG().nextFloat() * a.width * 2.0F) - (double)a.width, a.posY + 0.5D + (double)(a.getRNG().nextFloat() * a.height), a.posZ + (double)(a.getRNG().nextFloat() * a.width * 2.0F) - (double)a.width, var4, var6, var8);
+							this.worldObj.spawnParticle("heart", a.posX + a.getRNG().nextFloat() * a.width * 2.0F - a.width, a.posY + 0.5D + a.getRNG().nextFloat() * a.height, a.posZ + a.getRNG().nextFloat() * a.width * 2.0F - a.width, var4, var6, var8);
 						}
 						return true;
 					}
@@ -127,7 +125,7 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 	{
 		return 9;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{

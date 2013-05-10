@@ -22,10 +22,10 @@ public class ContainerAutoEnchanter extends ContainerFactoryPowered
 	@Override
 	protected void addSlots()
 	{
-		addSlotToContainer(new Slot((TileEntityAutoEnchanter)_te, 0, 8, 24));
-		addSlotToContainer(new SlotRemoveOnly((TileEntityAutoEnchanter)_te, 1, 8, 54));
+		addSlotToContainer(new Slot(_te, 0, 8, 24));
+		addSlotToContainer(new SlotRemoveOnly(_te, 1, 8, 54));
 	}
-
+	
 	@Override
 	public void detectAndSendChanges()
 	{
@@ -48,7 +48,7 @@ public class ContainerAutoEnchanter extends ContainerFactoryPowered
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-
+		
 		if(slotObject != null && slotObject.getHasStack())
 		{
 			ItemStack stackInSlot = slotObject.getStack();
@@ -82,7 +82,7 @@ public class ContainerAutoEnchanter extends ContainerFactoryPowered
 			
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-
+		
 		return stack;
 	}
 }

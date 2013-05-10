@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,6 +18,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiBioReactor;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioReactor;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityBioReactor extends TileEntityFactoryInventory implements ITankContainerBucketable
 {
@@ -190,37 +190,37 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	{
 		return 18;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Bio Reactor";
 	}
-
+	
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 9;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean allowBucketDrain()
 	{
@@ -232,25 +232,25 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{

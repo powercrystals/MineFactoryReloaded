@@ -5,11 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.bouncycastle.util.Arrays;
-
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import org.bouncycastle.util.Arrays;
 
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -237,7 +237,7 @@ public class RedstoneNetwork
 				_powerLevelOutput[subnet] = power;
 				_powerProviders[subnet] = node;
 			}
-					
+			
 		}
 		
 		//System.out.println("Network with ID " + _id + ":" + subnet + " recalculated power levels as: output: " + _powerLevelOutput[subnet] + " with powering node " + _powerProviders[subnet]);

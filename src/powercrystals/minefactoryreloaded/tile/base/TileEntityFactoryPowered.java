@@ -1,5 +1,13 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
+import ic2.api.Direction;
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergySink;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.MinecraftForge;
 import powercrystals.core.power.PowerProviderAdvanced;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.setup.Machine;
@@ -7,14 +15,6 @@ import universalelectricity.core.block.IConnector;
 import universalelectricity.core.block.IVoltage;
 import universalelectricity.core.electricity.ElectricityNetworkHelper;
 import universalelectricity.core.electricity.ElectricityPack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.MinecraftForge;
-import ic2.api.Direction;
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
-import ic2.api.energy.tile.IEnergySink;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 
@@ -72,7 +72,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	}
 	
 	// local methods
-
+	
 	@Override
 	public abstract String getInvName();
 	
@@ -208,12 +208,12 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	{
 		_idleTicks = ticks;
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeToNBT(nbttagcompound);
-
+		
 		nbttagcompound.setInteger("energyStored", _energyStored);
 		nbttagcompound.setInteger("workDone", _workDone);
 		nbttagcompound.setInteger("ueBuffer", _ueBuffer);
@@ -233,19 +233,19 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	}
 	
 	// BC methods
-
+	
 	@Override
 	public void setPowerProvider(IPowerProvider provider)
 	{
 		_powerProvider = provider;
 	}
-
+	
 	@Override
 	public IPowerProvider getPowerProvider()
 	{
 		return _powerProvider;
 	}
-
+	
 	@Override
 	public int powerRequest(ForgeDirection from)
 	{
@@ -259,14 +259,14 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	// IC2 methods
 	
-
+	
 	@Override
 	public int demandsEnergy()
 	{
 		return ((getEnergyStoredMax() - _energyStored) / energyPerEU);
 	}
-
-
+	
+	
 	@Override
 	public int injectEnergy(Direction directionFrom, int amount)
 	{
@@ -274,13 +274,13 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		_energyStored += euInjected * energyPerEU;
 		return amount - euInjected;
 	}
-
+	
 	@Override
 	public boolean acceptsEnergyFrom(TileEntity emitter, Direction direction)
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean isAddedToEnergyNet()
 	{

@@ -9,7 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
@@ -20,7 +19,7 @@ public class HarvestableNetherWart implements IFactoryHarvestable
 	{
 		return Block.netherStalk.blockID;
 	}
-
+	
 	@Override
 	public HarvestType getHarvestType()
 	{
@@ -32,13 +31,13 @@ public class HarvestableNetherWart implements IFactoryHarvestable
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		return world.getBlockMetadata(x, y, z) >= 3;
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
@@ -50,19 +49,19 @@ public class HarvestableNetherWart implements IFactoryHarvestable
 		}
 		for(int k1 = 0; k1 < numDrops; k1++)
 		{
-		   drops.add(new ItemStack(Item.netherStalkSeeds));
+			drops.add(new ItemStack(Item.netherStalkSeeds));
 		}
 		return drops;
 	}
-
+	
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
 	}
-
+	
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{
 	}
-
+	
 }

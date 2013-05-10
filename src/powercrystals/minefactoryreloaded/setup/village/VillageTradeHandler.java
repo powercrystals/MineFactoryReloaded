@@ -2,14 +2,13 @@ package powercrystals.minefactoryreloaded.setup.village;
 
 import java.util.Random;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
 public class VillageTradeHandler implements IVillageTradeHandler

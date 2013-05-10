@@ -10,13 +10,13 @@ public class DeMux4 extends StatelessCircuit implements IRedNetLogicCircuit
 	{
 		return 3;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 4;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -29,19 +29,19 @@ public class DeMux4 extends StatelessCircuit implements IRedNetLogicCircuit
 		
 		return output;
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.demux.4";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return pin == 0 ? "I" : pin == 1 ? "S0" : "S1";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{

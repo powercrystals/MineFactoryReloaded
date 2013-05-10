@@ -1,12 +1,11 @@
 package powercrystals.minefactoryreloaded.farmables.plantables;
 
-import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 /*
  * Used for directly placing blocks (ie saplings) and items (ie sugarcane). Pass in source ID to constructor,
@@ -39,9 +38,9 @@ public class PlantableStandard implements IFactoryPlantable
 		return 
 				(Block.blocksList[_plantedBlockId].canPlaceBlockAt(world, x, y, z) && Block.blocksList[_plantedBlockId].canBlockStay(world, x, y, z)) ||
 				(Block.blocksList[_plantedBlockId] instanceof IPlantable && Block.blocksList[groundId] != null &&
-						Block.blocksList[groundId].canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable)Block.blocksList[_plantedBlockId])));
+				Block.blocksList[groundId].canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable)Block.blocksList[_plantedBlockId])));
 	}
-
+	
 	@Override
 	public void prePlant(World world, int x, int y, int z, ItemStack stack)
 	{
@@ -53,7 +52,7 @@ public class PlantableStandard implements IFactoryPlantable
 	{
 		return;
 	}
-
+	
 	@Override
 	public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack)
 	{
@@ -63,7 +62,7 @@ public class PlantableStandard implements IFactoryPlantable
 		}
 		return _plantedBlockId;
 	}
-
+	
 	@Override
 	public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack)
 	{

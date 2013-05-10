@@ -2,9 +2,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
@@ -19,6 +16,8 @@ import powercrystals.core.oredict.OreDictTracker;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUnifier;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityUnifier extends TileEntityFactoryInventory implements ITankContainer
 {
@@ -73,7 +72,7 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 					output = OreDictionary.getOres(names.get(0)).get(0).copy();
 					output.stackSize = _inventory[0].stackSize;
 				}
-
+				
 				moveItemStack(output);
 			}
 		}
@@ -85,7 +84,7 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 		{
 			return;
 		}
-
+		
 		int amt = source.stackSize;
 		
 		if(_inventory[1] == null)
@@ -121,40 +120,40 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 			_inventory[0] = null;
 		}
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Unifier";
 	}
-
+	
 	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 2;
 	}
-
+	
 	@Override
-    public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
+	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
 		if(slot == 0) return true;
 		return false;
 	}
-
+	
 	@Override
-    public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
+	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
 		if(slot == 1) return true;
 		return false;
@@ -184,31 +183,31 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 		}
 		return 0;
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return _tank.drain(maxDrain, doDrain);
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return _tank.drain(maxDrain, doDrain);
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{

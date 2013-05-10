@@ -6,28 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import com.google.common.collect.ImmutableMap;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import powercrystals.core.position.Area;
-import powercrystals.core.position.BlockPosition;
-import powercrystals.core.util.UtilInventory;
-import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
-import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
-import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
-import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
-import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
-import powercrystals.minefactoryreloaded.gui.client.GuiHarvester;
-import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
-import powercrystals.minefactoryreloaded.setup.Machine;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,6 +15,27 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.core.position.Area;
+import powercrystals.core.position.BlockPosition;
+import powercrystals.core.util.UtilInventory;
+import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
+import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
+import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
+import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
+import powercrystals.minefactoryreloaded.gui.client.GuiHarvester;
+import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
+import powercrystals.minefactoryreloaded.setup.Machine;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+
+import com.google.common.collect.ImmutableMap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityHarvester extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
@@ -99,19 +98,19 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -123,7 +122,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		_areaManager.updateUpgradeLevel(_inventory[0]);
 	}
-
+	
 	@Override
 	public boolean activateMachine()
 	{
@@ -131,7 +130,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		int harvestedBlockId = 0;
 		int harvestedBlockMetadata = 0;
-
+		
 		BlockPosition targetCoords = getNextHarvest();
 		
 		if(targetCoords == null)
@@ -146,9 +145,9 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		IFactoryHarvestable harvestable = MFRRegistry.getHarvestables().get(new Integer(harvestedBlockId));
 		
 		List<ItemStack> drops = harvestable.getDrops(worldObj, _rand, ImmutableMap.copyOf(_settings), targetCoords.x, targetCoords.y, targetCoords.z);
-
+		
 		harvestable.preHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
-
+		
 		if(drops != null)
 		{
 			for(ItemStack dropStack : drops)
@@ -169,10 +168,10 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		harvestable.postHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
 		_tank.fill(LiquidDictionary.getLiquid("sludge", 10), true);
-
+		
 		return true;
 	}
-
+	
 	private BlockPosition getNextHarvest()
 	{
 		BlockPosition bp = _areaManager.getNextBlock();
@@ -236,11 +235,11 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		return new BlockPosition(x, y + highestBlockOffset, z);
 	}
-
+	
 	private BlockPosition getNextTreeSegment(int x, int y, int z)
 	{
 		int blockId;
- 
+		
 		if(_lastTree == null || _lastTree.x != x || _lastTree.y != y || _lastTree.z != z)
 		{
 			Area a = new Area(x - MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(), x + MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(),
@@ -284,13 +283,13 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			_treeManager.moveNext();
 		}
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean allowBucketDrain()
 	{
@@ -302,31 +301,31 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{
@@ -368,19 +367,19 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{

@@ -24,13 +24,13 @@ public class FertilizableRedPowerRubberTree implements IFactoryFertilizable
 	{
 		return _blockId;
 	}
-
+	
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
 		return fertilizerType == FertilizerType.GrowPlant;
 	}
-
+	
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
@@ -44,5 +44,5 @@ public class FertilizableRedPowerRubberTree implements IFactoryFertilizable
 		}
 		return world.getBlockId(x, y, z) != _blockId;
 	}
-
+	
 }

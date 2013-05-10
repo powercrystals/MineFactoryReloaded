@@ -5,12 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
 public class HarvestableVine implements IFactoryHarvestable
 {
@@ -19,7 +18,7 @@ public class HarvestableVine implements IFactoryHarvestable
 	{
 		return Block.vine.blockID;
 	}
-
+	
 	@Override
 	public HarvestType getHarvestType()
 	{
@@ -31,13 +30,13 @@ public class HarvestableVine implements IFactoryHarvestable
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		return true;
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
@@ -45,12 +44,12 @@ public class HarvestableVine implements IFactoryHarvestable
 		drops.add(new ItemStack(Block.vine));
 		return drops;
 	}
-
+	
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
 	}
-
+	
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{

@@ -1,11 +1,11 @@
 package powercrystals.minefactoryreloaded.item;
 
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 
 public class ItemRedNetMeter extends ItemFactory
 {

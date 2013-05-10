@@ -3,8 +3,6 @@ package powercrystals.minefactoryreloaded.setup.village;
 import java.util.List;
 import java.util.Random;
 
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.ComponentVillage;
@@ -12,6 +10,7 @@ import net.minecraft.world.gen.structure.ComponentVillageStartPiece;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieceWeight;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 
 public class ComponentZoologistHouse extends ComponentVillage
 {
@@ -23,7 +22,7 @@ public class ComponentZoologistHouse extends ComponentVillage
 		this.coordBaseMode = coordBaseMode;
 		boundingBox = sbb;
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	public static ComponentZoologistHouse buildComponent(StructureVillagePieceWeight villagePiece, ComponentVillageStartPiece startPiece, List pieces, Random random, int p1, int p2, int p3, int p4, int p5)
 	{
@@ -37,18 +36,18 @@ public class ComponentZoologistHouse extends ComponentVillage
 		if(averageGroundLevel < 0)
 		{
 			averageGroundLevel = getAverageGroundLevel(world, sbb);
-
+			
 			if(averageGroundLevel < 0)
 			{
 				return true;
 			}
-
+			
 			boundingBox.offset(0, averageGroundLevel - boundingBox.maxY + 9 - 1, 0);
 		}
 		
 		int brickId = MineFactoryReloadedCore.factoryDecorativeBrickBlock.blockID;
 		int brickMeta = 4;
-
+		
 		fillWithBlocks(world, sbb, 1, 1, 1, 7, 5, 4, 0, 0, false);
 		fillWithMetadataBlocks(world, sbb, 0, 0, 0, 8, 0, 5, brickId, brickMeta, brickId, brickMeta, false);
 		fillWithMetadataBlocks(world, sbb, 0, 5, 0, 8, 5, 5, brickId, brickMeta, brickId, brickMeta, false);
@@ -58,7 +57,7 @@ public class ComponentZoologistHouse extends ComponentVillage
 		int j = getMetadataWithOffset(Block.stairsWoodOak.blockID, 2);
 		int k;
 		int l;
-
+		
 		for(k = -1; k <= 2; ++k)
 		{
 			for(l = 0; l <= 8; ++l)
@@ -67,7 +66,7 @@ public class ComponentZoologistHouse extends ComponentVillage
 				placeBlockAtCurrentPosition(world, Block.stairsWoodOak.blockID, j, l, 6 + k, 5 - k, sbb);
 			}
 		}
-
+		
 		fillWithMetadataBlocks(world, sbb, 0, 1, 0, 0, 1, 5, brickId, brickMeta, brickId, brickMeta, false);
 		fillWithMetadataBlocks(world, sbb, 1, 1, 5, 8, 1, 5, brickId, brickMeta, brickId, brickMeta, false);
 		fillWithMetadataBlocks(world, sbb, 8, 1, 0, 8, 1, 4, brickId, brickMeta, brickId, brickMeta, false);
@@ -116,12 +115,12 @@ public class ComponentZoologistHouse extends ComponentVillage
 		placeBlockAtCurrentPosition(world, 0, 0, 1, 1, 0, sbb);
 		placeBlockAtCurrentPosition(world, 0, 0, 1, 2, 0, sbb);
 		placeDoorAtCurrentPosition(world, sbb, random, 1, 1, 0, getMetadataWithOffset(Block.doorWood.blockID, 1));
-
+		
 		if(getBlockIdAtCurrentPosition(world, 1, 0, -1, sbb) == 0 && getBlockIdAtCurrentPosition(world, 1, -1, -1, sbb) != 0)
 		{
 			placeBlockAtCurrentPosition(world, Block.stairsCobblestone.blockID, getMetadataWithOffset(Block.stairsCobblestone.blockID, 3), 1, 0, -1, sbb);
 		}
-
+		
 		for(l = 0; l < 6; ++l)
 		{
 			for(int i1 = 0; i1 < 9; ++i1)
@@ -130,7 +129,7 @@ public class ComponentZoologistHouse extends ComponentVillage
 				fillCurrentPositionBlocksDownwards(world, brickId, brickMeta, i1, -1, l, sbb);
 			}
 		}
-
+		
 		spawnVillagers(world, sbb, 2, 1, 2, 1);
 		return true;
 	}

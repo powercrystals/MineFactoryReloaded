@@ -27,7 +27,7 @@ public class ContainerAutoAnvil extends ContainerFactoryPowered
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-
+		
 		if(slotObject != null && slotObject.getHasStack())
 		{
 			ItemStack stackInSlot = slotObject.getStack();
@@ -61,7 +61,7 @@ public class ContainerAutoAnvil extends ContainerFactoryPowered
 			
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-
+		
 		return stack;
 	}
 }

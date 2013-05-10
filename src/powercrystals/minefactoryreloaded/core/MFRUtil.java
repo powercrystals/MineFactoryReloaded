@@ -47,7 +47,7 @@ public class MFRUtil
 	{
 		try
 		{
-			Entity e = (Entity)entity.getConstructor(new Class[] {World.class}).newInstance(new Object[] { world });
+			Entity e = entity.getConstructor(new Class[] {World.class}).newInstance(new Object[] { world });
 			if(e instanceof EntityLiving)
 			{
 				((EntityLiving)e).initCreature();

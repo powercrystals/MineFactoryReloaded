@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-
-
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
+import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class MineFactoryReloadedWorldGen implements IWorldGenerator
@@ -65,7 +63,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 			}
 		}
 	}
-
+	
 	private static List<Integer> buildBlacklistedDimensions()
 	{
 		String blacklist = MineFactoryReloadedCore.worldGenDimensionBlacklist.getString();

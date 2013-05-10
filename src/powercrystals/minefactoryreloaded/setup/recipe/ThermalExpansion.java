@@ -4,12 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-
-import thermalexpansion.api.item.ItemRegistry;
-
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.setup.Machine;
-
+import thermalexpansion.api.item.ItemRegistry;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -37,15 +34,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 0), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.flowerPot,
-							'S', Block.pistonBase,
-							'F', machineFrame,
-							'O', "ingotCopper",
-							'C', powerCoilGold,
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.flowerPot,
+					'S', Block.pistonBase,
+					'F', machineFrame,
+					'O', "ingotCopper",
+					'C', powerCoilGold,
 						} ));
 			}
 			
@@ -53,15 +50,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 1), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.fishingRod,
-							'S', Item.bucketEmpty,
-							'F', machineFrame,
-							'O', "ingotIron",
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.fishingRod,
+					'S', Item.bucketEmpty,
+					'F', machineFrame,
+					'O', "ingotIron",
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -69,15 +66,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 2), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.axeIron,
-							'S', Item.shears,
-							'F', machineFrame,
-							'O', "ingotGold",
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.axeIron,
+					'S', Item.shears,
+					'F', machineFrame,
+					'O', "ingotGold",
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -85,15 +82,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 3), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', pneumaticServo,
-							'S', Item.shears,
-							'F', machineFrame,
-							'O', "ingotTin",
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', pneumaticServo,
+					'S', Item.shears,
+					'F', machineFrame,
+					'O', "ingotTin",
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -101,15 +98,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 4), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.glassBottle,
-							'S', Item.leather,
-							'F', machineFrame,
-							'O', "ingotSilver",
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.glassBottle,
+					'S', Item.leather,
+					'F', machineFrame,
+					'O', "ingotSilver",
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -117,14 +114,14 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 5), new Object[]
 						{
-							"PTP",
-							"TFT",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', MineFactoryReloadedCore.syringeEmptyItem,
-							'F', machineFrame,
-							'O', "ingotCopper",
-							'C', powerCoilGold
+					"PTP",
+					"TFT",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', MineFactoryReloadedCore.syringeEmptyItem,
+					'F', machineFrame,
+					'O', "ingotCopper",
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -132,12 +129,12 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 8, 6), new Object[]
 						{
-							"P P",
-							" F ",
-							"PCP",
-							'P', "sheetPlastic",
-							'F', machineFrame,
-							'C', Block.chest
+					"P P",
+					" F ",
+					"PCP",
+					'P', "sheetPlastic",
+					'F', machineFrame,
+					'C', Block.chest
 						} ));
 			}
 			
@@ -145,15 +142,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 7), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', gearInvar,
-							'S', Item.pickaxeIron,
-							'F', machineFrame,
-							'O', "ingotIron",
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', gearInvar,
+					'S', Item.pickaxeIron,
+					'F', machineFrame,
+					'O', "ingotIron",
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -161,14 +158,14 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 8), new Object[]
 						{
-							"PTP",
-							" F ",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.bucketEmpty,
-							'F', machineFrame,
-							'O', "ingotTin",
-							'C', powerCoilGold
+					"PTP",
+					" F ",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.bucketEmpty,
+					'F', machineFrame,
+					'O', "ingotTin",
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -176,15 +173,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 9), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.bucketEmpty,
-							'S', Block.furnaceIdle,
-							'F', machineFrame,
-							'O', "ingotIron",
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.bucketEmpty,
+					'S', Block.furnaceIdle,
+					'F', machineFrame,
+					'O', "ingotIron",
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -192,13 +189,13 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 4, 10), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"SSS",
-							'P', "sheetPlastic",
-							'T', Item.bucketEmpty,
-							'S', Item.brick,
-							'F', machineFrame,
+					"PTP",
+					"SFS",
+					"SSS",
+					'P', "sheetPlastic",
+					'T', Item.bucketEmpty,
+					'S', Item.brick,
+					'F', machineFrame,
 						} ));
 			}
 			
@@ -206,15 +203,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 11), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Block.furnaceIdle,
-							'S', Block.pistonBase,
-							'F', machineFrame,
-							'O', Item.brick,
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Block.furnaceIdle,
+					'S', Block.pistonBase,
+					'F', machineFrame,
+					'O', Item.brick,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -222,15 +219,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 12), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.appleGold,
-							'S', Item.goldenCarrot,
-							'F', machineFrame,
-							'O', new ItemStack(Item.dyePowder, 1, 5),
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.appleGold,
+					'S', Item.goldenCarrot,
+					'F', machineFrame,
+					'O', new ItemStack(Item.dyePowder, 1, 5),
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -238,15 +235,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 13), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.swordGold,
-							'S', gearTin,
-							'F', machineFrame,
-							'O', Item.book,
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.swordGold,
+					'S', gearTin,
+					'F', machineFrame,
+					'O', Item.book,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -254,15 +251,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 14), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Block.obsidian,
-							'S', Item.book,
-							'F', machineFrame,
-							'O', Item.diamond,
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Block.obsidian,
+					'S', Item.book,
+					'F', machineFrame,
+					'O', Item.diamond,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -270,14 +267,14 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 15), new Object[]
 						{
-							"PTP",
-							"TFT",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.emerald,
-							'F', machineFrame,
-							'O', new ItemStack(Item.dyePowder, 1, 5),
-							'C', powerCoilGold
+					"PTP",
+					"TFT",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.emerald,
+					'F', machineFrame,
+					'O', new ItemStack(Item.dyePowder, 1, 5),
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -285,13 +282,13 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 8, 0), new Object[]
 						{							
-							"PTP",
-							" F ",
-							"OOO",
-							'P', "sheetPlastic",
-							'T', pneumaticServo,
-							'F', machineFrame,
-							'O', Item.redstone
+					"PTP",
+					" F ",
+					"OOO",
+					'P', "sheetPlastic",
+					'T', pneumaticServo,
+					'F', machineFrame,
+					'O', Item.redstone
 						} ));
 			}
 			
@@ -299,13 +296,13 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 8, 1), new Object[]
 						{					
-							"PTP",
-							"SFS",
-							"PSP",
-							'P', "sheetPlastic",
-							'T', Block.chest,
-							'S', Item.redstoneRepeater,
-							'F', machineFrame
+					"PTP",
+					"SFS",
+					"PSP",
+					'P', "sheetPlastic",
+					'T', Block.chest,
+					'S', Item.redstoneRepeater,
+					'F', machineFrame
 						} ));
 			}
 			
@@ -313,13 +310,13 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 8, 2), new Object[]
 						{					
-							"PTP",
-							"SFS",
-							"PSP",
-							'P', "sheetPlastic",
-							'T', conduitLiquid,
-							'S', Item.redstoneRepeater,
-							'F', machineFrame
+					"PTP",
+					"SFS",
+					"PSP",
+					'P', "sheetPlastic",
+					'T', conduitLiquid,
+					'S', Item.redstoneRepeater,
+					'F', machineFrame
 						} ));
 			}
 			
@@ -328,24 +325,24 @@ public class ThermalExpansion extends Vanilla
 				int dsuCount = MineFactoryReloadedCore.craftSingleDSU.getBoolean(false) ? 1 : 4;
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), dsuCount, 3), new Object[]
 						{					
-							"PCP",
-							"CFC",
-							"PCP",
-							'P', "sheetPlastic",
-							'C', Block.chest,
-							'F', tesseractFrameFull
+					"PCP",
+					"CFC",
+					"PCP",
+					'P', "sheetPlastic",
+					'C', Block.chest,
+					'F', tesseractFrameFull
 						} ));
 				
 				if(MineFactoryReloadedCore.enableCheapDSU.getBoolean(false))
 				{
 					GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 3), new Object[]
 							{					
-								"PCP",
-								"CFC",
-								"PCP",
-								'P', "sheetPlastic",
-								'C', Block.chest,
-								'F', machineFrame
+						"PCP",
+						"CFC",
+						"PCP",
+						'P', "sheetPlastic",
+						'C', Block.chest,
+						'F', machineFrame
 							} ));
 				}
 			}
@@ -354,15 +351,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 4), new Object[]
 						{						
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Block.workbench,
-							'S', conduitLiquid,
-							'F', machineFrame,
-							'O', Item.book,
-							'C', pneumaticServo
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Block.workbench,
+					'S', conduitLiquid,
+					'F', machineFrame,
+					'O', Item.book,
+					'C', pneumaticServo
 						} ));
 			}
 			
@@ -370,15 +367,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 5), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Block.obsidian,
-							'S', Item.magmaCream,
-							'F', machineFrame,
-							'O', Item.blazeRod,
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Block.obsidian,
+					'S', Item.magmaCream,
+					'F', machineFrame,
+					'O', Item.blazeRod,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -386,14 +383,14 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 6), new Object[]
 						{
-							"PTP",
-							"OFO",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Block.tnt,
-							'F', machineFrame,
-							'O', Block.obsidian,
-							'C', powerCoilGold
+					"PTP",
+					"OFO",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Block.tnt,
+					'F', machineFrame,
+					'O', Block.obsidian,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -401,12 +398,12 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 7), new Object[]
 						{
-							"PJP",
-							" F ",
-							" P ",
-							'P', "sheetPlastic",
-							'J', Block.jukebox,
-							'F', machineFrame
+					"PJP",
+					" F ",
+					" P ",
+					'P', "sheetPlastic",
+					'J', Block.jukebox,
+					'F', machineFrame
 						} ));
 			}
 			
@@ -414,15 +411,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 8), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', "ingotCopper",
-							'S', "ingotSilver",
-							'F', machineFrame,
-							'O', Item.comparator,
-							'C', Item.book
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', "ingotCopper",
+					'S', "ingotSilver",
+					'F', machineFrame,
+					'O', Item.comparator,
+					'C', Item.book
 						} ));
 			}
 			
@@ -430,15 +427,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 9), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.netherStalkSeeds,
-							'S', Item.magmaCream,
-							'F', machineFrame,
-							'O', Item.emerald,
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.netherStalkSeeds,
+					'S', Item.magmaCream,
+					'F', machineFrame,
+					'O', Item.emerald,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -446,15 +443,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 10), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Item.fermentedSpiderEye,
-							'S', Item.slimeBall,
-							'F', machineFrame,
-							'O', Item.brick,
-							'C', Item.sugar
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Item.fermentedSpiderEye,
+					'S', Item.slimeBall,
+					'F', machineFrame,
+					'O', Item.brick,
+					'C', Item.sugar
 						} ));
 			}
 			
@@ -462,15 +459,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 11), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Block.furnaceIdle,
-							'S', Block.pistonBase,
-							'F', machineFrame,
-							'O', Item.blazeRod,
-							'C', powerCoilSilver
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Block.furnaceIdle,
+					'S', Block.pistonBase,
+					'F', machineFrame,
+					'O', Item.blazeRod,
+					'C', powerCoilSilver
 						} ));
 			}
 			
@@ -478,15 +475,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 12), new Object[]
 						{
-							"PTP",
-							"SFS",
-							"OCO",
-							'P', "sheetPlastic",
-							'T', Block.netherBrick,
-							'S', Item.book,
-							'F', machineFrame,
-							'O', Item.diamond,
-							'C', powerCoilGold
+					"PTP",
+					"SFS",
+					"OCO",
+					'P', "sheetPlastic",
+					'T', Block.netherBrick,
+					'S', Item.book,
+					'F', machineFrame,
+					'O', Item.diamond,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -494,15 +491,15 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 13), new Object[]
 						{
-							"GIG",
-							"SFS",
-							"XCX",
-							'G', "sheetPlastic",
-							'S', Item.swordGold,
-							'X', Item.axeGold,
-							'I', gearInvar,
-							'F', machineFrame,
-							'C', powerCoilGold
+					"GIG",
+					"SFS",
+					"XCX",
+					'G', "sheetPlastic",
+					'S', Item.swordGold,
+					'X', Item.axeGold,
+					'I', gearInvar,
+					'F', machineFrame,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -510,14 +507,14 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 14), new Object[]
 						{
-							"GSG",
-							"BFB",
-							"BCB",
-							'G', "sheetPlastic",
-							'B', Block.brick,
-							'S', Item.flintAndSteel,
-							'F', machineFrame,
-							'C', powerCoilGold
+					"GSG",
+					"BFB",
+					"BCB",
+					'G', "sheetPlastic",
+					'B', Block.brick,
+					'S', Item.flintAndSteel,
+					'F', machineFrame,
+					'C', powerCoilGold
 						} ));
 			}
 			
@@ -525,13 +522,13 @@ public class ThermalExpansion extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 15), new Object[]
 						{					
-							"PBP",
-							"SFS",
-							"PSP",
-							'P', "sheetPlastic",
-							'B', Item.book,
-							'S', Item.redstoneRepeater,
-							'F', machineFrame
+					"PBP",
+					"SFS",
+					"PSP",
+					'P', "sheetPlastic",
+					'B', Item.book,
+					'S', Item.redstoneRepeater,
+					'F', machineFrame
 						} ));
 			}
 		}

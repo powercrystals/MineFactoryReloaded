@@ -2,10 +2,10 @@ package powercrystals.minefactoryreloaded.tile.base;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
-import buildcraft.api.power.IPowerProvider;
-import buildcraft.api.power.IPowerReceptor;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.power.PowerProviderAdvanced;
+import buildcraft.api.power.IPowerProvider;
+import buildcraft.api.power.IPowerReceptor;
 
 public abstract class TileEntityGenerator extends TileEntityFactoryInventory implements IPowerReceptor
 {
@@ -46,24 +46,24 @@ public abstract class TileEntityGenerator extends TileEntityFactoryInventory imp
 		
 		return mj;
 	}
-
+	
 	@Override
 	public void setPowerProvider(IPowerProvider provider)
 	{
 		_powerProvider = provider;
 	}
-
+	
 	@Override
 	public IPowerProvider getPowerProvider()
 	{
 		return _powerProvider;
 	}
-
+	
 	@Override
 	public void doWork()
 	{
 	}
-
+	
 	@Override
 	public int powerRequest(ForgeDirection from)
 	{

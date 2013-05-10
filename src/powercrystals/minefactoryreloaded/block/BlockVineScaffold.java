@@ -1,9 +1,5 @@
 package powercrystals.minefactoryreloaded.block;
 
-import powercrystals.core.position.BlockPosition;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -16,6 +12,10 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.position.BlockPosition;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockVineScaffold extends Block
 {
@@ -24,7 +24,7 @@ public class BlockVineScaffold extends Block
 	
 	private static final ForgeDirection[] _attachDirections = new ForgeDirection[] { ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };
 	private static final int _attachDistance = 16;
-
+	
 	public BlockVineScaffold(int id)
 	{
 		super(id, Material.leaves);
@@ -33,15 +33,15 @@ public class BlockVineScaffold extends Block
 		setHardness(0.1F);
 		setBlockBounds(0F, 0.01F, 0F, 1F, 0.99F, 1F);
 	}
-
+	
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-        if(entity instanceof EntityPlayerMP)
-        {
-            ((EntityPlayerMP)entity).playerNetServerHandler.ticksForFloatKick = 0;
-            entity.fallDistance = 0;
-        }
+		if(entity instanceof EntityPlayerMP)
+		{
+			((EntityPlayerMP)entity).playerNetServerHandler.ticksForFloatKick = 0;
+			entity.fallDistance = 0;
+		}
 	}
 	
 	@Override
@@ -49,7 +49,7 @@ public class BlockVineScaffold extends Block
 	{
 		return AxisAlignedBB.getAABBPool().getAABB(x + 0.05, y, z + 0.05, x + 0.95, y + 1, z + 0.95);
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister ir)
@@ -57,20 +57,20 @@ public class BlockVineScaffold extends Block
 		_sideIcon = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".side");
 		_topIcon = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName() + ".top");
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int meta)
 	{
 		return side < 2 ? _topIcon : _sideIcon;
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean renderAsNormalBlock()
 	{
@@ -89,14 +89,14 @@ public class BlockVineScaffold extends Block
 	{
 		return true;
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderColor(int meta)
 	{
 		return ColorizerFoliage.getFoliageColorBasic();
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess world, int x, int y, int z)
@@ -104,18 +104,18 @@ public class BlockVineScaffold extends Block
 		int r = 0;
 		int g = 0;
 		int b = 0;
-
+		
 		for(int zOffset = -1; zOffset <= 1; ++zOffset)
 		{
 			for(int xOffset = -1; xOffset <= 1; ++xOffset)
 			{
 				int biomeColor = world.getBiomeGenForCoords(x + xOffset, z + zOffset).getBiomeFoliageColor();
 				r += (biomeColor & 16711680) >> 16;
-				g += (biomeColor & 65280) >> 8;
-				b += biomeColor & 255;
+			g += (biomeColor & 65280) >> 8;
+		b += biomeColor & 255;
 			}
 		}
-
+		
 		return (r / 9 & 255) << 16 | (g / 9 & 255) << 8 | b / 9 & 255;
 	}
 	

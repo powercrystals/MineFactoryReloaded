@@ -34,7 +34,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Registers a harvestable block with the Harvester.
 	 * 
@@ -56,7 +56,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Registers a fertilizable block with the Fertilizer.
 	 * 
@@ -78,7 +78,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Registers a fertilizer item Fertilizer.
 	 * 
@@ -100,7 +100,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Registers a ranchable entity with the Rancher.
 	 * 
@@ -122,7 +122,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Registers a grindable entity with the Grinder.
 	 * 

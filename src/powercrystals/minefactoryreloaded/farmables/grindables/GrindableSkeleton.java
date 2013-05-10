@@ -19,7 +19,7 @@ public class GrindableSkeleton implements IFactoryGrindable
 	{
 		return EntitySkeleton.class;
 	}
-
+	
 	@Override
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
@@ -40,5 +40,5 @@ public class GrindableSkeleton implements IFactoryGrindable
 		
 		return drops;
 	}
-
+	
 }

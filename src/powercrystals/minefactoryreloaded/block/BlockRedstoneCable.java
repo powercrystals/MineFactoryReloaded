@@ -2,15 +2,6 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.core.position.BlockPosition;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.IToolHammer;
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
-import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
-import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -25,6 +16,15 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.position.BlockPosition;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.IToolHammer;
+import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockRedstoneCable extends BlockContainer implements IRedNetNetworkContainer
 {
@@ -85,7 +85,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		parts[12] = csu != RedNetConnectionType.PlateSingle && csu != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, 1.0F - _bandDepthEnd, _bandWidthStart, _bandWidthEnd, 1.0F - _bandDepthStart, _bandWidthEnd);
 		parts[13] = csn != RedNetConnectionType.PlateSingle && csn != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, _bandWidthStart, _bandDepthStart, _bandWidthEnd, _bandWidthEnd, _bandDepthEnd);
 		parts[14] = css != RedNetConnectionType.PlateSingle && css != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandWidthStart, _bandWidthStart, 1.0F - _bandDepthEnd, _bandWidthEnd, _bandWidthEnd, 1.0F - _bandDepthStart);
-				
+		
 		return parts;
 	}
 	
@@ -95,7 +95,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		
 		Vec3 playerPosition = Vec3.createVectorHelper(player.posX - cable.xCoord, player.posY - cable.yCoord + player.getEyeHeight(), player.posZ - cable.zCoord);
 		Vec3 playerLook = player.getLookVec();
-		 
+		
 		Vec3 playerViewOffset = Vec3.createVectorHelper(playerPosition.xCoord + playerLook.xCoord * reachDistance, playerPosition.yCoord + playerLook.yCoord * reachDistance, playerPosition.zCoord + playerLook.zCoord * reachDistance);
 		int closest = -1;
 		double closestdistance = Double.MAX_VALUE;
@@ -128,7 +128,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		if(te != null && te instanceof TileRedstoneCable)
 		{
 			TileRedstoneCable cable = (TileRedstoneCable)te;
-
+			
 			int subHit = getPartClicked(player, 3.0F, cable);
 			
 			if(subHit < 0)
@@ -136,7 +136,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 				return false;
 			}
 			side = _partSideMappings[subHit];
-					
+			
 			if(side >= 0)
 			{
 				ItemStack s = player.inventory.getCurrentItem();
@@ -243,7 +243,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	{
 		return false;
 	}
-
+	
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId)
 	{
@@ -332,7 +332,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	{
 		blockIcon = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
-
+	
 	@Override
 	public void updateNetwork(World world, int x, int y, int z)
 	{
@@ -342,7 +342,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 			((TileRedstoneCable)te).getNetwork().updatePowerLevels();
 		}
 	}
-
+	
 	@Override
 	public void updateNetwork(World world, int x, int y, int z, int subnet)
 	{

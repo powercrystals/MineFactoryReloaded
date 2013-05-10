@@ -24,7 +24,7 @@ public class ContainerBlockSmasher extends ContainerFactoryPowered
 		addSlotToContainer(new Slot(_te, 0, 8, 24));
 		addSlotToContainer(new SlotRemoveOnly(_te, 1, 8, 54));
 	}
-
+	
 	@Override
 	public void detectAndSendChanges()
 	{
@@ -47,7 +47,7 @@ public class ContainerBlockSmasher extends ContainerFactoryPowered
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-
+		
 		if(slotObject != null && slotObject.getHasStack())
 		{
 			ItemStack stackInSlot = slotObject.getStack();
@@ -81,7 +81,7 @@ public class ContainerBlockSmasher extends ContainerFactoryPowered
 			
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-
+		
 		return stack;
 	}
 }

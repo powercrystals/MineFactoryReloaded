@@ -2,8 +2,8 @@ package powercrystals.minefactoryreloaded.modhelpers.xycraft;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;

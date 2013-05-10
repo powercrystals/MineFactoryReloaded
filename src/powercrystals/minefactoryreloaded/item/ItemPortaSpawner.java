@@ -2,15 +2,15 @@ package powercrystals.minefactoryreloaded.item;
 
 import java.util.List;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemPortaSpawner extends ItemFactory
 {
@@ -69,7 +69,7 @@ public class ItemPortaSpawner extends ItemFactory
 	private boolean placeBlock(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float xOffset, float yOffset, float zOffset)
 	{
 		int blockId = world.getBlockId(x, y, z);
-
+		
 		if(blockId == Block.snow.blockID && (world.getBlockMetadata(x, y, z) & 7) < 1)
 		{
 			side = 1;
@@ -80,33 +80,33 @@ public class ItemPortaSpawner extends ItemFactory
 			{
 				--y;
 			}
-
+			
 			if(side == 1)
 			{
 				++y;
 			}
-
+			
 			if(side == 2)
 			{
 				--z;
 			}
-
+			
 			if(side == 3)
 			{
 				++z;
 			}
-
+			
 			if(side == 4)
 			{
 				--x;
 			}
-
+			
 			if(side == 5)
 			{
 				++x;
 			}
 		}
-
+		
 		if(itemstack.stackSize == 0)
 		{
 			return false;
@@ -123,13 +123,13 @@ public class ItemPortaSpawner extends ItemFactory
 		{
 			Block block = Block.blocksList[_blockId];
 			int meta = Block.blocksList[_blockId].onBlockPlaced(world, x, y, z, side, xOffset, yOffset, zOffset, 0);
-
+			
 			if(placeBlockAt(itemstack, player, world, x, y, z, side, xOffset, yOffset, zOffset, meta))
 			{
-				world.playSoundEffect((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+				world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
 				--itemstack.stackSize;
 			}
-
+			
 			return true;
 		}
 		else
@@ -144,7 +144,7 @@ public class ItemPortaSpawner extends ItemFactory
 		{
 			return false;
 		}
-
+		
 		if(world.getBlockId(x, y, z) == _blockId)
 		{
 			Block.blocksList[_blockId].onBlockPlacedBy(world, x, y, z, player, stack);
@@ -155,7 +155,7 @@ public class ItemPortaSpawner extends ItemFactory
 			tag.setInteger("y", y);
 			tag.setInteger("z", z);
 			te.readFromNBT(tag);
-			PacketDispatcher.sendPacketToAllAround(x, y, z, 50, ((EntityPlayer)player).worldObj.provider.dimensionId, te.getDescriptionPacket());
+			PacketDispatcher.sendPacketToAllAround(x, y, z, 50, player.worldObj.provider.dimensionId, te.getDescriptionPacket());
 		}
 		return true;
 	}

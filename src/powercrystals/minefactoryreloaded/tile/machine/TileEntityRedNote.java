@@ -28,7 +28,7 @@ public class TileEntityRedNote extends TileEntityFactory
 		int instrument = value / 25;
 		int note = value % 25;
 		
-		float f = (float)Math.pow(2.0D, (double)(note - 12) / 12.0D);
+		float f = (float)Math.pow(2.0D, (note - 12) / 12.0D);
 		
 		worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "note." + _noteNames[instrument], 3.0F, f);
 	}

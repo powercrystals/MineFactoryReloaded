@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
@@ -15,6 +12,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiItemRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityItemRouter extends TileEntityFactoryInventory
 {
@@ -130,13 +129,13 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		
 		return true;
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 48;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -161,19 +160,19 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	{
 		return new ContainerItemRouter(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
-
+	
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
 		return 45;
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{

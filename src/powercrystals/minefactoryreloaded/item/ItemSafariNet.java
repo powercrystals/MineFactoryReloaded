@@ -3,8 +3,6 @@ package powercrystals.minefactoryreloaded.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,6 +27,8 @@ import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 import powercrystals.minefactoryreloaded.api.RandomMob;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSafariNet extends ItemFactory
 {
@@ -77,7 +77,7 @@ public class ItemSafariNet extends ItemFactory
 			}
 		}
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public Icon getIcon(ItemStack stack, int pass)
@@ -88,7 +88,7 @@ public class ItemSafariNet extends ItemFactory
 		else if(pass == 2) return _iconFront;
 		return null;
 	}
-
+	
 	@Override
 	public void registerIcons(IconRegister ir)
 	{
@@ -106,13 +106,13 @@ public class ItemSafariNet extends ItemFactory
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int getRenderPasses(int metadata)
 	{
 		return 3;
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemStack(ItemStack stack, int pass)
@@ -189,15 +189,15 @@ public class ItemSafariNet extends ItemFactory
 		y += Facing.offsetsYForSide[side];
 		z += Facing.offsetsZForSide[side];
 		double spawnOffsetY = 0.0D;
-
+		
 		if (side == 1 && Block.blocksList[blockId] != null && Block.blocksList[blockId].getRenderType() == 11)
 		{
 			spawnOffsetY = 0.5D;
 		}
-
+		
 		if(itemstack.getItemDamage() != 0)
 		{
-			if(spawnCreature(world, itemstack.getItemDamage(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
+			if(spawnCreature(world, itemstack.getItemDamage(), x + 0.5D, y + spawnOffsetY, z + 0.5D) != null)
 			{
 				if(isSingleUse(itemstack))
 				{
@@ -211,7 +211,7 @@ public class ItemSafariNet extends ItemFactory
 		}
 		else
 		{
-			if(spawnCreature(world, itemstack.getTagCompound(), (double)x + 0.5D, (double)y + spawnOffsetY, (double)z + 0.5D) != null)
+			if(spawnCreature(world, itemstack.getTagCompound(), x + 0.5D, y + spawnOffsetY, z + 0.5D) != null)
 			{
 				if(isSingleUse(itemstack))
 				{
@@ -223,10 +223,10 @@ public class ItemSafariNet extends ItemFactory
 				}
 			}
 		}
-
+		
 		return true;
 	}
-
+	
 	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
 	{
 		Entity e;
@@ -257,7 +257,7 @@ public class ItemSafariNet extends ItemFactory
 			
 			e.readFromNBT(mobTag);
 		}
-
+		
 		if(e != null)
 		{
 			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
@@ -268,10 +268,10 @@ public class ItemSafariNet extends ItemFactory
 				((EntityLiving)e).playLivingSound();
 			}
 		}
-
+		
 		return e;
 	}
-
+	
 	private static Entity spawnCreature(World world, int mobId, double x, double y, double z)
 	{
 		if(!EntityList.entityEggs.containsKey(Integer.valueOf(mobId)))
@@ -281,15 +281,15 @@ public class ItemSafariNet extends ItemFactory
 		else
 		{
 			Entity e = EntityList.createEntityByID(mobId, world);
-
+			
 			if (e != null)
 			{
-					e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
-					((EntityLiving)e).initCreature();
-					world.spawnEntityInWorld(e);
-					((EntityLiving)e).playLivingSound();
-				}
-
+				e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+				((EntityLiving)e).initCreature();
+				world.spawnEntityInWorld(e);
+				((EntityLiving)e).playLivingSound();
+			}
+			
 			return e;
 		}
 	}
@@ -319,7 +319,7 @@ public class ItemSafariNet extends ItemFactory
 			NBTTagCompound c = new NBTTagCompound();
 			
 			entity.writeToNBT(c);
-
+			
 			c.setString("id", (String)EntityList.classToStringMapping.get(entity.getClass()));
 			if(itemstack.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID)
 			{

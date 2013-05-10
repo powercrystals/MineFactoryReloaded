@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.Util;
 import powercrystals.core.util.UtilInventory;
@@ -18,7 +17,7 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 	{
 		super(Machine.BlockBreaker);
 	}
-
+	
 	@Override
 	public boolean activateMachine()
 	{		
@@ -46,25 +45,25 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 		setIdleTicks(getIdleTicksMax());
 		return false;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 64000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
 		return 20;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -76,7 +75,7 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{

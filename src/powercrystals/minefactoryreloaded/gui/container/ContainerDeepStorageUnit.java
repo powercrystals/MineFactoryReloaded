@@ -1,14 +1,14 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 {
@@ -34,7 +34,7 @@ public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-
+		
 		if(slotObject != null && slotObject.getHasStack())
 		{
 			ItemStack stackInSlot = slotObject.getStack();
@@ -68,7 +68,7 @@ public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 			
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-
+		
 		return stack;
 	}
 	
@@ -84,7 +84,7 @@ public class ContainerDeepStorageUnit extends ContainerFactoryInventory
 			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 103, _dsu.getIsSideOutput(3) ? 1 : 0);
 			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 104, _dsu.getIsSideOutput(4) ? 1 : 0);
 			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 105, _dsu.getIsSideOutput(5) ? 1 : 0);
-
+			
 			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 200, _dsu.getQuantity());
 			((ICrafting)crafters.get(i)).sendProgressBarUpdate(this, 201, _dsu.getQuantity() >> 16);
 		}

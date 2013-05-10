@@ -21,14 +21,14 @@ public class FertilizableCorn implements IFactoryFertilizable
 	{
 		return _blockId;
 	}
-
+	
 	@Override
 	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType)
 	{
 		int id = world.getBlockId(x, y + 1, z);
 		return Block.blocksList[id] == null || Block.blocksList[id].isAirBlock(world, x, y + 1, z);
 	}
-
+	
 	@Override
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{

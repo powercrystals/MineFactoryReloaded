@@ -1,8 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemRecord;
@@ -15,6 +12,9 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAutoJukebox extends TileEntityFactoryInventory
 {
@@ -108,7 +108,7 @@ public class TileEntityAutoJukebox extends TileEntityFactoryInventory
 	{
 		return 2;
 	}
-
+	
 	@Override
 	public void updateEntity()
 	{
@@ -128,13 +128,13 @@ public class TileEntityAutoJukebox extends TileEntityFactoryInventory
 		
 		_lastRedstoneState = redstoneState;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Auto Jukebox";
 	}
-
+	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{

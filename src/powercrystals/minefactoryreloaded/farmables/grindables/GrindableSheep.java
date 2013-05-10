@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
-import powercrystals.minefactoryreloaded.api.MobDrop;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.MobDrop;
 
 public class GrindableSheep implements IFactoryGrindable
 {
@@ -19,7 +19,7 @@ public class GrindableSheep implements IFactoryGrindable
 	{
 		return EntitySheep.class;
 	}
-
+	
 	@Override
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{

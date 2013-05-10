@@ -25,7 +25,7 @@ public class ContainerAutoJukebox extends ContainerFactoryInventory
 		addSlotToContainer(new SlotAcceptRecord(_te, 0, 8, 24));
 		addSlotToContainer(new SlotAcceptBlankRecord(_te, 1, 8, 54));
 	}
-
+	
 	@Override
 	public void detectAndSendChanges()
 	{
@@ -56,8 +56,8 @@ public class ContainerAutoJukebox extends ContainerFactoryInventory
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-		int machInvSize = ((TileEntityAutoJukebox)_jukebox).getSizeInventory();
-
+		int machInvSize = _jukebox.getSizeInventory();
+		
 		if(slotObject != null && slotObject.getHasStack())
 		{
 			ItemStack stackInSlot = slotObject.getStack();
@@ -91,7 +91,7 @@ public class ContainerAutoJukebox extends ContainerFactoryInventory
 			
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-
+		
 		return stack;
 	}
 }

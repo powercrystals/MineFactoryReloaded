@@ -11,7 +11,7 @@ public class ContainerUnifier extends ContainerFactoryInventory
 	{
 		super(tileentity, inv);
 	}
-
+	
 	
 	@Override
 	protected void addSlots()

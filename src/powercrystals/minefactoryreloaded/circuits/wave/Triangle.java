@@ -12,13 +12,13 @@ public class Triangle implements IRedNetLogicCircuit
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int getOutputCount()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
@@ -30,31 +30,31 @@ public class Triangle implements IRedNetLogicCircuit
 		}
 		return new int[] { _invert ? 15 - value : value };
 	}
-
+	
 	@Override
 	public String getUnlocalizedName()
 	{
 		return "circuit.mfr.wavegenerator.triangle";
 	}
-
+	
 	@Override
 	public String getInputPinLabel(int pin)
 	{
 		return "";
 	}
-
+	
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
 		return "Q";
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		_invert = tag.getBoolean("inverted");
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{

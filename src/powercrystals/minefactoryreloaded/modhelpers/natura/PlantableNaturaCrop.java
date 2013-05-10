@@ -6,12 +6,12 @@ import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant
 
 public class PlantableNaturaCrop extends PlantableCropPlant
 {
-
+	
 	public PlantableNaturaCrop(int sourceId, int plantedBlockId)
 	{
 		super(sourceId, plantedBlockId);
 	}
-
+	
 	@Override
 	public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack)
 	{

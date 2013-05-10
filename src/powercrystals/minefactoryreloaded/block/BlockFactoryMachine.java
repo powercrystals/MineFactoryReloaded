@@ -2,25 +2,6 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
-import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
-import powercrystals.minefactoryreloaded.core.BlockNBTManager;
-import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
-import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
-import powercrystals.minefactoryreloaded.core.MFRUtil;
-import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
-import powercrystals.minefactoryreloaded.setup.Machine;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
-import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -38,6 +19,25 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import powercrystals.minefactoryreloaded.core.BlockNBTManager;
+import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
+import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.setup.Machine;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFactoryMachine extends BlockContainer implements IConnectableRedNet
 {
@@ -64,7 +64,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 	{
 		Machine.LoadTextures(_mfrMachineBlockIndex, ir);
 	}
-
+	
 	@Override
 	public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side)
 	{
@@ -78,7 +78,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 		}
 		return Machine.getMachineFromIndex(_mfrMachineBlockIndex, md).getIcon(side, isActive);
 	}
-
+	
 	@Override
 	public Icon getIcon(int side, int meta)
 	{
@@ -102,7 +102,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 		}
 		return super.getLightOpacity(world, x, y, z);
 	}
-
+	
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
@@ -111,7 +111,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 		{
 			float shrinkAmount = 0.125F;
 			return AxisAlignedBB.getBoundingBox(x + shrinkAmount, y + shrinkAmount, z + shrinkAmount,
-			x + 1 - shrinkAmount, y + 1 - shrinkAmount, z + 1 - shrinkAmount);
+					x + 1 - shrinkAmount, y + 1 - shrinkAmount, z + 1 - shrinkAmount);
 		}
 		else
 		{
@@ -164,7 +164,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 		
 		if(te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
 		{
-			int facing = MathHelper.floor_double((double)((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+			int facing = MathHelper.floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
 			if(facing == 0)
 			{
 				((TileEntityFactory)te).rotateDirectlyTo(3);
@@ -183,13 +183,13 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			}
 		}
 	}
-
+	
 	@Override
 	public int damageDropped(int i)
 	{
 		return i;
 	}
-
+	
 	@Override
 	public TileEntity createNewTileEntity(World world)
 	{
@@ -237,7 +237,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 		}
 		return false;
 	}
-
+	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, int blockId, int meta)
 	{
@@ -245,7 +245,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 		if(te instanceof IInventory && !(te instanceof TileEntityDeepStorageUnit))
 		{
 			IInventory inventory = ((IInventory)te);
-inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
+			inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 			{
 				if(te instanceof TileEntityFactoryInventory && !((TileEntityFactoryInventory)te).shouldDropSlotWhenBroken(i))
 				{
@@ -272,7 +272,7 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 						amountToDrop = itemstack.stackSize;
 					}
 					itemstack.stackSize -= amountToDrop;
-					EntityItem entityitem = new EntityItem(world, (float)x + xOffset, (float)y + yOffset, (float)z + zOffset, new ItemStack(itemstack.itemID, amountToDrop, itemstack.getItemDamage()));
+					EntityItem entityitem = new EntityItem(world, x + xOffset, y + yOffset, z + zOffset, new ItemStack(itemstack.itemID, amountToDrop, itemstack.getItemDamage()));
 					if(itemstack.getTagCompound() != null)
 					{
 						entityitem.getEntityItem().setTagCompound(itemstack.getTagCompound());
@@ -289,7 +289,7 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 		{
 			BlockNBTManager.setForBlock(te);
 		}
-			
+		
 		if(te != null && te instanceof TileEntityFactoryPowered)
 		{
 			((TileEntityFactoryPowered)te).onBlockBroken();
@@ -299,7 +299,7 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 		{
 			((TileEntityAutoJukebox)te).stopRecord();
 		}
-
+		
 		super.breakBlock(world, x, y, z, blockId, meta);
 	}
 	
@@ -312,7 +312,7 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 		drops.add(machine);
 		return drops;
 	}
-
+	
 	@Override
 	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
 	{
@@ -336,30 +336,30 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return RedNetConnectionType.CableSingle;
 	}
-
+	
 	@Override
 	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
 	{
 	}
-
+	
 	@Override
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{

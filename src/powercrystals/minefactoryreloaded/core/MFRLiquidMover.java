@@ -38,7 +38,7 @@ public abstract class MFRLiquidMover
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Attempts to drain tank into the player's current item.
 	 * @param	itcb			the tank the liquid is coming from
@@ -75,12 +75,12 @@ public abstract class MFRLiquidMover
 						return true;
 					}
 				}
-					
+				
 			}
 		}
 		return false;
 	}
-
+	
 	public static void pumpLiquid(ILiquidTank tank, TileEntityFactory from)
 	{
 		if(tank != null && tank.getLiquid() != null && tank.getLiquid().amount > 0)

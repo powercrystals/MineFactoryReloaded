@@ -19,7 +19,7 @@ public class CommonProxy implements IMFRProxy
 			((EntityPlayerMP)e).playerNetServerHandler.setPlayerLocation(x, y, z, e.cameraYaw, e.cameraPitch);
 		}
 	}
-
+	
 	@Override
 	public void onPostTextureStitch(Post e)
 	{

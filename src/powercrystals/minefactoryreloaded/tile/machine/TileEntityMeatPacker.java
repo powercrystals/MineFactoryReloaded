@@ -9,8 +9,6 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -18,6 +16,8 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityMeatPacker extends TileEntityFactoryPowered implements ITankContainer
 {
@@ -28,13 +28,13 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 		super(Machine.MeatPacker);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
@@ -59,7 +59,7 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-
+	
 	@Override
 	protected boolean activateMachine()
 	{
@@ -84,19 +84,19 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 		}
 		return false;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 50;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
@@ -108,7 +108,7 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
@@ -127,31 +127,31 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction) 
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
@@ -161,8 +161,8 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 		}
 		return null;
 	}
-
-
+	
+	
 	@Override
 	public boolean manageSolids()
 	{

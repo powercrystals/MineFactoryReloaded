@@ -1,7 +1,6 @@
 package powercrystals.minefactoryreloaded.gui.control;
 
 import net.minecraft.util.StatCollector;
-
 import powercrystals.core.gui.controls.IListBoxElement;
 import powercrystals.core.gui.controls.ListBox;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
@@ -26,7 +25,7 @@ public class ListBoxElementCircuit implements IListBoxElement
 	{
 		return 10;
 	}
-
+	
 	@Override
 	public void draw(ListBox listBox, int x, int y, int backColor, int textColor)
 	{

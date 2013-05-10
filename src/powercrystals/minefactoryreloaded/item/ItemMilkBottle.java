@@ -12,7 +12,7 @@ public class ItemMilkBottle extends ItemFactory
 	{
 		super(id);
 	}
-
+	
 	@Override
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 	{
@@ -20,30 +20,30 @@ public class ItemMilkBottle extends ItemFactory
 		{
 			stack.stackSize--;
 		}
-
+		
 		if(!world.isRemote)
 		{
 			player.curePotionEffects(new ItemStack(Item.bucketMilk));
 		}
-
+		
 		return stack.stackSize <= 0 ? new ItemStack(Item.glassBottle) : stack;
 	}
-
-
+	
+	
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
 		return 32;
 	}
-
-
+	
+	
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.drink;
 	}
-
-
+	
+	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{

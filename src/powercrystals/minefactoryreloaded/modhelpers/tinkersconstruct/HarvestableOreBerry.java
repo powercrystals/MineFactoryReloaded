@@ -22,13 +22,13 @@ public class HarvestableOreBerry implements IFactoryHarvestable
 		_berryItemId = berryItemId;
 		_metaOffset = metaOffset;
 	}
-
+	
 	@Override
 	public int getPlantId()
 	{
 		return _sourceBlockId;
 	}
-
+	
 	@Override
 	public HarvestType getHarvestType()
 	{
@@ -40,25 +40,25 @@ public class HarvestableOreBerry implements IFactoryHarvestable
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		return world.getBlockMetadata(x, y, z) >= 12;
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z)
 	{
 		ItemStack[] returnItems = {new ItemStack(_berryItemId, 1, world.getBlockMetadata(x, y, z) % 4 + _metaOffset)}; 
 		return Arrays.asList(returnItems);
 	}
-
+	
 	@Override
 	public void preHarvest(World world, int x, int y, int z)
 	{
 	}
-
+	
 	@Override
 	public void postHarvest(World world, int x, int y, int z)
 	{

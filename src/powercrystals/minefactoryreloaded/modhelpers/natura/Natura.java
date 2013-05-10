@@ -1,12 +1,5 @@
 package powercrystals.minefactoryreloaded.modhelpers.natura;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -16,6 +9,12 @@ import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSap
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = "MineFactoryReloaded|CompatNatura", name = "MFR Compat: Natura", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:Natura")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)

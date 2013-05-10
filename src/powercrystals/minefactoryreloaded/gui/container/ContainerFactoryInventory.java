@@ -1,8 +1,5 @@
 package powercrystals.minefactoryreloaded.gui.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -11,11 +8,14 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerFactoryInventory extends Container
 {
 	protected TileEntityFactoryInventory _te;
-
+	
 	private int _tankAmount;
 	private int _tankId;
 	
@@ -46,7 +46,7 @@ public class ContainerFactoryInventory extends Container
 	public void detectAndSendChanges()
 	{
 		super.detectAndSendChanges();
-
+		
 		for(int i = 0; i < crafters.size(); i++)
 		{
 			if(_te.getTank() != null && _te.getTank().getLiquid() != null)
@@ -78,7 +78,7 @@ public class ContainerFactoryInventory extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return ((TileEntityFactoryInventory)_te).isUseableByPlayer(player);
+		return _te.isUseableByPlayer(player);
 	}
 	
 	@Override
@@ -86,8 +86,8 @@ public class ContainerFactoryInventory extends Container
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
-		int machInvSize = ((TileEntityFactoryInventory)_te).getSizeInventory();
-
+		int machInvSize = _te.getSizeInventory();
+		
 		if(slotObject != null && slotObject.getHasStack())
 		{
 			ItemStack stackInSlot = slotObject.getStack();
@@ -121,7 +121,7 @@ public class ContainerFactoryInventory extends Container
 			
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-
+		
 		return stack;
 	}
 	
@@ -136,10 +136,10 @@ public class ContainerFactoryInventory extends Container
 		{
 			for (int j = 0; j < 9; j++)
 			{
-					addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, getPlayerInventoryVerticalOffset() + i * 18));
+				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, getPlayerInventoryVerticalOffset() + i * 18));
 			}
 		}
-
+		
 		for (int i = 0; i < 9; i++)
 		{
 			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, getPlayerInventoryVerticalOffset() + 58));
@@ -152,26 +152,26 @@ public class ContainerFactoryInventory extends Container
 		boolean successful = false;
 		int slotIndex = slotStart;
 		int maxStack = Math.min(stack.getMaxStackSize(), _te.getInventoryStackLimit());
-
+		
 		if(reverse)
 		{
 			slotIndex = slotRange - 1;
 		}
-
+		
 		Slot slot;
 		ItemStack existingStack;
-
+		
 		if(stack.isStackable())
 		{
 			while(stack.stackSize > 0 && (!reverse && slotIndex < slotRange || reverse && slotIndex >= slotStart))
 			{
 				slot = (Slot)this.inventorySlots.get(slotIndex);
 				existingStack = slot.getStack();
-
+				
 				if(existingStack != null && existingStack.itemID == stack.itemID && (!stack.getHasSubtypes() || stack.getItemDamage() == existingStack.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, existingStack))
 				{
 					int existingSize = existingStack.stackSize + stack.stackSize;
-
+					
 					if(existingSize <= maxStack)
 					{
 						stack.stackSize = 0;
@@ -187,7 +187,7 @@ public class ContainerFactoryInventory extends Container
 						successful = true;
 					}
 				}
-
+				
 				if(reverse)
 				{
 					--slotIndex;
@@ -198,7 +198,7 @@ public class ContainerFactoryInventory extends Container
 				}
 			}
 		}
-
+		
 		if(stack.stackSize > 0)
 		{
 			if(reverse)
@@ -209,12 +209,12 @@ public class ContainerFactoryInventory extends Container
 			{
 				slotIndex = slotStart;
 			}
-
+			
 			while(!reverse && slotIndex < slotRange || reverse && slotIndex >= slotStart)
 			{
 				slot = (Slot)this.inventorySlots.get(slotIndex);
 				existingStack = slot.getStack();
-
+				
 				if(existingStack == null)
 				{
 					slot.putStack(stack.copy());
@@ -223,7 +223,7 @@ public class ContainerFactoryInventory extends Container
 					successful = true;
 					break;
 				}
-
+				
 				if(reverse)
 				{
 					--slotIndex;
@@ -234,7 +234,7 @@ public class ContainerFactoryInventory extends Container
 				}
 			}
 		}
-
+		
 		return successful;
 	}
 }

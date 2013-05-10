@@ -18,7 +18,7 @@ public interface IRedNetNetworkContainer
 	 * @param x The z-coordinate of this cable.
 	 */
 	public void updateNetwork(World world, int x, int y, int z);
-
+	
 	/**
 	 * Tells the network to recalculate a specific subnet.
 	 * @param world The world this cable is in.

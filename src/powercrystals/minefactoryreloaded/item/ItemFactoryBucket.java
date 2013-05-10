@@ -2,14 +2,14 @@ package powercrystals.minefactoryreloaded.item;
 
 import java.util.List;
 
-import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFactoryBucket extends ItemBucket
 {
@@ -21,7 +21,7 @@ public class ItemFactoryBucket extends ItemBucket
 		setCreativeTab(MFRCreativeTab.tab);
 		_liquidId = liquidId;
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IconRegister par1IconRegister)
@@ -42,7 +42,7 @@ public class ItemFactoryBucket extends ItemBucket
 		}
 		else
 		{
-			 world.setBlock(x, y, z, _liquidId, 7, 3);
+			world.setBlock(x, y, z, _liquidId, 7, 3);
 			return true;
 		}
 	}

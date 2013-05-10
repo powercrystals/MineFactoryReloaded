@@ -13,7 +13,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class SufficientBiomes
 {
-
+	
 	@Init
 	public static void load(FMLInitializationEvent ev)
 	{

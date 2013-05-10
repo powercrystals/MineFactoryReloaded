@@ -1,18 +1,17 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-
+import net.minecraft.client.gui.GuiButton;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
-import net.minecraft.client.gui.GuiButton;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiDeepStorageUnit extends GuiFactoryInventory
 {
 	private TileEntityDeepStorageUnit _dsu;
-
+	
 	private GuiButton _dirDown;
 	private GuiButton _dirUp;
 	private GuiButton _dirNorth;
@@ -32,7 +31,7 @@ public class GuiDeepStorageUnit extends GuiFactoryInventory
 	public void initGui()
 	{
 		super.initGui();
-
+		
 		int xOffset = (this.width - this.xSize) / 2;
 		int yOffset = (this.height - this.ySize) / 2;
 		
@@ -62,7 +61,7 @@ public class GuiDeepStorageUnit extends GuiFactoryInventory
 		_dirWest.displayString  = _dsu.getIsSideOutput(4) ? "OUT" : "IN";
 		_dirEast.displayString  = _dsu.getIsSideOutput(5) ? "OUT" : "IN";
 	}
-
+	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
