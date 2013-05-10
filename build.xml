@@ -6,8 +6,8 @@
 	<property name="classes.dir" value="${build.dir}/packaging" />
 	<property name="apiclasses.dir" value="${build.dir}/api-packaging" />
 	<property name="src.dir" value="src" />
-	<property name="forge.buildnum" value="652" />
-	<property name="forge.version" value="1.5.1-7.7.1.${forge.buildnum}" />
+	<property name="forge.buildnum" value="691" />
+	<property name="forge.version" value="1.5.2-7.8.0.${forge.buildnum}" />
 	<property name="forge.url" value="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${forge.version}.zip" />
 	<property name="forge.dir" value="${build.dir}/forge" />
 	<property name="mcp.dir" value="${forge.dir}/mcp" />

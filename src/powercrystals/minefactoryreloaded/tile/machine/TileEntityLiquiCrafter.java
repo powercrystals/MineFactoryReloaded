@@ -315,21 +315,15 @@ inv:	for(int i = 0; i < 9; i++)
 		//return 18;
 	}
 	
-	/*
-	 * This is canInsertItem
-	 */
 	@Override
-    public boolean func_102007_a(int slot, ItemStack stack, int sideordinal)
+    public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
 		if(slot > 10) return true;
 		return false;
 	}
 
-	/*
-	 * This is canExtractItem
-	 */
 	@Override
-    public boolean func_102008_b(int slot, ItemStack itemstack, int sideordinal)
+    public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
 		if(slot == 10) return true;
 		return false;

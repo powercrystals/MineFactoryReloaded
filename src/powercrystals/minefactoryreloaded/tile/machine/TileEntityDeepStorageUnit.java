@@ -218,11 +218,14 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	}
 	
 	/*
+<<<<<<< HEAD
 	 * This is canInsertItem, in newer forge versions
+=======
+>>>>>>> Switch to 1.5.2 forge
 	 * Should only allow matching items to be inserted in the "in" slot. Nothing goes in the "out" slot.
 	 */
 	@Override
-    public boolean func_102007_a(int slot, ItemStack stack, int sideordinal)
+    public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
 		if(sideordinal > 5) return false;
 		if(!_isSideOutput[sideordinal])
@@ -238,11 +241,14 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	}
 
 	/*
+<<<<<<< HEAD
 	 * This is canExtractItem, in newer forge versions
+=======
+>>>>>>> Switch to 1.5.2 forge
 	 * Should only allow removal from the output slot.
 	 */
 	@Override
-    public boolean func_102008_b(int slot, ItemStack itemstack, int sideordinal)
+    public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
 		if(sideordinal > 5) return false;
 		return _isSideOutput[sideordinal];

@@ -212,7 +212,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	}
 	
 	@Override
-	public int[] getSizeInventorySide(int side)
+	public int[] getAccessibleSlotsFromSide(int side)
 	{
 		int start = getStartInventorySide(ForgeDirection.getOrientation(side));
 		int size = getSizeInventorySide(ForgeDirection.getOrientation(side));
@@ -236,13 +236,13 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	}
 
 	@Override
-	public boolean func_102007_a(int i, ItemStack itemstack, int j)
+	public boolean canInsertItem(int i, ItemStack itemstack, int j)
 	{
 		return this.isStackValidForSlot(i, itemstack);
 	}
 
 	@Override
-	public boolean func_102008_b(int i, ItemStack itemstack, int j)
+	public boolean canExtractItem(int i, ItemStack itemstack, int j)
 	{
 		return true;
 	}

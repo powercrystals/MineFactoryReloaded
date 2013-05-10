@@ -190,21 +190,15 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 		return 2;
 	}
 	
-	/*
-	 * This is canInsertItem
-	 */
 	@Override
-    public boolean func_102007_a(int slot, ItemStack stack, int sideordinal)
+    public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
 		if(slot == 0) return true;
 		return false;
 	}
 
-	/*
-	 * This is canExtractItem
-	 */
 	@Override
-    public boolean func_102008_b(int slot, ItemStack itemstack, int sideordinal)
+    public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
 		if(slot == 1) return true;
 		return false;

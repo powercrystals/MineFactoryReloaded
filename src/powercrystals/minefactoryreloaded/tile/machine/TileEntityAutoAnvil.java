@@ -222,7 +222,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 
 						addedEnchLevel = newEnchLevel;
 						int levelDifference = addedEnchLevel - existingEnchLevel;
-						boolean canEnchantmentBeAdded = enchantment.func_92089_a(outputItem);
+						boolean canEnchantmentBeAdded = enchantment.canApply(outputItem);
 
 						if(outputItem.itemID == ItemEnchantedBook.enchantedBook.itemID)
 						{
