@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
@@ -292,6 +293,11 @@ inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
 		if(te != null && te instanceof TileEntityFactoryPowered)
 		{
 			((TileEntityFactoryPowered)te).onBlockBroken();
+		}
+		
+		if(te != null && te instanceof TileEntityAutoJukebox)
+		{
+			((TileEntityAutoJukebox)te).stopRecord();
 		}
 
 		super.breakBlock(world, x, y, z, blockId, meta);
