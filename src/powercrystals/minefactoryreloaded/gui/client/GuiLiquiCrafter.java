@@ -61,7 +61,7 @@ public class GuiLiquiCrafter extends GuiFactoryInventory
 	{
 		LiquidStack stack = LiquidDictionary.getCanonicalLiquid(new LiquidStack(liquidId, 1, liquidMeta));
 
-		if(liquidId <= 0)
+		if(liquidId <= 0 || stack == null)
 		{
 			return;
 		}
