@@ -93,7 +93,7 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 				try
 				{
 					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
-					e.attackEntityFrom(DamageSource.generic, 50);
+					e.attackEntityFrom(DamageSource.generic, e.getHealth());
 				}
 				finally
 				{

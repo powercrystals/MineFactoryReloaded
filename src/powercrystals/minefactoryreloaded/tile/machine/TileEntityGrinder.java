@@ -147,7 +147,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 					try
 					{
 						worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
-						e.attackEntityFrom(DamageSource.generic, 50);
+						e.attackEntityFrom(DamageSource.generic, e.getHealth());
 					}
 					finally
 					{
