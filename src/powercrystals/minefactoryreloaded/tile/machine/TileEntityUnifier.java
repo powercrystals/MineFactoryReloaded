@@ -139,12 +139,6 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	{
 		return 64;
 	}
-	
-	@Override
-	public int getStartInventorySide(ForgeDirection side)
-	{
-		return 0;
-	}
 
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)

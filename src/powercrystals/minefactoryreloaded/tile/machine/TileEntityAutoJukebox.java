@@ -136,12 +136,6 @@ public class TileEntityAutoJukebox extends TileEntityFactoryInventory
 	}
 
 	@Override
-	public int getStartInventorySide(ForgeDirection side)
-	{
-		return 0;
-	}
-
-	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 1;

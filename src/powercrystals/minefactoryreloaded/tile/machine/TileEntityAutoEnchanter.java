@@ -185,12 +185,6 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	}
 
 	@Override
-	public int getStartInventorySide(ForgeDirection side)
-	{
-		return 0;
-	}
-
-	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 2;
