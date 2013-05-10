@@ -143,16 +143,35 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
-		if(side.ordinal() < 2) return 0;
-		return 1;
+		return 0;
 	}
 
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
-		return 1;
+		return 2;
 	}
 
+	/*
+	 * This is canInsertItem, in newer forge versions
+	 */
+	@Override
+    public boolean func_102007_a(int slot, ItemStack stack, int sideordinal)
+	{
+		if(slot == 0) return true;
+		return false;
+	}
+
+	/*
+	 * This is canExtractItem, in newer forge versions
+	 */
+	@Override
+    public boolean func_102008_b(int slot, ItemStack itemstack, int sideordinal)
+	{
+		if(slot == 1) return true;
+		return false;
+	}
+	
 	@Override
 	public ILiquidTank getTank()
 	{

@@ -218,7 +218,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	}
 	
 	/*
-	 * This is canAddItem
+	 * This is canInsertItem, in newer forge versions
 	 * Should only allow matching items to be inserted in the "in" slot. Nothing goes in the "out" slot.
 	 */
 	@Override
@@ -238,7 +238,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	}
 
 	/*
-	 * This is canRemoveItem
+	 * This is canExtractItem, in newer forge versions
 	 * Should only allow removal from the output slot.
 	 */
 	@Override
