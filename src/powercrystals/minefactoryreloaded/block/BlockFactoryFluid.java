@@ -19,12 +19,12 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 
-public class BlockFluidFactory extends BlockFluidClassic implements ILiquid, IConnectableRedNet
+public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, IConnectableRedNet
 {
 	private Icon _iconFlowing;
 	private Icon _iconStill;
 	
-	public BlockFluidFactory(int id, String liquidName)
+	public BlockFactoryFluid(int id, String liquidName)
 	{
 		super(id, Material.water);
 		setUnlocalizedName("mfr.liquid." + liquidName + ".still");

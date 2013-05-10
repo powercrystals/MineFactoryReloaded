@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.block;
 
 import powercrystals.minefactoryreloaded.entity.EntityPinkSlime;
 
-public class BlockPinkSlimeFluid extends BlockFluidFactory
+public class BlockPinkSlimeFluid extends BlockFactoryFluid
 {
 	public BlockPinkSlimeFluid(int id, String liquidName)
 	{

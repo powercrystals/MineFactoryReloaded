@@ -38,7 +38,7 @@ import powercrystals.minefactoryreloaded.block.BlockFactoryGlassPane;
 import powercrystals.minefactoryreloaded.block.BlockFactoryMachine;
 import powercrystals.minefactoryreloaded.block.BlockFactoryRoad;
 import powercrystals.minefactoryreloaded.block.BlockFakeLaser;
-import powercrystals.minefactoryreloaded.block.BlockFluidFactory;
+import powercrystals.minefactoryreloaded.block.BlockFactoryFluid;
 import powercrystals.minefactoryreloaded.block.BlockPinkSlimeFluid;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoDropoff;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoPickup;
@@ -369,12 +369,12 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		
 		// this stuff has to go in pre-init in order for MFR to play nice with Forestry
 		
-		milkLiquid = new BlockFluidFactory(milkStillBlockId.getInt(), "milk");
-		sludgeLiquid = new BlockFluidFactory(sludgeStillBlockId.getInt(), "sludge");
-		sewageLiquid = new BlockFluidFactory(sewageStillBlockId.getInt(), "sewage");
-		essenceLiquid = new BlockFluidFactory(essenceStillBlockId.getInt(), "essence");
-		biofuelLiquid = new BlockFluidFactory(biofuelStillBlockId.getInt(), "biofuel");
-		meatLiquid = new BlockFluidFactory(meatStillBlockId.getInt(), "meat");
+		milkLiquid = new BlockFactoryFluid(milkStillBlockId.getInt(), "milk");
+		sludgeLiquid = new BlockFactoryFluid(sludgeStillBlockId.getInt(), "sludge");
+		sewageLiquid = new BlockFactoryFluid(sewageStillBlockId.getInt(), "sewage");
+		essenceLiquid = new BlockFactoryFluid(essenceStillBlockId.getInt(), "essence");
+		biofuelLiquid = new BlockFactoryFluid(biofuelStillBlockId.getInt(), "biofuel");
+		meatLiquid = new BlockFactoryFluid(meatStillBlockId.getInt(), "meat");
 		pinkSlimeLiquid = new BlockPinkSlimeFluid(pinkslimeStillBlockId.getInt(), "pinkslime");
 
 		sewageBucketItem = (new ItemFactoryBucket(sewageBucketItemId.getInt(), sewageLiquid.blockID)).setUnlocalizedName("mfr.bucket.sewage").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
