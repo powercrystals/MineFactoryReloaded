@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -88,19 +87,6 @@ public class EntitySafariNet extends EntityThrowable
 						{
 							//functional for mobs that extend EntityCreature (everything but Ghasts) and not Skeletons.
 							((EntityCreature)releasedEntity).setTarget(mop.entityHit);
-						}
-						
-						if(releasedEntity instanceof EntityGhast)
-						{
-							//this is in a try so that older versions of PCCore (those on 1.5.1) won't crash (since they don't have the AT setting targetedEntity public)
-							try
-							{
-								((EntityGhast)releasedEntity).targetedEntity = mop.entityHit;
-							}
-							catch(Exception e)
-							{
-								System.err.println("Setting ghast target failed.");
-							}
 						}
 					}
 					
