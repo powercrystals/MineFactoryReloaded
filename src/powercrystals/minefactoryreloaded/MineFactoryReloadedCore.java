@@ -101,8 +101,8 @@ import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
 import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
 import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;

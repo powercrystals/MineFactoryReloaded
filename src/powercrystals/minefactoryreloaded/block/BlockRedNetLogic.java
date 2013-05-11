@@ -21,7 +21,7 @@ import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
 import powercrystals.minefactoryreloaded.item.ItemRedNetMemoryCard;
 import powercrystals.minefactoryreloaded.item.ItemRedNetMeter;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

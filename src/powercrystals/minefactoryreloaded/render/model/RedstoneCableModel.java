@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
 
 public class RedstoneCableModel extends ModelBase
 {

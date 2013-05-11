@@ -165,11 +165,5 @@ pip-log.txt
 ###########
 
 downloads
-release
-releaseextra
-releasetemp
-releaseapi
-bugs.txt
-build.bat
 screenshots
-*.tps
+models

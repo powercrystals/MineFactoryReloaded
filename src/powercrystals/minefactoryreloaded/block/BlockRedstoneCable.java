@@ -22,7 +22,7 @@ import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

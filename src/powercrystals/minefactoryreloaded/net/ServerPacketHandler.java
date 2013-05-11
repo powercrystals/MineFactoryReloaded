@@ -8,7 +8,6 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import powercrystals.core.net.PacketWrapper;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
@@ -17,6 +16,7 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityEnchantmentRouter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityHarvester;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 

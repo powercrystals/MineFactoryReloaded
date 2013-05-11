@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.render.model.RedstoneCableModel;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler

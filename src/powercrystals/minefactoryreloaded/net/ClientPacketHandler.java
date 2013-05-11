@@ -14,10 +14,10 @@ import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 

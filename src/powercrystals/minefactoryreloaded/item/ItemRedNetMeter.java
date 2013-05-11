@@ -4,8 +4,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
 
 public class ItemRedNetMeter extends ItemFactory
 {

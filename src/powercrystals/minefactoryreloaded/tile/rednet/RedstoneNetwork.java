@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.tile;
+package powercrystals.minefactoryreloaded.tile.rednet;
 
 import java.util.HashMap;
 import java.util.LinkedList;

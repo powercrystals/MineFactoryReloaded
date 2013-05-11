@@ -5,8 +5,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.gui.client.GuiRedNetLogic;
 import powercrystals.minefactoryreloaded.gui.container.ContainerRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class MFRGUIHandler implements IGuiHandler

@@ -3,7 +3,7 @@ package powercrystals.minefactoryreloaded.gui.container;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 
 public class ContainerRedNetLogic extends Container
 {

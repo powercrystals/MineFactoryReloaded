@@ -28,7 +28,7 @@ import powercrystals.minefactoryreloaded.gui.control.ButtonLogicPinSelect;
 import powercrystals.minefactoryreloaded.gui.control.ListBoxElementCircuit;
 import powercrystals.minefactoryreloaded.gui.control.LogicButtonType;
 import powercrystals.minefactoryreloaded.net.Packets;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiRedNetLogic extends GuiScreenBase

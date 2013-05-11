@@ -18,10 +18,10 @@ import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedNetCardItemRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedNetLogicRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedstoneCableRenderer;
-import powercrystals.minefactoryreloaded.tile.TileEntityRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.TileRedstoneCable;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrillPrecharger;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
