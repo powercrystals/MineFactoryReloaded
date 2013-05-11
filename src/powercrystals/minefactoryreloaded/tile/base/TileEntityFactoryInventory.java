@@ -173,6 +173,14 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 				getTank().getLiquid().amount = getTank().getCapacity();
 			}
 		}
+		
+		for(int i = 0; i < getSizeInventory(); i++)
+		{
+			if(_inventory[i] != null && _inventory[i].getItem() == null)
+			{
+				_inventory[i] = null;
+			}
+		}
 	}
 	
 	@Override

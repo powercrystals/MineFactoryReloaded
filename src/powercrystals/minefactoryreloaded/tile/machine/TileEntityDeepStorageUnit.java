@@ -284,14 +284,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		{
 			_storedQuantity = 0;
 		}
-		
-		for(int i = 0; i < getSizeInventory(); i++)
-		{
-			if(_inventory[i] != null && _inventory[i].getItem() == null)
-			{
-				_inventory[i] = null;
-			}
-		}
 	}
 	
 	@Override
