@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
@@ -218,10 +219,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	}
 	
 	/*
-<<<<<<< HEAD
-	 * This is canInsertItem, in newer forge versions
-=======
->>>>>>> Switch to 1.5.2 forge
 	 * Should only allow matching items to be inserted in the "in" slot. Nothing goes in the "out" slot.
 	 */
 	@Override
@@ -241,10 +238,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	}
 	
 	/*
-<<<<<<< HEAD
-	 * This is canExtractItem, in newer forge versions
-=======
->>>>>>> Switch to 1.5.2 forge
 	 * Should only allow removal from the output slot.
 	 */
 	@Override
@@ -286,6 +279,19 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		_isSideOutput[3] = nbttagcompound.getBoolean("side3output");
 		_isSideOutput[4] = nbttagcompound.getBoolean("side4output");
 		_isSideOutput[5] = nbttagcompound.getBoolean("side5output");
+		
+		if(Item.itemsList[_storedId] == null && _storedQuantity > 0)
+		{
+			_storedQuantity = 0;
+		}
+		
+		for(int i = 0; i < getSizeInventory(); i++)
+		{
+			if(_inventory[i] != null && _inventory[i].getItem() == null)
+			{
+				_inventory[i] = null;
+			}
+		}
 	}
 	
 	@Override
