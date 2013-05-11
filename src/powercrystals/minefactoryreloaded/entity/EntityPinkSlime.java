@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.entity;
 
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.item.ItemStack;
@@ -37,8 +38,11 @@ public class EntityPinkSlime extends EntitySlime
 			
 			if(!worldObj.isRemote)
 			{
-				ItemStack meats = new ItemStack(MineFactoryReloadedCore.meatNuggetRawItem, worldObj.rand.nextInt(12) + 4);
+				ItemStack meats = new ItemStack(MineFactoryReloadedCore.meatNuggetRawItem, worldObj.rand.nextInt(12) + size);
 				EntityItem e = new EntityItem(worldObj, posX, posY, posZ, meats);
+				e.motionX = rand.nextDouble() - 0.5D;
+				e.motionY = rand.nextDouble() - 0.5D;
+				e.motionZ = rand.nextDouble() - 0.5D;
 				worldObj.spawnEntityInWorld(e);
 			}
 		}
@@ -59,4 +63,13 @@ public class EntityPinkSlime extends EntitySlime
 	{
 		return new EntityPinkSlime(this.worldObj);
 	}
+	
+	@Override
+    public void onStruckByLightning(EntityLightningBolt par1EntityLightningBolt)
+    {
+        if (!this.worldObj.isRemote)
+        {
+        	this.setSlimeSize(this.getSlimeSize() + 3);
+        }
+    }
 }
