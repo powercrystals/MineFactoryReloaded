@@ -172,17 +172,18 @@ public class ItemSafariNet extends ItemFactory
 		}
 		else
 		{
-			return releaseEntity(itemstack, world, x, y, z, side);
+			return releaseEntity(itemstack, world, x, y, z, side) != null;
 		}
 	}
 	
-	public static boolean releaseEntity(ItemStack itemstack, World world, int x, int y, int z, int side)
+	public static Entity releaseEntity(ItemStack itemstack, World world, int x, int y, int z, int side)
 	{
 		if(world.isRemote)
 		{
-			return false;
+			return null;
 		}
 		
+		Entity spawnedCreature;
 		int blockId = world.getBlockId(x, y, z);
 		x += Facing.offsetsXForSide[side];
 		y += Facing.offsetsYForSide[side];
@@ -196,36 +197,32 @@ public class ItemSafariNet extends ItemFactory
 		
 		if(itemstack.getItemDamage() != 0)
 		{
-			if(spawnCreature(world, itemstack.getItemDamage(), x + 0.5D, y + spawnOffsetY, z + 0.5D) != null)
-			{
-				if(isSingleUse(itemstack))
-				{
-					itemstack.stackSize--;
-				}
-				else
-				{
-					itemstack.setItemDamage(0);
-				}
-			}
+			spawnedCreature = spawnCreature(world, itemstack.getItemDamage(), x + 0.5D, y + spawnOffsetY, z + 0.5D);
 		}
 		else
 		{
-			if(spawnCreature(world, itemstack.getTagCompound(), x + 0.5D, y + spawnOffsetY, z + 0.5D) != null)
+			spawnedCreature = spawnCreature(world, itemstack.getTagCompound(), x + 0.5D, y + spawnOffsetY, z + 0.5D);
+		}
+		
+		if(spawnedCreature != null)
+		{
+			if(isSingleUse(itemstack))
 			{
-				if(isSingleUse(itemstack))
-				{
-					itemstack.stackSize--;
-				}
-				else
-				{
-					itemstack.setTagCompound(null);
-				}
+				itemstack.stackSize--;
+			}
+			else if(itemstack.getItemDamage() != 0)
+			{
+				itemstack.setItemDamage(0);
+			}
+			else
+			{
+				itemstack.setTagCompound(null);
 			}
 		}
 		
-		return true;
+		return spawnedCreature;
 	}
-	
+
 	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
 	{
 		Entity e;
