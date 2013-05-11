@@ -1,8 +1,10 @@
 package powercrystals.minefactoryreloaded.entity;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,6 +12,7 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
 
 public class EntitySafariNet extends EntityThrowable
@@ -73,9 +76,32 @@ public class EntitySafariNet extends EntityThrowable
 				if(!ItemSafariNet.isEmpty(storedEntity))
 				{
 					Entity releasedEntity = ItemSafariNet.releaseEntity(storedEntity, worldObj, (int)mop.entityHit.posX, (int)mop.entityHit.posY, (int)mop.entityHit.posZ, 1);
-					if(mop.entityHit instanceof EntityLiving && releasedEntity instanceof EntityLiving)
+					if(mop.entityHit instanceof EntityLiving)
 					{
-						((EntityLiving)releasedEntity).setRevengeTarget((EntityLiving)mop.entityHit); 
+						if(releasedEntity instanceof EntityLiving)
+						{
+							//Functional for skeletons.
+							((EntityLiving)releasedEntity).setAttackTarget((EntityLiving)mop.entityHit);
+						}
+						
+						if(releasedEntity instanceof EntityCreature)
+						{
+							//functional for mobs that extend EntityCreature (everything but Ghasts) and not Skeletons.
+							((EntityCreature)releasedEntity).setTarget(mop.entityHit);
+						}
+						
+						if(releasedEntity instanceof EntityGhast)
+						{
+							//this is in a try so that older versions of PCCore (those on 1.5.1) won't crash (since they don't have the AT setting targetedEntity public)
+							try
+							{
+								((EntityGhast)releasedEntity).targetedEntity = mop.entityHit;
+							}
+							catch(Exception e)
+							{
+								System.err.println("Setting ghast target failed.");
+							}
+						}
 					}
 					
 					if(ItemSafariNet.isSingleUse(storedEntity))
