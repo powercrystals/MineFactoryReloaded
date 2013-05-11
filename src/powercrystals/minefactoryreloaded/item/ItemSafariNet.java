@@ -63,7 +63,6 @@ public class ItemSafariNet extends ItemFactory
 		{
 			infoList.add("It is a mystery");
 		}
-		
 		else
 		{
 			infoList.add(stack.getTagCompound().getString("id"));
