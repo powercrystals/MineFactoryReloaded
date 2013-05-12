@@ -320,8 +320,6 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property treeSearchMaxVertical;
 	public static Property treeSearchMaxHorizontal;
 	public static Property verticalHarvestSearchMaxVertical;
-	public static Property rubberTreeWorldGen;
-	public static Property mfrLakeWorldGen;
 	public static Property enableBonemealFertilizing;
 	public static Property enableCheapDSU;
 	public static Property craftSingleDSU;
@@ -336,11 +334,14 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Property enableCompatibleAutoEnchanter;
 	public static Property enableSlipperyRoads;
 	
-	public static Property rubberTreeBiomeWhitelist;
-	public static Property rubberTreeBiomeBlacklist;
 	
 	public static Property redNetConnectionBlacklist;
-	
+
+	public static Property rubberTreeWorldGen;
+	public static Property mfrLakeWorldGen;
+	public static Property mfrLakeRarity;
+	public static Property rubberTreeBiomeWhitelist;
+	public static Property rubberTreeBiomeBlacklist;
 	public static Property worldGenDimensionBlacklist;
 	
 	public static Property passengerRailSearchMaxHorizontal;
@@ -775,6 +776,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		redNetConnectionBlacklist.comment = "A comma-separated list of block IDs to prevent RedNet cables from connecting to.";
 		worldGenDimensionBlacklist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.DimensionBlacklist", "");
 		worldGenDimensionBlacklist.comment = "A comma-separated list of dimension IDs to disable MFR worldgen in. By default, MFR will not attempt worldgen in dimensions where the player cannot respawn.";
+		mfrLakeRarity = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.LakeRarity", 16);
+		mfrLakeRarity.comment = "Higher numbers make lakes rarer. A value of one will be approximately one per chunk.";
 
 		vanillaRecipes = c.get("RecipeSets", "EnableVanillaRecipes", true);
 		vanillaRecipes.comment = "If true, MFR will register its standard (vanilla-item-only) recipes.";
