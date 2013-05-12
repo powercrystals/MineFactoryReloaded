@@ -38,6 +38,8 @@ tile.mfr.machine.enchantmentrouter.name = \u9644\u9b54\u8def\u7531\u5668
 tile.mfr.machine.laserdrill.name = \u956d\u5c04\u94bb
 tile.mfr.machine.laserdrillprecharger.name = \u956d\u5c04\u94bb\u5145\u80fd\u53f0
 tile.mfr.machine.autoanvil.name = \u81ea\u52a8\u578b\u94c1\u7827
+tile.mfr.machine.blocksmasher.name = \u65b9\u5757\u52a0\u901f\u5668
+tile.mfr.machine.rednote.name = \u7ea2\u77f3\u97f3\u7b26\u76d2
 
 tile.mfr.conveyor.default.name = \u4f20\u9001\u5e26
 tile.mfr.conveyor.white.name = \u767d\u8272\u4f20\u9001\u5e26
@@ -127,7 +129,7 @@ tile.mfr.decorativebrick.meat.cooked.name = \u70e4\u8089\u5757
 
 tile.ice.unmelting.name = \u4e0d\u878d\u51b0
 
-tile.mfr.vinescaffold = \u85e4\u8513\u811a\u624b\u67b6
+tile.mfr.vinescaffold.name = \u85e4\u8513\u811a\u624b\u67b6
 
 tile.mfr.rubberwood.sapling.name = \u6a61\u80f6\u6811\u6811\u82d7
 tile.mfr.rubberwood.log.name = \u6a61\u80f6\u6728
@@ -176,6 +178,7 @@ item.mfr.syringe.zombie.name = \u50f5\u5c38\u75c5\u6bd2\u6ce8\u5c04\u5668
 item.mfr.record.blank.name = \u7a7a\u5531\u7247
 item.mfr.safarinet.reusable.name = \u5927\u5e08\u7403
 item.mfr.safarinet.singleuse.name = \u4e00\u6b21\u6027\u5927\u5e08\u7403
+item.mfr.safarinet.jailer.name = \u72f1\u5352\u7684\u5927\u5e08\u7403
 item.mfr.safarinet.launcher.name = \u5927\u5e08\u7403\u53d1\u5c04\u5668
 item.mfr.machineblock.name = \u5de5\u5382\u673a\u5668\u65b9\u5757
 item.mfr.sugarcharcoal.name = \u7af9\u70ad
