@@ -40,7 +40,6 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 				try
 				{
 					int i = Integer.parseInt(s.trim());
-					System.out.println("Adding ID " + i + " to rednet blacklist");
 					_connectionBlackList.add(i);
 				}
 				catch(NumberFormatException x)
@@ -188,7 +187,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		}
 		
 		BlockPosition ourbp = new BlockPosition(this);
-		System.out.println("Cable at " + ourbp.toString() + " updating network");
+		//System.out.println("Cable at " + ourbp.toString() + " updating network");
 		
 		if(_network == null)
 		{
