@@ -76,7 +76,7 @@ public class ClientPacketHandler implements IPacketHandler
 		}
 		else if (packetType == Packets.CableDescription) // server -> client; cable side colors
 		{
-			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class };
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class, Byte.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
@@ -89,6 +89,7 @@ public class ClientPacketHandler implements IPacketHandler
 				tec.setSideColor(ForgeDirection.SOUTH, (Integer)packetReadout[6]);
 				tec.setSideColor(ForgeDirection.WEST, (Integer)packetReadout[7]);
 				tec.setSideColor(ForgeDirection.EAST, (Integer)packetReadout[8]);
+				tec.setMode((Byte)packetReadout[9]);
 			}
 		}
 		else if(packetType == Packets.LogicCircuitDefinition) // server -> client: logic circuit (class and pins)

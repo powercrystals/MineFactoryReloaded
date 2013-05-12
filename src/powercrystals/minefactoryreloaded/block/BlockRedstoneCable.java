@@ -161,6 +161,32 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 					}
 				}
 			}
+			else
+			{
+				byte mode = cable.getMode();
+				mode++;
+				if(mode > 2)
+				{
+					mode = 0;
+				}
+				cable.setMode(mode);
+				//PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
+				if(world.isRemote)
+				{
+					if(mode == 0)
+					{
+						player.sendChatToPlayer("Set cable to standard connection mode");
+					}
+					else if(mode == 1)
+					{
+						player.sendChatToPlayer("Set cable to forced-connection mode");
+					}
+					else if(mode == 2)
+					{
+						player.sendChatToPlayer("Set cable to cable-only connection mode");
+					}
+				}
+			}
 		}
 		return false;
 	}
@@ -295,9 +321,23 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
 		{
-			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
-			power = Math.min(Math.max(((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet), 0), 15);
-			//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
+			TileRedstoneCable cable = ((TileRedstoneCable)te);
+			
+			BlockPosition nodebp = new BlockPosition(x, y, z, ForgeDirection.getOrientation(side).getOpposite());
+			nodebp.moveForwards(1);
+
+			int subnet = cable.getSideColor(nodebp.orientation);
+			
+			if(cable.getNetwork().isWeakNode(nodebp))
+			{
+				power = 0;
+				//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - weak node, power 0");
+			}
+			else
+			{
+				power = Math.min(Math.max(cable.getNetwork().getPowerLevelOutput(subnet), 0), 15);
+				//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
+			}
 		}
 		return power;
 	}

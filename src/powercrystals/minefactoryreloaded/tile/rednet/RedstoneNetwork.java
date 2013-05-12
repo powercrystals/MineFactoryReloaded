@@ -29,6 +29,8 @@ public class RedstoneNetwork
 	private Map<Integer, List<BlockPosition>> _singleNodes = new HashMap<Integer, List<BlockPosition>>();
 	private List<BlockPosition> _omniNodes = new LinkedList<BlockPosition>();
 	
+	private List<BlockPosition> _weakNodes = new LinkedList<BlockPosition>();
+	
 	private List<BlockPosition> _cables = new LinkedList<BlockPosition>();
 	
 	private int[] _powerLevelOutput = new int[16];
@@ -72,6 +74,11 @@ public class RedstoneNetwork
 		return _powerLevelOutput[subnet];
 	}
 	
+	public boolean isWeakNode(BlockPosition node)
+	{
+		return _weakNodes.contains(node);
+	}
+	
 	public int getId()
 	{
 		return _id;
@@ -109,7 +116,7 @@ public class RedstoneNetwork
 		}
 	}
 	
-	public void addOrUpdateNode(BlockPosition node, int subnet)
+	public void addOrUpdateNode(BlockPosition node, int subnet, boolean allowWeak)
 	{
 		int blockId = _world.getBlockId(node.x, node.y, node.z);
 		if(blockId == MineFactoryReloadedCore.rednetCableBlock.blockID)
@@ -126,7 +133,17 @@ public class RedstoneNetwork
 			notifySingleNode(node, subnet);
 		}
 		
+		if(allowWeak)
+		{
+			_weakNodes.add(node);
+		}
+		else
+		{
+			_weakNodes.remove(node);
+		}
+		
 		int power = getSingleNodePowerLevel(node);
+		//System.out.println("Network with ID " + _id + ":" + subnet + " calculated power for node " + node.toString() + " as " + power);
 		if(power > _powerLevelOutput[subnet])
 		{
 			//System.out.println("Network with ID " + _id + ":" + subnet + " has node " + node.toString() + " as new power provider");
@@ -144,6 +161,7 @@ public class RedstoneNetwork
 	public void removeNode(BlockPosition node)
 	{		
 		_omniNodes.remove(node);
+		_weakNodes.remove(node);
 		
 		for(int subnet = 0; subnet < 16; subnet++)
 		{
@@ -335,14 +353,14 @@ public class RedstoneNetwork
 			offset = -1;
 		}
 		
-		if(blockId != Block.blockRedstone.blockID && _world.isBlockSolidOnSide(node.x, node.y, node.z, node.orientation.getOpposite()))
-		{
-			return Math.max(0, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset);
-		}
-		else
+		if(_weakNodes.contains(node))
 		{
 			return Math.max(0, Math.max(_world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset,
 					_world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset));
+		}
+		else
+		{
+			return Math.max(0, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset);
 		}
 	}
 }

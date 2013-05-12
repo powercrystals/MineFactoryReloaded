@@ -20,6 +20,8 @@ import powercrystals.minefactoryreloaded.net.Packets;
 public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTile
 {
 	private int[] _sideColors = new int [6];
+	private byte _mode; // 0: standard, 1: force connection, 2: connect to cables only
+	
 	private RedstoneNetwork _network;
 	private boolean _needsNetworkUpdate;
 	
@@ -68,6 +70,21 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		return _sideColors[side.ordinal()];
 	}
 	
+	public byte getMode()
+	{
+		return _mode;
+	}
+	
+	public void setMode(byte mode)
+	{
+		boolean mustUpdate = (mode != _mode);
+		_mode = mode;
+		if(mustUpdate)
+		{
+			updateNetwork();
+		}
+	}
+	
 	public RedNetConnectionType getConnectionState(ForgeDirection side)
 	{
 		BlockPosition bp = new BlockPosition(this);
@@ -77,19 +94,29 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		int blockId = worldObj.getBlockId(bp.x, bp.y, bp.z);
 		Block b = Block.blocksList[blockId];
 		
-		if(b == null || (blockId <= _maxVanillaBlockId && !_connectionWhitelist.contains(blockId)) || _connectionBlackList.contains(blockId) || b.isAirBlock(worldObj, bp.x, bp.y, bp.z))
+		if(b == null) // block doesn't exist (air) - never connect
 		{
 			return RedNetConnectionType.None;
 		}
-		else if(blockId == MineFactoryReloadedCore.rednetCableBlock.blockID)
+		else if(blockId == MineFactoryReloadedCore.rednetCableBlock.blockID) // cables - always connect
 		{
 			return RedNetConnectionType.CableAll;
 		}
-		else if(b instanceof IConnectableRedNet)
+		else if(_mode == 2) // cable-only, and not a cable - don't connct
+		{
+			return RedNetConnectionType.None;
+		}
+		else if(b instanceof IConnectableRedNet) // API node - let them figure it out
 		{
 			return ((IConnectableRedNet)b).getConnectionType(worldObj, bp.x, bp.y, bp.z, side.getOpposite());
 		}
-		else if(b.isBlockSolidOnSide(worldObj, bp.x, bp.y, bp.z, side.getOpposite()))
+		else if(_mode == 0 && (blockId <= _maxVanillaBlockId && !_connectionWhitelist.contains(blockId)) || _connectionBlackList.contains(blockId) || b.isAirBlock(worldObj, bp.x, bp.y, bp.z))
+			// standard connection logic, then figure out if we shouldn't connect
+			// mode 1 will skip this
+		{
+			return RedNetConnectionType.None;
+		}
+		else if(_mode == 0 && b.isBlockSolidOnSide(worldObj, bp.x, bp.y, bp.z, side.getOpposite())) // mode 1 forces plate mode for weak power
 		{
 			return RedNetConnectionType.CableSingle;
 		}
@@ -104,7 +131,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 	{
 		return PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.CableDescription, new Object[]
 				{
-				xCoord, yCoord, zCoord, _sideColors[0], _sideColors[1], _sideColors[2], _sideColors[3], _sideColors[4], _sideColors[5]
+				xCoord, yCoord, zCoord, _sideColors[0], _sideColors[1], _sideColors[2], _sideColors[3], _sideColors[4], _sideColors[5], _mode
 				});
 	}
 	
@@ -161,7 +188,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		}
 		
 		BlockPosition ourbp = new BlockPosition(this);
-		//System.out.println("Cable at " + ourbp.toString() + " updating network");
+		System.out.println("Cable at " + ourbp.toString() + " updating network");
 		
 		if(_network == null)
 		{
@@ -206,9 +233,13 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 				
 				if(!worldObj.isAirBlock(bp.x, bp.y, bp.z))
 				{
-					if(connectionType == RedNetConnectionType.CableSingle || connectionType == RedNetConnectionType.PlateSingle)
+					if(connectionType == RedNetConnectionType.CableSingle)
 					{
-						_network.addOrUpdateNode(bp, subnet);
+						_network.addOrUpdateNode(bp, subnet, false);
+					}
+					else if(connectionType == RedNetConnectionType.PlateSingle)
+					{
+						_network.addOrUpdateNode(bp, subnet, true);
 					}
 					else if(connectionType == RedNetConnectionType.CableAll || connectionType == RedNetConnectionType.PlateAll)
 					{
@@ -232,6 +263,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 	{
 		super.writeToNBT(nbttagcompound);
 		nbttagcompound.setIntArray("sideSubnets", _sideColors);
+		nbttagcompound.setByte("mode", _mode);
 	}
 	
 	@Override
@@ -243,5 +275,6 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		{
 			_sideColors = new int[6];
 		}
+		_mode = nbttagcompound.getByte("mode");
 	}
 }
