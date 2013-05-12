@@ -14,6 +14,7 @@ import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.inventory.InventoryManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiBlockSmasher;
+import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBlockSmasher;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
@@ -61,7 +62,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public GuiBlockSmasher getGui(InventoryPlayer inventoryPlayer)
+	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
 		return new GuiBlockSmasher(getContainer(inventoryPlayer), this);
 	}
