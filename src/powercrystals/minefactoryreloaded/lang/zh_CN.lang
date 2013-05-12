@@ -242,6 +242,7 @@ circuit.mfr.boolean.less = \u5224\u65ad\u5668\uff1a\u5c0f\u4e8e
 circuit.mfr.boolean.lessequal = \u5224\u65ad\u5668\uff1a\u5c0f\u4e8e\u7b49\u4e8e
 circuit.mfr.boolean.notequal = \u5224\u65ad\u5668\uff1a\u4e0d\u7b49\u4e8e
 circuit.mfr.counter = \u8ba1\u6570\u5668
+circuit.mfr.decompose.decimal = \u6574\u578b\u8f6c\u6d6e\u70b9
 circuit.mfr.demux.16.analog = \u5206\u8def\u5668(16-\u8f93\u51fa, \u6a21\u62df)
 circuit.mfr.demux.4 = \u5206\u8def\u5668(4-\u8f93\u51fa)
 circuit.mfr.fanout = \u591a\u8def\u8f93\u51fa\u53e3
