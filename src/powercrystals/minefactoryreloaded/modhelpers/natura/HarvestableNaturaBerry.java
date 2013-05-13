@@ -30,7 +30,7 @@ public class HarvestableNaturaBerry implements IFactoryHarvestable
 	@Override
 	public HarvestType getHarvestType()
 	{
-		return HarvestType.Tree;
+		return HarvestType.Column;
 	}
 	
 	@Override
