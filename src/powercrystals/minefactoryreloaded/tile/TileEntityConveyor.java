@@ -284,13 +284,13 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 				dropOffsetZ = 0.8F;
 				motionZ = -0.15D;
 				break;
-			case 4: //EAST
-				dropOffsetX = 0.8F;
-				motionX = -0.15D;
-				break;
-			case 5: //WEST
+			case 4: //WEST
 				dropOffsetX = 0.2F;
 				motionX = 0.15D;
+				break;
+			case 5: //EAST
+				dropOffsetX = 0.8F;
+				motionX = -0.15D;
 				break;
 			case 6: //UNKNOWN
 		}
