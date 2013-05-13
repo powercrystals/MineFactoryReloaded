@@ -10,11 +10,11 @@ import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoAnvil;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -23,7 +23,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITankContainer
+public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
 	private LiquidTank _tank;
 	
