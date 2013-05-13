@@ -264,7 +264,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		switch(slot)
 		{
 			case 0: //DOWN
-				dropOffsetY = 0.2F;
+				dropOffsetY = 0.3F;
 				break;
 			case 1: //UP
 				dropOffsetY = 0.8F;
@@ -285,6 +285,9 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		}
 		
 		EntityItem entityitem = new EntityItem(worldObj, this.xCoord + dropOffsetX, this.yCoord + dropOffsetY, this.zCoord + dropOffsetZ, stack.copy());
+		entityitem.motionX = 0.0D;
+		entityitem.motionY = 0.0D;
+		entityitem.motionZ = 0.0D;
 		entityitem.delayBeforeCanPickup = 20;
 		worldObj.spawnEntityInWorld(entityitem);
 	}
