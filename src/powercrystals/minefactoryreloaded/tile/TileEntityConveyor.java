@@ -259,35 +259,44 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		float dropOffsetX = 0.5F;
 		float dropOffsetY = 0.5F;
 		float dropOffsetZ = 0.5F;
+		double motionX = 0.0D;
+		double motionY = 0.0D;
+		double motionZ = 0.0D;
 		
 		//because of the setup, slot is also the ForgeDirection ordinal from which the item is being inserted
 		switch(slot)
 		{
 			case 0: //DOWN
-				dropOffsetY = 0.3F;
+				dropOffsetY = 0.2F;
+				motionY = 0.2D;
 				break;
 			case 1: //UP
 				dropOffsetY = 0.8F;
+				motionY = -0.2D;
 				break;				
 			case 2: //NORTH
 				dropOffsetZ = 0.2F;
+				motionZ = 0.2D;
 				break;
 			case 3: //SOUTH
 				dropOffsetZ = 0.8F;
+				motionZ = -0.2D;
 				break;
 			case 4: //EAST
 				dropOffsetX = 0.8F;
+				motionX = -0.2D;
 				break;
 			case 5: //WEST
 				dropOffsetX = 0.2F;
+				motionX = 0.2D;
 				break;
 			case 6: //UNKNOWN
 		}
 		
 		EntityItem entityitem = new EntityItem(worldObj, this.xCoord + dropOffsetX, this.yCoord + dropOffsetY, this.zCoord + dropOffsetZ, stack.copy());
-		entityitem.motionX = 0.0D;
-		entityitem.motionY = 0.0D;
-		entityitem.motionZ = 0.0D;
+		entityitem.motionX = motionX;
+		entityitem.motionY = motionY;
+		entityitem.motionZ = motionZ;
 		entityitem.delayBeforeCanPickup = 20;
 		worldObj.spawnEntityInWorld(entityitem);
 	}
