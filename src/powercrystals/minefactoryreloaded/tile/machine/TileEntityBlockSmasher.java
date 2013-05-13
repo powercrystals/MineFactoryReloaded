@@ -25,7 +25,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 {
 	private LiquidTank _tank;
 	
-	private int _fortune = 2;
+	private int _fortune = 0;
 	
 	private ItemStack _lastInput;
 	private ItemStack _lastOutput;
@@ -153,7 +153,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	
 	public void setFortune(int fortune)
 	{
-		if(fortune >= 0 && fortune <= 4)
+		if(fortune >= 0 && fortune <= 3)
 		{
 			if(_fortune < fortune)
 			{

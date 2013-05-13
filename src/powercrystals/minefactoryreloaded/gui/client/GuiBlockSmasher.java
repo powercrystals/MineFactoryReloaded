@@ -27,7 +27,7 @@ public class GuiBlockSmasher extends GuiFactoryPowered
 		super.initGui();
 		_inc = new GuiButton(1, (this.width - this.xSize) / 2 + 63, (this.height - this.ySize) / 2 + 23, 20, 20, "+");
 		_dec = new GuiButton(2, (this.width - this.xSize) / 2 + 63, (this.height - this.ySize) / 2 + 53, 20, 20, "-");
-		_inc.enabled = (_smasher.getFortune() < 4);
+		_inc.enabled = (_smasher.getFortune() < 3);
 		_dec.enabled = (_smasher.getFortune() > 0);
 		buttonList.add(_inc);
 		buttonList.add(_dec);
@@ -53,7 +53,7 @@ public class GuiBlockSmasher extends GuiFactoryPowered
 	{
 		if(button.id == 1)
 		{
-			if(_smasher.getFortune() < 4)
+			if(_smasher.getFortune() < 3)
 			{
 				_smasher.setFortune(_smasher.getFortune() + 1);
 				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.EnchanterButton,
