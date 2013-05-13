@@ -256,6 +256,8 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
+		int	horizDirection = worldObj.getBlockMetadata(xCoord, yCoord, zCoord) & 0x03;
+		
 		float dropOffsetX = 0.5F;
 		float dropOffsetY = 0.5F;
 		float dropOffsetZ = 0.5F;
@@ -267,33 +269,50 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		switch(slot)
 		{
 			case 0: //DOWN
-				dropOffsetY = 0.2F;
-				motionY = 0.2D;
+				dropOffsetY = 0.3F;
+				motionY = 0.15D;
 				break;
 			case 1: //UP
 				dropOffsetY = 0.8F;
-				motionY = -0.2D;
+				motionY = -0.15D;
 				break;				
 			case 2: //NORTH
 				dropOffsetZ = 0.2F;
-				motionZ = 0.2D;
+				motionZ = 0.15D;
 				break;
 			case 3: //SOUTH
 				dropOffsetZ = 0.8F;
-				motionZ = -0.2D;
+				motionZ = -0.15D;
 				break;
 			case 4: //EAST
 				dropOffsetX = 0.8F;
-				motionX = -0.2D;
+				motionX = -0.15D;
 				break;
 			case 5: //WEST
 				dropOffsetX = 0.2F;
-				motionX = 0.2D;
+				motionX = 0.15D;
 				break;
 			case 6: //UNKNOWN
 		}
 		
-		EntityItem entityitem = new EntityItem(worldObj, this.xCoord + dropOffsetX, this.yCoord + dropOffsetY, this.zCoord + dropOffsetZ, stack.copy());
+		if(horizDirection == 0)
+		{
+			motionX = 0.05D;
+		}
+		else if(horizDirection == 1)
+		{
+			motionZ = 0.05D;
+		}
+		else if(horizDirection == 3)
+		{
+			motionX = -0.05D;
+		}
+		else if(horizDirection == 3)
+		{
+			motionX = -0.05D;
+		}
+		
+		EntityItem entityitem = new EntityItem(worldObj, xCoord + dropOffsetX, yCoord + dropOffsetY, zCoord + dropOffsetZ, stack.copy());
 		entityitem.motionX = motionX;
 		entityitem.motionY = motionY;
 		entityitem.motionZ = motionZ;
@@ -355,13 +374,13 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
     }
     
     @Override
-	public boolean canInsertItem(int i, ItemStack itemstack, int j)
+	public boolean canInsertItem(int slot, ItemStack stack, int side)
     {
     	return true;
     }
     
     @Override
-	public boolean canExtractItem(int i, ItemStack itemstack, int j)
+	public boolean canExtractItem(int slot, ItemStack stack, int side)
     {
     	return false;
     }
