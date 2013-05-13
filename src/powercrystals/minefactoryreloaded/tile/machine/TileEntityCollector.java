@@ -25,6 +25,12 @@ public class TileEntityCollector extends TileEntityFactoryInventory
 	}
 	
 	@Override
+	public boolean canUpdate()
+	{
+		return false;
+	}
+	
+	@Override
 	public int getSizeInventory()
 	{
 		return 0;
