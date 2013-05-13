@@ -373,9 +373,39 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
     	return accessibleSlot;
     }
     
+    /*
+     * From above: returns true if the conveyor is not going uphill
+     * For the NSEW sides: returns true if (conveyor is going uphill) || (!conveyor is facing in the 'from' direction)
+     * From below/unknown: returns true
+     */
     @Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side)
     {
+    	int blockmeta;
+    	if(side == ForgeDirection.UP.ordinal())
+    	{
+    		return (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) & 0x04) == 0;
+    	} 
+    	else if(side == ForgeDirection.EAST.ordinal())
+    	{
+    		blockmeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+    		return (blockmeta & 0x04) != 0 || (blockmeta & 0x03) != 0; 
+    	}
+    	else if(side == ForgeDirection.SOUTH.ordinal())
+    	{
+    		blockmeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+    		return (blockmeta & 0x04) != 0 || (blockmeta & 0x03) != 1; 
+    	}
+    	else if(side == ForgeDirection.WEST.ordinal())
+    	{
+    		blockmeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+    		return (blockmeta & 0x04) != 0 || (blockmeta & 0x03) != 2; 
+    	}
+    	else if(side == ForgeDirection.NORTH.ordinal())
+    	{
+    		blockmeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+    		return (blockmeta & 0x04) != 0 || (blockmeta & 0x03) != 3; 
+    	}
     	return true;
     }
     
