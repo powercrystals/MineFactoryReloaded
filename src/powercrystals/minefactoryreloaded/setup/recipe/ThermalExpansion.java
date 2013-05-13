@@ -25,8 +25,11 @@ public class ThermalExpansion extends Vanilla
 			ItemStack conduitLiquid = ItemRegistry.getItem("conduitLiquid", 1);
 			ItemStack gearTin = ItemRegistry.getItem("gearTin", 1);
 			ItemStack gearInvar = ItemRegistry.getItem("gearInvar", 1);
+			ItemStack lamp = ItemRegistry.getItem("lamp", 1);
+			ItemStack hardenedGlass = ItemRegistry.getItem("hardenedGlass", 1);
 			ItemStack machineFrame = ItemRegistry.getItem("machineFrame", 1);
 			ItemStack pneumaticServo = ItemRegistry.getItem("pneumaticServo", 1);
+			ItemStack powerCoilElectrum = ItemRegistry.getItem("powerCoilElectrum", 1);
 			ItemStack powerCoilGold = ItemRegistry.getItem("powerCoilGold", 1);
 			ItemStack powerCoilSilver = ItemRegistry.getItem("powerCoilSilver", 1);
 			ItemStack tesseractFrameFull = ItemRegistry.getItem("tesseractFrameFull", 1);
@@ -530,6 +533,51 @@ public class ThermalExpansion extends Vanilla
 					'B', Item.book,
 					'S', Item.redstoneRepeater,
 					'F', machineFrame
+						} ));
+			}
+			
+			if(Machine.LaserDrill.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 0), new Object[]
+						{
+					"GFG",
+					"CFC",
+					"DHD",
+					'G', "sheetPlastic",
+					'D', Item.diamond,
+					'H', hardenedGlass,
+					'F', lamp,
+					'C', powerCoilGold
+						} ));
+			}
+			
+			if(Machine.LaserDrillPrecharger.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 1), new Object[]
+						{
+					"GSG",
+					"HFH",
+					"DCD",
+					'G', "sheetPlastic",
+					'D', Item.diamond,
+					'S', MineFactoryReloadedCore.pinkSlimeballItem,
+					'H', hardenedGlass,
+					'F', lamp,
+					'C', powerCoilElectrum
+						} ));
+			}
+			
+			if(Machine.AutoAnvil.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 2), new Object[]
+						{
+					"GAG",
+					"AFA",
+					" C ",
+					'G', "sheetPlastic",
+					'A', Block.anvil,
+					'F', machineFrame,
+					'C', powerCoilGold
 						} ));
 			}
 		}
