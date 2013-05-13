@@ -259,7 +259,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		int	horizDirection = worldObj.getBlockMetadata(xCoord, yCoord, zCoord) & 0x03;
 		
 		float dropOffsetX = 0.5F;
-		float dropOffsetY = 0.5F;
+		float dropOffsetY = 0.4F;
 		float dropOffsetZ = 0.5F;
 		double motionX = 0.0D;
 		double motionY = 0.0D;
