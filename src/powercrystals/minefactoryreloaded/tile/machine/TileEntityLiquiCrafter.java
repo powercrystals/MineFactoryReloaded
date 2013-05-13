@@ -25,7 +25,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-// slots 0-8 craft grid, 9 craft grid output, 10 output, 11-28 resources
+// slots 0-8 craft grid, 9 craft grid template output, 10 output, 11-28 resources
 public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implements ITankContainerBucketable
 {
 	private boolean _lastRedstoneState;
@@ -53,6 +53,12 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 		{
 			_tanks[i] = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 10);
 		}
+	}
+	
+	@Override
+	public boolean shouldDropSlotWhenBroken(int slot)
+	{
+		return slot != 9;
 	}
 	
 	@Override
