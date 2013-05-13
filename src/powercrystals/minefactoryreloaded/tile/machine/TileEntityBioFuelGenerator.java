@@ -12,9 +12,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 {
+	public static final int liquidConsumedPerTick = 1;
+	public static final int energyProducedPerConsumption = 160;
+	public static final int ticksBetweenConsumption = 9;
+	
 	public TileEntityBioFuelGenerator()
 	{
-		super(1, 160, 9);
+		super(liquidConsumedPerTick, energyProducedPerConsumption, ticksBetweenConsumption);
 	}
 	
 	@Override
