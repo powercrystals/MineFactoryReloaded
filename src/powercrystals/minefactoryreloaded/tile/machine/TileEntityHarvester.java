@@ -192,14 +192,28 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 				_lastTree = null;
 				return bp;
 			}
+			else if(harvestable.getHarvestType() == HarvestType.Column)
+			{
+				_lastTree = null;
+				return getNextVertical(bp.x, bp.y, bp.z, 0);
+			}
 			else if(harvestable.getHarvestType() == HarvestType.LeaveBottom)
 			{
 				_lastTree = null;
-				return getNextVertical(bp.x, bp.y, bp.z);
+				return getNextVertical(bp.x, bp.y, bp.z, 1);
 			}
-			else if(harvestable.getHarvestType() == HarvestType.Tree || harvestable.getHarvestType() == HarvestType.TreeFlipped)
+			else if(harvestable.getHarvestType() == HarvestType.Tree)
 			{
-				BlockPosition temp = getNextTreeSegment(bp.x, bp.y, bp.z, harvestable.getHarvestType() == HarvestType.TreeFlipped);
+				BlockPosition temp = getNextTreeSegment(bp.x, bp.y, bp.z, false);
+				if(temp != null)
+				{
+					_areaManager.rewindBlock();
+				}
+				return temp;
+			}
+			else if(harvestable.getHarvestType() == HarvestType.TreeFlipped)
+			{
+				BlockPosition temp = getNextTreeSegment(bp.x, bp.y, bp.z, true);
 				if(temp != null)
 				{
 					_areaManager.rewindBlock();
@@ -211,11 +225,11 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		return null;
 	}
 	
-	private BlockPosition getNextVertical(int x, int y, int z)
+	private BlockPosition getNextVertical(int x, int y, int z, int startOffset)
 	{
 		int highestBlockOffset = -1;
 		
-		for(int currentYoffset = 1; currentYoffset < MineFactoryReloadedCore.verticalHarvestSearchMaxVertical.getInt(); currentYoffset++)
+		for(int currentYoffset = startOffset; currentYoffset < MineFactoryReloadedCore.verticalHarvestSearchMaxVertical.getInt(); currentYoffset++)
 		{
 			int blockId = worldObj.getBlockId(x, y + currentYoffset, z);
 			if(MFRRegistry.getHarvestables().containsKey(new Integer(blockId)) && MFRRegistry.getHarvestables().get(new Integer(blockId)).canBeHarvested(worldObj, _settings, x, y + currentYoffset, z))
