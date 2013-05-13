@@ -11,11 +11,13 @@ public class TreeHarvestManager
 	private int _currentBlock;
 	private boolean _isLeafPass;
 	private boolean _isDone;
+	private boolean _treeIsUpsideDown; 
 	
 	private Area _treeArea;
 	
-	public TreeHarvestManager(Area treeArea)
+	public TreeHarvestManager(Area treeArea, boolean treeIsUpsideDown)
 	{
+		_treeIsUpsideDown = treeIsUpsideDown;
 		_treeArea = treeArea;
 		reset();
 	}
@@ -33,7 +35,7 @@ public class TreeHarvestManager
 			if(_isLeafPass)
 			{
 				_currentBlock = 0;
-				_treeBlocks = _treeArea.getPositionsTopFirst();
+				_treeBlocks = (_treeIsUpsideDown ? _treeArea.getPositionsBottomFirst() : _treeArea.getPositionsTopFirst());
 				_isLeafPass = false;
 			}
 			else
@@ -47,7 +49,7 @@ public class TreeHarvestManager
 	{
 		_currentBlock = 0;
 		_isLeafPass = true;
-		_treeBlocks = _treeArea.getPositionsBottomFirst();
+		_treeBlocks = (_treeIsUpsideDown ? _treeArea.getPositionsTopFirst() : _treeArea.getPositionsBottomFirst());
 	}
 	
 	public boolean getIsLeafPass()
