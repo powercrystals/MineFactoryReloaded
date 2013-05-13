@@ -55,7 +55,7 @@ public class BlockRubberWood extends BlockLog implements IConnectableRedNet
 		drops.add(new ItemStack(blockID, 1, 0));
 		if((metadata & 3) > 0)
 		{
-			drops.add(new ItemStack(MineFactoryReloadedCore.rawRubberItem, 1));
+			drops.add(new ItemStack(MineFactoryReloadedCore.rawRubberItem, 1 + world.rand.nextInt(fortune)));
 		}
 		
 		return drops;
