@@ -1,19 +1,23 @@
 package powercrystals.minefactoryreloaded.tile;
 
+import buildcraft.core.IMachine;
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import powercrystals.core.block.IAirDropTarget;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.net.Packets;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-public class TileEntityConveyor extends TileEntity implements IRotateableTile, IAirDropTarget
+public class TileEntityConveyor extends TileEntity implements IRotateableTile, ISidedInventory, IMachine
 {
 	private int _dye = -1;
 	
@@ -222,5 +226,156 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		{
 			_dye = nbtTagCompound.getInteger("dyeColor");
 		}
+	}
+	
+	//IInventory
+	@Override
+	public int getSizeInventory()
+	{
+		return 7;
+	}
+	
+	@Override
+	public ItemStack getStackInSlot(int slot)
+	{
+		return null;
+	}
+	
+	@Override
+	public ItemStack decrStackSize(int slot, int count)
+	{
+		return null;
+	}
+	
+	@Override
+	public ItemStack getStackInSlotOnClosing(int slot)
+	{
+		return null;
+	}
+	
+	@Override
+	public void setInventorySlotContents(int slot, ItemStack stack)
+	{
+		float dropOffsetX = 0.5F;
+		float dropOffsetY = 0.5F;
+		float dropOffsetZ = 0.5F;
+		
+		//because of the setup, slot is also the ForgeDirection ordinal from which the item is being inserted
+		switch(slot)
+		{
+			case 0: //DOWN
+				dropOffsetY = 0.2F;
+				break;
+			case 1: //UP
+				dropOffsetY = 0.8F;
+				break;				
+			case 2: //NORTH
+				dropOffsetZ = 0.2F;
+				break;
+			case 3: //SOUTH
+				dropOffsetZ = 0.8F;
+				break;
+			case 4: //EAST
+				dropOffsetX = 0.8F;
+				break;
+			case 5: //WEST
+				dropOffsetX = 0.2F;
+				break;
+			case 6: //UNKNOWN
+		}
+		
+		EntityItem entityitem = new EntityItem(worldObj, this.xCoord + dropOffsetX, this.yCoord + dropOffsetY, this.zCoord + dropOffsetZ, stack.copy());
+		entityitem.delayBeforeCanPickup = 20;
+		worldObj.spawnEntityInWorld(entityitem);
+	}
+	
+	@Override
+	public String getInvName()
+	{
+		return "Conveyor Belt";
+	}
+	
+	@Override
+	public boolean isInvNameLocalized()
+	{
+		return false;
+	}
+	
+	@Override
+	public int getInventoryStackLimit()
+	{
+		return 64;
+	}
+	
+	@Override
+	public void onInventoryChanged()
+	{
+	}
+	
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer player)
+	{
+		return false;
+	}
+	
+    @Override
+	public void openChest()
+    {
+    }
+
+    @Override
+	public void closeChest()
+    {
+    }
+    
+    @Override
+	public boolean isStackValidForSlot(int slot, ItemStack stack)
+    {
+    	return true;
+    }
+    
+    //ISidedInventory
+    @Override
+	public int[] getAccessibleSlotsFromSide(int sideOrdinal)
+    {
+    	int[] accessibleSlot = {sideOrdinal};
+    	return accessibleSlot;
+    }
+    
+    @Override
+	public boolean canInsertItem(int i, ItemStack itemstack, int j)
+    {
+    	return true;
+    }
+    
+    @Override
+	public boolean canExtractItem(int i, ItemStack itemstack, int j)
+    {
+    	return false;
+    }
+    
+    //IMachine
+	@Override
+	public boolean isActive()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean manageLiquids()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean manageSolids()
+	{
+		return true;
+	}
+	
+	@Override
+	public boolean allowActions()
+	{
+		return false;
 	}
 }
