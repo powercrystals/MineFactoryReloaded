@@ -3,8 +3,8 @@ package powercrystals.minefactoryreloaded.gui.control;
 import powercrystals.core.gui.GuiColor;
 import powercrystals.core.gui.GuiRender;
 import powercrystals.core.gui.controls.Button;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.client.GuiRedNetLogic;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class ButtonLogicPinSelect extends Button
 {	
@@ -170,7 +170,7 @@ public class ButtonLogicPinSelect extends Button
 	{
 		if(_buffer < 12)
 		{
-			if(!MineFactoryReloadedCore.colorblindMode.getBoolean(false))
+			if(!MFRConfig.colorblindMode.getBoolean(false))
 			{
 				GuiRender.drawRect(x + 3, y + 3, x + width - 3, y + height - 3, _pinColors[_pin].getColor());
 			}

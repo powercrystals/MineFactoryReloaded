@@ -19,7 +19,6 @@ import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
@@ -29,6 +28,7 @@ import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiHarvester;
 import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
@@ -158,7 +158,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		if(harvestable.breakBlock())
 		{
-			if(MineFactoryReloadedCore.playSounds.getBoolean(true))
+			if(MFRConfig.playSounds.getBoolean(true))
 			{
 				worldObj.playAuxSFXAtEntity(null, 2001, targetCoords.x, targetCoords.y, targetCoords.z, harvestedBlockId + (harvestedBlockMetadata << 12));
 			}
@@ -229,7 +229,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	{
 		int highestBlockOffset = -1;
 		
-		for(int currentYoffset = startOffset; currentYoffset < MineFactoryReloadedCore.verticalHarvestSearchMaxVertical.getInt(); currentYoffset++)
+		for(int currentYoffset = startOffset; currentYoffset < MFRConfig.verticalHarvestSearchMaxVertical.getInt(); currentYoffset++)
 		{
 			int blockId = worldObj.getBlockId(x, y + currentYoffset, z);
 			if(MFRRegistry.getHarvestables().containsKey(new Integer(blockId)) && MFRRegistry.getHarvestables().get(new Integer(blockId)).canBeHarvested(worldObj, _settings, x, y + currentYoffset, z))
@@ -256,11 +256,11 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		if(_lastTree == null || _lastTree.x != x || _lastTree.y != y || _lastTree.z != z)
 		{
-			int yTreeAreaLowerBound = (treeFlipped ? y - MineFactoryReloadedCore.treeSearchMaxVertical.getInt() : y);
-			int yTreeAreaUpperBound = (treeFlipped ? y : y + MineFactoryReloadedCore.treeSearchMaxVertical.getInt());
-			Area a = new Area(x - MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(), x + MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(),
+			int yTreeAreaLowerBound = (treeFlipped ? y - MFRConfig.treeSearchMaxVertical.getInt() : y);
+			int yTreeAreaUpperBound = (treeFlipped ? y : y + MFRConfig.treeSearchMaxVertical.getInt());
+			Area a = new Area(x - MFRConfig.treeSearchMaxHorizontal.getInt(), x + MFRConfig.treeSearchMaxHorizontal.getInt(),
 					yTreeAreaLowerBound, yTreeAreaUpperBound,
-					z - MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt(), z + MineFactoryReloadedCore.treeSearchMaxHorizontal.getInt());
+					z - MFRConfig.treeSearchMaxHorizontal.getInt(), z + MFRConfig.treeSearchMaxHorizontal.getInt());
 			
 			_treeManager = new TreeHarvestManager(a, treeFlipped);
 			_lastTree = new BlockPosition(x, y, z);

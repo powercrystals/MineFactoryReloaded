@@ -3,13 +3,13 @@ package powercrystals.minefactoryreloaded.item;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class ItemSyringeHealth extends ItemSyringe
 {
 	public ItemSyringeHealth()
 	{
-		super(MineFactoryReloadedCore.syringeHealthItemId.getInt());
+		super(MFRConfig.syringeHealthItemId.getInt());
 	}
 	
 	@Override

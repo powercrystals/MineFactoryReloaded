@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class ItemRuler extends ItemFactory
 {
@@ -21,7 +21,7 @@ public class ItemRuler extends ItemFactory
 		
 		if(world.isRemote)
 		{
-			MovingObjectPosition mop = player.rayTrace(MineFactoryReloadedCore.spyglassRange.getInt(), 1.0F);
+			MovingObjectPosition mop = player.rayTrace(MFRConfig.spyglassRange.getInt(), 1.0F);
 			if(mop == null || (mop.typeOfHit == EnumMovingObjectType.ENTITY && mop.entityHit == null))
 			{
 				player.sendChatToPlayer("Nothing in sight");

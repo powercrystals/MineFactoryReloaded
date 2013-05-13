@@ -11,6 +11,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieceWeight;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class ComponentZoologistHouse extends ComponentVillage
 {
@@ -137,6 +138,6 @@ public class ComponentZoologistHouse extends ComponentVillage
 	@Override
 	protected int getVillagerType(int par1)
 	{
-		return MineFactoryReloadedCore.zoolologistEntityId.getInt();
+		return MFRConfig.zoolologistEntityId.getInt();
 	}
 }

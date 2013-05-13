@@ -11,8 +11,8 @@ import net.minecraft.entity.item.EntityMinecartEmpty;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -41,12 +41,12 @@ public class BlockRailPassengerPickup extends BlockRailBase
 		}
 		
 		AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(
-				x - MineFactoryReloadedCore.passengerRailSearchMaxHorizontal.getInt(),
-				y - MineFactoryReloadedCore.passengerRailSearchMaxVertical.getInt(),
-				z - MineFactoryReloadedCore.passengerRailSearchMaxHorizontal.getInt(),
-				x + MineFactoryReloadedCore.passengerRailSearchMaxHorizontal.getInt() + 1,
-				y + MineFactoryReloadedCore.passengerRailSearchMaxVertical.getInt() + 1,
-				z + MineFactoryReloadedCore.passengerRailSearchMaxHorizontal.getInt() + 1);
+				x - MFRConfig.passengerRailSearchMaxHorizontal.getInt(),
+				y - MFRConfig.passengerRailSearchMaxVertical.getInt(),
+				z - MFRConfig.passengerRailSearchMaxHorizontal.getInt(),
+				x + MFRConfig.passengerRailSearchMaxHorizontal.getInt() + 1,
+				y + MFRConfig.passengerRailSearchMaxVertical.getInt() + 1,
+				z + MFRConfig.passengerRailSearchMaxHorizontal.getInt() + 1);
 		
 		@SuppressWarnings("rawtypes")
 		List entities = world.getEntitiesWithinAABB(EntityPlayer.class, bb);

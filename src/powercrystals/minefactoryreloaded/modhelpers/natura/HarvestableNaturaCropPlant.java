@@ -8,9 +8,9 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class HarvestableNaturaCropPlant implements IFactoryHarvestable
 {	
@@ -71,7 +71,7 @@ public class HarvestableNaturaCropPlant implements IFactoryHarvestable
 	{
 		if(world.getBlockMetadata(x, y, z) == 3)
 		{
-			if(MineFactoryReloadedCore.playSounds.getBoolean(true))
+			if(MFRConfig.playSounds.getBoolean(true))
 			{
 				world.playAuxSFXAtEntity(null, 2001, x, y, z, _sourceId + (3 << 12));
 			}

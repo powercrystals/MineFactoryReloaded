@@ -31,7 +31,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 		int x = chunkX * 16 + random.nextInt(16);
 		int z = chunkZ * 16 + random.nextInt(16);
 		
-		if(MineFactoryReloadedCore.rubberTreeWorldGen.getBoolean(true))
+		if(MFRConfig.rubberTreeWorldGen.getBoolean(true))
 		{
 			BiomeGenBase b = world.getBiomeGenForCoords(x, z);
 			
@@ -44,9 +44,9 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 			}
 		}
 		
-		if(MineFactoryReloadedCore.mfrLakeWorldGen.getBoolean(true) && world.provider.canRespawnHere())
+		if(MFRConfig.mfrLakeWorldGen.getBoolean(true) && world.provider.canRespawnHere())
 		{
-			if(random.nextInt(MineFactoryReloadedCore.mfrLakeRarity.getInt()) == 0)
+			if(random.nextInt(MFRConfig.mfrLakeRarity.getInt()) == 0)
 			{
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
@@ -54,7 +54,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				new WorldGenLakesMeta(MineFactoryReloadedCore.sludgeLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
 			}
 			
-			if(random.nextInt(MineFactoryReloadedCore.mfrLakeRarity.getInt()) == 0)
+			if(random.nextInt(MFRConfig.mfrLakeRarity.getInt()) == 0)
 			{
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
@@ -66,7 +66,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 	
 	private static List<Integer> buildBlacklistedDimensions()
 	{
-		String blacklist = MineFactoryReloadedCore.worldGenDimensionBlacklist.getString();
+		String blacklist = MFRConfig.worldGenDimensionBlacklist.getString();
 		List<Integer> dims = new ArrayList<Integer>();
 		
 		if(blacklist == null)

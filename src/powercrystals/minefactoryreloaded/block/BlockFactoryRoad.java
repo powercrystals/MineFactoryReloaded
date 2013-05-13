@@ -11,6 +11,7 @@ import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.net.Packets;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,7 +25,7 @@ public class BlockFactoryRoad extends Block
 	public BlockFactoryRoad(int id)
 	{
 		super(id, Material.rock);
-		if(MineFactoryReloadedCore.enableSlipperyRoads.getBoolean(true))
+		if(MFRConfig.enableSlipperyRoads.getBoolean(true))
 		{
 			slipperiness = 0.98F;
 		}

@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import thermalexpansion.api.item.ItemRegistry;
 import cpw.mods.fml.common.Loader;
@@ -322,7 +323,7 @@ public class ThermalExpansion extends Vanilla
 			
 			if(Machine.DeepStorageUnit.getIsRecipeEnabled())
 			{
-				int dsuCount = MineFactoryReloadedCore.craftSingleDSU.getBoolean(false) ? 1 : 4;
+				int dsuCount = MFRConfig.craftSingleDSU.getBoolean(false) ? 1 : 4;
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), dsuCount, 3), new Object[]
 						{					
 					"PCP",
@@ -333,7 +334,7 @@ public class ThermalExpansion extends Vanilla
 					'F', tesseractFrameFull
 						} ));
 				
-				if(MineFactoryReloadedCore.enableCheapDSU.getBoolean(false))
+				if(MFRConfig.enableCheapDSU.getBoolean(false))
 				{
 					GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 3), new Object[]
 							{					

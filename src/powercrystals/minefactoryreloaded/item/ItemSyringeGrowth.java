@@ -4,13 +4,13 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class ItemSyringeGrowth extends ItemSyringe
 {
 	public ItemSyringeGrowth()
 	{
-		super(MineFactoryReloadedCore.syringeGrowthItemId.getInt());
+		super(MFRConfig.syringeGrowthItemId.getInt());
 	}
 	
 	@Override

@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -327,7 +328,7 @@ public class GregTech extends Vanilla
 					'F', "craftingRawMachineTier03"
 						} ));
 				
-				if(MineFactoryReloadedCore.enableCheapDSU.getBoolean(false))
+				if(MFRConfig.enableCheapDSU.getBoolean(false))
 				{
 					GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 3), new Object[]
 							{					

@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -60,11 +61,11 @@ public class BlockRailPassengerDropoff extends BlockRailBase
 		int targetY;
 		int targetZ;
 		
-		for(offsetX = -MineFactoryReloadedCore.passengerRailSearchMaxHorizontal.getInt(); offsetX < MineFactoryReloadedCore.passengerRailSearchMaxHorizontal.getInt(); offsetX++)
+		for(offsetX = -MFRConfig.passengerRailSearchMaxHorizontal.getInt(); offsetX < MFRConfig.passengerRailSearchMaxHorizontal.getInt(); offsetX++)
 		{
-			for(offsetY = -MineFactoryReloadedCore.passengerRailSearchMaxVertical.getInt(); offsetY < MineFactoryReloadedCore.passengerRailSearchMaxVertical.getInt(); offsetY++)
+			for(offsetY = -MFRConfig.passengerRailSearchMaxVertical.getInt(); offsetY < MFRConfig.passengerRailSearchMaxVertical.getInt(); offsetY++)
 			{
-				for(offsetZ = -MineFactoryReloadedCore.passengerRailSearchMaxHorizontal.getInt(); offsetZ < MineFactoryReloadedCore.passengerRailSearchMaxHorizontal.getInt(); offsetZ++)
+				for(offsetZ = -MFRConfig.passengerRailSearchMaxHorizontal.getInt(); offsetZ < MFRConfig.passengerRailSearchMaxHorizontal.getInt(); offsetZ++)
 				{
 					targetX = x + offsetX;
 					targetY = y + offsetY;

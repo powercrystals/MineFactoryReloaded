@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.net.Packets;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTile
 {
@@ -35,7 +36,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		if(_connectionBlackList == null)
 		{
 			_connectionBlackList = new LinkedList<Integer>();
-			for(String s : MineFactoryReloadedCore.redNetConnectionBlacklist.getString().replace("\"", "").split(","))
+			for(String s : MFRConfig.redNetConnectionBlacklist.getString().replace("\"", "").split(","))
 			{
 				try
 				{

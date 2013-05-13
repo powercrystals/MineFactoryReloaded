@@ -8,6 +8,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.block.ItemBlockRedNetLogic;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -324,7 +325,7 @@ public class Vanilla
 		
 		if(Machine.DeepStorageUnit.getIsRecipeEnabled())
 		{
-			int dsuCount = MineFactoryReloadedCore.craftSingleDSU.getBoolean(false) ? 1 : 4;
+			int dsuCount = MFRConfig.craftSingleDSU.getBoolean(false) ? 1 : 4;
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), dsuCount, 3), new Object[]
 					{
 				"GGG",
@@ -336,7 +337,7 @@ public class Vanilla
 				'M', MineFactoryReloadedCore.machineBaseItem,
 					} ));
 			
-			if(MineFactoryReloadedCore.enableCheapDSU.getBoolean(false))
+			if(MFRConfig.enableCheapDSU.getBoolean(false))
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 3), new Object[]
 						{
@@ -1301,12 +1302,12 @@ public class Vanilla
 			'P', Block.pistonBase
 				} );
 		
-		if(MineFactoryReloadedCore.vanillaOverrideIce.getBoolean(true))
+		if(MFRConfig.vanillaOverrideIce.getBoolean(true))
 		{
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Block.ice, 1, 1), new ItemStack(Block.ice, 1, 0), "dustPlastic"));
 		}
 		
-		if(MineFactoryReloadedCore.enableMossyCobbleRecipe.getBoolean(true))
+		if(MFRConfig.enableMossyCobbleRecipe.getBoolean(true))
 		{
 			GameRegistry.addShapelessRecipe(new ItemStack(Block.cobblestoneMossy), new Object[]
 					{

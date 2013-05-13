@@ -5,13 +5,13 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class ItemSyringeZombie extends ItemSyringe
 {
 	public ItemSyringeZombie()
 	{
-		super(MineFactoryReloadedCore.syringeZombieId.getInt());
+		super(MFRConfig.syringeZombieId.getInt());
 	}
 	
 	@Override

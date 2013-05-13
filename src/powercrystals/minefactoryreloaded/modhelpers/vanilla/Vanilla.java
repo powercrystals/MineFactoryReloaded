@@ -134,6 +134,7 @@ import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableSquid;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityAgeableHandler;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityLivingHandler;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.SheepHandler;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -195,7 +196,7 @@ public class Vanilla
 		MFRRegistry.registerFertilizable(new FertilizableRubberSapling());
 		
 		MFRRegistry.registerFertilizer(new FertilizerStandard(MineFactoryReloadedCore.fertilizerItem.itemID, 0));
-		if(MineFactoryReloadedCore.enableBonemealFertilizing.getBoolean(false))
+		if(MFRConfig.enableBonemealFertilizing.getBoolean(false))
 		{
 			MFRRegistry.registerFertilizer(new FertilizerStandard(Item.dyePowder.itemID, 15));
 		}

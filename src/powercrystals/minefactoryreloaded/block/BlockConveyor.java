@@ -26,6 +26,7 @@ import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import cpw.mods.fml.relauncher.Side;
@@ -123,7 +124,7 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if(!(entity instanceof EntityItem || entity instanceof EntityXPOrb || (entity instanceof EntityLiving && MineFactoryReloadedCore.conveyorCaptureNonItems.getBoolean(true))))
+		if(!(entity instanceof EntityItem || entity instanceof EntityXPOrb || (entity instanceof EntityLiving && MFRConfig.conveyorCaptureNonItems.getBoolean(true))))
 		{
 			return;
 		}

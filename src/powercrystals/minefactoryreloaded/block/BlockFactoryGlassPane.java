@@ -17,6 +17,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -74,7 +75,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 				blockId == Block.glass.blockID ||
 				blockId == MineFactoryReloadedCore.factoryGlassPaneBlock.blockID ||
 				blockId == MineFactoryReloadedCore.factoryGlassBlock.blockID ||
-				(blockId == Block.thinGlass.blockID && MineFactoryReloadedCore.vanillaOverrideGlassPane.getBoolean(true));
+				(blockId == Block.thinGlass.blockID && MFRConfig.vanillaOverrideGlassPane.getBoolean(true));
 	}
 	
 	@Override

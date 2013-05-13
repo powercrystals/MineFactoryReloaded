@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.Util;
 import powercrystals.core.util.UtilInventory;
-import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
@@ -35,7 +35,7 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 				UtilInventory.dropStack(this, s, this.getDropDirection());
 			}
 			
-			if(MineFactoryReloadedCore.playSounds.getBoolean(true))
+			if(MFRConfig.playSounds.getBoolean(true))
 			{
 				worldObj.playAuxSFXAtEntity(null, 2001, bp.x, bp.y, bp.z, blockId + (blockMeta << 12));
 			}
