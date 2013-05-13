@@ -47,22 +47,30 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 	}
 	
 	@Override
-	public int getStartInventorySide(ForgeDirection side)
+	public int getSizeInventorySide(ForgeDirection side)
 	{
-		if(side == ForgeDirection.UP || side == ForgeDirection.DOWN)
-		{
-			return 0;
-		}
-		else
-		{
-			return 2;
-		}
+		return 4;
 	}
 	
 	@Override
-	public int getSizeInventorySide(ForgeDirection side)
+	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
-		return 2;
+		if(slot == 0)
+		{
+			return stack.getEnchantmentTagList() != null;
+		}
+		else if(slot == 1)
+		{
+			return stack.itemID == Item.book.itemID;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
+	{
+		if(slot == 2 || slot == 3) return true;
+		return false;
 	}
 	
 	@Override

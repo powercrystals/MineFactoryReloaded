@@ -45,6 +45,20 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 	}
 	
 	@Override
+	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
+	{
+		if(slot == 0 || slot == 1) return true;
+		return false;
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
+	{
+		if(slot == 2) return true;
+		return false;
+	}
+	
+	@Override
 	public int getInventoryStackLimit()
 	{
 		return 1;
