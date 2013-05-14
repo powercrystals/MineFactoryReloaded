@@ -18,7 +18,7 @@ import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
-public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTile
+public class TileEntityRedNetCable extends TileEntity implements INeighboorUpdateTile
 {
 	private int[] _sideColors = new int [6];
 	private byte _mode; // 0: standard, 1: force connection, 2: connect to cables only
@@ -31,7 +31,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			147, 148, 149, 150, 151, 152, 157, 158);
 	private static List<Integer> _connectionBlackList;
 	
-	public TileRedstoneCable()
+	public TileEntityRedNetCable()
 	{
 		if(_connectionBlackList == null)
 		{
@@ -195,9 +195,9 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 			for(BlockPosition bp : ourbp.getAdjacent(true))
 			{
 				TileEntity te = bp.getTileEntity(worldObj);
-				if(te != null && te instanceof TileRedstoneCable)
+				if(te != null && te instanceof TileEntityRedNetCable)
 				{
-					TileRedstoneCable cable = ((TileRedstoneCable)te);
+					TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
 					if(cable.getNetwork() != null && !cable.getNetwork().isInvalid())
 					{
 						_network = cable.getNetwork();
@@ -214,9 +214,9 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		for(BlockPosition bp : ourbp.getAdjacent(true))
 		{
 			TileEntity te = bp.getTileEntity(worldObj);
-			if(te != null && te instanceof TileRedstoneCable)
+			if(te != null && te instanceof TileEntityRedNetCable)
 			{
-				TileRedstoneCable cable = ((TileRedstoneCable)te);
+				TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
 				if(cable.getNetwork() == null)
 				{
 					cable.setNetwork(_network);

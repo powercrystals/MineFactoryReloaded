@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.render.model.RedstoneCableModel;
-import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler
@@ -25,7 +25,7 @@ public class RedstoneCableRenderer extends TileEntitySpecialRenderer implements 
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float scale)
 	{
-		TileRedstoneCable cable = (TileRedstoneCable)tileentity;
+		TileEntityRedNetCable cable = (TileEntityRedNetCable)tileentity;
 		bindTextureByName(MineFactoryReloadedCore.tileEntityFolder + "cable.png");
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5f, (float) z + 0.5F);

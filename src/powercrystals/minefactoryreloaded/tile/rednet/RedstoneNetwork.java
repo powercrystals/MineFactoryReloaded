@@ -218,9 +218,9 @@ public class RedstoneNetwork
 		{
 			_cables.add(cable);
 			TileEntity te = cable.getTileEntity(_world);
-			if(te != null && te instanceof TileRedstoneCable)
+			if(te != null && te instanceof TileEntityRedNetCable)
 			{
-				((TileRedstoneCable)te).setNetwork(this);
+				((TileEntityRedNetCable)te).setNetwork(this);
 			}
 		}
 		

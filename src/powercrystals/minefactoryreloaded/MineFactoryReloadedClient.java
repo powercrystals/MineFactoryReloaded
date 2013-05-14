@@ -21,7 +21,7 @@ import powercrystals.minefactoryreloaded.render.tileentity.RedstoneCableRenderer
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrillPrecharger;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -54,7 +54,7 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdVineScaffold, new VineScaffoldRenderer());
 		
 		RedstoneCableRenderer renderer = new RedstoneCableRenderer();
-		ClientRegistry.bindTileEntitySpecialRenderer(TileRedstoneCable.class, renderer);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRedNetCable.class, renderer);
 		RenderingRegistry.registerBlockHandler(renderer);
 		
 		RedNetLogicRenderer logicRender = new RedNetLogicRenderer();
