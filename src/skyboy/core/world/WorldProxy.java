@@ -1397,7 +1397,9 @@ public class WorldProxy extends World {
 	/**
 	 * If on MP, sends a quitting packet.
 	 */
-	public void sendQuittingDisconnectingPacket() {}
+	public void sendQuittingDisconnectingPacket() {
+		this.proxiedWorld.sendQuittingDisconnectingPacket();
+	}
 
 	@Override
 	/**
