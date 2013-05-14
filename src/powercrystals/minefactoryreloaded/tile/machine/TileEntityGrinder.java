@@ -10,6 +10,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
@@ -27,6 +28,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.world.GrindingWorld;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -174,12 +176,13 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				setIdleTicks(20);
 				return true;
 			}
-			//*/
+			/*/
 			grindingWorld.addEntityForGrinding(e);
 			e.attackEntityFrom(DamageSource.generic, e.getHealth());
 			_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 			setIdleTicks(20);
 			return true;
+			//*/
 		}
 		setIdleTicks(getIdleTicksMax());
 		return false;
