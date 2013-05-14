@@ -58,5 +58,12 @@ public class GrindingWorld extends WorldProxy {
 			entitiesToGrind.remove(ent);
 		}
 	}
+	
+	public void cleanReferences() {
+		for (Entity ent : entitiesToGrind) {
+			if (ent.isDead)
+				entitiesToGrind.remove(ent);
+		}
+	}
 
 }
