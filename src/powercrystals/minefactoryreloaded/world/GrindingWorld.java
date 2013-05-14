@@ -53,8 +53,9 @@ public class GrindingWorld extends WorldProxy {
 
 	public void clearReferences() {
 		for (Entity ent : entitiesToGrind) {
-			if (ent.worldObj == this.proxiedWorld)
+			if (ent.worldObj == this)
 				ent.worldObj = this.proxiedWorld;
+			entitiesToGrind.remove(ent);
 		}
 	}
 
