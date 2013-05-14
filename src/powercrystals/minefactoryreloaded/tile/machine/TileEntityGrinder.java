@@ -35,6 +35,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	private HarvestAreaManager _areaManager;
 	private LiquidTank _tank;
 	private Random _rand;
+	private GrindingWorld grindingWorld;
 	
 	@Override
 	public String getGuiBackground()
@@ -62,6 +63,16 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		_rand = new Random();
 	}
+	
+	@Override
+    public void setWorldObj(World par1World)
+    {
+        this.worldObj = par1World;
+        if (grindingWorld != null)
+        	grindingWorld.clearReferences();
+        grindingWorld = new GrindingWorld(par1World, this);
+    }
+
 	
 	public Random getRandom()
 	{
@@ -119,6 +130,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 			{
 				continue;
 			}
+			/*
 			for(int slot = 0; slot < 5; slot++)
 			{
 				ItemStack s = e.getCurrentItemOrArmor(slot);
@@ -162,6 +174,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				setIdleTicks(20);
 				return true;
 			}
+			//*/
+			grindingWorld.addEntityForGrinding(e);
+			e.attackEntityFrom(DamageSource.generic, e.getHealth());
+			_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
+			setIdleTicks(20);
+			return true;
 		}
 		setIdleTicks(getIdleTicksMax());
 		return false;

@@ -1,37 +1,19 @@
 package skyboy.core.world;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
-import com.google.common.collect.ImmutableSetMultimap;
-
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFluid;
-import net.minecraft.block.BlockHalfSlab;
-import net.minecraft.block.BlockHopper;
-import net.minecraft.block.BlockSnow;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,23 +21,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.logging.ILogAgent;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
-import net.minecraft.pathfinding.PathFinder;
-import net.minecraft.profiler.Profiler;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Facing;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ReportedException;
 import net.minecraft.util.Vec3;
 import net.minecraft.util.Vec3Pool;
-import net.minecraft.village.VillageCollection;
-import net.minecraft.village.VillageSiege;
-import net.minecraft.world.ChunkCache;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.EnumSkyBlock;
@@ -64,27 +37,25 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorldAccess;
 import net.minecraft.world.MinecraftException;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldSavedData;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.ISaveHandler;
-import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.common.ForgeChunkManager;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ForgeDummyContainer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.WorldSpecificSaveHandler;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
+import net.minecraftforge.common.ForgeDirection;
 
+import com.google.common.collect.ImmutableSetMultimap;
+
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SuppressWarnings("rawtypes")
 public class WorldProxy extends World {
 	protected World proxiedWorld;
 
