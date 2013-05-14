@@ -87,7 +87,7 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 			_inventory[2] = _inventory[0];
 			_inventory[0] = null;
 		}
-		else if(_inventory[0] != null && _inventory[0].getEnchantmentTagList() != null &&  _inventory[0].itemID != Item.enchantedBook.itemID && _inventory[1] != null &&
+		else if(_inventory[0] != null && _inventory[0].getEnchantmentTagList() != null && _inventory[1] != null &&
 				_inventory[1].itemID == Item.book.itemID && _inventory[2] == null && _inventory[3] == null)
 		{
 			if(getWorkDone() >= getWorkMax())
