@@ -116,6 +116,8 @@ public class MFRConfig
 	
 	public static Property redNetConnectionBlacklist;
 	
+	public static Property redNetDebug;
+	
 	public static Property rubberTreeWorldGen;
 	
 	public static Property mfrLakeWorldGen;
@@ -261,6 +263,9 @@ public class MFRConfig
 		
 		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
 		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
+		
+		redNetDebug = c.get(Configuration.CATEGORY_GENERAL, "RedNet.Debug", false);
+		redNetDebug.comment = "If true, RedNet cables will dump a massive amount of data to the log file. You should probably only use this if PC tells you to.";
 		
 		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
 		enableSlipperyRoads.comment = "If true, roads will be slippery like ice.";

@@ -188,7 +188,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		}
 		
 		BlockPosition ourbp = new BlockPosition(this);
-		//System.out.println("Cable at " + ourbp.toString() + " updating network");
+		RedstoneNetwork.log("Cable at %s updating network", ourbp.toString());
 		
 		if(_network == null)
 		{
@@ -208,7 +208,7 @@ public class TileRedstoneCable extends TileEntity implements INeighboorUpdateTil
 		}
 		if(_network == null)
 		{
-			//System.out.println("Initializing new network at" + ourbp.toString());
+			RedstoneNetwork.log("Initializing new network at %s", ourbp.toString());
 			setNetwork(new RedstoneNetwork(worldObj));
 		}
 		for(BlockPosition bp : ourbp.getAdjacent(true))
