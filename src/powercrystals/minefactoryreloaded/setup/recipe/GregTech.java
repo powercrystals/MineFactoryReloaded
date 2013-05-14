@@ -238,8 +238,8 @@ public class GregTech extends Vanilla
 					"SFS",
 					"OCO",
 					'P', "sheetPlastic",
-					'T', "plateAlloyIridium",
-					'S', "craftingGrinder",
+					'S', "craftingMachineParts",
+					'T', "craftingGrinder",
 					'F', "craftingRawMachineTier02",
 					'O', Item.book,
 					'C', "advancedCircuit"
@@ -323,12 +323,13 @@ public class GregTech extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 3), new Object[]
 						{					
-					"PEP",
+					"PDP",
 					"CFC",
 					"PEP",
 					'P', "sheetPlastic",
 					'C', "eliteCircuit",
 					'E', Item.eyeOfEnder,
+					'D', "craftingCircuitTier05",
 					'F', "craftingRawMachineTier03"
 						} ));
 				
@@ -559,7 +560,7 @@ public class GregTech extends Vanilla
 					'S', MineFactoryReloadedCore.pinkSlimeballItem,
 					'L', luminator,
 					'F', mfsUnit,
-					'C', "craftingCircuitTier03"
+					'C', "craftingCircuitTier07"
 						} ));
 			}
 			
