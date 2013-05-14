@@ -23,6 +23,7 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -170,7 +171,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 					mode = 0;
 				}
 				cable.setMode(mode);
-				//PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
+				PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
 				if(world.isRemote)
 				{
 					if(mode == 0)
