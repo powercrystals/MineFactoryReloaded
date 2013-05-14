@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.item;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -77,6 +78,10 @@ public class ItemRedNetMeter extends ItemFactory
 			}
 			
 			return true;
+		}
+		else if(world.getBlockId(x, y, z) == Block.redstoneWire.blockID)
+		{
+			player.sendChatToPlayer("Dust: " + world.getBlockMetadata(x, y, z));
 		}
 		return false;
 	}
