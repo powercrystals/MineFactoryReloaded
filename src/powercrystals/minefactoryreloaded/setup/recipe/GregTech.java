@@ -24,6 +24,10 @@ public class GregTech extends Vanilla
 		{
 			ItemStack generator = Items.getItem("generator");
 			ItemStack compressor = Items.getItem("compressor");
+			ItemStack luminator = Items.getItem("luminator");
+			ItemStack mfsUnit = Items.getItem("mfsUnit");
+			ItemStack reactorChamber = Items.getItem("reactorChamber");
+			ItemStack reinforcedGlass = Items.getItem("reinforcedGlass");
 			
 			if(Machine.Planter.getIsRecipeEnabled())
 			{
@@ -524,6 +528,54 @@ public class GregTech extends Vanilla
 					'B', Item.book,
 					'S', Item.redstoneRepeater,
 					'F', "craftingRawMachineTier01"
+						} ));
+			}
+			
+			if(Machine.LaserDrill.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 0), new Object[]
+						{
+					"GFG",
+					"CRC",
+					"DLD",
+					'G', "sheetPlastic",
+					'D', "gemDiamond",
+					'L', reinforcedGlass,
+					'R', reactorChamber,
+					'F', "craftingRawMachineTier04",
+					'C', "craftingCircuitTier04"
+						} ));
+			}
+			
+			if(Machine.LaserDrillPrecharger.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 1), new Object[]
+						{
+					"GSG",
+					"LFL",
+					"DCD",
+					'G', "sheetPlastic",
+					'D', Item.diamond,
+					'S', MineFactoryReloadedCore.pinkSlimeballItem,
+					'L', luminator,
+					'F', mfsUnit,
+					'C', "craftingCircuitTier03"
+						} ));
+			}
+			
+			if(Machine.AutoAnvil.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 2), new Object[]
+						{
+					"GIG",
+					"AFA",
+					"LCL",
+					'G', "sheetPlastic",
+					'A', Block.anvil,
+					'F', "craftingRawMachineTier04",
+					'C', "craftingCircuitTier02",
+					'I', "plateAlloyIridium",
+					'L', 
 						} ));
 			}
 		}
