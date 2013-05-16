@@ -205,6 +205,7 @@ public class Vanilla
 		
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityChicken.class, new MobDrop[]
 				{
+			new MobDrop(30, null),
 			new MobDrop(10, new ItemStack(Item.egg))
 				}, false));
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityOcelot.class, new MobDrop[]
