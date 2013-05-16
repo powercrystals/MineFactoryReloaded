@@ -115,15 +115,11 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	public boolean activateMachine()
 	{
 		grindingWorld.cleanReferences();
-		boolean foundMob = false;
+		boolean processMob = false;
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 		
-		for(Object o : entities)
+		entityList: for(Object o : entities)
 		{
-			if(o instanceof EntityPlayer)
-			{
-				continue;
-			}
 			if(o instanceof EntityAgeable && ((EntityAgeable)o).getGrowingAge() < 0)
 			{
 				continue;
@@ -133,57 +129,51 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 			{
 				continue;
 			}
-			/*
-			for(int slot = 0; slot < 5; slot++)
+			processEntity:
 			{
-				ItemStack s = e.getCurrentItemOrArmor(slot);
-				if(s != null && s.hasTagCompound())
+				if(MFRRegistry.getGrindables().containsKey(e.getClass()))
 				{
-					UtilInventory.dropStack(this, s, this.getDropDirection());
-					foundMob = true;
-				}
-			}
-			if(MFRRegistry.getGrindables().containsKey(e.getClass()))
-			{
-				IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
-				List<MobDrop> drops = r.grind(worldObj, e, getRandom());
-				if(drops != null)
-				{
-					ItemStack drop = ((MobDrop)WeightedRandom.getRandomItem(_rand, drops)).getStack();
-					UtilInventory.dropStack(this, drop, this.getDropDirection());
-				}
-				
-				foundMob = true;
-			}
-			if(foundMob)
-			{
-				if(worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
-				{
-					try
+					IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
+					List<MobDrop> drops = r.grind(worldObj, e, getRandom());
+					if(drops != null)
 					{
-						worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
-						e.attackEntityFrom(DamageSource.generic, e.getHealth());
+						ItemStack drop = ((MobDrop)WeightedRandom.getRandomItem(_rand, drops)).getStack();
+						UtilInventory.dropStack(this, drop, this.getDropDirection());
 					}
-					finally
+					if (r.processEntity(e))
 					{
-						worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "true");
+						processMob = true;
+						break processEntity;
 					}
 				}
-				else
+				for (Class<?> t : MFRRegistry.getGrinderBlacklist())
 				{
-					e.attackEntityFrom(DamageSource.generic, 50);
+					if (t.isInstance(e))
+					{
+						continue entityList;
+					}
 				}
-				_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
-				setIdleTicks(20);
-				return true;
+				grindingWorld.addEntityForGrinding(e);
 			}
-			/*/
-			grindingWorld.addEntityForGrinding(e);
+			if(processMob && worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			{
+				try
+				{
+					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
+					e.attackEntityFrom(DamageSource.generic, e.getHealth());
+					_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
+				}
+				finally
+				{
+					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "true");
+					setIdleTicks(20);
+					return true;
+				}
+			}
 			e.attackEntityFrom(DamageSource.generic, e.getHealth());
 			_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 			setIdleTicks(20);
 			return true;
-			//*/
 		}
 		setIdleTicks(getIdleTicksMax());
 		return false;

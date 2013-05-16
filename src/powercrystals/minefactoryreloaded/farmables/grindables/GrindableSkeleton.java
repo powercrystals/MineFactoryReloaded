@@ -24,21 +24,29 @@ public class GrindableSkeleton implements IFactoryGrindable
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
 		List<MobDrop> drops = new ArrayList<MobDrop>();
-		EntitySkeleton s = (EntitySkeleton)entity;
 		
-		if(s.getSkeletonType() == 0)
+		switch (((EntitySkeleton)entity).getSkeletonType())
 		{
-			drops.add(new MobDrop(10, new ItemStack(Item.bone)));
-			drops.add(new MobDrop(10, new ItemStack(Item.arrow)));
-		}
-		else if(s.getSkeletonType() == 1)
-		{
+		case 1:
 			drops.add(new MobDrop(48, new ItemStack(Item.bone)));
 			drops.add(new MobDrop(48, new ItemStack(Item.coal)));
 			drops.add(new MobDrop(4, new ItemStack(Item.skull.itemID, 1, 1)));
+			break;
+		default:
 		}
 		
 		return drops;
 	}
 	
+	@Override
+	public boolean processEntity(EntityLiving entity)
+	{
+		switch (((EntitySkeleton)entity).getSkeletonType())
+		{
+		case 1:
+			return true;
+		default:
+			return false;
+		}
+	}
 }

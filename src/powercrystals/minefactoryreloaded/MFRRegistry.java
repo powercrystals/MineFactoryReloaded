@@ -40,6 +40,7 @@ public abstract class MFRRegistry
 	private static List<IRandomMobProvider> _randomMobProviders = new ArrayList<IRandomMobProvider>();
 	private static List<IRedNetLogicCircuit> _redNetLogicCircuits = new ArrayList<IRedNetLogicCircuit>();
 	private static List<WeightedRandomItem> _laserOres  = new ArrayList<WeightedRandomItem>();
+	private static List<Class<?>> _grindableBlacklist = new ArrayList<Class<?>>();
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
@@ -103,6 +104,17 @@ public abstract class MFRRegistry
 	public static Map<Class<?>, IFactoryGrindable> getGrindables()
 	{
 		return _grindables;
+	}
+	
+	public static void registerGrinderBlacklist(Class<?> ...ungrindables)
+	{
+		for (Class<?> ungrindable : ungrindables)
+			_grindableBlacklist.add(ungrindable);
+	}
+	
+	public static List<Class<?>> getGrinderBlacklist()
+	{
+		return _grindableBlacklist;
 	}
 	
 	public static void registerSludgeDrop(int weight, ItemStack drop)

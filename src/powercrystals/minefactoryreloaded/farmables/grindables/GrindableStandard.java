@@ -14,8 +14,9 @@ public class GrindableStandard implements IFactoryGrindable
 {
 	private Class<?> _grindableClass;
 	private List<MobDrop> _drops;
+	private boolean _entityProcessed;
 	
-	public GrindableStandard(Class<?> entityToGrind, MobDrop[] dropStacks)
+	public GrindableStandard(Class<?> entityToGrind, MobDrop[] dropStacks, boolean entityProcessed)
 	{
 		_grindableClass = entityToGrind;
 		_drops = new ArrayList<MobDrop>();
@@ -23,19 +24,37 @@ public class GrindableStandard implements IFactoryGrindable
 		{
 			_drops.add(d);
 		}
+		_entityProcessed = entityProcessed;
 	}
 	
-	public GrindableStandard(Class<?> entityToGrind, ItemStack dropStack)
+	public GrindableStandard(Class<?> entityToGrind, MobDrop[] dropStacks)
+	{
+		this(entityToGrind, dropStacks, true);
+	}
+	
+	public GrindableStandard(Class<?> entityToGrind, ItemStack dropStack, boolean entityProcessed)
 	{
 		_grindableClass = entityToGrind;
 		_drops = new ArrayList<MobDrop>();
 		_drops.add(new MobDrop(10, dropStack));
+		_entityProcessed = entityProcessed;
+	}
+	
+	public GrindableStandard(Class<?> entityToGrind, ItemStack dropStack)
+	{
+		this(entityToGrind, dropStack, true);
+	}
+	
+	public GrindableStandard(Class<?> entityToGrind, boolean entityProcessed)
+	{
+		_grindableClass = entityToGrind;
+		_drops = new ArrayList<MobDrop>();
+		_entityProcessed = entityProcessed;
 	}
 	
 	public GrindableStandard(Class<?> entityToGrind)
 	{
-		_grindableClass = entityToGrind;
-		_drops = new ArrayList<MobDrop>();
+		this(entityToGrind, true);
 	}
 	
 	@Override
@@ -48,5 +67,11 @@ public class GrindableStandard implements IFactoryGrindable
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
 		return _drops;
+	}
+	
+	@Override
+	public boolean processEntity(EntityLiving entity)
+	{
+		return _entityProcessed;
 	}
 }

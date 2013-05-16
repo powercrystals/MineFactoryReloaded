@@ -3,23 +3,13 @@ package powercrystals.minefactoryreloaded.modhelpers.vanilla;
 import net.minecraft.block.Block;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -109,7 +99,6 @@ import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableRub
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSapling;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableStemPlants;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
-import powercrystals.minefactoryreloaded.farmables.grindables.GrindableSheep;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableSkeleton;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableZombiePigman;
@@ -209,68 +198,25 @@ public class Vanilla
 		MFRRegistry.registerRanchable(new RanchableMooshroom());
 		MFRRegistry.registerRanchable(new RanchableSheep());
 		MFRRegistry.registerRanchable(new RanchableSquid());
+
+		MFRRegistry.registerGrinderBlacklist(EntityPlayer.class);
+		MFRRegistry.registerGrinderBlacklist(EntityDragon.class);
+		MFRRegistry.registerGrinderBlacklist(EntityWither.class);
 		
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityChicken.class, new MobDrop[]
 				{
-			new MobDrop(10, new ItemStack(Item.feather)),
-			new MobDrop(10, new ItemStack(Item.chickenRaw)),
 			new MobDrop(10, new ItemStack(Item.egg))
-				}));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityCow.class, new MobDrop[]
-				{
-			new MobDrop(10, new ItemStack(Item.leather)),
-			new MobDrop(10, new ItemStack(Item.beefRaw))
-				}));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityMooshroom.class, new MobDrop[]
-				{
-			new MobDrop(10, new ItemStack(Item.leather)),
-			new MobDrop(10, new ItemStack(Item.beefRaw))
-				}));
+				}, false));
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityOcelot.class, new MobDrop[]
 				{
 			new MobDrop(10, new ItemStack(Item.fishRaw)),
 			new MobDrop(10, new ItemStack(Item.silk))
 				}));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityPig.class, new ItemStack(Item.porkRaw)));
-		MFRRegistry.registerGrindable(new GrindableSheep());
-		MFRRegistry.registerGrindable(new GrindableStandard(EntitySquid.class, new ItemStack(Item.dyePowder)));
-		
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityEnderman.class, new ItemStack(Item.enderPearl)));
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityWolf.class, new ItemStack(Item.bone)));
-		MFRRegistry.registerGrindable(new GrindableZombiePigman());
-		
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityBlaze.class, new ItemStack(Item.blazeRod)));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityCaveSpider.class, new MobDrop[]
-				{
-			new MobDrop(10, new ItemStack(Item.silk)),
-			new MobDrop(10, new ItemStack(Item.spiderEye))
-				}));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityCreeper.class, new ItemStack(Item.gunpowder)));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityGhast.class, new MobDrop[]
-				{
-			new MobDrop(10, new ItemStack(Item.gunpowder)),
-			new MobDrop(2, new ItemStack(Item.ghastTear))
-				}));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityMagmaCube.class, new ItemStack(Item.magmaCream)));
 		MFRRegistry.registerGrindable(new GrindableSkeleton());
+		MFRRegistry.registerGrindable(new GrindableZombiePigman());
+		MFRRegistry.registerGrindable(new GrindableStandard(EntityMagmaCube.class, new ItemStack(Item.magmaCream)));
 		MFRRegistry.registerGrindable(new GrindableStandard(EntitySlime.class, new ItemStack(Item.slimeBall)));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntitySpider.class, new MobDrop[]
-				{
-			new MobDrop(10, new ItemStack(Item.silk)),
-			new MobDrop(10, new ItemStack(Item.spiderEye))
-				}));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityWitch.class, new MobDrop[]
-				{ 
-			new MobDrop(10, new ItemStack(Item.glassBottle, 2)),
-			new MobDrop(10, new ItemStack(Item.lightStoneDust, 2)),
-			new MobDrop(10, new ItemStack(Item.gunpowder, 2)),
-			new MobDrop(10, new ItemStack(Item.redstone, 2)),
-			new MobDrop(10, new ItemStack(Item.spiderEye, 2)),
-			new MobDrop(10, new ItemStack(Item.stick, 2)),
-			new MobDrop(10, new ItemStack(Item.sugar, 2))
-				}));
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityZombie.class, new ItemStack(Item.rottenFlesh)));
-		
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityPinkSlime.class, new ItemStack(MineFactoryReloadedCore.pinkSlimeballItem)));
 		
 		MFRRegistry.registerSludgeDrop(50, new ItemStack(Block.sand));

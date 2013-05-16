@@ -25,8 +25,6 @@ public class GrindableZombiePigman implements IFactoryGrindable
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
 		List<MobDrop> drops = new ArrayList<MobDrop>();
-		drops.add(new MobDrop(10, new ItemStack(Item.rottenFlesh)));
-		drops.add(new MobDrop(10, new ItemStack(Item.goldNugget)));
 		
 		if(random.nextInt(1000) == 0)
 		{
@@ -40,4 +38,9 @@ public class GrindableZombiePigman implements IFactoryGrindable
 		return drops;
 	}
 	
+	@Override
+	public boolean processEntity(EntityLiving entity) 
+	{
+		return false;
+	}
 }

@@ -26,4 +26,10 @@ public interface IFactoryGrindable
 	 * @return The drops generated when this entity is killed.
 	 */
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random);
+	
+	/**
+	 * @param entity The entity instance being ground.
+	 * @return Whether this entity has been fully processed or not.
+	 */
+	public boolean processEntity(EntityLiving entity);
 }
