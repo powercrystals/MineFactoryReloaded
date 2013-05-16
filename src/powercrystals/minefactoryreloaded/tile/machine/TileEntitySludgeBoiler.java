@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -116,9 +117,9 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 					{
 						((EntityPlayer)o).addPotionEffect(new PotionEffect(Potion.hunger.id, 20 * 20, 0));
 					}
-					if(o != null && o instanceof EntityLiving)
+					if(o != null && o instanceof EntityPlayer)
 					{
-						((EntityLiving)o).addPotionEffect(new PotionEffect(Potion.poison.id, 6 * 20, 0));
+						((EntityPlayer)o).addPotionEffect(new PotionEffect(Potion.poison.id, 6 * 20, 0));
 					}
 				}
 				_tick = 0;

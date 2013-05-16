@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -35,7 +36,7 @@ public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, ICo
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if(entity instanceof EntityPlayer || entity instanceof EntityLiving && !((EntityLiving)entity).isEntityUndead())
+		if(entity instanceof EntityPlayer || entity instanceof EntityMob && !((EntityLiving)entity).isEntityUndead())
 		{
 			if(blockID == MineFactoryReloadedCore.sludgeLiquid.blockID)
 			{
@@ -51,15 +52,15 @@ public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, ICo
 			}
 			else if(blockID == MineFactoryReloadedCore.essenceLiquid.blockID)
 			{
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.nightVision.id, 60 * 20, 0));
+				((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.nightVision.id, 60 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.milkLiquid.blockID)
 			{
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.digSpeed.id, 6 * 20, 0));
+				((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.digSpeed.id, 6 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.biofuelLiquid.blockID)
 			{
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 12 * 20, 0));
+				((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 12 * 20, 0));
 			}
 		}
 		super.onEntityCollidedWithBlock(world, x, y, z, entity);
