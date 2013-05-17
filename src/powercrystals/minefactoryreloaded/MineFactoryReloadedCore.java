@@ -41,6 +41,7 @@ import powercrystals.minefactoryreloaded.block.BlockRailCargoDropoff;
 import powercrystals.minefactoryreloaded.block.BlockRailCargoPickup;
 import powercrystals.minefactoryreloaded.block.BlockRailPassengerDropoff;
 import powercrystals.minefactoryreloaded.block.BlockRailPassengerPickup;
+import powercrystals.minefactoryreloaded.block.BlockRedNetPanel;
 import powercrystals.minefactoryreloaded.block.BlockRedNetLogic;
 import powercrystals.minefactoryreloaded.block.BlockRedNetCable;
 import powercrystals.minefactoryreloaded.block.BlockRubberLeaves;
@@ -98,6 +99,7 @@ import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
 import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
 import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetHistorian;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 
@@ -145,6 +147,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static int renderIdFluidClassic = 1003;
 	public static int renderIdRedNetLogic = 1004;
 	public static int renderIdVineScaffold = 1005;
+	public static int renderIdRedNetPanel = 1006;
 	
 	public static Map<Integer, Block> machineBlocks = new HashMap<Integer, Block>();
 	
@@ -167,6 +170,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	
 	public static BlockRedNetCable rednetCableBlock;
 	public static BlockRedNetLogic rednetLogicBlock;
+	public static BlockRedNetPanel rednetPanelBlock;
 	
 	public static Block milkLiquid;
 	public static Block sludgeLiquid;
@@ -290,6 +294,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		railPickupPassengerBlock = new BlockRailPassengerPickup(MFRConfig.railPickupPassengerBlockId.getInt());
 		rednetCableBlock = new BlockRedNetCable(MFRConfig.rednetCableBlockId.getInt());
 		rednetLogicBlock = new BlockRedNetLogic(MFRConfig.rednetLogicBlockId.getInt());
+		rednetPanelBlock = new BlockRedNetPanel(MFRConfig.rednetPanelBlockId.getInt());
 		fakeLaserBlock = new BlockFakeLaser(MFRConfig.fakeLaserBlockId.getInt());
 		vineScaffoldBlock = new BlockVineScaffold(MFRConfig.vineScaffoldBlockId.getInt());
 
@@ -349,6 +354,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerBlock(railDropoffPassengerBlock, railDropoffPassengerBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(rednetCableBlock, rednetCableBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(rednetLogicBlock, ItemBlockRedNetLogic.class, rednetLogicBlock.getUnlocalizedName());
+		GameRegistry.registerBlock(rednetPanelBlock, rednetPanelBlock.getUnlocalizedName());
 		GameRegistry.registerBlock(vineScaffoldBlock, ItemBlockVineScaffold.class, vineScaffoldBlock.getUnlocalizedName());
 		
 		GameRegistry.registerBlock(milkLiquid, milkLiquid.getUnlocalizedName());
@@ -382,6 +388,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "factoryConveyor");
 		GameRegistry.registerTileEntity(TileEntityRedNetCable.class, "factoryRedstoneCable");
 		GameRegistry.registerTileEntity(TileEntityRedNetLogic.class, "factoryRednetLogic");
+		GameRegistry.registerTileEntity(TileEntityRedNetHistorian.class, "factoryRednetHistorian");
 		
 		EntityRegistry.registerModEntity(EntitySafariNet.class, "entitySafariNet", 0, instance, 160, 5, true);
 		EntityRegistry.registerModEntity(EntityPinkSlime.class, "mfrEntityPinkSlime", 1, instance, 160, 5, true);

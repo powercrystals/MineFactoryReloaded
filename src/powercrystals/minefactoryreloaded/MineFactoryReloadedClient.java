@@ -16,10 +16,12 @@ import powercrystals.minefactoryreloaded.render.entity.EntitySafariNetRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillPrechargerRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedNetCardItemRenderer;
+import powercrystals.minefactoryreloaded.render.tileentity.RedNetHistorianRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedNetLogicRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedstoneCableRenderer;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrillPrecharger;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetHistorian;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 
@@ -60,6 +62,10 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		RedNetLogicRenderer logicRender = new RedNetLogicRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRedNetLogic.class, logicRender);
 		RenderingRegistry.registerBlockHandler(logicRender);
+		
+		RedNetHistorianRenderer panelRenderer = new RedNetHistorianRenderer();
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRedNetHistorian.class, panelRenderer);
+		RenderingRegistry.registerBlockHandler(panelRenderer);
 		
 		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.logicCardItem.itemID, new RedNetCardItemRenderer());
 		

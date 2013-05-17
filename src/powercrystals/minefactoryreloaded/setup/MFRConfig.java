@@ -34,6 +34,7 @@ public class MFRConfig
 	
 	public static Property rednetCableBlockId;
 	public static Property rednetLogicBlockId;
+	public static Property rednetPanelBlockId;
 	
 	public static Property fakeLaserBlockId;
 	
@@ -175,6 +176,7 @@ public class MFRConfig
 		machineBlock2Id = c.getBlock("ID.MachineBlock2", 3146);
 		fakeLaserBlockId = c.getBlock("ID.FakeLaser", 3147);
 		vineScaffoldBlockId = c.getBlock("ID.VineScaffold", 3148);
+		rednetPanelBlockId = c.getBlock("ID.RedNet.Panel", 3149);
 		
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);

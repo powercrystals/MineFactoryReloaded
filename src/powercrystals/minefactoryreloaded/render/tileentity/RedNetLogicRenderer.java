@@ -16,7 +16,6 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RedNetLogicRenderer extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler
 {
-	
 	private RedNetLogicModel _logicModel = new RedNetLogicModel();
 	private RedNetCardsModel _cardsModel = new RedNetCardsModel();
 	
