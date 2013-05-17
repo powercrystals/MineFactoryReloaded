@@ -75,6 +75,12 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 		
 		IInventoryManager manager = InventoryManager.create(this, ForgeDirection.UNKNOWN);
 		
+		if(entities.size() > 50)
+		{
+			setIdleTicks(getIdleTicksMax());
+			return false;
+		}
+		
 		for(Object o : entities)
 		{
 			if(o != null && o instanceof EntityAnimal)

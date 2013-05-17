@@ -1,11 +1,12 @@
 package powercrystals.minefactoryreloaded.item;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 
 public class ItemRedNetMeter extends ItemFactory
 {
@@ -26,13 +27,13 @@ public class ItemRedNetMeter extends ItemFactory
 		}
 		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te instanceof TileRedstoneCable)
+		if(te instanceof TileEntityRedNetCable)
 		{
 			int value;
 			boolean foundNonZero = false;
 			for(int i = 0; i < 16; i++)
 			{
-				value = ((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(i);
+				value = ((TileEntityRedNetCable)te).getNetwork().getPowerLevelOutput(i);
 				
 				if(value != 0)
 				{
@@ -77,6 +78,10 @@ public class ItemRedNetMeter extends ItemFactory
 			}
 			
 			return true;
+		}
+		else if(world.getBlockId(x, y, z) == Block.redstoneWire.blockID)
+		{
+			player.sendChatToPlayer("Dust: " + world.getBlockMetadata(x, y, z));
 		}
 		return false;
 	}

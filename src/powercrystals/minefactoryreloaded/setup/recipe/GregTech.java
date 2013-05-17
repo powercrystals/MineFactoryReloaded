@@ -570,13 +570,12 @@ public class GregTech extends Vanilla
 						{
 					"GIG",
 					"AFA",
-					"LCL",
+					"ACA",
 					'G', "sheetPlastic",
 					'A', Block.anvil,
 					'F', "craftingRawMachineTier04",
 					'C', "craftingCircuitTier02",
-					'I', "plateAlloyIridium",
-					'L', 
+					'I', "plateAlloyIridium"
 						} ));
 			}
 		}

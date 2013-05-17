@@ -29,7 +29,6 @@ public class RedNetCardItemRenderer implements IItemRenderer
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
-		
 		RenderEngine renderengine = Minecraft.getMinecraft().renderEngine;
 		
 		if(renderengine != null)

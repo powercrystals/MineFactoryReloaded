@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
-import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 
 public class RedstoneCableModel extends ModelBase
 {
@@ -81,7 +81,7 @@ public class RedstoneCableModel extends ModelBase
 		renderSide(RedNetConnectionType.CableAll, 0, (float)Math.PI, 0, f5);
 	}
 	
-	public void render(TileRedstoneCable entity, float f5)
+	public void render(TileEntityRedNetCable entity, float f5)
 	{
 		_base.render(f5);
 		

@@ -22,11 +22,12 @@ import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
-import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockRedstoneCable extends BlockContainer implements IRedNetNetworkContainer
+public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkContainer
 {
 	private static float _wireSize = 0.25F;
 	private static float _plateWidth = 14.0F / 16.0F;
@@ -47,7 +48,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	
 	private static int[] _partSideMappings = new int[] { -1, -1, -1, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3 };
 	
-	public BlockRedstoneCable(int id)
+	public BlockRedNetCable(int id)
 	{
 		super(id, Material.clay);
 		
@@ -57,7 +58,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
-	private AxisAlignedBB[] getParts(TileRedstoneCable cable)
+	private AxisAlignedBB[] getParts(TileEntityRedNetCable cable)
 	{
 		RedNetConnectionType csu = cable.getConnectionState(ForgeDirection.UP);
 		RedNetConnectionType csd = cable.getConnectionState(ForgeDirection.DOWN);
@@ -89,7 +90,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		return parts;
 	}
 	
-	private int getPartClicked(EntityPlayer player, double reachDistance, TileRedstoneCable cable)
+	private int getPartClicked(EntityPlayer player, double reachDistance, TileEntityRedNetCable cable)
 	{
 		AxisAlignedBB[] wireparts = getParts(cable);
 		
@@ -125,9 +126,9 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileRedstoneCable)
+		if(te != null && te instanceof TileEntityRedNetCable)
 		{
-			TileRedstoneCable cable = (TileRedstoneCable)te;
+			TileEntityRedNetCable cable = (TileEntityRedNetCable)te;
 			
 			int subHit = getPartClicked(player, 3.0F, cable);
 			
@@ -170,7 +171,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 					mode = 0;
 				}
 				cable.setMode(mode);
-				//PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
+				PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
 				if(world.isRemote)
 				{
 					if(mode == 0)
@@ -202,9 +203,9 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 		float zMax = 0;
 		
 		TileEntity cable = world.getBlockTileEntity(x, y, z);
-		if(cable instanceof TileRedstoneCable)
+		if(cable instanceof TileEntityRedNetCable)
 		{
-			for(AxisAlignedBB aabb : getParts((TileRedstoneCable)cable))
+			for(AxisAlignedBB aabb : getParts((TileEntityRedNetCable)cable))
 			{
 				if(aabb == null)
 				{
@@ -231,9 +232,9 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB collisionTest, List collisionBoxList, Entity entity)
 	{
 		TileEntity cable = world.getBlockTileEntity(x, y, z);
-		if(cable instanceof TileRedstoneCable)
+		if(cable instanceof TileEntityRedNetCable)
 		{
-			for(AxisAlignedBB aabb : getParts((TileRedstoneCable)cable))
+			for(AxisAlignedBB aabb : getParts((TileEntityRedNetCable)cable))
 			{
 				if(aabb == null)
 				{
@@ -275,9 +276,9 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	{
 		super.onNeighborBlockChange(world, x, y, z, blockId);
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileRedstoneCable)
+		if(te != null && te instanceof TileEntityRedNetCable)
 		{
-			((TileRedstoneCable)te).onNeighboorChanged();
+			((TileEntityRedNetCable)te).onNeighboorChanged();
 		}
 	}
 	
@@ -285,9 +286,9 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	public void breakBlock(World world, int x, int y, int z, int id, int meta)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
+		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
 		{
-			((TileRedstoneCable)te).getNetwork().setInvalid();
+			((TileEntityRedNetCable)te).getNetwork().setInvalid();
 		}
 		for(ForgeDirection d : ForgeDirection.VALID_DIRECTIONS)
 		{
@@ -305,10 +306,10 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	{
 		int power = 0;
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
+		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
 		{
-			int subnet = ((TileRedstoneCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
-			power = Math.min(Math.max(((TileRedstoneCable)te).getNetwork().getPowerLevelOutput(subnet), 0), 15);
+			int subnet = ((TileEntityRedNetCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
+			power = Math.min(Math.max(((TileEntityRedNetCable)te).getNetwork().getPowerLevelOutput(subnet), 0), 15);
 			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
 		}
 		return power;
@@ -319,9 +320,9 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	{
 		int power = 0;
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
+		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
 		{
-			TileRedstoneCable cable = ((TileRedstoneCable)te);
+			TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
 			
 			BlockPosition nodebp = new BlockPosition(x, y, z, ForgeDirection.getOrientation(side).getOpposite());
 			nodebp.moveForwards(1);
@@ -357,7 +358,7 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	@Override
 	public TileEntity createNewTileEntity(World world)
 	{
-		return new TileRedstoneCable();
+		return new TileEntityRedNetCable();
 	}
 	
 	@Override
@@ -377,9 +378,9 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	public void updateNetwork(World world, int x, int y, int z)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
+		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
 		{
-			((TileRedstoneCable)te).getNetwork().updatePowerLevels();
+			((TileEntityRedNetCable)te).getNetwork().updatePowerLevels();
 		}
 	}
 	
@@ -387,9 +388,9 @@ public class BlockRedstoneCable extends BlockContainer implements IRedNetNetwork
 	public void updateNetwork(World world, int x, int y, int z, int subnet)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileRedstoneCable && ((TileRedstoneCable)te).getNetwork() != null)
+		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
 		{
-			((TileRedstoneCable)te).getNetwork().updatePowerLevels(subnet);
+			((TileEntityRedNetCable)te).getNetwork().updatePowerLevels(subnet);
 		}
 	}
 }

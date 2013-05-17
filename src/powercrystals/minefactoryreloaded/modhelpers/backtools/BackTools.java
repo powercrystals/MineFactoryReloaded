@@ -21,7 +21,7 @@ public class BackTools
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
-		if(!Loader.isModLoaded("Atum"))
+		if(!Loader.isModLoaded("mod_BackTools"))
 		{
 			FMLLog.warning("BackTools missing - MFR BackTools Compat not loading");
 			return;

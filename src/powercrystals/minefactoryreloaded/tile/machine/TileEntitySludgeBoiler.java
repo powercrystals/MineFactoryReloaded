@@ -116,9 +116,9 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 					{
 						((EntityPlayer)o).addPotionEffect(new PotionEffect(Potion.hunger.id, 20 * 20, 0));
 					}
-					if(o != null && o instanceof EntityLiving)
+					if(o != null && o instanceof EntityPlayer)
 					{
-						((EntityLiving)o).addPotionEffect(new PotionEffect(Potion.poison.id, 6 * 20, 0));
+						((EntityPlayer)o).addPotionEffect(new PotionEffect(Potion.poison.id, 6 * 20, 0));
 					}
 				}
 				_tick = 0;

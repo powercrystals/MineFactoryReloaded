@@ -16,8 +16,9 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetHistorian;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
-import powercrystals.minefactoryreloaded.tile.rednet.TileRedstoneCable;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -80,9 +81,9 @@ public class ClientPacketHandler implements IPacketHandler
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
-			if(te instanceof TileRedstoneCable)
+			if(te instanceof TileEntityRedNetCable)
 			{
-				TileRedstoneCable tec = (TileRedstoneCable) te;
+				TileEntityRedNetCable tec = (TileEntityRedNetCable) te;
 				tec.setSideColor(ForgeDirection.DOWN, (Integer)packetReadout[3]);
 				tec.setSideColor(ForgeDirection.UP, (Integer)packetReadout[4]);
 				tec.setSideColor(ForgeDirection.NORTH, (Integer)packetReadout[5]);
@@ -101,6 +102,17 @@ public class ClientPacketHandler implements IPacketHandler
 			if(te instanceof TileEntityRedNetLogic)
 			{
 				((TileEntityRedNetLogic)te).setCircuitFromPacket(data);
+			}
+		}
+		else if(packetType == Packets.HistorianValueChanged)
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof TileEntityRedNetHistorian)
+			{
+				((TileEntityRedNetHistorian)te).setClientValue((Integer)packetReadout[3]);
 			}
 		}
 	}

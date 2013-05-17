@@ -34,6 +34,7 @@ public class MFRConfig
 	
 	public static Property rednetCableBlockId;
 	public static Property rednetLogicBlockId;
+	public static Property rednetPanelBlockId;
 	
 	public static Property fakeLaserBlockId;
 	
@@ -116,6 +117,8 @@ public class MFRConfig
 	
 	public static Property redNetConnectionBlacklist;
 	
+	public static Property redNetDebug;
+	
 	public static Property rubberTreeWorldGen;
 	
 	public static Property mfrLakeWorldGen;
@@ -173,6 +176,7 @@ public class MFRConfig
 		machineBlock2Id = c.getBlock("ID.MachineBlock2", 3146);
 		fakeLaserBlockId = c.getBlock("ID.FakeLaser", 3147);
 		vineScaffoldBlockId = c.getBlock("ID.VineScaffold", 3148);
+		rednetPanelBlockId = c.getBlock("ID.RedNet.Panel", 3149);
 		
 		hammerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Hammer", 11987);
 		milkItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Milk", 11988);
@@ -261,6 +265,9 @@ public class MFRConfig
 		
 		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
 		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
+		
+		redNetDebug = c.get(Configuration.CATEGORY_GENERAL, "RedNet.Debug", false);
+		redNetDebug.comment = "If true, RedNet cables will dump a massive amount of data to the log file. You should probably only use this if PC tells you to.";
 		
 		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
 		enableSlipperyRoads.comment = "If true, roads will be slippery like ice.";

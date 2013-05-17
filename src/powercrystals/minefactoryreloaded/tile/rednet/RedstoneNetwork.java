@@ -11,9 +11,12 @@ import net.minecraft.world.World;
 
 import org.bouncycastle.util.Arrays;
 
+import cpw.mods.fml.common.FMLLog;
+
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
 public class RedstoneNetwork
 {
@@ -37,6 +40,14 @@ public class RedstoneNetwork
 	private BlockPosition[] _powerProviders = new BlockPosition[16];
 	
 	private World _world;
+	
+	public static void log(String format, Object... data)
+	{
+		if(MFRConfig.redNetDebug.getBoolean(false) && format != null)
+		{
+			FMLLog.info("RedNet Debug: " + format, data);
+		}
+	}
 	
 	public RedstoneNetwork(World world)
 	{
@@ -94,7 +105,7 @@ public class RedstoneNetwork
 		
 		if(!_omniNodes.contains(node))
 		{
-			//System.out.println("Network with ID " + _id + " adding omni node " + node.toString());
+			RedstoneNetwork.log("Network with ID %d adding omni node %s", _id, node.toString());
 			_omniNodes.add(node);
 			notifyOmniNode(node);
 		}
@@ -104,7 +115,7 @@ public class RedstoneNetwork
 			int power = getOmniNodePowerLevel(node, subnet);
 			if(power > _powerLevelOutput[subnet])
 			{
-				//System.out.println("Network with ID " + _id + ":" + subnet + " has omni node " + node.toString() + " as new power provider");
+				RedstoneNetwork.log("Network with ID %d:%d has omni node %s as new power provider", _id, subnet, node.toString());
 				_powerLevelOutput[subnet] = power;
 				_powerProviders[subnet] = node;
 				notifyNodes(subnet);
@@ -127,7 +138,7 @@ public class RedstoneNetwork
 		if(!_singleNodes.get(subnet).contains(node))
 		{
 			removeNode(node);
-			//System.out.println("Network with ID " + _id + ":" + subnet + " adding node " + node.toString());
+			RedstoneNetwork.log("Network with ID %d:%d adding node %s", _id, subnet, node.toString());
 			
 			_singleNodes.get(subnet).add(node);
 			notifySingleNode(node, subnet);
@@ -143,17 +154,17 @@ public class RedstoneNetwork
 		}
 		
 		int power = getSingleNodePowerLevel(node);
-		//System.out.println("Network with ID " + _id + ":" + subnet + " calculated power for node " + node.toString() + " as " + power);
+		RedstoneNetwork.log("Network with ID %d:%d calculated power for node %s as %d", _id, subnet, node.toString(), power);
 		if(power > _powerLevelOutput[subnet])
 		{
-			//System.out.println("Network with ID " + _id + ":" + subnet + " has node " + node.toString() + " as new power provider");
+			RedstoneNetwork.log("Network with ID %d:%d has node %s as new power provider", _id, subnet, node.toString());
 			_powerLevelOutput[subnet] = power;
 			_powerProviders[subnet] = node;
 			notifyNodes(subnet);
 		}
 		else if(node.equals(_powerProviders[subnet]) && power < _powerLevelOutput[subnet])
 		{
-			//System.out.println("Network with ID " + _id + ":" + subnet + " removing power provider node, recalculating");
+			RedstoneNetwork.log("Network with ID %d:%d removing power provider node, recalculating", _id, subnet);
 			updatePowerLevels(subnet);
 		}
 	}
@@ -167,13 +178,13 @@ public class RedstoneNetwork
 		{
 			if(_singleNodes.get(subnet).contains(node))
 			{
-				//System.out.println("Network with ID " + _id + ":" + subnet + " removing node " + node.toString());
+				RedstoneNetwork.log("Network with ID %d:%d removing node %s", _id, subnet, node.toString());
 				_singleNodes.get(subnet).remove(node);
 			}
 			
 			if(node.equals(_powerProviders[subnet]))
 			{
-				//System.out.println("Network with ID " + _id + ":" + subnet + " removing power provider node, recalculating");
+				RedstoneNetwork.log("Network with ID %d:%d removing power provider node, recalculating", _id, subnet);
 				updatePowerLevels(subnet);
 			}
 		}
@@ -194,7 +205,7 @@ public class RedstoneNetwork
 			return;
 		}
 		
-		//System.out.println("Network with ID " + _id + " merging with network " + network._id);
+		RedstoneNetwork.log("Network with ID %d merging with network %d", _id, network._id);
 		network.setInvalid();
 		for(int subnet = 0; subnet < 16; subnet++)
 		{
@@ -207,9 +218,9 @@ public class RedstoneNetwork
 		{
 			_cables.add(cable);
 			TileEntity te = cable.getTileEntity(_world);
-			if(te != null && te instanceof TileRedstoneCable)
+			if(te != null && te instanceof TileEntityRedNetCable)
 			{
-				((TileRedstoneCable)te).setNetwork(this);
+				((TileEntityRedNetCable)te).setNetwork(this);
 			}
 		}
 		
@@ -258,7 +269,7 @@ public class RedstoneNetwork
 			
 		}
 		
-		//System.out.println("Network with ID " + _id + ":" + subnet + " recalculated power levels as: output: " + _powerLevelOutput[subnet] + " with powering node " + _powerProviders[subnet]);
+		RedstoneNetwork.log("Network with ID %d:%d recalculated power levels as: output: %d with powering node %s", _id, subnet, _powerLevelOutput[subnet], _powerProviders[subnet]);
 		notifyNodes(subnet);
 	}
 	
@@ -266,22 +277,22 @@ public class RedstoneNetwork
 	{
 		if(_ignoreUpdates)
 		{
-			//System.out.println("**** NETWORK INGORING UPDATES");
+			RedstoneNetwork.log("Network asked to notify nodes while ignoring updates (API misuse?)!");
 			_mustUpdate = true;
 			return;
 		}
 		_ignoreUpdates = true;
-		//System.out.println("Network with ID " + _id + ":" + subnet + " notifying " + _singleNodes.get(subnet).size() + " single nodes and " + _omniNodes.size() + " omni nodes");
+		RedstoneNetwork.log("Network with ID %d:%d notifying %d single nodes and %d omni nodes", _id, subnet, _singleNodes.get(subnet).size(), _omniNodes.size());
 		for(int i = 0; i < _singleNodes.get(subnet).size(); i++)
 		{
 			BlockPosition bp = _singleNodes.get(subnet).get(i);
-			//System.out.println("Network with ID " + _id + ":" + subnet + " notifying node " + bp.toString() + " of power state change to " + _powerLevelOutput[subnet]);
+			RedstoneNetwork.log("Network with ID %d:%d notifying node %s of power state change to %d", _id, subnet, bp.toString(), _powerLevelOutput[subnet]);
 			notifySingleNode(bp, subnet);
 		}
 		for(int i = 0; i < _omniNodes.size(); i++)
 		{
 			BlockPosition bp = _omniNodes.get(i);
-			//System.out.println("Network with ID " + _id + ":" + subnet + " notifying omni node " + bp.toString() + " of power state change to " + _powerLevelOutput[subnet]);
+			RedstoneNetwork.log("Network with ID %d:%d notifying omni node %s of power state change to %d", _id, subnet, bp.toString(), _powerLevelOutput[subnet]);
 			notifyOmniNode(bp);
 		}
 		_ignoreUpdates = false;
