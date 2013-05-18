@@ -12,6 +12,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
@@ -148,6 +151,12 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
 	{
+		PlayerInteractEvent e = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
+		if(MinecraftForge.EVENT_BUS.post(e))
+		{
+			return false;
+		}
+		
 		if(MFRUtil.isHoldingWrench(player))
 		{
 			int nextMeta = world.getBlockMetadata(x, y, z) + 1;

@@ -16,6 +16,9 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
@@ -125,6 +128,12 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
 	{
+		PlayerInteractEvent e = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
+		if(MinecraftForge.EVENT_BUS.post(e))
+		{
+			return false;
+		}
+		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileEntityRedNetCable)
 		{
