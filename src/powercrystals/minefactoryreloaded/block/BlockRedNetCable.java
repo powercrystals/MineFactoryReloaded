@@ -137,10 +137,11 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 				return false;
 			}
 			side = _partSideMappings[subHit];
+
+			ItemStack s = player.inventory.getCurrentItem();
 			
 			if(side >= 0)
 			{
-				ItemStack s = player.inventory.getCurrentItem();
 				if(s != null && s.getItem() instanceof IToolHammer)
 				{
 					if(!world.isRemote)
@@ -162,7 +163,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 					}
 				}
 			}
-			else
+			else if(s != null && s.getItem() instanceof IToolHammer)
 			{
 				byte mode = cable.getMode();
 				mode++;
@@ -171,9 +172,9 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 					mode = 0;
 				}
 				cable.setMode(mode);
-				PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
-				if(world.isRemote)
+				if(!world.isRemote)
 				{
+					PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
 					if(mode == 0)
 					{
 						player.sendChatToPlayer("Set cable to standard connection mode");
