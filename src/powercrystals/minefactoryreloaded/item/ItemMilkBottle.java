@@ -26,7 +26,12 @@ public class ItemMilkBottle extends ItemFactory
 			player.curePotionEffects(new ItemStack(Item.bucketMilk));
 		}
 		
-		return stack.stackSize <= 0 ? new ItemStack(Item.glassBottle) : stack;
+		if(!player.inventory.addItemStackToInventory(new ItemStack(Item.glassBottle)))
+		{
+			player.dropPlayerItem(new ItemStack(Item.glassBottle));
+		}
+		
+		return stack.stackSize <= 0 ? null : stack;
 	}
 	
 	
