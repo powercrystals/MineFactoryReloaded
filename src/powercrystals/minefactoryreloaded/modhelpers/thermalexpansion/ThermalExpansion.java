@@ -8,8 +8,8 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.Mod.PostInit;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 import thermalexpansion.api.crafting.CraftingManagers;
@@ -18,8 +18,8 @@ import thermalexpansion.api.crafting.CraftingManagers;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class ThermalExpansion
 {
-	@Init
-	public static void load(FMLInitializationEvent e)
+	@PostInit
+	public static void postInit(FMLPostInitializationEvent e)
 	{
 		if(!Loader.isModLoaded("ThermalExpansion"))
 		{
