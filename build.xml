@@ -41,6 +41,17 @@
 			<available file="${mcpsrc.dir}/thaumcraft" type="dir"/>
 		</and>
 	</condition>
+	
+    <path id="mcp.classpath">
+        <pathelement location="${mcp.dir}/bin/minecraft"/>
+        <pathelement location="${mcp.dir}/lib/argo-3.2.jar"/>
+        <pathelement location="${mcp.dir}/lib/asm-debug-all-4.1.jar"/>
+        <pathelement location="${mcp.dir}/lib/bcprov-debug-jdk15on-148.jar"/>
+        <pathelement location="${mcp.dir}/lib/guava-14.0-rc3.jar"/>
+        <pathelement location="${mcp.dir}/jars/bin/jinput.jar"/>
+        <pathelement location="${mcp.dir}/jars/bin/lwjgl.jar"/>
+        <pathelement location="${mcp.dir}/jars/bin/lwjgl_util.jar"/>
+    </path>
 
 	<target name="get-dependencies" depends="get-version" unless="${have-apis}">
 		<echo message="Downloading IC2 API... " />
@@ -137,13 +148,13 @@
 
 	<target name="build" depends="extract-dependencies" unless="already-compiled">
 		<!-- Recompile -->
-		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
-			<arg line="/c recompile.bat"/>
-		</exec>
-
-		<exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
-			<arg value="recompile.sh" />
-		</exec>
+		<depend srcdir="${mcpsrc.dir}" destdir="${mcp.dir}/bin/minecraft">
+			<include name="powercrystals/minefactoryreloaded/**/*.java"/>
+		</depend>
+		<javac srcdir="${mcpsrc.dir}" destdir="${mcp.dir}/bin/minecraft" target="1.6" source="1.6"
+		       classpathref="mcp.classpath" debug="true" debuglevel="lines,source" includeAntRuntime="false">
+			<include name="powercrystals/minefactoryreloaded/**/*.java"/>
+		</javac>
 
 		<!-- Reobf -->
 		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
