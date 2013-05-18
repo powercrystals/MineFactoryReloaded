@@ -15,6 +15,7 @@ import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
+import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoAnvil;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -78,7 +79,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public GuiFactoryPowered getGui(InventoryPlayer inventoryPlayer)
+	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
 		return new GuiFactoryPowered(getContainer(inventoryPlayer), this);
 	}
