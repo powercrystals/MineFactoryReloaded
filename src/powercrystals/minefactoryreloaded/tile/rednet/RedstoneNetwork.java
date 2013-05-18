@@ -65,8 +65,8 @@ public class RedstoneNetwork
 	{
 		if(_mustUpdate)
 		{
-			updatePowerLevels();
 			_mustUpdate = false;
+			updatePowerLevels();
 		}
 	}
 	
