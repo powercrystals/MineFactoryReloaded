@@ -24,6 +24,7 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -151,7 +152,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 			
 			if(side >= 0)
 			{
-				if(s != null && s.getItem() instanceof IToolHammer)
+				if(MFRUtil.isHoldingHammer(player))
 				{
 					if(!world.isRemote)
 					{

@@ -157,7 +157,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			return false;
 		}
 		
-		if(MFRUtil.isHoldingWrench(player))
+		if(MFRUtil.isHoldingHammer(player))
 		{
 			int nextMeta = world.getBlockMetadata(x, y, z) + 1;
 			if(nextMeta > 3)

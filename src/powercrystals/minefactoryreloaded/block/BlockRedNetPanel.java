@@ -103,7 +103,7 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 		}
 		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(MFRUtil.isHoldingWrench(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
+		if(MFRUtil.isHoldingHammer(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
 		{
 			((TileEntityFactory)te).rotate();
 			world.markBlockForUpdate(x, y, z);
