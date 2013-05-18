@@ -97,34 +97,49 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 				_inventory[3] = new ItemStack(Item.enchantedBook, 1);
 				decrStackSize(1, 1);
 				
-				int enchIndex = worldObj.rand.nextInt(((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagCount());
-				NBTTagCompound enchTag = (NBTTagCompound)((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagAt(enchIndex);
+				NBTTagCompound enchTag;
+				if(_inventory[2].itemID == Item.enchantedBook.itemID)
+				{
+					if((NBTTagList)_inventory[2].getTagCompound().getTag("ench") != null)
+					{
+						enchTag = (NBTTagCompound)((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagAt(0);
+					}
+					else
+					{
+						enchTag = (NBTTagCompound)((NBTTagList)_inventory[2].getTagCompound().getTag("StoredEnchantments")).tagAt(0);
+					}
+				}
+				else
+				{
+					int enchIndex = worldObj.rand.nextInt(((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagCount());
+					enchTag = (NBTTagCompound)((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagAt(enchIndex);
+					
+					((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).removeTag(enchIndex);
+					if(((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagCount() == 0)
+					{
+						_inventory[2].getTagCompound().removeTag("ench");
+						if(_inventory[2].getTagCompound().hasNoTags())
+						{
+							_inventory[2].setTagCompound(null);
+						}
+					}
+					
+					int damage = worldObj.rand.nextInt((int)(_inventory[2].getMaxDamage() * 0.25)) + (int)(_inventory[2].getMaxDamage() * 0.1);
+					if(_inventory[2].isItemStackDamageable())
+					{
+						_inventory[2].setItemDamage(_inventory[2].getItemDamage() + damage);
+						if(_inventory[2].getItemDamage() >= _inventory[2].getMaxDamage())
+						{
+							_inventory[2] = null;
+						}
+					}
+				}
 				
 				NBTTagCompound baseTag = new NBTTagCompound();
 				NBTTagList enchList = new NBTTagList();
 				enchList.appendTag(enchTag);
 				baseTag.setTag("StoredEnchantments", enchList);
 				_inventory[3].setTagCompound(baseTag);
-				
-				((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).removeTag(enchIndex);
-				if(((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagCount() == 0)
-				{
-					_inventory[2].getTagCompound().removeTag("ench");
-					if(_inventory[2].getTagCompound().hasNoTags())
-					{
-						_inventory[2].setTagCompound(null);
-					}
-				}
-				
-				int damage = worldObj.rand.nextInt((int)(_inventory[2].getMaxDamage() * 0.25)) + (int)(_inventory[2].getMaxDamage() * 0.1);
-				if(_inventory[2].isItemStackDamageable())
-				{
-					_inventory[2].setItemDamage(_inventory[2].getItemDamage() + damage);
-					if(_inventory[2].getItemDamage() >= _inventory[2].getMaxDamage())
-					{
-						_inventory[2] = null;
-					}
-				}
 				
 				setWorkDone(0);
 			}
