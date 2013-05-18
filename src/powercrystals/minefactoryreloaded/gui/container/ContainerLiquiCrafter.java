@@ -9,6 +9,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.gui.slot.SlotFake;
 import powercrystals.minefactoryreloaded.gui.slot.SlotRemoveOnly;
 import powercrystals.minefactoryreloaded.gui.slot.SlotViewOnly;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquiCrafter;
@@ -36,7 +37,7 @@ public class ContainerLiquiCrafter extends ContainerFactoryInventory
 		{
 			for(int j = 0; j < 3; j++)
 			{
-				addSlotToContainer(new Slot(_te, j + i * 3, 8 + j * 18, 20 + i * 18));
+				addSlotToContainer(new SlotFake(_te, j + i * 3, 8 + j * 18, 20 + i * 18));
 			}
 		}
 		

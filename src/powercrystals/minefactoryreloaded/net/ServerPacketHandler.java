@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
@@ -166,6 +168,28 @@ public class ServerPacketHandler implements IPacketHandler
 			if(te instanceof TileEntityEnchantmentRouter)
 			{
 				((TileEntityEnchantmentRouter)te).setMatchLevels(!((TileEntityEnchantmentRouter)te).getMatchLevels());
+			}
+		}
+		else if(packetType == Packets.FakeSlotChange) // client -> server: client clicked on a fake slot
+		{
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			ItemStack playerStack = ((EntityPlayer)player).inventory.getItemStack();
+			Integer slotNumber = (Integer)packetReadout[3];
+			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
+			if(te instanceof IInventory)
+			{
+				if(playerStack == null)
+				{
+					((IInventory)te).setInventorySlotContents(slotNumber, null);
+				}
+				else
+				{
+					playerStack = playerStack.copy();
+					playerStack.stackSize = 1;
+					((IInventory)te).setInventorySlotContents(slotNumber, playerStack);
+				}
 			}
 		}
 	}

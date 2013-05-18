@@ -116,6 +116,12 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 	}
 	
 	@Override
+	public boolean shouldDropSlotWhenBroken(int slot)
+	{
+		return false;
+	}
+	
+	@Override
 	public String getInvName()
 	{
 		return "Liquid Router";

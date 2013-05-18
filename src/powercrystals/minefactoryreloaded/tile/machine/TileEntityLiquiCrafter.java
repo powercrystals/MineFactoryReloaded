@@ -58,7 +58,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	@Override
 	public boolean shouldDropSlotWhenBroken(int slot)
 	{
-		return slot != 9;
+		return slot > 9;
 	}
 	
 	@Override
