@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.tile;
+package powercrystals.minefactoryreloaded.tile.conveyor;
 
 import buildcraft.core.IMachine;
 import net.minecraft.block.Block;
@@ -9,10 +9,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
+import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.net.Packets;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -20,6 +22,8 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 public class TileEntityConveyor extends TileEntity implements IRotateableTile, ISidedInventory, IMachine
 {
 	private int _dye = -1;
+	private boolean _isReversed = false;
+	private boolean _redNetActive = true;
 	
 	public int getDyeColor()
 	{
@@ -188,6 +192,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	
 	private void rotateTo(World world, int xCoord, int yCoord, int zCoord, int newmd)
 	{
+		System.out.println("EMYDEBUG: Rotating conveyor to: " + newmd);
 		world.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, newmd, 2);
 	}
 	
@@ -438,5 +443,52 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	public boolean allowActions()
 	{
 		return false;
+	}
+	
+	// RedNet
+	public void onRedNetChanged(int value)
+	{
+		boolean wasReversed = _isReversed;
+		
+		_redNetActive = value != 0;
+		_isReversed = value < 0;
+		
+		if(wasReversed ^ _isReversed)
+		{
+			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getReversedMeta(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)), 2);
+		}
+	}
+	
+	private int getReversedMeta(int meta)
+	{
+		int directionComponent = ( meta + 2 ) % 4;
+		int slopeComponent;
+		
+		if(meta / 4 == 1)
+		{
+			slopeComponent = 2;
+		}
+		else if(meta / 4 == 2)
+		{
+			slopeComponent = 1;
+		}
+		else
+		{
+			slopeComponent = 0;
+		}
+		
+		return slopeComponent * 4 + directionComponent;
+	}
+
+	public boolean isConveyorActive(IBlockAccess iblockaccess, int x, int y, int z, int side)
+	{
+		if(Util.isRedstonePowered(this))
+		{
+			return false;
+		}
+		else
+		{
+			return _redNetActive;
+		}
 	}
 }

@@ -24,15 +24,18 @@ import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
-import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
+import powercrystals.minefactoryreloaded.tile.conveyor.TileEntityConveyor;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockConveyor extends BlockContainer
+public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 {
 	private String[] _names = new String []
 			{ "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black", "default" };
@@ -351,5 +354,39 @@ public class BlockConveyor extends BlockContainer
 		
 		dropBlockAsItem_do(world, x, y, z, new ItemStack(blockID, 1, dyeColor));
 		super.breakBlock(world, x, y, z, blockId, meta);
+	}
+	
+	// IConnectableRedNet
+	@Override
+	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return RedNetConnectionType.PlateSingle;
+	}
+	
+	@Override
+	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return null;
+	}
+	
+	@Override
+	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
+	{
+		return 0;
+	}
+	
+	@Override
+	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
+	{
+	}
+	
+	@Override
+	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te instanceof TileEntityConveyor)
+		{
+			((TileEntityConveyor)te).onRedNetChanged(inputValue);
+		}
 	}
 }
