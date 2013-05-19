@@ -10,7 +10,7 @@ import powercrystals.minefactoryreloaded.api.IToolHammerAdvanced;
 
 public class MFRUtil
 {
-	public static boolean isHoldingWrench(EntityPlayer player)
+	public static boolean isHoldingHammer(EntityPlayer player)
 	{
 		if(player.inventory.getCurrentItem() == null)
 		{

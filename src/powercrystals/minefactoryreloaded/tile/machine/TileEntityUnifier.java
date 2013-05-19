@@ -1,6 +1,8 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,6 +28,8 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	
 	private LiquidStack _biofuel;
 	private LiquidStack _ethanol;
+	
+	private Map<String, ItemStack> _preferredOutputs = new HashMap<String, ItemStack>();
 	
 	public TileEntityUnifier()
 	{
@@ -67,6 +71,11 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 				if(names == null || names.size() != 1)
 				{
 					output = _inventory[0].copy();
+				}
+				else if(_preferredOutputs.containsKey(names.get(0)))
+				{
+					output = _preferredOutputs.get(names.get(0)).copy();
+					output.stackSize = _inventory[0].stackSize;
 				}
 				else
 				{
@@ -123,9 +132,27 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	}
 	
 	@Override
+	protected void onFactoryInventoryChanged()
+	{
+		_preferredOutputs.clear();
+		for(int i = 2; i < 11; i++)
+		{
+			if(_inventory[i] == null)
+			{
+				continue;
+			}
+			List<String> names = OreDictTracker.getNamesFromItem(_inventory[i]);
+			for(String name : names)
+			{
+				_preferredOutputs.put(name, _inventory[i].copy());
+			}
+		}
+	}
+	
+	@Override
 	public int getSizeInventory()
 	{
-		return 2;
+		return 11;
 	}
 	
 	@Override
@@ -143,7 +170,7 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
-		return 2;
+		return 11;
 	}
 	
 	@Override

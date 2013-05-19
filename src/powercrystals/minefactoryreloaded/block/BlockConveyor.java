@@ -293,7 +293,7 @@ public class BlockConveyor extends BlockContainer
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side, float xOffset, float yOffset, float zOffset)
 	{
-		if(MFRUtil.isHoldingWrench(entityplayer))
+		if(MFRUtil.isHoldingHammer(entityplayer))
 		{
 			TileEntity te = world.getBlockTileEntity(x, y, z);
 			if(te != null && te instanceof IRotateableTile)

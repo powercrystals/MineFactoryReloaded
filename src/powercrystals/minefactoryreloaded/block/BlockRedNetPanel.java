@@ -16,6 +16,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 
 public class BlockRedNetPanel extends BlockContainer implements IConnectableRedNet
 {
@@ -93,8 +96,14 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side, float xOffset, float yOffset, float zOffset)
 	{
+		PlayerInteractEvent e = new PlayerInteractEvent(entityplayer, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
+		if(MinecraftForge.EVENT_BUS.post(e))
+		{
+			return false;
+		}
+		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(MFRUtil.isHoldingWrench(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
+		if(MFRUtil.isHoldingHammer(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
 		{
 			((TileEntityFactory)te).rotate();
 			world.markBlockForUpdate(x, y, z);
