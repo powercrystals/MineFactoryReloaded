@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -139,23 +139,27 @@ public class GuiFactoryInventory extends GuiContainer
 	
 	protected void drawBarTooltip(String name, String unit, int value, int max, int x, int y)
 	{
+		List<String> lines = new ArrayList<String>();
+		lines.add(name);
+		lines.add(value + " / " + max + " " + unit);
+		drawTooltip(lines, x, y);
+	}
+	
+	protected void drawTooltip(List<String> lines, int x, int y)
+	{
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		GL11.glDisable(GL11.GL_LIGHTING);
-		
-		List<String> stringList = new LinkedList<String>();
-		stringList.add(name);
-		stringList.add(value + " / " + max + " " + unit);
 		
 		int tooltipWidth = 0;
 		int tempWidth;
 		int xStart;
 		int yStart;
 		
-		for(int i = 0; i < stringList.size(); i++)
+		for(int i = 0; i < lines.size(); i++)
 		{
-			tempWidth = this.fontRenderer.getStringWidth(stringList.get(i));
+			tempWidth = this.fontRenderer.getStringWidth(lines.get(i));
 			
 			if(tempWidth > tooltipWidth)
 			{
@@ -167,9 +171,9 @@ public class GuiFactoryInventory extends GuiContainer
 		yStart = y - 12;
 		int tooltipHeight = 8;
 		
-		if(stringList.size() > 1)
+		if(lines.size() > 1)
 		{
-			tooltipHeight += 2 + (stringList.size() - 1) * 10;
+			tooltipHeight += 2 + (lines.size() - 1) * 10;
 		}
 		
 		if(this.guiTop + yStart + tooltipHeight + 6 > this.height)
@@ -192,9 +196,9 @@ public class GuiFactoryInventory extends GuiContainer
 		this.drawGradientRect(xStart - 3, yStart - 3, xStart + tooltipWidth + 3, yStart - 3 + 1, color2, color2);
 		this.drawGradientRect(xStart - 3, yStart + tooltipHeight + 2, xStart + tooltipWidth + 3, yStart + tooltipHeight + 3, color3, color3);
 		
-		for(int stringIndex = 0; stringIndex < stringList.size(); ++stringIndex)
+		for(int stringIndex = 0; stringIndex < lines.size(); ++stringIndex)
 		{
-			String line = stringList.get(stringIndex);
+			String line = lines.get(stringIndex);
 			
 			if(stringIndex == 0)
 			{
