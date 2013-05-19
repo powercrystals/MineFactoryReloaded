@@ -459,13 +459,17 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	public void onRedNetChanged(int value)
 	{
 		boolean wasReversed = _isReversed;
-		
+		boolean wasActive = _redNetActive;
 		_redNetActive = value <= 0;
 		_isReversed = value < 0;
 		
 		if(wasReversed ^ _isReversed)
 		{
-			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getReversedMeta(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)), 2);
+			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getReversedMeta(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)), 3);
+		}
+		else if(wasActive ^ _redNetActive)
+		{
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 	}
 	
