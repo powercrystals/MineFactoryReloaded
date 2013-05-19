@@ -467,7 +467,8 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		{
 			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getReversedMeta(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)), 3);
 		}
-		else if(wasActive ^ _redNetActive)
+		
+		if(wasActive ^ _redNetActive)
 		{
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
