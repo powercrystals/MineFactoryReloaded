@@ -61,7 +61,7 @@ public class GrindableSlime implements IFactoryGrindable {
 
 	@Override
 	public boolean processEntity(EntityLiving entity) {
-		return ((EntitySlime)entity).getSlimeSize() > dropSize;
+		return false;
 	}
 
 }
