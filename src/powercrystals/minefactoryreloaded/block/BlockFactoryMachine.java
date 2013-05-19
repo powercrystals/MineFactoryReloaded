@@ -18,6 +18,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
@@ -205,6 +208,12 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side, float xOffset, float yOffset, float zOffset)
 	{
+		PlayerInteractEvent e = new PlayerInteractEvent(entityplayer, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
+		if(MinecraftForge.EVENT_BUS.post(e))
+		{
+			return false;
+		}
+		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te == null)
 		{
@@ -224,7 +233,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 				return true;
 			}
 		}
-		if(MFRUtil.isHoldingWrench(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
+		if(MFRUtil.isHoldingHammer(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
 		{
 			((TileEntityFactory)te).rotate();
 			world.markBlockForUpdate(x, y, z);

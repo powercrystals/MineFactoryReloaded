@@ -16,11 +16,15 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -125,6 +129,12 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
 	{
+		PlayerInteractEvent e = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
+		if(MinecraftForge.EVENT_BUS.post(e))
+		{
+			return false;
+		}
+		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileEntityRedNetCable)
 		{
@@ -137,11 +147,12 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 				return false;
 			}
 			side = _partSideMappings[subHit];
+
+			ItemStack s = player.inventory.getCurrentItem();
 			
 			if(side >= 0)
 			{
-				ItemStack s = player.inventory.getCurrentItem();
-				if(s != null && s.getItem() instanceof IToolHammer)
+				if(MFRUtil.isHoldingHammer(player))
 				{
 					if(!world.isRemote)
 					{
@@ -162,7 +173,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 					}
 				}
 			}
-			else
+			else if(s != null && s.getItem() instanceof IToolHammer)
 			{
 				byte mode = cable.getMode();
 				mode++;
@@ -171,9 +182,9 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 					mode = 0;
 				}
 				cable.setMode(mode);
-				PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
-				if(world.isRemote)
+				if(!world.isRemote)
 				{
+					PacketDispatcher.sendPacketToAllAround(x, y, z, 50, world.provider.dimensionId, cable.getDescriptionPacket());
 					if(mode == 0)
 					{
 						player.sendChatToPlayer("Set cable to standard connection mode");

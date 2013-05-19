@@ -316,7 +316,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		upgradeItem = (new ItemUpgrade(MFRConfig.upgradeItemId.getInt())).setUnlocalizedName("mfr.upgrade.radius").setMaxStackSize(1);
 		safariNetLauncherItem = (new ItemSafariNetLauncher(MFRConfig.safariNetLauncherItemId.getInt())).setUnlocalizedName("mfr.safarinet.launcher").setMaxStackSize(1);
 		sugarCharcoalItem = (new ItemFactory(MFRConfig.sugarCharcoalItemId.getInt())).setUnlocalizedName("mfr.sugarcharcoal");
-		milkBottleItem = (new ItemMilkBottle(MFRConfig.milkBottleItemId.getInt())).setUnlocalizedName("mfr.milkbottle").setMaxStackSize(1);
+		milkBottleItem = (new ItemMilkBottle(MFRConfig.milkBottleItemId.getInt())).setUnlocalizedName("mfr.milkbottle").setMaxStackSize(16);
 		spyglassItem = (new ItemSpyglass(MFRConfig.spyglassItemId.getInt())).setUnlocalizedName("mfr.spyglass").setMaxStackSize(1);
 		portaSpawnerItem = (new ItemPortaSpawner(MFRConfig.portaSpawnerItemId.getInt())).setUnlocalizedName("mfr.portaspawner").setMaxStackSize(1);
 		strawItem = (new ItemStraw(MFRConfig.strawItemId.getInt())).setUnlocalizedName("mfr.straw").setMaxStackSize(1);

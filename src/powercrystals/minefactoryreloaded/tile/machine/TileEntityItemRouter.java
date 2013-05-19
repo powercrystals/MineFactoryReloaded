@@ -137,6 +137,12 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	}
 	
 	@Override
+	public boolean shouldDropSlotWhenBroken(int slot)
+	{
+		return slot >= 45;
+	}
+	
+	@Override
 	public String getInvName()
 	{
 		return "Item Router";

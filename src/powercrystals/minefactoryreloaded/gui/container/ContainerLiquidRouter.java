@@ -2,8 +2,8 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import powercrystals.minefactoryreloaded.gui.slot.SlotFake;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLiquidRouter;
 
 public class ContainerLiquidRouter extends ContainerFactoryInventory
@@ -18,7 +18,7 @@ public class ContainerLiquidRouter extends ContainerFactoryInventory
 	{
 		for(int i = 0; i < 6; i++)
 		{
-			addSlotToContainer(new Slot(_te, i, 8 + i * 18, 20));
+			addSlotToContainer(new SlotFake(_te, i, 8 + i * 18, 20));
 		}
 	}
 	

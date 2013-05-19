@@ -11,8 +11,13 @@ import net.minecraftforge.liquids.LiquidStack;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+
+import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
+import powercrystals.minefactoryreloaded.gui.slot.SlotFake;
+import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 public class GuiFactoryInventory extends GuiContainer
@@ -25,6 +30,29 @@ public class GuiFactoryInventory extends GuiContainer
 	{
 		super(container);
 		_tileEntity = tileentity;
+	}
+	
+	@Override
+	protected void mouseClicked(int x, int y, int button)
+	{
+		super.mouseClicked(x, y, button);
+		
+		x -= guiLeft;
+		y -= guiTop;
+		
+		for(Object o : inventorySlots.inventorySlots)
+		{
+			if(!(o instanceof SlotFake))
+			{
+				continue;
+			}
+			SlotFake s = (SlotFake)o;
+			if(x >= s.xDisplayPosition && x <= s.xDisplayPosition + 16 && y >= s.yDisplayPosition && y <= s.yDisplayPosition + 16)
+			{
+				PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.FakeSlotChange,
+						new Object[] { _tileEntity.xCoord, _tileEntity.yCoord, _tileEntity.zCoord, s.slotNumber }));
+			}
+		}
 	}
 	
 	@Override
