@@ -342,7 +342,7 @@ public class RedstoneNetwork
 		IConnectableRedNet b = ((IConnectableRedNet)Block.blocksList[_world.getBlockId(node.x, node.y, node.z)]);
 		if(b != null)
 		{
-			return Math.max(0, b.getOutputValue(_world, node.x, node.y, node.z, node.orientation.getOpposite(), subnet));
+			return b.getOutputValue(_world, node.x, node.y, node.z, node.orientation.getOpposite(), subnet);
 		}
 		else
 		{
