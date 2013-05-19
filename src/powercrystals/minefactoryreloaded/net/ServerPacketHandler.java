@@ -18,6 +18,7 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityChronotyper;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityEnchantmentRouter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityHarvester;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
@@ -159,7 +160,7 @@ public class ServerPacketHandler implements IPacketHandler
 				((TileEntityRedNetLogic)te).reinitialize((EntityPlayer)player);
 			}
 		}
-		else if(packetType == Packets.EnchantmentRouterButton) // client -> server: toggle 'levels' mode
+		else if(packetType == Packets.RouterButton) // client -> server: toggle 'levels'/'reject unmapped' mode
 		{
 			Class[] decodeAs = { Integer.class, Integer.class, Integer.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
@@ -168,6 +169,10 @@ public class ServerPacketHandler implements IPacketHandler
 			if(te instanceof TileEntityEnchantmentRouter)
 			{
 				((TileEntityEnchantmentRouter)te).setMatchLevels(!((TileEntityEnchantmentRouter)te).getMatchLevels());
+			}
+			else if(te instanceof TileEntityItemRouter)
+			{
+				((TileEntityItemRouter)te).setRejectUnmapped(!((TileEntityItemRouter)te).getRejectUnmapped());
 			}
 		}
 		else if(packetType == Packets.FakeSlotChange) // client -> server: client clicked on a fake slot

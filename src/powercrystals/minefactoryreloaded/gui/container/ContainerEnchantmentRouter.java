@@ -2,12 +2,12 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
+import powercrystals.minefactoryreloaded.gui.slot.SlotFake;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityEnchantmentRouter;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerEnchantmentRouter extends ContainerItemRouter
+public class ContainerEnchantmentRouter extends ContainerFactoryInventory
 {
 	private TileEntityEnchantmentRouter _router;
 	
@@ -15,6 +15,18 @@ public class ContainerEnchantmentRouter extends ContainerItemRouter
 	{
 		super(router, inventoryPlayer);	
 		_router = router;
+	}
+	
+	@Override
+	protected void addSlots()
+	{
+		for(int i = 0; i < 5; i++)
+		{
+			for(int j = 0; j < 9; j++)
+			{
+				addSlotToContainer(new SlotFake(_te, j + i * 9, 8 + j * 18, 40 + i * 18));
+			}
+		}
 	}
 	
 	@Override
@@ -34,18 +46,6 @@ public class ContainerEnchantmentRouter extends ContainerItemRouter
 		super.updateProgressBar(var, value);
 		
 		if(var == 100) _router.setMatchLevels(value == 1 ? true : false);
-	}
-	
-	@Override
-	protected void addSlots()
-	{
-		for(int i = 0; i < 5; i++)
-		{
-			for(int j = 0; j < 9; j++)
-			{
-				addSlotToContainer(new Slot(_te, j + i * 9, 8 + j * 18, 40 + i * 18));
-			}
-		}
 	}
 	
 	@Override

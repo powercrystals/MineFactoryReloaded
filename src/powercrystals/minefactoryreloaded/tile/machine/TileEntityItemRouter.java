@@ -6,10 +6,12 @@ import java.util.Random;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiItemRouter;
+import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
@@ -22,9 +24,21 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 			{ ForgeDirection.DOWN, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };
 	private Random _rand;
 	
+	private boolean _rejectUnmapped;
+	
 	public TileEntityItemRouter()
 	{
 		_rand = new Random();
+	}
+	
+	public boolean getRejectUnmapped()
+	{
+		return _rejectUnmapped;
+	}
+	
+	public void setRejectUnmapped(boolean rejectUnmapped)
+	{
+		_rejectUnmapped = rejectUnmapped;
 	}
 	
 	@Override
@@ -53,7 +67,7 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 			{
 				filteredOutputs.add(d);
 			}
-			if(isSideEmpty(d))
+			if(!_rejectUnmapped && isSideEmpty(d))
 			{
 				emptyOutputs.add(d);
 			}
@@ -158,11 +172,11 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	@SideOnly(Side.CLIENT)
 	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
-		return new GuiItemRouter(getContainer(inventoryPlayer), this);
+		return new GuiItemRouter((ContainerItemRouter)getContainer(inventoryPlayer), this);
 	}
 	
 	@Override
-	public ContainerItemRouter getContainer(InventoryPlayer inventoryPlayer)
+	public ContainerFactoryInventory getContainer(InventoryPlayer inventoryPlayer)
 	{
 		return new ContainerItemRouter(this, inventoryPlayer);
 	}
@@ -183,5 +197,19 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 3;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		_rejectUnmapped = nbttagcompound.getBoolean("rejectUnmapped");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setBoolean("rejectUnmapped", _rejectUnmapped);
 	}
 }

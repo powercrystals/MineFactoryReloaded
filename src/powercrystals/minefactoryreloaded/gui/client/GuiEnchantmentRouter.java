@@ -47,7 +47,7 @@ public class GuiEnchantmentRouter extends GuiFactoryInventory
 	{
 		if(button.id == 1)
 		{
-			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.EnchantmentRouterButton,
+			PacketDispatcher.sendPacketToServer(PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.RouterButton,
 					new Object[] { _router.xCoord, _router.yCoord, _router.zCoord }));
 		}
 	}
