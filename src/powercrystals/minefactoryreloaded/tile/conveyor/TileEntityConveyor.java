@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.net.PacketWrapper;
@@ -192,7 +191,6 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	
 	private void rotateTo(World world, int xCoord, int yCoord, int zCoord, int newmd)
 	{
-		System.out.println("EMYDEBUG: Rotating conveyor to: " + newmd);
 		world.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, newmd, 2);
 	}
 	
@@ -492,7 +490,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		return slopeComponent * 4 + directionComponent;
 	}
 
-	public boolean isConveyorActive(IBlockAccess iblockaccess, int x, int y, int z, int side)
+	public boolean isConveyorActive()
 	{
 		if(Util.isRedstonePowered(this))
 		{

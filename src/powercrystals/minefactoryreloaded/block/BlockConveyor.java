@@ -68,7 +68,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		{
 			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
 			if(dyeColor == -1) dyeColor = 16;
-			if(((TileEntityConveyor)te).isActive())
+			if(((TileEntityConveyor)te).isConveyorActive())
 			{
 				return _iconsActive[dyeColor];
 			}
@@ -129,8 +129,9 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		{
 			return;
 		}
+		
 		TileEntity conveyor = world.getBlockTileEntity(x, y, z);
-		if(conveyor == null || !(conveyor instanceof TileEntityConveyor) || !((TileEntityConveyor)conveyor).isActive())
+		if(!(conveyor != null && conveyor instanceof TileEntityConveyor && ((TileEntityConveyor)conveyor).isConveyorActive()))
 		{
 			return;
 		}
