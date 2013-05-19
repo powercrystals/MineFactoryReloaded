@@ -13,6 +13,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -152,7 +153,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
 	{
 		PlayerInteractEvent e = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
-		if(MinecraftForge.EVENT_BUS.post(e))
+		if(MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Result.DENY)
 		{
 			return false;
 		}
