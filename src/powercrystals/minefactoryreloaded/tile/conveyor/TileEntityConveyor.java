@@ -42,7 +42,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	@Override
 	public Packet getDescriptionPacket()
 	{
-		return PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.ConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye });
+		return PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.ConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye, _redNetActive});
 	}
 	
 	@Override
@@ -504,5 +504,10 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		{
 			return _redNetActive;
 		}
+	}
+	
+	public void setConveyorRedNetActive(boolean redNetActive)
+	{
+		_redNetActive = redNetActive;
 	}
 }

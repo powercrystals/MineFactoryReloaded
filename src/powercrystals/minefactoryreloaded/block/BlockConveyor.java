@@ -384,7 +384,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te instanceof TileEntityConveyor)
+		if(te != null && te instanceof TileEntityConveyor)
 		{
 			((TileEntityConveyor)te).onRedNetChanged(inputValue);
 		}

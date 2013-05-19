@@ -44,9 +44,9 @@ public class ClientPacketHandler implements IPacketHandler
 				tef.setIsActive((Boolean)packetReadout[4]);
 			}
 		}
-		else if (packetType == Packets.ConveyorDescription) // server -> client; server propagating conveyor color
+		else if (packetType == Packets.ConveyorDescription) // server -> client; server propagating conveyor color, activity state
 		{
-			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class };
+			Class[] decodeAs = { Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class };
 			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
 			
 			TileEntity te = ((EntityPlayer)player).worldObj.getBlockTileEntity((Integer)packetReadout[0], (Integer)packetReadout[1], (Integer)packetReadout[2]);
@@ -54,6 +54,7 @@ public class ClientPacketHandler implements IPacketHandler
 			{
 				TileEntityConveyor tec = (TileEntityConveyor) te;
 				tec.setDyeColor((Integer)packetReadout[3]);
+				tec.setConveyorRedNetActive((Boolean)packetReadout[4]);
 			}
 		}
 		else if (packetType == Packets.AutoJukeboxPlay) // server -> client; server playing a record
