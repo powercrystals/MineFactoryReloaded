@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.inventory.IInventoryManager;
@@ -38,14 +39,23 @@ public class TileEntityEjector extends TileEntityFactory
 				IInventoryManager inventory = InventoryManager.create(chest.getValue(), chest.getKey());
 				Map<Integer, ItemStack> contents = inventory.getContents();
 				
-				for(ItemStack stack : contents.values())
+				for(Entry<Integer, ItemStack> stack : contents.entrySet())
 				{
-					if(stack == null)
+					if(stack == null || stack.getValue() == null)
 					{
 						continue;
 					}
 					
-					ItemStack stackToDrop = stack.copy();
+					if(chest.getValue() instanceof ISidedInventory)
+					{
+						ISidedInventory sided = (ISidedInventory)chest.getValue();
+						if(!sided.canExtractItem(stack.getKey(), stack.getValue(), chest.getKey().ordinal()))
+						{
+							continue;
+						}
+					}
+					
+					ItemStack stackToDrop = stack.getValue().copy();
 					stackToDrop.stackSize = 1;
 					ItemStack remaining = UtilInventory.dropStack(this, stackToDrop, this.getDirectionFacing(), this.getDirectionFacing());
 					
