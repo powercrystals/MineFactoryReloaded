@@ -220,6 +220,8 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		super.writeToNBT(nbtTagCompound);
 		
 		nbtTagCompound.setInteger("dyeColor", _dye);
+		nbtTagCompound.setBoolean("isReversed", _isReversed);
+		nbtTagCompound.setBoolean("redNetActive", _redNetActive);
 	}
 	
 	@Override
@@ -230,6 +232,16 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		if(nbtTagCompound.hasKey("dyeColor"))
 		{
 			_dye = nbtTagCompound.getInteger("dyeColor");
+		}
+
+		if(nbtTagCompound.hasKey("isReversed"))
+		{
+			_isReversed = nbtTagCompound.getBoolean("isReversed");
+		}
+		
+		if(nbtTagCompound.hasKey("redNetActive"))
+		{
+			_redNetActive = nbtTagCompound.getBoolean("redNetActive");
 		}
 	}
 	
@@ -450,7 +462,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	{
 		boolean wasReversed = _isReversed;
 		
-		_redNetActive = value != 0;
+		_redNetActive = value <= 0;
 		_isReversed = value < 0;
 		
 		if(wasReversed ^ _isReversed)

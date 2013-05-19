@@ -22,14 +22,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.IRotateableTile;
-import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.conveyor.TileEntityConveyor;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import cpw.mods.fml.relauncher.Side;
@@ -70,13 +68,13 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		{
 			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
 			if(dyeColor == -1) dyeColor = 16;
-			if(Util.isRedstonePowered(te))
+			if(((TileEntityConveyor)te).isActive())
 			{
-				return _iconsStopped[dyeColor];
+				return _iconsActive[dyeColor];
 			}
 			else
 			{
-				return _iconsActive[dyeColor];
+				return _iconsStopped[dyeColor];
 			}
 		}
 		else
@@ -131,7 +129,8 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		{
 			return;
 		}
-		if(Util.isRedstonePowered(world.getBlockTileEntity(x, y, z)))
+		TileEntity conveyor = world.getBlockTileEntity(x, y, z);
+		if(conveyor == null || !(conveyor instanceof TileEntityConveyor) || !((TileEntityConveyor)conveyor).isActive())
 		{
 			return;
 		}
@@ -324,12 +323,6 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	}
 	
 	@Override
-	public boolean canProvidePower()
-	{
-		return true;
-	}
-	
-	@Override
 	public TileEntity createNewTileEntity(World world)
 	{
 		return new TileEntityConveyor();
@@ -354,6 +347,12 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		
 		dropBlockAsItem_do(world, x, y, z, new ItemStack(blockID, 1, dyeColor));
 		super.breakBlock(world, x, y, z, blockId, meta);
+	}
+	
+	@Override
+	public boolean canProvidePower()
+	{
+		return false;
 	}
 	
 	// IConnectableRedNet
