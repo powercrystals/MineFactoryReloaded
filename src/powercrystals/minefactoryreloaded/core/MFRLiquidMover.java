@@ -31,7 +31,7 @@ public abstract class MFRLiquidMover
 				itcb.fill(ForgeDirection.UNKNOWN, liquid, true);
 				if(!entityplayer.capabilities.isCreativeMode)
 				{
-					entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, UtilInventory.consumeItem(ci, entityplayer));					
+					entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, UtilInventory.consumeItem(ci));					
 				}
 				return true;
 			}
@@ -57,22 +57,20 @@ public abstract class MFRLiquidMover
 				if(LiquidContainerRegistry.isFilledContainer(filledBucket))
 				{
 					LiquidStack bucketLiquid = LiquidContainerRegistry.getLiquidForFilledItem(filledBucket);
-					tank.drain(bucketLiquid.amount, true);
 					if(entityplayer.capabilities.isCreativeMode)
 					{
+						tank.drain(bucketLiquid.amount, true);
 						return true;
 					}
 					else if(ci.stackSize == 1)
 					{
+						tank.drain(bucketLiquid.amount, true);
 						entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, filledBucket);
 						return true;
 					}
-					else
+					else if(entityplayer.inventory.addItemStackToInventory(filledBucket))
 					{
-						if(!entityplayer.inventory.addItemStackToInventory(filledBucket))
-						{
-							entityplayer.dropPlayerItem(filledBucket);
-						}
+						tank.drain(bucketLiquid.amount, true);
 						ci.stackSize -= 1;
 						return true;
 					}
