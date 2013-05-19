@@ -53,4 +53,9 @@ public class GrindableWisp implements IFactoryGrindable
 		return drops;
 	}
 	
+	@Override
+	public boolean processEntity(EntityLiving e)
+	{
+		return true;
+	}
 }

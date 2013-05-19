@@ -8,6 +8,7 @@ import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -202,6 +203,7 @@ public class Vanilla
 		MFRRegistry.registerGrinderBlacklist(EntityPlayer.class);
 		MFRRegistry.registerGrinderBlacklist(EntityDragon.class);
 		MFRRegistry.registerGrinderBlacklist(EntityWither.class);
+		MFRRegistry.registerGrinderBlacklist(EntityVillager.class);
 		
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityChicken.class, new MobDrop[]
 				{

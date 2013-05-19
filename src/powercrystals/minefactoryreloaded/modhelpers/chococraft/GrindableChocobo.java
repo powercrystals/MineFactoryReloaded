@@ -38,4 +38,10 @@ public class GrindableChocobo implements IFactoryGrindable
 		
 		return items;
 	}
+	
+	@Override
+	public boolean processEntity(EntityLiving entity)
+	{
+		return true;
+	}
 }

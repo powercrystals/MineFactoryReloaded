@@ -281,6 +281,28 @@ public class FarmingRegistry
 	}
 	
 	/**
+	 * Bans an entity class from being automatically ground by the Grinder
+	 * 
+	 * @param blacklistedEntity Class to blacklist
+	 */
+	public static void registerGrinderBlacklist(Class<?> blacklistedEntity)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerGrinderBlacklist", Class.class);
+				reg.invoke(registry, blacklistedEntity);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Registers an entity as a possible output from villager random safari nets. Note that the "id" field must be initialized
 	 * (i.e. with Entity.addEntityID()) for it to work correctly.
 	 * 
