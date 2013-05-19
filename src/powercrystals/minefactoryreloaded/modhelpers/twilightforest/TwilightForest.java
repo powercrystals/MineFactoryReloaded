@@ -105,6 +105,10 @@ public class TwilightForest
 			
 			MFRRegistry.registerMobEggHandler(new TwilightForestEggHandler());
 			
+			MFRRegistry.registerBreederFood(tfBighorn, new ItemStack(Item.wheat));
+			MFRRegistry.registerBreederFood(tfBoar, new ItemStack(Item.carrot));
+			MFRRegistry.registerBreederFood(tfDeer, new ItemStack(Item.wheat));
+			
 			MFRRegistry.registerRanchable(new RanchableTFBighorn(tfBighorn));
 			
 			Class tfItems = Class.forName("twilightforest.item.TFItems");
@@ -199,9 +203,7 @@ public class TwilightForest
 						}));
 				MFRRegistry.registerGrindable(new GrindableStandard(tfTowerTermite, borerEssence));
 				MFRRegistry.registerGrindable(new GrindableStandard(tfWraith, new ItemStack(Item.lightStoneDust)));
-				
-				MFRRegistry.registerBreederFood(tfBoar, new ItemStack(Item.carrot));
-			}
+			}	
 			
 			Class tfBlocks = Class.forName("twilightforest.block.TFBlocks");
 			if(tfBlocks != null)
