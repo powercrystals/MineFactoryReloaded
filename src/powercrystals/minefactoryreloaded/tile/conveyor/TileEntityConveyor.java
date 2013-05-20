@@ -22,7 +22,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 {
 	private int _dye = -1;
 	private boolean _isReversed = false;
-	private boolean _redNetActive = true;
+	private boolean _conveyorActive = true;
 	
 	public int getDyeColor()
 	{
@@ -42,7 +42,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	@Override
 	public Packet getDescriptionPacket()
 	{
-		return PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.ConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye, _redNetActive});
+		return PacketWrapper.createPacket(MineFactoryReloadedCore.modNetworkChannel, Packets.ConveyorDescription, new Object[] { xCoord, yCoord, zCoord, _dye, _conveyorActive});
 	}
 	
 	@Override
@@ -219,7 +219,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		
 		nbtTagCompound.setInteger("dyeColor", _dye);
 		nbtTagCompound.setBoolean("isReversed", _isReversed);
-		nbtTagCompound.setBoolean("redNetActive", _redNetActive);
+		nbtTagCompound.setBoolean("redNetActive", _conveyorActive);
 	}
 	
 	@Override
@@ -237,9 +237,9 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 			_isReversed = nbtTagCompound.getBoolean("isReversed");
 		}
 		
-		if(nbtTagCompound.hasKey("redNetActive"))
+		if(nbtTagCompound.hasKey("conveyorActive"))
 		{
-			_redNetActive = nbtTagCompound.getBoolean("redNetActive");
+			_conveyorActive = nbtTagCompound.getBoolean("conveyorActive");
 		}
 	}
 	
@@ -458,19 +458,38 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	// RedNet
 	public void onRedNetChanged(int value)
 	{
+		// Fine rednet control only occurs if the block isn't getting normal redstone power.
+		if(!Util.isRedstonePowered(this))
+		{
+			setConveyorActive(value <= 0);
+			setReversed(value < 0);
+		}
+	}
+	
+	public boolean getConveyorActive()
+	{
+		return _conveyorActive;
+	}
+	
+	public void setConveyorActive(boolean conveyorActive)
+	{
+		boolean wasActive = _conveyorActive;
+		_conveyorActive = conveyorActive;
+		
+		if(wasActive ^ _conveyorActive)
+		{
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+	}
+	
+	private void setReversed(boolean isReversed)
+	{
 		boolean wasReversed = _isReversed;
-		boolean wasActive = _redNetActive;
-		_redNetActive = value <= 0;
-		_isReversed = value < 0;
+		_isReversed = isReversed;
 		
 		if(wasReversed ^ _isReversed)
 		{
 			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getReversedMeta(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)), 3);
-		}
-		
-		if(wasActive ^ _redNetActive)
-		{
-			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 	}
 	
@@ -493,22 +512,5 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		}
 		
 		return slopeComponent * 4 + directionComponent;
-	}
-
-	public boolean isConveyorActive()
-	{
-		if(Util.isRedstonePowered(this))
-		{
-			return false;
-		}
-		else
-		{
-			return _redNetActive;
-		}
-	}
-	
-	public void setConveyorRedNetActive(boolean redNetActive)
-	{
-		_redNetActive = redNetActive;
 	}
 }

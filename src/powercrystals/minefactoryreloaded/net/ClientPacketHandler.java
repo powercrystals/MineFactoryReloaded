@@ -54,7 +54,7 @@ public class ClientPacketHandler implements IPacketHandler
 			{
 				TileEntityConveyor tec = (TileEntityConveyor) te;
 				tec.setDyeColor((Integer)packetReadout[3]);
-				tec.setConveyorRedNetActive((Boolean)packetReadout[4]);
+				tec.setConveyorActive((Boolean)packetReadout[4]);
 			}
 		}
 		else if (packetType == Packets.AutoJukeboxPlay) // server -> client; server playing a record

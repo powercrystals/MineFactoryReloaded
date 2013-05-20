@@ -22,6 +22,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.IRotateableTile;
+import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
@@ -68,7 +69,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		{
 			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
 			if(dyeColor == -1) dyeColor = 16;
-			if(((TileEntityConveyor)te).isConveyorActive())
+			if(((TileEntityConveyor)te).getConveyorActive())
 			{
 				return _iconsActive[dyeColor];
 			}
@@ -131,7 +132,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		}
 		
 		TileEntity conveyor = world.getBlockTileEntity(x, y, z);
-		if(!(conveyor != null && conveyor instanceof TileEntityConveyor && ((TileEntityConveyor)conveyor).isConveyorActive()))
+		if(!(conveyor != null && conveyor instanceof TileEntityConveyor && ((TileEntityConveyor)conveyor).getConveyorActive()))
 		{
 			return;
 		}
@@ -310,6 +311,14 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
 	{
+		if(Util.isRedstonePowered(world, x, y, z))
+		{
+			TileEntity te = world.getBlockTileEntity(x, y, z);
+			if(te != null && te instanceof TileEntityConveyor)
+			{
+				((TileEntityConveyor)te).setConveyorActive(false);
+			}
+		}
 		if(!canBlockStay(world, x, y, z))
 		{
 			world.setBlockToAir(x, y, z);
