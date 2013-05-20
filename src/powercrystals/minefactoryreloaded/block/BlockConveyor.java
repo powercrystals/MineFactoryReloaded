@@ -311,14 +311,6 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
 	{
-		if(Util.isRedstonePowered(world, x, y, z))
-		{
-			TileEntity te = world.getBlockTileEntity(x, y, z);
-			if(te != null && te instanceof TileEntityConveyor)
-			{
-				((TileEntityConveyor)te).setConveyorActive(false);
-			}
-		}
 		if(!canBlockStay(world, x, y, z))
 		{
 			world.setBlockToAir(x, y, z);

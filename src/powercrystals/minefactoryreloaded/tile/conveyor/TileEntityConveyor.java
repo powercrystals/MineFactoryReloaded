@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
-import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.net.Packets;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -458,12 +457,8 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	// RedNet
 	public void onRedNetChanged(int value)
 	{
-		// Fine rednet control only occurs if the block isn't getting normal redstone power.
-		if(!Util.isRedstonePowered(this))
-		{
-			setConveyorActive(value <= 0);
-			setReversed(value < 0);
-		}
+		setConveyorActive(value <= 0);
+		setReversed(value < 0);
 	}
 	
 	public boolean getConveyorActive()
