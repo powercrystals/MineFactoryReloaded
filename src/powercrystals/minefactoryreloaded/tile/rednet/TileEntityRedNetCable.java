@@ -164,7 +164,7 @@ public class TileEntityRedNetCable extends TileEntity implements INeighboorUpdat
 	}
 	
 	@Override
-	public void onNeighboorChanged()
+	public void onNeighborChanged()
 	{
 		updateNetwork();
 	}
