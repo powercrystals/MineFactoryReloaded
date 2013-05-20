@@ -1185,6 +1185,15 @@ public class Vanilla
 			'B', Item.slimeBall,
 				} );
 		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetJailerItem, 1), new Object[]
+				{
+			" I ",
+			"ISI",
+			" I ",
+			'S', MineFactoryReloadedCore.safariNetSingleItem,
+			'I', Block.fenceIron
+				} );
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetLauncherItem, 1), new Object[]
 				{
 			"PGP",
