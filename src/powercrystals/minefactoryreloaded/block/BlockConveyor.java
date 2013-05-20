@@ -11,8 +11,10 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
@@ -22,7 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.IRotateableTile;
-import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
@@ -30,6 +31,7 @@ import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.tile.conveyor.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -137,22 +139,9 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 			return;
 		}
 		
-		TileEntity te = world.getBlockTileEntity(x, y - 1, z);
-		if(!world.isRemote && entity instanceof EntityItem && te != null && te instanceof TileEntityItemRouter)
+		if(!world.isRemote && entity instanceof EntityItem)
 		{
-			if(((TileEntityItemRouter)te).hasRouteForItem(((EntityItem)entity).getEntityItem()))
-			{
-				ItemStack s = ((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()); 
-				if(s == null)
-				{
-					entity.setDead();
-					return;
-				}
-				else
-				{
-					((EntityItem)entity).setEntityItemStack(s);
-				}
-			}
+			specialRoute(world, x, y, z, (EntityItem)entity);
 		}
 		
 		double xVelocity = 0;
@@ -393,6 +382,46 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		if(te != null && te instanceof TileEntityConveyor)
 		{
 			((TileEntityConveyor)te).onRedNetChanged(inputValue);
+		}
+	}
+	
+	private void specialRoute(World world, int x, int y, int z, EntityItem entityitem)
+	{
+		TileEntity teBelow = world.getBlockTileEntity(x, y - 1, z);
+		if(teBelow == null)
+		{
+			return;
+		}
+		else if(teBelow instanceof TileEntityItemRouter)
+		{
+			ItemStack s = ((TileEntityItemRouter)teBelow).routeItem(entityitem.getEntityItem()); 
+			if(s == null)
+			{
+				entityitem.setDead();
+				return;
+			}
+			else
+			{
+				entityitem.setEntityItemStack(s);
+			}
+		}
+		else if(teBelow instanceof TileEntityCollector)
+		{
+			((TileEntityCollector)teBelow).addToChests(entityitem);
+		}
+		else if(teBelow instanceof TileEntityHopper)
+		{
+			if(!((TileEntityHopper)teBelow).isCoolingDown())
+			{
+				ItemStack toInsert = entityitem.getEntityItem().copy();
+				toInsert.stackSize = 1;
+				toInsert = TileEntityHopper.insertStack((IInventory)teBelow, toInsert, ForgeDirection.UP.ordinal());
+				if(toInsert == null)
+				{
+					entityitem.getEntityItem().stackSize--;
+					((TileEntityHopper)teBelow).setTransferCooldown(8);
+				}
+			}
 		}
 	}
 }
