@@ -66,17 +66,20 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 	
 	private int weightedRouteLiquid(LiquidStack resource, int[] routes, int amountRemaining, boolean doFill)
 	{
-		int startingAmount = amountRemaining;
-		for(int i = 0; i < routes.length; i++)
+		if(amountRemaining >= totalWeight(routes))
 		{
-			TileEntity te = BlockPosition.getAdjacentTileEntity(this, _outputDirections[i]);
-			int amountForThisRoute = startingAmount * routes[i] / totalWeight(routes);
-			if(te != null && te instanceof ITankContainer && amountForThisRoute > 0)
+			int startingAmount = amountRemaining;
+			for(int i = 0; i < routes.length; i++)
 			{
-				amountRemaining -= ((ITankContainer)te).fill(_outputDirections[i].getOpposite(),	new LiquidStack(resource.itemID, amountForThisRoute, resource.itemMeta), doFill);
-				if(amountRemaining <= 0)
+				TileEntity te = BlockPosition.getAdjacentTileEntity(this, _outputDirections[i]);
+				int amountForThisRoute = startingAmount * routes[i] / totalWeight(routes);
+				if(te != null && te instanceof ITankContainer && amountForThisRoute > 0)
 				{
-					break;
+					amountRemaining -= ((ITankContainer)te).fill(_outputDirections[i].getOpposite(),	new LiquidStack(resource.itemID, amountForThisRoute, resource.itemMeta), doFill);
+					if(amountRemaining <= 0)
+					{
+						break;
+					}
 				}
 			}
 		}
