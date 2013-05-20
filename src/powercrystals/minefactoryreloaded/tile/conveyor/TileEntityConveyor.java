@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
+import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.net.Packets;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -21,6 +22,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 {
 	private int _dye = -1;
 	private boolean _isReversed = false;
+	private boolean _redNetAllowsActive = true;
 	private boolean _conveyorActive = true;
 	
 	public int getDyeColor()
@@ -457,8 +459,17 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 	// RedNet
 	public void onRedNetChanged(int value)
 	{
-		setConveyorActive(value <= 0);
+		if(_redNetAllowsActive ^ value <= 0)
+		{
+			_redNetAllowsActive = value <= 0;
+			updateConveyorActive();
+		}
 		setReversed(value < 0);
+	}
+	
+	public void updateConveyorActive()
+	{
+		setConveyorActive(_redNetAllowsActive && !Util.isRedstonePowered(this));
 	}
 	
 	public boolean getConveyorActive()
