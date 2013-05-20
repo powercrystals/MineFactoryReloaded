@@ -81,6 +81,6 @@ public class MFRUtil
 				nonConveyors.add(direction);
 			}
 		}
-		return (ForgeDirection[])nonConveyors.toArray();
+		return nonConveyors.toArray(new ForgeDirection[nonConveyors.size()]);
 	}
 }
