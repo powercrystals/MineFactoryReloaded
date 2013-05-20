@@ -49,15 +49,40 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 		if(resource == null || resource.itemID <= 0 || resource.amount <= 0) return 0;
 		
 		int amountRemaining = resource.amount;
+		int[] routes = getRoutesForLiquid(resource);
+		int[] defaultRoutes = getDefaultRoutes();
 		
-		for(int i = 0; i < 6; i++)
+		if(hasRoutes(routes))
 		{
-			if(LiquidContainerRegistry.containsLiquid(_inventory[i], resource))
+			amountRemaining = weightedRouteLiquid(resource, routes, amountRemaining, doFill);
+		}
+		else if(hasRoutes(defaultRoutes))
+		{
+			amountRemaining = weightedRouteLiquid(resource, defaultRoutes, amountRemaining, doFill);
+		}
+		
+		return resource.amount - amountRemaining;
+	}
+	
+	private int weightedRouteLiquid(LiquidStack resource, int[] routes, int amountRemaining, boolean doFill)
+	{
+		if(amountRemaining < totalWeight(routes))
+		{
+			int outdir = weightedRandomSide(routes);
+			TileEntity te = BlockPosition.getAdjacentTileEntity(this, _outputDirections[outdir]);
+			if(te != null && te instanceof ITankContainer)
+			{
+				amountRemaining -= ((ITankContainer)te).fill(_outputDirections[outdir].getOpposite(),	new LiquidStack(resource.itemID, amountRemaining, resource.itemMeta), doFill);
+			}
+		}
+		else
+		{
+			for(int i = 0; i < routes.length; i++)
 			{
 				TileEntity te = BlockPosition.getAdjacentTileEntity(this, _outputDirections[i]);
 				if(te != null && te instanceof ITankContainer)
 				{
-					amountRemaining -= ((ITankContainer)te).fill(_outputDirections[i].getOpposite(),	new LiquidStack(resource.itemID, amountRemaining, resource.itemMeta), doFill);
+					amountRemaining -= ((ITankContainer)te).fill(_outputDirections[i].getOpposite(),	new LiquidStack(resource.itemID, amountRemaining * routes[i] / totalWeight(routes), resource.itemMeta), doFill);
 					if(amountRemaining <= 0)
 					{
 						break;
@@ -66,7 +91,79 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 			}
 		}
 		
-		return resource.amount - amountRemaining;
+		return amountRemaining;
+	}
+	
+	private int weightedRandomSide(int[] routeWeights)
+	{
+		int random = worldObj.rand.nextInt(totalWeight(routeWeights));
+		for(int i = 0; i < routeWeights.length; i++)
+		{
+			random -= routeWeights[i];
+			if(random < 0)
+			{
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
+	private int totalWeight(int[] routeWeights)
+	{
+		int total = 0;
+		
+		for(int weight : routeWeights)
+		{
+			total += weight;
+		}
+		return total;
+	}
+	
+	private boolean hasRoutes(int[] routeWeights)
+	{
+		for(int weight : routeWeights)
+		{
+			if(weight > 0) return true;
+		}
+		return false;
+	}
+	
+	
+	private int[] getRoutesForLiquid(LiquidStack resource)
+	{
+		int[] routeWeights = new int[6];
+		
+		for(int i = 0; i < 6; i++)
+		{
+			if(LiquidContainerRegistry.containsLiquid(_inventory[i], resource))
+			{
+				routeWeights[i] = _inventory[i].stackSize;
+			}
+			else
+			{
+				routeWeights[i] = 0;
+			}
+		}
+		return routeWeights;
+	}
+	
+	private int[] getDefaultRoutes()
+	{
+		int[] routeWeights = new int[6];
+		
+		for(int i = 0; i < 6; i++)
+		{
+			if(LiquidContainerRegistry.isEmptyContainer(_inventory[i]))
+			{
+				routeWeights[i] = _inventory[i].stackSize;
+			}
+			else
+			{
+				routeWeights[i] = 0;
+			}
+		}
+		return routeWeights;
 	}
 	
 	@Override
