@@ -80,7 +80,7 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 			for(int i = 0; i < routes.length; i++)
 			{
 				TileEntity te = BlockPosition.getAdjacentTileEntity(this, _outputDirections[i]);
-				if(te != null && te instanceof ITankContainer)
+				if(te != null && te instanceof ITankContainer && routes[i] > 0)
 				{
 					amountRemaining -= ((ITankContainer)te).fill(_outputDirections[i].getOpposite(),	new LiquidStack(resource.itemID, amountRemaining * routes[i] / totalWeight(routes), resource.itemMeta), doFill);
 					if(amountRemaining <= 0)
