@@ -66,29 +66,28 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 	
 	private int weightedRouteLiquid(LiquidStack resource, int[] routes, int amountRemaining, boolean doFill)
 	{
-		if(amountRemaining < totalWeight(routes))
+		int startingAmount = amountRemaining;
+		for(int i = 0; i < routes.length; i++)
+		{
+			TileEntity te = BlockPosition.getAdjacentTileEntity(this, _outputDirections[i]);
+			int amountForThisRoute = startingAmount * routes[i] / totalWeight(routes);
+			if(te != null && te instanceof ITankContainer && amountForThisRoute > 0)
+			{
+				amountRemaining -= ((ITankContainer)te).fill(_outputDirections[i].getOpposite(),	new LiquidStack(resource.itemID, amountForThisRoute, resource.itemMeta), doFill);
+				if(amountRemaining <= 0)
+				{
+					break;
+				}
+			}
+		}
+		
+		if(0 < amountRemaining && amountRemaining < totalWeight(routes))
 		{
 			int outdir = weightedRandomSide(routes);
 			TileEntity te = BlockPosition.getAdjacentTileEntity(this, _outputDirections[outdir]);
 			if(te != null && te instanceof ITankContainer)
 			{
 				amountRemaining -= ((ITankContainer)te).fill(_outputDirections[outdir].getOpposite(),	new LiquidStack(resource.itemID, amountRemaining, resource.itemMeta), doFill);
-			}
-		}
-		else
-		{
-			int startingAmount = amountRemaining;
-			for(int i = 0; i < routes.length; i++)
-			{
-				TileEntity te = BlockPosition.getAdjacentTileEntity(this, _outputDirections[i]);
-				if(te != null && te instanceof ITankContainer && routes[i] > 0)
-				{
-					amountRemaining -= ((ITankContainer)te).fill(_outputDirections[i].getOpposite(),	new LiquidStack(resource.itemID, startingAmount * routes[i] / totalWeight(routes), resource.itemMeta), doFill);
-					if(amountRemaining <= 0)
-					{
-						break;
-					}
-				}
 			}
 		}
 		
