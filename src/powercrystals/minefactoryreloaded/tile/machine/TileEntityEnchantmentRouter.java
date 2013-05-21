@@ -5,7 +5,6 @@ import java.util.Map;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.ForgeDirection;
 import powercrystals.minefactoryreloaded.gui.client.GuiEnchantmentRouter;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerEnchantmentRouter;
@@ -23,45 +22,49 @@ public class TileEntityEnchantmentRouter extends TileEntityItemRouter
 	
 	@Override
 	@SuppressWarnings("rawtypes")
-	protected boolean isSideValidForItem(ItemStack stack, ForgeDirection side)
+	protected int[] getRoutesForItem(ItemStack stack)
 	{
-		if(side == ForgeDirection.UNKNOWN || side == ForgeDirection.UP)
-		{
-			return false;
-		}
+		int[] routeWeights = new int[_outputDirections.length];
 		
 		Map stackEnchants = EnchantmentHelper.getEnchantments(stack);
 		// return false if the item is unenchanted 
 		if(stackEnchants == null || stackEnchants.isEmpty())
 		{
-			return false;
+			for(int i = 0; i < routeWeights.length; i++)
+			{
+				routeWeights[i] = 0;
+			}
+			return routeWeights;
 		}
 		
-		int sideStart = _invOffsets[side.ordinal()];
-		
-		for(int i = sideStart; i < sideStart + 9; i++)
+		for(int i = 0; i < _outputDirections.length; i++)
 		{
-			if(_inventory[i] != null && _inventory[i].hasTagCompound())
+			int sideStart = _invOffsets[_outputDirections[i].ordinal()];
+			routeWeights[i] = 0;
+			
+			for(int j = sideStart; j < sideStart + 9; j++)
 			{
-				Map inventoryEnchants = EnchantmentHelper.getEnchantments(_inventory[i]);
-				if(inventoryEnchants.isEmpty())
+				if(_inventory[j] != null && _inventory[j].hasTagCompound())
 				{
-					continue;
-				}
-				for(Object stackEnchantId : stackEnchants.keySet())
-				{
-					if(inventoryEnchants.containsKey(stackEnchantId))
+					Map inventoryEnchants = EnchantmentHelper.getEnchantments(_inventory[j]);
+					if(inventoryEnchants.isEmpty())
 					{
-						if(!_matchLevels || inventoryEnchants.get(stackEnchantId).equals(stackEnchants.get(stackEnchantId)))
+						continue;
+					}
+					for(Object stackEnchantId : stackEnchants.keySet())
+					{
+						if(inventoryEnchants.containsKey(stackEnchantId))
 						{
-							return true;
+							if(!_matchLevels || inventoryEnchants.get(stackEnchantId).equals(stackEnchants.get(stackEnchantId)))
+							{
+								routeWeights[i] += _inventory[j].stackSize;
+							}
 						}
 					}
 				}
 			}
 		}
-		
-		return false;
+		return routeWeights;
 	}
 	
 	@Override
