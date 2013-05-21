@@ -159,4 +159,11 @@ public class ItemPortaSpawner extends ItemFactory
 		}
 		return true;
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack)
+	{
+		return stack.getTagCompound() != null;
+	}
 }
