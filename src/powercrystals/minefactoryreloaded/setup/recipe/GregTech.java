@@ -498,7 +498,7 @@ public class GregTech extends Vanilla
 					'G', "sheetPlastic",
 					'S', "craftingPump",
 					'X', "craftingGrinder",
-					'I', "craftingDiamond",
+					'I', "craftingDiamondBlade",
 					'F', "craftingRawMachineTier02",
 					'C', "craftingCircuitTier04"
 						} ));
