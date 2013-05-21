@@ -285,7 +285,7 @@ public class GregTech extends Vanilla
 					" F ",
 					"OOO",
 					'P', "sheetPlastic",
-					'T', "craftingPump",
+					'T', "craftingRedstoneReceiver",
 					'F', "craftingRawMachineTier00",
 					'O', "dustRedstone"
 						} ));
