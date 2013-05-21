@@ -1029,7 +1029,7 @@ public class GregTech extends Vanilla
 				" C ",
 				"SDS",
 				"SSS",
-				'C', "craftingItemValve",
+				'C', "craftingConveyor",
 				'S', "sheetPlastic",
 				'D', Block.railDetector
 					} ));
@@ -1039,7 +1039,7 @@ public class GregTech extends Vanilla
 				"SSS",
 				"SDS",
 				" C ",
-				'C', "craftingItemValve",
+				'C', "craftingConveyor",
 				'S', "sheetPlastic",
 				'D', Block.railDetector
 					} ));
