@@ -293,8 +293,9 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 			{
 				((IRotateableTile)te).rotate();
 			}
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	@Override
