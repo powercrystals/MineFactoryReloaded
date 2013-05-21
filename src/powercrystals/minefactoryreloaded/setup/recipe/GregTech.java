@@ -660,6 +660,8 @@ public class GregTech extends Vanilla
 		}
 		try
 		{
+			ItemStack insulatedGoldCableItem = Items.getItem("insulatedGoldCableItem");
+			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), new Object[]
 					{
 				"III",
@@ -667,7 +669,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "dyeBlue",
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier02",
 					} ));
 			
@@ -678,7 +680,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', Item.ingotIron,
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier02",
 					} ));
 			
@@ -689,7 +691,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotTin",
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier02",
 					} ));
 			
@@ -700,7 +702,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotCopper",
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier04",
 					} ));
 			
@@ -711,7 +713,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotBronze",
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier04",
 					} ));
 			
@@ -722,7 +724,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotSilver",
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier04",
 					} ));
 			
@@ -733,7 +735,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotGold",
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier04",
 					} ));
 			
@@ -744,7 +746,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', Item.netherQuartz,
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier06",
 					} ));
 			
@@ -755,7 +757,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "gemDiamond",
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier06",
 					} ));
 			
@@ -766,7 +768,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotPlatinum",
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier06",
 					} ));
 			
@@ -777,7 +779,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', Item.emerald,
 				'P', "dustPlastic",
-				'R', "copperWire",
+				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier06",
 					} ));
 		}
@@ -952,7 +954,7 @@ public class GregTech extends Vanilla
 				"RRR",
 				"RPR",
 				"RRR",
-				'R', "plasticDust",
+				'R', "dustPlastic",
 				'P', Item.paper,
 					} ));
 			
