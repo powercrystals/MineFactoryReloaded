@@ -578,6 +578,68 @@ public class GregTech extends Vanilla
 					'I', "plateAlloyIridium"
 						} ));
 			}
+			
+			
+			if(Machine.BlockSmasher.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 3), new Object[]
+						{
+					"GPG",
+					"HFH",
+					"BCB",
+					'G', "sheetPlastic",
+					'P', Block.pistonBase,
+					'H', MineFactoryReloadedCore.factoryHammerItem,
+					'B', Item.book,
+					'F', "craftingRawMachineTier03",
+					'C', "craftingCircuitTier06"
+						} ));
+			}
+			
+			if(Machine.RedNote.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 4), new Object[]
+						{
+					"GNG",
+					"CFC",
+					"GNG",
+					'G', "sheetPlastic",
+					'C', MineFactoryReloadedCore.rednetCableBlock,
+					'N', Block.music,
+					'F', "craftingRawMachineTier01"
+						} ));
+			}
+			
+			if(Machine.AutoBrewer.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 5), new Object[]
+						{
+					"GBG",
+					"CFC",
+					"RCR",
+					'G', "sheetPlastic",
+					'C', "craftingPump",
+					'B', Item.brewingStand,
+					'R', Item.redstoneRepeater,
+					'F', "craftingRawMachineTier02",
+					'C', "craftingCircuitTier05"
+						} ));
+			}
+			
+			if(Machine.FruitPicker.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 6), new Object[]
+						{
+					"GXG",
+					"SFS",
+					"SCS",
+					'G', "sheetPlastic",
+					'X', Item.axeGold,
+					'S', Item.shears,
+					'F', "craftingRawMachineTier03",
+					'C', "craftingCircuitTier04"
+						} ));
+			}
 		}
 		catch (Exception x)
 		{
