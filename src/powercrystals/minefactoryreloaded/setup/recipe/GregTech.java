@@ -555,7 +555,7 @@ public class GregTech extends Vanilla
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 1), new Object[]
 						{
 					"GSG",
-					"RLF",
+					"RFL",
 					"DCD",
 					'G', "sheetPlastic",
 					'D', "gemDiamond",
