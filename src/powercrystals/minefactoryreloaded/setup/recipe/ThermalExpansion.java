@@ -580,6 +580,66 @@ public class ThermalExpansion extends Vanilla
 					'C', powerCoilGold
 						} ));
 			}
+			
+			if(Machine.BlockSmasher.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 3), new Object[]
+						{
+					"GPG",
+					"HFH",
+					"BCB",
+					'G', "sheetPlastic",
+					'P', Block.pistonBase,
+					'H', MineFactoryReloadedCore.factoryHammerItem,
+					'B', Item.book,
+					'F', machineFrame,
+					'C', powerCoilGold
+						} ));
+			}
+			
+			if(Machine.RedNote.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 4), new Object[]
+						{
+					"GNG",
+					"CFC",
+					'G', "sheetPlastic",
+					'C', MineFactoryReloadedCore.rednetCableBlock,
+					'N', Block.music,
+					'F', machineFrame
+						} ));
+			}
+			
+			if(Machine.AutoBrewer.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 5), new Object[]
+						{
+					"GBG",
+					"CFC",
+					"RCR",
+					'G', "sheetPlastic",
+					'C', conduitLiquid,
+					'B', Item.brewingStand,
+					'R', Item.redstoneRepeater,
+					'F', machineFrame,
+					'C', powerCoilGold
+						} ));
+			}
+			
+			if(Machine.FruitPicker.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 6), new Object[]
+						{
+					"GXG",
+					"SFS",
+					"SCS",
+					'G', "sheetPlastic",
+					'X', Item.axeGold,
+					'S', Item.shears,
+					'F', machineFrame,
+					'C', powerCoilGold
+						} ));
+			}
 		}
 		catch (Exception x)
 		{
