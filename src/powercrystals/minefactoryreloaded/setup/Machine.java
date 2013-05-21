@@ -33,6 +33,7 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityEjector;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityEnchantmentRouter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityFertilizer;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityFisher;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityFruitPicker;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityGrinder;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityHarvester;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
@@ -97,6 +98,7 @@ public class Machine
 	public static Machine BlockSmasher = new Machine(2, 3, "BlockSmasher", TileEntityBlockSmasher.class, "factoryBlockSmasher", 1);
 	public static Machine RedNote = new Machine(2, 4, "RedNote", TileEntityRedNote.class, "factoryRedNote", 0);
 	public static Machine AutoBrewer = new Machine(2, 5, "AutoBrewer", TileEntityAutoBrewer.class, "factoryAutoBrewer", 4);
+	public static Machine FruitPicker = new Machine(2, 6, "FruitPicker", TileEntityFruitPicker.class, "factoryFruitPicker", 32);
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;

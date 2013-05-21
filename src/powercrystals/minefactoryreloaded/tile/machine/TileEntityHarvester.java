@@ -23,8 +23,8 @@ import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
-import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
+import powercrystals.minefactoryreloaded.core.TreeHarvestMode;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiHarvester;
 import powercrystals.minefactoryreloaded.gui.container.ContainerHarvester;
@@ -126,8 +126,6 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public boolean activateMachine()
 	{
-		MFRLiquidMover.pumpLiquid(_tank, this);
-		
 		int harvestedBlockId = 0;
 		int harvestedBlockMetadata = 0;
 		
@@ -262,7 +260,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 					yTreeAreaLowerBound, yTreeAreaUpperBound,
 					z - MFRConfig.treeSearchMaxHorizontal.getInt(), z + MFRConfig.treeSearchMaxHorizontal.getInt());
 			
-			_treeManager = new TreeHarvestManager(a, treeFlipped);
+			_treeManager = new TreeHarvestManager(a, treeFlipped ? TreeHarvestMode.HarvestInverted : TreeHarvestMode.Harvest);
 			_lastTree = new BlockPosition(x, y, z);
 		}
 		else if(_treeManager.getIsDone())

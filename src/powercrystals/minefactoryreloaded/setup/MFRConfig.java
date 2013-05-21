@@ -107,6 +107,8 @@ public class MFRConfig
 	public static Property enableMossyCobbleRecipe;
 	public static Property conveyorCaptureNonItems;
 	public static Property playSounds;
+	public static Property fruitTreeSearchMaxVertical;
+	public static Property fruitTreeSearchMaxHorizontal;
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
@@ -255,6 +257,10 @@ public class MFRConfig
 		conveyorCaptureNonItems.comment = "If false, conveyors will not grab non-item entities. Breaks conveyor mob grinders but makes them safe for golems, etc.";
 		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
 		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";
+		fruitTreeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.FruitTreeMaxHoriztonal", 5);
+		fruitTreeSearchMaxHorizontal.comment = "When searching for parts of a fruit tree, how far out to the sides (radius) to search";
+		fruitTreeSearchMaxVertical = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.FruitTreeMaxVertical", 20);
+		fruitTreeSearchMaxVertical.comment = "When searching for parts of a fruit tree, how far up to search";
 		
 		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";

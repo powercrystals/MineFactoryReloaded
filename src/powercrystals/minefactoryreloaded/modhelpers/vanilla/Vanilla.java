@@ -109,6 +109,7 @@ import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableRub
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSapling;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableStemPlants;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
+import powercrystals.minefactoryreloaded.farmables.fruits.FruitCocoa;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableSheep;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableSkeleton;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
@@ -388,5 +389,8 @@ public class Vanilla
 		MFRRegistry.registerLaserOre(80, new ItemStack(Block.oreLapis));
 		MFRRegistry.registerLaserOre(100, new ItemStack(Block.oreRedstone));
 		MFRRegistry.registerLaserOre(50, new ItemStack(Block.oreNetherQuartz));
+		
+		MFRRegistry.registerFruitLogBlockId(Block.wood.blockID);
+		MFRRegistry.registerFruit(new FruitCocoa());
 	}
 }
