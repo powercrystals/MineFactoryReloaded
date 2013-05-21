@@ -850,6 +850,16 @@ public class GregTech extends Vanilla
 				'C', "craftingCircuitTier02"
 					} ));
 			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetJailerItem, 1), new Object[]
+					{
+				" P ",
+				"ISI",
+				" P ",
+				'S', MineFactoryReloadedCore.safariNetSingleItem,
+				'I', Block.fenceIron,
+				'P', "plateIron"
+					} ));
+			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetLauncherItem, 1), new Object[]
 					{
 				"PGP",
@@ -928,6 +938,14 @@ public class GregTech extends Vanilla
 				'P', "sheetPlastic",
 				'A', Item.paper,
 					} ));
+			
+			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.vineScaffoldBlock, 8), new Object[]
+					{
+				"VV",
+				"VV",
+				"VV",
+				'V', Block.vine,
+					} );
 		}
 		catch (Exception x)
 		{
