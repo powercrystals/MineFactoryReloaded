@@ -28,7 +28,10 @@ dependencies = "after:MineFactoryReloaded;after:PamHCAsparagus;after:PamHCBean;a
 		+ "after:PamHCPeanut;after:PamHCPeas;after:PamHCPineapple;after:PamHCRadish;after:PamHCRaspberry;"
 		+ "after:PamHCRice;after:PamHCRotten;after:PamHCSpiceleaf;after:PamHCStrawberry;after:PamHCSunflower;"
 		+ "after:PamHCSweetpotato;after:PamHCTea;after:PamHCTomato;after:PamHCTurnip;after:PamHCWhitemushroom;"
-		+ "after:PamHCZucchini;after:PamHarvestCraft;after:PamWeeeFlowers")
+		+ "after:PamHCZucchini;after:PamHarvestCraft;after:PamWeeeFlowers;after:PamHCApple;after:PamHCAvocado;after:PamHCBanana;"
+		+ "after:PamHCCherry;after:PamHCCinnamon;after:PamHCCoconut;after:PamHCLemon;after:PamHCLime;after:PamHCMango;after:PamHCNutmeg;"
+		+ "after:PamHCOlive;after:PamHCOrange;after:PamHCPapaya;after:PamHCPeach;after:PamHCPear;after:PamHCPeppercorn;after:PamHCPlum;"
+		+ "after:PamHCPomegranate;after:PamHCStarfruit;after:PamHCVanillabean;after:PamHCWalnut")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Pam
 {
@@ -107,6 +110,32 @@ public class Pam
 			registerPamMod("Whitemushroom", "Whitemushroom", Category.BUSH, false, true, Block.wood.blockID);
 			registerPamMod("Rotten", "Rotten", Category.CROP, false, false, Block.slowSand.blockID);
 			registerPamMod("Cactusfruit", "Cactusfruit", Category.BUSH, true, true, Block.sand.blockID);
+			
+			// fruits
+			registerFruit("Apple");
+			registerFruit("Avocado");
+			registerFruit("Banana");
+			registerFruit("Cherry");
+			registerFruit("Coconut");
+			registerFruit("Lemon");
+			registerFruit("Lime");
+			registerFruit("Mango");
+			registerFruit("Nutmeg");
+			registerFruit("Olive");
+			registerFruit("Orange");
+			registerFruit("Papaya");
+			registerFruit("Peach");
+			registerFruit("Pear");
+			registerFruit("Peppercorn");
+			registerFruit("Plum");
+			registerFruit("Pomegranate");
+			registerFruit("Starfruit");
+			registerFruit("Vanillabean");
+			registerFruit("Walnut");
+			
+			// special case for candle and cinnamon
+			registerCandle();
+			registerCinnamon();
 			
 			try
 			{
@@ -223,6 +252,47 @@ public class Pam
 		catch(ClassNotFoundException x)
 		{
 			FMLLog.warning("Unable to load Pam support for %s", modName);
+		}
+		catch(Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	private static void registerFruit(String name)
+	{
+		try
+		{
+			Block fruit = (Block)Class.forName("mods.PamHarvestCraft.trees." + name.toLowerCase() + ".PamHC" + name).getField("pam" + name).get(null);
+			MFRRegistry.registerFruit(new PamFruit(fruit.blockID));
+		}
+		catch(Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	private static void registerCandle()
+	{
+		try
+		{
+			Block fruit = (Block)Class.forName("mods.PamHarvestCraft.misc.candle.PamHCCandle").getField("pamCandle").get(null);
+			MFRRegistry.registerFruit(new PamFruit(fruit.blockID));
+		}
+		catch(Exception x)
+		{
+			x.printStackTrace();
+		}
+	}
+	
+	private static void registerCinnamon()
+	{
+		try
+		{
+			Block fruit = (Block)Class.forName("mods.PamHarvestCraft.trees.cinnamon.PamHCCinnamon").getField("pamCinnamon").get(null);
+			Item cinnamon = (Item)Class.forName("mods.PamHarvestCraft.trees.cinnamon.PamHCCinnamon").getField("cinnamonItem").get(null);
+			MFRRegistry.registerFruit(new PamFruitCinnamon(fruit.blockID, cinnamon.itemID));
+			MFRRegistry.registerFruitLogBlockId(fruit.blockID);
 		}
 		catch(Exception x)
 		{
