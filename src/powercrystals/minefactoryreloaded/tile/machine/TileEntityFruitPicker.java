@@ -19,6 +19,7 @@ import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
 import powercrystals.minefactoryreloaded.core.TreeHarvestMode;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
+import powercrystals.minefactoryreloaded.gui.client.GuiFruitPicker;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFruitPicker;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
@@ -61,7 +62,7 @@ public class TileEntityFruitPicker extends TileEntityFactoryPowered
 	@SideOnly(Side.CLIENT)
 	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
-		return new GuiFactoryPowered(getContainer(inventoryPlayer), this);
+		return new GuiFruitPicker(getContainer(inventoryPlayer), this);
 	}
 	
 	@Override
