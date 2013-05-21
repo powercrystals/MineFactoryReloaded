@@ -265,6 +265,7 @@ circuit.mfr.oneshot = One-Shot Pulse
 circuit.mfr.or.2 = Or (2-Input)
 circuit.mfr.or.3 = Or (3-Input)
 circuit.mfr.or.4 = Or (4-Input)
+circuit.mfr.delay = Delay
 circuit.mfr.passthrough = Passthrough
 circuit.mfr.passthrough.gated = Passthrough (Gated)
 circuit.mfr.passthrough.roundrobin = Passthrough (Ring)
