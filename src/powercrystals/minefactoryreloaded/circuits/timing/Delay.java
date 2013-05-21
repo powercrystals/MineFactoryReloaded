@@ -26,12 +26,18 @@ public class Delay  extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
+		
 		int output=0;
 		
 		this.delayTime=inputValues[1];
 		
+		if(delayTime<0)
+		{
+			delayTime=0;
+		}
+		
 		this.history.add(0,inputValues[0]);
-	
+		
 		if(this.history.size()>delayTime)
 		{
 			output=this.history.get(this.delayTime);
