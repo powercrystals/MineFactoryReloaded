@@ -28,6 +28,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Atum
 {
+	private static final String lastUpdated = "Atum 0.3.5A, current release as of May 20 2013";
+	
 	@SuppressWarnings("rawtypes")
 	@Init
 	public static void load(FMLInitializationEvent e)
@@ -39,7 +41,6 @@ public class Atum
 		}
 		try
 		{
-			// The line after this comment is the worst. There must be a better way to do this, right?
 			Class Atum = Class.forName("rebelkeithy.mods.atum.Atum");
 			
 			String entityprefix = "rebelkeithy.mods.atum.entities.Entity";
@@ -122,6 +123,7 @@ public class Atum
 		}
 		catch (Exception x)
 		{
+			System.out.println("Last updated for " + lastUpdated);
 			x.printStackTrace();
 		}
 	}
