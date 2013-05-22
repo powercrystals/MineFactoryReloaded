@@ -394,5 +394,7 @@ public class Vanilla
 		
 		MFRRegistry.registerFruitLogBlockId(Block.wood.blockID);
 		MFRRegistry.registerFruit(new FruitCocoa());
+		
+		MFRRegistry.registerAutoSpawnerBlacklist("VillagerGolem");
 	}
 }

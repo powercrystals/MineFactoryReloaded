@@ -18,7 +18,6 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
 import powercrystals.minefactoryreloaded.core.TreeHarvestMode;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
-import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.client.GuiFruitPicker;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFruitPicker;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
