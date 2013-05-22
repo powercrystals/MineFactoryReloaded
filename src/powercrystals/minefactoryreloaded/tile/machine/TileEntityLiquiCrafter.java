@@ -281,6 +281,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	{
 		_inventory[slot] = stack;
 		if(slot < 9) calculateOutput();
+		onFactoryInventoryChanged();
 	}
 	
 	@Override
@@ -288,6 +289,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	{
 		ItemStack result = super.decrStackSize(slot, size);
 		if(slot < 9) calculateOutput();
+		onFactoryInventoryChanged();
 		return result;
 	}
 	
