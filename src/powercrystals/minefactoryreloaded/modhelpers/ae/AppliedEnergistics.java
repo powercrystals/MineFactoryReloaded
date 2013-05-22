@@ -14,6 +14,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class AppliedEnergistics
 {
+	private static final String lastUpdated = "Applied Energistics rv10.n, current release as of May 22 2013";
+	
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
@@ -29,6 +31,7 @@ public class AppliedEnergistics
 		}
 		catch (Exception x)
 		{
+			System.out.println("Last updated for " + lastUpdated);
 			x.printStackTrace();
 		}
 	}

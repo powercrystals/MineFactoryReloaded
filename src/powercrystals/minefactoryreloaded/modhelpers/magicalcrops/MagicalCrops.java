@@ -23,6 +23,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class MagicalCrops
 {
+	private static final String lastUpdated = "Magical Crops 2.1.0, current release as of May 22 2013";
+	
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
@@ -95,6 +97,7 @@ public class MagicalCrops
 		catch (Exception x)
 		{
 			FMLLog.warning("Something went wrong in MFR Compat: Magical Crops. Probably Emy's fault.");
+			System.out.println("Last updated for " + lastUpdated);
 			x.printStackTrace();
 		}
 	}
