@@ -37,7 +37,7 @@ public class MagicalCrops
 			
 			// the various plants are separated by type to make future changes easier (mostly considering magicFertilizer behavior)
 			String[] crops = {"Sberry", "Tomato", "Sweetcorn", "Cucum", "Melon", "Bberry", "Rberry", "Grape", "Chil"};
-			String[] magicalCrops = {"Coal", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Nether"};
+			String[] magicalCrops = {"Coal", "Dye", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Nether"};
 			String[] soulCrops = {"Cow", "Pigmen", "Skele", "Spider"};
 			
 			int seedId;
@@ -53,17 +53,6 @@ public class MagicalCrops
 				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
 				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
 			}
-			
-			/*
-			 *  mCropDye is named as a magical crop, but it actually extends vanilla BlockCrops.
-			 *  This means that it needs to get its own special registration, rather than going on one of the string lists. 
-			 */
-			seedId = ((Item)mod.getField("mSeedsDye").get(null)).itemID;
-			blockId = ((Block)mod.getField("mCropDye").get(null)).blockID;
-			fertilize = Class.forName("magicCrop.mCropDye").getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
-			MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
-			MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
-			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
 			
 			for(String magicalCrop : magicalCrops)
 			{
