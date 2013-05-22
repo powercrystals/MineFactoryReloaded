@@ -18,6 +18,7 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	protected static final int[] _invOffsets = new int[] { 0, 0, 9, 18, 36, 27 };
 	protected static final ForgeDirection[] _outputDirections = new ForgeDirection[]
 			{ ForgeDirection.DOWN, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };
+	private int[] _defaultRoutes = new int[_outputDirections.length];
 	
 	private boolean _rejectUnmapped;
 	
@@ -50,16 +51,15 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	public ItemStack routeItem(ItemStack stack)
 	{
 		int[] filteredRoutes = getRoutesForItem(stack);
-		int[] defaultRoutes = getDefaultRoutes();
 		
 		if(hasRoutes(filteredRoutes))
 		{
 			stack = weightedRouteItem(stack, filteredRoutes);
 			return (stack == null || stack.stackSize == 0) ? null : stack;
 		}
-		else if(hasRoutes(defaultRoutes) && !_rejectUnmapped)
+		else if(hasRoutes(_defaultRoutes) && !_rejectUnmapped)
 		{
-			stack = weightedRouteItem(stack, defaultRoutes);
+			stack = weightedRouteItem(stack, _defaultRoutes);
 			return (stack == null || stack.stackSize == 0) ? null : stack;
 		}
 		return stack;
@@ -162,15 +162,12 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 		return routeWeights;
 	}
 	
-	private int[] getDefaultRoutes()
+	private void recalculateDefaultRoutes()
 	{
-		int[] routeWeights = new int[_outputDirections.length];
-		
 		for(int i = 0; i < _outputDirections.length; i++)
 		{
-			routeWeights[i] = isSideEmpty(_outputDirections[i]) ? 1 : 0;
+			_defaultRoutes[i] = isSideEmpty(_outputDirections[i]) ? 1 : 0;
 		}
-		return routeWeights;
 	}
 	
 	public boolean hasRouteForItem(ItemStack stack)
@@ -251,6 +248,12 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 3;
+	}
+	
+	@Override
+	protected void onFactoryInventoryChanged()
+	{
+		recalculateDefaultRoutes();
 	}
 	
 	@Override

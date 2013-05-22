@@ -340,7 +340,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	}
 	
 	@Override
-	public void onFactoryInventoryChanged()
+	protected void onFactoryInventoryChanged()
 	{
 		_resourcesChangedSinceLastFailedCraft = true;
 		super.onFactoryInventoryChanged();
