@@ -44,6 +44,7 @@ public abstract class MFRRegistry
 	private static List<IRandomMobProvider> _randomMobProviders = new ArrayList<IRandomMobProvider>();
 	private static List<IRedNetLogicCircuit> _redNetLogicCircuits = new ArrayList<IRedNetLogicCircuit>();
 	private static List<WeightedRandomItem> _laserOres  = new ArrayList<WeightedRandomItem>();
+	private static List<String> _autoSpawnerBlacklist = new ArrayList<String>();
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
@@ -236,5 +237,15 @@ public abstract class MFRRegistry
 	public static Map<Integer, IFactoryFruit> getFruits()
 	{
 		return _fruitBlocks;
+	}
+	
+	public static void registerAutoSpawnerBlacklist(String classString)
+	{
+		_autoSpawnerBlacklist.add(classString);
+	}
+	
+	public static List<String> getAutoSpawnerBlacklist()
+	{
+		return _autoSpawnerBlacklist;
 	}
 }
