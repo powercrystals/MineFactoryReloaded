@@ -1388,6 +1388,14 @@ public class Vanilla
 			Item.bucketMilk,
 			Item.glassBottle
 				} );
+		
+		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 1), new Object[]
+				{
+			"C",
+			"S",
+			'C', MineFactoryReloadedCore.sugarCharcoalItem,
+			'S', Item.stick
+				} );
 	}
 	
 	protected void registerRails()
