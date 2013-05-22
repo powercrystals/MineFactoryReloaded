@@ -37,11 +37,16 @@ public class Forestry
 		}
 		try
 		{
-			Item fertilizer = (Item)Class.forName("forestry.core.config.ForestryItem").getField("fertilizerCompound").get(null);
-			if(fertilizer != null)
+			Class<?> forestryItems = Class.forName("forestry.core.config.ForestryItem");
+			if(forestryItems != null)
 			{
+				Item fertilizer = (Item)forestryItems.getField("fertilizerCompound").get(null);
+				Item peat = (Item)forestryItems.getField("peat").get(null);
+				
 				MFRRegistry.registerFertilizer(new FertilizerStandard(fertilizer.itemID, 0));
+				MFRRegistry.registerSludgeDrop(5, new ItemStack(peat));
 			}
+			
 			Class<?> forestryBlocks = Class.forName("forestry.core.config.ForestryBlock");
 			if(forestryBlocks != null)
 			{
