@@ -90,7 +90,7 @@ public class ThermalExpansion extends Vanilla
 					"SFS",
 					"OCO",
 					'P', "sheetPlastic",
-					'T', pneumaticServo,
+					'T', conduitLiquid,
 					'S', Item.shears,
 					'F', machineFrame,
 					'O', "ingotTin",
