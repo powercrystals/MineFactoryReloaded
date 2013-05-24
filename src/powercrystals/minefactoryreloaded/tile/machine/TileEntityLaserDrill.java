@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.WeightedRandom;
@@ -13,14 +13,17 @@ import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
-import buildcraft.core.IMachine;
+import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
+import powercrystals.minefactoryreloaded.gui.client.GuiLaserDrill;
+import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
+import powercrystals.minefactoryreloaded.gui.container.ContainerLaserDrill;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityLaserDrill extends TileEntityFactory implements IInventory, IMachine
+public class TileEntityLaserDrill extends TileEntityFactoryInventory
 {
-	private static final int _energyPerWork = 2500;
+	private static final int _energyPerWork = 8000;
 	private static final int _energyDrawMax = 10000;
 	
 	private static final int _energyStoredMax = 1000000;
@@ -36,6 +39,25 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	public TileEntityLaserDrill()
 	{
 		_rand = new Random();
+	}
+	
+	@Override
+	public String getGuiBackground()
+	{
+		return "laserdrill.png";
+	}
+	
+	@Override
+	public ContainerFactoryInventory getContainer(InventoryPlayer inventoryPlayer)
+	{
+		return new ContainerLaserDrill(this, inventoryPlayer);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
+	{
+		return new GuiLaserDrill(getContainer(inventoryPlayer), this);
 	}
 	
 	public int addEnergy(int energy)
@@ -86,6 +108,36 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 			_workStored -= _workStoredMax;
 			UtilInventory.dropStack(this, getRandomDrop(), ForgeDirection.UP);
 		}
+	}
+	
+	public int getWorkDone()
+	{
+		return _workStored;
+	}
+	
+	public void setWorkDone(int work)
+	{
+		_workStored = work;
+	}
+	
+	public int getWorkMax()
+	{
+		return _workStoredMax;
+	}
+	
+	public int getEnergyStored()
+	{
+		return _energyStored;
+	}
+	
+	public void setEnergyStored(int energy)
+	{
+		_energyStored = energy;
+	}
+	
+	public int getEnergyMax()
+	{
+		return _energyStoredMax;
 	}
 	
 	private boolean shouldCheckDrill()
@@ -153,44 +205,15 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	}
 	
 	@Override
-	public ItemStack getStackInSlot(int i)
-	{
-		return null;
-	}
-	
-	@Override
-	public ItemStack decrStackSize(int i, int j)
-	{
-		return null;
-	}
-	
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i)
-	{
-		return null;
-	}
-	
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack)
-	{
-	}
-	
-	@Override
 	public String getInvName()
 	{
 		return "Laser Drill";
 	}
 	
 	@Override
-	public boolean isInvNameLocalized()
-	{
-		return false;
-	}
-	
-	@Override
 	public int getInventoryStackLimit()
 	{
-		return 64;
+		return 1;
 	}
 	
 	@Override
@@ -200,31 +223,7 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	}
 	
 	@Override
-	public void openChest()
-	{
-	}
-	
-	@Override
-	public void closeChest()
-	{
-	}
-	
-	@Override
 	public boolean isStackValidForSlot(int i, ItemStack itemstack)
-	{
-		return false;
-	}
-	
-	// IMachine
-	
-	@Override
-	public boolean isActive()
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean manageLiquids()
 	{
 		return false;
 	}
@@ -233,11 +232,5 @@ public class TileEntityLaserDrill extends TileEntityFactory implements IInventor
 	public boolean manageSolids()
 	{
 		return true;
-	}
-	
-	@Override
-	public boolean allowActions()
-	{
-		return false;
 	}
 }
