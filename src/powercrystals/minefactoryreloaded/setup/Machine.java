@@ -86,7 +86,7 @@ public class Machine
 	public static Machine Unifier = new Machine(1, 8, "Unifier", TileEntityUnifier.class, "factoryUnifier", 0);
 	public static Machine AutoSpawner = new Machine(1, 9, "AutoSpawner", TileEntityAutoSpawner.class, "factoryAutoSpawner", 60);
 	public static Machine BioReactor = new Machine(1, 10, "BioReactor", TileEntityBioReactor.class, "factoryBioReactor", 0);
-	public static Machine BioFuelGenerator = new Machine(1, 11, "BioFuelGenerator", TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator", 0);
+	public static Machine BioFuelGenerator = new Machine(1, 11, "BioFuelGenerator", TileEntityBioFuelGenerator.class, "factoryBioFuelGenerator", 16);
 	public static Machine AutoDisenchanter = new Machine(1, 12, "AutoDisenchanter", TileEntityAutoDisenchanter.class, "factoryDisenchanter", 32);
 	public static Machine Slaughterhouse = new Machine(1, 13, "Slaughterhouse", TileEntitySlaughterhouse.class, "factorySlaughterhouse", 100);
 	public static Machine MeatPacker = new Machine(1, 14, "MeatPacker", TileEntityMeatPacker.class, "factoryMeatPacker", 2);

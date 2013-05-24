@@ -8,6 +8,7 @@ import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
+import powercrystals.minefactoryreloaded.setup.Machine;
 
 public abstract class TileEntityLiquidGenerator extends TileEntityGenerator implements ITankContainerBucketable
 {
@@ -27,7 +28,7 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 		_liquidConsumedPerTick = liquidConsumedPerTick;
 		_powerProducedPerConsumption = powerProducedPerConsumption;
 		_ticksBetweenConsumption = ticksBetweenConsumption;
-		_outputPulseSize = 100;
+		_outputPulseSize = Machine.BioFuelGenerator.getActivationEnergyMJ() * TileEntityFactoryPowered.energyPerMJ;
 		
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 	}
