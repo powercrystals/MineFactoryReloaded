@@ -287,8 +287,13 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId)
 	{
 		super.onNeighborBlockChange(world, x, y, z, blockId);
+		if(blockId == blockID)
+		{
+			return;
+		}
+		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable)
+		if(te instanceof TileEntityRedNetCable)
 		{
 			((TileEntityRedNetCable)te).onNeighboorChanged();
 		}
