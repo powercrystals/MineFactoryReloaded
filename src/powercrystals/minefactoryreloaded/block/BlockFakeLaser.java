@@ -2,8 +2,12 @@ package powercrystals.minefactoryreloaded.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -90,5 +94,11 @@ public class BlockFakeLaser extends Block
 		{
 			world.setBlock(x, y - 1, z, blockID);
 		}
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
 	}
 }
