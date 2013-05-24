@@ -170,7 +170,7 @@ public class RedstoneNetwork
 	}
 	
 	public void removeNode(BlockPosition node)
-	{		
+	{
 		_omniNodes.remove(node);
 		_weakNodes.remove(node);
 		
@@ -188,6 +188,9 @@ public class RedstoneNetwork
 				updatePowerLevels(subnet);
 			}
 		}
+		
+		_world.notifyBlockOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
+		_world.notifyBlocksOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
 	}
 	
 	public void addCable(BlockPosition cable)

@@ -85,7 +85,7 @@ public class TileEntityRedNetCable extends TileEntity implements INeighboorUpdat
 		_mode = mode;
 		if(mustUpdate)
 		{
-			updateNetwork();
+			_needsNetworkUpdate = true;
 		}
 	}
 	
