@@ -2,7 +2,9 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.util.UtilInventory;
+import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 public class TileEntityCollector extends TileEntityFactoryInventory
@@ -15,7 +17,7 @@ public class TileEntityCollector extends TileEntityFactoryInventory
 		}
 		
 		ItemStack s = i.getEntityItem();
-		s = UtilInventory.dropStack(this, s);
+		s = UtilInventory.dropStack(this, s, MFRUtil.directionsWithoutConveyors(worldObj, xCoord, yCoord, zCoord), ForgeDirection.UNKNOWN);
 		if(s == null)
 		{
 			i.setDead();

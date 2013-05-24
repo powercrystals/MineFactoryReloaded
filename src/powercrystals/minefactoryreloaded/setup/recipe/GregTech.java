@@ -41,7 +41,7 @@ public class GregTech extends Vanilla
 					'S', Block.pistonBase,
 					'F', "craftingRawMachineTier00",
 					'O', "plateCopper",
-					'C', "basicCircuit",
+					'C', "craftingCircuitTier02",
 						} ));
 			}
 			
@@ -56,8 +56,8 @@ public class GregTech extends Vanilla
 					'T', Item.fishingRod,
 					'S', Item.bucketEmpty,
 					'F', "craftingRawMachineTier01",
-					'O', "plateIron",
-					'C', "advancedCircuit"
+					'O', "plateSteel",
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -73,7 +73,7 @@ public class GregTech extends Vanilla
 					'S', Item.shears,
 					'F', "craftingRawMachineTier00",
 					'O', "plateGold",
-					'C', "basicCircuit"
+					'C', "craftingCircuitTier02"
 						} ));
 			}
 			
@@ -89,7 +89,7 @@ public class GregTech extends Vanilla
 					'S', Item.shears,
 					'F', "craftingRawMachineTier01",
 					'O', "plateTin",
-					'C', "advancedCircuit"
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -105,7 +105,7 @@ public class GregTech extends Vanilla
 					'S', Item.leather,
 					'F', "craftingRawMachineTier01",
 					'O', "plateSilver",
-					'C', "advancedCircuit"
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -119,8 +119,8 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'T', MineFactoryReloadedCore.syringeEmptyItem,
 					'F', "craftingRawMachineTier01",
-					'O', "plateCopper",
-					'C', "advancedCircuit"
+					'O', "plateZinc",
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -128,12 +128,13 @@ public class GregTech extends Vanilla
 			{
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 6), new Object[]
 						{
-					"P P",
+					"PVP",
 					" F ",
 					"PCP",
 					'P', "sheetPlastic",
 					'F', "craftingRawMachineTier01",
-					'C', Block.chest
+					'C', Block.chest,
+					'V', "craftingConveyor"
 						} ));
 			}
 			
@@ -147,9 +148,9 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'T', "craftingItemValve",
 					'S', Item.pickaxeIron,
-					'F', "craftingRawMachineTier01",
-					'O', "plateIron",
-					'C', "advancedCircuit"
+					'F', "craftingRawMachineTier02",
+					'O', "plateAluminium",
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -158,13 +159,13 @@ public class GregTech extends Vanilla
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(0), 1, 8), new Object[]
 						{
 					"PTP",
-					" F ",
+					"TFT",
 					"OCO",
 					'P', "sheetPlastic",
 					'T', Item.bucketEmpty,
-					'F', "craftingRawMachineTier01",
-					'O', "plateTin",
-					'C', "advancedCircuit"
+					'F', "craftingRawMachineTier02",
+					'O', "plateBrass",
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -178,9 +179,9 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'T', Item.bucketEmpty,
 					'S', Block.furnaceIdle,
-					'F', "craftingRawMachineTier01",
-					'O', "plateIron",
-					'C', "advancedCircuit"
+					'F', "craftingRawMachineTier02",
+					'O', "plateRefinedIron",
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -193,7 +194,7 @@ public class GregTech extends Vanilla
 					"SSS",
 					'P', "sheetPlastic",
 					'T', Item.bucketEmpty,
-					'S', Item.brick,
+					'S', Block.brick,
 					'F', "craftingRawMachineTier01",
 						} ));
 			}
@@ -209,8 +210,8 @@ public class GregTech extends Vanilla
 					'T', Block.furnaceIdle,
 					'S', Block.pistonBase,
 					'F', "craftingRawMachineTier01",
-					'O', Item.brick,
-					'C', "advancedCircuit"
+					'O', Block.brick,
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -224,9 +225,9 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'T', Item.appleGold,
 					'S', Item.goldenCarrot,
-					'F', "craftingRawMachineTier01",
+					'F', "craftingRawMachineTier02",
 					'O', new ItemStack(Item.dyePowder, 1, 5),
-					'C', "advancedCircuit"
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -242,7 +243,7 @@ public class GregTech extends Vanilla
 					'T', "craftingGrinder",
 					'F', "craftingRawMachineTier02",
 					'O', Item.book,
-					'C', "advancedCircuit"
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -256,8 +257,8 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'T', "plateAlloyIridium",
 					'S', Item.book,
-					'F', "craftingRawMachineTier03",
-					'O', "eliteCircuit",
+					'F', "craftingRawMachineTier04",
+					'O', "craftingCircuitTier06",
 					'C', Block.obsidian
 						} ));
 			}
@@ -273,7 +274,7 @@ public class GregTech extends Vanilla
 					'T', "gemEmerald",
 					'F', "craftingRawMachineTier02",
 					'O', new ItemStack(Item.dyePowder, 1, 5),
-					'C', "eliteCircuit"
+					'C', "craftingCircuitTier06"
 						} ));
 			}
 			
@@ -285,8 +286,8 @@ public class GregTech extends Vanilla
 					" F ",
 					"OOO",
 					'P', "sheetPlastic",
-					'T', "craftingPump",
-					'F', "craftingRawMachineTier00",
+					'T', "craftingRedstoneReceiver",
+					'F', "craftingRawMachineTier02",
 					'O', "dustRedstone"
 						} ));
 			}
@@ -301,7 +302,7 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'T', Block.chest,
 					'S', Item.redstoneRepeater,
-					'F', "craftingRawMachineTier01"
+					'F', "craftingRawMachineTier02"
 						} ));
 			}
 			
@@ -315,7 +316,7 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'T', "craftingPump",
 					'S', Item.redstoneRepeater,
-					'F', "craftingRawMachineTier01"
+					'F', "craftingRawMachineTier02"
 						} ));
 			}
 			
@@ -327,10 +328,10 @@ public class GregTech extends Vanilla
 					"CFC",
 					"PEP",
 					'P', "sheetPlastic",
-					'C', "eliteCircuit",
+					'C', "craftingCircuitTier07",
 					'E', Item.eyeOfEnder,
-					'D', "craftingCircuitTier05",
-					'F', "craftingRawMachineTier03"
+					'D', "craftingCircuitTier08",
+					'F', "craftingRawMachineTier04"
 						} ));
 				
 				if(MFRConfig.enableCheapDSU.getBoolean(false))
@@ -371,11 +372,11 @@ public class GregTech extends Vanilla
 					"SFS",
 					"OCO",
 					'P', "sheetPlastic",
-					'T', Block.obsidian,
+					'T', "plateSteel",
 					'S', Item.magmaCream,
-					'F', "craftingRawMachineTier02",
+					'F', "craftingRawMachineTier03",
 					'O', Item.blazeRod,
-					'C', "advancedCircuit"
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -388,9 +389,9 @@ public class GregTech extends Vanilla
 					"OCO",
 					'P', "sheetPlastic",
 					'T', Block.tnt,
-					'F', "craftingRawMachineTier02",
+					'F', "craftingRawMachineTier03",
 					'O', Block.obsidian,
-					'C', "advancedCircuit"
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -412,11 +413,12 @@ public class GregTech extends Vanilla
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(1), 1, 8), new Object[]
 						{
 					"PTP",
-					"SFS",
+					"SFL",
 					"OCO",
 					'P', "sheetPlastic",
 					'T', "plateCopper",
 					'S', "plateSilver",
+					'L', "plateGold",
 					'F', "craftingRawMachineTier01",
 					'O', Item.comparator,
 					'C', Item.book
@@ -434,8 +436,8 @@ public class GregTech extends Vanilla
 					'T', "plateAlloyIridium",
 					'S', Item.magmaCream,
 					'F', "craftingRawMachineTier02",
-					'O', Item.emerald,
-					'C', "advancedCircuit"
+					'O', "gemRuby",
+					'C', "craftingCircuitTier05"
 						} ));
 			}
 			
@@ -449,7 +451,7 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'T', Item.fermentedSpiderEye,
 					'S', Item.slimeBall,
-					'F', "craftingRawMachineTier02",
+					'F', "craftingRawMachineTier03",
 					'O', "craftingItemValve",
 					'C', "craftingPump"
 						} ));
@@ -463,10 +465,10 @@ public class GregTech extends Vanilla
 					"SFS",
 					"OCO",
 					'P', "sheetPlastic",
-					'S', "plateIron",
+					'S', "plateRefinedIron",
 					'F', generator,
 					'O', Item.blazeRod,
-					'C', "advancedCircuit"
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -481,7 +483,7 @@ public class GregTech extends Vanilla
 					'T', "plateAlloyIridium",
 					'S', Item.book,
 					'F', "craftingRawMachineTier03",
-					'O', "eliteCircuit",
+					'O', "craftingCircuitTier06",
 					'C', Block.netherBrick
 						} ));
 			}
@@ -496,9 +498,9 @@ public class GregTech extends Vanilla
 					'G', "sheetPlastic",
 					'S', "craftingPump",
 					'X', "craftingGrinder",
-					'I', "craftingDiamond",
+					'I', "craftingDiamondBlade",
 					'F', "craftingRawMachineTier02",
-					'C', "advancedCircuit"
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 			
@@ -528,7 +530,7 @@ public class GregTech extends Vanilla
 					'P', "sheetPlastic",
 					'B', Item.book,
 					'S', Item.redstoneRepeater,
-					'F', "craftingRawMachineTier01"
+					'F', "craftingRawMachineTier02"
 						} ));
 			}
 			
@@ -544,7 +546,7 @@ public class GregTech extends Vanilla
 					'L', reinforcedGlass,
 					'R', reactorChamber,
 					'F', "craftingRawMachineTier04",
-					'C', "craftingCircuitTier04"
+					'C', "craftingSuperconductor"
 						} ));
 			}
 			
@@ -553,14 +555,15 @@ public class GregTech extends Vanilla
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 1), new Object[]
 						{
 					"GSG",
-					"LFL",
+					"RFL",
 					"DCD",
 					'G', "sheetPlastic",
-					'D', Item.diamond,
+					'D', "gemDiamond",
 					'S', MineFactoryReloadedCore.pinkSlimeballItem,
 					'L', luminator,
 					'F', mfsUnit,
-					'C', "craftingCircuitTier07"
+					'C', "craftingCircuitTier07",
+					'R', "craftingSuperconductor"
 						} ));
 			}
 			
@@ -569,13 +572,76 @@ public class GregTech extends Vanilla
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 2), new Object[]
 						{
 					"GIG",
-					"AFA",
+					"SFS",
 					"ACA",
 					'G', "sheetPlastic",
 					'A', Block.anvil,
+					'S', "plateSteel",
 					'F', "craftingRawMachineTier04",
-					'C', "craftingCircuitTier02",
+					'C', "craftingCircuitTier07",
 					'I', "plateAlloyIridium"
+						} ));
+			}
+			
+			
+			if(Machine.BlockSmasher.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 3), new Object[]
+						{
+					"GPG",
+					"HFH",
+					"BCB",
+					'G', "sheetPlastic",
+					'P', Block.pistonBase,
+					'H', MineFactoryReloadedCore.factoryHammerItem,
+					'B', "craftingItemValve",
+					'F', "craftingRawMachineTier03",
+					'C', "craftingCircuitTier06"
+						} ));
+			}
+			
+			if(Machine.RedNote.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 4), new Object[]
+						{
+					"GNG",
+					"CFC",
+					"GNG",
+					'G', "sheetPlastic",
+					'C', MineFactoryReloadedCore.rednetCableBlock,
+					'N', Block.music,
+					'F', "craftingRawMachineTier01"
+						} ));
+			}
+			
+			if(Machine.AutoBrewer.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 5), new Object[]
+						{
+					"GBG",
+					"CFC",
+					"RCR",
+					'G', "sheetPlastic",
+					'C', "craftingPump",
+					'B', Item.brewingStand,
+					'R', "craftingItemValve",
+					'F', "craftingRawMachineTier02",
+					'C', "craftingCircuitTier05"
+						} ));
+			}
+			
+			if(Machine.FruitPicker.getIsRecipeEnabled())
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 6), new Object[]
+						{
+					"GXG",
+					"SFS",
+					"SCS",
+					'G', "sheetPlastic",
+					'X', Item.axeGold,
+					'S', Item.shears,
+					'F', "craftingRawMachineTier03",
+					'C', "craftingCircuitTier04"
 						} ));
 			}
 		}
@@ -594,6 +660,8 @@ public class GregTech extends Vanilla
 		}
 		try
 		{
+			ItemStack insulatedGoldCableItem = Items.getItem("insulatedGoldCableItem");
+			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 0), new Object[]
 					{
 				"III",
@@ -601,8 +669,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "dyeBlue",
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "basicCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier02",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 1), new Object[]
@@ -612,8 +680,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', Item.ingotIron,
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "basicCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier02",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 2), new Object[]
@@ -623,8 +691,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotTin",
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "basicCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier02",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 3), new Object[]
@@ -634,8 +702,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotCopper",
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "advancedCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier04",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 4), new Object[]
@@ -645,8 +713,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotBronze",
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "advancedCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier04",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 5), new Object[]
@@ -656,8 +724,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotSilver",
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "advancedCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier04",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 6), new Object[]
@@ -667,8 +735,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotGold",
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "advancedCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier04",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 7), new Object[]
@@ -678,8 +746,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', Item.netherQuartz,
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "eliteCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier06",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 8), new Object[]
@@ -689,8 +757,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "gemDiamond",
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "eliteCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier06",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 9), new Object[]
@@ -700,8 +768,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', "ingotPlatinum",
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "eliteCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier06",
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.upgradeItem, 1, 10), new Object[]
@@ -711,8 +779,8 @@ public class GregTech extends Vanilla
 				"RGR",
 				'I', Item.emerald,
 				'P', "dustPlastic",
-				'R', "copperWire",
-				'G', "eliteCircuit",
+				'R', insulatedGoldCableItem,
+				'G', "craftingCircuitTier06",
 					} ));
 		}
 		catch (Exception x)
@@ -836,7 +904,7 @@ public class GregTech extends Vanilla
 				" E ",
 				'E', Item.enderPearl,
 				'G', Item.ghastTear,
-				'C', "advancedCircuit"
+				'C', "craftingCircuitTier04"
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetSingleItem, 1), new Object[]
@@ -847,7 +915,17 @@ public class GregTech extends Vanilla
 				'S', Item.silk,
 				'L', Item.leather,
 				'B', Item.slimeBall,
-				'C', "basicCircuit"
+				'C', "craftingCircuitTier02"
+					} ));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetJailerItem, 1), new Object[]
+					{
+				" P ",
+				"ISI",
+				" P ",
+				'S', MineFactoryReloadedCore.safariNetSingleItem,
+				'I', Block.fenceIron,
+				'P', "plateIron"
 					} ));
 			
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetLauncherItem, 1), new Object[]
@@ -876,7 +954,7 @@ public class GregTech extends Vanilla
 				"RRR",
 				"RPR",
 				"RRR",
-				'R', "plasticDust",
+				'R', "dustPlastic",
 				'P', Item.paper,
 					} ));
 			
@@ -896,7 +974,7 @@ public class GregTech extends Vanilla
 				"GLG",
 				"DND",
 				"GLG",
-				'G', "plateGold",
+				'G', "plateChrome",
 				'L', "plateAlloyIridium",
 				'D', "gemDiamond",
 				'N', Item.netherStar
@@ -928,6 +1006,14 @@ public class GregTech extends Vanilla
 				'P', "sheetPlastic",
 				'A', Item.paper,
 					} ));
+			
+			GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.vineScaffoldBlock, 8), new Object[]
+					{
+				"VV",
+				"VV",
+				"VV",
+				'V', Block.vine,
+					} );
 		}
 		catch (Exception x)
 		{
@@ -949,7 +1035,7 @@ public class GregTech extends Vanilla
 				" C ",
 				"SDS",
 				"SSS",
-				'C', "craftingItemValve",
+				'C', "craftingConveyor",
 				'S', "sheetPlastic",
 				'D', Block.railDetector
 					} ));
@@ -959,7 +1045,7 @@ public class GregTech extends Vanilla
 				"SSS",
 				"SDS",
 				" C ",
-				'C', "craftingItemValve",
+				'C', "craftingConveyor",
 				'S', "sheetPlastic",
 				'D', Block.railDetector
 					} ));
@@ -1027,7 +1113,7 @@ public class GregTech extends Vanilla
 				'H', new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 11),
 				'P', "sheetPlastic",
 				'G', "plateGold",
-				'L', "advancedCircuit",
+				'L', "craftingCircuitTier04",
 				'D', "gemDiamond",
 				'R', "dustRedstone",
 					} ));
@@ -1049,7 +1135,7 @@ public class GregTech extends Vanilla
 				"RGR",
 				'C', new ItemStack(MineFactoryReloadedCore.logicCardItem, 1, 0),
 				'P', "sheetPlastic",
-				'G', "ingotGold",
+				'G', "plateGold",
 				'R', "dustRedstone",
 					} ));
 			
@@ -1060,7 +1146,7 @@ public class GregTech extends Vanilla
 				"GDG",
 				'C', new ItemStack(MineFactoryReloadedCore.logicCardItem, 1, 1),
 				'P', "sheetPlastic",
-				'G', "plateGold",
+				'G', "plateSteel",
 				'D', "gemDiamond",
 				'R', "dustRedstone",
 					} ));

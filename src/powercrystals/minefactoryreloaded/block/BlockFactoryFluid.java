@@ -52,15 +52,15 @@ public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, ICo
 			}
 			else if(blockID == MineFactoryReloadedCore.essenceLiquid.blockID)
 			{
-				((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.nightVision.id, 60 * 20, 0));
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.nightVision.id, 60 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.milkLiquid.blockID)
 			{
-				((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.digSpeed.id, 6 * 20, 0));
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.digSpeed.id, 6 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.biofuelLiquid.blockID)
 			{
-				((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 12 * 20, 0));
+				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 12 * 20, 0));
 			}
 		}
 		super.onEntityCollidedWithBlock(world, x, y, z, entity);

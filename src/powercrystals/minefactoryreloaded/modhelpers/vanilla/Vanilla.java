@@ -73,6 +73,7 @@ import powercrystals.minefactoryreloaded.circuits.logicboolean.GreaterOrEqual;
 import powercrystals.minefactoryreloaded.circuits.logicboolean.Less;
 import powercrystals.minefactoryreloaded.circuits.logicboolean.LessOrEqual;
 import powercrystals.minefactoryreloaded.circuits.logicboolean.NotEqual;
+import powercrystals.minefactoryreloaded.circuits.timing.Delay;
 import powercrystals.minefactoryreloaded.circuits.timing.OneShot;
 import powercrystals.minefactoryreloaded.circuits.timing.PulseLengthener;
 import powercrystals.minefactoryreloaded.circuits.wave.SawtoothFalling;
@@ -100,6 +101,7 @@ import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableRub
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableSapling;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizableStemPlants;
 import powercrystals.minefactoryreloaded.farmables.fertilizables.FertilizerStandard;
+import powercrystals.minefactoryreloaded.farmables.fruits.FruitCocoa;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableSkeleton;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableSlime;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
@@ -329,6 +331,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new Xor2());
 		MFRRegistry.registerRedNetLogicCircuit(new Xor3());
 		MFRRegistry.registerRedNetLogicCircuit(new Xor4());
+		MFRRegistry.registerRedNetLogicCircuit(new Delay());
 		
 		MFRRegistry.registerLaserOre(175, new ItemStack(Block.oreCoal));
 		MFRRegistry.registerLaserOre(50, new ItemStack(Block.oreDiamond));
@@ -338,5 +341,10 @@ public class Vanilla
 		MFRRegistry.registerLaserOre(80, new ItemStack(Block.oreLapis));
 		MFRRegistry.registerLaserOre(100, new ItemStack(Block.oreRedstone));
 		MFRRegistry.registerLaserOre(50, new ItemStack(Block.oreNetherQuartz));
+		
+		MFRRegistry.registerFruitLogBlockId(Block.wood.blockID);
+		MFRRegistry.registerFruit(new FruitCocoa());
+		
+		MFRRegistry.registerAutoSpawnerBlacklist("VillagerGolem");
 	}
 }

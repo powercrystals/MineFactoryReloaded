@@ -11,6 +11,7 @@ import net.minecraft.util.WeightedRandomItem;
 import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
+import powercrystals.minefactoryreloaded.api.IFactoryFruit;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
@@ -31,6 +32,9 @@ public abstract class MFRRegistry
 	private static Map<Class<?>, IFactoryGrindable> _grindables = new HashMap<Class<?>, IFactoryGrindable>();
 	private static Map<Class<?>, List<ItemStack>> _breederFoods = new HashMap<Class<?>, List<ItemStack>>();
 	private static Map<Integer, ILiquidDrinkHandler> _liquidDrinkHandlers = new HashMap<Integer, ILiquidDrinkHandler>();
+	
+	private static List<Integer> _fruitLogBlocks = new ArrayList<Integer>();
+	private static Map<Integer, IFactoryFruit> _fruitBlocks = new HashMap<Integer, IFactoryFruit>();
 
 	private static List<WeightedRandomItem> _sludgeDrops  = new ArrayList<WeightedRandomItem>();
 	private static List<IMobEggHandler> _eggHandlers = new ArrayList<IMobEggHandler>();
@@ -41,6 +45,7 @@ public abstract class MFRRegistry
 	private static List<IRedNetLogicCircuit> _redNetLogicCircuits = new ArrayList<IRedNetLogicCircuit>();
 	private static List<WeightedRandomItem> _laserOres  = new ArrayList<WeightedRandomItem>();
 	private static List<Class<?>> _grindableBlacklist = new ArrayList<Class<?>>();
+	private static List<String> _autoSpawnerBlacklist = new ArrayList<String>();
 	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
@@ -224,5 +229,35 @@ public abstract class MFRRegistry
 	public static List<WeightedRandomItem> getLaserOres()
 	{
 		return _laserOres;
+	}
+	
+	public static void registerFruitLogBlockId(Integer fruitLogBlockId)
+	{
+		_fruitLogBlocks.add(fruitLogBlockId);
+	}
+	
+	public static List<Integer> getFruitLogBlockIds()
+	{
+		return _fruitLogBlocks;
+	}
+	
+	public static void registerFruit(IFactoryFruit fruit)
+	{
+		_fruitBlocks.put(fruit.getSourceBlockId(), fruit);
+	}
+	
+	public static Map<Integer, IFactoryFruit> getFruits()
+	{
+		return _fruitBlocks;
+	}
+	
+	public static void registerAutoSpawnerBlacklist(String classString)
+	{
+		_autoSpawnerBlacklist.add(classString);
+	}
+	
+	public static List<String> getAutoSpawnerBlacklist()
+	{
+		return _autoSpawnerBlacklist;
 	}
 }

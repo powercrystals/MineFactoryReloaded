@@ -11,8 +11,10 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
@@ -22,17 +24,19 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.IRotateableTile;
-import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
+import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
-import powercrystals.minefactoryreloaded.tile.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.conveyor.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockConveyor extends BlockContainer
+public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 {
 	private String[] _names = new String []
 			{ "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black", "default" };
@@ -67,13 +71,13 @@ public class BlockConveyor extends BlockContainer
 		{
 			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
 			if(dyeColor == -1) dyeColor = 16;
-			if(Util.isRedstonePowered(te))
+			if(((TileEntityConveyor)te).getConveyorActive())
 			{
-				return _iconsStopped[dyeColor];
+				return _iconsActive[dyeColor];
 			}
 			else
 			{
-				return _iconsActive[dyeColor];
+				return _iconsStopped[dyeColor];
 			}
 		}
 		else
@@ -128,27 +132,16 @@ public class BlockConveyor extends BlockContainer
 		{
 			return;
 		}
-		if(Util.isRedstonePowered(world.getBlockTileEntity(x, y, z)))
+		
+		TileEntity conveyor = world.getBlockTileEntity(x, y, z);
+		if(!(conveyor != null && conveyor instanceof TileEntityConveyor && ((TileEntityConveyor)conveyor).getConveyorActive()))
 		{
 			return;
 		}
 		
-		TileEntity te = world.getBlockTileEntity(x, y - 1, z);
-		if(!world.isRemote && entity instanceof EntityItem && te != null && te instanceof TileEntityItemRouter)
+		if(!world.isRemote && entity instanceof EntityItem)
 		{
-			if(((TileEntityItemRouter)te).hasRouteForItem(((EntityItem)entity).getEntityItem()))
-			{
-				ItemStack s = ((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()); 
-				if(s == null)
-				{
-					entity.setDead();
-					return;
-				}
-				else
-				{
-					((EntityItem)entity).setEntityItemStack(s);
-				}
-			}
+			specialRoute(world, x, y, z, (EntityItem)entity);
 		}
 		
 		double xVelocity = 0;
@@ -300,13 +293,19 @@ public class BlockConveyor extends BlockContainer
 			{
 				((IRotateableTile)te).rotate();
 			}
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
 	{
+		TileEntity tec = world.getBlockTileEntity(x, y, z);
+		if(tec != null && tec instanceof TileEntityConveyor)
+		{
+			((TileEntityConveyor)tec).updateConveyorActive();
+		}
 		if(!canBlockStay(world, x, y, z))
 		{
 			world.setBlockToAir(x, y, z);
@@ -318,12 +317,6 @@ public class BlockConveyor extends BlockContainer
 		e.motionX = x;
 		e.motionY = y;
 		e.motionZ = z;
-	}
-	
-	@Override
-	public boolean canProvidePower()
-	{
-		return true;
 	}
 	
 	@Override
@@ -351,5 +344,85 @@ public class BlockConveyor extends BlockContainer
 		
 		dropBlockAsItem_do(world, x, y, z, new ItemStack(blockID, 1, dyeColor));
 		super.breakBlock(world, x, y, z, blockId, meta);
+	}
+	
+	@Override
+	public boolean canProvidePower()
+	{
+		return false;
+	}
+	
+	// IConnectableRedNet
+	@Override
+	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return RedNetConnectionType.PlateSingle;
+	}
+	
+	@Override
+	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
+	{
+		return null;
+	}
+	
+	@Override
+	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
+	{
+		return 0;
+	}
+	
+	@Override
+	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
+	{
+	}
+	
+	@Override
+	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
+	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileEntityConveyor)
+		{
+			((TileEntityConveyor)te).onRedNetChanged(inputValue);
+		}
+	}
+	
+	private void specialRoute(World world, int x, int y, int z, EntityItem entityitem)
+	{
+		TileEntity teBelow = world.getBlockTileEntity(x, y - 1, z);
+		if(teBelow == null)
+		{
+			return;
+		}
+		else if(teBelow instanceof TileEntityItemRouter)
+		{
+			ItemStack s = ((TileEntityItemRouter)teBelow).routeItem(entityitem.getEntityItem()); 
+			if(s == null)
+			{
+				entityitem.setDead();
+				return;
+			}
+			else
+			{
+				entityitem.setEntityItemStack(s);
+			}
+		}
+		else if(teBelow instanceof TileEntityCollector)
+		{
+			((TileEntityCollector)teBelow).addToChests(entityitem);
+		}
+		else if(teBelow instanceof TileEntityHopper)
+		{
+			if(!((TileEntityHopper)teBelow).isCoolingDown())
+			{
+				ItemStack toInsert = entityitem.getEntityItem().copy();
+				toInsert.stackSize = 1;
+				toInsert = TileEntityHopper.insertStack((IInventory)teBelow, toInsert, ForgeDirection.UP.ordinal());
+				if(toInsert == null)
+				{
+					entityitem.getEntityItem().stackSize--;
+					((TileEntityHopper)teBelow).setTransferCooldown(8);
+				}
+			}
+		}
 	}
 }

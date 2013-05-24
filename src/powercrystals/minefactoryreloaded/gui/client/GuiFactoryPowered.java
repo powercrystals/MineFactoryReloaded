@@ -1,5 +1,8 @@
 package powercrystals.minefactoryreloaded.gui.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
@@ -34,7 +37,13 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 		
 		if(isPointInRegion(141, 15, 8, 60, mouseX, mouseY))
 		{
-			drawBarTooltip("Energy", "MJ", _tePowered.getEnergyStored() / 10, _tePowered.getEnergyStoredMax() / 10, mouseX, mouseY);
+			List<String> lines = new ArrayList<String>();
+			lines.add("Energy");
+			lines.add(_tePowered.getEnergyStored() / TileEntityFactoryPowered.energyPerMJ + " / " + _tePowered.getEnergyStoredMax() / TileEntityFactoryPowered.energyPerMJ + " " + "MJ");
+			lines.add(_tePowered.getEnergyStored() / TileEntityFactoryPowered.energyPerEU + " / " + _tePowered.getEnergyStoredMax() / TileEntityFactoryPowered.energyPerEU + " " + "EU");
+			lines.add(_tePowered.getEnergyStored() * TileEntityFactoryPowered.wPerEnergy / 1000 + " / " +
+					_tePowered.getEnergyStoredMax() * TileEntityFactoryPowered.wPerEnergy / 1000 + " " + "KJ");
+			drawTooltip(lines, mouseX, mouseY);
 		}
 		else if(isPointInRegion(151, 15, 8, 60, mouseX, mouseY))
 		{

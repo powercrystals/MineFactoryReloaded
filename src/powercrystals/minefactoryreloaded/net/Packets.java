@@ -18,7 +18,7 @@ public final class Packets
 	public static final int LogicSetCircuit = 14;
 	public static final int LogicSetPin = 15;
 	public static final int LogicReinitialize = 16;
-	public static final int EnchantmentRouterButton = 17;
+	public static final int RouterButton = 17;
 	public static final int HistorianValueChanged = 18;
 	public static final int FakeSlotChange = 19;
 }

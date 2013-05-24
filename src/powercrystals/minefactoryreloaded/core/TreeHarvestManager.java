@@ -11,13 +11,14 @@ public class TreeHarvestManager
 	private int _currentBlock;
 	private boolean _isLeafPass;
 	private boolean _isDone;
-	private boolean _treeIsUpsideDown; 
+	
+	private TreeHarvestMode _harvestMode; 
 	
 	private Area _treeArea;
 	
-	public TreeHarvestManager(Area treeArea, boolean treeIsUpsideDown)
+	public TreeHarvestManager(Area treeArea, TreeHarvestMode harvestMode)
 	{
-		_treeIsUpsideDown = treeIsUpsideDown;
+		_harvestMode = harvestMode;
 		_treeArea = treeArea;
 		reset();
 	}
@@ -32,10 +33,14 @@ public class TreeHarvestManager
 		_currentBlock++;
 		if(_currentBlock >= _treeBlocks.size())
 		{
+			if(_harvestMode == TreeHarvestMode.Fruit)
+			{
+				_isDone = true;
+			}
 			if(_isLeafPass)
 			{
 				_currentBlock = 0;
-				_treeBlocks = (_treeIsUpsideDown ? _treeArea.getPositionsBottomFirst() : _treeArea.getPositionsTopFirst());
+				_treeBlocks = (_harvestMode == TreeHarvestMode.HarvestInverted ? _treeArea.getPositionsBottomFirst() : _treeArea.getPositionsTopFirst());
 				_isLeafPass = false;
 			}
 			else
@@ -49,7 +54,7 @@ public class TreeHarvestManager
 	{
 		_currentBlock = 0;
 		_isLeafPass = true;
-		_treeBlocks = (_treeIsUpsideDown ? _treeArea.getPositionsTopFirst() : _treeArea.getPositionsBottomFirst());
+		_treeBlocks = (_harvestMode == TreeHarvestMode.HarvestInverted ? _treeArea.getPositionsTopFirst() : _treeArea.getPositionsBottomFirst());
 	}
 	
 	public boolean getIsLeafPass()

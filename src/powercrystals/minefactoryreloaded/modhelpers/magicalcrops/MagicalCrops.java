@@ -23,6 +23,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class MagicalCrops
 {
+	private static final String lastUpdated = "Magical Crops 2.1.0, current release as of May 22 2013";
+	
 	@Init
 	public static void load(FMLInitializationEvent e)
 	{
@@ -37,7 +39,8 @@ public class MagicalCrops
 			
 			// the various plants are separated by type to make future changes easier (mostly considering magicFertilizer behavior)
 			String[] crops = {"Sberry", "Tomato", "Sweetcorn", "Cucum", "Melon", "Bberry", "Rberry", "Grape", "Chil"};
-			String[] magicalCrops = {"Coal", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Obsidian", "Gunpowder", "XP", "Copper", "Tin", "Nether"};
+			String[] namedAsMagicalCropButExtendsBlockCrops = {"Obsidian", "Nether"};
+			String[] magicalCrops = {"Coal", "Dye", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Gunpowder", "XP", "Copper", "Tin"};
 			String[] soulCrops = {"Cow", "Pigmen", "Skele", "Spider"};
 			
 			int seedId;
@@ -54,16 +57,15 @@ public class MagicalCrops
 				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
 			}
 			
-			/*
-			 *  mCropDye is named as a magical crop, but it actually extends vanilla BlockCrops.
-			 *  This means that it needs to get its own special registration, rather than going on one of the string lists. 
-			 */
-			seedId = ((Item)mod.getField("mSeedsDye").get(null)).itemID;
-			blockId = ((Block)mod.getField("mCropDye").get(null)).blockID;
-			fertilize = Class.forName("magicCrop.mCropDye").getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
-			MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
-			MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
-			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
+			for(String crop : namedAsMagicalCropButExtendsBlockCrops)
+			{
+				seedId = ((Item)mod.getField("mSeeds" + crop).get(null)).itemID;
+				blockId = ((Block)mod.getField("mCrop" + crop).get(null)).blockID;
+				fertilize = Class.forName("magicCrop.mCrop" + crop).getMethod("func_72272_c_", World.class, int.class, int.class, int.class);
+				MFRRegistry.registerPlantable(new PlantableCropPlant(seedId, blockId));
+				MFRRegistry.registerHarvestable(new HarvestableCropPlant(blockId, 7));
+				MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockId, fertilize, 7));
+			}
 			
 			for(String magicalCrop : magicalCrops)
 			{
@@ -95,6 +97,7 @@ public class MagicalCrops
 		catch (Exception x)
 		{
 			FMLLog.warning("Something went wrong in MFR Compat: Magical Crops. Probably Emy's fault.");
+			System.out.println("Last updated for " + lastUpdated);
 			x.printStackTrace();
 		}
 	}

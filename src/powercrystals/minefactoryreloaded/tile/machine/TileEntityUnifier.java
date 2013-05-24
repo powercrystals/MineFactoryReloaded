@@ -8,20 +8,20 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import net.minecraftforge.oredict.OreDictionary;
 import powercrystals.core.oredict.OreDictTracker;
+import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUnifier;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityUnifier extends TileEntityFactoryInventory implements ITankContainer
+public class TileEntityUnifier extends TileEntityFactoryInventory implements ITankContainerBucketable
 {
 	private LiquidTank _tank;
 	
@@ -193,6 +193,12 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	}
 	
 	@Override
+	public boolean allowBucketFill()
+	{
+		return true;
+	}
+	
+	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
 		if(_biofuel == null || _ethanol == null || resource == null)
@@ -215,6 +221,12 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return fill(ForgeDirection.UNKNOWN, resource, doFill);
+	}
+	
+	@Override
+	public boolean allowBucketDrain()
+	{
+		return true;
 	}
 	
 	@Override

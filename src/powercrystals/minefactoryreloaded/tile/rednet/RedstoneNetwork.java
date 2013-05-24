@@ -247,7 +247,7 @@ public class RedstoneNetwork
 				continue;
 			}
 			int power = getSingleNodePowerLevel(node);
-			if(power > _powerLevelOutput[subnet])
+			if(Math.abs(power) > Math.abs(_powerLevelOutput[subnet]))
 			{
 				_powerLevelOutput[subnet] = power;
 				_powerProviders[subnet] = node;
@@ -261,7 +261,7 @@ public class RedstoneNetwork
 				continue;
 			}
 			int power = getOmniNodePowerLevel(node, subnet);
-			if(power > _powerLevelOutput[subnet])
+			if(Math.abs(power) > Math.abs(_powerLevelOutput[subnet]))
 			{
 				_powerLevelOutput[subnet] = power;
 				_powerProviders[subnet] = node;
@@ -342,7 +342,7 @@ public class RedstoneNetwork
 		IConnectableRedNet b = ((IConnectableRedNet)Block.blocksList[_world.getBlockId(node.x, node.y, node.z)]);
 		if(b != null)
 		{
-			return Math.max(0, b.getOutputValue(_world, node.x, node.y, node.z, node.orientation.getOpposite(), subnet));
+			return b.getOutputValue(_world, node.x, node.y, node.z, node.orientation.getOpposite(), subnet);
 		}
 		else
 		{

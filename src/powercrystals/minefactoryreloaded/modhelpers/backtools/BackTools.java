@@ -17,6 +17,8 @@ import powercrystals.minefactoryreloaded.item.ItemSafariNetLauncher;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class BackTools
 {
+	private static final String lastUpdated = "for Back Tools 1.5.1v2, current release as of May 20 2013";
+	
 	@SuppressWarnings({"rawtypes","unchecked"})
 	@Init
 	public static void load(FMLInitializationEvent e)
@@ -44,6 +46,7 @@ public class BackTools
 		}
 		catch (Exception x)
 		{
+			System.out.println("Last updated for " + lastUpdated);
 			x.printStackTrace();
 		}
 	}

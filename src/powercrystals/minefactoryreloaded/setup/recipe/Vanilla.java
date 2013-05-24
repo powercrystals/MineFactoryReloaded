@@ -566,6 +566,63 @@ public class Vanilla
 				'M', MineFactoryReloadedCore.machineBaseItem,
 					} ));
 		}
+		
+		if(Machine.BlockSmasher.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 3), new Object[]
+					{
+				"GGG",
+				"HHH",
+				"BMB",
+				'G', "sheetPlastic",
+				'H', MineFactoryReloadedCore.factoryHammerItem,
+				'B', Item.book,
+				'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
+		
+		if(Machine.RedNote.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 4), new Object[]
+					{
+				"GGG",
+				"CNC",
+				" M ",
+				'G', "sheetPlastic",
+				'C', MineFactoryReloadedCore.rednetCableBlock,
+				'N', Block.music,
+				'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
+		
+		if(Machine.AutoBrewer.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 5), new Object[]
+					{
+				"GGG",
+				"CBC",
+				"RMR",
+				'G', "sheetPlastic",
+				'C', Block.chest,
+				'B', Item.brewingStand,
+				'R', Item.redstoneRepeater,
+				'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
+		
+		if(Machine.FruitPicker.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 6), new Object[]
+					{
+				"GGG",
+				"SXS",
+				"SMS",
+				'G', "sheetPlastic",
+				'X', Item.axeGold,
+				'S', Item.shears,
+				'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
 	}
 	
 	protected void registerMachineUpgrades()
@@ -1185,6 +1242,15 @@ public class Vanilla
 			'B', Item.slimeBall,
 				} );
 		
+		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetJailerItem, 1), new Object[]
+				{
+			" I ",
+			"ISI",
+			" I ",
+			'S', MineFactoryReloadedCore.safariNetSingleItem,
+			'I', Block.fenceIron
+				} );
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.safariNetLauncherItem, 1), new Object[]
 				{
 			"PGP",
@@ -1321,6 +1387,14 @@ public class Vanilla
 				{
 			Item.bucketMilk,
 			Item.glassBottle
+				} );
+		
+		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 1), new Object[]
+				{
+			"C",
+			"S",
+			'C', MineFactoryReloadedCore.sugarCharcoalItem,
+			'S', Item.stick
 				} );
 	}
 	

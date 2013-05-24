@@ -12,6 +12,7 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -78,7 +79,11 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	@Override
 	protected boolean activateMachine()
 	{
-		if(_inventory[0] == null || !(_inventory[0].getItem() instanceof ItemSafariNet) || _inventory[0].getTagCompound() == null || ItemSafariNet.isSingleUse(_inventory[0]))
+		if(_inventory[0] == null ||
+				!(_inventory[0].getItem() instanceof ItemSafariNet) ||
+				_inventory[0].getTagCompound() == null ||
+				ItemSafariNet.isSingleUse(_inventory[0]) ||
+				MFRRegistry.getAutoSpawnerBlacklist().contains(_inventory[0].getTagCompound().getString("id")))
 		{
 			setWorkDone(0);
 			return false;	

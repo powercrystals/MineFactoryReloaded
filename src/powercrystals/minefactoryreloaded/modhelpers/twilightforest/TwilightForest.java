@@ -49,6 +49,7 @@ public class TwilightForest
 			
 			Class tfBighorn = Class.forName("twilightforest.entity.passive.EntityTFBighorn");
 			Class tfBoar = Class.forName("twilightforest.entity.passive.EntityTFBoar");
+			Class tfDeer = Class.forName("twilightforest.entity.passive.EntityTFDeer");
 			Class tfHydra = Class.forName("twilightforest.entity.EntityTFHydra");
 			Class tfHydraHead = Class.forName("twilightforest.entity.EntityTFHydraHead");
 			Class tfHydraNeck = Class.forName("twilightforest.entity.EntityTFHydraNeck");
@@ -82,9 +83,11 @@ public class TwilightForest
 			
 			MFRRegistry.registerMobEggHandler(new TwilightForestEggHandler());
 			
-			MFRRegistry.registerRanchable(new RanchableTFBighorn(tfBighorn));
-			
+			MFRRegistry.registerBreederFood(tfBighorn, new ItemStack(Item.wheat));
 			MFRRegistry.registerBreederFood(tfBoar, new ItemStack(Item.carrot));
+			MFRRegistry.registerBreederFood(tfDeer, new ItemStack(Item.wheat));
+			
+			MFRRegistry.registerRanchable(new RanchableTFBighorn(tfBighorn));
 			
 			Class tfBlocks = Class.forName("twilightforest.block.TFBlocks");
 			if(tfBlocks != null)

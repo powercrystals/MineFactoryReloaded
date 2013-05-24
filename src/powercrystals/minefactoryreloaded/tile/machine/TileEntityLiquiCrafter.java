@@ -29,6 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implements ITankContainerBucketable
 {
 	private boolean _lastRedstoneState;
+	private boolean _resourcesChangedSinceLastFailedCraft = true;
 	
 	private class ItemResourceTracker
 	{
@@ -89,6 +90,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 		if(redstoneState && !_lastRedstoneState)
 		{
 			if(!worldObj.isRemote &&
+					_resourcesChangedSinceLastFailedCraft &&
 					_inventory[9] != null &&
 					(_inventory[10] == null ||
 					(_inventory[10].stackSize + _inventory[9].stackSize <= _inventory[9].getMaxStackSize() &&
@@ -180,6 +182,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 		{
 			if(t.found < t.required)
 			{
+				_resourcesChangedSinceLastFailedCraft = false;
 				return;
 			}
 		}
@@ -278,6 +281,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	{
 		_inventory[slot] = stack;
 		if(slot < 9) calculateOutput();
+		onFactoryInventoryChanged();
 	}
 	
 	@Override
@@ -285,6 +289,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	{
 		ItemStack result = super.decrStackSize(slot, size);
 		if(slot < 9) calculateOutput();
+		onFactoryInventoryChanged();
 		return result;
 	}
 	
@@ -335,6 +340,13 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	}
 	
 	@Override
+	protected void onFactoryInventoryChanged()
+	{
+		_resourcesChangedSinceLastFailedCraft = true;
+		super.onFactoryInventoryChanged();
+	}
+	
+	@Override
 	public boolean allowBucketFill()
 	{
 		return false;
@@ -343,20 +355,27 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		int match = findFirstMatchingTank(resource);
-		if(match >= 0) return _tanks[match].fill(resource, doFill);
-		match = findFirstEmptyTank();
-		if(match >= 0) return _tanks[match].fill(resource, doFill);
-		return 0;
+		return this.fill(0, resource, doFill);
 	}
 	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
+		int quantity;
 		int match = findFirstMatchingTank(resource);
-		if(match >= 0) return _tanks[match].fill(resource, doFill);
+		if(match >= 0)
+		{
+			quantity = _tanks[match].fill(resource, doFill);
+			if(quantity > 0) _resourcesChangedSinceLastFailedCraft = true;
+			return quantity;
+		}
 		match = findFirstEmptyTank();
-		if(match >= 0) return _tanks[match].fill(resource, doFill);
+		if(match >= 0)
+		{
+			quantity = _tanks[match].fill(resource, doFill);
+			if(quantity > 0) _resourcesChangedSinceLastFailedCraft = true;
+			return quantity;
+		}
 		return 0;
 	}
 	
