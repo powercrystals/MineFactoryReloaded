@@ -404,6 +404,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		OreDictionary.registerOre("ingotMeatRaw", MineFactoryReloadedCore.meatIngotRawItem);
 		OreDictionary.registerOre("nuggetMeat", MineFactoryReloadedCore.meatNuggetCookedItem);
 		OreDictionary.registerOre("nuggetMeatRaw", MineFactoryReloadedCore.meatNuggetRawItem);
+		OreDictionary.registerOre("itemCharcoalSugar", MineFactoryReloadedCore.sugarCharcoalItem);
 				
 		GameRegistry.registerFuelHandler(new MineFactoryReloadedFuelHandler());
 		
