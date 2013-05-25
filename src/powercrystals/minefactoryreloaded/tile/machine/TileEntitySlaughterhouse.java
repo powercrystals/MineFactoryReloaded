@@ -102,7 +102,7 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 			}
 			else
 			{
-				e.attackEntityFrom(DamageSource.generic, 50);
+				e.attackEntityFrom(DamageSource.generic, 5000);
 			}
 			break;
 		}

@@ -156,7 +156,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				}
 				else
 				{
-					e.attackEntityFrom(DamageSource.generic, 50);
+					e.attackEntityFrom(DamageSource.generic, 5000);
 				}
 				_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 				setIdleTicks(20);
