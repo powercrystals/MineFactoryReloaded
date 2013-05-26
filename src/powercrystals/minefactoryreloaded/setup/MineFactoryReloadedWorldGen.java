@@ -31,10 +31,10 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 		int x = chunkX * 16 + random.nextInt(16);
 		int z = chunkZ * 16 + random.nextInt(16);
 		
+		BiomeGenBase b = world.getBiomeGenForCoords(x, z);
+		
 		if(MFRConfig.rubberTreeWorldGen.getBoolean(true))
 		{
-			BiomeGenBase b = world.getBiomeGenForCoords(x, z);
-			
 			if(MFRRegistry.getRubberTreeBiomes().contains(b.biomeName))
 			{
 				if(random.nextInt(100) < 40)
@@ -59,7 +59,14 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
 				int lakeZ = z - 8 + random.nextInt(16);
-				new WorldGenLakesMeta(MineFactoryReloadedCore.sewageLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
+				if(b.biomeName.toLowerCase().contains("mushroom"))
+				{
+					new WorldGenLakesMeta(MineFactoryReloadedCore.mushroomSoupLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
+				}
+				else
+				{
+					new WorldGenLakesMeta(MineFactoryReloadedCore.sewageLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
+				}
 			}
 		}
 	}
