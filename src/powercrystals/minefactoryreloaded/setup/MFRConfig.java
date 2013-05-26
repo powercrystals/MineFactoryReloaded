@@ -132,7 +132,8 @@ public class MFRConfig
 	public static Property rubberTreeWorldGen;
 	
 	public static Property mfrLakeWorldGen;
-	public static Property mfrLakeRarity;
+	public static Property mfrLakeSewageRarity;
+	public static Property mfrLakeSludgeRarity;
 	public static Property rubberTreeBiomeWhitelist;
 	public static Property rubberTreeBiomeBlacklist;
 	public static Property worldGenDimensionBlacklist;
@@ -304,8 +305,10 @@ public class MFRConfig
 		redNetConnectionBlacklist.comment = "A comma-separated list of block IDs to prevent RedNet cables from connecting to.";
 		worldGenDimensionBlacklist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.DimensionBlacklist", "");
 		worldGenDimensionBlacklist.comment = "A comma-separated list of dimension IDs to disable MFR worldgen in. By default, MFR will not attempt worldgen in dimensions where the player cannot respawn.";
-		mfrLakeRarity = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.LakeRarity", 16);
-		mfrLakeRarity.comment = "Higher numbers make lakes rarer. A value of one will be approximately one per chunk.";
+		mfrLakeSludgeRarity = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.LakeRarity.Sludge", 32);
+		mfrLakeSludgeRarity.comment = "Higher numbers make sludge lakes rarer. A value of one will be approximately one per chunk.";
+		mfrLakeSewageRarity = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.LakeRarity.Sewage", 32);
+		mfrLakeSewageRarity.comment = "Higher numbers make sewage lakes rarer. A value of one will be approximately one per chunk.";
 	
 		vanillaRecipes = c.get("RecipeSets", "EnableVanillaRecipes", true);
 		vanillaRecipes.comment = "If true, MFR will register its standard (vanilla-item-only) recipes.";
