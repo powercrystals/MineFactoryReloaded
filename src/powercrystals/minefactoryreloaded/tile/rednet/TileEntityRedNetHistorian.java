@@ -2,8 +2,6 @@ package powercrystals.minefactoryreloaded.tile.rednet;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -135,5 +133,19 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 	public boolean canRotate()
 	{
 		return true;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		_currentSubnet = nbttagcompound.getInteger("subnet");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setInteger("subnet", _currentSubnet);
 	}
 }
