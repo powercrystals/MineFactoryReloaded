@@ -8,6 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.gui.slot.SlotFake;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -168,7 +169,7 @@ public class ContainerFactoryInventory extends Container
 				slot = (Slot)this.inventorySlots.get(slotIndex);
 				existingStack = slot.getStack();
 				
-				if(existingStack != null && existingStack.itemID == stack.itemID && (!stack.getHasSubtypes() || stack.getItemDamage() == existingStack.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, existingStack))
+				if(!(slot instanceof SlotFake) && existingStack != null && existingStack.itemID == stack.itemID && (!stack.getHasSubtypes() || stack.getItemDamage() == existingStack.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, existingStack))
 				{
 					int existingSize = existingStack.stackSize + stack.stackSize;
 					
@@ -215,7 +216,7 @@ public class ContainerFactoryInventory extends Container
 				slot = (Slot)this.inventorySlots.get(slotIndex);
 				existingStack = slot.getStack();
 				
-				if(existingStack == null)
+				if(!(slot instanceof SlotFake) && existingStack == null)
 				{
 					slot.putStack(stack.copy());
 					slot.onSlotChanged();
