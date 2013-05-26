@@ -2,7 +2,7 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
+import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptReusableSafariNet;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
 
 public class ContainerAutoSpawner extends ContainerFactoryPowered
@@ -15,7 +15,7 @@ public class ContainerAutoSpawner extends ContainerFactoryPowered
 	@Override
 	protected void addSlots()
 	{
-		addSlotToContainer(new Slot(_te, 0, 8, 24));
+		addSlotToContainer(new SlotAcceptReusableSafariNet(_te, 0, 8, 24));
 	}
 	
 	@Override
