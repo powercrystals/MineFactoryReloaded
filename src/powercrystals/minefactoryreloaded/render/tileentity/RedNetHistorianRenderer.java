@@ -1,8 +1,5 @@
 package powercrystals.minefactoryreloaded.render.tileentity;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
