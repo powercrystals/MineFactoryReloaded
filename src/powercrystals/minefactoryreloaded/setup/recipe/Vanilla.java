@@ -1350,6 +1350,8 @@ public class Vanilla
 			"VV",
 			'V', Block.vine,
 				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.chocolateMilkBucketItem), Item.bucketMilk, new ItemStack(Item.dyePowder, 1, 3));
 	}
 	
 	protected void registerVanillaImprovements()

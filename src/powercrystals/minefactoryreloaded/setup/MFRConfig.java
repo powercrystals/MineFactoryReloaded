@@ -47,6 +47,8 @@ public class MFRConfig
 	public static Property biofuelStillBlockId;
 	public static Property meatStillBlockId;
 	public static Property pinkslimeStillBlockId;
+	public static Property chocolateMilkStillBlockId;
+	public static Property mushroomSoupStillBlockId;
 	
 	public static Property hammerItemId;
 	public static Property milkItemId;
@@ -95,6 +97,8 @@ public class MFRConfig
 	public static Property pinkSlimeballItemId;
 	public static Property safariNetJailerItemId;
 	public static Property laserFocusItemId;
+	public static Property chocolateMilkBucketItemId;
+	public static Property mushroomSoupBucketItemId;
 	
 	public static Property zoolologistEntityId;
 	
@@ -172,7 +176,9 @@ public class MFRConfig
 		sludgeStillBlockId = c.getBlock("ID.Sludge.Still", 3137);
 		pinkslimeStillBlockId = c.getBlock("ID.PinkSlime.Still", 3138);
 		sewageStillBlockId = c.getBlock("ID.Sewage.Still", 3139);
+		chocolateMilkStillBlockId = c.getBlock("ID.ChocolateMilk.Still", 3140);
 		essenceStillBlockId = c.getBlock("ID.MobEssence.Still", 3141);
+		mushroomSoupStillBlockId = c.getBlock("ID.MushroomSoup.Still", 3142);
 		biofuelStillBlockId = c.getBlock("ID.BioFuel.Still", 3143);
 		rednetCableBlockId = c.getBlock("ID.RedNet.Cable", 3144);
 		rednetLogicBlockId = c.getBlock("ID.RedNet.Logic", 3145);
@@ -228,6 +234,8 @@ public class MFRConfig
 		pinkSlimeballItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeball", 12031);
 		safariNetJailerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetJailer", 12032);
 		laserFocusItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.LaserFocus", 12033);
+		chocolateMilkBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.ChocolateMilkBucket", 12034);
+		mushroomSoupBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MushroomSoupBucket", 12035);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 	
