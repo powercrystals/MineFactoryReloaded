@@ -13,6 +13,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
+import powercrystals.minefactoryreloaded.gui.container.ContainerPlanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
@@ -47,7 +48,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	@Override
 	public ContainerUpgradable getContainer(InventoryPlayer inventoryPlayer)
 	{
-		return new ContainerUpgradable(this, inventoryPlayer);
+		return new ContainerPlanter(this, inventoryPlayer);
 	}
 	
 	@Override
@@ -61,26 +62,21 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	{
 		BlockPosition bp = _areaManager.getNextBlock().copy();
 		bp.y += 1;
-		List<Integer> slotOrder = Arrays.asList(0,1,2,3,4,5,6,7,8);
 		
-		if(_isMultiPlanter)
-		{
-			int ps = getPlanterSlotIdFromBp(bp);
-			Collections.shuffle(slotOrder);
-			if(slotOrder.contains(ps) && slotOrder.indexOf(ps) != 0)
-			{
-				Collections.swap(slotOrder, slotOrder.indexOf(ps), 0);
-			}
-		}
+		ItemStack match = _inventory[getPlanterSlotIdFromBp(bp)];
 		
-		for(int stackIndex : slotOrder)
-		{
-			if(getStackInSlot(stackIndex) == null)
+		for(int stackIndex = 10; stackIndex < 25; stackIndex++)
+		{		
+			ItemStack availableStack = getStackInSlot(stackIndex);
+			
+			//skip planting attempt if there's no stack in that slot, or if there's a template item that's not matched
+			if(availableStack == null ||
+					(match != null &&
+					(match.itemID != availableStack.itemID ||
+					match.getItemDamage() != availableStack.getItemDamage())))
 			{
 				continue;
 			}
-			
-			ItemStack availableStack = getStackInSlot(stackIndex);
 			
 			if(!MFRRegistry.getPlantables().containsKey(new Integer(availableStack.itemID)))
 			{
@@ -148,12 +144,12 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
-		return 0;
+		return 9;
 	}
 	
 	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
-		return 9;
+		return 17;
 	}
 }
