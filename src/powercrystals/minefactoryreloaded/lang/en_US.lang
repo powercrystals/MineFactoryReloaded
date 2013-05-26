@@ -141,6 +141,7 @@ tile.mfr.rail.passenger.pickup.name = Passenger Pickup Rail
 
 tile.mfr.cable.redstone.name = RedNet Cable
 tile.mfr.rednet.logic.name = Programmable RedNet Controller
+tile.mfr.rednet.panel.historian.name = RedNet Historian
 
 tile.mfr.liquid.milk.still.name = Milk
 tile.mfr.liquid.sludge.still.name = Sludge
