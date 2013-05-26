@@ -115,6 +115,8 @@ public class MFRConfig
 	public static Property fruitTreeSearchMaxVertical;
 	public static Property fruitTreeSearchMaxHorizontal;
 	public static Property breederShutdownThreshold;
+	public static Property autospawnerCostStandard;
+	public static Property autospawnerCostExact;
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
@@ -268,12 +270,18 @@ public class MFRConfig
 		conveyorCaptureNonItems.comment = "If false, conveyors will not grab non-item entities. Breaks conveyor mob grinders but makes them safe for golems, etc.";
 		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
 		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";
+		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
+		enableSlipperyRoads.comment = "If true, roads will be slippery like ice.";
 		fruitTreeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.FruitTreeMaxHoriztonal", 5);
 		fruitTreeSearchMaxHorizontal.comment = "When searching for parts of a fruit tree, how far out to the sides (radius) to search";
 		fruitTreeSearchMaxVertical = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.FruitTreeMaxVertical", 20);
 		fruitTreeSearchMaxVertical.comment = "When searching for parts of a fruit tree, how far up to search";
 		breederShutdownThreshold = c.get(Configuration.CATEGORY_GENERAL, "Breeder.ShutdownThreshold", 50);
 		breederShutdownThreshold.comment = "If the number of entities in the breeder's target area exceeds this value, the breeder will cease operating. This is provided to control server lag.";
+		autospawnerCostExact = c.get(Configuration.CATEGORY_GENERAL, "AutoSpawner.Cost.Exact", 50);
+		autospawnerCostExact.comment = "The work required to generate a mob in exact mode.";
+		autospawnerCostStandard = c.get(Configuration.CATEGORY_GENERAL, "AutoSpawner.Cost.Standard", 15);
+		autospawnerCostStandard.comment = "The work required to generate a mob in standard (non-exact) mode.";
 		
 		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";
@@ -287,9 +295,6 @@ public class MFRConfig
 		
 		redNetDebug = c.get(Configuration.CATEGORY_GENERAL, "RedNet.Debug", false);
 		redNetDebug.comment = "If true, RedNet cables will dump a massive amount of data to the log file. You should probably only use this if PC tells you to.";
-		
-		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
-		enableSlipperyRoads.comment = "If true, roads will be slippery like ice.";
 		
 		rubberTreeBiomeWhitelist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTreeBiomeWhitelist", "");
 		rubberTreeBiomeWhitelist.comment = "A comma-separated list of biomes to allow rubber trees to spawn in. Does nothing if rubber tree worldgen is disabled.";
