@@ -46,6 +46,8 @@ public abstract class MFRRegistry
 	private static List<WeightedRandomItem> _laserOres  = new ArrayList<WeightedRandomItem>();
 	private static List<String> _autoSpawnerBlacklist = new ArrayList<String>();
 	
+	private static ItemStack[] _laserPreferredOres = new ItemStack[16];
+	
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
 		_plantables.put(new Integer(plantable.getSeedId()), plantable);
@@ -247,5 +249,15 @@ public abstract class MFRRegistry
 	public static List<String> getAutoSpawnerBlacklist()
 	{
 		return _autoSpawnerBlacklist;
+	}
+	
+	public static void setLaserPreferredOre(int color, ItemStack ore)
+	{
+		_laserPreferredOres[color] = ore;
+	}
+	
+	public static ItemStack getLaserPreferredOre(int color)
+	{
+		return _laserPreferredOres[color];
 	}
 }
