@@ -452,6 +452,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("chocolatemilk", new LiquidStack(chocolateMilkLiquid, LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(chocolateMilkBucketItem), new ItemStack(Item.bucketEmpty)));
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mushroomsoup", new LiquidStack(mushroomSoupLiquid, LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(mushroomSoupBucketItem), new ItemStack(Item.bucketEmpty)));
 		
+		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mushroomsoup", new LiquidStack(mushroomSoupLiquid, LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(Item.bowlSoup), new ItemStack(Item.bowlEmpty)));
+		
 		for(ItemStack s : OreDictionary.getOres("itemRubber"))
 		{
 			FurnaceRecipes.smelting().addSmelting(s.itemID, s.getItemDamage(), new ItemStack(rawPlasticItem), 0.3F);
