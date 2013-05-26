@@ -53,6 +53,7 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 		NBTTagCompound data = new NBTTagCompound();
 		data.setInteger("facing", getDirectionFacing().ordinal());
 		data.setInteger("subnet", _currentSubnet);
+		data.setInteger("current", _lastValues[_currentSubnet]);
 		Packet132TileEntityData packet = new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, data);
 		return packet;
 	}
@@ -61,19 +62,17 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
 	{
 		_currentSubnet = pkt.customParam1.getInteger("subnet");
+		_currentValueClient = pkt.customParam1.getInteger("current");
 		rotateDirectlyTo(pkt.customParam1.getInteger("facing"));
 	}
 	
 	@Override
 	public void validate()
 	{
-		/*for(int i = 0; i < 16; i++)
+		if(!worldObj.isRemote)
 		{
-			if(_data.get(i).isEmpty())
-			{
-				_data.get(i).add(new HistorianData(0, worldObj.getTotalWorldTime()));
-			}
-		}*/
+			setSelectedSubnet(_currentSubnet);
+		}
 	}
 	
 	@Override
@@ -116,6 +115,11 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 		if(worldObj.isRemote)
 		{
 			_valuesClient.fill(0);
+		}
+		else
+		{
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.provider.dimensionId, PacketWrapper.createPacket(
+					MineFactoryReloadedCore.modNetworkChannel, Packets.HistorianValueChanged, new Object[] { xCoord, yCoord, zCoord, _lastValues[_currentSubnet] }));
 		}
 	}
 	
