@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.gui.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import powercrystals.minefactoryreloaded.gui.slot.SlotAcceptLaserFocus;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
 
 public class ContainerLaserDrill extends ContainerFactoryInventory
@@ -12,6 +13,15 @@ public class ContainerLaserDrill extends ContainerFactoryInventory
 	public ContainerLaserDrill(TileEntityLaserDrill tileentity, InventoryPlayer inv)
 	{
 		super(tileentity, inv);
+	}
+	
+	@Override
+	protected void addSlots()
+	{
+		for(int i = 0; i < 6; i++)
+		{	
+			addSlotToContainer(new SlotAcceptLaserFocus(_te, i, 62 + 18 * i, 79));
+		}
 	}
 	
 	@Override
@@ -36,5 +46,11 @@ public class ContainerLaserDrill extends ContainerFactoryInventory
 		else if(var == 101) ((TileEntityLaserDrill)_te).setWorkDone(_workDoneTemp | (value << 16));
 		if(var == 102) _energyStoredTemp = (value >= 0 ? value : value + 65536);
 		else if(var == 103) ((TileEntityLaserDrill)_te).setEnergyStored(_energyStoredTemp | (value << 16));
+	}
+	
+	@Override
+	protected int getPlayerInventoryVerticalOffset()
+	{
+		return 99;
 	}
 }

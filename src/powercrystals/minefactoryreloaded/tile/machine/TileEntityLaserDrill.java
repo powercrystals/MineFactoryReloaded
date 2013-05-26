@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -8,7 +10,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.util.WeightedRandomItem;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -168,7 +172,28 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 	
 	private ItemStack getRandomDrop()
 	{
-		return ((WeightedRandomItemStack)WeightedRandom.getRandomItem(_rand, MFRRegistry.getLaserOres())).getStack();
+		List<WeightedRandomItemStack> drops = new LinkedList<WeightedRandomItemStack>();
+		int boost = WeightedRandom.getTotalWeight(MFRRegistry.getLaserOres()) / 30;
+		
+		for(WeightedRandomItem i : MFRRegistry.getLaserOres())
+		{
+			WeightedRandomItemStack oldStack = (WeightedRandomItemStack)i;
+			WeightedRandomItemStack newStack = new WeightedRandomItemStack(oldStack.itemWeight, oldStack.getStack());
+			drops.add(newStack);
+			for(ItemStack s : _inventory)
+			{
+				if(s == null || s.itemID != MineFactoryReloadedCore.laserFocusItem.itemID)
+				{
+					continue;
+				}
+				if(InventoryManager.stacksEqual(newStack.getStack(), MFRRegistry.getLaserPreferredOre(s.getItemDamage())))
+				{
+					newStack.itemWeight += boost;
+				}
+			}
+		}
+		
+		return ((WeightedRandomItemStack)WeightedRandom.getRandomItem(_rand, drops)).getStack();
 	}
 	
 	@Override
@@ -196,12 +221,10 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 		return yCoord - _bedrockLevel;
 	}
 	
-	// IInventory
-	
 	@Override
 	public int getSizeInventory()
 	{
-		return 0;
+		return 6;
 	}
 	
 	@Override
@@ -214,6 +237,18 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 	public int getInventoryStackLimit()
 	{
 		return 1;
+	}
+	
+	@Override
+	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemstack, int side)
+	{
+		return false;
 	}
 	
 	@Override

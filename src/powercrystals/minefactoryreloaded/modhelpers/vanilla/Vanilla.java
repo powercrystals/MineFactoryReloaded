@@ -396,5 +396,14 @@ public class Vanilla
 		MFRRegistry.registerFruit(new FruitCocoa());
 		
 		MFRRegistry.registerAutoSpawnerBlacklist("VillagerGolem");
+		
+		MFRRegistry.setLaserPreferredOre(15, new ItemStack(Block.oreCoal));
+		MFRRegistry.setLaserPreferredOre(3, new ItemStack(Block.oreDiamond));
+		MFRRegistry.setLaserPreferredOre(5, new ItemStack(Block.oreEmerald));
+		MFRRegistry.setLaserPreferredOre(4, new ItemStack(Block.oreGold));
+		MFRRegistry.setLaserPreferredOre(12, new ItemStack(Block.oreIron));
+		MFRRegistry.setLaserPreferredOre(11, new ItemStack(Block.oreLapis));
+		MFRRegistry.setLaserPreferredOre(14, new ItemStack(Block.oreRedstone));
+		MFRRegistry.setLaserPreferredOre(0, new ItemStack(Block.oreNetherQuartz));
 	}
 }

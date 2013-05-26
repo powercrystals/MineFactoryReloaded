@@ -18,6 +18,7 @@ public class GuiLaserDrill extends GuiFactoryInventory
 	{
 		super(container, tileentity);
 		_drill = tileentity;
+		ySize = 180;
 	}
 	
 	@Override

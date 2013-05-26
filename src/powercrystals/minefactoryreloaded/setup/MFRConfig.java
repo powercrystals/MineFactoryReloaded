@@ -66,7 +66,7 @@ public class MFRConfig
 	public static Property rawRubberItemId;
 	public static Property machineBaseItemId;
 	public static Property safariNetItemId;
-	public static Property ceramicDyeId;
+	public static Property ceramicDyeItemId;
 	public static Property blankRecordId;
 	public static Property syringeZombieId;
 	public static Property safariNetSingleItemId;
@@ -94,6 +94,7 @@ public class MFRConfig
 	public static Property pinkSlimeBucketItemId;
 	public static Property pinkSlimeballItemId;
 	public static Property safariNetJailerItemId;
+	public static Property laserFocusItemId;
 	
 	public static Property zoolologistEntityId;
 	
@@ -198,7 +199,7 @@ public class MFRConfig
 		rawRubberItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.RawRubber", 12002);
 		machineBaseItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MachineBlock", 12003);
 		safariNetItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNet", 12004);
-		ceramicDyeId = c.getItem(Configuration.CATEGORY_ITEM, "ID.CeramicDye", 12005);
+		ceramicDyeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.CeramicDye", 12005);
 		blankRecordId = c.getItem(Configuration.CATEGORY_ITEM, "ID.BlankRecord", 12006);
 		syringeZombieId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SyringeZombie", 12007);
 		safariNetSingleItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetSingleUse", 12008);
@@ -226,6 +227,7 @@ public class MFRConfig
 		pinkSlimeBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeBucket", 12030);
 		pinkSlimeballItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeball", 12031);
 		safariNetJailerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetJailer", 12032);
+		laserFocusItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.LaserFocus", 12033);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 	
