@@ -36,6 +36,9 @@ public class ThermalExpansion
 			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bucketEmpty), new ItemStack(MineFactoryReloadedCore.meatBucketItem), LiquidDictionary.getLiquid("meat", LiquidContainerRegistry.BUCKET_VOLUME), true);
 			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bucketEmpty), new ItemStack(MineFactoryReloadedCore.sewageBucketItem), LiquidDictionary.getLiquid("sewage", LiquidContainerRegistry.BUCKET_VOLUME), true);
 			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bucketEmpty), new ItemStack(MineFactoryReloadedCore.pinkSlimeBucketItem), LiquidDictionary.getLiquid("pinkslime", LiquidContainerRegistry.BUCKET_VOLUME), true);
+			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bucketEmpty), new ItemStack(MineFactoryReloadedCore.chocolateMilkBucketItem), LiquidDictionary.getLiquid("chocolatemilk", LiquidContainerRegistry.BUCKET_VOLUME), true);
+			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bucketEmpty), new ItemStack(MineFactoryReloadedCore.mushroomSoupBucketItem), LiquidDictionary.getLiquid("mushroomsoup", LiquidContainerRegistry.BUCKET_VOLUME), true);
+			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bowlEmpty), new ItemStack(Item.bowlSoup), LiquidDictionary.getLiquid("mushroomsoup", LiquidContainerRegistry.BUCKET_VOLUME), true);
 		}
 		catch (Exception x)
 		{
