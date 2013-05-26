@@ -29,10 +29,12 @@ public class ContainerPlanter extends ContainerUpgradable
 		addSlotToContainer(new SlotFake(_te, 7, 26, 69));
 		addSlotToContainer(new SlotFake(_te, 8, 44, 69));
 		
+		//upgrade slot
 		addSlotToContainer(new SlotAcceptUpgrade(_te, 9, 152, 79));
 		
-		int xStart = 0;
-		int yStart = 0;
+		//resource slots
+		int xStart = 65;
+		int yStart = 15;
 		
 		for(int i = 0; i < 4; i++)
 		{
