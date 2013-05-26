@@ -15,23 +15,28 @@ public class ItemMilkBottle extends ItemFactory
 	
 	@Override
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
-	{
-		if(!player.capabilities.isCreativeMode)
+    {
+		if (!player.capabilities.isCreativeMode)
 		{
 			stack.stackSize--;
+
+			if(!player.inventory.addItemStackToInventory(new ItemStack(Item.glassBottle)))
+			{
+				player.dropPlayerItem(new ItemStack(Item.glassBottle));
+			}
 		}
-		
+
 		if(!world.isRemote)
 		{
 			player.curePotionEffects(new ItemStack(Item.bucketMilk));
 		}
-		
-		if(!player.inventory.addItemStackToInventory(new ItemStack(Item.glassBottle)))
+
+		if(stack.stackSize <= 0)
 		{
-			player.dropPlayerItem(new ItemStack(Item.glassBottle));
+			stack.stackSize = 0;
 		}
-		
-		return stack.stackSize <= 0 ? null : stack;
+
+		return stack;
 	}
 	
 	
