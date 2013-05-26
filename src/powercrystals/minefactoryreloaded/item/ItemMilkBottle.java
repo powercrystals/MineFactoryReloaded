@@ -19,8 +19,12 @@ public class ItemMilkBottle extends ItemFactory
 		if (!player.capabilities.isCreativeMode)
 		{
 			stack.stackSize--;
-
-			if(!player.inventory.addItemStackToInventory(new ItemStack(Item.glassBottle)))
+			
+			if(stack.stackSize <= 0)
+			{
+				return new ItemStack(Item.glassBottle);
+			}
+			else if(!player.inventory.addItemStackToInventory(new ItemStack(Item.glassBottle)))
 			{
 				player.dropPlayerItem(new ItemStack(Item.glassBottle));
 			}
