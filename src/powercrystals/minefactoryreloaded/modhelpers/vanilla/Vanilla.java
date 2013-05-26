@@ -92,10 +92,12 @@ import powercrystals.minefactoryreloaded.circuits.wave.Square;
 import powercrystals.minefactoryreloaded.circuits.wave.Triangle;
 import powercrystals.minefactoryreloaded.entity.EntityPinkSlime;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerBiofuel;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerChocolateMilk;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerLava;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMeat;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMilk;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMobEssence;
+import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerMushroomSoup;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerPinkSlime;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerSewage;
 import powercrystals.minefactoryreloaded.farmables.drinkhandlers.DrinkHandlerSludge;
@@ -318,6 +320,8 @@ public class Vanilla
 		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.essenceLiquid.blockID, new DrinkHandlerMobEssence());
 		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.meatLiquid.blockID, new DrinkHandlerMeat());
 		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.pinkSlimeLiquid.blockID, new DrinkHandlerPinkSlime());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.chocolateMilkLiquid.blockID, new DrinkHandlerChocolateMilk());
+		MFRRegistry.registerLiquidDrinkHandler(MineFactoryReloadedCore.mushroomSoupLiquid.blockID, new DrinkHandlerMushroomSoup());
 		
 		MFRRegistry.registerRedNetLogicCircuit(new AdderAnalog());
 		MFRRegistry.registerRedNetLogicCircuit(new AdderDigitalFull());
@@ -391,6 +395,7 @@ public class Vanilla
 		MFRRegistry.registerLaserOre(80, new ItemStack(Block.oreLapis));
 		MFRRegistry.registerLaserOre(100, new ItemStack(Block.oreRedstone));
 		MFRRegistry.registerLaserOre(50, new ItemStack(Block.oreNetherQuartz));
+		MFRRegistry.registerLaserOre(80, new ItemStack(Block.glowStone));
 		
 		MFRRegistry.registerFruitLogBlockId(Block.wood.blockID);
 		MFRRegistry.registerFruit(new FruitCocoa());

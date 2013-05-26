@@ -47,6 +47,8 @@ public class MFRConfig
 	public static Property biofuelStillBlockId;
 	public static Property meatStillBlockId;
 	public static Property pinkslimeStillBlockId;
+	public static Property chocolateMilkStillBlockId;
+	public static Property mushroomSoupStillBlockId;
 	
 	public static Property hammerItemId;
 	public static Property milkItemId;
@@ -95,6 +97,8 @@ public class MFRConfig
 	public static Property pinkSlimeballItemId;
 	public static Property safariNetJailerItemId;
 	public static Property laserFocusItemId;
+	public static Property chocolateMilkBucketItemId;
+	public static Property mushroomSoupBucketItemId;
 	
 	public static Property zoolologistEntityId;
 	
@@ -110,6 +114,9 @@ public class MFRConfig
 	public static Property playSounds;
 	public static Property fruitTreeSearchMaxVertical;
 	public static Property fruitTreeSearchMaxHorizontal;
+	public static Property breederShutdownThreshold;
+	public static Property autospawnerCostStandard;
+	public static Property autospawnerCostExact;
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
@@ -125,7 +132,8 @@ public class MFRConfig
 	public static Property rubberTreeWorldGen;
 	
 	public static Property mfrLakeWorldGen;
-	public static Property mfrLakeRarity;
+	public static Property mfrLakeSewageRarity;
+	public static Property mfrLakeSludgeRarity;
 	public static Property rubberTreeBiomeWhitelist;
 	public static Property rubberTreeBiomeBlacklist;
 	public static Property worldGenDimensionBlacklist;
@@ -172,7 +180,9 @@ public class MFRConfig
 		sludgeStillBlockId = c.getBlock("ID.Sludge.Still", 3137);
 		pinkslimeStillBlockId = c.getBlock("ID.PinkSlime.Still", 3138);
 		sewageStillBlockId = c.getBlock("ID.Sewage.Still", 3139);
+		chocolateMilkStillBlockId = c.getBlock("ID.ChocolateMilk.Still", 3140);
 		essenceStillBlockId = c.getBlock("ID.MobEssence.Still", 3141);
+		mushroomSoupStillBlockId = c.getBlock("ID.MushroomSoup.Still", 3142);
 		biofuelStillBlockId = c.getBlock("ID.BioFuel.Still", 3143);
 		rednetCableBlockId = c.getBlock("ID.RedNet.Cable", 3144);
 		rednetLogicBlockId = c.getBlock("ID.RedNet.Logic", 3145);
@@ -228,6 +238,8 @@ public class MFRConfig
 		pinkSlimeballItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeball", 12031);
 		safariNetJailerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetJailer", 12032);
 		laserFocusItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.LaserFocus", 12033);
+		chocolateMilkBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.ChocolateMilkBucket", 12034);
+		mushroomSoupBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MushroomSoupBucket", 12035);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 	
@@ -259,10 +271,18 @@ public class MFRConfig
 		conveyorCaptureNonItems.comment = "If false, conveyors will not grab non-item entities. Breaks conveyor mob grinders but makes them safe for golems, etc.";
 		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
 		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";
+		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
+		enableSlipperyRoads.comment = "If true, roads will be slippery like ice.";
 		fruitTreeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.FruitTreeMaxHoriztonal", 5);
 		fruitTreeSearchMaxHorizontal.comment = "When searching for parts of a fruit tree, how far out to the sides (radius) to search";
 		fruitTreeSearchMaxVertical = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.FruitTreeMaxVertical", 20);
 		fruitTreeSearchMaxVertical.comment = "When searching for parts of a fruit tree, how far up to search";
+		breederShutdownThreshold = c.get(Configuration.CATEGORY_GENERAL, "Breeder.ShutdownThreshold", 50);
+		breederShutdownThreshold.comment = "If the number of entities in the breeder's target area exceeds this value, the breeder will cease operating. This is provided to control server lag.";
+		autospawnerCostExact = c.get(Configuration.CATEGORY_GENERAL, "AutoSpawner.Cost.Exact", 50);
+		autospawnerCostExact.comment = "The work required to generate a mob in exact mode.";
+		autospawnerCostStandard = c.get(Configuration.CATEGORY_GENERAL, "AutoSpawner.Cost.Standard", 15);
+		autospawnerCostStandard.comment = "The work required to generate a mob in standard (non-exact) mode.";
 		
 		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";
@@ -277,9 +297,6 @@ public class MFRConfig
 		redNetDebug = c.get(Configuration.CATEGORY_GENERAL, "RedNet.Debug", false);
 		redNetDebug.comment = "If true, RedNet cables will dump a massive amount of data to the log file. You should probably only use this if PC tells you to.";
 		
-		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
-		enableSlipperyRoads.comment = "If true, roads will be slippery like ice.";
-		
 		rubberTreeBiomeWhitelist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTreeBiomeWhitelist", "");
 		rubberTreeBiomeWhitelist.comment = "A comma-separated list of biomes to allow rubber trees to spawn in. Does nothing if rubber tree worldgen is disabled.";
 		rubberTreeBiomeBlacklist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.RubberTreeBiomeBlacklist", "");
@@ -288,8 +305,10 @@ public class MFRConfig
 		redNetConnectionBlacklist.comment = "A comma-separated list of block IDs to prevent RedNet cables from connecting to.";
 		worldGenDimensionBlacklist = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.DimensionBlacklist", "");
 		worldGenDimensionBlacklist.comment = "A comma-separated list of dimension IDs to disable MFR worldgen in. By default, MFR will not attempt worldgen in dimensions where the player cannot respawn.";
-		mfrLakeRarity = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.LakeRarity", 16);
-		mfrLakeRarity.comment = "Higher numbers make lakes rarer. A value of one will be approximately one per chunk.";
+		mfrLakeSludgeRarity = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.LakeRarity.Sludge", 32);
+		mfrLakeSludgeRarity.comment = "Higher numbers make sludge lakes rarer. A value of one will be approximately one per chunk.";
+		mfrLakeSewageRarity = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.LakeRarity.Sewage", 32);
+		mfrLakeSewageRarity.comment = "Higher numbers make sewage lakes rarer. A value of one will be approximately one per chunk.";
 	
 		vanillaRecipes = c.get("RecipeSets", "EnableVanillaRecipes", true);
 		vanillaRecipes.comment = "If true, MFR will register its standard (vanilla-item-only) recipes.";

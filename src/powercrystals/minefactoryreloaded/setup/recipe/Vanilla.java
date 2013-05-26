@@ -753,6 +753,19 @@ public class Vanilla
 			'R', Item.redstone,
 			'G', Item.goldNugget,
 				} ));
+		
+		for(int i = 0; i < 16; i++)
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.laserFocusItem, 1, i), new Object[]
+					{
+				"ENE",
+				"NGN",
+				"ENE",
+				'E', Item.emerald,
+				'N', Item.goldNugget,
+				'G', new ItemStack(MineFactoryReloadedCore.factoryGlassPaneBlock, 1, i)
+					} ));
+		}
 	}
 	
 	protected void registerConveyors()
@@ -1337,6 +1350,8 @@ public class Vanilla
 			"VV",
 			'V', Block.vine,
 				} );
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.chocolateMilkBucketItem), Item.bucketMilk, new ItemStack(Item.dyePowder, 1, 3));
 	}
 	
 	protected void registerVanillaImprovements()
@@ -1539,6 +1554,17 @@ public class Vanilla
 			'P', "sheetPlastic",
 			'G', Item.goldNugget,
 			'R', Item.redstone,
+				} ));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.rednetPanelBlock, 1, 0), new Object[]
+				{
+			"PCP",
+			"PBP",
+			"KPK",
+			'P', "sheetPlastic",
+			'C', MineFactoryReloadedCore.rednetCableBlock,
+			'B', Block.bookShelf,
+			'K', new ItemStack(Item.dyePowder, 1, 0)
 				} ));
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.rednetMemoryCardItem, 1, 0), new ItemStack(MineFactoryReloadedCore.rednetMemoryCardItem, 1, 0));

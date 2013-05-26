@@ -38,6 +38,7 @@ public class GuiBlockSmasher extends GuiFactoryPowered
 	{
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		fontRenderer.drawString(new Integer(_smasher.getFortune()).toString(), 68, 44, 4210752);
+		fontRenderer.drawString("Fortune", 64, 15, 4210752);
 	}
 	
 	@Override

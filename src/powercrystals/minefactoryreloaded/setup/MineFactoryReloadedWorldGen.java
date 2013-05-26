@@ -31,10 +31,10 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 		int x = chunkX * 16 + random.nextInt(16);
 		int z = chunkZ * 16 + random.nextInt(16);
 		
+		BiomeGenBase b = world.getBiomeGenForCoords(x, z);
+		
 		if(MFRConfig.rubberTreeWorldGen.getBoolean(true))
 		{
-			BiomeGenBase b = world.getBiomeGenForCoords(x, z);
-			
 			if(MFRRegistry.getRubberTreeBiomes().contains(b.biomeName))
 			{
 				if(random.nextInt(100) < 40)
@@ -46,7 +46,7 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 		
 		if(MFRConfig.mfrLakeWorldGen.getBoolean(true) && world.provider.canRespawnHere())
 		{
-			if(random.nextInt(MFRConfig.mfrLakeRarity.getInt()) == 0)
+			if(random.nextInt(MFRConfig.mfrLakeSludgeRarity.getInt()) == 0)
 			{
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
@@ -54,12 +54,19 @@ public class MineFactoryReloadedWorldGen implements IWorldGenerator
 				new WorldGenLakesMeta(MineFactoryReloadedCore.sludgeLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
 			}
 			
-			if(random.nextInt(MFRConfig.mfrLakeRarity.getInt()) == 0)
+			if(random.nextInt(MFRConfig.mfrLakeSewageRarity.getInt()) == 0)
 			{
 				int lakeX = x - 8 + random.nextInt(16);
 				int lakeY = random.nextInt(128);
 				int lakeZ = z - 8 + random.nextInt(16);
-				new WorldGenLakesMeta(MineFactoryReloadedCore.sewageLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
+				if(b.biomeName.toLowerCase().contains("mushroom"))
+				{
+					new WorldGenLakesMeta(MineFactoryReloadedCore.mushroomSoupLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
+				}
+				else
+				{
+					new WorldGenLakesMeta(MineFactoryReloadedCore.sewageLiquid.blockID, 7).generate(world, random, lakeX, lakeY, lakeZ);
+				}
 			}
 		}
 	}
