@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import cpw.mods.fml.relauncher.Side;
@@ -75,7 +76,7 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 		
 		IInventoryManager manager = InventoryManager.create(this, ForgeDirection.UNKNOWN);
 		
-		if(entities.size() > 50)
+		if(entities.size() > MFRConfig.breederShutdownThreshold.getInt())
 		{
 			setIdleTicks(getIdleTicksMax());
 			return false;

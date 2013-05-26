@@ -114,6 +114,7 @@ public class MFRConfig
 	public static Property playSounds;
 	public static Property fruitTreeSearchMaxVertical;
 	public static Property fruitTreeSearchMaxHorizontal;
+	public static Property breederShutdownThreshold;
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
@@ -271,6 +272,8 @@ public class MFRConfig
 		fruitTreeSearchMaxHorizontal.comment = "When searching for parts of a fruit tree, how far out to the sides (radius) to search";
 		fruitTreeSearchMaxVertical = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.FruitTreeMaxVertical", 20);
 		fruitTreeSearchMaxVertical.comment = "When searching for parts of a fruit tree, how far up to search";
+		breederShutdownThreshold = c.get(Configuration.CATEGORY_GENERAL, "Breeder.ShutdownThreshold", 50);
+		breederShutdownThreshold.comment = "If the number of entities in the breeder's target area exceeds this value, the breeder will cease operating. This is provided to control server lag.";
 		
 		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";
