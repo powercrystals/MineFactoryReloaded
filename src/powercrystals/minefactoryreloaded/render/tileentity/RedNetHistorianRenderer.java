@@ -76,14 +76,6 @@ public class RedNetHistorianRenderer extends TileEntitySpecialRenderer implement
 		Integer[] values = historian.getValues();
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		
-		for(int i = 0; i < values.length; i++)
-		{
-			if(values[i] == null)
-			{
-				System.out.println("Queue[" + i + "] is null!");
-			}
-		}
-		
 		int yMin = Collections.min(Arrays.asList(values));
 		int yMax = Collections.max(Arrays.asList(values));
 		if(yMax < 15 && yMin < 15 && yMin >= 0)
