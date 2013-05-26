@@ -1,9 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
@@ -12,7 +8,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
-import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
+import powercrystals.minefactoryreloaded.gui.client.GuiPlanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerPlanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
 import powercrystals.minefactoryreloaded.setup.Machine;
@@ -23,7 +19,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityPlanter extends TileEntityFactoryPowered
 {
 	private HarvestAreaManager _areaManager;
-	private boolean _isMultiPlanter = true;
 	
 	public TileEntityPlanter() 
 	{
@@ -42,7 +37,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	@SideOnly(Side.CLIENT)
 	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
-		return new GuiUpgradable(getContainer(inventoryPlayer), this);
+		return new GuiPlanter(getContainer(inventoryPlayer), this);
 	}
 	
 	@Override
