@@ -9,6 +9,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetHistorian;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -107,7 +108,7 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 		{
 			return false;
 		}
-
+		
 		ItemStack s = player.inventory.getCurrentItem();
 		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
@@ -130,7 +131,7 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean renderAsNormalBlock()
 	{
@@ -166,7 +167,7 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 	{
 		return new TileEntityRedNetHistorian();
 	}
-
+	
 	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
@@ -177,19 +178,19 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 		}
 		return RedNetConnectionType.None;
 	}
-
+	
 	@Override
 	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return _blankOutputs;
 	}
-
+	
 	@Override
 	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
 	{
@@ -199,9 +200,15 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 			((TileEntityRedNetHistorian)te).valuesChanged(inputValues);
 		}
 	}
-
+	
 	@Override
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{
+	}
+	
+	@Override
+	public void registerIcons(IconRegister ir)
+	{
+		blockIcon = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 }
