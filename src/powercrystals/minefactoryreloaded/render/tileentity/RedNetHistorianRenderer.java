@@ -76,23 +76,56 @@ public class RedNetHistorianRenderer extends TileEntitySpecialRenderer implement
 		Integer[] values = historian.getValues();
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		
-		int yMin = Collections.min(Arrays.asList(values));
-		int yMax = Collections.max(Arrays.asList(values));
+		int yMin = Integer.MAX_VALUE;
+		int yMax = Integer.MIN_VALUE;
+		
+		for(int i = 0; i < values.length; i++)
+		{
+			Integer v = values[i];
+			if(v == null)
+			{
+				continue;
+			}
+			if(v > yMax)
+			{
+				yMax = v;
+			}
+			if(v < yMin)
+			{
+				yMin = v;
+			}
+		}
+		
+		
 		if(yMax < 15 && yMin < 15 && yMin >= 0)
 		{
 			yMin = 0;
 			yMax = 15;
 		}
 		
+		Integer lastValue = null;
+		int lastX = 0;
 		for(int i = 1; i < values.length; i++)
 		{
-			double x1 = (14.0/16.0)/values.length * (i - 1) + (1.0/16.0);
-			double x2 = (14.0/16.0)/values.length * (i) + (1.0/16.0);
-			double y1 = (14.0/16.0)/yMax * values[i - 1] + (1.0/16.0) - yMin;
-			double y2 = (14.0/16.0)/yMax * values[i] + (1.0/16.0) - yMin;
-			
-			t.addVertex(x1, y1, 0.253);
-			t.addVertex(x2, y2, 0.253);
+			if(values[i] == null)
+			{
+				continue;
+			}
+			if(lastValue == null)
+			{
+				lastValue = values[i];
+				lastX = i;
+			}
+			else
+			{
+				double x1 = (14.0/16.0)/values.length * lastX + (1.0/16.0);
+				double x2 = (14.0/16.0)/values.length * (i) + (1.0/16.0);
+				double y1 = (14.0/16.0)/yMax * lastValue + (1.0/16.0) - yMin;
+				double y2 = (14.0/16.0)/yMax * values[i] + (1.0/16.0) - yMin;
+				
+				t.addVertex(x1, y1, 0.253);
+				t.addVertex(x2, y2, 0.253);
+			}
 		}
 		
 		t.draw();

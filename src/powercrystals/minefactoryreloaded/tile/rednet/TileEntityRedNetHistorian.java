@@ -43,8 +43,6 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 		{
 			_data.put(i, new ArrayBlockingQueue<HistorianData>(100));
 		}*/
-		
-		_valuesClient.fill(0);
 	}
 	
 	@Override
@@ -131,6 +129,7 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 	public void setClientValue(int value)
 	{
 		_currentValueClient = value;
+		_valuesClient.fill(null);
 	}
 	
 	@Override
