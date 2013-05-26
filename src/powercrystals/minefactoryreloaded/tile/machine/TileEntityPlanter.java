@@ -124,7 +124,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	@Override
 	public int getSizeInventory()
 	{
-		return 10;
+		return 26;
 	}
 	
 	@Override
