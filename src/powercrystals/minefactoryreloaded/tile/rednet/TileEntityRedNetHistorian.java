@@ -1,7 +1,7 @@
 package powercrystals.minefactoryreloaded.tile.rednet;
 
-import java.util.HashMap;
-import java.util.Map;
+//import java.util.HashMap;
+//import java.util.Map;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
