@@ -80,6 +80,7 @@ public class RedNetHistorianRenderer extends TileEntitySpecialRenderer implement
 		int yMax = Collections.max(Arrays.asList(values));
 		if(yMax < 15 && yMin < 15 && yMin >= 0)
 		{
+			yMin = 0;
 			yMax = 15;
 		}
 		
