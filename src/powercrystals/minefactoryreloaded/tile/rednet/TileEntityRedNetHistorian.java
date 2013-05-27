@@ -109,7 +109,7 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 		_currentSubnet = newSubnet;
 		if(worldObj.isRemote)
 		{
-			_valuesClient.fill(0);
+			_valuesClient.fill(null);
 		}
 		else
 		{
@@ -126,7 +126,6 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 	public void setClientValue(int value)
 	{
 		_currentValueClient = value;
-		_valuesClient.fill(null);
 	}
 	
 	@Override

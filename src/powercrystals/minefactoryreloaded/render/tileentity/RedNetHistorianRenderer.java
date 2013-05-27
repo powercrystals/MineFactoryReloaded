@@ -122,6 +122,9 @@ public class RedNetHistorianRenderer extends TileEntitySpecialRenderer implement
 				
 				t.addVertex(x1, y1, 0.253);
 				t.addVertex(x2, y2, 0.253);
+				
+				lastValue = values[i];
+				lastX = i;
 			}
 		}
 		
