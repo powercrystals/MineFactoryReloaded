@@ -375,4 +375,71 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Registers a block ID as a fruit tree log. When the Fruit Picker sees this block on the ground, it will
+	 * begin a search in tree mode for any fruit nearby.
+	 * 
+	 * @param fruitLogBlockId The block ID to mark as a fruit tree log.
+	 */
+	public static void registerFruitLogBlockId(Integer fruitLogBlockId)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerFruitLogBlockId", Integer.class);
+				reg.invoke(registry, fruitLogBlockId);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers a fruit for the Fruit Picker.
+	 * 
+	 * @param fruit The fruit to be picked.
+	 */
+	public static void registerFruit(IFactoryFruit fruit)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerFruit", IFactoryFruit.class);
+				reg.invoke(registry, fruit);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers a classname as an invalid entry for the autospawner.
+	 * 
+	 * @param className The classname to blacklist.
+	 */
+	public static void registerAutoSpawnerBlacklist(String className)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerAutoSpawnerBlacklist", String.class);
+				reg.invoke(registry, className);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }
