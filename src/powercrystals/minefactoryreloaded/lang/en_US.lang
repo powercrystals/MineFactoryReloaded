@@ -150,7 +150,7 @@ tile.mfr.liquid.essence.still.name = Essence
 tile.mfr.liquid.biofuel.still.name = BioFuel
 tile.mfr.liquid.meat.still.name = Meat
 tile.mfr.liquid.pinkslime.still.name = Pink Slime
-tile.mfr.liquid.milkchocolate.still.name = Chocolate Milk
+tile.mfr.liquid.chocolatemilk.still.name = Chocolate Milk
 tile.mfr.liquid.mushroomsoup.still.name = Mushroom Soup
 
 item.mfr.bucket.milk.name = Milk Bucket
