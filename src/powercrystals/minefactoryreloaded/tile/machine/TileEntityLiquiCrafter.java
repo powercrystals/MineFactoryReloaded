@@ -108,7 +108,7 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	{
 		List<ItemResourceTracker> requiredItems = new LinkedList<ItemResourceTracker>();
 		
-		inv:	for(int i = 0; i < 9; i++)
+inv:	for(int i = 0; i < 9; i++)
 		{
 			if(_inventory[i] != null)
 			{
@@ -138,6 +138,11 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 					requiredItems.add(new ItemResourceTracker(_inventory[i].itemID, _inventory[i].getItemDamage(), 1));
 				}
 			}
+		}
+		
+		if(LiquidContainerRegistry.isFilledContainer(_inventory[9]))
+		{
+			requiredItems.add(new ItemResourceTracker(_inventory[9].getItem().getContainerItem().itemID, 0, 1));
 		}
 		
 		for(int i = 11; i < 29; i++)

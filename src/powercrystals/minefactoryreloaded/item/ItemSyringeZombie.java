@@ -1,8 +1,11 @@
 package powercrystals.minefactoryreloaded.item;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
@@ -23,11 +26,19 @@ public class ItemSyringeZombie extends ItemSyringe
 	@Override
 	public boolean inject(World world, EntityLiving entity, ItemStack syringe)
 	{
-		if(world.rand.nextInt(100) < 2)
+		if(world.rand.nextInt(100) < 5)
 		{
-			EntityZombie z = new EntityZombie(world);
-			z.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
-			world.spawnEntityInWorld(z);
+			Entity e;
+			if(entity instanceof EntityPig)
+			{
+				e = new EntityZombie(world);
+			}
+			else
+			{
+				e = new EntityPigZombie(world);
+			}
+			e.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
+			world.spawnEntityInWorld(e);
 			entity.setDead();
 		}
 		else

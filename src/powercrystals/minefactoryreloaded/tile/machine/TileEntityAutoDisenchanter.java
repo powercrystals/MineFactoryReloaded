@@ -103,6 +103,7 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 					if((NBTTagList)_inventory[2].getTagCompound().getTag("ench") != null)
 					{
 						enchTag = (NBTTagCompound)((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagAt(0);
+						_inventory[2] = new ItemStack(Item.book);
 					}
 					else
 					{

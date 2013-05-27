@@ -5,8 +5,11 @@ import java.util.List;
 
 import net.minecraft.entity.item.EntityMinecartHopper;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityBat;
@@ -67,6 +70,25 @@ public class VanillaMobProvider implements IRandomMobProvider
 		EntityMooshroom invisishroom = (EntityMooshroom)MFRUtil.prepareMob(EntityMooshroom.class, world);
 		invisishroom.addPotionEffect(new PotionEffect(Potion.invisibility.id, 120 * 20));
 		mobs.add(new RandomMob(invisishroom, 5));
+		
+		EntitySkeleton skeleton1 = (EntitySkeleton)MFRUtil.prepareMob(EntitySkeleton.class, world);
+		EntitySkeleton skeleton2 = (EntitySkeleton)MFRUtil.prepareMob(EntitySkeleton.class, world);
+		EntitySkeleton skeleton3 = (EntitySkeleton)MFRUtil.prepareMob(EntitySkeleton.class, world);
+		EntitySkeleton skeleton4 = (EntitySkeleton)MFRUtil.prepareMob(EntitySkeleton.class, world);
+		skeleton4.mountEntity(skeleton3);
+		skeleton3.mountEntity(skeleton2);
+		skeleton2.mountEntity(skeleton1);
+		mobs.add(new RandomMob(skeleton1, 2));
+		
+		EntityBlaze blazeJockey = (EntityBlaze)MFRUtil.prepareMob(EntityBlaze.class, world);
+		EntityGhast blazeMount = (EntityGhast)MFRUtil.prepareMob(EntityGhast.class, world);
+		blazeJockey.mountEntity(blazeMount);
+		mobs.add(new RandomMob(blazeMount, 2));
+		
+		EntityCreeper creeperJockey = (EntityCreeper)MFRUtil.prepareMob(EntityCreeper.class, world);
+		EntityCaveSpider creeperMount = (EntityCaveSpider)MFRUtil.prepareMob(EntityCaveSpider.class, world);
+		creeperJockey.mountEntity(creeperMount);
+		mobs.add(new RandomMob(creeperMount, 2));
 		
 		return mobs;
 	}

@@ -371,4 +371,30 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Registers a preferred ore with the laser drill. Focuses with the specified color will make the specified ore more likely.
+	 * Note that this will overwrite existing ore preferences - you may want to coordinate with PC before using this one.
+	 * Used by MFR itself for vanilla: Black (Coal), Light Blue (Diamond), Lime (Emerald), Yellow (Gold), Brown (Iron), Blue (Lapis),
+	 * Red (Redstone), and White (nether quartz).
+	 * 
+	 * @param color The color that the preferred ore is being set for. White is 0.
+	 * @param ore The ore that will be preferred by the drill when a focus with the specified color is present.
+	 */
+	public static void setLaserPreferredOre(int color, ItemStack ore)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("setLaserPreferredOre", int.class, ItemStack.class);
+				reg.invoke(registry, color, ore);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }

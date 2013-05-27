@@ -4,12 +4,15 @@ import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetHistorian;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -29,6 +32,9 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 	{
 		super(id, Material.clay);
 		setUnlocalizedName("mfr.rednet.panel");
+		setHardness(0.8F);
+		
+		setCreativeTab(MFRCreativeTab.tab);
 	}
 	
 	@Override
@@ -95,29 +101,37 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 	}
 	
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side, float xOffset, float yOffset, float zOffset)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
 	{
-		PlayerInteractEvent e = new PlayerInteractEvent(entityplayer, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
+		PlayerInteractEvent e = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
 		if(MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Result.DENY)
 		{
 			return false;
 		}
 		
+		ItemStack s = player.inventory.getCurrentItem();
+		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(MFRUtil.isHoldingHammer(entityplayer) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
+		if(MFRUtil.isHoldingHammer(player) && te instanceof TileEntityFactory && ((TileEntityFactory)te).canRotate())
 		{
 			((TileEntityFactory)te).rotate();
 			world.markBlockForUpdate(x, y, z);
 			return true;
 		}
-		else if(te instanceof TileEntityFactory && ((TileEntityFactory)te).getContainer(entityplayer.inventory) != null)
+		else if(te instanceof TileEntityFactory && ((TileEntityFactory)te).getContainer(player.inventory) != null)
 		{
-			entityplayer.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
+			player.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
+			return true;
+		}
+		else if(te instanceof TileEntityRedNetHistorian && s != null && s.itemID == Item.dyePowder.itemID)
+		{
+			((TileEntityRedNetHistorian)te).setSelectedSubnet(15 - s.getItemDamage());
+			world.markBlockForUpdate(x, y, z);
 			return true;
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean renderAsNormalBlock()
 	{
@@ -153,7 +167,7 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 	{
 		return new TileEntityRedNetHistorian();
 	}
-
+	
 	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
@@ -164,19 +178,19 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 		}
 		return RedNetConnectionType.None;
 	}
-
+	
 	@Override
 	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return _blankOutputs;
 	}
-
+	
 	@Override
 	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
 	{
@@ -186,9 +200,15 @@ public class BlockRedNetPanel extends BlockContainer implements IConnectableRedN
 			((TileEntityRedNetHistorian)te).valuesChanged(inputValues);
 		}
 	}
-
+	
 	@Override
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{
+	}
+	
+	@Override
+	public void registerIcons(IconRegister ir)
+	{
+		blockIcon = ir.registerIcon("powercrystals/minefactoryreloaded/" + getUnlocalizedName());
 	}
 }

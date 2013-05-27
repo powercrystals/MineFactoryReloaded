@@ -141,6 +141,7 @@ tile.mfr.rail.passenger.pickup.name = Passenger Pickup Rail
 
 tile.mfr.cable.redstone.name = RedNet Cable
 tile.mfr.rednet.logic.name = Programmable RedNet Controller
+tile.mfr.rednet.panel.historian.name = RedNet Historian
 
 tile.mfr.liquid.milk.still.name = Milk
 tile.mfr.liquid.sludge.still.name = Sludge
@@ -149,13 +150,8 @@ tile.mfr.liquid.essence.still.name = Essence
 tile.mfr.liquid.biofuel.still.name = BioFuel
 tile.mfr.liquid.meat.still.name = Meat
 tile.mfr.liquid.pinkslime.still.name = Pink Slime
-
-item.mfr.hammer.name = Precision Sledgehammer
-item.mfr.fertilizer.name = Industrial Fertilizer
-item.mfr.plastic.sheet.name = Plastic Sheets
-item.mfr.plastic.raw.name = Raw Plastic
-item.mfr.rubber.bar.name = Rubber Bar
-item.mfr.rubber.raw.name = Raw Rubber
+tile.mfr.liquid.chocolatemilk.still.name = Chocolate Milk
+tile.mfr.liquid.mushroomsoup.still.name = Mushroom Soup
 
 item.mfr.bucket.milk.name = Milk Bucket
 item.mfr.bucket.sewage.name = Sewage Bucket
@@ -164,9 +160,17 @@ item.mfr.bucket.essence.name = Mob Essence Bucket
 item.mfr.bucket.biofuel.name = BioFuel Bucket
 item.mfr.bucket.meat.name = Meat Bucket
 item.mfr.bucket.pinkslime.name = Pink Slime Bucket
+item.mfr.bucket.chocolatemilk.name = Chocolate Milk Bucket
+item.mfr.bucket.mushroomsoup.name = Mushroom Soup Bucket
 
 item.mfr.bucket.plasticCup.name = Plastic Cup
 
+item.mfr.hammer.name = Precision Sledgehammer
+item.mfr.fertilizer.name = Industrial Fertilizer
+item.mfr.plastic.sheet.name = Plastic Sheets
+item.mfr.plastic.raw.name = Raw Plastic
+item.mfr.rubber.bar.name = Rubber Bar
+item.mfr.rubber.raw.name = Raw Rubber
 item.mfr.syringe.cure.name = De-Zombification Syringe
 item.mfr.syringe.empty.name = Empty Syringe
 item.mfr.syringe.growth.name = Growth Syringe
@@ -210,6 +214,23 @@ item.mfr.ceramicdye.brown.name = Ceramic Dye (Brown)
 item.mfr.ceramicdye.green.name = Ceramic Dye (Green)
 item.mfr.ceramicdye.red.name = Ceramic Dye (Red)
 item.mfr.ceramicdye.black.name = Ceramic Dye (Black)
+
+item.mfr.laserfocus.white.name = Laser Focus (White)
+item.mfr.laserfocus.orange.name = Laser Focus (Orange)
+item.mfr.laserfocus.magenta.name = Laser Focus (Magenta)
+item.mfr.laserfocus.lightblue.name = Laser Focus (Light Blue)
+item.mfr.laserfocus.yellow.name = Laser Focus (Yellow)
+item.mfr.laserfocus.lime.name = Laser Focus (Lime)
+item.mfr.laserfocus.pink.name = Laser Focus (Pink)
+item.mfr.laserfocus.gray.name = Laser Focus (Gray)
+item.mfr.laserfocus.lightgray.name = Laser Focus (Light Gray)
+item.mfr.laserfocus.cyan.name = Laser Focus (Cyan)
+item.mfr.laserfocus.purple.name = Laser Focus (Purple)
+item.mfr.laserfocus.blue.name = Laser Focus (Blue)
+item.mfr.laserfocus.brown.name = Laser Focus (Brown)
+item.mfr.laserfocus.green.name = Laser Focus (Green)
+item.mfr.laserfocus.red.name = Laser Focus (Red)
+item.mfr.laserfocus.black.name = Laser Focus (Black)
 
 item.mfr.upgrade.radius.lapis.name = Upgrade (Lapis)
 item.mfr.upgrade.radius.iron.name = Upgrade (Iron)

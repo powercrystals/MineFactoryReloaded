@@ -16,6 +16,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import powercrystals.core.oredict.OreDictTracker;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
+import powercrystals.minefactoryreloaded.gui.client.GuiUnifier;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUnifier;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
@@ -47,7 +48,7 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	@SideOnly(Side.CLIENT)
 	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
-		return new GuiFactoryInventory(getContainer(inventoryPlayer), this);
+		return new GuiUnifier(getContainer(inventoryPlayer), this);
 	}
 	
 	@Override

@@ -18,6 +18,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiAutoSpawner;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoSpawner;
 import powercrystals.minefactoryreloaded.item.ItemSafariNet;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import cpw.mods.fml.relauncher.Side;
@@ -155,7 +156,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	@Override
 	public int getWorkMax()
 	{
-		return _spawnExact ? 50 : 15;
+		return _spawnExact ? MFRConfig.autospawnerCostExact.getInt() : MFRConfig.autospawnerCostStandard.getInt();
 	}
 	
 	@Override

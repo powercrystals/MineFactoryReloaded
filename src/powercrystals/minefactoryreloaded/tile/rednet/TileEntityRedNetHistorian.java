@@ -1,20 +1,21 @@
 package powercrystals.minefactoryreloaded.tile.rednet;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.core.ArrayQueue;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public class TileEntityRedNetHistorian extends TileEntityFactory
 {
-	private class HistorianData
+	/*private class HistorianData
 	{
 		int value;
 		long worldTime;
@@ -24,37 +25,48 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 			this.value = value;
 			this.worldTime = worldTime;
 		}
-	}
+	}*/
 	
-	private Queue<Integer> _valuesClient = new ArrayBlockingQueue<Integer>(100);
+	private ArrayQueue<Integer> _valuesClient = new ArrayQueue<Integer>(100);
 	private int _currentValueClient = 0;
 	private int _currentSubnet = 0;
 	
 	private int[] _lastValues = new int[16];
-	private Map<Integer, Queue<HistorianData>> _data = new HashMap<Integer, Queue<HistorianData>>();
+	//private Map<Integer, Queue<HistorianData>> _data = new HashMap<Integer, Queue<HistorianData>>();
 	
 	public TileEntityRedNetHistorian()
 	{
-		for(int i = 0; i < 16; i++)
+		/*for(int i = 0; i < 16; i++)
 		{
 			_data.put(i, new ArrayBlockingQueue<HistorianData>(100));
-		}
-		
-		for(int i = 0; i < 100; i++)
-		{
-			_valuesClient.add(0);
-		}
+		}*/
+	}
+	
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound data = new NBTTagCompound();
+		data.setInteger("facing", getDirectionFacing().ordinal());
+		data.setInteger("subnet", _currentSubnet);
+		data.setInteger("current", _lastValues[_currentSubnet]);
+		Packet132TileEntityData packet = new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, data);
+		return packet;
+	}
+	
+	@Override
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+	{
+		_currentSubnet = pkt.customParam1.getInteger("subnet");
+		_currentValueClient = pkt.customParam1.getInteger("current");
+		rotateDirectlyTo(pkt.customParam1.getInteger("facing"));
 	}
 	
 	@Override
 	public void validate()
 	{
-		for(int i = 0; i < 16; i++)
+		if(!worldObj.isRemote)
 		{
-			if(_data.get(i).isEmpty())
-			{
-				_data.get(i).add(new HistorianData(0, worldObj.getTotalWorldTime()));
-			}
+			setSelectedSubnet(_currentSubnet);
 		}
 	}
 	
@@ -64,8 +76,8 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 		super.updateEntity();
 		if(worldObj.isRemote)
 		{
-			_valuesClient.poll();
-			_valuesClient.add(_currentValueClient);
+			_valuesClient.pop();
+			_valuesClient.push(_currentValueClient);
 		}
 	}
 	
@@ -92,6 +104,20 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 		return _valuesClient.toArray(values);
 	}
 	
+	public void setSelectedSubnet(int newSubnet)
+	{
+		_currentSubnet = newSubnet;
+		if(worldObj.isRemote)
+		{
+			_valuesClient.fill(null);
+		}
+		else
+		{
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.provider.dimensionId, PacketWrapper.createPacket(
+					MineFactoryReloadedCore.modNetworkChannel, Packets.HistorianValueChanged, new Object[] { xCoord, yCoord, zCoord, _lastValues[_currentSubnet] }));
+		}
+	}
+	
 	public int getSelectedSubnet()
 	{
 		return _currentSubnet;
@@ -106,5 +132,19 @@ public class TileEntityRedNetHistorian extends TileEntityFactory
 	public boolean canRotate()
 	{
 		return true;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		_currentSubnet = nbttagcompound.getInteger("subnet");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setInteger("subnet", _currentSubnet);
 	}
 }

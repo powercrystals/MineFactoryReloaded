@@ -170,7 +170,9 @@ public class RedstoneNetwork
 	}
 	
 	public void removeNode(BlockPosition node)
-	{		
+	{
+		boolean notify = _omniNodes.contains(node);
+		
 		_omniNodes.remove(node);
 		_weakNodes.remove(node);
 		
@@ -178,6 +180,7 @@ public class RedstoneNetwork
 		{
 			if(_singleNodes.get(subnet).contains(node))
 			{
+				notify = true;
 				RedstoneNetwork.log("Network with ID %d:%d removing node %s", _id, subnet, node.toString());
 				_singleNodes.get(subnet).remove(node);
 			}
@@ -187,6 +190,12 @@ public class RedstoneNetwork
 				RedstoneNetwork.log("Network with ID %d:%d removing power provider node, recalculating", _id, subnet);
 				updatePowerLevels(subnet);
 			}
+		}
+		
+		if(notify)
+		{
+			_world.notifyBlockOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
+			_world.notifyBlocksOfNeighborChange(node.x, node.y, node.z, MineFactoryReloadedCore.rednetCableBlock.blockID);
 		}
 	}
 	

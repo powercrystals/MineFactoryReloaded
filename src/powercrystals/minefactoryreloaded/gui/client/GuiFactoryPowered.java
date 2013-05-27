@@ -10,9 +10,9 @@ public class GuiFactoryPowered extends GuiFactoryInventory
 {
 	protected TileEntityFactoryPowered _tePowered;
 	
-	private static final int _barColorEnergy = (0)   | (0 << 8)   | (255 << 16) | (255 << 24);
-	private static final int _barColorWork =   (0)   | (255 << 8) | (0 << 16)   | (255 << 24);
-	private static final int _barColorIdle =   (255) | (0 << 8)   | (0 << 16)   | (255 << 24);
+	protected static final int _barColorEnergy = (0)   | (0 << 8)   | (255 << 16) | (255 << 24);
+	protected static final int _barColorWork =   (0)   | (255 << 8) | (0 << 16)   | (255 << 24);
+	protected static final int _barColorIdle =   (255) | (0 << 8)   | (0 << 16)   | (255 << 24);
 	
 	public GuiFactoryPowered(ContainerFactoryPowered container, TileEntityFactoryPowered te)
 	{

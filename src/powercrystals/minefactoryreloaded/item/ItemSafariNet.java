@@ -239,7 +239,6 @@ public class ItemSafariNet extends ItemFactory
 		}
 		else
 		{
-			
 			NBTTagList pos = mobTag.getTagList("Pos");
 			((NBTTagDouble)pos.tagAt(0)).data = x;
 			((NBTTagDouble)pos.tagAt(1)).data = y;
@@ -262,6 +261,20 @@ public class ItemSafariNet extends ItemFactory
 			if(e instanceof EntityLiving)
 			{
 				((EntityLiving)e).playLivingSound();
+			}
+			
+			Entity riddenByEntity = e.riddenByEntity;
+			while(riddenByEntity != null)
+			{
+				riddenByEntity.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+				
+				world.spawnEntityInWorld(riddenByEntity);
+				if(riddenByEntity instanceof EntityLiving)
+				{
+					((EntityLiving)riddenByEntity).playLivingSound();
+				}
+				
+				riddenByEntity = riddenByEntity.riddenByEntity;
 			}
 		}
 		

@@ -287,8 +287,13 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId)
 	{
 		super.onNeighborBlockChange(world, x, y, z, blockId);
+		if(blockId == blockID)
+		{
+			return;
+		}
+		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable)
+		if(te instanceof TileEntityRedNetCable)
 		{
 			((TileEntityRedNetCable)te).onNeighboorChanged();
 		}
@@ -318,8 +323,14 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	{
 		int power = 0;
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
+		if(te != null && te instanceof TileEntityRedNetCable)
 		{
+			TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
+			if(cable.getNetwork() == null || cable.getConnectionState(ForgeDirection.getOrientation(side).getOpposite()) == RedNetConnectionType.None)
+			{
+				return 0;
+			}
+			
 			int subnet = ((TileEntityRedNetCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
 			power = Math.min(Math.max(((TileEntityRedNetCable)te).getNetwork().getPowerLevelOutput(subnet), 0), 15);
 			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
@@ -332,9 +343,13 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	{
 		int power = 0;
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
+		if(te != null && te instanceof TileEntityRedNetCable)
 		{
 			TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
+			if(cable.getNetwork() == null || cable.getConnectionState(ForgeDirection.VALID_DIRECTIONS[side]) == RedNetConnectionType.None)
+			{
+				return 0;
+			}
 			
 			BlockPosition nodebp = new BlockPosition(x, y, z, ForgeDirection.getOrientation(side).getOpposite());
 			nodebp.moveForwards(1);
