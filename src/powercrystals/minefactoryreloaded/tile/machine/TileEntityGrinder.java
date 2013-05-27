@@ -1,11 +1,18 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -42,6 +49,16 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	private LiquidTank _tank;
 	private Random _rand;
 	private IGrindingWorld grindingWorld;
+	
+	private static Field recentlyHit;
+	
+	static
+	{
+		ArrayList<String> q = new ArrayList<String>();
+		q.add("recentlyHit");
+		q.addAll(Arrays.asList(ObfuscationReflectionHelper.remapFieldNames("net.minecraft.entity.EntityLiving", new String[]{"field_70718_bc"})));
+		recentlyHit = ReflectionHelper.findField(EntityLiving.class, q.toArray(new String[q.size()]));
+	}
 
 	@Override
 	public String getGuiBackground()
@@ -169,24 +186,32 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				try
 				{
 					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
-					e.attackEntityFrom(DamageSource.generic, e.getHealth());
+					damageEntity(e);
 					_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 				}
 				finally
 				{
 					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "true");
 					setIdleTicks(20);
-					e.attackEntityFrom(DamageSource.generic, 5000);
 				}
 				return true;
 			}
-			e.attackEntityFrom(DamageSource.generic, e.getHealth());
+			damageEntity(e);
 			_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 			setIdleTicks(20);
 			return true;
 		}
 		setIdleTicks(getIdleTicksMax());
 		return false;
+	}
+	
+	protected void damageEntity(EntityLiving entity)
+	{
+		DamageSource grind = new GrindingDamage();
+		try {
+			recentlyHit.set(entity, 100);
+		} catch (Throwable e) {}
+		entity.attackEntityFrom(grind, Integer.MAX_VALUE);
 	}
 
 	@Override
@@ -253,5 +278,21 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	public boolean canRotate()
 	{
 		return true;
+	}
+	
+	protected class GrindingDamage extends DamageSource 
+	{
+		
+		public GrindingDamage()
+		{
+			this(null);
+		}
+		
+		public GrindingDamage(String type)
+		{
+			super(type == null ? "mfr.grinder" : type);
+			this.setDamageBypassesArmor();
+		}
+		
 	}
 }
