@@ -2,6 +2,8 @@ package powercrystals.minefactoryreloaded.api;
 
 import java.lang.reflect.Method;
 
+import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
+
 import net.minecraft.item.ItemStack;
 
 /**
@@ -436,6 +438,28 @@ public class FarmingRegistry
 			{
 				Method reg = registry.getMethod("registerAutoSpawnerBlacklist", String.class);
 				reg.invoke(registry, entityString);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers logic circuit to be usable in the Programmable RedNet Controller.
+	 * 
+	 * @param circuit The circuit to be registered.
+	 */
+	public static void registerRedNetLogicCircuit(IRedNetLogicCircuit circuit)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerRedNetLogicCircuit", IRedNetLogicCircuit.class);
+				reg.invoke(registry, circuit);
 			}
 		}
 		catch(Exception e)
