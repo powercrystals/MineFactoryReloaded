@@ -140,7 +140,7 @@ inv:	for(int i = 0; i < 9; i++)
 			}
 		}
 		
-		if(LiquidContainerRegistry.isFilledContainer(_inventory[9]))
+		if(LiquidContainerRegistry.isFilledContainer(_inventory[9]) && _inventory[9].getItem().getContainerItem() != null)
 		{
 			requiredItems.add(new ItemResourceTracker(_inventory[9].getItem().getContainerItem().itemID, 0, 1));
 		}
