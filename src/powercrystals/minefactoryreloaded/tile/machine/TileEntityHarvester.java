@@ -9,6 +9,7 @@ import java.util.Random;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
@@ -62,6 +63,13 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		_rand = new Random();
 	}
+	
+	@Override
+    public void setWorldObj(World world)
+    {
+		super.setWorldObj(world);
+        _rand.setSeed(this.worldObj.getSeed() ^ this.worldObj.getWorldTime());
+    }
 	
 	@Override
 	public String getGuiBackground()

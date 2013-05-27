@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
-import skyboy.core.world.WorldProxy;
+import skyboy.core.world.WorldServerProxy;
 
-public class GrindingWorld extends WorldProxy implements IGrindingWorld {
+public class GrindingWorldServer extends WorldServerProxy implements IGrindingWorld {
 
 	protected TileEntityFactory grinder;
 	protected boolean allowSpawns;
 	protected ArrayList<Entity> entitiesToGrind = new ArrayList<Entity>(); 
 
-	public GrindingWorld(World world, TileEntityFactory grinder) {
+	public GrindingWorldServer(WorldServer world, TileEntityFactory grinder) {
 		this(world, grinder, false);
 	}
 
-	public GrindingWorld(World world, TileEntityFactory grinder, boolean allowSpawns) {
+	public GrindingWorldServer(WorldServer world, TileEntityFactory grinder, boolean allowSpawns) {
 		super(world);
 		this.grinder = grinder;
 		this.allowSpawns = allowSpawns;

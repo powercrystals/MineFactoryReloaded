@@ -156,6 +156,7 @@ item.mfr.plastic.sheet.name = Plastic Sheets
 item.mfr.plastic.raw.name = Raw Plastic
 item.mfr.rubber.bar.name = Rubber Bar
 item.mfr.rubber.raw.name = Raw Rubber
+
 item.mfr.bucket.milk.name = Milk Bucket
 item.mfr.bucket.sewage.name = Sewage Bucket
 item.mfr.bucket.sludge.name = Sludge Bucket
@@ -163,6 +164,9 @@ item.mfr.bucket.essence.name = Mob Essence Bucket
 item.mfr.bucket.biofuel.name = BioFuel Bucket
 item.mfr.bucket.meat.name = Meat Bucket
 item.mfr.bucket.pinkslime.name = Pink Slime Bucket
+
+item.mfr.bucket.plasticCup.name = Plastic Cup
+
 item.mfr.syringe.cure.name = De-Zombification Syringe
 item.mfr.syringe.empty.name = Empty Syringe
 item.mfr.syringe.growth.name = Growth Syringe

@@ -66,6 +66,7 @@ import powercrystals.minefactoryreloaded.gui.MFRGUIHandler;
 import powercrystals.minefactoryreloaded.item.ItemCeramicDye;
 import powercrystals.minefactoryreloaded.item.ItemFactory;
 import powercrystals.minefactoryreloaded.item.ItemFactoryBucket;
+import powercrystals.minefactoryreloaded.item.ItemFactoryCup;
 import powercrystals.minefactoryreloaded.item.ItemFactoryFood;
 import powercrystals.minefactoryreloaded.item.ItemFactoryHammer;
 import powercrystals.minefactoryreloaded.item.ItemLogicUpgradeCard;
@@ -227,6 +228,9 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item pinkSlimeBucketItem;
 	public static Item pinkSlimeballItem;
 	public static Item safariNetJailerItem;
+	
+	public static ItemFactoryCup emptyPlasticCup;
+	public static ItemFactoryCup fullPlasticCup;
 
 	private static MineFactoryReloadedCore instance;
 
@@ -333,6 +337,12 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		meatNuggetCookedItem = (new ItemFactoryFood(MFRConfig.meatNuggetCookedItemId.getInt(), 4, 0.1F)).setUnlocalizedName("mfr.meat.nugget.cooked");
 		pinkSlimeballItem = (new ItemFactory(MFRConfig.pinkSlimeballItemId.getInt())).setUnlocalizedName("mfr.pinkslimeball");
 		safariNetJailerItem = (new ItemSafariNet(MFRConfig.safariNetJailerItemId.getInt())).setUnlocalizedName("mfr.safarinet.jailer");
+		
+		emptyPlasticCup = (ItemFactoryCup)new ItemFactoryCup(MFRConfig.emptyPlasticCupItemId.getInt(), 64, 16).setUnlocalizedName("mfr.bucket.plasticCup");
+		fullPlasticCup = (ItemFactoryCup)new ItemFactoryCup(MFRConfig.fullPlasticCupItemId.getInt(), 1, 16).setUnlocalizedName("mfr.bucket.plasticCup");
+		
+		emptyPlasticCup.setContainers(fullPlasticCup, emptyPlasticCup);
+		fullPlasticCup.setContainers(fullPlasticCup, emptyPlasticCup);
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{

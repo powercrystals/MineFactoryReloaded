@@ -95,6 +95,9 @@ public class MFRConfig
 	public static Property pinkSlimeballItemId;
 	public static Property safariNetJailerItemId;
 	
+	public static Property emptyPlasticCupItemId;
+	public static Property fullPlasticCupItemId;
+	
 	public static Property zoolologistEntityId;
 	
 	public static Property colorblindMode;
@@ -226,6 +229,9 @@ public class MFRConfig
 		pinkSlimeBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeBucket", 12030);
 		pinkSlimeballItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PinkSlimeball", 12031);
 		safariNetJailerItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.SafariNetJailer", 12032);
+		
+		emptyPlasticCupItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.EmptyPlasticCup", 12061);
+		fullPlasticCupItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.FullPlasticCup", 12062);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 	

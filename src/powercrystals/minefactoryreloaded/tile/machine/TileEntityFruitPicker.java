@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
@@ -38,6 +39,13 @@ public class TileEntityFruitPicker extends TileEntityFactoryPowered
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 		_rand = new Random();
 	}
+	
+	@Override
+    public void setWorldObj(World world)
+    {
+		super.setWorldObj(world);
+        _rand.setSeed(this.worldObj.getSeed() ^ this.worldObj.getWorldTime());
+    }
 
 	@Override
 	public int getSizeInventory()

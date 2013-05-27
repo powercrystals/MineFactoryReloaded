@@ -1337,6 +1337,13 @@ public class Vanilla
 			"VV",
 			'V', Block.vine,
 				} );
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.emptyPlasticCup, 16), new Object[]
+				{
+			" P ",
+			"P P",
+			'P', "sheetPlastic",
+				} ));
 	}
 	
 	protected void registerVanillaImprovements()

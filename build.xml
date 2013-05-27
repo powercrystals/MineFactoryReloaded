@@ -113,6 +113,10 @@
 		<copy todir="${mcpsrc.dir}/powercrystals" overwrite="true">
 			<fileset dir="${src.dir}/powercrystals"/>
 		</copy>
+		<mkdir dir="${mcpsrc.dir}/skyboy" />
+		<copy todir="${mcpsrc.dir}/skyboy" overwrite="true">
+			<fileset dir="${src.dir}/skyboy"/>
+		</copy>
 		<copy todir="${mcpsrc.dir}" file="mcmod.info" overwrite="true"/>
 	
 		<exec dir="${verclass.dir}" executable="sh" osfamily="unix" outputproperty="grep.out">
@@ -148,13 +152,13 @@
 
 	<target name="build" depends="extract-dependencies" unless="already-compiled">
 		<!-- Recompile -->
-		<depend srcdir="${mcpsrc.dir}" destdir="${mcp.dir}/bin/minecraft">
-			<include name="powercrystals/minefactoryreloaded/**/*.java"/>
-		</depend>
-		<javac srcdir="${mcpsrc.dir}" destdir="${mcp.dir}/bin/minecraft" target="1.6" source="1.6"
-		       classpathref="mcp.classpath" debug="true" debuglevel="lines,source" includeAntRuntime="false">
-			<include name="powercrystals/minefactoryreloaded/**/*.java"/>
-		</javac>
+		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
+			<arg line="/c recompile.bat"/>
+		</exec>
+
+		<exec dir="${mcp.dir}" executable="sh" osfamily="unix">
+			<arg value="recompile.sh" />
+		</exec>
 
 		<!-- Reobf -->
 		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
