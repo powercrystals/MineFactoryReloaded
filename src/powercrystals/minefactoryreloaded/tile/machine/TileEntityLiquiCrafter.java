@@ -142,7 +142,22 @@ inv:	for(int i = 0; i < 9; i++)
 		
 		if(LiquidContainerRegistry.isFilledContainer(_inventory[9]) && _inventory[9].getItem().getContainerItem() != null)
 		{
-			requiredItems.add(new ItemResourceTracker(_inventory[9].getItem().getContainerItem().itemID, 0, 1));
+			boolean alreadyRequiresEmpty = false;
+			int requiredEmpty = _inventory[9].getItem().getContainerItem().itemID;
+			
+			for(ItemResourceTracker t : requiredItems)
+			{
+				if(t.id == requiredEmpty && t.required > 0)
+				{
+					alreadyRequiresEmpty = true;
+					break;
+				}
+			}
+			
+			if(!alreadyRequiresEmpty)
+			{
+				requiredItems.add(new ItemResourceTracker(requiredEmpty, 0, 1));
+			}
 		}
 		
 		for(int i = 11; i < 29; i++)
