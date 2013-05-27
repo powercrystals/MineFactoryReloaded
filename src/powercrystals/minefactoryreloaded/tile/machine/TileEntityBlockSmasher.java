@@ -136,9 +136,9 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 			return null;
 		}
 		
-		int id = b.idDropped(input.itemID, worldObj.rand, _fortune);
+		int id = b.idDropped(input.getItemDamage(), worldObj.rand, _fortune);
 		int meta = b.damageDropped(input.getItemDamage());
-		int quantity = b.quantityDropped(meta, _fortune, worldObj.rand);
+		int quantity = b.quantityDropped(input.getItemDamage(), _fortune, worldObj.rand);
 		if(quantity > 0 && id > 0)
 		{
 			return new ItemStack(id, quantity, meta);

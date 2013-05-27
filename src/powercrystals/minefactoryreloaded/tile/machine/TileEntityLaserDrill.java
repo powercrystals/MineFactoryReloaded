@@ -21,6 +21,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiLaserDrill;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLaserDrill;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,7 +34,7 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 	private static final int _energyStoredMax = 1000000;
 	private int _energyStored;
 	
-	private static final int _workStoredMax = 300;
+	private int _workStoredMax = MFRConfig.laserdrillCost.getInt();
 	private int _workStored;
 	
 	private int _bedrockLevel;

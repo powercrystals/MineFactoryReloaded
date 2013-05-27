@@ -1350,13 +1350,14 @@ public class Vanilla
 			"VV",
 			'V', Block.vine,
 				} );
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.chocolateMilkBucketItem), Item.bucketMilk, Item.bucketEmpty, new ItemStack(Item.dyePowder, 1, 3));
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.emptyPlasticCup, 16), new Object[]
 				{
 			" P ",
 			"P P",
 			'P', "sheetPlastic",
 				} ));
-		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.chocolateMilkBucketItem), Item.bucketMilk, new ItemStack(Item.dyePowder, 1, 3));
 	}
 	
 	protected void registerVanillaImprovements()

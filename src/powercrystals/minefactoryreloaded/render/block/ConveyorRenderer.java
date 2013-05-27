@@ -47,7 +47,7 @@ public class ConveyorRenderer implements ISimpleBlockRenderingHandler
 		double vStart = conveyorTexture.getInterpolatedV(0);
 		double vEnd = conveyorTexture.getInterpolatedV(16);
 		
-		float renderHeight = 0.0625F;
+		float renderHeight = 0.00625F;
 		
 		float vert1x = blockX + 1;
 		float vert2x = blockX + 1;

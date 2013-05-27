@@ -120,6 +120,7 @@ public class MFRConfig
 	public static Property breederShutdownThreshold;
 	public static Property autospawnerCostStandard;
 	public static Property autospawnerCostExact;
+	public static Property laserdrillCost;
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
@@ -289,6 +290,8 @@ public class MFRConfig
 		autospawnerCostExact.comment = "The work required to generate a mob in exact mode.";
 		autospawnerCostStandard = c.get(Configuration.CATEGORY_GENERAL, "AutoSpawner.Cost.Standard", 15);
 		autospawnerCostStandard.comment = "The work required to generate a mob in standard (non-exact) mode.";
+		laserdrillCost = c.get(Configuration.CATEGORY_GENERAL, "LaserDrill.Cost", 300);
+		laserdrillCost.comment = "The work required by the drill to generate a single ore.";
 		
 		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";

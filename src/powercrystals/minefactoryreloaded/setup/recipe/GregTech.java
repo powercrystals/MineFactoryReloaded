@@ -782,6 +782,19 @@ public class GregTech extends Vanilla
 				'R', insulatedGoldCableItem,
 				'G', "craftingCircuitTier06",
 					} ));
+			
+			for(int i = 0; i < 16; i++)
+			{
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.laserFocusItem, 1, i), new Object[]
+						{
+					"ENE",
+					"NGN",
+					"ENE",
+					'E', Item.emerald,
+					'N', "nuggetChrome",
+					'G', new ItemStack(MineFactoryReloadedCore.factoryGlassPaneBlock, 1, i)
+						} ));
+			}
 		}
 		catch (Exception x)
 		{
@@ -1014,6 +1027,8 @@ public class GregTech extends Vanilla
 				"VV",
 				'V', Block.vine,
 					} );
+			
+			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.chocolateMilkBucketItem), Item.bucketMilk, Item.bucketEmpty, new ItemStack(Item.dyePowder, 1, 3));
 		}
 		catch (Exception x)
 		{
@@ -1172,6 +1187,18 @@ public class GregTech extends Vanilla
 					} ));
 			
 			GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.rednetMemoryCardItem, 1, 0), new ItemStack(MineFactoryReloadedCore.rednetMemoryCardItem, 1, 0));
+			
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.rednetPanelBlock, 1, 0), new Object[]
+					{
+				"PCP",
+				"IBI",
+				"KPK",
+				'P', "sheetPlastic",
+				'C', MineFactoryReloadedCore.rednetCableBlock,
+				'B', "craftingMonitorTier02",
+				'I', "craftingCircuitTier02",
+				'K', new ItemStack(Item.dyePowder, 1, 0)
+					} ));
 		}
 		catch (Exception x)
 		{

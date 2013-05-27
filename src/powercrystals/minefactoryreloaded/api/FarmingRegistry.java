@@ -2,6 +2,8 @@ package powercrystals.minefactoryreloaded.api;
 
 import java.lang.reflect.Method;
 
+import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
+
 import net.minecraft.item.ItemStack;
 
 /**
@@ -390,6 +392,96 @@ public class FarmingRegistry
 			{
 				Method reg = registry.getMethod("setLaserPreferredOre", int.class, ItemStack.class);
 				reg.invoke(registry, color, ore);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers a block ID as a fruit tree log. When the Fruit Picker sees this block on the ground, it will
+	 * begin a search in tree mode for any fruit nearby.
+	 * 
+	 * @param fruitLogBlockId The block ID to mark as a fruit tree log.
+	 */
+	public static void registerFruitLogBlockId(Integer fruitLogBlockId)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerFruitLogBlockId", Integer.class);
+				reg.invoke(registry, fruitLogBlockId);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers a fruit for the Fruit Picker.
+	 * 
+	 * @param fruit The fruit to be picked.
+	 */
+	public static void registerFruit(IFactoryFruit fruit)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerFruit", IFactoryFruit.class);
+				reg.invoke(registry, fruit);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers an entity string as an invalid entry for the autospawner.
+	 * See also: {@link net.minecraft.entity.EntityList}'s classToStringMapping and stringToClassMapping.
+	 * 
+	 * @param entityString The entity string to blacklist.
+	 */
+	public static void registerAutoSpawnerBlacklist(String entityString)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerAutoSpawnerBlacklist", String.class);
+				reg.invoke(registry, entityString);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Registers logic circuit to be usable in the Programmable RedNet Controller.
+	 * 
+	 * @param circuit The circuit to be registered.
+	 */
+	public static void registerRedNetLogicCircuit(IRedNetLogicCircuit circuit)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerRedNetLogicCircuit", IRedNetLogicCircuit.class);
+				reg.invoke(registry, circuit);
 			}
 		}
 		catch(Exception e)
