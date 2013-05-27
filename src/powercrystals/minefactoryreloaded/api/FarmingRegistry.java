@@ -422,11 +422,12 @@ public class FarmingRegistry
 	}
 	
 	/**
-	 * Registers a classname as an invalid entry for the autospawner.
+	 * Registers an entity string as an invalid entry for the autospawner.
+	 * See also: {@link net.minecraft.entity.EntityList}'s classToStringMapping and stringToClassMapping.
 	 * 
-	 * @param className The classname to blacklist.
+	 * @param entityString The entity string to blacklist.
 	 */
-	public static void registerAutoSpawnerBlacklist(String className)
+	public static void registerAutoSpawnerBlacklist(String entityString)
 	{
 		try
 		{
@@ -434,7 +435,7 @@ public class FarmingRegistry
 			if(registry != null)
 			{
 				Method reg = registry.getMethod("registerAutoSpawnerBlacklist", String.class);
-				reg.invoke(registry, className);
+				reg.invoke(registry, entityString);
 			}
 		}
 		catch(Exception e)
