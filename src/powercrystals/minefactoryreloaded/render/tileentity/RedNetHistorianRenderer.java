@@ -94,10 +94,15 @@ public class RedNetHistorianRenderer extends TileEntitySpecialRenderer implement
 		}
 		
 		
-		if(yMax < 15 && yMin < 15 && yMin >= 0)
+		if(yMax <= 15 && yMin < 15 && yMin >= 0)
 		{
 			yMin = 0;
 			yMax = 15;
+		}
+		else if(yMin == yMax)
+		{
+			yMin--;
+			yMax++;
 		}
 		
 		Integer lastValue = null;

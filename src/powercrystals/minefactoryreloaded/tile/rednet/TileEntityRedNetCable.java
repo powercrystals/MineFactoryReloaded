@@ -170,7 +170,7 @@ public class TileEntityRedNetCable extends TileEntity implements INeighboorUpdat
 	@Override
 	public void onNeighboorChanged()
 	{
-		updateNetwork();
+		_needsNetworkUpdate = true;
 	}
 	
 	public RedstoneNetwork getNetwork()
