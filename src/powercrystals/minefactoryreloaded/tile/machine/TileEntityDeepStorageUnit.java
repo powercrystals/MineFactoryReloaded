@@ -174,8 +174,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			// boot improperly typed items from the input slots
 			else if(_inventory[slot].itemID != _storedId || _inventory[slot].getItemDamage() != _storedMeta || _inventory[slot].getTagCompound() != null)
 			{
-				UtilInventory.dropStack(this, _inventory[slot], this.getDropDirection());
-				_inventory[slot] = null;
+				_inventory[slot] = UtilInventory.dropStack(this, _inventory[slot], this.getDropDirection());
 			}
 		}
 	}
