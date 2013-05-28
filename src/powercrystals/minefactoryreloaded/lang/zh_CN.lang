@@ -146,7 +146,7 @@ tile.mfr.rail.passenger.pickup.name = \u4e58\u5ba2\u642d\u8f66\u8f68\u9053
 
 tile.mfr.cable.redstone.name = \u7ea2\u77f3\u7ebf\u7f06
 tile.mfr.rednet.logic.name = \u53ef\u7f16\u7a0b\u7ea2\u77f3\u63a7\u5236\u673a
-tile.mfr.rednet.panel.historian.name = \u5386\u53f2\u5b66\u5bb6\u7684\u7ea2\u77f3\u7f51\u7edc
+tile.mfr.rednet.panel.historian.name = \u793a\u6ce2\u5668
 
 tile.mfr.liquid.milk.flowing.name = \u725b\u5976
 tile.mfr.liquid.milk.still.name = \u725b\u5976
