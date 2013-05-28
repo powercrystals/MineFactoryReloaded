@@ -11,6 +11,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiPlanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerPlanter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
+import powercrystals.minefactoryreloaded.item.ItemUpgrade;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import cpw.mods.fml.relauncher.Side;
@@ -146,5 +147,26 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 17;
+	}
+	
+	@Override
+	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
+	{
+		if(slot > 9)
+		{
+			return true;
+		}
+		else if(slot == 9)
+		{
+			return stack != null && stack.getItem() instanceof ItemUpgrade;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
+	{
+		if(slot >= 9) return true;
+		return false;
 	}
 }
