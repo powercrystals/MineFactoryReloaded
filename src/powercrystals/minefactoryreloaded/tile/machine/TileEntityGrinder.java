@@ -138,7 +138,6 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	public boolean activateMachine()
 	{
 		grindingWorld.cleanReferences();
-		boolean processMob = false;
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 		
 		entityList: for(Object o : entities)
@@ -152,8 +151,10 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 			{
 				continue;
 			}
+			boolean processMob = false;
 			processEntity:
 			{
+				e.captureDrops = false;
 				if(MFRRegistry.getGrindables().containsKey(e.getClass()))
 				{
 					IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
@@ -166,6 +167,10 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 					if (r.processEntity(e))
 					{
 						processMob = true;
+						if (e.isDead)
+						{
+							continue entityList;
+						}
 						break processEntity;
 					}
 				}

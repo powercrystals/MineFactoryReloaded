@@ -47,7 +47,6 @@ public class GrindingWorldServer extends WorldServerProxy implements IGrindingWo
 	public boolean addEntityForGrinding(Entity entity) {
 		if (entity.worldObj == this.proxiedWorld) {
 			entity.worldObj = this;
-			entity.captureDrops = false;
 			entitiesToGrind.add(entity);
 			return true;
 		}
