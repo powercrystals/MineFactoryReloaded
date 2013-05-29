@@ -25,7 +25,7 @@ public class ItemFactoryCup extends ItemFactory
 
 	private ItemFactoryCup _full, _empty;
 	private int _maxUses = 0;
-	
+
 	public static abstract class LiquidManager
 	{
 		private static class Tuple
@@ -51,7 +51,7 @@ public class ItemFactoryCup extends ItemFactory
 				return;
 			containers.add(item);
 			for (int i = 1, e = liquidIDs.size(); i < e; ++i)
-				LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getCanonicalLiquid(liquidIDs.get(i)), new ItemStack(item._full, 1, i), new ItemStack(item._empty, 1, 0)));
+				LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getLiquid(liquidIDs.get(i), LiquidContainerRegistry.BUCKET_VOLUME), new ItemStack(item._full, 1, i), new ItemStack(item._empty, 1, 0)));
 		}
 		@ForgeSubscribe
 		public static void registerLiquid(LiquidRegisterEvent evt)
@@ -94,7 +94,7 @@ public class ItemFactoryCup extends ItemFactory
 		LiquidManager.registerAsContainers(this);
 		return this;
 	}
-	
+
 	@Override
 	public ItemStack getContainerItemStack(ItemStack stack)
 	{
@@ -174,31 +174,31 @@ public class ItemFactoryCup extends ItemFactory
 	}
 
 	@Override
-    public int getItemDamageFromStackForDisplay(ItemStack stack)
-    {
+	public int getItemDamageFromStackForDisplay(ItemStack stack)
+	{
 		NBTTagCompound tag = stack.getTagCompound();
 		if (tag == null)
 			return 0;
 		return tag.getInteger("usedCount");
-    }
-	
-    public boolean isItemStackDamaged(ItemStack stack)
-    {
+	}
+
+	public boolean isItemStackDamaged(ItemStack stack)
+	{
 		NBTTagCompound tag = stack.getTagCompound();
 		if (tag == null)
 			return false;
-        return tag.getInteger("usedCount") > 0;
-    }
+		return tag.getInteger("usedCount") > 0;
+	}
 
-    public void setItemDamageForStack(ItemStack stack, int damage)
-    {
+	public void setItemDamageForStack(ItemStack stack, int damage)
+	{
 		NBTTagCompound tag = stack.getTagCompound();
 		if (tag == null)
 			stack.setTagCompound((tag = new NBTTagCompound()));
 
-        if (damage < 0)
-            damage = 0;
-            
-        tag.setInteger("usedCount", damage);
-    }
+		if (damage < 0)
+			damage = 0;
+
+		tag.setInteger("usedCount", damage);
+	}
 }
