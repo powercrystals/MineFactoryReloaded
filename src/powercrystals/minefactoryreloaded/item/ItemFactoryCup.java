@@ -83,6 +83,7 @@ public class ItemFactoryCup extends ItemFactory
 		this.setMaxStackSize(stackSize);
 		this._maxUses = maxUses;
 		this.setHasSubtypes(true);
+		this.setMaxDamage(maxUses);
 	}
 
 	public ItemFactory setContainers(ItemFactoryCup full, ItemFactoryCup empty)
