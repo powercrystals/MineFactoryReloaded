@@ -6,7 +6,6 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
@@ -133,16 +132,18 @@ public class ItemFactoryCup extends ItemFactory
 			if (drop != null)
 			{
 				if (stack.stackSize-- > 1)
+				{
 					if (!player.inventory.addItemStackToInventory(drop))
 						player.dropPlayerItem(drop);
+				}
 				else if (stack.stackSize == 0)
 					return drop;
 			}
 			else
 			{
 				--stack.stackSize;
-                player.renderBrokenItemStack(stack);
-                player.addStat(StatList.objectBreakStats[item.itemID], 1);
+				player.renderBrokenItemStack(stack);
+				player.addStat(StatList.objectBreakStats[item.itemID], 1);
 			}
 		}
 
