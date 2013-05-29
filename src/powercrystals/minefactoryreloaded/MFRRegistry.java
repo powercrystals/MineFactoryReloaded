@@ -241,9 +241,9 @@ public abstract class MFRRegistry
 		return _fruitBlocks;
 	}
 	
-	public static void registerAutoSpawnerBlacklist(String classString)
+	public static void registerAutoSpawnerBlacklist(String entityString)
 	{
-		_autoSpawnerBlacklist.add(classString);
+		_autoSpawnerBlacklist.add(entityString);
 	}
 	
 	public static List<String> getAutoSpawnerBlacklist()
