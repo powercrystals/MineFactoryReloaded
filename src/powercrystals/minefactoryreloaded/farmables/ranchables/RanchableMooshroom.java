@@ -45,7 +45,7 @@ public class RanchableMooshroom implements IFactoryRanchable {
 		}
 		else
 		{
-			LiquidStack soup = LiquidDictionary.getLiquid("msuhroomsoup", 1000);
+			LiquidStack soup = LiquidDictionary.getLiquid("mushroomsoup", 1000);
 			drops.add(new ItemStack(soup.itemID, 1, soup.itemMeta));
 		}
 		
