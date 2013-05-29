@@ -2,6 +2,7 @@
 #translated by crafteverywhere
 #version=2.6.X
 
+
 tile.mfr.machine.planter.name = \u64ad\u7a2e\u6a5f
 tile.mfr.machine.fisher.name = \u91e3\u9b5a\u6a5f
 tile.mfr.machine.harvester.name = \u6536\u5272\u6a5f
@@ -10,9 +11,9 @@ tile.mfr.machine.fertilizer.name = \u65bd\u80a5\u6a5f
 tile.mfr.machine.vet.name = \u7378\u91ab\u7ad9
 tile.mfr.machine.itemcollector.name = \u7269\u54c1\u6536\u96c6\u7ad9
 tile.mfr.machine.blockbreaker.name = \u65b9\u584a\u7834\u58de\u6a5f
-tile.mfr.machine.weathercollector.name = \u5929\u6c23\u6536\u96c6\u5668
+tile.mfr.machine.weathercollector.name = \u96e8\u96ea\u6536\u96c6\u5668
 tile.mfr.machine.sludgeboiler.name = \u6c59\u6ce5\u8655\u7406\u6a5f
-tile.mfr.machine.sewer.name = \u92f8\u6728\u6a5f
+tile.mfr.machine.sewer.name = \u6392\u6c59\u5668
 tile.mfr.machine.composter.name = \u5806\u80a5\u5668
 tile.mfr.machine.breeder.name = \u98fc\u80b2\u5668
 tile.mfr.machine.grinder.name = \u5c60\u5bb0\u6a5f
@@ -113,7 +114,7 @@ tile.mfr.decorativebrick.ice_large.name = \u5927\u578b\u51b0\u78da\u584a
 tile.mfr.decorativebrick.lapis_large.name = \u5927\u578b\u9752\u91d1\u77f3\u78da\u584a
 tile.mfr.decorativebrick.obsidian_large.name = \u5927\u578b\u9ed1\u66dc\u77f3\u78da\u584a
 tile.mfr.decorativebrick.snow_large.name = \u5927\u578b\u96ea\u78da\u584a
-tile.mfr.decorativebrick.prc.name = \u53ef\u7de8\u7a0b\u7d05\u77f3\u7db2\u7d61\u63a7\u5236\u6a5f
+tile.mfr.decorativebrick.prc.name = \u53ef\u7de8\u7a0b\u7d05\u77f3\u7db2\u7d61\u63a7\u5236\u5668\u5916\u6bbc
 
 tile.mfr.decorativestone.black.smooth.name = \u5149\u6ed1\u9ed1\u5ca9
 tile.mfr.decorativestone.black.cobble.name = \u9ed1\u5ca9\u5713\u77f3
@@ -144,8 +145,8 @@ tile.mfr.rail.passenger.dropoff.name = \u4e58\u5ba2\u4e0b\u8eca\u8ecc\u9053
 tile.mfr.rail.passenger.pickup.name = \u4e58\u5ba2\u642d\u8eca\u8ecc\u9053
 
 tile.mfr.cable.redstone.name = \u7d05\u77f3\u7dda\u7e9c
-tile.mfr.rednet.logic.name = \u53ef\u7de8\u7a0b\u7d05\u77f3\u63a7\u5236\u6a5f
-tile.mfr.rednet.panel.historian.name = \u793a\u6ce2\u5668
+tile.mfr.rednet.logic.name = \u53ef\u7de8\u7a0b\u7d05\u77f3\u63a7\u5236\u5668
+tile.mfr.rednet.panel.historian.name = \u6ce2\u5f62\u8a18\u9304\u5668
 
 tile.mfr.liquid.milk.flowing.name = \u725b\u5976
 tile.mfr.liquid.milk.still.name = \u725b\u5976
