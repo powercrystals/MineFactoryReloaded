@@ -55,7 +55,7 @@ public class BlockFactoryDecorativeBricks extends Block implements IConnectableR
 	@Override
 	public Icon getIcon(int side, int meta)
 	{
-		return _icons[Math.min(meta, _icons.length)];
+		return _icons[Math.min(meta, _icons.length - 1)];
 	}
 	
 	@Override
