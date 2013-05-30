@@ -16,7 +16,7 @@ public class GrindingWorld extends WorldProxy implements IGrindingWorld {
 
 	protected TileEntityFactory grinder;
 	protected boolean allowSpawns;
-	protected ArrayList<Entity> entitiesToGrind = new ArrayList<Entity>(); 
+	protected ArrayList<Entity> entitiesToGrind = new ArrayList<Entity>();
 
 	public GrindingWorld(World world, TileEntityFactory grinder) {
 		this(world, grinder, false);
