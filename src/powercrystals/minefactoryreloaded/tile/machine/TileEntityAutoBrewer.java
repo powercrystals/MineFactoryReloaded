@@ -65,6 +65,11 @@ public class TileEntityAutoBrewer extends TileEntityFactoryPowered
 	@Override
 	protected boolean activateMachine()
 	{
+		if(_inventory[30] != null)
+		{
+			return false;
+		}
+		
 		boolean hasWorkToDo = false;
 		for(int row = 0; row < 6; row++)
 		{
