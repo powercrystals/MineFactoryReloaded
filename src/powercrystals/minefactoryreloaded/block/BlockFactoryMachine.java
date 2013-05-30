@@ -210,7 +210,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side, float xOffset, float yOffset, float zOffset)
 	{
 		PlayerInteractEvent e = new PlayerInteractEvent(entityplayer, Action.RIGHT_CLICK_BLOCK, x, y, z, side);
-		if(MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Result.DENY)
+		if(MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Result.DENY || e.useBlock == Result.DENY)
 		{
 			return false;
 		}

@@ -338,7 +338,10 @@ public class RedstoneNetwork
 		if(isNodeLoaded(node))
 		{
 			int blockId = _world.getBlockId(node.x, node.y, node.z);
-			((IConnectableRedNet)Block.blocksList[blockId]).onInputsChanged(_world, node.x, node.y, node.z, node.orientation.getOpposite(), Arrays.clone(_powerLevelOutput));
+			if(Block.blocksList[blockId] instanceof IConnectableRedNet)
+			{
+				((IConnectableRedNet)Block.blocksList[blockId]).onInputsChanged(_world, node.x, node.y, node.z, node.orientation.getOpposite(), Arrays.clone(_powerLevelOutput));
+			}
 		}
 	}
 	

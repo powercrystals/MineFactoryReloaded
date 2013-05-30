@@ -168,7 +168,7 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 			}
 		}
 		
-		_bedrockLevel = -1;
+		_bedrockLevel = 0;
 	}
 	
 	private ItemStack getRandomDrop()

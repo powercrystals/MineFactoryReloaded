@@ -142,9 +142,12 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 				continue;
 			}
 			List<String> names = OreDictTracker.getNamesFromItem(_inventory[i]);
-			for(String name : names)
+			if(names != null)
 			{
-				_preferredOutputs.put(name, _inventory[i].copy());
+				for(String name : names)
+				{
+					_preferredOutputs.put(name, _inventory[i].copy());
+				}
 			}
 		}
 	}

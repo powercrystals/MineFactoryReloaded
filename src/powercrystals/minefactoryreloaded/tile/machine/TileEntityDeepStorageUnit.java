@@ -23,6 +23,8 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	private int _storedId;
 	private int _storedMeta;
 	
+	private boolean _canUpdate = true;
+	
 	@Override
 	public String getGuiBackground()
 	{
@@ -150,6 +152,11 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		}
 		checkInput(0);
 		checkInput(1);
+		
+		if(_inventory[0] == null && _inventory[1] == null)
+		{
+			_canUpdate = false;
+		}
 	}
 	
 	private void checkInput(int slot)
@@ -318,6 +325,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			}
 		}
 		_storedQuantity = amount;
+		_canUpdate = true;
 	}
 	
 	@Override
@@ -327,11 +335,24 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		_storedId = itemID;
 		_storedMeta = meta;
 		_storedQuantity = Count;
+		_canUpdate = true;
 	}
 	
 	@Override
 	public int getMaxStoredCount()
 	{
 		return Integer.MAX_VALUE;
+	}
+	
+	@Override
+	public boolean canUpdate()
+	{
+		return _canUpdate;
+	}
+	
+	@Override
+	protected void onFactoryInventoryChanged()
+	{
+		_canUpdate = true;
 	}
 }
