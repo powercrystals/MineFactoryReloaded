@@ -19,7 +19,7 @@ public class DrinkHandlerWater implements ILiquidDrinkHandler
 		{
 			player.dropPlayerItem(new ItemStack(Block.obsidian));
 			tag.setLong("drankLavaTime", -100);
-			world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+			world.playSoundAtEntity(player, "random.burp", 1.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 		}
 	}
 }
