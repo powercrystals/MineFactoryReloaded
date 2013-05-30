@@ -122,32 +122,32 @@ public class TileEntityAutoBrewer extends TileEntityFactoryPowered
 				{
 					_inventory[getProcessSlot(row)].setItemDamage(newPotion);
 				}
-			}
-			
-			_inventory[getProcessSlot(row + 1)] = _inventory[getProcessSlot(row)];
-			_inventory[getProcessSlot(row)] = null;
-		
-			for(int i = 0; i < 3; i++)
-			{
-				if(!InventoryManager.stacksEqual(_inventory[getResourceSlot(row, i)], ingredient))
-				{
-					continue;
-				}
 				
-				if(Item.itemsList[ingredient.itemID].hasContainerItem())
+				_inventory[getProcessSlot(row + 1)] = _inventory[getProcessSlot(row)];
+				_inventory[getProcessSlot(row)] = null;
+			
+				for(int i = 0; i < 3; i++)
 				{
-					_inventory[getResourceSlot(row, i)] = Item.itemsList[ingredient.itemID].getContainerItemStack(_inventory[getResourceSlot(row, i)]);
-				}
-				else
-				{
-					_inventory[getResourceSlot(row, i)].stackSize--;
-					
-					if(_inventory[getResourceSlot(row, i)].stackSize <= 0)
+					if(!InventoryManager.stacksEqual(_inventory[getResourceSlot(row, i)], ingredient))
 					{
-						_inventory[getResourceSlot(row, i)] = null;
+						continue;
 					}
+					
+					if(Item.itemsList[ingredient.itemID].hasContainerItem())
+					{
+						_inventory[getResourceSlot(row, i)] = Item.itemsList[ingredient.itemID].getContainerItemStack(_inventory[getResourceSlot(row, i)]);
+					}
+					else
+					{
+						_inventory[getResourceSlot(row, i)].stackSize--;
+						
+						if(_inventory[getResourceSlot(row, i)].stackSize <= 0)
+						{
+							_inventory[getResourceSlot(row, i)] = null;
+						}
+					}
+					break;
 				}
-				break;
 			}
 		}
 		return true;
