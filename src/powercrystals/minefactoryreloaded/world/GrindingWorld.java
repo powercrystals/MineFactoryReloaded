@@ -45,6 +45,8 @@ public class GrindingWorld extends WorldProxy implements IGrindingWorld {
 	}
 
 	public boolean addEntityForGrinding(Entity entity) {
+		if (entity.worldObj == this)
+			return true;
 		if (entity.worldObj == this.proxiedWorld) {
 			entity.worldObj = this;
 			entitiesToGrind.add(entity);
