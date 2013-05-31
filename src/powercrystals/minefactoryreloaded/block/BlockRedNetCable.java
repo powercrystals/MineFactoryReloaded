@@ -119,7 +119,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 				double distance = playerPosition.distanceTo(hit.hitVec);
 				if(distance < closestdistance)
 				{
-					distance = closestdistance;
+					closestdistance = distance;
 					closest = i;
 				}
 			}
