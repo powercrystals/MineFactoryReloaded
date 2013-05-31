@@ -31,11 +31,11 @@ public class ItemSyringeZombie extends ItemSyringe
 			Entity e;
 			if(entity instanceof EntityPig)
 			{
-				e = new EntityZombie(world);
+				e = new EntityPigZombie(world);
 			}
 			else
 			{
-				e = new EntityPigZombie(world);
+				e = new EntityZombie(world);
 			}
 			e.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
 			world.spawnEntityInWorld(e);
