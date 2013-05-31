@@ -21,6 +21,8 @@ import net.minecraftforge.common.ForgeDirection;
 public class RedNetHistorianRenderer extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler
 {
 	private RedNetHistorianModel _model;
+	private static final double _renderMin = 1.0/16.0;
+	private static final double _renderMax = 15.0/16.0;
 	
 	public RedNetHistorianRenderer()
 	{
@@ -113,8 +115,8 @@ public class RedNetHistorianRenderer extends TileEntitySpecialRenderer implement
 			{
 				double x1 = (14.0/16.0)/values.length * lastX + (1.0/16.0);
 				double x2 = (14.0/16.0)/values.length * (i) + (1.0/16.0);
-				double y1 = (14.0/16.0)/yMax * lastValue + (1.0/16.0) - yMin/16.0;
-				double y2 = (14.0/16.0)/yMax * values[i] + (1.0/16.0) - yMin/16.0;
+				double y1 = (values[i - 1] - yMin) * (_renderMax - _renderMin) / (yMax - yMin) + _renderMin;
+				double y2 = (values[i] - yMin) * (_renderMax - _renderMin) / (yMax - yMin) + _renderMin;
 				
 				t.addVertex(x1, y1, 0.253);
 				t.addVertex(x2, y2, 0.253);
