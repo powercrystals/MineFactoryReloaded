@@ -159,6 +159,12 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	}
 	
 	@Override
+	public boolean shouldDropSlotWhenBroken(int slot)
+	{
+		return slot < 2;
+	}
+	
+	@Override
 	public String getInvName()
 	{
 		return "Unifier";
