@@ -8,7 +8,6 @@ import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
-import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -36,10 +35,10 @@ public class Thaumcraft
 			Block tcLeaves = (Block)Class.forName("thaumcraft.common.Config").getField("blockMagicalLeaves").get(null);
 			
 			FarmingRegistry.registerHarvestable(new HarvestableStandard(tcLog.blockID, HarvestType.Tree));
-			FarmingRegistry.registerHarvestable(new HarvestableStandard(tcLeaves.blockID, HarvestType.TreeLeaf));
+			FarmingRegistry.registerHarvestable(new HarvestableThaumcraftLeaves(tcLeaves.blockID, tcSapling.blockID));
 			FarmingRegistry.registerHarvestable(new HarvestableThaumcraftPlant(tcSapling.blockID));
 			
-			FarmingRegistry.registerPlantable(new PlantableStandard(tcSapling.blockID, tcSapling.blockID));
+			FarmingRegistry.registerPlantable(new PlantableThaumcraftTree(tcSapling.blockID, tcSapling.blockID));
 			
 			ItemStack zombieBrain = new ItemStack((Item)Class.forName("thaumcraft.common.Config").getField("itemResource").get(null), 1, 5);
 			
