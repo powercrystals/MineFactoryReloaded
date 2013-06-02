@@ -38,7 +38,8 @@ public class Pam
 	private enum Category
 	{
 		BUSH("bushes"),
-		CROP("crops"),
+		CROP("crops.normal"),
+		CROP_PERENNIAL("crops.regrow"),
 		MISC("misc");
 		
 		private String packageName;
@@ -83,7 +84,7 @@ public class Pam
 			registerCrop("Chilipepper", true, false);
 			registerCrop("Coffee", true, false);
 			registerCrop("Corn", true, false);
-			registerCrop("Cucumber", false, false);
+			registerCrop("Cucumber", true, false);
 			registerCrop("Eggplant", true, false);
 			registerCrop("Garlic", false, false);
 			registerCrop("Ginger", false, false);
@@ -192,7 +193,7 @@ public class Pam
 	
 	private static void registerCrop(String modName, boolean isPerennial, boolean hasWild)
 	{
-		registerPamModBasic(modName, Category.CROP, isPerennial, hasWild);
+		registerPamModBasic(modName, isPerennial ? Category.CROP_PERENNIAL : Category.CROP, isPerennial, hasWild);
 	}
 	
 	private static void registerMisc(String modName, boolean isPerennial, boolean hasWild)
@@ -247,7 +248,7 @@ public class Pam
 			}
 			
 			MFRRegistry.registerFertilizable(new FertilizableCropReflection(blockIdCrop,
-					Class.forName(String.format("%s.BlockPam%sCrop", baseClassPath, cropName)).getMethod("fertilize", World.class, int.class, int.class, int.class), 7));
+					Class.forName(String.format(isPerennial ? "mods.PamHarvestCraft.BlockPamRegrowCrop" : "mods.PamHarvestCraft.BlockPamCrop")).getMethod("fertilize", World.class, int.class, int.class, int.class), 7));
 		}
 		catch(ClassNotFoundException x)
 		{
