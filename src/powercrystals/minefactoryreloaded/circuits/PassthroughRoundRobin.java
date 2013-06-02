@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.circuits;
 
+import net.minecraft.nbt.NBTTagCompound;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
@@ -55,5 +56,21 @@ public class PassthroughRoundRobin extends StatelessCircuit implements IRedNetLo
 	public String getOutputPinLabel(int pin)
 	{
 		return "O" + pin;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		super.readFromNBT(tag);
+		_lastClockState = tag.getBoolean("lastClockState");
+		_currentOutput = tag.getInteger("currentOutput");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		super.writeToNBT(tag);
+		tag.setBoolean("lastClockState", _lastClockState);
+		tag.setInteger("currentOutput", _currentOutput);
 	}
 }
