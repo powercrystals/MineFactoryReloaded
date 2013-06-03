@@ -223,6 +223,10 @@ public class RedstoneNetwork
 		
 		_omniNodes.addAll(network._omniNodes);
 		
+		_weakNodes.addAll(network._weakNodes);
+		
+		_mustUpdate = _mustUpdate || network._mustUpdate;
+		
 		for(BlockPosition cable : network._cables)
 		{
 			_cables.add(cable);
@@ -248,6 +252,8 @@ public class RedstoneNetwork
 	{
 		_powerLevelOutput[subnet] = 0;
 		_powerProviders[subnet] = null;
+		
+		log("Network with ID %d:%d recalculating power levels for %d single nodes and %d omni nodes", _id, subnet, _singleNodes.size(), _omniNodes.size());
 		
 		for(BlockPosition node : _singleNodes.get(subnet))
 		{
