@@ -267,6 +267,10 @@ public class Pam
 			Block fruit = (Block)Class.forName("mods.PamHarvestCraft.trees." + name.toLowerCase() + ".PamHC" + name).getField("pam" + name).get(null);
 			MFRRegistry.registerFruit(new PamFruit(fruit.blockID));
 		}
+		catch(ClassNotFoundException x)
+		{
+			FMLLog.warning("Unable to load Pam support for %s trees", name);
+		}
 		catch(Exception x)
 		{
 			x.printStackTrace();
