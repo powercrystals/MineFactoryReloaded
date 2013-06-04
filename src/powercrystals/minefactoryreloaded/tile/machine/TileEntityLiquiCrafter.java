@@ -12,11 +12,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.LiquidContainerData;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
-import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.RemoteInventoryCrafting;
@@ -138,38 +136,6 @@ inv:	for(int i = 0; i < 9; i++)
 						}
 					}
 					requiredItems.add(new ItemResourceTracker(_inventory[i].itemID, _inventory[i].getItemDamage(), 1));
-				}
-			}
-		}
-		
-		if(LiquidContainerRegistry.isFilledContainer(_inventory[9]))
-		{
-			boolean alreadyRequiresEmpty = false;
-			ItemStack emptyContainer = null;
-			
-			for(LiquidContainerData c : LiquidContainerRegistry.getRegisteredLiquidContainerData())
-			{
-				if(InventoryManager.stacksEqual(_inventory[9], c.filled))
-				{
-					emptyContainer = c.container;
-					break;
-				}
-			}
-			
-			if(emptyContainer != null)
-			{
-				for(ItemResourceTracker t : requiredItems)
-				{
-					if(t.id == emptyContainer.itemID && t.meta == emptyContainer.getItemDamage() && t.required > 0)
-					{
-						alreadyRequiresEmpty = true;
-						break;
-					}
-				}
-				
-				if(!alreadyRequiresEmpty)
-				{
-					requiredItems.add(new ItemResourceTracker(emptyContainer.itemID, emptyContainer.getItemDamage(), 1));
 				}
 			}
 		}
