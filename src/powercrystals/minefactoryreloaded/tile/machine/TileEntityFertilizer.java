@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -31,13 +30,6 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 		_rand = new Random();
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 	}
-	
-	@Override
-    public void setWorldObj(World world)
-    {
-		super.setWorldObj(world);
-        _rand.setSeed(this.worldObj.getSeed() ^ this.worldObj.getWorldTime());
-    }
 	
 	@Override
 	protected void onFactoryInventoryChanged()
