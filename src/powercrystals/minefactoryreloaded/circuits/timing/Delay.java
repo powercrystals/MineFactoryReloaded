@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Delay  extends StatelessCircuit implements IRedNetLogicCircuit
+public class Delay extends StatelessCircuit implements IRedNetLogicCircuit
 {
 	private int delayTime;
 	private ArrayList<Integer> history = new ArrayList<Integer>();
@@ -27,28 +27,28 @@ public class Delay  extends StatelessCircuit implements IRedNetLogicCircuit
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
 		
-		int output=0;
+		int output = 0;
 		
-		this.delayTime=inputValues[1];
+		this.delayTime = inputValues[1];
 		
-		if(delayTime<0)
+		if(delayTime < 0)
 		{
-			delayTime=0;
+			delayTime = 0;
 		}
 		
-		this.history.add(0,inputValues[0]);
+		this.history.add(0, inputValues[0]);
 		
-		if(this.history.size()>delayTime)
+		if(this.history.size() > delayTime)
 		{
-			output=this.history.get(this.delayTime);
+			output = this.history.get(this.delayTime);
 			
-			for(int i=this.delayTime; i<this.history.size();i++)
+			for(int i = this.delayTime; i < this.history.size(); i++)
 			{
 				this.history.remove(i);
 			}
 		}
-
-		return new int[]{output};
+		
+		return new int[] { output };
 	}
 	
 	@Override
@@ -74,9 +74,9 @@ public class Delay  extends StatelessCircuit implements IRedNetLogicCircuit
 	{
 		delayTime = tag.getInteger("delayTime");
 		
-		for(int i = 0; i<delayTime;i++)
+		for(int i = 0; i < delayTime; i++)
 		{
-			history.add(tag.getInteger("inputH"+i));
+			history.add(tag.getInteger("inputH" + i));
 		}
 	}
 	
@@ -85,11 +85,11 @@ public class Delay  extends StatelessCircuit implements IRedNetLogicCircuit
 	{
 		tag.setInteger("delayTime", delayTime);
 		
-		for(Integer inputH :history)
+		for(Integer inputH : history)
 		{
 			int i = 0;
 			
-			tag.setInteger("inputH"+i, inputH);
+			tag.setInteger("inputH" + i, inputH);
 			
 			i++;
 		}
