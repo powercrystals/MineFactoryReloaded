@@ -116,7 +116,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 				_inventory[0] = null;
 				_inventory[2] = _output;
 				
-				if(stackSizeToBeUsedInRepair > 0)
+				if(stackSizeToBeUsedInRepair > 0 && _inventory[1].stackSize > stackSizeToBeUsedInRepair)
 				{
 					_inventory[1].stackSize -= stackSizeToBeUsedInRepair;
 				}
