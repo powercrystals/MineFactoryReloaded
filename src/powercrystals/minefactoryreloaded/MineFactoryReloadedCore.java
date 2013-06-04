@@ -245,6 +245,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	{
 		return instance;
 	}
+	
+	private static int itemOffset;
 
 	@PreInit
 	public void preInit(FMLPreInitializationEvent evt)
@@ -276,11 +278,13 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		chocolateMilkBucketItem = (new ItemFactoryBucket(MFRConfig.chocolateMilkBucketItemId.getInt(), chocolateMilkLiquid.blockID)).setUnlocalizedName("mfr.bucket.chocolatemilk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		mushroomSoupBucketItem = (new ItemFactoryBucket(MFRConfig.mushroomSoupBucketItemId.getInt(), mushroomSoupLiquid.blockID)).setUnlocalizedName("mfr.bucket.mushroomsoup").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		
+		itemOffset = sewageBucketItem.itemID - MFRConfig.sewageBucketItemId.getInt();
+		
 		if(MFRConfig.vanillaOverrideMilkBucket.getBoolean(true))
 		{
 			int milkBucketId = Item.bucketMilk.itemID;
 			Item.itemsList[milkBucketId] = null;
-			Item.bucketMilk = new ItemFactoryBucket(milkBucketId - 256, milkLiquid.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
+			Item.bucketMilk = new ItemFactoryBucket(milkBucketId - itemOffset, milkLiquid.blockID).setUnlocalizedName("mfr.bucket.milk").setMaxStackSize(1).setContainerItem(Item.bucketEmpty);
 		}
 	}
 
