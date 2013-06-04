@@ -9,22 +9,23 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+
+import powercrystals.minefactoryreloaded.api.IFactoryGrindable2;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 
-public class GrindableSkeleton implements IFactoryGrindable
+public class GrindableSkeleton implements IFactoryGrindable2
 {
 	@Override
 	public Class<?> getGrindableEntity()
 	{
 		return EntitySkeleton.class;
 	}
-	
+
 	@Override
 	public List<MobDrop> grind(World world, EntityLiving entity, Random random)
 	{
 		List<MobDrop> drops = new ArrayList<MobDrop>();
-		
+
 		switch (((EntitySkeleton)entity).getSkeletonType())
 		{
 		case 1:
@@ -34,10 +35,10 @@ public class GrindableSkeleton implements IFactoryGrindable
 			break;
 		default:
 		}
-		
+
 		return drops;
 	}
-	
+
 	@Override
 	public boolean processEntity(EntityLiving entity)
 	{

@@ -9,15 +9,16 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+
+import powercrystals.minefactoryreloaded.api.IFactoryGrindable2;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 
-public class GrindableSlime implements IFactoryGrindable {
-	
+public class GrindableSlime implements IFactoryGrindable2
+{
 	protected Class<?> grindable;
 	protected ArrayList<MobDrop> drops;
 	protected int dropSize;
-	
+
 	public GrindableSlime(Class<?> slime, MobDrop[] drops, int dropSize)
 	{
 		grindable = slime;
@@ -26,12 +27,12 @@ public class GrindableSlime implements IFactoryGrindable {
 		this.drops = q;
 		this.dropSize = dropSize;
 	}
-	
+
 	public GrindableSlime(Class<?> slime, MobDrop drop, int dropSize)
 	{
 		this(slime, new MobDrop[]{drop}, dropSize);
 	}
-	
+
 	public GrindableSlime(Class<?> slime, ItemStack[] drops, int dropSize)
 	{
 		grindable = slime;
@@ -41,7 +42,7 @@ public class GrindableSlime implements IFactoryGrindable {
 		this.drops = q;
 		this.dropSize = dropSize;
 	}
-	
+
 	public GrindableSlime(Class<?> slime, ItemStack drop, int dropSize)
 	{
 		this(slime, new MobDrop[]{new MobDrop(10, drop)}, dropSize);

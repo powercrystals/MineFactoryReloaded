@@ -29,6 +29,7 @@ import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.IFactoryGrindable2;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
@@ -42,14 +43,14 @@ import powercrystals.minefactoryreloaded.world.GrindingWorldServer;
 import powercrystals.minefactoryreloaded.world.IGrindingWorld;
 
 public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable
-{	
+{
 	private HarvestAreaManager _areaManager;
 	private LiquidTank _tank;
 	private Random _rand;
 	private IGrindingWorld grindingWorld;
-	
+
 	private static Field recentlyHit;
-	
+
 	static
 	{
 		ArrayList<String> q = new ArrayList<String>();
@@ -86,16 +87,16 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	}
 
 	@Override
-    public void setWorldObj(World world)
-    {
+	public void setWorldObj(World world)
+	{
 		super.setWorldObj(world);
-        if (grindingWorld != null)
-        	grindingWorld.clearReferences();
-        if (this.worldObj instanceof WorldServer)
-        	grindingWorld = new GrindingWorldServer((WorldServer)this.worldObj, this);
-        else
-        	grindingWorld = new GrindingWorld(this.worldObj, this);
-    }
+		if (grindingWorld != null)
+			grindingWorld.clearReferences();
+		if (this.worldObj instanceof WorldServer)
+			grindingWorld = new GrindingWorldServer((WorldServer)this.worldObj, this);
+		else
+			grindingWorld = new GrindingWorld(this.worldObj, this);
+	}
 
 	public Random getRandom()
 	{
@@ -137,7 +138,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		grindingWorld.cleanReferences();
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
-		
+
 		entityList: for(Object o : entities)
 		{
 			if(o instanceof EntityAgeable && ((EntityAgeable)o).getGrowingAge() < 0)
@@ -155,20 +156,30 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				e.captureDrops = false;
 				if(MFRRegistry.getGrindables().containsKey(e.getClass()))
 				{
+					@SuppressWarnings("deprecation")
 					IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
+					@SuppressWarnings("deprecation")
 					List<MobDrop> drops = r.grind(worldObj, e, getRandom());
 					if(drops != null && drops.size() > 0 && WeightedRandom.getTotalWeight(drops) > 0)
 					{
 						ItemStack drop = ((MobDrop)WeightedRandom.getRandomItem(_rand, drops)).getStack();
 						UtilInventory.dropStack(this, drop, this.getDropDirection());
 					}
-					if (r.processEntity(e))
+					if (r instanceof IFactoryGrindable2)
+					{
+						if (((IFactoryGrindable2)r).processEntity(e))
+						{
+							processMob = true;
+							if (e.isDead)
+							{
+								continue entityList;
+							}
+							break processEntity;
+						}
+					}
+					else
 					{
 						processMob = true;
-						if (e.isDead)
-						{
-							continue entityList;
-						}
 						break processEntity;
 					}
 				}
@@ -207,7 +218,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		setIdleTicks(getIdleTicksMax());
 		return false;
 	}
-	
+
 	protected void damageEntity(EntityLiving entity)
 	{
 		DamageSource grind = new GrindingDamage();
@@ -282,20 +293,20 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	{
 		return true;
 	}
-	
-	protected class GrindingDamage extends DamageSource 
+
+	protected class GrindingDamage extends DamageSource
 	{
-		
+
 		public GrindingDamage()
 		{
 			this(null);
 		}
-		
+
 		public GrindingDamage(String type)
 		{
 			super(type == null ? "mfr.grinder" : type);
 			this.setDamageBypassesArmor();
 		}
-		
+
 	}
 }
