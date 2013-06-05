@@ -159,7 +159,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 					@SuppressWarnings("deprecation")
 					IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
 					@SuppressWarnings("deprecation")
-					List<MobDrop> drops = r.grind(worldObj, e, getRandom());
+					List<MobDrop> drops = r.grind(e.worldObj, e, getRandom());
 					if(drops != null && drops.size() > 0 && WeightedRandom.getTotalWeight(drops) > 0)
 					{
 						ItemStack drop = ((MobDrop)WeightedRandom.getRandomItem(_rand, drops)).getStack();
@@ -170,7 +170,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 						if (((IFactoryGrindable2)r).processEntity(e))
 						{
 							processMob = true;
-							if (e.isDead)
+							if (e.getHealth() <= 0)
 							{
 								continue entityList;
 							}
@@ -201,7 +201,10 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				{
 					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
 					damageEntity(e);
-					_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
+					if (e.getHealth() <= 0)
+					{
+						_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
+					}
 				}
 				finally
 				{
@@ -211,7 +214,10 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				return true;
 			}
 			damageEntity(e);
-			_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
+			if (e.getHealth() <= 0)
+			{
+				_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
+			}
 			setIdleTicks(20);
 			return true;
 		}
