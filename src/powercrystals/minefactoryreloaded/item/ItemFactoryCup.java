@@ -6,6 +6,7 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
@@ -37,6 +38,7 @@ public class ItemFactoryCup extends ItemFactory
 				this.id = first;
 				this.meta = second;
 			}
+			@Override
 			public int hashCode()
 			{
 				return (id.hashCode() << 16) ^ meta.hashCode();
@@ -45,7 +47,7 @@ public class ItemFactoryCup extends ItemFactory
 		public static HashMap<String, Tuple> liquids = new HashMap<String, Tuple>();
 		public static ArrayList<String> liquidIDs = new ArrayList<String>();
 		private static ArrayList<ItemFactoryCup> containers = new ArrayList<ItemFactoryCup>();
-		public static void registerAsContainers(ItemFactoryCup item) 
+		public static void registerAsContainers(ItemFactoryCup item)
 		{
 			if (containers.contains(item._empty) || containers.contains(item._full))
 				return;
@@ -93,6 +95,50 @@ public class ItemFactoryCup extends ItemFactory
 		full.setContainerItem(empty);
 		LiquidManager.registerAsContainers(this);
 		return this;
+	}
+
+	private boolean prefix = false;
+
+	@Override
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		if (stack.itemID == _full.itemID && stack.getItemDamage() != 0)
+			return getUnlocalizedName() + (prefix ? ".prefix" : ".suffix");
+		return getUnlocalizedName();
+	}
+
+	@Override
+	public String getItemDisplayName(ItemStack item)
+	{
+		int id = item.getItemDamage();
+		if (id != 0)
+		{
+			String ret = LiquidManager.liquidIDs.get(id);
+			/*if (ret.equals("Steam"))
+				return "\u00a7r\u00a77\u00a7oBucket o' Steam\u00a7r";//*/
+			if (ret == null)
+			{
+				item.setItemDamage(0);
+				return super.getItemDisplayName(item);
+			}
+			LiquidStack liquid = LiquidDictionary.getLiquid(ret, 0);
+			if (liquid != null)
+			{
+				ItemStack q = liquid.asItemStack();
+				Item temp = Item.itemsList[q.itemID];
+				if (temp != null) ret = temp.getItemDisplayName(q);
+			}
+			prefix = true;
+			String t = super.getItemDisplayName(item);
+			prefix = false;
+			t = t != null ? t.trim() : "";
+			ret = (t.isEmpty() ? "" : t + " ") + ret;
+			t = super.getItemDisplayName(item);
+			t = t != null ? t.trim() : "";
+			ret += t.isEmpty() ? " Cup" : " " + t;
+			return ret;
+		}
+		return super.getItemDisplayName(item);
 	}
 
 	@Override
@@ -182,6 +228,7 @@ public class ItemFactoryCup extends ItemFactory
 		return tag.getInteger("usedCount");
 	}
 
+	@Override
 	public boolean isItemStackDamaged(ItemStack stack)
 	{
 		NBTTagCompound tag = stack.getTagCompound();
@@ -190,6 +237,7 @@ public class ItemFactoryCup extends ItemFactory
 		return tag.getInteger("usedCount") > 0;
 	}
 
+	@Override
 	public void setItemDamageForStack(ItemStack stack, int damage)
 	{
 		NBTTagCompound tag = stack.getTagCompound();
