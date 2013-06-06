@@ -157,8 +157,17 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 				{
 					if(!world.isRemote)
 					{
-						int nextColor = cable.getSideColor(ForgeDirection.getOrientation(side)) + 1;
-						if(nextColor > 15) nextColor = 0;
+						int nextColor;
+						if(!player.isSneaking())
+						{
+							nextColor = cable.getSideColor(ForgeDirection.getOrientation(side)) + 1;
+							if(nextColor > 15) nextColor = 0;
+						}
+						else
+						{
+							nextColor = cable.getSideColor(ForgeDirection.getOrientation(side)) - 1;
+							if(nextColor < 0) nextColor = 15;
+						}
 						cable.setSideColor(ForgeDirection.getOrientation(side), nextColor);
 						world.markBlockForUpdate(x, y, z);
 						return true;
