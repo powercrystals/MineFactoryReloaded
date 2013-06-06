@@ -22,7 +22,7 @@ public class DeMux4 extends StatelessCircuit implements IRedNetLogicCircuit
 	{
 		int channel = 0;
 		if(inputValues[1] > 0 && inputValues[2] == 0) channel = 1;
-		else if(inputValues[1] > 0 && inputValues[2] == 0) channel = 2;
+		else if(inputValues[1] == 0 && inputValues[2] > 0) channel = 2;
 		else if(inputValues[1] > 0 && inputValues[2] > 0) channel = 3;
 		int[] output = new int[4];
 		output[channel] = inputValues[0];
