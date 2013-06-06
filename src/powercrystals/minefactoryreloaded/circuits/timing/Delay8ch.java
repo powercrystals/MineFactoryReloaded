@@ -31,7 +31,7 @@ public class Delay8ch extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public int getOutputCount()
 	{
-		return 1;
+		return 8;
 	}
 	
 	@Override
@@ -81,7 +81,7 @@ public class Delay8ch extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O";
+		return "O" + pin;
 	}
 	
 	@Override
