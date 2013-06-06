@@ -118,6 +118,7 @@ public class MFRConfig
 	public static Property autospawnerCostStandard;
 	public static Property autospawnerCostExact;
 	public static Property laserdrillCost;
+	public static Property meatSaturation;
 	
 	public static Property vanillaOverrideGlassPane;
 	public static Property vanillaOverrideIce;
@@ -286,6 +287,8 @@ public class MFRConfig
 		autospawnerCostStandard.comment = "The work required to generate a mob in standard (non-exact) mode.";
 		laserdrillCost = c.get(Configuration.CATEGORY_GENERAL, "LaserDrill.Cost", 300);
 		laserdrillCost.comment = "The work required by the drill to generate a single ore.";
+		meatSaturation = c.get(Configuration.CATEGORY_GENERAL, "Meat.IncreasedSaturation", false);
+		meatSaturation.comment = "If true, meat will be worth steak saturation instead of cookie saturation.";
 		
 		vanillaOverrideGlassPane = c.get(Configuration.CATEGORY_GENERAL, "VanillaOverride.GlassPanes", true);
 		vanillaOverrideGlassPane.comment = "If true, allows vanilla glass panes to connect to MFR stained glass panes.";
