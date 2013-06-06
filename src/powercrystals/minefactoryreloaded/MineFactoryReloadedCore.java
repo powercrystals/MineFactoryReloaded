@@ -288,6 +288,9 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public void init(FMLInitializationEvent evt)
 	{
 		instance = this;
+		
+		float meatNuggetSaturation = MFRConfig.meatSaturation.getBoolean(false) ? 0.1F : 0.2F;
+		float meatIngotSaturation = MFRConfig.meatSaturation.getBoolean(false) ? 0.2F : 0.8F;
 
 		conveyorBlock = new BlockConveyor(MFRConfig.conveyorBlockId.getInt());
 		machineBlocks.put(0, new BlockFactoryMachine(MFRConfig.machineBlock0Id.getInt(), 0));
@@ -340,10 +343,10 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		rednetMeterItem = (new ItemRedNetMeter(MFRConfig.rednetMeterItemId.getInt())).setUnlocalizedName("mfr.rednet.meter").setMaxStackSize(1);
 		rednetMemoryCardItem = (new ItemRedNetMemoryCard(MFRConfig.rednetMemoryCardItemId.getInt())).setUnlocalizedName("mfr.rednet.memorycard").setMaxStackSize(1);
 		rulerItem = (new ItemRuler(MFRConfig.rulerItemId.getInt())).setUnlocalizedName("mfr.ruler").setMaxStackSize(1);
-		meatIngotRawItem = (new ItemFactoryFood(MFRConfig.meatIngotRawItemId.getInt(), 4, 0.1F)).setUnlocalizedName("mfr.meat.ingot.raw");
-		meatIngotCookedItem = (new ItemFactoryFood(MFRConfig.meatIngotCookedItemId.getInt(), 10, 0.1F)).setUnlocalizedName("mfr.meat.ingot.cooked");
-		meatNuggetRawItem = (new ItemFactoryFood(MFRConfig.meatNuggetRawItemId.getInt(), 1, 0.1F)).setUnlocalizedName("mfr.meat.nugget.raw");
-		meatNuggetCookedItem = (new ItemFactoryFood(MFRConfig.meatNuggetCookedItemId.getInt(), 4, 0.1F)).setUnlocalizedName("mfr.meat.nugget.cooked");
+		meatIngotRawItem = (new ItemFactoryFood(MFRConfig.meatIngotRawItemId.getInt(), 4, meatIngotSaturation)).setUnlocalizedName("mfr.meat.ingot.raw");
+		meatIngotCookedItem = (new ItemFactoryFood(MFRConfig.meatIngotCookedItemId.getInt(), 10, meatIngotSaturation)).setUnlocalizedName("mfr.meat.ingot.cooked");
+		meatNuggetRawItem = (new ItemFactoryFood(MFRConfig.meatNuggetRawItemId.getInt(), 1, meatNuggetSaturation)).setUnlocalizedName("mfr.meat.nugget.raw");
+		meatNuggetCookedItem = (new ItemFactoryFood(MFRConfig.meatNuggetCookedItemId.getInt(), 4, meatNuggetSaturation)).setUnlocalizedName("mfr.meat.nugget.cooked");
 		pinkSlimeballItem = (new ItemFactory(MFRConfig.pinkSlimeballItemId.getInt())).setUnlocalizedName("mfr.pinkslimeball");
 		safariNetJailerItem = (new ItemSafariNet(MFRConfig.safariNetJailerItemId.getInt())).setUnlocalizedName("mfr.safarinet.jailer");
 		laserFocusItem = (new ItemLaserFocus(MFRConfig.laserFocusItemId.getInt())).setUnlocalizedName("mfr.laserfocus").setMaxStackSize(1);
