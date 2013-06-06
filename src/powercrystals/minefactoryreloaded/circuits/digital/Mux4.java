@@ -25,7 +25,7 @@ public class Mux4 extends StatelessCircuit implements IRedNetLogicCircuit
 		int channel = 0;
 		
 		if(inputValues[4] > 0 && inputValues[5] == 0) channel = 1;
-		else if(inputValues[4] > 0 && inputValues[5] == 0) channel = 2;
+		else if(inputValues[4] == 0 && inputValues[5] > 0) channel = 2;
 		else if(inputValues[4] > 0 && inputValues[5] > 0) channel = 3;
 		
 		return new int[] { inputValues[channel] };
