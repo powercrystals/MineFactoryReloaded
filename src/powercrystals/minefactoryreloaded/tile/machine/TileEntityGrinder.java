@@ -195,11 +195,11 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 					continue entityList;
 				}
 			}
-			if(processMob && worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			if(processMob && e.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
 			{
 				try
 				{
-					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
+					e.worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
 					damageEntity(e);
 					if (e.getHealth() <= 0)
 					{
@@ -208,7 +208,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				}
 				finally
 				{
-					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "true");
+					e.worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "true");
 					setIdleTicks(20);
 				}
 				return true;
