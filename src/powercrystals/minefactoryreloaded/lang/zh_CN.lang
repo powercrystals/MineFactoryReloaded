@@ -298,6 +298,7 @@ circuit.mfr.or.2 = \u6216\u95e8(2-\u8f93\u5165)
 circuit.mfr.or.3 = \u6216\u95e8(3-\u8f93\u5165)
 circuit.mfr.or.4 = \u6216\u95e8(4-\u8f93\u5165)
 circuit.mfr.delay = \u5ef6\u65f6\u5668
+circuit.mfr.delay8ch = \u5ef6\u65f6\u5668 (8-\u9891\u9053)
 circuit.mfr.passthrough = \u901a\u8fc7\u5668
 circuit.mfr.passthrough.gated = \u901a\u8fc7\u5668(\u95e8\u63a7)
 circuit.mfr.passthrough.roundrobin = \u901a\u8fc7\u5668(\u73af\u5f62)
