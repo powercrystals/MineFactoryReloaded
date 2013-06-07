@@ -99,7 +99,7 @@ public class GuiFactoryInventory extends GuiContainer
 	protected void drawBar(int xOffset, int yOffset, int max, int current, int color)
 	{
 		int size = max > 0 ? current * _barSizeMax / max : 0;
-		if(size > max) size = max;
+		if(size > _barSizeMax) size = max;
 		if(size < 0) size = 0;
 		drawRect(xOffset, yOffset - size, xOffset + 8, yOffset, color);
 	}
