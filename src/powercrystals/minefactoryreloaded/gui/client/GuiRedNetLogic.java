@@ -172,12 +172,14 @@ public class GuiRedNetLogic extends GuiScreenBase
 		
 		_reinitConfirm.setVisible(false);
 		
+		int rotation = logic.worldObj.getBlockMetadata(logic.xCoord, logic.yCoord, logic.zCoord);
+		
 		for(int i = 0; i < _inputIOPinButtons.length; i++)
 		{
-			_inputIOBufferButtons[i]  = new ButtonLogicBufferSelect(this,  22, 16 + i * 14, i, LogicButtonType.Input);
+			_inputIOBufferButtons[i]  = new ButtonLogicBufferSelect(this,  22, 16 + i * 14, i, LogicButtonType.Input, rotation);
 			_inputIOPinButtons[i]	 = new ButtonLogicPinSelect(   this,  52, 16 + i * 14, i, LogicButtonType.Input);
 			
-			_outputIOBufferButtons[i] = new ButtonLogicBufferSelect(this, 254, 16 + i * 14, i, LogicButtonType.Output);
+			_outputIOBufferButtons[i] = new ButtonLogicBufferSelect(this, 254, 16 + i * 14, i, LogicButtonType.Output, rotation);
 			_outputIOPinButtons[i]	= new ButtonLogicPinSelect(   this, 284, 16 + i * 14, i, LogicButtonType.Output);
 			
 			addControl(_inputIOBufferButtons[i]);
