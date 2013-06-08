@@ -19,8 +19,10 @@ import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidDictionary.LiquidRegisterEvent;
 import net.minecraftforge.liquids.LiquidStack;
 
+import powercrystals.core.asm.relauncher.Implementable;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 
+@Implementable("net.minecraftforge.fluids.IFluidContainerItem")
 public class ItemFactoryCup extends ItemFactory
 {
 
@@ -152,6 +154,58 @@ public class ItemFactoryCup extends ItemFactory
 		stack.setItemDamage(damage);
 		return stack;
 	}
+
+	/*{TODO: migrate to FluidStack/IFluidContainerItem in 1.6
+	@Override
+	public FluidStack getFluid(ItemStack stack)
+	{
+		NBTTagCompound tag = stack.stackTagCompound;
+		return tag == null || !tag.hasKey("fluid") ? null : FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("fluid"));
+	}
+
+	@Override
+	public int getCapacity(ItemStack container)
+	{
+		return 1000;
+	}
+
+	@Override
+	public int fill(ItemStack stack, FluidStack resource, boolean doFill)
+	{
+		if (resource == null)
+			return 0;
+		int fillAmount = 0, capacity = getCapacity(stack);
+		fill: {
+			NBTTagCompound tag = stack.stackTagCompound, fluidTag = null;
+			FluidStack fluid = null;
+			if (tag == null || !tag.hasKey("fluid") ||
+				(fluidTag = tag.getCompoundTag("fluid")) == null ||
+				(fluid = FluidStack.loadFluidStackFromNBT(fluidTag)) == null)
+				fillAmount = Math.min(capacity, resource.amount);
+			if (fluid == null)
+				if (doFill)
+					fluid = resource.copy();
+			else if (!fluid.isFluidEqual(resource))
+				return 0;
+			else
+				fillAmount = Math.min(capacity - fluid.amount, resource.amount);
+			fillAmount = Math.max(fillAmount, 0);
+			if (!doFill)
+				break fill;
+			if (tag == null)
+				tag = stack.stackTagCompound = new NBTTagCompound();
+			fluid.amount = fillAmount;
+			tag.setTag("fluid", fluid.writeToNBT(fluidTag == null ? new NBTTagCompound() : fluidTag));
+		}
+		return fillAmount;
+	}
+
+	@Override
+	public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain)
+	{
+		return null;
+	}
+	//}*/
 
 	public boolean hasDrinkableLiquid(ItemStack stack)
 	{
