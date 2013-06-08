@@ -10,11 +10,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.liquids.LiquidContainerData;
-import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidDictionary.LiquidRegisterEvent;
 import net.minecraftforge.liquids.LiquidStack;
@@ -25,8 +24,6 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 @Implementable("net.minecraftforge.fluids.IFluidContainerItem")
 public class ItemFactoryCup extends ItemFactory
 {
-
-	private ItemFactoryCup _full, _empty;
 	private int _maxUses = 0;
 
 	public static abstract class LiquidManager
@@ -51,11 +48,11 @@ public class ItemFactoryCup extends ItemFactory
 		private static ArrayList<ItemFactoryCup> containers = new ArrayList<ItemFactoryCup>();
 		public static void registerAsContainers(ItemFactoryCup item)
 		{
-			if (containers.contains(item._empty) || containers.contains(item._full))
+			if (containers.contains(item))
 				return;
 			containers.add(item);
-			for (int i = 1, e = liquidIDs.size(); i < e; ++i)
-				LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getLiquid(liquidIDs.get(i), LiquidContainerRegistry.BUCKET_VOLUME), new ItemStack(item._full, 1, i), new ItemStack(item._empty, 1, 0)));
+			for (int i = 1, e = liquidIDs.size(); i < e; ++i);
+			//LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getLiquid(liquidIDs.get(i), LiquidContainerRegistry.BUCKET_VOLUME), new ItemStack(item._full, 1, i), new ItemStack(item._empty, 1, 0)));
 		}
 		@ForgeSubscribe
 		public static void registerLiquid(LiquidRegisterEvent evt)
@@ -65,8 +62,8 @@ public class ItemFactoryCup extends ItemFactory
 				return;
 			liquids.put(name, new Tuple(evt.Liquid.itemID, evt.Liquid.itemMeta));
 			liquidIDs.add(name);
-			for (ItemFactoryCup item : containers)
-				LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getCanonicalLiquid(name), new ItemStack(item._full, 1, liquidIDs.size() - 1), new ItemStack(item._empty, 1, 0)));
+			for (ItemFactoryCup item : containers);
+			//LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getCanonicalLiquid(name), new ItemStack(item._full, 1, liquidIDs.size() - 1), new ItemStack(item._empty, 1, 0)));
 		}
 		static
 		{
@@ -88,15 +85,8 @@ public class ItemFactoryCup extends ItemFactory
 		this._maxUses = maxUses;
 		this.setHasSubtypes(true);
 		this.setMaxDamage(maxUses);
-	}
-
-	public ItemFactory setContainers(ItemFactoryCup full, ItemFactoryCup empty)
-	{
-		this._full = full;
-		this._empty = empty;
-		full.setContainerItem(empty);
+		this.setContainerItem(this);
 		LiquidManager.registerAsContainers(this);
-		return this;
 	}
 
 	private boolean prefix = false;
@@ -104,9 +94,14 @@ public class ItemFactoryCup extends ItemFactory
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		if (stack.itemID == _full.itemID && stack.getItemDamage() != 0)
+		if (getFluid(stack) != null)
 			return getUnlocalizedName() + (prefix ? ".prefix" : ".suffix");
 		return getUnlocalizedName();
+	}
+
+	public String getLocalizedName(String str)
+	{
+		return StatCollector.translateToLocal(getUnlocalizedName() + "." + str);
 	}
 
 	@Override
@@ -115,9 +110,9 @@ public class ItemFactoryCup extends ItemFactory
 		int id = item.getItemDamage();
 		if (id != 0)
 		{
-			String ret = LiquidManager.liquidIDs.get(id);
-			/*if (ret.equals("Steam"))
-				return "\u00a7r\u00a77\u00a7oBucket o' Steam\u00a7r";//*/
+			String ret = LiquidManager.liquidIDs.get(id), t = null;
+			if ((t = getLocalizedName(ret)) != null)
+				return "\u00a7r"+t+"\u00a7r";
 			if (ret == null)
 			{
 				item.setItemDamage(0);
@@ -131,7 +126,7 @@ public class ItemFactoryCup extends ItemFactory
 				if (temp != null) ret = temp.getItemDisplayName(q);
 			}
 			prefix = true;
-			String t = super.getItemDisplayName(item);
+			t = super.getItemDisplayName(item);
 			prefix = false;
 			t = t != null ? t.trim() : "";
 			ret = (t.isEmpty() ? "" : t + " ") + ret;
@@ -148,11 +143,17 @@ public class ItemFactoryCup extends ItemFactory
 	{
 		ItemFactoryCup item = (ItemFactoryCup)stack.getItem();
 		int damage = stack.getItemDamageForDisplay() + 1;
-		if (item == null || !item._full.hasContainerItem() || damage >= item._empty._maxUses)
+		if (item == null || damage >= item._maxUses)
 			return null;
-		stack = new ItemStack(item._empty, 1, 0);
+		stack = new ItemStack(item, 1, 0);
 		stack.setItemDamage(damage);
 		return stack;
+	}
+
+	// shim
+	public LiquidStack getFluid(ItemStack stack)
+	{
+		return null;
 	}
 
 	/*{TODO: migrate to FluidStack/IFluidContainerItem in 1.6
@@ -175,23 +176,22 @@ public class ItemFactoryCup extends ItemFactory
 		if (resource == null)
 			return 0;
 		int fillAmount = 0, capacity = getCapacity(stack);
-		fill: {
-			NBTTagCompound tag = stack.stackTagCompound, fluidTag = null;
-			FluidStack fluid = null;
-			if (tag == null || !tag.hasKey("fluid") ||
-				(fluidTag = tag.getCompoundTag("fluid")) == null ||
-				(fluid = FluidStack.loadFluidStackFromNBT(fluidTag)) == null)
-				fillAmount = Math.min(capacity, resource.amount);
-			if (fluid == null)
-				if (doFill)
-					fluid = resource.copy();
-			else if (!fluid.isFluidEqual(resource))
-				return 0;
-			else
-				fillAmount = Math.min(capacity - fluid.amount, resource.amount);
-			fillAmount = Math.max(fillAmount, 0);
-			if (!doFill)
-				break fill;
+		NBTTagCompound tag = stack.stackTagCompound, fluidTag = null;
+		FluidStack fluid = null;
+		if (tag == null || !tag.hasKey("fluid") ||
+			(fluidTag = tag.getCompoundTag("fluid")) == null ||
+			(fluid = FluidStack.loadFluidStackFromNBT(fluidTag)) == null)
+			fillAmount = Math.min(capacity, resource.amount);
+		if (fluid == null)
+			if (doFill)
+				fluid = resource.copy();
+		else if (!fluid.isFluidEqual(resource))
+			return 0;
+		else
+			fillAmount = Math.min(capacity - fluid.amount, resource.amount);
+		fillAmount = Math.max(fillAmount, 0);
+		if (doFill)
+		{
 			if (tag == null)
 				tag = stack.stackTagCompound = new NBTTagCompound();
 			fluid.amount = fillAmount;

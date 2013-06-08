@@ -236,8 +236,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item chocolateMilkBucketItem;
 	public static Item mushroomSoupBucketItem;
 	
-	public static ItemFactoryCup emptyPlasticCup;
-	public static ItemFactoryCup fullPlasticCup;
+	public static ItemFactoryCup plasticCup;
 
 	private static MineFactoryReloadedCore instance;
 
@@ -355,11 +354,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		safariNetJailerItem = (new ItemSafariNet(MFRConfig.safariNetJailerItemId.getInt())).setUnlocalizedName("mfr.safarinet.jailer");
 		laserFocusItem = (new ItemLaserFocus(MFRConfig.laserFocusItemId.getInt())).setUnlocalizedName("mfr.laserfocus").setMaxStackSize(1);
 		
-		emptyPlasticCup = (ItemFactoryCup)new ItemFactoryCup(MFRConfig.emptyPlasticCupItemId.getInt(), 64, 16).setUnlocalizedName("mfr.bucket.plasticCup");
-		fullPlasticCup = (ItemFactoryCup)new ItemFactoryCup(MFRConfig.fullPlasticCupItemId.getInt(), 1, 16).setUnlocalizedName("mfr.bucket.plasticCup");
-		
-		emptyPlasticCup.setContainers(fullPlasticCup, emptyPlasticCup);
-		fullPlasticCup.setContainers(fullPlasticCup, emptyPlasticCup);
+		plasticCup = (ItemFactoryCup)new ItemFactoryCup(MFRConfig.plasticCupItemId.getInt(), 64, 16).setUnlocalizedName("mfr.bucket.plasticCup");
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{

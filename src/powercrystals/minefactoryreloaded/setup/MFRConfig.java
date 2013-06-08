@@ -100,8 +100,7 @@ public class MFRConfig
 	public static Property chocolateMilkBucketItemId;
 	public static Property mushroomSoupBucketItemId;
 	
-	public static Property emptyPlasticCupItemId;
-	public static Property fullPlasticCupItemId;
+	public static Property plasticCupItemId;
 	
 	public static Property zoolologistEntityId;
 	
@@ -246,8 +245,7 @@ public class MFRConfig
 		chocolateMilkBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.ChocolateMilkBucket", 12034);
 		mushroomSoupBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MushroomSoupBucket", 12035);
 		
-		emptyPlasticCupItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.EmptyPlasticCup", 12061);
-		fullPlasticCupItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.FullPlasticCup", 12062);
+		plasticCupItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PlasticCup", 12061);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 	
