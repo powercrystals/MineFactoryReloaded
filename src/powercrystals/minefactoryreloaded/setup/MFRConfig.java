@@ -111,6 +111,8 @@ public class MFRConfig
 	public static Property craftSingleDSU;
 	public static Property enableMossyCobbleRecipe;
 	public static Property conveyorCaptureNonItems;
+        public static Property conveyorNeverCapturesPlayers;
+        public static Property conveyorNeverCapturesTCGolems;
 	public static Property playSounds;
 	public static Property fruitTreeSearchMaxVertical;
 	public static Property fruitTreeSearchMaxHorizontal;
@@ -271,6 +273,10 @@ public class MFRConfig
 		enableMossyCobbleRecipe.comment = "If true, mossy cobble can be crafted.";
 		conveyorCaptureNonItems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.CaptureNonItems", true);
 		conveyorCaptureNonItems.comment = "If false, conveyors will not grab non-item entities. Breaks conveyor mob grinders but makes them safe for golems, etc.";
+                conveyorNeverCapturesPlayers = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.NeverCapturePlayers", false);
+                conveyorNeverCapturesPlayers.comment = "If true, conveyors will NEVER capture players regardless of other settings.";
+                conveyorNeverCapturesTCGolems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.NeverCaptureTCGolems", false);
+                conveyorNeverCapturesTCGolems.comment = "If true, conveyors will NEVER capture Thaumcraft golems regardless of other settings.";
 		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
 		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";
 		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
