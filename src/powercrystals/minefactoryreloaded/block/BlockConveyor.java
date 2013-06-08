@@ -128,6 +128,14 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
+                if (entity instanceof EntityPlayer && MFRConfig.conveyorNeverCapturesPlayers.getBoolean(false)){
+                    return;
+                }
+                
+                if (entity.getClass().getName().contains("thaumcraft.common.entities.golems") && MFRConfig.conveyorNeverCapturesTCGolems.getBoolean(false)){
+                    return;
+                }
+                
 		if(!(entity instanceof EntityItem || entity instanceof EntityXPOrb || (entity instanceof EntityLiving && MFRConfig.conveyorCaptureNonItems.getBoolean(true))))
 		{
 			return;
