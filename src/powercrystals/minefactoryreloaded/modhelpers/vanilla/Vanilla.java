@@ -3,7 +3,6 @@ package powercrystals.minefactoryreloaded.modhelpers.vanilla;
 import net.minecraft.block.Block;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
@@ -223,7 +222,6 @@ public class Vanilla
 		MFRRegistry.registerGrindable(new GrindableStandard(EntityWolf.class, new ItemStack(Item.bone)));
 		MFRRegistry.registerGrindable(new GrindableSkeleton());
 		MFRRegistry.registerGrindable(new GrindableZombiePigman());
-		MFRRegistry.registerGrindable(new GrindableStandard(EntityMagmaCube.class, false));
 		MFRRegistry.registerGrindable(new GrindableSlime(EntitySlime.class, new ItemStack(Item.slimeBall), 1));
 		MFRRegistry.registerGrindable(new GrindableSlime(EntityPinkSlime.class, new ItemStack(MineFactoryReloadedCore.pinkSlimeballItem), 1));
 		
