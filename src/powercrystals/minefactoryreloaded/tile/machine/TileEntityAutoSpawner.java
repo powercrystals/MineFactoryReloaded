@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
@@ -223,6 +224,12 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
 		return _tank;
+	}
+	
+	@Override
+	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
+	{
+		return !ItemSafariNet.isSingleUse(itemstack) && !ItemSafariNet.isEmpty(itemstack);
 	}
 	
 	@Override
