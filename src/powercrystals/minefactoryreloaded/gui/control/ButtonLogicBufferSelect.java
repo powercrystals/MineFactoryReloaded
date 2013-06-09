@@ -17,7 +17,7 @@ public class ButtonLogicBufferSelect extends ButtonOption
 		_buttonType = buttonType;
 		_pinIndex = pinIndex;
 		
-		char[] dir = {'F','R','B','L'};
+		char[] dir = {'L','B','R','F',};
 		char[] dirMap = new char[4];
 		for (int i = 0; i < 4; ++i)
 			dirMap[(i + rotation) & 3] = dir[i];
