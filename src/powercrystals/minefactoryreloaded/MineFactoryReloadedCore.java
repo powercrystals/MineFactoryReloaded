@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import buildcraft.api.transport.FacadeManager;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.item.Item;
@@ -497,6 +499,20 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		{
 			new GregTech().registerRecipes();
 		}
+		
+		for(int i = 0; i < 14; i++)
+		{
+			FacadeManager.addFacade(new ItemStack(factoryDecorativeBrickBlock.blockID, 1, i));
+		}
+		
+		for(int i = 0; i < 12; i++)
+		{
+			FacadeManager.addFacade(new ItemStack(factoryDecorativeStoneBlock.blockID, 1, i));
+		}
+		
+		FacadeManager.addFacade(new ItemStack(factoryRoadBlock.blockID, 1, 0));
+		FacadeManager.addFacade(new ItemStack(factoryRoadBlock.blockID, 1, 1));
+		FacadeManager.addFacade(new ItemStack(factoryRoadBlock.blockID, 1, 4));
 	}
 	
 	@ForgeSubscribe
