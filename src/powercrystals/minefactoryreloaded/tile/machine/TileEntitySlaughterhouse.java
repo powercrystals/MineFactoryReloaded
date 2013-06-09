@@ -1,8 +1,5 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.List;
 
 import net.minecraft.entity.EntityAgeable;
@@ -11,8 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.liquids.LiquidDictionary;
 
-import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
-import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 
@@ -33,13 +28,6 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	public String getGuiBackground()
 	{
 		return "slaughterhouse.png";
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
-	{
-		return new GuiFactoryPowered(getContainer(inventoryPlayer), this);
 	}
 
 	@Override
@@ -85,6 +73,12 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	{
 		setRecentlyHit(entity, 0);
 		entity.attackEntityFrom(new GrindingDamage("mfr.slaughterhouse"), Integer.MAX_VALUE);
+	}
+
+	@Override
+	public int getEnergyStoredMax()
+	{
+		return 16000;
 	}
 
 	@Override
