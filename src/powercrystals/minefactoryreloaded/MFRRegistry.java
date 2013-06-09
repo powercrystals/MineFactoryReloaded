@@ -47,6 +47,7 @@ public abstract class MFRRegistry
 	private static List<WeightedRandomItem> _laserOres  = new ArrayList<WeightedRandomItem>();
 	private static List<Class<?>> _grindableBlacklist = new ArrayList<Class<?>>();
 	private static List<String> _autoSpawnerBlacklist = new ArrayList<String>();
+	private static List<Class<?>> _slaughterhouseBlacklist = new ArrayList<Class<?>>();
 
 	private static ItemStack[] _laserPreferredOres = new ItemStack[16];
 
@@ -119,12 +120,21 @@ public abstract class MFRRegistry
 	public static void registerGrinderBlacklist(Class<?> ...ungrindables)
 	{
 		for (Class<?> ungrindable : ungrindables)
+		{
 			_grindableBlacklist.add(ungrindable);
+			if (MFRRegistry._safariNetBlacklist.contains(ungrindable))
+				_slaughterhouseBlacklist.add(ungrindable);
+		}
 	}
 
 	public static List<Class<?>> getGrinderBlacklist()
 	{
 		return _grindableBlacklist;
+	}
+
+	public static List<Class<?>> getSlaughterhouseBlacklist()
+	{
+		return _slaughterhouseBlacklist;
 	}
 
 	public static void registerSludgeDrop(int weight, ItemStack drop)
@@ -189,6 +199,8 @@ public abstract class MFRRegistry
 	public static void registerSafariNetBlacklist(Class<?> entityClass)
 	{
 		_safariNetBlacklist.add(entityClass);
+		if (MFRRegistry._grindableBlacklist.contains(entityClass))
+			_slaughterhouseBlacklist.add(entityClass);
 	}
 
 	public static List<Class<?>> getSafariNetBlacklist()

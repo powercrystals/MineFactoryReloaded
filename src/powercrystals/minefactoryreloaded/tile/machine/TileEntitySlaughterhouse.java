@@ -4,10 +4,10 @@ import java.util.List;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.liquids.LiquidDictionary;
 
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 
@@ -45,8 +45,14 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 		for (Object o : entities)
 		{
 			EntityLiving e = (EntityLiving)o;
-			if (e instanceof EntityPlayer ||
-					(e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0) ||
+			for (Class<?> t : MFRRegistry.getSlaughterhouseBlacklist())
+			{
+				if (t.isInstance(e))
+				{
+					continue;
+				}
+			}
+			if ((e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0) ||
 					e.getHealth() <= 0 ||
 					!grindingWorld.addEntityForGrinding(e))
 			{
