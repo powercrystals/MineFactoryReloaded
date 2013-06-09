@@ -8,21 +8,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import powercrystals.core.util.UtilInventory;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 import skyboy.core.world.WorldProxy;
 
 public class GrindingWorld extends WorldProxy implements IGrindingWorld {
 
-	protected TileEntityFactory grinder;
+	protected TileEntityFactoryInventory grinder;
 	protected boolean allowSpawns;
 	protected ArrayList<Entity> entitiesToGrind = new ArrayList<Entity>();
 
-	public GrindingWorld(World world, TileEntityFactory grinder) {
+	public GrindingWorld(World world, TileEntityFactoryInventory grinder) {
 		this(world, grinder, false);
 	}
 
-	public GrindingWorld(World world, TileEntityFactory grinder, boolean allowSpawns) {
+	public GrindingWorld(World world, TileEntityFactoryInventory grinder, boolean allowSpawns) {
 		super(world);
 		this.grinder = grinder;
 		this.allowSpawns = allowSpawns;
@@ -31,7 +31,7 @@ public class GrindingWorld extends WorldProxy implements IGrindingWorld {
 	@Override
 	public boolean spawnEntityInWorld(Entity entity) {
 		ItemStack drop;
-		if (grinder != null && entity instanceof EntityItem) {
+		if (grinder != null && grinder.manageSolids() && entity instanceof EntityItem) {
 			drop = ((EntityItem)entity).getEntityItem();
 			if (drop != null)
 				UtilInventory.dropStack(grinder, drop, grinder.getDropDirection());
@@ -44,6 +44,7 @@ public class GrindingWorld extends WorldProxy implements IGrindingWorld {
 		return true;
 	}
 
+	@Override
 	public boolean addEntityForGrinding(Entity entity) {
 		if (entity.worldObj == this)
 			return true;
@@ -55,6 +56,7 @@ public class GrindingWorld extends WorldProxy implements IGrindingWorld {
 		return false;
 	}
 
+	@Override
 	public void clearReferences() {
 		for (Entity ent : entitiesToGrind) {
 			if (ent.worldObj == this)
@@ -62,7 +64,8 @@ public class GrindingWorld extends WorldProxy implements IGrindingWorld {
 		}
 		entitiesToGrind.clear();
 	}
-	
+
+	@Override
 	public void cleanReferences() {
 		for (int i = entitiesToGrind.size(); i-- > 0;) {
 			Entity ent = entitiesToGrind.get(i);

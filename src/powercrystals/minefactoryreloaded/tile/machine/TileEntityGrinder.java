@@ -44,10 +44,10 @@ import powercrystals.minefactoryreloaded.world.IGrindingWorld;
 
 public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable
 {
-	private HarvestAreaManager _areaManager;
-	private LiquidTank _tank;
-	private Random _rand;
-	private IGrindingWorld grindingWorld;
+	protected HarvestAreaManager _areaManager;
+	protected LiquidTank _tank;
+	protected Random _rand;
+	protected IGrindingWorld grindingWorld;
 
 	private static Field recentlyHit;
 
@@ -78,12 +78,17 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
 
-	public TileEntityGrinder()
+	protected TileEntityGrinder(Machine machine)
 	{
-		super(Machine.Grinder);
+		super(machine);
 		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		_rand = new Random();
+	}
+
+	public TileEntityGrinder()
+	{
+		this(Machine.Grinder);
 	}
 
 	@Override
@@ -139,14 +144,14 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		grindingWorld.cleanReferences();
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 
-		entityList: for(Object o : entities)
+		entityList: for (Object o : entities)
 		{
-			if(o instanceof EntityAgeable && ((EntityAgeable)o).getGrowingAge() < 0)
+			if (o instanceof EntityAgeable && ((EntityAgeable)o).getGrowingAge() < 0)
 			{
 				continue;
 			}
 			EntityLiving e = (EntityLiving)o;
-			if(e.getHealth() <= 0)
+			if (e.getHealth() <= 0)
 			{
 				continue;
 			}
@@ -154,13 +159,13 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 			processEntity:
 			{
 				e.captureDrops = false;
-				if(MFRRegistry.getGrindables().containsKey(e.getClass()))
+				if (MFRRegistry.getGrindables().containsKey(e.getClass()))
 				{
 					@SuppressWarnings("deprecation")
 					IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
 					@SuppressWarnings("deprecation")
 					List<MobDrop> drops = r.grind(e.worldObj, e, getRandom());
-					if(drops != null && drops.size() > 0 && WeightedRandom.getTotalWeight(drops) > 0)
+					if (drops != null && drops.size() > 0 && WeightedRandom.getTotalWeight(drops) > 0)
 					{
 						ItemStack drop = ((MobDrop)WeightedRandom.getRandomItem(_rand, drops)).getStack();
 						UtilInventory.dropStack(this, drop, this.getDropDirection());
@@ -195,7 +200,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 					continue entityList;
 				}
 			}
-			if(processMob && e.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			if (processMob && e.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
 			{
 				try
 				{
@@ -225,13 +230,17 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		return false;
 	}
 
+	protected void setRecentlyHit(EntityLiving entity, int t)
+	{
+		try {
+			recentlyHit.set(entity, t);
+		} catch (Throwable e) {}
+	}
+
 	protected void damageEntity(EntityLiving entity)
 	{
-		DamageSource grind = new GrindingDamage();
-		try {
-			recentlyHit.set(entity, 100);
-		} catch (Throwable e) {}
-		entity.attackEntityFrom(grind, Integer.MAX_VALUE);
+		setRecentlyHit(entity, 100);
+		entity.attackEntityFrom(new GrindingDamage(), Integer.MAX_VALUE);
 	}
 
 	@Override
