@@ -1,9 +1,5 @@
 package powercrystals.minefactoryreloaded.item;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -12,10 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.liquids.LiquidDictionary;
-import net.minecraftforge.liquids.LiquidDictionary.LiquidRegisterEvent;
 import net.minecraftforge.liquids.LiquidStack;
 
 import powercrystals.core.asm.relauncher.Implementable;
@@ -26,67 +19,13 @@ public class ItemFactoryCup extends ItemFactory
 {
 	private int _maxUses = 0;
 
-	public static abstract class LiquidManager
-	{
-		private static class Tuple
-		{
-			public Integer id;
-			public Integer meta;
-			public Tuple(Integer first, Integer second)
-			{
-				this.id = first;
-				this.meta = second;
-			}
-			@Override
-			public int hashCode()
-			{
-				return (id.hashCode() << 16) ^ meta.hashCode();
-			}
-		}
-		public static HashMap<String, Tuple> liquids = new HashMap<String, Tuple>();
-		public static ArrayList<String> liquidIDs = new ArrayList<String>();
-		private static ArrayList<ItemFactoryCup> containers = new ArrayList<ItemFactoryCup>();
-		public static void registerAsContainers(ItemFactoryCup item)
-		{
-			if (containers.contains(item))
-				return;
-			containers.add(item);
-			for (int i = 1, e = liquidIDs.size(); i < e; ++i);
-			//LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getLiquid(liquidIDs.get(i), LiquidContainerRegistry.BUCKET_VOLUME), new ItemStack(item._full, 1, i), new ItemStack(item._empty, 1, 0)));
-		}
-		@ForgeSubscribe
-		public static void registerLiquid(LiquidRegisterEvent evt)
-		{
-			String name = evt.Name;
-			if (name == null)
-				return;
-			liquids.put(name, new Tuple(evt.Liquid.itemID, evt.Liquid.itemMeta));
-			liquidIDs.add(name);
-			for (ItemFactoryCup item : containers);
-			//LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getCanonicalLiquid(name), new ItemStack(item._full, 1, liquidIDs.size() - 1), new ItemStack(item._empty, 1, 0)));
-		}
-		static
-		{
-			liquidIDs.add(null);
-			liquids.put(null, new Tuple(-1, -1));
-			for (Map.Entry<String, LiquidStack> e : LiquidDictionary.getLiquids().entrySet())
-			{
-				liquids.put(e.getKey(), new Tuple(e.getValue().itemID, e.getValue().itemMeta));
-				liquidIDs.add(e.getKey());
-			}
-			MinecraftForge.EVENT_BUS.register(LiquidManager.class);
-		}
-	}
-
 	public ItemFactoryCup(int id, int stackSize, int maxUses)
 	{
 		super(id);
 		this.setMaxStackSize(stackSize);
 		this._maxUses = maxUses;
-		this.setHasSubtypes(true);
 		this.setMaxDamage(maxUses);
-		this.setContainerItem(this);
-		LiquidManager.registerAsContainers(this);
+		this.setHasSubtypes(true);
 	}
 
 	private boolean prefix = false;
@@ -110,8 +49,8 @@ public class ItemFactoryCup extends ItemFactory
 		int id = item.getItemDamage();
 		if (id != 0)
 		{
-			String ret = LiquidManager.liquidIDs.get(id), t = null;
-			if ((t = getLocalizedName(ret)) != null)
+			String ret = getFluidName(item), t = getLocalizedName(ret);
+			if (t != null)
 				return "\u00a7r"+t+"\u00a7r";
 			if (ret == null)
 			{
@@ -142,12 +81,18 @@ public class ItemFactoryCup extends ItemFactory
 	public ItemStack getContainerItemStack(ItemStack stack)
 	{
 		ItemFactoryCup item = (ItemFactoryCup)stack.getItem();
-		int damage = stack.getItemDamageForDisplay() + 1;
+		int damage = stack.getItemDamage() + 1;
 		if (item == null || damage >= item._maxUses)
 			return null;
 		stack = new ItemStack(item, 1, 0);
 		stack.setItemDamage(damage);
 		return stack;
+	}
+
+	public String getFluidName(ItemStack stack)
+	{
+		NBTTagCompound tag = stack.stackTagCompound;
+		return tag == null || !tag.hasKey("fluid") ? null : tag.getCompoundTag("fluid").getString("FluidName");
 	}
 
 	// shim
@@ -161,13 +106,20 @@ public class ItemFactoryCup extends ItemFactory
 	public FluidStack getFluid(ItemStack stack)
 	{
 		NBTTagCompound tag = stack.stackTagCompound;
-		return tag == null || !tag.hasKey("fluid") ? null : FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("fluid"));
+		FluidStack fluid = null;
+		if (tag != null && tag.hasKey("fluid"))
+		{
+			fluid = FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("fluid"));
+			if (fluid == null)
+				tag.removeTag("fluid");
+		}
+		return fluid;
 	}
 
 	@Override
 	public int getCapacity(ItemStack container)
 	{
-		return 1000;
+		return net.minecraftforge.fluids.FluidContainerRegistry.BUCKET_VOLUME;
 	}
 
 	@Override
@@ -201,20 +153,34 @@ public class ItemFactoryCup extends ItemFactory
 	}
 
 	@Override
-	public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain)
+	public FluidStack drain(ItemStack stack, int maxDrain, boolean doDrain)
 	{
-		return null;
+		NBTTagCompound tag = stack.stackTagCompound, fluidTag = null;
+		FluidStack fluid = null;
+		if (tag == null || !tag.hasKey("fluid") ||
+			(fluidTag = tag.getCompoundTag("fluid")) == null ||
+			(fluid = FluidStack.loadFluidStackFromNBT(fluidTag)) == null)
+			return null;
+		int drainAmount = Math.min(maxDrain, fluid.amount) * (Math.max(Math.random() - 0.25, 0) + 0.25);
+		if (doDrain)
+		{
+			if (tag.hasKey('toDrain'))
+			{
+				drainAmount = tag.getInteger('toDrain');
+				tag.removeTag('toDrain');
+			}
+			tag.removeTag('fluid');
+		}
+		else
+			tag.setInteger('toDrain', drainAmount);
+		fluid.amount = drainAmount;
+		return fluid;
 	}
 	//}*/
 
 	public boolean hasDrinkableLiquid(ItemStack stack)
 	{
-		return MFRRegistry.getLiquidDrinkHandlers().containsKey(getLiquidID(stack));
-	}
-
-	public int getLiquidID(ItemStack stack)
-	{
-		return LiquidManager.liquids.get(LiquidManager.liquidIDs.get(stack.getItemDamage())).id;
+		return MFRRegistry.getLiquidDrinkHandlers().containsKey(getFluidName(stack));
 	}
 
 	@Override
@@ -225,7 +191,7 @@ public class ItemFactoryCup extends ItemFactory
 			return null; // sanity check
 
 		if (hasDrinkableLiquid(stack))
-			MFRRegistry.getLiquidDrinkHandlers().get(getLiquidID(stack)).onDrink(player);
+			MFRRegistry.getLiquidDrinkHandlers().get(getFluidName(stack)).onDrink(player);
 
 		if(!player.capabilities.isCreativeMode)
 		{
@@ -271,36 +237,5 @@ public class ItemFactoryCup extends ItemFactory
 		if (hasDrinkableLiquid(stack))
 			player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 		return stack;
-	}
-
-	@Override
-	public int getItemDamageFromStackForDisplay(ItemStack stack)
-	{
-		NBTTagCompound tag = stack.getTagCompound();
-		if (tag == null)
-			return 0;
-		return tag.getInteger("usedCount");
-	}
-
-	@Override
-	public boolean isItemStackDamaged(ItemStack stack)
-	{
-		NBTTagCompound tag = stack.getTagCompound();
-		if (tag == null)
-			return false;
-		return tag.getInteger("usedCount") > 0;
-	}
-
-	@Override
-	public void setItemDamageForStack(ItemStack stack, int damage)
-	{
-		NBTTagCompound tag = stack.getTagCompound();
-		if (tag == null)
-			stack.setTagCompound((tag = new NBTTagCompound()));
-
-		if (damage < 0)
-			damage = 0;
-
-		tag.setInteger("usedCount", damage);
 	}
 }
