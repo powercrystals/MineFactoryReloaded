@@ -1,7 +1,7 @@
 package powercrystals.minefactoryreloaded.tile.conveyor;
 
 import buildcraft.core.IMachine;
-import net.minecraft.block.Block;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -11,11 +11,13 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.core.util.Util;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.net.Packets;
+
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class TileEntityConveyor extends TileEntity implements IRotateableTile, ISidedInventory, IMachine
@@ -52,13 +54,11 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		int md = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		if(md == 0)
 		{
-			int nextBlockId = worldObj.getBlockId(xCoord + 1, yCoord, zCoord);
-			int prevBlockId = worldObj.getBlockId(xCoord - 1, yCoord, zCoord);
-			if(Block.blocksList[nextBlockId] != null && Block.blocksList[nextBlockId].isOpaqueCube())
+			if(worldObj.isBlockSolidOnSide(xCoord + 1, yCoord, zCoord, ForgeDirection.WEST))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 4);
 			}
-			else if(Block.blocksList[prevBlockId] != null && Block.blocksList[prevBlockId].isOpaqueCube())
+			else if(worldObj.isBlockSolidOnSide(xCoord - 1, yCoord, zCoord, ForgeDirection.EAST))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 8);
 			}
@@ -69,8 +69,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		}
 		else if(md == 4)
 		{
-			int prevBlockId = worldObj.getBlockId(xCoord - 1, yCoord, zCoord);
-			if(Block.blocksList[prevBlockId] != null && Block.blocksList[prevBlockId].isOpaqueCube())
+			if(worldObj.isBlockSolidOnSide(xCoord - 1, yCoord, zCoord, ForgeDirection.EAST))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 8);
 			}
@@ -87,13 +86,11 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		
 		if(md == 1)
 		{
-			int nextBlockId = worldObj.getBlockId(xCoord, yCoord, zCoord + 1);
-			int prevBlockId = worldObj.getBlockId(xCoord, yCoord, zCoord - 1);
-			if(Block.blocksList[nextBlockId] != null && Block.blocksList[nextBlockId].isOpaqueCube())
+			if(worldObj.isBlockSolidOnSide(xCoord, yCoord, zCoord + 1, ForgeDirection.NORTH))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 5);
 			}
-			else if(Block.blocksList[prevBlockId] != null && Block.blocksList[prevBlockId].isOpaqueCube())
+			else if(worldObj.isBlockSolidOnSide(xCoord, yCoord, zCoord - 1, ForgeDirection.SOUTH))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 9);
 			}
@@ -104,8 +101,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		}
 		else if(md == 5)
 		{
-			int prevBlockId = worldObj.getBlockId(xCoord, yCoord, zCoord - 1);
-			if(Block.blocksList[prevBlockId] != null && Block.blocksList[prevBlockId].isOpaqueCube())
+			if(worldObj.isBlockSolidOnSide(xCoord, yCoord, zCoord - 1, ForgeDirection.SOUTH))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 9);
 			}
@@ -122,13 +118,11 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		
 		if(md == 2)
 		{
-			int nextBlockId = worldObj.getBlockId(xCoord - 1, yCoord, zCoord);
-			int prevBlockId = worldObj.getBlockId(xCoord + 1, yCoord, zCoord);
-			if(Block.blocksList[nextBlockId] != null && Block.blocksList[nextBlockId].isOpaqueCube())
+			if(worldObj.isBlockSolidOnSide(xCoord - 1, yCoord, zCoord, ForgeDirection.EAST))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 6);
 			}
-			else if(Block.blocksList[prevBlockId] != null && Block.blocksList[prevBlockId].isOpaqueCube())
+			else if(worldObj.isBlockSolidOnSide(xCoord + 1, yCoord, zCoord, ForgeDirection.WEST))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 10);
 			}
@@ -139,8 +133,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		}
 		else if(md == 6)
 		{
-			int prevBlockId = worldObj.getBlockId(xCoord + 1, yCoord, zCoord);
-			if(Block.blocksList[prevBlockId] != null && Block.blocksList[prevBlockId].isOpaqueCube())
+			if(worldObj.isBlockSolidOnSide(xCoord + 1, yCoord, zCoord, ForgeDirection.WEST))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 10);
 			}
@@ -157,13 +150,11 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		
 		if(md == 3)
 		{
-			int nextBlockId = worldObj.getBlockId(xCoord, yCoord, zCoord - 1);
-			int prevBlockId = worldObj.getBlockId(xCoord, yCoord, zCoord + 1);
-			if(Block.blocksList[nextBlockId] != null && Block.blocksList[nextBlockId].isOpaqueCube())
+			if(worldObj.isBlockSolidOnSide(xCoord, yCoord, zCoord - 1, ForgeDirection.SOUTH))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 7);
 			}
-			else if(Block.blocksList[prevBlockId] != null && Block.blocksList[prevBlockId].isOpaqueCube())
+			else if(worldObj.isBlockSolidOnSide(xCoord, yCoord, zCoord + 1, ForgeDirection.NORTH))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 11);
 			}
@@ -174,8 +165,7 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
 		}
 		else if(md == 7)
 		{
-			int prevBlockId = worldObj.getBlockId(xCoord, yCoord, zCoord + 1);
-			if(Block.blocksList[prevBlockId] != null && Block.blocksList[prevBlockId].isOpaqueCube())
+			if(worldObj.isBlockSolidOnSide(xCoord, yCoord, zCoord + 1, ForgeDirection.NORTH))
 			{
 				rotateTo(worldObj, xCoord, yCoord, zCoord, 11);
 			}
