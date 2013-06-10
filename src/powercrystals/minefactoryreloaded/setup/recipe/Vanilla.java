@@ -1225,7 +1225,7 @@ public class Vanilla
 			'#', "dustPlastic",
 				} ));
 		
-		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.fertilizerItem, 16), new Object[]
 				{
 			"WBW",
 			"STS",
@@ -1233,8 +1233,8 @@ public class Vanilla
 			'W', Item.wheat,
 			'B', new ItemStack(Item.dyePowder, 1, 15),
 			'S', Item.silk,
-			'T', Item.stick,
-				} );
+			'T', "stickWood",
+				} ));
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.safariNetItem, 1), new Object[]
 				{
@@ -1282,7 +1282,7 @@ public class Vanilla
 			" S ",
 			" S ",
 			'P', "sheetPlastic",
-			'S', Item.stick,
+			'S', "stickWood",
 				} ));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.blankRecordItem, 1), new Object[]
@@ -1302,7 +1302,7 @@ public class Vanilla
 			'G', Item.ingotGold,
 			'L', Block.glass,
 			'P', "sheetPlastic",
-			'S', Item.stick
+			'S', "stickWood",
 				} ));
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.portaSpawnerItem), new Object[]
@@ -1374,13 +1374,13 @@ public class Vanilla
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 3, 3), new ItemStack(MineFactoryReloadedCore.rubberWoodBlock));
 		
-		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 4), new Object[]
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.torchWood, 4), new Object[]
 				{
 			"R",
 			"S",
 			'R', MineFactoryReloadedCore.rawRubberItem,
-			'S', Item.stick
-				} );
+			'S', "stickWood",
+				} ));
 		
 		GameRegistry.addRecipe(new ItemStack(Block.pistonStickyBase), new Object[]
 				{
@@ -1411,13 +1411,13 @@ public class Vanilla
 			Item.glassBottle
 				} );
 		
-		GameRegistry.addRecipe(new ItemStack(Block.torchWood, 1), new Object[]
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.torchWood, 1), new Object[]
 				{
 			"C",
 			"S",
 			'C', MineFactoryReloadedCore.sugarCharcoalItem,
-			'S', Item.stick
-				} );
+			'S', "stickWood",
+				} ));
 	}
 	
 	protected void registerRails()
