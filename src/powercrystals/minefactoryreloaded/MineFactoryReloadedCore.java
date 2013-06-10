@@ -254,7 +254,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		MFRConfig.loadCommonConfig(getCommonConfig());
 		MFRConfig.loadClientConfig(getClientConfig());
 		
-		extractLang(new String[] { "en_US", "es_AR", "es_ES", "es_MX", "es_UY", "es_VE", "zh_CN", "zh_TW", "ru_RU", "sr_RS" });
+		extractLang(new String[] { "en_US", "es_AR", "es_ES", "es_MX", "es_UY", "es_VE", "zh_CN", "zh_TW", "ru_RU" });
 		loadLang();
 		
 		milkLiquid = new BlockFactoryFluid(MFRConfig.milkStillBlockId.getInt(), "milk");
