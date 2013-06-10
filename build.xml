@@ -88,19 +88,18 @@
 		<unzip src="${download.dir}/industrialcraft-2-api.zip" dest="${download.dir}" />
 		<move file="${download.dir}/ic2" todir="${mcpsrc.dir}" />
 		
-		<echo message="Exctracting UniversalElectricity API... " />
+		<echo message="Extracting UniversalElectricity API... " />
 		<unzip src="${download.dir}/ue-api.zip" dest="${download.dir}/universalelectricity/" />
 		<move file="${download.dir}/universalelectricity/universalelectricity" todir="${mcpsrc.dir}" />
 		<echo message="Deleting stuff from the UE API that isn't actually the API... " />
 		<delete dir="${mcpsrc.dir}/universalelectricity/components"/>
-		<echo message="Deleting prefab folder from the UE API... " />
 		<delete dir="${mcpsrc.dir}/universalelectricity/prefab"/>
 		
-		<echo message="Exctracting ThermalExpansion API... " />
+		<echo message="Extracting ThermalExpansion API... " />
 		<unzip src="${download.dir}/te-api.zip" dest="${download.dir}/thermalexpansion/" />
 		<move file="${download.dir}/thermalexpansion/thermalexpansion" todir="${mcpsrc.dir}" />
 		
-		<echo message="Exctracting Thaumcraft API... " />
+		<echo message="Extracting Thaumcraft API... " />
 		<unzip src="${download.dir}/ThaumcraftAPI.zip" dest="${download.dir}/thaumcraft/" />
 		<move file="${download.dir}/thaumcraft/thaumcraft" todir="${mcpsrc.dir}" />
 	</target>

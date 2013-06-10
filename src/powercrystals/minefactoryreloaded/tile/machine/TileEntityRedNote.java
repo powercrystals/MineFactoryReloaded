@@ -10,7 +10,7 @@ public class TileEntityRedNote extends TileEntityFactory
 	@Override
 	public void onRedNetChanged(int value)
 	{
-		if(value < 0 || value > 125)
+		if(value < 0 || value > 119)
 		{
 			return;
 		}

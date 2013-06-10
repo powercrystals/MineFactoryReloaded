@@ -173,7 +173,7 @@ public class TileEntityRedNetLogic extends TileEntity
 		{
 			if(_pinMappingInputs[index][i] == null)
 			{
-				_pinMappingInputs[index][i] = new PinMapping(0, 0);
+				_pinMappingInputs[index][i] = new PinMapping(0, 12);
 			}
 		}
 		
