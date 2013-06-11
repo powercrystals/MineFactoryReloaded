@@ -254,4 +254,10 @@ public class TileEntityAutoBrewer extends TileEntityFactoryPowered
 		if(column == 0) return _inventory[getTemplateSlot(row)] == null;
 		return !InventoryManager.stacksEqual(_inventory[getTemplateSlot(row)], itemstack);
 	}
+	
+	@Override
+	public boolean shouldDropSlotWhenBroken(int slot)
+	{
+		return slot % 5 != 1;
+	}
 }
