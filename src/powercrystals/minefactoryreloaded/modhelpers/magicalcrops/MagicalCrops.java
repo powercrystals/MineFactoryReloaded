@@ -23,7 +23,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class MagicalCrops
 {
-	private static final String lastUpdated = "Magical Crops 2.1.0, current release as of May 22 2013";
+	private static final String lastUpdated = "Magical Crops 2.1.2a, current release as of June 10 2013";
 	
 	@Init
 	public static void load(FMLInitializationEvent e)
@@ -39,8 +39,8 @@ public class MagicalCrops
 			
 			// the various plants are separated by type to make future changes easier (mostly considering magicFertilizer behavior)
 			String[] crops = {"Sberry", "Tomato", "Sweetcorn", "Cucum", "Melon", "Bberry", "Rberry", "Grape", "Chil"};
-			String[] namedAsMagicalCropButExtendsBlockCrops = {"Obsidian", "Nether"};
-			String[] magicalCrops = {"Coal", "Dye", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Gunpowder", "XP", "Copper", "Tin"};
+			String[] namedAsMagicalCropButExtendsBlockCrops = {"Nether"};
+			String[] magicalCrops = {"Coal", "Dye", "Iron", "Redstone", "Glowstone", "Gold", "Diamond", "Lapis", "Blaze", "Emerald", "Ender", "Gunpowder", "XP", "Copper", "Tin", "Obsidian"};
 			String[] soulCrops = {"Cow", "Pigmen", "Skele", "Spider"};
 			
 			int seedId;
