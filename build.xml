@@ -13,6 +13,7 @@
 	<property name="mcp.dir" value="${forge.dir}/mcp" />
 	<property name="mcpsrc.dir" value="${mcp.dir}/src/minecraft" />
 	<property name="resources.dir" value="resources" />
+	<property name="windows.python" value="${mcp.dir}/runtime/bin/python/python_mcp.exe" />
 
 	<property name="package.meta-inf" value="META-INF" />
 	<property name="build.ver" value="1.4.7" />
@@ -153,8 +154,9 @@
 
 	<target name="build" depends="extract-dependencies" unless="already-compiled">
 		<!-- Recompile -->
-		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
-			<arg line="/c recompile.bat"/>
+		<exec dir="${mcp.dir}" executable="${windows.python}"
+			osfamily="windows" failonerror="true">
+			<arg line="runtime/recompile.py" />
 		</exec>
 
 		<exec dir="${mcp.dir}" executable="sh" osfamily="unix">
@@ -162,8 +164,9 @@
 		</exec>
 
 		<!-- Reobf -->
-		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
-			<arg line="/c reobfuscate.bat --srgnames"/>
+		<exec dir="${mcp.dir}" executable="${windows.python}"
+			osfamily="windows" failonerror="true">
+			<arg line="runtime\reobfuscate.py --srgnames" />
 		</exec>
 
 		<exec dir="${mcp.dir}" executable="sh" osfamily="unix">
