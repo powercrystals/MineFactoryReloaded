@@ -1,6 +1,7 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
@@ -244,5 +245,17 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 	public ContainerLiquidRouter getContainer(InventoryPlayer inventoryPlayer)
 	{
 		return new ContainerLiquidRouter(this, inventoryPlayer);
+	}
+	
+	@Override
+	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemstack, int side)
+	{
+		return false;
 	}
 }

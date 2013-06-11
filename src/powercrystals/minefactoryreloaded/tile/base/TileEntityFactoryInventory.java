@@ -244,13 +244,13 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	}
 	
 	@Override
-	public boolean canInsertItem(int i, ItemStack itemstack, int j)
+	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
 	{
-		return this.isStackValidForSlot(i, itemstack);
+		return this.isStackValidForSlot(slot, itemstack);
 	}
 	
 	@Override
-	public boolean canExtractItem(int i, ItemStack itemstack, int j)
+	public boolean canExtractItem(int slot, ItemStack itemstack, int side)
 	{
 		return true;
 	}
