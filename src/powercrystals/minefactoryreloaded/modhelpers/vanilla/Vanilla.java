@@ -250,6 +250,7 @@ public class Vanilla
 		MFRRegistry.registerRubberTreeBiome("Jungle");
 		MFRRegistry.registerRubberTreeBiome("JungleHills");
 		
+		MFRRegistry.registerSafariNetBlacklist(EntityPlayer.class);
 		MFRRegistry.registerSafariNetBlacklist(EntityDragon.class);
 		MFRRegistry.registerSafariNetBlacklist(EntityWither.class);
 		
