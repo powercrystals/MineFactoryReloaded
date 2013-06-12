@@ -13,6 +13,7 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.minefactoryreloaded.core.GrinderDamageSource;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -27,6 +28,7 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 {
 	private HarvestAreaManager _areaManager;
 	private LiquidTank _tank;
+	private DamageSource _damageSource = new GrinderDamageSource("slaughterhouse");
 	
 	public TileEntitySlaughterhouse()
 	{
@@ -93,7 +95,7 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 				try
 				{
 					worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
-					e.attackEntityFrom(DamageSource.generic, e.getHealth());
+					e.attackEntityFrom(_damageSource, 500000);
 				}
 				finally
 				{
@@ -102,7 +104,7 @@ public class TileEntitySlaughterhouse extends TileEntityFactoryPowered implement
 			}
 			else
 			{
-				e.attackEntityFrom(DamageSource.generic, 5000);
+				e.attackEntityFrom(_damageSource, 500000);
 			}
 			break;
 		}

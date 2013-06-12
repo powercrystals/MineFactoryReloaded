@@ -20,6 +20,7 @@ import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
+import powercrystals.minefactoryreloaded.core.GrinderDamageSource;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -31,10 +32,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable
-{	
+{
 	private HarvestAreaManager _areaManager;
 	private LiquidTank _tank;
 	private Random _rand;
+	private DamageSource _damageSource = new GrinderDamageSource("grinder");
 	
 	@Override
 	public String getGuiBackground()
@@ -147,7 +149,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 					try
 					{
 						worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
-						e.attackEntityFrom(DamageSource.generic, e.getHealth());
+						e.attackEntityFrom(_damageSource, 500000);
 					}
 					finally
 					{
@@ -156,7 +158,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				}
 				else
 				{
-					e.attackEntityFrom(DamageSource.generic, 5000);
+					e.attackEntityFrom(_damageSource, 500000);
 				}
 				_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 				setIdleTicks(20);
