@@ -216,7 +216,7 @@ inv:	for(int i = 0; i < 9; i++)
 						}
 						t.required -= use;
 						
-						if(_inventory[i].stackSize == 0)
+						if(_inventory[i] != null && _inventory[i].stackSize == 0)
 						{
 							_inventory[i] = null;
 						}
