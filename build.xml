@@ -13,6 +13,7 @@
 	<property name="mcp.dir" value="${forge.dir}/mcp" />
 	<property name="mcpsrc.dir" value="${mcp.dir}/src/minecraft" />
 	<property name="resources.dir" value="resources" />
+	<property name="windows.python" value="${mcp.dir}/runtime/bin/python/python_mcp.exe" />
 
 	<property name="package.meta-inf" value="META-INF" />
 	<property name="build.ver" value="1.4.7" />
@@ -115,10 +116,19 @@
 			<fileset dir="${src.dir}/powercrystals"/>
 		</copy>
 		<copy todir="${mcpsrc.dir}" file="mcmod.info" overwrite="true"/>
-	
+
+		<exec executable="${windows.python}" osfamily="windows" outputproperty="grep.out">
+			<arg value="grep.py"/>
+			<arg value="'[0-9.]+R[0-9.]+(RC[0-9]+)?(B[0-9]+)?' ${verclass.dir}/${verclass.name}"/>
+		</exec>
 		<exec dir="${verclass.dir}" executable="sh" osfamily="unix" outputproperty="grep.out">
 			<arg value="-c"/>
 			<arg value="grep -o -P '[0-9.]+R[0-9.]+(RC[0-9]+)?(B[0-9]+)?' ${verclass.name}"/>
+		</exec>
+		
+		<exec executable="${windows.python}" osfamily="windows" outputproperty="python.out">
+			<arg value="versionscript.py" />
+			<arg value="${grep.out}" />
 		</exec>
 		<exec executable="python" osfamily="unix" outputproperty="python.out">
 			<arg value="versionscript.py" />
