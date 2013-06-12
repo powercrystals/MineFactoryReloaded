@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
 
@@ -51,6 +52,6 @@ public class ItemSpyglass extends ItemFactory
 	private String getEntityName(Entity entity)
 	{
 		String name = (String)EntityList.classToStringMapping.get(entity.getClass());
-		return name != null ? name : "Unknown Entity";
+		return name != null ? StatCollector.translateToLocal("entity." + name + ".name") : "Unknown Entity";
 	}
 }
