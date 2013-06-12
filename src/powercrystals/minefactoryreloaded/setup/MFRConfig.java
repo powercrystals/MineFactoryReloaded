@@ -111,8 +111,8 @@ public class MFRConfig
 	public static Property craftSingleDSU;
 	public static Property enableMossyCobbleRecipe;
 	public static Property conveyorCaptureNonItems;
-        public static Property conveyorNeverCapturesPlayers;
-        public static Property conveyorNeverCapturesTCGolems;
+	public static Property conveyorNeverCapturesPlayers;
+	public static Property conveyorNeverCapturesTCGolems;
 	public static Property playSounds;
 	public static Property fruitTreeSearchMaxVertical;
 	public static Property fruitTreeSearchMaxHorizontal;
@@ -145,7 +145,7 @@ public class MFRConfig
 	public static Property passengerRailSearchMaxHorizontal;
 	public static Property passengerRailSearchMaxVertical;
 	
-	//recipes config
+	// recipes config
 	public static Property vanillaRecipes;
 	public static Property thermalExpansionRecipes;
 	public static Property gregTechRecipes;
@@ -153,7 +153,7 @@ public class MFRConfig
 	public static void loadClientConfig(File configFile)
 	{
 		Configuration c = new Configuration(configFile);
-	
+		
 		spyglassRange = c.get(Configuration.CATEGORY_GENERAL, "SpyglassRange", 200);
 		spyglassRange.comment = "The maximum number of blocks the spyglass and ruler can look to find something. This calculation is performed only on the client side.";
 		
@@ -246,7 +246,7 @@ public class MFRConfig
 		mushroomSoupBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MushroomSoupBucket", 12035);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
-	
+		
 		colorblindMode = c.get(Configuration.CATEGORY_GENERAL, "RedNet.EnableColorblindMode", false);
 		colorblindMode.comment = "Set to true to enable the RedNet GUI's colorblind mode.";
 		treeSearchMaxHorizontal = c.get(Configuration.CATEGORY_GENERAL, "SearchDistance.TreeMaxHoriztonal", 8);
@@ -273,10 +273,10 @@ public class MFRConfig
 		enableMossyCobbleRecipe.comment = "If true, mossy cobble can be crafted.";
 		conveyorCaptureNonItems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.CaptureNonItems", true);
 		conveyorCaptureNonItems.comment = "If false, conveyors will not grab non-item entities. Breaks conveyor mob grinders but makes them safe for golems, etc.";
-                conveyorNeverCapturesPlayers = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.NeverCapturePlayers", false);
-                conveyorNeverCapturesPlayers.comment = "If true, conveyors will NEVER capture players regardless of other settings.";
-                conveyorNeverCapturesTCGolems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.NeverCaptureTCGolems", false);
-                conveyorNeverCapturesTCGolems.comment = "If true, conveyors will NEVER capture Thaumcraft golems regardless of other settings.";
+		conveyorNeverCapturesPlayers = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.NeverCapturePlayers", false);
+		conveyorNeverCapturesPlayers.comment = "If true, conveyors will NEVER capture players regardless of other settings.";
+		conveyorNeverCapturesTCGolems = c.get(Configuration.CATEGORY_GENERAL, "Conveyor.NeverCaptureTCGolems", false);
+		conveyorNeverCapturesTCGolems.comment = "If true, conveyors will NEVER capture Thaumcraft golems regardless of other settings.";
 		playSounds = c.get(Configuration.CATEGORY_GENERAL, "PlaySounds", true);
 		playSounds.comment = "Set to false to disable the harvester's sound when a block is harvested.";
 		enableSlipperyRoads = c.get(Configuration.CATEGORY_GENERAL, "Road.Slippery", true);
@@ -321,14 +321,14 @@ public class MFRConfig
 		mfrLakeSludgeRarity.comment = "Higher numbers make sludge lakes rarer. A value of one will be approximately one per chunk.";
 		mfrLakeSewageRarity = c.get(Configuration.CATEGORY_GENERAL, "WorldGen.LakeRarity.Sewage", 32);
 		mfrLakeSewageRarity.comment = "Higher numbers make sewage lakes rarer. A value of one will be approximately one per chunk.";
-	
+		
 		vanillaRecipes = c.get("RecipeSets", "EnableVanillaRecipes", true);
 		vanillaRecipes.comment = "If true, MFR will register its standard (vanilla-item-only) recipes.";
 		thermalExpansionRecipes = c.get("RecipeSets", "EnableThermalExpansionRecipes", false);
 		thermalExpansionRecipes.comment = "If true, MFR will register its Thermal Expansion-based recipes.";
 		gregTechRecipes = c.get("RecipeSets", "EnableGregTechRecipes", false);
 		gregTechRecipes.comment = "If true, MFR will register its GregTech-based recipes.";
-	
+		
 		for(Machine machine : Machine.values())
 		{
 			machine.load(c);
@@ -336,5 +336,5 @@ public class MFRConfig
 		
 		c.save();
 	}
-
+	
 }
