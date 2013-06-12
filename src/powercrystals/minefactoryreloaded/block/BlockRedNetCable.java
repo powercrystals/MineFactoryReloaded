@@ -83,7 +83,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 		parts[4] = cse != RedNetConnectionType.PlateSingle && cse != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(1.0F - _plateDepth, _plateStart, _plateStart, 1.0F, _plateEnd, _plateEnd);
 		parts[5] = csd != RedNetConnectionType.PlateSingle && csd != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, 0 , _plateStart, _plateEnd, _plateDepth, _plateEnd);
 		parts[6] = csu != RedNetConnectionType.PlateSingle && csu != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, 1.0F - _plateDepth, _plateStart, _plateEnd, 1.0F, _plateEnd);
-		parts[7] = csn != RedNetConnectionType.PlateSingle && csn != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 0, _plateEnd, _plateDepth, _plateEnd);
+		parts[7] = csn != RedNetConnectionType.PlateSingle && csn != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 0, _plateEnd, _plateEnd, _plateDepth);
 		parts[8] = css != RedNetConnectionType.PlateSingle && css != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 1.0F - _plateDepth, _plateEnd, _plateEnd, 1.0F);
 		
 		parts[9]  = csw != RedNetConnectionType.PlateSingle && csw != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandDepthStart, _bandWidthStart, _bandWidthStart, _bandDepthEnd, _bandWidthEnd, _bandWidthEnd);
