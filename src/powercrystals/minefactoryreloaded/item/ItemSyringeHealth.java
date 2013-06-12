@@ -21,7 +21,7 @@ public class ItemSyringeHealth extends ItemSyringe
 	@Override
 	public boolean inject(World world, EntityLiving entity, ItemStack syringe)
 	{
-		entity.heal(2);
+		entity.heal(5);
 		return true;
 	}
 }
