@@ -337,7 +337,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 		if(te != null && te instanceof TileEntityRedNetCable)
 		{
 			TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
-			if(cable.getNetwork() == null || cable.getConnectionState(ForgeDirection.getOrientation(side).getOpposite()) == RedNetConnectionType.None)
+			if(cable.getNetwork() == null || cable.getConnectionState(ForgeDirection.VALID_DIRECTIONS[side].getOpposite()) == RedNetConnectionType.None)
 			{
 				return 0;
 			}
@@ -357,7 +357,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 		if(te != null && te instanceof TileEntityRedNetCable)
 		{
 			TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
-			if(cable.getNetwork() == null || cable.getConnectionState(ForgeDirection.VALID_DIRECTIONS[side]) == RedNetConnectionType.None)
+			if(cable.getNetwork() == null || cable.getConnectionState(ForgeDirection.VALID_DIRECTIONS[side].getOpposite()) == RedNetConnectionType.None)
 			{
 				return 0;
 			}
