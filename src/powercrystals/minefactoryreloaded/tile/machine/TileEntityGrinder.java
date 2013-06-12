@@ -47,7 +47,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	protected HarvestAreaManager _areaManager;
 	protected LiquidTank _tank;
 	protected Random _rand;
-	protected IGrindingWorld grindingWorld;
+	protected IGrindingWorld _grindingWorld;
 	protected GrindingDamage _damageSource;
 
 	private static Field recentlyHit;
@@ -97,12 +97,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	public void setWorldObj(World world)
 	{
 		super.setWorldObj(world);
-		if (grindingWorld != null)
-			grindingWorld.clearReferences();
+		if (_grindingWorld != null)
+			_grindingWorld.clearReferences();
 		if (this.worldObj instanceof WorldServer)
-			grindingWorld = new GrindingWorldServer((WorldServer)this.worldObj, this);
+			_grindingWorld = new GrindingWorldServer((WorldServer)this.worldObj, this);
 		else
-			grindingWorld = new GrindingWorld(this.worldObj, this);
+			_grindingWorld = new GrindingWorld(this.worldObj, this);
 	}
 
 	public Random getRandom()
@@ -143,7 +143,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	@Override
 	public boolean activateMachine()
 	{
-		grindingWorld.cleanReferences();
+		_grindingWorld.cleanReferences();
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 
 		entityList: for (Object o : entities)
@@ -197,7 +197,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 						continue entityList;
 					}
 				}
-				if (!grindingWorld.addEntityForGrinding(e))
+				if (!_grindingWorld.addEntityForGrinding(e))
 				{
 					continue entityList;
 				}

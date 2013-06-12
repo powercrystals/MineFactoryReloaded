@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.liquids.LiquidDictionary;
 
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -17,6 +18,13 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	{
 		super(Machine.Slaughterhouse);
 		_damageSource = new GrindingDamage("mfr.slaughterhouse");
+	}
+
+	@Override
+	public void setWorldObj(World world)
+	{
+		super.setWorldObj(world);
+		this._grindingWorld.setAllowSpawns(true);
 	}
 
 	@Override
@@ -40,7 +48,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	@Override
 	public boolean activateMachine()
 	{
-		grindingWorld.cleanReferences();
+		_grindingWorld.cleanReferences();
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 
 		for (Object o : entities)
@@ -55,7 +63,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 			}
 			if ((e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0) ||
 					e.getHealth() <= 0 ||
-					!grindingWorld.addEntityForGrinding(e))
+					!_grindingWorld.addEntityForGrinding(e))
 			{
 				continue;
 			}
