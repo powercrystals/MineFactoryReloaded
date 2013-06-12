@@ -16,6 +16,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	public TileEntitySlaughterhouse()
 	{
 		super(Machine.Slaughterhouse);
+		_damageSource = new GrindingDamage("mfr.slaughterhouse");
 	}
 
 	@Override
@@ -78,7 +79,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	protected void damageEntity(EntityLiving entity)
 	{
 		setRecentlyHit(entity, 0);
-		entity.attackEntityFrom(new GrindingDamage("mfr.slaughterhouse"), Integer.MAX_VALUE);
+		entity.attackEntityFrom(_damageSource, Integer.MAX_VALUE);
 	}
 
 	@Override

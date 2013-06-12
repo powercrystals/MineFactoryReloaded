@@ -27,6 +27,7 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.tile.rednet.RedstoneNetwork;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
@@ -82,7 +83,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 		parts[4] = cse != RedNetConnectionType.PlateSingle && cse != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(1.0F - _plateDepth, _plateStart, _plateStart, 1.0F, _plateEnd, _plateEnd);
 		parts[5] = csd != RedNetConnectionType.PlateSingle && csd != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, 0 , _plateStart, _plateEnd, _plateDepth, _plateEnd);
 		parts[6] = csu != RedNetConnectionType.PlateSingle && csu != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, 1.0F - _plateDepth, _plateStart, _plateEnd, 1.0F, _plateEnd);
-		parts[7] = csn != RedNetConnectionType.PlateSingle && csn != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 0, _plateEnd, _plateDepth, _plateEnd);
+		parts[7] = csn != RedNetConnectionType.PlateSingle && csn != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 0, _plateEnd, _plateEnd, _plateDepth);
 		parts[8] = css != RedNetConnectionType.PlateSingle && css != RedNetConnectionType.PlateAll ? null : AxisAlignedBB.getBoundingBox(_plateStart, _plateStart, 1.0F - _plateDepth, _plateEnd, _plateEnd, 1.0F);
 		
 		parts[9]  = csw != RedNetConnectionType.PlateSingle && csw != RedNetConnectionType.CableSingle ? null : AxisAlignedBB.getBoundingBox(_bandDepthStart, _bandWidthStart, _bandWidthStart, _bandDepthEnd, _bandWidthEnd, _bandWidthEnd);
@@ -296,10 +297,11 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId)
 	{
 		super.onNeighborBlockChange(world, x, y, z, blockId);
-		if(blockId == blockID)
+		if(blockId == blockID || world.isRemote)
 		{
 			return;
 		}
+		RedstoneNetwork.log("Cable block at %d, %d, %d got update from ID %d", x, y, z, blockId);
 		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te instanceof TileEntityRedNetCable)
@@ -342,7 +344,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 			
 			int subnet = ((TileEntityRedNetCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
 			power = Math.min(Math.max(((TileEntityRedNetCable)te).getNetwork().getPowerLevelOutput(subnet), 0), 15);
-			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
+			RedstoneNetwork.log("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileEntityRedNetCable)te).getNetwork().getId() + ":" + subnet);
 		}
 		return power;
 	}
@@ -368,12 +370,12 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 			if(cable.getNetwork().isWeakNode(nodebp))
 			{
 				power = 0;
-				//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - weak node, power 0");
+				RedstoneNetwork.log("Asked for strong power at " + x + "," + y + "," + z + " - weak node, power 0");
 			}
 			else
 			{
 				power = Math.min(Math.max(cable.getNetwork().getPowerLevelOutput(subnet), 0), 15);
-				//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
+				RedstoneNetwork.log("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileEntityRedNetCable)te).getNetwork().getId() + ":" + subnet);
 			}
 		}
 		return power;

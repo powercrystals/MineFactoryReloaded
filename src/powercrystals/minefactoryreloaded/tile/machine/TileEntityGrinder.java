@@ -48,6 +48,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	protected LiquidTank _tank;
 	protected Random _rand;
 	protected IGrindingWorld grindingWorld;
+	protected GrindingDamage _damageSource;
 
 	private static Field recentlyHit;
 
@@ -89,6 +90,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	public TileEntityGrinder()
 	{
 		this(Machine.Grinder);
+		_damageSource = new GrindingDamage();
 	}
 
 	@Override
@@ -240,7 +242,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	protected void damageEntity(EntityLiving entity)
 	{
 		setRecentlyHit(entity, 100);
-		entity.attackEntityFrom(new GrindingDamage(), Integer.MAX_VALUE);
+		entity.attackEntityFrom(_damageSource, Integer.MAX_VALUE);
 	}
 
 	@Override
