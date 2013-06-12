@@ -53,7 +53,7 @@ public class AutoEnchantmentHelper extends EnchantmentHelper
 					{
 						if(oldEnchant.getKey() == newEnchant.enchantmentobj.effectId)
 						{
-							if(oldEnchant.getValue() < newEnchant.enchantmentLevel)
+							if(oldEnchant.getValue() <= newEnchant.enchantmentLevel)
 							{
 								updateEnchantment(stack, oldEnchant.getKey(), (short)newEnchant.enchantmentLevel);
 							}
