@@ -27,6 +27,7 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
 import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
+import powercrystals.minefactoryreloaded.tile.rednet.RedstoneNetwork;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
@@ -296,10 +297,11 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId)
 	{
 		super.onNeighborBlockChange(world, x, y, z, blockId);
-		if(blockId == blockID)
+		if(blockId == blockID || world.isRemote)
 		{
 			return;
 		}
+		RedstoneNetwork.log("Cable block at %d, %d, %d got update from ID %d", x, y, z, blockId);
 		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te instanceof TileEntityRedNetCable)
@@ -342,7 +344,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 			
 			int subnet = ((TileEntityRedNetCable)te).getSideColor(ForgeDirection.getOrientation(side).getOpposite());
 			power = Math.min(Math.max(((TileEntityRedNetCable)te).getNetwork().getPowerLevelOutput(subnet), 0), 15);
-			//System.out.println("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
+			RedstoneNetwork.log("Asked for weak power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileEntityRedNetCable)te).getNetwork().getId() + ":" + subnet);
 		}
 		return power;
 	}
@@ -368,12 +370,12 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 			if(cable.getNetwork().isWeakNode(nodebp))
 			{
 				power = 0;
-				//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - weak node, power 0");
+				RedstoneNetwork.log("Asked for strong power at " + x + "," + y + "," + z + " - weak node, power 0");
 			}
 			else
 			{
 				power = Math.min(Math.max(cable.getNetwork().getPowerLevelOutput(subnet), 0), 15);
-				//System.out.println("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileRedstoneCable)te).getNetwork().getId() + ":" + subnet);
+				RedstoneNetwork.log("Asked for strong power at " + x + "," + y + "," + z + " - got " + power + " from network " + ((TileEntityRedNetCable)te).getNetwork().getId() + ":" + subnet);
 			}
 		}
 		return power;
