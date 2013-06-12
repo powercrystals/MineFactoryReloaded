@@ -27,18 +27,23 @@ public class GrindingWorld extends WorldProxy implements IGrindingWorld {
 		this.grinder = grinder;
 		this.allowSpawns = allowSpawns;
 	}
+	
+	@Override
+	public void setAllowSpawns(boolean allow) {
+		this.allowSpawns = allow;
+	}
 
 	@Override
 	public boolean spawnEntityInWorld(Entity entity) {
-		ItemStack drop;
-		if (grinder != null && grinder.manageSolids() && entity instanceof EntityItem) {
-			drop = ((EntityItem)entity).getEntityItem();
-			if (drop != null)
-				UtilInventory.dropStack(grinder, drop, grinder.getDropDirection());
+		if (grinder != null && entity instanceof EntityItem) {
+			if (grinder.manageSolids()) {
+				ItemStack drop = ((EntityItem)entity).getEntityItem();
+				if (drop != null)
+					UtilInventory.dropStack(grinder, drop, grinder.getDropDirection());
+			}
 		} else if (allowSpawns) {
-			super.spawnEntityInWorld(entity);
 			entity.worldObj = this.proxiedWorld;
-			return true;
+			return super.spawnEntityInWorld(entity);
 		}
 		entity.setDead();
 		return true;
