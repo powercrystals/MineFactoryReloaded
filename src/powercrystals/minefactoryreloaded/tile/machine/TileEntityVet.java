@@ -114,4 +114,16 @@ public class TileEntityVet extends TileEntityFactoryPowered
 	{
 		return true;
 	}
+	
+	@Override
+	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
+	{
+		return itemstack != null && itemstack.getItem() != null && itemstack.getItem() instanceof ISyringe;
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemstack, int side)
+	{
+		return itemstack != null && itemstack.itemID == MineFactoryReloadedCore.syringeEmptyItem.itemID;
+	}
 }

@@ -153,6 +153,8 @@ tile.mfr.liquid.pinkslime.still.name = Pink Slime
 tile.mfr.liquid.chocolatemilk.still.name = Chocolate Milk
 tile.mfr.liquid.mushroomsoup.still.name = Mushroom Soup
 
+entity.MineFactoryReloaded.mfrEntityPinkSlime.name = Pink Slime
+
 item.mfr.bucket.milk.name = Milk Bucket
 item.mfr.bucket.sewage.name = Sewage Bucket
 item.mfr.bucket.sludge.name = Sludge Bucket

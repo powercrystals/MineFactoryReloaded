@@ -17,6 +17,7 @@ import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.Facing;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -65,11 +66,15 @@ public class ItemSafariNet extends ItemFactory
 		}
 		else
 		{
-			infoList.add(stack.getTagCompound().getString("id"));
+			infoList.add(StatCollector.translateToLocal("entity." + stack.getTagCompound().getString("id") + ".name")); // See Entity.getEntityName()
+			Class c = (Class)EntityList.stringToClassMapping.get(stack.getTagCompound().getString("id"));
+			if (c == null)
+			{
+				return;
+			}
 			for(ISafariNetHandler handler : MFRRegistry.getSafariNetHandlers())
 			{
-				Class c = (Class)EntityList.stringToClassMapping.get(stack.getTagCompound().getString("id"));
-				if(c != null && handler.validFor().isAssignableFrom(c))
+				if(handler.validFor().isAssignableFrom(c))
 				{
 					handler.addInformation(stack, player, infoList, advancedTooltips);
 				}

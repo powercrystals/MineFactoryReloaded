@@ -80,7 +80,10 @@ public class WorldGenLakesMeta extends WorldGenerator
 				{
 					for(i2 = 0; i2 < 8; ++i2)
 					{
-						flag = !aboolean[(i1 * 16 + j2) * 8 + i2] && (i1 < 15 && aboolean[((i1 + 1) * 16 + j2) * 8 + i2] || i1 > 0 && aboolean[((i1 - 1) * 16 + j2) * 8 + i2] || j2 < 15 && aboolean[(i1 * 16 + j2 + 1) * 8 + i2] || j2 > 0 && aboolean[(i1 * 16 + (j2 - 1)) * 8 + i2] || i2 < 7 && aboolean[(i1 * 16 + j2) * 8 + i2 + 1] || i2 > 0 && aboolean[(i1 * 16 + j2) * 8 + (i2 - 1)]);
+						flag = !aboolean[(i1 * 16 + j2) * 8 + i2]
+								&& (i1 < 15 && aboolean[((i1 + 1) * 16 + j2) * 8 + i2] || i1 > 0 && aboolean[((i1 - 1) * 16 + j2) * 8 + i2] || j2 < 15
+										&& aboolean[(i1 * 16 + j2 + 1) * 8 + i2] || j2 > 0 && aboolean[(i1 * 16 + (j2 - 1)) * 8 + i2] || i2 < 7
+										&& aboolean[(i1 * 16 + j2) * 8 + i2 + 1] || i2 > 0 && aboolean[(i1 * 16 + j2) * 8 + (i2 - 1)]);
 						
 						if(flag)
 						{
@@ -120,7 +123,8 @@ public class WorldGenLakesMeta extends WorldGenerator
 				{
 					for(i2 = 4; i2 < 8; ++i2)
 					{
-						if(aboolean[(i1 * 16 + j2) * 8 + i2] && world.getBlockId(x + i1, y + i2 - 1, z + j2) == Block.dirt.blockID && world.getSavedLightValue(EnumSkyBlock.Sky, x + i1, y + i2, z + j2) > 0)
+						if(aboolean[(i1 * 16 + j2) * 8 + i2] && world.getBlockId(x + i1, y + i2 - 1, z + j2) == Block.dirt.blockID
+								&& world.getSavedLightValue(EnumSkyBlock.Sky, x + i1, y + i2, z + j2) > 0)
 						{
 							BiomeGenBase biomegenbase = world.getBiomeGenForCoords(x + i1, z + j2);
 							
