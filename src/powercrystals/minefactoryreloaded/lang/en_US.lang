@@ -134,10 +134,10 @@ tile.mfr.rubberwood.sapling.name = Rubber Sapling
 tile.mfr.rubberwood.log.name = Rubber Wood
 tile.mfr.rubberwood.leaves.name = Rubber Leaves
 
-tile.mfr.rail.cargo.dropoff.name = Cargo Dropoff Track
-tile.mfr.rail.cargo.pickup.name = Cargo Pickup Track
-tile.mfr.rail.passenger.dropoff.name = Passenger Dropoff Track
-tile.mfr.rail.passenger.pickup.name = Passenger Pickup Track
+tile.mfr.rail.cargo.dropoff.name = Cargo Dropoff Rail
+tile.mfr.rail.cargo.pickup.name = Cargo Pickup Rail
+tile.mfr.rail.passenger.dropoff.name = Passenger Dropoff Rail
+tile.mfr.rail.passenger.pickup.name = Passenger Pickup Rail
 
 tile.mfr.cable.redstone.name = RedNet Cable
 tile.mfr.rednet.logic.name = Programmable RedNet Controller
