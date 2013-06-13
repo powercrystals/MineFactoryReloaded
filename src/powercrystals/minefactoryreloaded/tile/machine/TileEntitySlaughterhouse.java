@@ -62,6 +62,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 				}
 			}
 			if ((e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0) ||
+					e.isEntityInvulnerable() ||
 					e.getHealth() <= 0 ||
 					!_grindingWorld.addEntityForGrinding(e))
 			{
@@ -74,11 +75,14 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 				_tank.fill(LiquidDictionary.getLiquid(
 						_rand.nextInt(8) == 0 ? "pinkslime" : "meat",
 								(int)(100 * massFound)), true);
+				setIdleTicks(10);
 			}
-			setIdleTicks(10);
+			else
+			{
+				setIdleTicks(5);
+			}
 			return true;
 		}
-
 		setIdleTicks(getIdleTicksMax());
 		return false;
 	}

@@ -148,19 +148,16 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 
 		entityList: for (Object o : entities)
 		{
-			if (o instanceof EntityAgeable && ((EntityAgeable)o).getGrowingAge() < 0)
-			{
-				continue;
-			}
 			EntityLiving e = (EntityLiving)o;
-			if (e.getHealth() <= 0)
+			if (e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0 ||
+					e.isEntityInvulnerable() ||
+					e.getHealth() <= 0)
 			{
 				continue;
 			}
 			boolean processMob = false;
 			processEntity:
 			{
-				e.captureDrops = false;
 				if (MFRRegistry.getGrindables().containsKey(e.getClass()))
 				{
 					@SuppressWarnings("deprecation")
@@ -224,8 +221,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 			if (e.getHealth() <= 0)
 			{
 				_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
+				setIdleTicks(20);
 			}
-			setIdleTicks(20);
+			else
+			{
+				setIdleTicks(10);
+			}
 			return true;
 		}
 		setIdleTicks(getIdleTicksMax());
