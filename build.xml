@@ -59,7 +59,7 @@
 		<get src="http://www.powercrystalsmods.com/build/ic2-api.zip" dest="${download.dir}/industrialcraft-2-api.zip" />
 		
 		<echo message="Downloading BuildCraft API..." />
-		<get src="https://github.com/BuildCraft/BuildCraft/archive/master.zip" dest="${download.dir}/BuildCraft-master.zip"/>
+		<get src="http://www.powercrystalsmods.com/build/buildcraft-api.zip" dest="${download.dir}/BuildCraft-master.zip"/>
 		
 		<echo message="Downloading PowerCrystalsCore... " />
 		<get src="https://github.com/powercrystals/PowerCrystalsCore/archive/master.zip" dest="${download.dir}/PowerCrystalsCore-master.zip"/>
