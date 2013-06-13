@@ -113,14 +113,14 @@ public class RedstoneNetwork
 		for(int subnet = 0; subnet < 16; subnet++)
 		{
 			int power = getOmniNodePowerLevel(node, subnet);
-			if(power > _powerLevelOutput[subnet])
+			if(Math.abs(power) > Math.abs(_powerLevelOutput[subnet]))
 			{
 				RedstoneNetwork.log("Network with ID %d:%d has omni node %s as new power provider", _id, subnet, node.toString());
 				_powerLevelOutput[subnet] = power;
 				_powerProviders[subnet] = node;
 				notifyNodes(subnet);
 			}
-			else if(node.equals(_powerProviders[subnet]) && power < _powerLevelOutput[subnet])
+			else if(node.equals(_powerProviders[subnet]) && Math.abs(power) < Math.abs(_powerLevelOutput[subnet]))
 			{
 				updatePowerLevels(subnet);
 			}
@@ -155,14 +155,14 @@ public class RedstoneNetwork
 		
 		int power = getSingleNodePowerLevel(node);
 		RedstoneNetwork.log("Network with ID %d:%d calculated power for node %s as %d", _id, subnet, node.toString(), power);
-		if(power > _powerLevelOutput[subnet])
+		if(Math.abs(power) > Math.abs(_powerLevelOutput[subnet]))
 		{
 			RedstoneNetwork.log("Network with ID %d:%d has node %s as new power provider", _id, subnet, node.toString());
 			_powerLevelOutput[subnet] = power;
 			_powerProviders[subnet] = node;
 			notifyNodes(subnet);
 		}
-		else if(node.equals(_powerProviders[subnet]) && power < _powerLevelOutput[subnet])
+		else if(node.equals(_powerProviders[subnet]) && Math.abs(power) < Math.abs(_powerLevelOutput[subnet]))
 		{
 			RedstoneNetwork.log("Network with ID %d:%d removing power provider node, recalculating", _id, subnet);
 			updatePowerLevels(subnet);
@@ -250,10 +250,12 @@ public class RedstoneNetwork
 	
 	public void updatePowerLevels(int subnet)
 	{
+		int lastPower = _powerLevelOutput[subnet];
+		
 		_powerLevelOutput[subnet] = 0;
 		_powerProviders[subnet] = null;
 		
-		log("Network with ID %d:%d recalculating power levels for %d single nodes and %d omni nodes", _id, subnet, _singleNodes.size(), _omniNodes.size());
+		log("Network with ID %d:%d recalculating power levels for %d single nodes and %d omni nodes", _id, subnet, _singleNodes.get(subnet).size(), _omniNodes.size());
 		
 		for(BlockPosition node : _singleNodes.get(subnet))
 		{
@@ -285,7 +287,10 @@ public class RedstoneNetwork
 		}
 		
 		RedstoneNetwork.log("Network with ID %d:%d recalculated power levels as: output: %d with powering node %s", _id, subnet, _powerLevelOutput[subnet], _powerProviders[subnet]);
-		notifyNodes(subnet);
+		if(_powerLevelOutput[subnet] != lastPower)
+		{
+			notifyNodes(subnet);
+		}
 	}
 	
 	private void notifyNodes(int subnet)
