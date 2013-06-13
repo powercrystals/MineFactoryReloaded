@@ -61,7 +61,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 		
 		ItemStack match = _inventory[getPlanterSlotIdFromBp(bp)];
 		
-		for(int stackIndex = 10; stackIndex < 25; stackIndex++)
+		for(int stackIndex = 10; stackIndex <= 25; stackIndex++)
 		{		
 			ItemStack availableStack = getStackInSlot(stackIndex);
 			
