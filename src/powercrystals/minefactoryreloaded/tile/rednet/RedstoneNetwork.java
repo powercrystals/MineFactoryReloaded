@@ -250,6 +250,8 @@ public class RedstoneNetwork
 	
 	public void updatePowerLevels(int subnet)
 	{
+		int lastPower = _powerLevelOutput[subnet];
+		
 		_powerLevelOutput[subnet] = 0;
 		_powerProviders[subnet] = null;
 		
@@ -285,7 +287,10 @@ public class RedstoneNetwork
 		}
 		
 		RedstoneNetwork.log("Network with ID %d:%d recalculated power levels as: output: %d with powering node %s", _id, subnet, _powerLevelOutput[subnet], _powerProviders[subnet]);
-		notifyNodes(subnet);
+		if(_powerLevelOutput[subnet] != lastPower)
+		{
+			notifyNodes(subnet);
+		}
 	}
 	
 	private void notifyNodes(int subnet)
