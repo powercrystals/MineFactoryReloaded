@@ -153,6 +153,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static int renderIdRedNetLogic = 1004;
 	public static int renderIdVineScaffold = 1005;
 	public static int renderIdRedNetPanel = 1006;
+	public static int renderIdFactoryGlass = 1007;
 	
 	public static Map<Integer, Block> machineBlocks = new HashMap<Integer, Block>();
 	
