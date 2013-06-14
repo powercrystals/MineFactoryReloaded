@@ -42,20 +42,23 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 		}
 		
 		tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
-		Icon iconFront;
-		Icon iconSide;
+		Icon iconFront, iconSide, iconOverlaySouth, iconOverlayWest;
 		int metadata;
 		
 		if(renderer.hasOverrideBlockTexture())
 		{
 			iconFront = renderer.overrideBlockTexture;
 			iconSide = renderer.overrideBlockTexture;
+			iconOverlaySouth = renderer.overrideBlockTexture;
+			iconOverlayWest = renderer.overrideBlockTexture;
 		}
 		else
 		{
 			metadata = blockAccess.getBlockMetadata(x, y, z);
 			iconFront = renderer.getBlockIconFromSideAndMetadata(pane, 0, metadata);
 			iconSide = pane.getBlockSideTextureFromMetadata(metadata);
+			iconOverlaySouth = pane.getBlockOverlayTexture(blockAccess, x, y, z, 3);
+			iconOverlayWest = pane.getBlockOverlayTexture(blockAccess, x, y, z, 4);
 		}
 		
 		double d0 = iconFront.getMinU();
@@ -69,6 +72,19 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 		double d7 = iconSide.getMinV();
 		double d8 = iconSide.getInterpolatedV(8.0D);
 		double d9 = iconSide.getMaxV();
+
+		double o0 = iconOverlaySouth.getMinU();
+		double o1 = iconOverlaySouth.getInterpolatedU(8.0D);
+		double o2 = iconOverlaySouth.getMaxU();
+		double o3 = iconOverlaySouth.getMinV();
+		double o4 = iconOverlaySouth.getMaxV();
+
+		double o5 = iconOverlayWest.getMinU();
+		double o6 = iconOverlayWest.getInterpolatedU(8.0D);
+		double o7 = iconOverlayWest.getMaxU();
+		double o8 = iconOverlayWest.getMinV();
+		double o9 = iconOverlayWest.getMaxV();
+		
 		double d10 = x;
 		double d11 = x + 0.5D;
 		double d12 = x + 1;

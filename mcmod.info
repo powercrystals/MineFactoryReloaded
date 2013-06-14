@@ -1,424 +1,402 @@
 [
-{
-  "modid": "MineFactoryReloaded",
-  "name": "MineFactory Reloaded",
-  "description": "Automate everything!",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals",
-	"TehKrush",
-    "AtomicStryker",
-	"Feanorith"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"",
-  "dependencies": [
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatAppliedEnergistics",
-  "name": "MFR Compat: Applied Energistics",
-  "description": "Compatibility addon for Applied Energistics",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatAtum",
-  "name": "MFR Compat: Atum",
-  "description": "Compatibility addon for Atum",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatBackTools",
-  "name": "MFR Compat: BackTools",
-  "description": "Compatibility addon for BackTools",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatBiomesOPlenty",
-  "name": "MFR Compat: Biomes O' Plenty",
-  "description": "Compatibility addon for Biomes O' Plenty",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatChococraft",
-  "name": "MFR Compat: Chococraft",
-  "description": "Compatibility addon for Chococraft",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatExtraBiomes",
-  "name": "MFR Compat: ExtraBiomes",
-  "description": "Compatibility addon for ExtraBiomes",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatForestry",
-  "name": "MFR Compat: Forestry",
-  "description": "Compatibility addon for Forestry",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatForestry2",
-  "name": "MFR Compat: Forestry (part 2)",
-  "description": "Compatibility addon for Forestry (part 2)",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatMagicalCrops",
-  "name": "MFR Compat: Magical Crops",
-  "description": "Compatibility addon for Magical Crops",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatMystcraft",
-  "name": "MFR Compat: Mystcraft",
-  "description": "Compatibility addon for Mystcraft",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatIC2",
-  "name": "MFR Compat: IC2",
-  "description": "Compatibility addon for IndustrialCraft2",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatPams",
-  "name": "MFR Compat: Pam's Mods",
-  "description": "Compatibility addon for Pam's mods",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatRP2",
-  "name": "MFR Compat: RP2",
-  "description": "Compatibility addon for RedPower2",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatSoulShards",
-  "name": "MFR Compat: SoulShards",
-  "description": "Compatibility addon for SoulShards",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatSufficientBiomes",
-  "name": "MFR Compat: Sufficient Biomes",
-  "description": "Compatibility addon for Sufficient Biomes",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatThaumcraft",
-  "name": "MFR Compat: Thaumcraft",
-  "description": "Compatibility addon for Thaumcraft",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatThermalExpansion",
-  "name": "MFR Compat: Thermal Expansion",
-  "description": "Compatibility addon for Thermal Expansion",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatTwilightForest",
-  "name": "MFR Compat: TwilightForest",
-  "description": "Compatibility addon for Twilight Forest",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatVanilla",
-  "name": "MFR Compat: Vanilla",
-  "description": "Compatibility addon for Vanilla MC",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-},
-{
-  "modid": "MineFactoryReloaded|CompatXyCraft",
-  "name": "MFR Compat: XyCraft",
-  "description": "Compatibility addon for XyCraft",
-  "version": "2.1.2",
-  "mcversion": "1.4.6",
-  "url": "http://www.minecraftforum.net/topic/1629898-",
-  "updateUrl": "",
-  "authors": [
-    "PowerCrystals"
-  ],
-  "credits": "All the contributors",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"MineFactoryReloaded",
-  "dependencies": [
-    "MineFactoryReloaded"
-  ]
-}
+    {
+        "name": "MineFactory Reloaded", 
+        "parent": "", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded", 
+        "authors": [
+            "PowerCrystals", 
+            "TehKrush", 
+            "AtomicStryker", 
+            "Feanorith"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [], 
+        "description": "Automate everything!"
+    }, 
+    {
+        "name": "MFR Compat: Applied Energistics", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatAppliedEnergistics", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Applied Energistics"
+    }, 
+    {
+        "name": "MFR Compat: Atum", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatAtum", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Atum"
+    }, 
+    {
+        "name": "MFR Compat: BackTools", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatBackTools", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for BackTools"
+    }, 
+    {
+        "name": "MFR Compat: Biomes O' Plenty", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatBiomesOPlenty", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Biomes O' Plenty"
+    }, 
+    {
+        "name": "MFR Compat: Chococraft", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatChococraft", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Chococraft"
+    }, 
+    {
+        "name": "MFR Compat: ExtraBiomes", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatExtraBiomes", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for ExtraBiomes"
+    }, 
+    {
+        "name": "MFR Compat: Forestry", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatForestry", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Forestry"
+    }, 
+    {
+        "name": "MFR Compat: Forestry (part 2)", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatForestry2", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Forestry (part 2)"
+    }, 
+    {
+        "name": "MFR Compat: Magical Crops", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatMagicalCrops", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Magical Crops"
+    }, 
+    {
+        "name": "MFR Compat: Mystcraft", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatMystcraft", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Mystcraft"
+    }, 
+    {
+        "name": "MFR Compat: IC2", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatIC2", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for IndustrialCraft2"
+    }, 
+    {
+        "name": "MFR Compat: Pam's Mods", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatPams", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Pam's mods"
+    }, 
+    {
+        "name": "MFR Compat: RP2", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatRP2", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for RedPower2"
+    }, 
+    {
+        "name": "MFR Compat: SoulShards", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatSoulShards", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for SoulShards"
+    }, 
+    {
+        "name": "MFR Compat: Sufficient Biomes", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatSufficientBiomes", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Sufficient Biomes"
+    }, 
+    {
+        "name": "MFR Compat: Thaumcraft", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatThaumcraft", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Thaumcraft"
+    }, 
+    {
+        "name": "MFR Compat: Thermal Expansion", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatThermalExpansion", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Thermal Expansion"
+    }, 
+    {
+        "name": "MFR Compat: TwilightForest", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatTwilightForest", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Twilight Forest"
+    }, 
+    {
+        "name": "MFR Compat: Vanilla", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatVanilla", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Vanilla MC"
+    }, 
+    {
+        "name": "MFR Compat: XyCraft", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.6.3B1", 
+        "modid": "MineFactoryReloaded|CompatXyCraft", 
+        "authors": [
+            "PowerCrystals"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for XyCraft"
+    }
 ]
