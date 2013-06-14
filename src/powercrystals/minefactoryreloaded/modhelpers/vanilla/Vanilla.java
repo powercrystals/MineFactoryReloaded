@@ -43,6 +43,7 @@ import powercrystals.minefactoryreloaded.circuits.analog.Min4;
 import powercrystals.minefactoryreloaded.circuits.analog.Negator;
 import powercrystals.minefactoryreloaded.circuits.analog.RandomizerAnalog;
 import powercrystals.minefactoryreloaded.circuits.analog.Scaler;
+import powercrystals.minefactoryreloaded.circuits.analog.SchmittTrigger;
 import powercrystals.minefactoryreloaded.circuits.analog.Subtractor;
 import powercrystals.minefactoryreloaded.circuits.digital.AdderDigitalFull;
 import powercrystals.minefactoryreloaded.circuits.digital.AdderDigitalHalf;
@@ -375,6 +376,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new SawtoothFalling());
 		MFRRegistry.registerRedNetLogicCircuit(new SawtoothRising());
 		MFRRegistry.registerRedNetLogicCircuit(new Scaler());
+		MFRRegistry.registerRedNetLogicCircuit(new SchmittTrigger());
 		MFRRegistry.registerRedNetLogicCircuit(new Sine());
 		MFRRegistry.registerRedNetLogicCircuit(new Square());
 		MFRRegistry.registerRedNetLogicCircuit(new Subtractor());
