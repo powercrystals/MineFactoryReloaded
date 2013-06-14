@@ -70,6 +70,12 @@ public class BlockRubberWood extends BlockLog implements IConnectableRedNet
 	}
 	
 	@Override
+	protected boolean canSilkHarvest()
+	{
+		return false;
+	}
+	
+	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return RedNetConnectionType.None;
