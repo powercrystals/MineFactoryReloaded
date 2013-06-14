@@ -27,7 +27,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 {
 	private String[] _names = new String []
 			{ "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
-	private Icon[] _icons;
+	private Icon[] _icons = new Icon[_names.length];
 	private Icon _iconSide;
 	private Icon _overlay;
 	
@@ -88,7 +88,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 		sides[2] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 		bp.moveRight(1);
 		//sides[] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
-		return new IconOverlay(_overlay, 16, 2, sides);
+		return new IconOverlay(_overlay, 8, 8, sides);
 	}
 	
 	public Icon getBlockSideTextureFromMetadata(int meta)

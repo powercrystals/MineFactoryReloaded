@@ -57,8 +57,8 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 			metadata = blockAccess.getBlockMetadata(x, y, z);
 			iconFront = renderer.getBlockIconFromSideAndMetadata(pane, 0, metadata);
 			iconSide = pane.getBlockSideTextureFromMetadata(metadata);
-			iconOverlaySouth = pane.getBlockOverlayTexture(blockAccess, x, y, z, 3);
-			iconOverlayWest = pane.getBlockOverlayTexture(blockAccess, x, y, z, 4);
+			iconOverlaySouth = pane.getBlockOverlayTexture(blockAccess, x, y, z, 2);
+			iconOverlayWest = pane.getBlockOverlayTexture(blockAccess, x, y, z, 5);
 		}
 		
 		double d0 = iconFront.getMinU();
@@ -73,17 +73,17 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 		double d8 = iconSide.getInterpolatedV(8.0D);
 		double d9 = iconSide.getMaxV();
 
-		double o0 = iconOverlaySouth.getMinU();
-		double o1 = iconOverlaySouth.getInterpolatedU(8.0D);
-		double o2 = iconOverlaySouth.getMaxU();
-		double o3 = iconOverlaySouth.getMinV();
-		double o4 = iconOverlaySouth.getMaxV();
+		double s0 = iconOverlaySouth.getMinU();
+		double s1 = iconOverlaySouth.getInterpolatedU(8.0D);
+		double s2 = iconOverlaySouth.getMaxU();
+		double s3 = iconOverlaySouth.getMinV();
+		double s4 = iconOverlaySouth.getMaxV();
 
-		double o5 = iconOverlayWest.getMinU();
-		double o6 = iconOverlayWest.getInterpolatedU(8.0D);
-		double o7 = iconOverlayWest.getMaxU();
-		double o8 = iconOverlayWest.getMinV();
-		double o9 = iconOverlayWest.getMaxV();
+		double w0 = iconOverlayWest.getMinU();
+		double w1 = iconOverlayWest.getInterpolatedU(8.0D);
+		double w2 = iconOverlayWest.getMaxU();
+		double w3 = iconOverlayWest.getMinV();
+		double w4 = iconOverlayWest.getMaxV();
 		
 		double d10 = x;
 		double d11 = x + 0.5D;
@@ -110,6 +110,11 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d10, y + 0, d14, d0, d4);
 				tessellator.addVertexWithUV(d11, y + 0, d14, d1, d4);
 				tessellator.addVertexWithUV(d11, y + 1, d14, d1, d3);
+				
+				tessellator.addVertexWithUV(d10, y + 1, d14, s0, s3);
+				tessellator.addVertexWithUV(d10, y + 0, d14, s0, s4);
+				tessellator.addVertexWithUV(d11, y + 0, d14, s1, s4);
+				tessellator.addVertexWithUV(d11, y + 1, d14, s1, s3);
 				
 				if (!connectedPosZ && !connectedNegZ)
 				{
@@ -142,6 +147,11 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d12, y + 0, d14, d2, d4);
 				tessellator.addVertexWithUV(d12, y + 1, d14, d2, d3);
 				
+				tessellator.addVertexWithUV(d11, y + 1, d14, s1, s3);
+				tessellator.addVertexWithUV(d11, y + 0, d14, s1, s4);
+				tessellator.addVertexWithUV(d12, y + 0, d14, s2, s4);
+				tessellator.addVertexWithUV(d12, y + 1, d14, s2, s3);
+				
 				if (!connectedPosZ && !connectedNegZ)
 				{
 					tessellator.addVertexWithUV(d11, y + 1, d18, d5, d7);
@@ -173,6 +183,11 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 			tessellator.addVertexWithUV(d10, y + 0, d14, d0, d4);
 			tessellator.addVertexWithUV(d12, y + 0, d14, d2, d4);
 			tessellator.addVertexWithUV(d12, y + 1, d14, d2, d3);
+			
+			tessellator.addVertexWithUV(d10, y + 1, d14, s0, s3);
+			tessellator.addVertexWithUV(d10, y + 0, d14, s0, s4);
+			tessellator.addVertexWithUV(d12, y + 0, d14, s2, s4);
+			tessellator.addVertexWithUV(d12, y + 1, d14, s2, s3);
 			
 			if (renderTop)
 			{
@@ -236,6 +251,11 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d11, y + 0, d14, d1, d4);
 				tessellator.addVertexWithUV(d11, y + 1, d14, d1, d3);
 				
+				tessellator.addVertexWithUV(d11, y + 1, d13, w0, w3);
+				tessellator.addVertexWithUV(d11, y + 0, d13, w0, w4);
+				tessellator.addVertexWithUV(d11, y + 0, d14, w1, w4);
+				tessellator.addVertexWithUV(d11, y + 1, d14, w1, w3);
+				
 				if (!connectedPosX && !connectedNegX)
 				{
 					tessellator.addVertexWithUV(d16, y + 1, d14, d5, d7);
@@ -266,6 +286,11 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(d11, y + 0, d14, d1, d4);
 				tessellator.addVertexWithUV(d11, y + 0, d15, d2, d4);
 				tessellator.addVertexWithUV(d11, y + 1, d15, d2, d3);
+				
+				tessellator.addVertexWithUV(d11, y + 1, d14, w1, w3);
+				tessellator.addVertexWithUV(d11, y + 0, d14, w1, w4);
+				tessellator.addVertexWithUV(d11, y + 0, d15, w2, w4);
+				tessellator.addVertexWithUV(d11, y + 1, d15, w2, w3);
 				
 				if (!connectedPosX && !connectedNegX)
 				{
@@ -298,6 +323,11 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 			tessellator.addVertexWithUV(d11, y + 0, d15, d0, d4);
 			tessellator.addVertexWithUV(d11, y + 0, d13, d2, d4);
 			tessellator.addVertexWithUV(d11, y + 1, d13, d2, d3);
+			
+			tessellator.addVertexWithUV(d11, y + 1, d15, w0, w3);
+			tessellator.addVertexWithUV(d11, y + 0, d15, w0, w4);
+			tessellator.addVertexWithUV(d11, y + 0, d13, w2, w4);
+			tessellator.addVertexWithUV(d11, y + 1, d13, w2, w3);
 			
 			if (renderTop)
 			{

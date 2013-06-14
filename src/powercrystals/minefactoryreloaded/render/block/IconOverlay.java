@@ -8,8 +8,8 @@ import net.minecraft.util.Icon;
 public class IconOverlay implements Icon {
 
 	private Icon overlayIcon;
-	private int xSegments, ySegments;
-	private int selectedSegmentX, selectedSegmentY;
+	private float xSegments, ySegments;
+	private float selectedSegmentX, selectedSegmentY;
 
 	public IconOverlay(Icon overlayIcon, int subX, int subY, boolean ...sides) {
 		this.overlayIcon = overlayIcon;
@@ -43,13 +43,13 @@ public class IconOverlay implements Icon {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getMinU() {
-		return overlayIcon.getMinU() + (selectedSegmentX / xSegments);
+		return overlayIcon.getInterpolatedU((selectedSegmentX / xSegments) * 16f);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getMaxU() {
-		return getMinU() + (1 / xSegments);
+		return overlayIcon.getInterpolatedU(((selectedSegmentX + 1) / xSegments) * 16f);
 	}
 
 	@Override
@@ -63,15 +63,14 @@ public class IconOverlay implements Icon {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getMinV() {
-		return overlayIcon.getMinV() + (selectedSegmentY / ySegments);
+		return overlayIcon.getInterpolatedV((selectedSegmentY / ySegments) * 16f);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getMaxV() {
-		return getMinV() + (1 / ySegments);
+		return overlayIcon.getInterpolatedV(((selectedSegmentY + 1) / ySegments) * 16f);
 	}
-
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getInterpolatedV(double d0) {
