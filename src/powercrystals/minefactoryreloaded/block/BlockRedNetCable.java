@@ -22,7 +22,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.IToolHammer;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetNetworkContainer;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
@@ -184,7 +183,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 					}
 				}
 			}
-			else if(s != null && s.getItem() instanceof IToolHammer)
+			else if(MFRUtil.isHoldingHammer(player))
 			{
 				byte mode = cable.getMode();
 				mode++;
