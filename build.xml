@@ -168,7 +168,7 @@
 		<javac srcdir="${mcpsrc.dir}" destdir="${mcp.dir}/bin/minecraft" target="1.6" source="1.6"
 			classpathref="mcp.classpath" debug="true" debuglevel="lines,source" includeAntRuntime="false">
 			<include name="powercrystals/minefactoryreloaded/**/*.java"/>
-		</javac> 
+		</javac>
 		<!--<exec dir="${mcp.dir}" executable="${windows.python}"
 			osfamily="windows" failonerror="true">
 			<arg line="runtime/recompile.py" />
@@ -252,9 +252,7 @@
 			</fileset>
 		</unzip>
 		
-		
 		<!-- Change executables' permitions -->
-
 		<chmod file="${forge.dir}/install.sh" perm="+x"/>
 
 		<copy file="${download.dir}/PowerCrystalsCore-master/pcc_at.cfg" todir="${forge.dir}/accesstransformers/"/>
@@ -267,9 +265,15 @@
 
 		<exec dir="${forge.dir}" executable="sh" osfamily="unix" inputstring="Yes\n">
 			<arg value="install.sh" />
-
 		</exec>
 
+		<exec executable="${windows.python}" osfamily="windows" failonerror="true">
+			<arg line="patch.py ${mcpsrc.dir}/net/minecraft/world/WorldServer.java" />
+		</exec>
+
+		<exec executable="python" osfamily="unix" failonerror="true">
+			<arg line="patch.py ${mcpsrc.dir}/net/minecraft/world/WorldServer.java" />
+		</exec>
 
 		<chmod file="${mcp.dir}/updatemd5.sh" perm="+x"/>
 		<chmod file="${mcp.dir}/recompile.sh" perm="+x"/>
