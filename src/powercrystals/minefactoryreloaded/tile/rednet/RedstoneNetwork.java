@@ -387,14 +387,15 @@ public class RedstoneNetwork
 			offset = -1;
 		}
 		
-		if(_weakNodes.contains(node))
+		if(_weakNodes.contains(node) || Block.blocksList[blockId] instanceof IConnectableRedNet)
 		{
-			return Math.max(0, Math.max(_world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset,
-					_world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset));
+			int weakPower = _world.getIndirectPowerLevelTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset;
+			int strongPower = _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset;
+			return Math.abs(weakPower) > Math.abs(strongPower) ? weakPower : strongPower;
 		}
 		else
 		{
-			return Math.max(0, _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset);
+			return _world.isBlockProvidingPowerTo(node.x, node.y, node.z, node.orientation.ordinal()) + offset;
 		}
 	}
 }

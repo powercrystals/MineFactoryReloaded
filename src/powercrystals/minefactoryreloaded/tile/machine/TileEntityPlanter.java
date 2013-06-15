@@ -144,6 +144,12 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	}
 	
 	@Override
+	public boolean shouldDropSlotWhenBroken(int slot)
+	{
+		return slot > 8;
+	}
+	
+	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 17;
@@ -166,7 +172,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	@Override
 	public boolean canExtractItem(int slot, ItemStack itemstack, int sideordinal)
 	{
-		if(slot >= 9) return true;
+		if(slot >= 10) return true;
 		return false;
 	}
 }
