@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.liquids.LiquidDictionary;
 
 import powercrystals.minefactoryreloaded.MFRRegistry;
+import powercrystals.minefactoryreloaded.core.GrindingDamage;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 

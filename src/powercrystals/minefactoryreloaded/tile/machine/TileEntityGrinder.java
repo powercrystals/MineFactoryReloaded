@@ -31,6 +31,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable2;
 import powercrystals.minefactoryreloaded.api.MobDrop;
+import powercrystals.minefactoryreloaded.core.GrindingDamage;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -310,21 +311,5 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	public boolean canRotate()
 	{
 		return true;
-	}
-
-	protected class GrindingDamage extends DamageSource
-	{
-
-		public GrindingDamage()
-		{
-			this(null);
-		}
-
-		public GrindingDamage(String type)
-		{
-			super(type == null ? "mfr.grinder" : type);
-			this.setDamageBypassesArmor();
-		}
-
 	}
 }
