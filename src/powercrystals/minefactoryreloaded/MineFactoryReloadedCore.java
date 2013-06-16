@@ -70,6 +70,7 @@ import powercrystals.minefactoryreloaded.gui.MFRGUIHandler;
 import powercrystals.minefactoryreloaded.item.ItemCeramicDye;
 import powercrystals.minefactoryreloaded.item.ItemFactory;
 import powercrystals.minefactoryreloaded.item.ItemFactoryBucket;
+import powercrystals.minefactoryreloaded.item.ItemFactoryCup;
 import powercrystals.minefactoryreloaded.item.ItemFactoryFood;
 import powercrystals.minefactoryreloaded.item.ItemFactoryHammer;
 import powercrystals.minefactoryreloaded.item.ItemLaserFocus;
@@ -157,6 +158,7 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static int renderIdRedNetLogic = 1004;
 	public static int renderIdVineScaffold = 1005;
 	public static int renderIdRedNetPanel = 1006;
+	public static int renderIdFactoryGlass = 1007;
 	
 	public static Map<Integer, Block> machineBlocks = new HashMap<Integer, Block>();
 	
@@ -249,6 +251,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	public static Item needlegunAmmoSewageItem;
 	public static Item needlegunAmmoFireItem;
 	public static Item needlegunAmmoAnvilItem;
+	
+	public static ItemFactoryCup plasticCup;
 
 	private static MineFactoryReloadedCore instance;
 
@@ -373,6 +377,8 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		needlegunAmmoSewageItem = (new ItemNeedlegunAmmoBlock(MFRConfig.needlegunAmmoSewageItemId.getInt(), sewageLiquid.blockID, 6)).setUnlocalizedName("mfr.needlegun.ammo.sewage");
 		needlegunAmmoFireItem = (new ItemNeedlegunAmmoFire(MFRConfig.needlegunAmmoFireItemId.getInt())).setUnlocalizedName("mfr.needlegun.ammo.fire");
 		needlegunAmmoAnvilItem = (new ItemNeedlegunAmmoBlock(MFRConfig.needlegunAmmoAnvilItemId.getInt(), Block.anvil.blockID, 2)).setUnlocalizedName("mfr.needlegun.ammo.anvil").setMaxDamage(0);
+		
+		plasticCup = (ItemFactoryCup)new ItemFactoryCup(MFRConfig.plasticCupItemId.getInt(), 64, 16).setUnlocalizedName("mfr.bucket.plasticCup");
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())
 		{

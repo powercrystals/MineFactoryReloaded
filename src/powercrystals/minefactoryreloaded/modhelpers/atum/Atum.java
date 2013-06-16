@@ -5,13 +5,10 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.api.MobDrop;
-import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableTreeLeaves;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
@@ -45,23 +42,8 @@ public class Atum
 			
 			String entityprefix = "rebelkeithy.mods.atum.entities.Entity";
 			
-			Class banditArcher = Class.forName(entityprefix + "BanditArcher");
 			Class banditWarlord = Class.forName(entityprefix + "BanditWarlord");
-			Class banditWarrior = Class.forName(entityprefix + "BanditWarrior");
-			Class bonestorm = Class.forName(entityprefix + "Bonestorm");
-			Class dustySkeleton = Class.forName(entityprefix + "DustySkeleton");
-			Class desertWolf = Class.forName(entityprefix + "DesertWolf");
-			Class ghost = Class.forName(entityprefix + "Ghost");
-			Class mummy = Class.forName(entityprefix + "Mummy");
 			Class pharaoh = Class.forName(entityprefix + "Pharaoh");
-			Class stoneSoldier = Class.forName(entityprefix + "StoneSoldier");
-			
-			ItemStack bow = new ItemStack((Item)Atum.getField("itemBow").get(null));
-			ItemStack clothScrap = new ItemStack((Item)Atum.getField("itemClothScrap").get(null));
-			ItemStack ectoplasm = new ItemStack((Item)Atum.getField("itemEctoplasm").get(null));
-			ItemStack pelt = new ItemStack((Item)Atum.getField("itemPelt").get(null));
-			ItemStack scimitar = new ItemStack((Item)Atum.getField("itemScimitar").get(null));
-			ItemStack stoneChunk = new ItemStack((Item)Atum.getField("itemStoneChunk").get(null));
 			
 			int flaxSeedsId = ((Item)Atum.getField("itemFlaxSeeds").get(null)).itemID;
 			
@@ -79,33 +61,9 @@ public class Atum
 			
 			MFRRegistry.registerSafariNetBlacklist(banditWarlord);
 			MFRRegistry.registerSafariNetBlacklist(pharaoh);
-			
-			MFRRegistry.registerGrindable(new GrindableStandard(banditArcher, new MobDrop[]
-					{
-					new MobDrop(1, bow),
-					new MobDrop(2, new ItemStack(Item.goldNugget)),
-					new MobDrop(17, new ItemStack(Item.arrow))
-					}));
-			MFRRegistry.registerGrindable(new GrindableStandard(banditWarrior, new MobDrop[]
-					{
-					new MobDrop(1, scimitar),
-					new MobDrop(2, new ItemStack(Item.goldNugget)),
-					new MobDrop(17, null)
-					}));
-			MFRRegistry.registerGrindable(new GrindableStandard(bonestorm, new ItemStack(Item.blazeRod)));
-			MFRRegistry.registerGrindable(new GrindableStandard(desertWolf, new MobDrop[]
-					{
-					new MobDrop(1, pelt),
-					new MobDrop(1, new ItemStack(Item.bone))
-					}));
-			MFRRegistry.registerGrindable(new GrindableStandard(dustySkeleton, new ItemStack(Item.bone, 1)));
-			MFRRegistry.registerGrindable(new GrindableStandard(ghost, ectoplasm));
-			MFRRegistry.registerGrindable(new GrindableStandard(mummy, new MobDrop[]
-					{
-					new MobDrop(3, new ItemStack(Item.rottenFlesh)),
-					new MobDrop(1, clothScrap),
-					}));
-			MFRRegistry.registerGrindable(new GrindableStandard(stoneSoldier, stoneChunk));
+
+			MFRRegistry.registerGrinderBlacklist(banditWarlord);
+			MFRRegistry.registerGrinderBlacklist(pharaoh);
 			
 			MFRRegistry.registerPlantable(new PlantableStandard(atumSaplingId, atumSaplingId));
 			MFRRegistry.registerPlantable(new PlantableStandard(flaxSeedsId, flaxId));

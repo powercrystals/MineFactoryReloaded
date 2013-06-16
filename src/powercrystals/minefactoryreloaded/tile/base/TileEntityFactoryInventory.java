@@ -12,10 +12,12 @@ import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
+import powercrystals.core.asm.relauncher.Implementable;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
-import buildcraft.core.IMachine;
+import buildcraft.api.gates.IAction; 
 
-public abstract class TileEntityFactoryInventory extends TileEntityFactory implements IInventory, ISidedInventory, IMachine
+@Implementable("buildcraft.core.IMachine")
+public abstract class TileEntityFactoryInventory extends TileEntityFactory implements IInventory, ISidedInventory
 {
 	protected TileEntityFactoryInventory()
 	{
@@ -255,27 +257,28 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		return true;
 	}
 	
-	@Override
 	public boolean isActive()
 	{
 		return false;
 	}
 	
-	@Override
 	public boolean manageLiquids()
 	{
 		return false;
 	}
 	
-	@Override
 	public boolean manageSolids()
 	{
 		return false;
 	}
 	
-	@Override
 	public boolean allowActions()
 	{
 		return false;
+	}
+	
+	public boolean allowAction(IAction _)
+	{
+		return this.allowActions();
 	}
 }

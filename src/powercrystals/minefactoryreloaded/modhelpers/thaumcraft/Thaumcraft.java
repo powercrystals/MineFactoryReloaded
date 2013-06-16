@@ -1,12 +1,9 @@
 package powercrystals.minefactoryreloaded.modhelpers.thaumcraft;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.farmables.grindables.GrindableStandard;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -40,10 +37,8 @@ public class Thaumcraft
 			
 			FarmingRegistry.registerPlantable(new PlantableThaumcraftTree(tcSapling.blockID, tcSapling.blockID));
 			
-			ItemStack zombieBrain = new ItemStack((Item)Class.forName("thaumcraft.common.Config").getField("itemResource").get(null), 1, 5);
+			// TODO: blacklist golems, redo wisp?
 			
-			FarmingRegistry.registerGrindable(new GrindableStandard(Class.forName("thaumcraft.common.entities.monster.EntityBrainyZombie"), zombieBrain));
-			FarmingRegistry.registerGrindable(new GrindableStandard(Class.forName("thaumcraft.common.entities.monster.EntityGiantBrainyZombie"), zombieBrain));
 			FarmingRegistry.registerGrindable(new GrindableWisp());
 		}
 		catch(Exception x)

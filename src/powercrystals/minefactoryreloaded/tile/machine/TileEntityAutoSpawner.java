@@ -118,19 +118,11 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			if(_spawnExact)
 			{
 				NBTTagCompound tag = (NBTTagCompound)_inventory[0].getTagCompound().copy();
-				if(tag.getBoolean("SkeletonType") && tag.hasKey("Equipment"))
-				{
-					for(int i = 1 ; i < tag.getTagList("Equipment").tagCount() ; i++)
-					{
-						tag.getTagList("Equipment").removeTag(1);
-						tag.getTagList("Equipment").appendTag(new NBTTagCompound());
-					}
-				}
-				else
-				{
-					tag.removeTag("Equipment");
-				}
 				spawnedLiving.readEntityFromNBT(tag);
+				for (int i = 0; i < 5; ++i)
+				{
+					spawnedLiving.func_96120_a(i, 0);
+				}
 			}
 			
 			double x = xCoord + (worldObj.rand.nextDouble() - worldObj.rand.nextDouble()) * _spawnRange;

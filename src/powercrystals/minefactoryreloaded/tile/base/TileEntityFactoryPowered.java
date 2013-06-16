@@ -263,7 +263,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int demandsEnergy()
 	{
-		return ((getEnergyStoredMax() - _energyStored) / energyPerEU);
+		return ((getEnergyStoredMax() - getEnergyStored()) / energyPerEU);
 	}
 	
 	

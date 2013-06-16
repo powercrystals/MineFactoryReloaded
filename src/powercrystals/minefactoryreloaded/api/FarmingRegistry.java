@@ -2,9 +2,9 @@ package powercrystals.minefactoryreloaded.api;
 
 import java.lang.reflect.Method;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
-
 import net.minecraft.item.ItemStack;
+
+import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 
 /**
  * @author PowerCrystals
@@ -36,7 +36,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a harvestable block with the Harvester.
 	 * 
@@ -58,7 +58,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a fertilizable block with the Fertilizer.
 	 * 
@@ -80,7 +80,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a fertilizer item Fertilizer.
 	 * 
@@ -102,7 +102,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a ranchable entity with the Rancher.
 	 * 
@@ -124,12 +124,13 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a grindable entity with the Grinder.
 	 * 
 	 * @param grindable The entity to grind.
 	 */
+	@SuppressWarnings("deprecation")
 	public static void registerGrindable(IFactoryGrindable grindable)
 	{
 		try
@@ -146,11 +147,11 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a possible output with the sludge boiler.
 	 * 
-	 * @param weight Likelihood that this item will be produced. Lower means rarer. 
+	 * @param weight Likelihood that this item will be produced. Lower means rarer.
 	 * @param drop The thing being produced by the sludge boiler.
 	 */
 	public static void registerSludgeDrop(int weight, ItemStack drop)
@@ -169,11 +170,11 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers specific food to use in the Breeder (instead of wheat) for a given mob.
 	 * 
-	 * @param entityToBreed Entity this food will be used with. 
+	 * @param entityToBreed Entity this food will be used with.
 	 * @param food The item to use when breeding this entity.
 	 */
 	public static void registerBreederFood(Class<?> entityToBreed, ItemStack food)
@@ -192,7 +193,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a Safari Net handler to properly serialize a type of mob.
 	 * 
@@ -214,8 +215,8 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	/**
 	 * Registers a mob egg handler, which allows the Safari Net to properly change colors.
 	 * 
@@ -237,7 +238,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Allows Rubber Trees to spawn in the specified biome.
 	 * 
@@ -259,7 +260,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Bans an entity class from being collected by Safari Nets
 	 * 
@@ -281,7 +282,29 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Bans an entity class from being automatically ground by the Grinder
+	 * 
+	 * @param blacklistedEntity Class to blacklist
+	 */
+	/*public static void registerGrinderBlacklist(Class<?> blacklistedEntity)
+	{
+		try
+		{
+			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
+			if(registry != null)
+			{
+				Method reg = registry.getMethod("registerGrinderBlacklist", Class.class);
+				reg.invoke(registry, blacklistedEntity);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}//*/
+
 	/**
 	 * Registers an entity as a possible output from villager random safari nets. Note that the "id" field must be initialized
 	 * (i.e. with Entity.addEntityID()) for it to work correctly.
@@ -305,7 +328,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a handler for drinking liquids with the straw.
 	 * 
@@ -328,11 +351,11 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a possible output with the laser drill.
 	 * 
-	 * @param weight Likelihood that this item will be produced. Lower means rarer. 
+	 * @param weight Likelihood that this item will be produced. Lower means rarer.
 	 * @param drop The thing being produced by the laser drill.
 	 */
 	public static void registerLaserOre(int weight, ItemStack drop)
@@ -351,7 +374,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a preferred ore with the laser drill. Focuses with the specified color will make the specified ore more likely.
 	 * Note that this will overwrite existing ore preferences - you may want to coordinate with PC before using this one.
@@ -377,7 +400,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a block ID as a fruit tree log. When the Fruit Picker sees this block on the ground, it will
 	 * begin a search in tree mode for any fruit nearby.
@@ -400,7 +423,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers a fruit for the Fruit Picker.
 	 * 
@@ -422,7 +445,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers an entity string as an invalid entry for the autospawner.
 	 * See also: {@link net.minecraft.entity.EntityList}'s classToStringMapping and stringToClassMapping.
@@ -445,7 +468,7 @@ public class FarmingRegistry
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Registers logic circuit to be usable in the Programmable RedNet Controller.
 	 * 

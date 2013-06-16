@@ -30,6 +30,7 @@ public abstract class MFRRegistry
 	private static Map<Integer, IFactoryFertilizer> _fertilizers = new HashMap<Integer, IFactoryFertilizer>();
 	private static Map<Integer, IFactoryFertilizable> _fertilizables = new HashMap<Integer, IFactoryFertilizable>();
 	private static Map<Class<?>, IFactoryRanchable> _ranchables = new HashMap<Class<?>, IFactoryRanchable>();
+	@SuppressWarnings("deprecation")
 	private static Map<Class<?>, IFactoryGrindable> _grindables = new HashMap<Class<?>, IFactoryGrindable>();
 	private static Map<Class<?>, List<ItemStack>> _breederFoods = new HashMap<Class<?>, List<ItemStack>>();
 	private static Map<Integer, ILiquidDrinkHandler> _liquidDrinkHandlers = new HashMap<Integer, ILiquidDrinkHandler>();
@@ -46,40 +47,42 @@ public abstract class MFRRegistry
 	private static List<IRandomMobProvider> _randomMobProviders = new ArrayList<IRandomMobProvider>();
 	private static List<IRedNetLogicCircuit> _redNetLogicCircuits = new ArrayList<IRedNetLogicCircuit>();
 	private static List<WeightedRandomItem> _laserOres  = new ArrayList<WeightedRandomItem>();
+	private static List<Class<?>> _grindableBlacklist = new ArrayList<Class<?>>();
 	private static List<String> _autoSpawnerBlacklist = new ArrayList<String>();
-	
+	private static List<Class<?>> _slaughterhouseBlacklist = new ArrayList<Class<?>>();
+
 	private static ItemStack[] _laserPreferredOres = new ItemStack[16];
-	
+
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
 		_plantables.put(new Integer(plantable.getSeedId()), plantable);
 	}
-	
+
 	public static Map<Integer, IFactoryPlantable> getPlantables()
 	{
 		return _plantables;
 	}
-	
+
 	public static void registerHarvestable(IFactoryHarvestable harvestable)
 	{
 		_harvestables.put(harvestable.getPlantId(), harvestable);
 	}
-	
+
 	public static Map<Integer, IFactoryHarvestable> getHarvestables()
 	{
 		return _harvestables;
 	}
-	
+
 	public static void registerFertilizable(IFactoryFertilizable fertilizable)
 	{
 		_fertilizables.put(fertilizable.getFertilizableBlockId(), fertilizable);
 	}
-	
+
 	public static Map<Integer, IFactoryFertilizable> getFertilizables()
 	{
 		return _fertilizables;
 	}
-	
+
 	public static void registerFertilizer(IFactoryFertilizer fertilizer)
 	{
 		Integer i = new Integer(fertilizer.getFertilizerId());
@@ -88,37 +91,59 @@ public abstract class MFRRegistry
 			_fertilizers.put(i, fertilizer);
 		}
 	}
-	
+
 	public static Map<Integer, IFactoryFertilizer> getFertilizers()
 	{
 		return _fertilizers;
 	}
-	
+
 	public static void registerRanchable(IFactoryRanchable ranchable)
 	{
 		_ranchables.put(ranchable.getRanchableEntity(), ranchable);
 	}
-	
+
 	public static Map<Class<?>, IFactoryRanchable> getRanchables()
 	{
 		return _ranchables;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void registerGrindable(IFactoryGrindable grindable)
 	{
 		_grindables.put(grindable.getGrindableEntity(), grindable);
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	public static Map<Class<?>, IFactoryGrindable> getGrindables()
 	{
 		return _grindables;
 	}
-	
+
+	public static void registerGrinderBlacklist(Class<?> ...ungrindables)
+	{
+		for (Class<?> ungrindable : ungrindables)
+		{
+			_grindableBlacklist.add(ungrindable);
+			if (MFRRegistry._safariNetBlacklist.contains(ungrindable))
+				_slaughterhouseBlacklist.add(ungrindable);
+		}
+	}
+
+	public static List<Class<?>> getGrinderBlacklist()
+	{
+		return _grindableBlacklist;
+	}
+
+	public static List<Class<?>> getSlaughterhouseBlacklist()
+	{
+		return _slaughterhouseBlacklist;
+	}
+
 	public static void registerSludgeDrop(int weight, ItemStack drop)
 	{
 		_sludgeDrops.add(new WeightedRandomItemStack(weight, drop.copy()));
 	}
-	
+
 	public static List<WeightedRandomItem> getSludgeDrops()
 	{
 		return _sludgeDrops;
@@ -137,127 +162,129 @@ public abstract class MFRRegistry
 			_breederFoods.put(entityToBreed, foodToAdd);
 		}
 	}
-	
+
 	public static Map<Class<?>, List<ItemStack>> getBreederFoods()
 	{
 		return _breederFoods;
 	}
-	
+
 	public static void registerMobEggHandler(IMobEggHandler handler)
 	{
 		_eggHandlers.add(handler);
 	}
-	
+
 	public static List<IMobEggHandler> getModMobEggHandlers()
 	{
 		return _eggHandlers;
 	}
-	
+
 	public static void registerSafariNetHandler(ISafariNetHandler handler)
 	{
 		_safariNetHandlers.add(handler);
 	}
-	
+
 	public static List<ISafariNetHandler> getSafariNetHandlers()
 	{
 		return _safariNetHandlers;
 	}
-	
+
 	public static void registerRubberTreeBiome(String biome)
 	{
 		_rubberTreeBiomes.add(biome);
 	}
-	
+
 	public static List<String> getRubberTreeBiomes()
 	{
 		return _rubberTreeBiomes;
 	}
-	
+
 	public static void registerSafariNetBlacklist(Class<?> entityClass)
 	{
 		_safariNetBlacklist.add(entityClass);
+		if (MFRRegistry._grindableBlacklist.contains(entityClass))
+			_slaughterhouseBlacklist.add(entityClass);
 	}
-	
+
 	public static List<Class<?>> getSafariNetBlacklist()
 	{
 		return _safariNetBlacklist;
 	}
-	
+
 	public static void registerRandomMobProvider(IRandomMobProvider mobProvider)
 	{
 		_randomMobProviders.add(mobProvider);
 	}
-	
+
 	public static List<IRandomMobProvider> getRandomMobProviders()
 	{
 		return _randomMobProviders;
 	}
-	
+
 	public static void registerLiquidDrinkHandler(int liquidId, ILiquidDrinkHandler liquidDrinkHandler)
 	{
 		_liquidDrinkHandlers.put(liquidId, liquidDrinkHandler);
 	}
-	
+
 	public static Map<Integer, ILiquidDrinkHandler> getLiquidDrinkHandlers()
 	{
 		return _liquidDrinkHandlers;
 	}
-	
+
 	public static void registerRedNetLogicCircuit(IRedNetLogicCircuit circuit)
 	{
 		_redNetLogicCircuits.add(circuit);
 	}
-	
+
 	public static List<IRedNetLogicCircuit> getRedNetLogicCircuits()
 	{
 		return _redNetLogicCircuits;
 	}
-	
+
 	public static void registerLaserOre(int weight, ItemStack ore)
 	{
 		_laserOres.add(new WeightedRandomItemStack(weight, ore.copy()));
 	}
-	
+
 	public static List<WeightedRandomItem> getLaserOres()
 	{
 		return _laserOres;
 	}
-	
+
 	public static void registerFruitLogBlockId(Integer fruitLogBlockId)
 	{
 		_fruitLogBlocks.add(fruitLogBlockId);
 	}
-	
+
 	public static List<Integer> getFruitLogBlockIds()
 	{
 		return _fruitLogBlocks;
 	}
-	
+
 	public static void registerFruit(IFactoryFruit fruit)
 	{
 		_fruitBlocks.put(fruit.getSourceBlockId(), fruit);
 	}
-	
+
 	public static Map<Integer, IFactoryFruit> getFruits()
 	{
 		return _fruitBlocks;
 	}
-	
+
 	public static void registerAutoSpawnerBlacklist(String entityString)
 	{
 		_autoSpawnerBlacklist.add(entityString);
 	}
-	
+
 	public static List<String> getAutoSpawnerBlacklist()
 	{
 		return _autoSpawnerBlacklist;
 	}
-	
+
 	public static void setLaserPreferredOre(int color, ItemStack ore)
 	{
 		_laserPreferredOres[color] = ore;
 	}
-	
+
 	public static ItemStack getLaserPreferredOre(int color)
 	{
 		return _laserPreferredOres[color];
