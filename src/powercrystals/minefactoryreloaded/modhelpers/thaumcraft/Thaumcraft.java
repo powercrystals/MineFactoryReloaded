@@ -1,8 +1,8 @@
 package powercrystals.minefactoryreloaded.modhelpers.thaumcraft;
 
 import net.minecraft.block.Block;
+import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.farmables.harvestables.HarvestableStandard;
 import cpw.mods.fml.common.FMLLog;
@@ -31,15 +31,15 @@ public class Thaumcraft
 			Block tcLog = (Block)Class.forName("thaumcraft.common.Config").getField("blockMagicalLog").get(null);
 			Block tcLeaves = (Block)Class.forName("thaumcraft.common.Config").getField("blockMagicalLeaves").get(null);
 			
-			FarmingRegistry.registerHarvestable(new HarvestableStandard(tcLog.blockID, HarvestType.Tree));
-			FarmingRegistry.registerHarvestable(new HarvestableThaumcraftLeaves(tcLeaves.blockID, tcSapling.blockID));
-			FarmingRegistry.registerHarvestable(new HarvestableThaumcraftPlant(tcSapling.blockID));
+			MFRRegistry.registerHarvestable(new HarvestableStandard(tcLog.blockID, HarvestType.Tree));
+			MFRRegistry.registerHarvestable(new HarvestableThaumcraftLeaves(tcLeaves.blockID, tcSapling.blockID));
+			MFRRegistry.registerHarvestable(new HarvestableThaumcraftPlant(tcSapling.blockID));
 			
-			FarmingRegistry.registerPlantable(new PlantableThaumcraftTree(tcSapling.blockID, tcSapling.blockID));
+			MFRRegistry.registerPlantable(new PlantableThaumcraftTree(tcSapling.blockID, tcSapling.blockID));
 			
 			// TODO: blacklist golems, redo wisp?
 			
-			FarmingRegistry.registerGrindable(new GrindableWisp());
+			MFRRegistry.registerGrindable(new GrindableWisp());
 		}
 		catch(Exception x)
 		{
