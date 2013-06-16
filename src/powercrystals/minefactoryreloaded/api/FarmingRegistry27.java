@@ -20,14 +20,14 @@ public class FarmingRegistry27
 	 * 
 	 * @param grindable The entity to grind.
 	 */
-	public static void registerGrindable27(IFactoryGrindable2 grindable)
+	public static void registerGrindable(IFactoryGrindable2 grindable)
 	{
 		try
 		{
 			Class<?> registry = Class.forName("powercrystals.minefactoryreloaded.MFRRegistry");
 			if(registry != null)
 			{
-				Method reg = registry.getMethod("registerGrindable27", IFactoryGrindable2.class);
+				Method reg = registry.getMethod("registerGrindable", IFactoryGrindable2.class);
 				reg.invoke(registry, grindable);
 			}
 		}
