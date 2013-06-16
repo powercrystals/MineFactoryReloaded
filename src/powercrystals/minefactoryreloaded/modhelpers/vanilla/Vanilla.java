@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.api.INeedleAmmo;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.circuits.Fanout;
 import powercrystals.minefactoryreloaded.circuits.Noop;
@@ -359,5 +360,12 @@ public class Vanilla
 		MFRRegistry.setLaserPreferredOre(11, new ItemStack(Block.oreLapis));
 		MFRRegistry.setLaserPreferredOre(14, new ItemStack(Block.oreRedstone));
 		MFRRegistry.setLaserPreferredOre(0, new ItemStack(Block.oreNetherQuartz));
+		
+		MFRRegistry.registerNeedleAmmoType(MineFactoryReloadedCore.needlegunAmmoStandardItem.itemID, (INeedleAmmo)MineFactoryReloadedCore.needlegunAmmoStandardItem);
+		MFRRegistry.registerNeedleAmmoType(MineFactoryReloadedCore.needlegunAmmoLavaItem.itemID, (INeedleAmmo)MineFactoryReloadedCore.needlegunAmmoLavaItem);
+		MFRRegistry.registerNeedleAmmoType(MineFactoryReloadedCore.needlegunAmmoSludgeItem.itemID, (INeedleAmmo)MineFactoryReloadedCore.needlegunAmmoSludgeItem);
+		MFRRegistry.registerNeedleAmmoType(MineFactoryReloadedCore.needlegunAmmoSewageItem.itemID, (INeedleAmmo)MineFactoryReloadedCore.needlegunAmmoSewageItem);
+		MFRRegistry.registerNeedleAmmoType(MineFactoryReloadedCore.needlegunAmmoFireItem.itemID, (INeedleAmmo)MineFactoryReloadedCore.needlegunAmmoFireItem);
+		MFRRegistry.registerNeedleAmmoType(MineFactoryReloadedCore.needlegunAmmoAnvilItem.itemID, (INeedleAmmo)MineFactoryReloadedCore.needlegunAmmoAnvilItem);
 	}
 }

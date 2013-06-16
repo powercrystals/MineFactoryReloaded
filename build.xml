@@ -212,12 +212,20 @@
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/items/" />
 		</copy>
 		
+		<copy todir="${classes.dir}/textures/itemmodels/powercrystals/minefactoryreloaded">
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/itemmodels/" />
+		</copy>
+		
 		<copy todir="${classes.dir}/textures/mob/powercrystals/minefactoryreloaded">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/mob/" />
 		</copy>
 		
 		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures/gui">
 			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/textures/gui" />
+		</copy>
+		
+		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/models">
+			<fileset dir="${mcpsrc.dir}/powercrystals/minefactoryreloaded/models" />
 		</copy>
 		
 		<copy todir="${classes.dir}/powercrystals/minefactoryreloaded/textures/villager">

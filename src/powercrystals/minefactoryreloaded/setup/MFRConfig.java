@@ -99,6 +99,14 @@ public class MFRConfig
 	public static Property laserFocusItemId;
 	public static Property chocolateMilkBucketItemId;
 	public static Property mushroomSoupBucketItemId;
+	public static Property needlegunItemId;
+	public static Property needlegunAmmoEmptyItemId;
+	public static Property needlegunAmmoStandardItemId;
+	public static Property needlegunAmmoLavaItemId;
+	public static Property needlegunAmmoSludgeItemId;
+	public static Property needlegunAmmoSewageItemId;
+	public static Property needlegunAmmoFireItemId;
+	public static Property needlegunAmmoAnvilItemId;
 	
 	public static Property plasticCupItemId;
 	
@@ -246,6 +254,14 @@ public class MFRConfig
 		laserFocusItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.LaserFocus", 12033);
 		chocolateMilkBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.ChocolateMilkBucket", 12034);
 		mushroomSoupBucketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.MushroomSoupBucket", 12035);
+		needlegunItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun", 12036);
+		needlegunAmmoEmptyItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Empty", 12037);
+		needlegunAmmoStandardItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Standard", 12038);
+		needlegunAmmoLavaItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Lava", 12039);
+		needlegunAmmoSludgeItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Sludge", 12040);
+		needlegunAmmoSewageItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Sewage", 12041);
+		needlegunAmmoFireItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Fire", 12042);
+		needlegunAmmoAnvilItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Anvil", 12043);
 		
 		plasticCupItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PlasticCup", 12061);
 		

@@ -48,7 +48,6 @@ local.properties
 *_p.c
 *.ilk
 *.meta
-*.obj
 *.pch
 *.pdb
 *.pgc
@@ -166,4 +165,4 @@ pip-log.txt
 
 downloads
 screenshots
-models
+techne
