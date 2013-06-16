@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import powercrystals.minefactoryreloaded.entity.EntityNeedle;
 
 public class ItemNeedlegunAmmoStandard extends ItemNeedlegunAmmo
 {
@@ -31,10 +30,5 @@ public class ItemNeedlegunAmmoStandard extends ItemNeedlegunAmmo
 	public float getSpread()
 	{
 		return 3.0F;
-	}
-
-	@Override
-	public void tick(EntityNeedle needle, double distance)
-	{
 	}
 }

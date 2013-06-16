@@ -1,7 +1,6 @@
 package powercrystals.minefactoryreloaded.item;
 
 import powercrystals.core.position.BlockPosition;
-import powercrystals.minefactoryreloaded.entity.EntityNeedle;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -34,11 +33,6 @@ public class ItemNeedlegunAmmoBlock extends ItemNeedlegunAmmo
 	{
 		placeBlockAt(hit.worldObj, (int)hit.posX, (int)hit.posY, (int)hit.posZ);
 		return true;
-	}
-	
-	@Override
-	public void tick(EntityNeedle needle, double distance)
-	{
 	}
 	
 	@Override
