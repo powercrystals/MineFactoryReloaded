@@ -15,7 +15,6 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -28,7 +27,6 @@ import net.minecraftforge.liquids.LiquidTank;
 
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
-import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable2;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.core.GrindingDamage;
@@ -159,11 +157,9 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 			boolean processMob = false;
 			processEntity:
 			{
-				if (MFRRegistry.getGrindables().containsKey(e.getClass()))
+				if (MFRRegistry.getGrindables27().containsKey(e.getClass()))
 				{
-					@SuppressWarnings("deprecation")
-					IFactoryGrindable r = MFRRegistry.getGrindables().get(e.getClass());
-					@SuppressWarnings("deprecation")
+					IFactoryGrindable2 r = MFRRegistry.getGrindables27().get(e.getClass());
 					List<MobDrop> drops = r.grind(e.worldObj, e, getRandom());
 					if (drops != null && drops.size() > 0 && WeightedRandom.getTotalWeight(drops) > 0)
 					{

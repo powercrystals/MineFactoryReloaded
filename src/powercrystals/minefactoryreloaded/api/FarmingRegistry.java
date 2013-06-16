@@ -12,6 +12,9 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
  * Class used to register plants and other farming-related things with MFR. Will do nothing if MFR does not exist, but your mod should be set to load
  * after MFR or things may not work properly.
  * 
+ * To avoid breaking the API, additional FarmingRegistry##s will appear on major MFR versions that contain API additions. On a Minecraft version change, 
+ * these will be rolled back into this class.
+ * 
  */
 public class FarmingRegistry
 {

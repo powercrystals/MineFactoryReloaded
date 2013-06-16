@@ -377,7 +377,6 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 		needlegunAmmoSewageItem = (new ItemNeedlegunAmmoBlock(MFRConfig.needlegunAmmoSewageItemId.getInt(), sewageLiquid.blockID, 6)).setUnlocalizedName("mfr.needlegun.ammo.sewage");
 		needlegunAmmoFireItem = (new ItemNeedlegunAmmoFire(MFRConfig.needlegunAmmoFireItemId.getInt())).setUnlocalizedName("mfr.needlegun.ammo.fire");
 		needlegunAmmoAnvilItem = (new ItemNeedlegunAmmoBlock(MFRConfig.needlegunAmmoAnvilItemId.getInt(), Block.anvil.blockID, 2)).setUnlocalizedName("mfr.needlegun.ammo.anvil").setMaxDamage(0);
-		
 		plasticCup = (ItemFactoryCup)new ItemFactoryCup(MFRConfig.plasticCupItemId.getInt(), 64, 16).setUnlocalizedName("mfr.bucket.plasticcup");
 
 		for(Entry<Integer, Block> machine : machineBlocks.entrySet())

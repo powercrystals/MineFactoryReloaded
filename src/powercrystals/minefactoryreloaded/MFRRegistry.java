@@ -12,7 +12,7 @@ import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
 import powercrystals.minefactoryreloaded.api.IFactoryFruit;
-import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.IFactoryGrindable2;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
@@ -30,8 +30,7 @@ public abstract class MFRRegistry
 	private static Map<Integer, IFactoryFertilizer> _fertilizers = new HashMap<Integer, IFactoryFertilizer>();
 	private static Map<Integer, IFactoryFertilizable> _fertilizables = new HashMap<Integer, IFactoryFertilizable>();
 	private static Map<Class<?>, IFactoryRanchable> _ranchables = new HashMap<Class<?>, IFactoryRanchable>();
-	@SuppressWarnings("deprecation")
-	private static Map<Class<?>, IFactoryGrindable> _grindables = new HashMap<Class<?>, IFactoryGrindable>();
+	private static Map<Class<?>, IFactoryGrindable2> _grindables27 = new HashMap<Class<?>, IFactoryGrindable2>();
 	private static Map<Class<?>, List<ItemStack>> _breederFoods = new HashMap<Class<?>, List<ItemStack>>();
 	private static Map<Integer, ILiquidDrinkHandler> _liquidDrinkHandlers = new HashMap<Integer, ILiquidDrinkHandler>();
 	private static Map<Integer, INeedleAmmo> _needleAmmoTypes = new HashMap<Integer, INeedleAmmo>();
@@ -107,16 +106,14 @@ public abstract class MFRRegistry
 		return _ranchables;
 	}
 
-	@SuppressWarnings("deprecation")
-	public static void registerGrindable(IFactoryGrindable grindable)
+	public static void registerGrindable(IFactoryGrindable2 grindable)
 	{
-		_grindables.put(grindable.getGrindableEntity(), grindable);
+		_grindables27.put(grindable.getGrindableEntity(), grindable);
 	}
 
-	@SuppressWarnings("deprecation")
-	public static Map<Class<?>, IFactoryGrindable> getGrindables()
+	public static Map<Class<?>, IFactoryGrindable2> getGrindables27()
 	{
-		return _grindables;
+		return _grindables27;
 	}
 
 	public static void registerGrinderBlacklist(Class<?> ...ungrindables)
