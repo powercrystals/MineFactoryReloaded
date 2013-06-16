@@ -1,7 +1,5 @@
 package powercrystals.minefactoryreloaded.render.block;
 
-import java.util.Arrays;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -11,7 +9,6 @@ import net.minecraft.world.IBlockAccess;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.block.BlockFactoryGlass;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.common.FMLLog;
 
 public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 {
