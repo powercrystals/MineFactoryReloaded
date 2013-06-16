@@ -8,11 +8,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.MinecraftForgeClient;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.render.RenderBlockFluidClassic;
+import powercrystals.minefactoryreloaded.entity.EntityNeedle;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
 import powercrystals.minefactoryreloaded.render.block.ConveyorRenderer;
 import powercrystals.minefactoryreloaded.render.block.FactoryGlassPaneRenderer;
 import powercrystals.minefactoryreloaded.render.block.VineScaffoldRenderer;
+import powercrystals.minefactoryreloaded.render.entity.EntityNeedleRenderer;
 import powercrystals.minefactoryreloaded.render.entity.EntitySafariNetRenderer;
+import powercrystals.minefactoryreloaded.render.item.NeedleGunItemRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillPrechargerRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedNetCardItemRenderer;
@@ -71,6 +74,10 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaserDrill.class, new LaserDrillRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaserDrillPrecharger.class, new LaserDrillPrechargerRenderer());
+		
+		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.needlegunItem.itemID, new NeedleGunItemRenderer());
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityNeedle.class, new EntityNeedleRenderer());
 		
 		TickRegistry.registerScheduledTickHandler(_instance, Side.CLIENT);
 	}

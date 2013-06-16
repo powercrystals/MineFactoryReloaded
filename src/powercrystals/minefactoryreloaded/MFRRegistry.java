@@ -18,6 +18,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.api.ILiquidDrinkHandler;
 import powercrystals.minefactoryreloaded.api.IMobEggHandler;
+import powercrystals.minefactoryreloaded.api.INeedleAmmo;
 import powercrystals.minefactoryreloaded.api.IRandomMobProvider;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
@@ -32,6 +33,7 @@ public abstract class MFRRegistry
 	private static Map<Class<?>, IFactoryGrindable> _grindables = new HashMap<Class<?>, IFactoryGrindable>();
 	private static Map<Class<?>, List<ItemStack>> _breederFoods = new HashMap<Class<?>, List<ItemStack>>();
 	private static Map<Integer, ILiquidDrinkHandler> _liquidDrinkHandlers = new HashMap<Integer, ILiquidDrinkHandler>();
+	private static Map<Integer, INeedleAmmo> _needleAmmoTypes = new HashMap<Integer, INeedleAmmo>();
 	
 	private static List<Integer> _fruitLogBlocks = new ArrayList<Integer>();
 	private static Map<Integer, IFactoryFruit> _fruitBlocks = new HashMap<Integer, IFactoryFruit>();
@@ -259,5 +261,19 @@ public abstract class MFRRegistry
 	public static ItemStack getLaserPreferredOre(int color)
 	{
 		return _laserPreferredOres[color];
+	}
+	
+	public static void registerNeedleAmmoType(Integer itemId, INeedleAmmo ammo)
+	{
+		Integer i = new Integer(itemId);
+		if(!_needleAmmoTypes.containsKey(i))
+		{
+			_needleAmmoTypes.put(i, ammo);
+		}
+	}
+	
+	public static Map<Integer, INeedleAmmo> getNeedleAmmoTypes()
+	{
+		return _needleAmmoTypes;
 	}
 }

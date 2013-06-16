@@ -248,6 +248,15 @@ item.mfr.upgrade.logic.100.name = PRC LX-100 Logic Expansion Card
 item.mfr.upgrade.logic.300.name = PRC LX-300 Logic Expansion Card
 item.mfr.upgrade.logic.500.name = PRC LX-500 Logic Expansion Card
 
+item.mfr.needlegun.name = Needlegun
+item.mfr.needlegun.ammo.empty.name = Needlegun Magazine
+item.mfr.needlegun.ammo.standard.name = Needlegun Ammo (Needles)
+item.mfr.needlegun.ammo.lava.name = Needlegun Ammo (Lava)
+item.mfr.needlegun.ammo.sludge.name = Needlegun Ammo (Sludge)
+item.mfr.needlegun.ammo.sewage.name = Needlegun Ammo (Sewage)
+item.mfr.needlegun.ammo.fire.name = Needlegun Ammo (Fire)
+item.mfr.needlegun.ammo.anvil.name = Needlegun Ammo (Anvil)
+
 circuit.mfr.noop = (No-Op)
 circuit.mfr.adder.analog = Adder (Analog)
 circuit.mfr.adder.digital.full = Adder (Digital, Full)
