@@ -165,9 +165,9 @@ item.mfr.bucket.pinkslime.name = Pink Slime Bucket
 item.mfr.bucket.chocolatemilk.name = Chocolate Milk Bucket
 item.mfr.bucket.mushroomsoup.name = Mushroom Soup Bucket
 
-item.mfr.bucket.plasticCup.name = Plastic Cup
-item.mfr.bucket.plasticCup.prefix.name =
-item.mfr.bucket.plasticCup.suffix.name = Cup
+item.mfr.bucket.plasticcup.name = Plastic Cup
+item.mfr.bucket.plasticcup.prefix.name =
+item.mfr.bucket.plasticcup.suffix.name = Cup
 
 item.mfr.hammer.name = Precision Sledgehammer
 item.mfr.fertilizer.name = Industrial Fertilizer

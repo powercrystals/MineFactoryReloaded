@@ -18,6 +18,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 public class ItemFactoryCup extends ItemFactory
 {
 	private int _maxUses = 0;
+	private boolean _prefix = false;
 
 	public ItemFactoryCup(int id, int stackSize, int maxUses)
 	{
@@ -28,13 +29,11 @@ public class ItemFactoryCup extends ItemFactory
 		this.setHasSubtypes(true);
 	}
 
-	private boolean prefix = false;
-
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		if (getFluid(stack) != null)
-			return getUnlocalizedName() + (prefix ? ".prefix" : ".suffix");
+			return getUnlocalizedName() + (_prefix ? ".prefix" : ".suffix");
 		return getUnlocalizedName();
 	}
 
@@ -64,9 +63,9 @@ public class ItemFactoryCup extends ItemFactory
 				Item temp = Item.itemsList[q.itemID];
 				if (temp != null) ret = temp.getItemDisplayName(q);
 			}
-			prefix = true;
+			_prefix = true;
 			t = super.getItemDisplayName(item);
-			prefix = false;
+			_prefix = false;
 			t = t != null ? t.trim() : "";
 			ret = (t.isEmpty() ? "" : t + " ") + ret;
 			t = super.getItemDisplayName(item);
