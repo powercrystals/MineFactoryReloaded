@@ -288,7 +288,7 @@ public class FarmingRegistry
 	 * 
 	 * @param blacklistedEntity Class to blacklist
 	 */
-	public static void registerGrinderBlacklist(Class<?> blacklistedEntity)
+	/*public static void registerGrinderBlacklist(Class<?> blacklistedEntity)
 	{
 		try
 		{
@@ -303,7 +303,7 @@ public class FarmingRegistry
 		{
 			e.printStackTrace();
 		}
-	}
+	}//*/
 
 	/**
 	 * Registers an entity as a possible output from villager random safari nets. Note that the "id" field must be initialized
