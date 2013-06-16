@@ -23,6 +23,7 @@ public class Vanilla
 	private static boolean _registeredMiscItems;
 	private static boolean _registeredVanillaImprovements;
 	private static boolean _registeredRails;
+	private static boolean _registeredGuns;
 	private static boolean _registeredRedNet;
 	private static boolean _registeredRedNetManual;
 	
@@ -36,6 +37,7 @@ public class Vanilla
 		registerMiscItems();
 		registerVanillaImprovements();
 		registerRails();
+		registerGuns();
 		registerRedNet();
 		registerRedNetManual();
 	}
@@ -1460,6 +1462,66 @@ public class Vanilla
 			'S', "sheetPlastic",
 			'D', Block.railDetector
 				} ));
+	}
+	
+	protected void registerGuns()
+	{
+		if(_registeredGuns)
+		{
+			return;
+		}
+		_registeredGuns = true;
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.needlegunItem), new Object[]
+				{
+					"PIP",
+					"PIP",
+					"SLS",
+					'P', "sheetPlastic",
+					'I', Item.ingotIron,
+					'S', Item.slimeBall,
+					'L', MineFactoryReloadedCore.safariNetLauncherItem
+				}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.needlegunAmmoEmptyItem, 4), new Object[]
+				{
+					"P P",
+					"PIP",
+					"PPP",
+					'P', "sheetPlastic",
+					'I', Item.ingotIron,
+				}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.needlegunAmmoStandardItem), new Object[]
+				{
+					"AAA",
+					"AMA",
+					"AAA",
+					'A', Item.arrow,
+					'M', MineFactoryReloadedCore.needlegunAmmoEmptyItem,
+				}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.needlegunAmmoAnvilItem), new Object[]
+				{
+					"SMS",
+					"SAS",
+					"SSS",
+					'A', new ItemStack(Block.anvil, 1, 0),
+					'M', MineFactoryReloadedCore.needlegunAmmoEmptyItem,
+					'S', Item.silk
+				}));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.needlegunAmmoFireItem, 4), MineFactoryReloadedCore.needlegunAmmoEmptyItem,
+				Item.flintAndSteel);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.needlegunAmmoLavaItem), MineFactoryReloadedCore.needlegunAmmoEmptyItem,
+				Item.bucketLava);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.needlegunAmmoSludgeItem), MineFactoryReloadedCore.needlegunAmmoEmptyItem,
+				MineFactoryReloadedCore.sludgeBucketItem);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.needlegunAmmoSewageItem), MineFactoryReloadedCore.needlegunAmmoEmptyItem,
+				MineFactoryReloadedCore.sewageBucketItem);
 	}
 	
 	protected void registerRedNet()
