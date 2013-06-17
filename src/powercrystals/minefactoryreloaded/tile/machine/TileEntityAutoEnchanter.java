@@ -191,7 +191,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
 	{
-		if(slot == 0) return true;
+		if(slot == 0) return _inventory[0] == null;
 		return false;
 	}
 	
