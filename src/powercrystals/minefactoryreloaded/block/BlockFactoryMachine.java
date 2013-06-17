@@ -240,9 +240,12 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			world.markBlockForUpdate(x, y, z);
 			return true;
 		}
-		else if(world.isRemote && te instanceof TileEntityFactory && ((TileEntityFactory)te).getContainer(entityplayer.inventory) != null)
+		else if(te instanceof TileEntityFactory && ((TileEntityFactory)te).getContainer(entityplayer.inventory) != null)
 		{
-			entityplayer.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
+			if(!world.isRemote)
+			{
+				entityplayer.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
+			}
 			return true;
 		}
 		return false;

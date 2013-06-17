@@ -184,9 +184,12 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 			}
 			return false;
 		}
-		else if(world.isRemote && !MFRUtil.isHolding(player, ItemRedNetMeter.class) && !MFRUtil.isHolding(player, ItemRedNetMemoryCard.class))
+		else if(!MFRUtil.isHolding(player, ItemRedNetMeter.class) && !MFRUtil.isHolding(player, ItemRedNetMemoryCard.class))
 		{
-			player.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
+			if(!world.isRemote)
+			{
+				player.openGui(MineFactoryReloadedCore.instance(), 0, world, x, y, z);
+			}
 			return true;
 		}
 		return false;
