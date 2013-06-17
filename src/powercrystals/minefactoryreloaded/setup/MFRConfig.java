@@ -323,7 +323,7 @@ public class MFRConfig
 		vanillaOverrideMilkBucket.comment = "If true, replaces the vanilla milk bucket so milk can be placed in the world.";
 		
 		enableCompatibleAutoEnchanter = c.get(Configuration.CATEGORY_GENERAL, "AutoEnchanter.EnableSafeMode", false);
-		enableCompatibleAutoEnchanter.comment = "If true, the Auto Enchanter will accept entire stacks of books. This is provided to prevent a crash with BuildCraft. This will allow many books to be enchanted at once - only enable this if you know what you're doing.";
+		enableCompatibleAutoEnchanter.comment = "This was provided to workaround a BuildCraft issue in 1.4 and no longer has any effect.";
 		
 		redNetDebug = c.get(Configuration.CATEGORY_GENERAL, "RedNet.Debug", false);
 		redNetDebug.comment = "If true, RedNet cables will dump a massive amount of data to the log file. You should probably only use this if PC tells you to.";
