@@ -48,36 +48,36 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	protected Random _rand;
 	protected IGrindingWorld _grindingWorld;
 	protected GrindingDamage _damageSource;
-
+	
 	private static Field recentlyHit;
-
+	
 	static
 	{
 		ArrayList<String> q = new ArrayList<String>();
 		q.add("recentlyHit");
-		q.addAll(Arrays.asList(ObfuscationReflectionHelper.remapFieldNames("net.minecraft.entity.EntityLiving", new String[]{"field_70718_bc"})));
+		q.addAll(Arrays.asList(ObfuscationReflectionHelper.remapFieldNames("net.minecraft.entity.EntityLiving", new String[] { "field_70718_bc" })));
 		recentlyHit = ReflectionHelper.findField(EntityLiving.class, q.toArray(new String[q.size()]));
 	}
-
+	
 	@Override
 	public String getGuiBackground()
 	{
 		return "grinder.png";
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
 		return new GuiFactoryPowered(getContainer(inventoryPlayer), this);
 	}
-
+	
 	@Override
 	public ContainerFactoryPowered getContainer(InventoryPlayer inventoryPlayer)
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-
+	
 	protected TileEntityGrinder(Machine machine)
 	{
 		super(machine);
@@ -85,93 +85,90 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
 		_rand = new Random();
 	}
-
+	
 	public TileEntityGrinder()
 	{
 		this(Machine.Grinder);
 		_damageSource = new GrindingDamage();
 	}
-
+	
 	@Override
 	public void setWorldObj(World world)
 	{
 		super.setWorldObj(world);
-		if (_grindingWorld != null)
-			_grindingWorld.clearReferences();
-		if (this.worldObj instanceof WorldServer)
+		if(_grindingWorld != null) _grindingWorld.clearReferences();
+		if(this.worldObj instanceof WorldServer)
 			_grindingWorld = new GrindingWorldServer((WorldServer)this.worldObj, this);
 		else
 			_grindingWorld = new GrindingWorld(this.worldObj, this);
 	}
-
+	
 	public Random getRandom()
 	{
 		return _rand;
 	}
-
+	
 	@Override
 	protected boolean shouldPumpLiquid()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public int getEnergyStoredMax()
 	{
 		return 32000;
 	}
-
+	
 	@Override
 	public int getWorkMax()
 	{
 		return 1;
 	}
-
+	
 	@Override
 	public int getIdleTicksMax()
 	{
 		return 200;
 	}
-
+	
 	@Override
 	public ILiquidTank getTank()
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public boolean activateMachine()
 	{
 		_grindingWorld.cleanReferences();
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
-
-		entityList: for (Object o : entities)
+		
+		entityList: for(Object o : entities)
 		{
 			EntityLiving e = (EntityLiving)o;
-			if (e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0 ||
-					e.isEntityInvulnerable() ||
-					e.getHealth() <= 0)
+			if(e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0 || e.isEntityInvulnerable() || e.getHealth() <= 0)
 			{
 				continue;
 			}
 			boolean processMob = false;
 			processEntity:
 			{
-				if (MFRRegistry.getGrindables27().containsKey(e.getClass()))
+				if(MFRRegistry.getGrindables27().containsKey(e.getClass()))
 				{
 					IFactoryGrindable2 r = MFRRegistry.getGrindables27().get(e.getClass());
 					List<MobDrop> drops = r.grind(e.worldObj, e, getRandom());
-					if (drops != null && drops.size() > 0 && WeightedRandom.getTotalWeight(drops) > 0)
+					if(drops != null && drops.size() > 0 && WeightedRandom.getTotalWeight(drops) > 0)
 					{
 						ItemStack drop = ((MobDrop)WeightedRandom.getRandomItem(_rand, drops)).getStack();
 						UtilInventory.dropStack(this, drop, this.getDropDirection());
 					}
-					if (r instanceof IFactoryGrindable2)
+					if(r instanceof IFactoryGrindable2)
 					{
-						if (((IFactoryGrindable2)r).processEntity(e))
+						if(((IFactoryGrindable2)r).processEntity(e))
 						{
 							processMob = true;
-							if (e.getHealth() <= 0)
+							if(e.getHealth() <= 0)
 							{
 								continue entityList;
 							}
@@ -184,25 +181,25 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 						break processEntity;
 					}
 				}
-				for (Class<?> t : MFRRegistry.getGrinderBlacklist())
+				for(Class<?> t : MFRRegistry.getGrinderBlacklist())
 				{
-					if (t.isInstance(e))
+					if(t.isInstance(e))
 					{
 						continue entityList;
 					}
 				}
-				if (!_grindingWorld.addEntityForGrinding(e))
+				if(!_grindingWorld.addEntityForGrinding(e))
 				{
 					continue entityList;
 				}
 			}
-			if (processMob && e.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			if(processMob && e.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
 			{
 				try
 				{
 					e.worldObj.getGameRules().setOrCreateGameRule("doMobLoot", "false");
 					damageEntity(e);
-					if (e.getHealth() <= 0)
+					if(e.getHealth() <= 0)
 					{
 						_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 					}
@@ -215,7 +212,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 				return true;
 			}
 			damageEntity(e);
-			if (e.getHealth() <= 0)
+			if(e.getHealth() <= 0)
 			{
 				_tank.fill(LiquidDictionary.getLiquid("mobEssence", 100), true);
 				setIdleTicks(20);
@@ -229,80 +226,84 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		setIdleTicks(getIdleTicksMax());
 		return false;
 	}
-
+	
 	protected void setRecentlyHit(EntityLiving entity, int t)
 	{
-		try {
+		try
+		{
 			recentlyHit.set(entity, t);
-		} catch (Throwable e) {}
+		}
+		catch(Throwable e)
+		{
+		}
 	}
-
+	
 	protected void damageEntity(EntityLiving entity)
 	{
 		setRecentlyHit(entity, 100);
 		entity.attackEntityFrom(_damageSource, Integer.MAX_VALUE);
 	}
-
+	
 	@Override
 	public String getInvName()
 	{
 		return "Mob Grinder";
 	}
-
+	
 	@Override
 	public int getSizeInventory()
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
+	
 	@Override
 	public boolean allowBucketDrain()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public ILiquidTank[] getTanks(ForgeDirection direction)
 	{
 		return new ILiquidTank[] { _tank };
 	}
-
+	
 	@Override
 	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type)
 	{
 		return _tank;
 	}
-
+	
 	@Override
 	public boolean manageSolids()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public boolean canRotate()
 	{
