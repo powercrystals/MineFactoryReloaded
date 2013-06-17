@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.liquids.LiquidDictionary;
@@ -54,6 +55,10 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 		
 		for(Object o : entities)
 		{
+			if(o instanceof EntityPlayer)
+			{
+				continue;
+			}
 			EntityLiving e = (EntityLiving)o;
 			for(Class<?> t : MFRRegistry.getSlaughterhouseBlacklist())
 			{

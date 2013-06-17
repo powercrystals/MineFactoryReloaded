@@ -13,6 +13,7 @@ import java.util.Random;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
@@ -146,6 +147,10 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		
 		entityList: for(Object o : entities)
 		{
+			if(o instanceof EntityPlayer)
+			{
+				continue;
+			}
 			EntityLiving e = (EntityLiving)o;
 			if(e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0 || e.isEntityInvulnerable() || e.getHealth() <= 0)
 			{
