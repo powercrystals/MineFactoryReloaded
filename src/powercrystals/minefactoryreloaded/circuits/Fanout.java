@@ -14,13 +14,14 @@ public class Fanout extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public int getOutputCount()
 	{
-		return 8;
+		return 16;
 	}
 	
 	@Override
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues)
 	{
-		return new int[] { inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0] };
+		return new int[] { inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0],
+				inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0], inputValues[0]};
 	}
 	
 	@Override
@@ -32,7 +33,7 @@ public class Fanout extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public String getInputPinLabel(int pin)
 	{
-		return "I" + pin;
+		return "I";
 	}
 	
 	@Override
