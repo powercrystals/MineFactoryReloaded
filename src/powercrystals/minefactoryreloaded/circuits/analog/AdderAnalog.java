@@ -38,6 +38,6 @@ public class AdderAnalog extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O" + pin;
+		return "O";
 	}
 }
