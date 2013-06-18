@@ -4,7 +4,6 @@ import net.minecraft.util.DamageSource;
 
 public class GrindingDamage extends DamageSource
 {
-
 	public GrindingDamage()
 	{
 		this(null);
@@ -15,5 +14,4 @@ public class GrindingDamage extends DamageSource
 		super(type == null ? "mfr.grinder" : type);
 		this.setDamageBypassesArmor();
 	}
-
 }
