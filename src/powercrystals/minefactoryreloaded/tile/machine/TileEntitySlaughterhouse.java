@@ -93,7 +93,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	protected void damageEntity(EntityLiving entity)
 	{
 		setRecentlyHit(entity, 0);
-		entity.attackEntityFrom(_damageSource, Integer.MAX_VALUE);
+		entity.attackEntityFrom(_damageSource, 500000);
 	}
 	
 	@Override
