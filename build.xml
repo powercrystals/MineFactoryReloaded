@@ -40,6 +40,7 @@
 			<available file="${mcpsrc.dir}/universalelectricity" type="dir"/>
 			<available file="${mcpsrc.dir}/thermalexpansion" type="dir"/>
 			<available file="${mcpsrc.dir}/thaumcraft" type="dir"/>
+			<available file="${mcpsrc.dir}/forestry" type="dir"/>
 		</and>
 	</condition>
 	
@@ -72,6 +73,9 @@
 		
 		<echo message="Downloading Thaumcraft API... " />
 		<get src="http://www.powercrystalsmods.com/build/ThaumcraftAPI.zip" dest="${download.dir}/ThaumcraftAPI.zip" />
+		
+		<echo message="Downloading Forestry API... "/>
+		<get src="https://dl.dropboxusercontent.com/u/23892866/Downloads/forestry.zip" dest="${download.dir}/ForestryAPI.zip" />
 	</target>
 
 	<target name="extract-dependencies" depends="setup-forge,get-dependencies" unless="${have-apis}">
@@ -103,6 +107,10 @@
 		<echo message="Extracting Thaumcraft API... " />
 		<unzip src="${download.dir}/ThaumcraftAPI.zip" dest="${download.dir}/thaumcraft/" />
 		<move file="${download.dir}/thaumcraft/thaumcraft" todir="${mcpsrc.dir}" />
+		
+		<echo message="Extracting Forestry API... " />
+		<unzip src="${download.dir}/ForestryAPI.zip" dest="${download.dir}" />
+		<move file="${download.dir}/forestry" todir="${mcpsrc.dir}" />
 	</target>
 
 	<mkdir dir="${download.dir}"/>
@@ -190,6 +198,7 @@
 		</exec>
 
 		<delete dir="${mcp.dir}/reobf/minecraft/thaumcraft"/>
+		<delete dir="${mcp.dir}/reobf/minecraft/forestry"/>
 		<delete dir="${mcp.dir}/reobf/minecraft/thermalexpansion"/>
 		<delete dir="${mcp.dir}/reobf/minecraft/powercrystals/core"/>
 		
