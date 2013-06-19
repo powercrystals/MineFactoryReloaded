@@ -36,7 +36,12 @@ public class HarvestableTreeLeaves extends HarvestableStandard
 		}
 		else
 		{
-			return Block.blocksList[getPlantId()].getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+			int meta = world.getBlockMetadata(x, y, z);
+			if(world.getBlockId(x, y, z) == Block.leaves.blockID)
+			{
+				meta = meta & 0x03;
+			}
+			return Block.blocksList[getPlantId()].getBlockDropped(world, x, y, z, meta, 0);
 		}
 	}
 }
