@@ -16,6 +16,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
@@ -90,6 +91,26 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	public TileEntity createNewTileEntity(World world)
 	{
 		return new TileEntityRedNetLogic();
+	}
+	
+	@Override
+	public boolean rotateBlock(World world, int x, int y, int z, ForgeDirection axis)
+	{
+        if (world.isRemote)
+        {
+            return false;
+        }
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof IRotateableTile)
+		{
+			IRotateableTile tile = ((IRotateableTile)te);
+			if (tile.canRotate())
+			{
+				tile.rotate();
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override
