@@ -60,6 +60,6 @@ public class DecomposeIntToDecimal extends StatelessCircuit implements IRedNetLo
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return pin == 0 ? "SN" : "^" + (pin - 1);
+		return pin == 0 ? "SN" : "D" + (pin - 1);
 	}
 }

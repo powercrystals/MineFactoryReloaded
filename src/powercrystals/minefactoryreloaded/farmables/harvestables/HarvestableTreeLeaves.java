@@ -24,7 +24,12 @@ public class HarvestableTreeLeaves extends HarvestableStandard
 		if(harvesterSettings.get("silkTouch") != null && harvesterSettings.get("silkTouch"))
 		{
 			ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-			drops.add(new ItemStack(getPlantId(), 1, world.getBlockMetadata(x, y, z)));
+			int meta = world.getBlockMetadata(x, y, z);
+			if(world.getBlockId(x, y, z) == Block.leaves.blockID)
+			{
+				meta = meta & 0x03;
+			}
+			drops.add(new ItemStack(getPlantId(), 1, meta));
 			return drops;
 		}
 		else if(getPlantId() == Block.leaves.blockID && (world.getBlockMetadata(x, y, z) & 3) == 0)

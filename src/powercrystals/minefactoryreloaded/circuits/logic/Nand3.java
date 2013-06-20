@@ -42,6 +42,6 @@ public class Nand3 extends StatelessCircuit implements IRedNetLogicCircuit
 	@Override
 	public String getOutputPinLabel(int pin)
 	{
-		return "O" + pin;
+		return "O";
 	}
 }
