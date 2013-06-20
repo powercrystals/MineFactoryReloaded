@@ -101,16 +101,15 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
             return false;
         }
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof IRotateableTile)
+		if(te != null && te instanceof TileEntityRedNetLogic)
 		{
-			IRotateableTile tile = ((IRotateableTile)te);
-			if (tile.canRotate())
-			{
-				tile.rotate();
-				return true;
-			}
+			/* TODO:
+			 * return false when GUI is already opened by a player
+			 */
 		}
-		return false;
+		int nextMeta = (world.getBlockMetadata(x, y, z) + 1) & 3; // % 4
+		world.setBlockMetadataWithNotify(x, y, z, nextMeta, 3);
+		return true;
 	}
 	
 	@Override
@@ -181,15 +180,13 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		
 		if(MFRUtil.isHoldingHammer(player))
 		{
-			int nextMeta = world.getBlockMetadata(x, y, z) + 1;
-			if(nextMeta > 3)
+			if (rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side)))
 			{
-				nextMeta = 0;
+				return true;
 			}
-			world.setBlockMetadataWithNotify(x, y, z, nextMeta, 3);
-			return true;
 		}
-		else if(MFRUtil.isHolding(player, ItemLogicUpgradeCard.class))
+		
+		if(MFRUtil.isHolding(player, ItemLogicUpgradeCard.class))
 		{
 			TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
 			if(logic != null)
