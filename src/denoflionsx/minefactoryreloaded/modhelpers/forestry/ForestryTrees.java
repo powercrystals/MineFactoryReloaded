@@ -19,8 +19,6 @@ import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class ForestryTrees {
 
-    public static boolean registerForestryEasyFertilizer = true;
-
     @Mod.PostInit
     public void modsLoaded(FMLPostInitializationEvent evt) {
         if (Loader.isModLoaded("Forestry")) {
@@ -42,9 +40,6 @@ public class ForestryTrees {
                             FarmingRegistry.registerFertilizable(new FertilizableForestryLeaves(leaves.blockID));
                         }
                     }
-                }
-                if (registerForestryEasyFertilizer) {
-                    FarmingRegistry.registerFertilizer(new FertilizerForestry(ForestryUtils.getItem("fertilizerCompound")));
                 }
                 FarmingRegistry.registerFertilizer(new FertilizerForestry(ForestryUtils.getItem("fertilizerBio")));
             } catch (Throwable damnit) {

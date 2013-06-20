@@ -1,27 +1,19 @@
 package denoflionsx.minefactoryreloaded.modhelpers.forestry.leaves;
 
-import forestry.api.core.ItemInterface;
+import denoflionsx.minefactoryreloaded.modhelpers.forestry.utils.ForestryUtils;
 import forestry.api.genetics.IFruitBearer;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryFruit;
 
 public class FruitForestry implements IFactoryFruit {
 
     private int id;
-    private Method isPoll;
 
     public FruitForestry(int id) {
         this.id = id;
-        try {
-            // This isn't done yet. Need to figure out pollination.
-            isPoll = Class.forName("forestry.arboriculture.gadgets.TileLeaves").getDeclaredMethod("isPollinated", new Class[0]);
-        } catch (Exception ex) {
-        }
     }
 
     @Override
@@ -31,17 +23,9 @@ public class FruitForestry implements IFactoryFruit {
 
     @Override
     public boolean canBePicked(World world, int x, int y, int z) {
-        try {
-            TileEntity t = world.getBlockTileEntity(x, y, z);
-            if (t instanceof IFruitBearer) {
-                IFruitBearer f = (IFruitBearer) t;
-                if (f.hasFruit() && f.getRipeness() >= 1.0f) {
-                    return true;
-//                }else if ((Boolean) isPoll.invoke(t, new Object[0])){
-//                    return true;
-                }
-            }
-        } catch (Throwable ex) {
+        IFruitBearer f = ForestryUtils.getFruitBearer(world.getBlockTileEntity(x, y, z));
+        if (f.hasFruit() && f.getRipeness() >= 1.0f) {
+            return true;
         }
         return false;
     }
@@ -57,12 +41,8 @@ public class FruitForestry implements IFactoryFruit {
 
     @Override
     public List<ItemStack> getDrops(World world, Random rand, int x, int y, int z) {
-        TileEntity t = world.getBlockTileEntity(x, y, z);
-        if (t instanceof IFruitBearer) {
-            IFruitBearer f = (IFruitBearer) t;
-            return ((List) f.pickFruit(ItemInterface.getItem("grafter").copy()));
-        }
-        return null;
+        IFruitBearer f = ForestryUtils.getFruitBearer(world.getBlockTileEntity(x, y, z));
+        return ((List) f.pickFruit(ForestryUtils.getItem("grafter").copy()));
     }
 
     @Override

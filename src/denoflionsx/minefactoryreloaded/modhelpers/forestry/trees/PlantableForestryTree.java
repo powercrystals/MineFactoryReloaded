@@ -2,7 +2,6 @@ package denoflionsx.minefactoryreloaded.modhelpers.forestry.trees;
 
 import denoflionsx.minefactoryreloaded.modhelpers.forestry.utils.ForestryUtils;
 import forestry.api.arboriculture.ITree;
-import forestry.api.core.ItemInterface;
 import java.lang.reflect.Method;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -37,7 +36,7 @@ public class PlantableForestryTree implements IFactoryPlantable {
 
     public PlantableForestryTree() {
         try {
-            sapling = ItemInterface.getItem("sapling");
+            sapling = ForestryUtils.getItem("sapling");
             // Need to reference this class later.
             setTree = TileTreeContainer.getDeclaredMethod("setTree", new Class[]{ITree.class});
         } catch (Throwable stuff) {
