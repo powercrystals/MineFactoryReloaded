@@ -1,9 +1,8 @@
 package denoflionsx.minefactoryreloaded.modhelpers.forestry.trees;
 
+import denoflionsx.minefactoryreloaded.modhelpers.forestry.utils.ForestryUtils;
 import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.core.ItemInterface;
-import forestry.api.genetics.AlleleManager;
 import java.lang.reflect.Method;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -15,7 +14,6 @@ public class PlantableForestryTree implements IFactoryPlantable {
 
     private ItemStack sapling;
     public static Block sapling_;
-    private ITreeRoot root;
     public static Class TileTreeContainer;
     public static Method getTree_;
     private Method setTree;
@@ -40,7 +38,6 @@ public class PlantableForestryTree implements IFactoryPlantable {
     public PlantableForestryTree() {
         try {
             sapling = ItemInterface.getItem("sapling");
-            root = (ITreeRoot) AlleleManager.alleleRegistry.getSpeciesRoot("rootTrees");
             // Need to reference this class later.
             setTree = TileTreeContainer.getDeclaredMethod("setTree", new Class[]{ITree.class});
         } catch (Throwable stuff) {
@@ -89,7 +86,7 @@ public class PlantableForestryTree implements IFactoryPlantable {
         if (stack.isItemEqual(sapling)) {
             TileEntity t = world.getBlockTileEntity(x, y, z);
             if (TileTreeContainer.isInstance(t)) {
-                ITree tree = this.root.getMember(stack);
+                ITree tree = ForestryUtils.root.getMember(stack);
                 try {
                     setTree.invoke(t, new Object[]{tree});
                 } catch (Throwable TREE) {
