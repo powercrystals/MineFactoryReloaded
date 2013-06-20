@@ -103,9 +103,10 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te != null && te instanceof TileEntityRedNetLogic)
 		{
-			/* TODO:
-			 * return false when GUI is already opened by a player
-			 */
+			if (((TileEntityRedNetLogic)te).crafters > 0)
+			{
+				return false;
+			}
 		}
 		int nextMeta = (world.getBlockMetadata(x, y, z) + 1) & 3; // % 4
 		world.setBlockMetadataWithNotify(x, y, z, nextMeta, 3);
