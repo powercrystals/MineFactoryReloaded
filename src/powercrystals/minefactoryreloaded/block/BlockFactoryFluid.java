@@ -36,31 +36,37 @@ public class BlockFactoryFluid extends BlockFluidClassic implements ILiquid, ICo
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
+		if (world.isRemote)
+		{
+			return;
+		}
+		
 		if(entity instanceof EntityPlayer || entity instanceof EntityMob && !((EntityLiving)entity).isEntityUndead())
 		{
+			EntityLiving ent = (EntityLiving)entity;
 			if(blockID == MineFactoryReloadedCore.sludgeLiquid.blockID)
 			{
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 12 * 20, 0));
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.weakness.id, 12 * 20, 0));
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 12 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.poison.id, 12 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.weakness.id, 12 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.confusion.id, 12 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.sewageLiquid.blockID)
 			{
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.hunger.id, 12 * 20, 0));
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 12 * 20, 0));
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 12 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.hunger.id, 12 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.poison.id, 12 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 12 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.essenceLiquid.blockID)
 			{
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.nightVision.id, 60 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.nightVision.id, 60 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.milkLiquid.blockID)
 			{
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.digSpeed.id, 6 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 6 * 20, 0));
 			}
 			else if(blockID == MineFactoryReloadedCore.biofuelLiquid.blockID)
 			{
-				((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 12 * 20, 0));
+				ent.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 12 * 20, 0));
 			}
 		}
 		super.onEntityCollidedWithBlock(world, x, y, z, entity);
