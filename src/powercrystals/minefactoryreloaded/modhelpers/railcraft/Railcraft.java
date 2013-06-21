@@ -38,21 +38,21 @@ public class Railcraft {
 			// white sand? black sand?
 
 			Object rockCrusher = Class.forName("mods.railcraft.api.crafting.RailcraftCraftingManager").getField("rockCrusher").get(null);
-			Method createNewRecipe = Class.forName("mods.railcraft.api.crafting.IRockCrusherCraftingManager").getMethod("createNewRecipe", ItemStack.class, Boolean.class, Boolean.class);
-			Method addOutput = Class.forName("mods.railcraft.api.crafting.IRockCrusherRecipe").getMethod("addOutput", ItemStack.class, Float.class);
+			Method createNewRecipe = Class.forName("mods.railcraft.api.crafting.IRockCrusherCraftingManager").getMethod("createNewRecipe", ItemStack.class, boolean.class, boolean.class);
+			Method addOutput = Class.forName("mods.railcraft.api.crafting.IRockCrusherRecipe").getMethod("addOutput", ItemStack.class, float.class);
 			
-			Object recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 0), true, false);
-			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 2), 1.0f); // Smooth Blackstone -> Cobble 
+			Object recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 0), true, false);
+			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 2), 1.0f); // Smooth Blackstone -> Cobble 
 			
-			recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 1), true, false);
-			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 3), 1.0f); // Smooth Whitestone -> Cobble
+			recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 1), true, false);
+			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 3), 1.0f); // Smooth Whitestone -> Cobble
 			
 			recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 2), true, false);
-			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 8), 1.0f); // Cobble Blackstone -> Gravel + flint
+			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 8), 1.0f); // Cobble Blackstone -> Gravel + flint
 			addOutput.invoke(recipe, new ItemStack(Item.flint, 1, 0), 0.05f);
 			
-			recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 3), true, false);
-			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 9), 1.0f); // Cobble Whitestone -> Gravel + flint
+			recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 3), true, false);
+			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 9), 1.0f); // Cobble Whitestone -> Gravel + flint
 			addOutput.invoke(recipe, new ItemStack(Item.flint, 1, 0), 0.05f);
 		}
 		catch (Throwable _)

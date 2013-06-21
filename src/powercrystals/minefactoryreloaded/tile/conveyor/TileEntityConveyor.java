@@ -1,7 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.conveyor;
 
 import buildcraft.api.gates.IAction;
-import buildcraft.core.IMachine;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
