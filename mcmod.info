@@ -6,7 +6,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded", 
         "authors": [
             "PowerCrystals", 
@@ -26,7 +26,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatAppliedEnergistics", 
         "authors": [
             "PowerCrystals"
@@ -45,7 +45,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatAtum", 
         "authors": [
             "PowerCrystals"
@@ -64,7 +64,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatBackTools", 
         "authors": [
             "PowerCrystals"
@@ -83,7 +83,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatBiomesOPlenty", 
         "authors": [
             "PowerCrystals"
@@ -102,7 +102,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatChococraft", 
         "authors": [
             "PowerCrystals"
@@ -121,7 +121,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatExtraBiomes", 
         "authors": [
             "PowerCrystals"
@@ -140,7 +140,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatForestry", 
         "authors": [
             "PowerCrystals"
@@ -159,7 +159,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatForestry2", 
         "authors": [
             "PowerCrystals"
@@ -178,7 +178,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatMagicalCrops", 
         "authors": [
             "PowerCrystals"
@@ -197,7 +197,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatMystcraft", 
         "authors": [
             "PowerCrystals"
@@ -216,7 +216,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatIC2", 
         "authors": [
             "PowerCrystals"
@@ -235,7 +235,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatPams", 
         "authors": [
             "PowerCrystals"
@@ -248,13 +248,32 @@
         "description": "Compatibility addon for Pam's mods"
     }, 
     {
+        "name": "MFR Compat: Railcraft", 
+        "parent": "MineFactoryReloaded", 
+        "url": "http://www.minecraftforum.net/topic/1629898-", 
+        "logoFile": "", 
+        "updateUrl": "", 
+        "credits": "All the contributors", 
+        "version": "2.7.0B2", 
+        "modid": "MineFactoryReloaded|CompatRailcraft", 
+        "authors": [
+            "skyboy"
+        ], 
+        "mcversion": "1.5.1", 
+        "screenshots": [], 
+        "dependencies": [
+            "MineFactoryReloaded"
+        ], 
+        "description": "Compatibility addon for Railcraft"
+    }, 
+    {
         "name": "MFR Compat: RP2", 
         "parent": "MineFactoryReloaded", 
         "url": "http://www.minecraftforum.net/topic/1629898-", 
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatRP2", 
         "authors": [
             "PowerCrystals"
@@ -273,7 +292,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatSoulShards", 
         "authors": [
             "PowerCrystals"
@@ -292,7 +311,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatSufficientBiomes", 
         "authors": [
             "PowerCrystals"
@@ -311,7 +330,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatThaumcraft", 
         "authors": [
             "PowerCrystals"
@@ -330,7 +349,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatThermalExpansion", 
         "authors": [
             "PowerCrystals"
@@ -349,7 +368,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatTwilightForest", 
         "authors": [
             "PowerCrystals"
@@ -368,7 +387,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatVanilla", 
         "authors": [
             "PowerCrystals"
@@ -387,7 +406,7 @@
         "logoFile": "", 
         "updateUrl": "", 
         "credits": "All the contributors", 
-        "version": "2.7.0B1", 
+        "version": "2.7.0B2", 
         "modid": "MineFactoryReloaded|CompatXyCraft", 
         "authors": [
             "PowerCrystals"
