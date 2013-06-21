@@ -62,7 +62,7 @@ public class BlockFactoryGlass extends BlockGlass implements IConnectableRedNet
 
 	public Icon getBlockOverlayTexture(IBlockAccess world, int x, int y, int z, int side)
 	{
-		if (side - 1 < 1)
+		if (side <= 1)
 		{
 			BlockPosition bp = new BlockPosition(x, y, z, ForgeDirection.NORTH);
 			boolean[] sides = new boolean[8];
@@ -72,21 +72,16 @@ public class BlockFactoryGlass extends BlockGlass implements IConnectableRedNet
 			sides[4] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 			bp.moveLeft(1);
 			sides[1] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
-			sides[4] &= sides[1] & sides[0];
 			bp.moveLeft(1);
 			sides[5] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 			bp.moveForwards(1);
 			sides[3] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
-			sides[5] &= sides[3] & sides[1];
 			bp.moveForwards(1);
-			sides[7] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
+			sides[6] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 			bp.moveRight(1);
 			sides[2] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
-			sides[7] &= sides[2] & sides[3];
 			bp.moveRight(1);
-			sides[6] = world.getBlockId(bp.x,bp.y,bp.z) == blockID & sides[0] & sides[2];
-			sides[4] = sides[4] | sides[5] | sides[6] | sides[7];
-			sides[5] = sides[6] = sides[7] = false;
+			sides[7] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 			return new IconOverlay(BlockFactoryGlassPane._overlay, 8, 8, sides);
 		}
 		BlockPosition bp = new BlockPosition(x, y, z, ForgeDirection.VALID_DIRECTIONS[side]);
@@ -97,21 +92,16 @@ public class BlockFactoryGlass extends BlockGlass implements IConnectableRedNet
 		sides[4] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 		bp.moveLeft(1);
 		sides[1] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
-		sides[4] &= sides[1] & sides[0];
 		bp.moveLeft(1);
 		sides[5] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 		bp.moveUp(1);
 		sides[3] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
-		sides[5] &= sides[3] & sides[1];
 		bp.moveUp(1);
-		sides[7] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
+		sides[6] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 		bp.moveRight(1);
 		sides[2] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
-		sides[7] &= sides[2] & sides[3];
 		bp.moveRight(1);
-		sides[6] = world.getBlockId(bp.x,bp.y,bp.z) == blockID & sides[0] & sides[2];
-		sides[4] = sides[4] | sides[5] | sides[6] | sides[7];
-		sides[5] = sides[6] = sides[7] = false;
+		sides[7] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 		return new IconOverlay(BlockFactoryGlassPane._overlay, 8, 8, sides);
 	}
 	
