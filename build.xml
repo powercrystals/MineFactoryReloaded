@@ -170,21 +170,21 @@
 
 	<target name="build" depends="extract-dependencies" unless="already-compiled">
 		<!-- Recompile -->
-		<!--<depend srcdir="${mcpsrc.dir}" destdir="${mcp.dir}/bin/minecraft">
+		<depend srcdir="${mcpsrc.dir}" destdir="${mcp.dir}/bin/minecraft">
 			<include name="powercrystals/minefactoryreloaded/**/*.java"/>
 		</depend>
 		<javac srcdir="${mcpsrc.dir}" destdir="${mcp.dir}/bin/minecraft" target="1.6" source="1.6"
 			classpathref="mcp.classpath" debug="true" debuglevel="lines,source" includeAntRuntime="false">
 			<include name="powercrystals/minefactoryreloaded/**/*.java"/>
-		</javac>-->
-		<exec dir="${mcp.dir}" executable="${windows.python}"
+		</javac>
+		<!--<exec dir="${mcp.dir}" executable="${windows.python}"
 			osfamily="windows" failonerror="true">
 			<arg line="runtime/recompile.py" />
 		</exec>
 
 		<exec dir="${mcp.dir}" executable="sh" osfamily="unix">
 			<arg value="recompile.sh" />
-		</exec>
+		</exec>-->
 
 		<!-- Reobf -->
 		<exec dir="${mcp.dir}" executable="${windows.python}"
