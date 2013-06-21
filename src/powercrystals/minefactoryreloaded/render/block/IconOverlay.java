@@ -20,15 +20,27 @@ public class IconOverlay implements Icon {
 		parts = parts >> 4;
 		int w;
 		switch (value) {
+		case 19: // bottom right connection
+			value &= 15 | ((parts & 1) << 4); 
+			break;
+		case 21: // top right connection
+			value &= 15 | ((parts & 8) << 1); 
+			break;
 		case 23: // left empty
 			w = parts & 9;
 			if ((w == 1) | w == 8) // bottom right, top right
 				value = 32 | (w >> 3);
 			break;
+		case 26: // bottom left connection
+			value &= 15 | ((parts & 2) << 3); 
+			break;
 		case 27: // top empty
 			w = parts & 3;
 			if ((w == 1) | w == 2) // bottom right, bottom left
 				value = 34 | (w >> 1);
+			break;
+		case 28: // top left connection
+			value &= 15 | ((parts & 4) << 2); 
 			break;
 		case 29: // bottom empty
 			w = parts & 12;
