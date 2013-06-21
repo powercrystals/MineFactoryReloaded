@@ -985,7 +985,6 @@ public class Vanilla
 				} );
 		
 		// meta-sensitive optional override in block code?
-		// TE pulveriser?
 		
 		/**
 		 * Large brick:
