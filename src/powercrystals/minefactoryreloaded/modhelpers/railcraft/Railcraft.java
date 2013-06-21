@@ -47,7 +47,7 @@ public class Railcraft {
 			recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 1), true, false);
 			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 3), 1.0f); // Smooth Whitestone -> Cobble
 			
-			recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 8, 2), true, false);
+			recipe = createNewRecipe.invoke(rockCrusher, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 2), true, false);
 			addOutput.invoke(recipe, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 8), 1.0f); // Cobble Blackstone -> Gravel + flint
 			addOutput.invoke(recipe, new ItemStack(Item.flint, 1, 0), 0.05f);
 			
