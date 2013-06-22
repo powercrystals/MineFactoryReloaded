@@ -163,6 +163,8 @@ tile.mfr.liquid.pinkslime.still.name = \u7c89\u8272\u7c98\u6db2
 tile.mfr.liquid.chocolatemilk.still.name = \u5de7\u514b\u529b\u725b\u5976
 tile.mfr.liquid.mushroomsoup.still.name = \u8611\u83c7\u6c64
 
+entity.MineFactoryReloaded.mfrEntityPinkSlime.name = \u7c89\u8272\u53f2\u83b1\u59c6
+
 item.mfr.hammer.name = \u7cbe\u5bc6\u5de5\u5382\u9524
 item.mfr.fertilizer.name = \u5de5\u4e1a\u80a5\u6599
 item.mfr.plastic.sheet.name = \u5851\u6599\u7247
@@ -178,6 +180,10 @@ item.mfr.bucket.meat.name = \u8089\u6c64\u6876
 item.mfr.bucket.pinkslime.name = \u7c89\u8272\u7c98\u6db2\u6876
 item.mfr.bucket.chocolatemilk.name = \u5de7\u514b\u529b\u725b\u5976\u6876
 item.mfr.bucket.mushroomsoup.name = \u8611\u83c7\u6c64\u6876
+
+item.mfr.bucket.plasticcup.name = \u5851\u6599\u676f
+item.mfr.bucket.plasticcup.prefix.name =
+item.mfr.bucket.plasticcup.suffix.name =\u676f
 
 item.mfr.syringe.cure.name = \u50f5\u5c38\u75c5\u6bd2\u6297\u4f53\u6ce8\u5c04\u5668
 item.mfr.syringe.empty.name = \u7a7a\u6ce8\u5c04\u5668
@@ -255,6 +261,15 @@ item.mfr.upgrade.logic.100.name = PRC LX-100\u578b\u903b\u8f91\u6269\u5c55\u5361
 item.mfr.upgrade.logic.300.name = PRC LX-300\u578b\u903b\u8f91\u6269\u5c55\u5361
 item.mfr.upgrade.logic.500.name = PRC LX-500\u578b\u903b\u8f91\u6269\u5c55\u5361
 
+item.mfr.needlegun.name = \u9488\u51fb\u67aa
+item.mfr.needlegun.ammo.empty.name = \u7a7a\u5fc3\u9488\u7ba1
+item.mfr.needlegun.ammo.standard.name = \u6807\u51c6\u9488\u7ba1
+item.mfr.needlegun.ammo.lava.name = \u5ca9\u6d46\u9488\u7ba1
+item.mfr.needlegun.ammo.sludge.name = \u6c61\u6ce5\u9488\u7ba1
+item.mfr.needlegun.ammo.sewage.name = \u6c61\u6c34\u9488\u7ba1
+item.mfr.needlegun.ammo.fire.name = \u70c8\u7130\u9488\u7ba1
+item.mfr.needlegun.ammo.anvil.name = \u94c1\u7827\u9488\u7ba1
+
 circuit.mfr.noop = (No-Op)
 circuit.mfr.adder.analog = \u52a0\u6cd5\u5668(\u6a21\u62df)
 circuit.mfr.adder.digital.full = \u5168\u52a0\u5668(\u6570\u5b57)
@@ -306,6 +321,7 @@ circuit.mfr.pulselengthener = \u8109\u51b2\u5ef6\u957f\u5668
 circuit.mfr.randomizer.analog = \u968f\u673a\u8109\u51b2\u53d1\u751f\u5668(\u6a21\u62df)
 circuit.mfr.randomizer.digital = \u968f\u673a\u8109\u51b2\u53d1\u751f\u5668(\u6570\u5b57)
 circuit.mfr.scaler = \u5b9a\u6807\u5668
+circuit.mfr.schmitttrigger = \u65bd\u5bc6\u7279\u89e6\u53d1\u5668
 circuit.mfr.sevensegmentencoder = \u4e03\u6bb5\u8bd1\u7801\u5668
 circuit.mfr.subtractor = \u51cf\u6cd5\u5668
 circuit.mfr.wavegenerator.sawtooth.falling = \u952f\u9f7f\u6ce2\u53d1\u751f\u5668\uff08\u4e0b\u964d\uff09
