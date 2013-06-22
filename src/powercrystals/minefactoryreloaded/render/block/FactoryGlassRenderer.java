@@ -9,7 +9,6 @@ import net.minecraft.world.IBlockAccess;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.block.BlockFactoryGlass;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.common.FMLLog;
 
 public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 {
@@ -97,29 +96,30 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 	}
 	
 	@Override
-	public boolean renderWorldBlock(IBlockAccess blockAccess, int x, int y, int z, Block tile, int modelId, RenderBlocks renderer)
+	public boolean renderWorldBlock(IBlockAccess blockAccess, int x, int y, int z,
+			Block tile, int modelId, RenderBlocks renderer)
 	{
 		BlockFactoryGlass block = (BlockFactoryGlass)tile;
-		
+
+		int worldHeight = blockAccess.getHeight();
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(blockAccess, x, y, z));
-		float f = 1.0F;
-		int i1 = block.colorMultiplier(blockAccess, x, y, z);
-		float f1 = (i1 >> 16 & 255) / 255.0F;
-		float f2 = (i1 >> 8 & 255) / 255.0F;
-		float f3 = (i1 & 255) / 255.0F;
+		int color = block.colorMultiplier(blockAccess, x, y, z);
+		float red = (color >> 16 & 255) / 255.0F;
+		float green = (color >> 8 & 255) / 255.0F;
+		float blue = (color & 255) / 255.0F;
 		
 		if (EntityRenderer.anaglyphEnable)
 		{
-			float f4 = (f1 * 30.0F + f2 * 59.0F + f3 * 11.0F) / 100.0F;
-			float f5 = (f1 * 30.0F + f2 * 70.0F) / 100.0F;
-			float f6 = (f1 * 30.0F + f3 * 70.0F) / 100.0F;
-			f1 = f4;
-			f2 = f5;
-			f3 = f6;
+			float anaglyphRed = (red * 30.0F + green * 59.0F + blue * 11.0F) / 100.0F;
+			float anaglyphGreen = (red * 30.0F + green * 70.0F) / 100.0F;
+			float anaglyphBlue = (red * 30.0F + blue * 70.0F) / 100.0F;
+			red = anaglyphRed;
+			green = anaglyphGreen;
+			blue = anaglyphBlue;
 		}
 		
-		tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
+		tessellator.setColorOpaque_F(red, green, blue);
 		Icon iconGlass, iconOverlayTop, iconOverlaySouth, iconOverlayWest;
 		
 		if(renderer.hasOverrideBlockTexture())
@@ -158,23 +158,20 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 		double minYTop = iconOverlayTop.getMinV();
 		double maxYTop = iconOverlayTop.getMaxV();
 		
-		//int width = iconOverlayTop.getSheetWidth();
-		//int height = iconOverlayTop.getSheetHeight();
-		
-		//FMLLog.severe("X: %s, %s; Y: %s, %s", minXTop * width, maxXTop * width, minYTop * height, maxYTop * height);
-		
 		double xMin = x, xMax = x + 1;
 		double yMin = y, yMax = y + 1;
 		double zMin = z, zMax = z + 1;
 		
+		boolean renderAll = renderer.renderAllFaces;
+		
 		boolean[] renderSide = {
-				renderer.renderAllFaces || y == 0 || block.shouldSideBeRendered(blockAccess, x, y - 1, z, 0),
-				renderer.renderAllFaces || y >= 255 || block.shouldSideBeRendered(blockAccess, x, y + 1, z, 1),
-				renderer.renderAllFaces || block.shouldSideBeRendered(blockAccess, x, y, z - 1, 2),
-				renderer.renderAllFaces || block.shouldSideBeRendered(blockAccess, x, y, z + 1, 3),
-				renderer.renderAllFaces || block.shouldSideBeRendered(blockAccess, x - 1, y, z, 4),
-				renderer.renderAllFaces || block.shouldSideBeRendered(blockAccess, x + 1, y, z, 5),
-			};
+			renderAll || y == 0 || block.shouldSideBeRendered(blockAccess, x, y - 1, z, 0),
+			renderAll || y >= worldHeight || block.shouldSideBeRendered(blockAccess, x, y + 1, z, 1),
+			renderAll || block.shouldSideBeRendered(blockAccess, x, y, z - 1, 2),
+			renderAll || block.shouldSideBeRendered(blockAccess, x, y, z + 1, 3),
+			renderAll || block.shouldSideBeRendered(blockAccess, x - 1, y, z, 4),
+			renderAll || block.shouldSideBeRendered(blockAccess, x + 1, y, z, 5),
+		};
 
 		if (renderSide[0])
 		{
@@ -260,7 +257,7 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 	@Override
 	public boolean shouldRender3DInInventory()
 	{
-		return true;
+		return false;
 	}
 	
 	@Override

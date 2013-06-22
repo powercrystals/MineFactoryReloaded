@@ -28,7 +28,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 	private String[] _names = new String []
 			{ "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
 	private Icon[] _icons = new Icon[_names.length];
-	private Icon _iconSide;
+	protected Icon _iconSide;
 	static Icon _overlay;
 	
 	public BlockFactoryGlassPane(int blockId)
@@ -91,7 +91,8 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 		return new IconOverlay(_overlay, 8, 8, sides);
 	}
 	
-	public Icon getBlockSideTextureFromMetadata(int meta)
+	@Override
+	public Icon getSideTextureIndex()
 	{
 		return _iconSide;
 	}
@@ -103,6 +104,23 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 				blockId == MineFactoryReloadedCore.factoryGlassPaneBlock.blockID ||
 				blockId == MineFactoryReloadedCore.factoryGlassBlock.blockID ||
 				(blockId == Block.thinGlass.blockID && MFRConfig.vanillaOverrideGlassPane.getBoolean(true));
+	}
+	
+    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)
+    {
+        int blockId = world.getBlockId(x, y, z);
+        return !((blockId == Block.glass.blockID ||
+				blockId == MineFactoryReloadedCore.factoryGlassPaneBlock.blockID ||
+				blockId == MineFactoryReloadedCore.factoryGlassBlock.blockID ||
+				(blockId == Block.thinGlass.blockID &&
+					MFRConfig.vanillaOverrideGlassPane.getBoolean(true))) ||
+					!super.shouldSideBeRendered(world, x, y, z, side));
+    }
+	
+	@Override
+	public boolean canPaneConnectTo(IBlockAccess world, int x, int y, int z, ForgeDirection dir)
+	{
+		return canThisFactoryPaneConnectToThisBlockID(world.getBlockId(x, y, z));
 	}
 	
 	@Override
