@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.render.block;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -18,24 +20,6 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 		BlockFactoryGlass block = (BlockFactoryGlass)tile;
 		
 		Tessellator tessellator = Tessellator.instance;
-		tessellator.setBrightness(15);
-		float f = 1.0F;
-		int i1 = 0xFFFFFF;
-		float f1 = (i1 >> 16 & 255) / 255.0F;
-		float f2 = (i1 >> 8 & 255) / 255.0F;
-		float f3 = (i1 & 255) / 255.0F;
-		
-		if (EntityRenderer.anaglyphEnable)
-		{
-			float f4 = (f1 * 30.0F + f2 * 59.0F + f3 * 11.0F) / 100.0F;
-			float f5 = (f1 * 30.0F + f2 * 70.0F) / 100.0F;
-			float f6 = (f1 * 30.0F + f3 * 70.0F) / 100.0F;
-			f1 = f4;
-			f2 = f5;
-			f3 = f6;
-		}
-		
-		tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
 		Icon iconGlass, iconOverlay;
 		
 		if(renderer.hasOverrideBlockTexture())
@@ -60,39 +44,61 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 		double maxYOverlay = iconOverlay.getMaxV();
 		
 
-		double d10 = 0, d11 = 16;
-		double d12 = 0, d13 = 16;
-		double d14 = 0, d15 = 16;
+		double xMin = 0, xMax = 1;
+		double yMin = 0, yMax = 1;
+		double zMin = 0, zMax = 1;
 
-		tessellator.addVertexWithUV(d10, d13, d14, minXGlass, minYGlass);
-		tessellator.addVertexWithUV(d10, d13, d15, minXGlass, maxYGlass);
-		tessellator.addVertexWithUV(d11, d13, d15, maxXGlass, maxYGlass);
-		tessellator.addVertexWithUV(d11, d13, d14, maxXGlass, minYGlass);
+        GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+		tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, -1.0F, 0.0F);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
+		tessellator.draw();
+
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 1.0F, 0.0F);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, minXOverlay, minYOverlay);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXOverlay, minYOverlay);
+		tessellator.draw();
+
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 0.0F, -1.0F);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
+		tessellator.draw();
 		
-		tessellator.addVertexWithUV(d10, d13, d14, minXOverlay, minYOverlay);
-		tessellator.addVertexWithUV(d10, d13, d15, minXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(d11, d13, d15, maxXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(d11, d13, d14, maxXOverlay, minYOverlay);
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 0.0F, 1.0F);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, minXOverlay, minYOverlay);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, minXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, maxXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXOverlay, minYOverlay);
+        tessellator.draw();
+        
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(-1.0F, 0.0F, 0.0F);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, minYGlass);
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, minYGlass);
+		tessellator.draw();
 		
-		tessellator.addVertexWithUV(d10, d13, d14, minXGlass, minYGlass);
-		tessellator.addVertexWithUV(d10, d12, d14, minXGlass, maxYGlass);
-		tessellator.addVertexWithUV(d11, d12, d14, maxXGlass, maxYGlass);
-		tessellator.addVertexWithUV(d11, d13, d14, maxXGlass, minYGlass);
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(1.0F, 0.0F, 0.0F);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXOverlay, minYOverlay);
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXOverlay, minYOverlay);
+		tessellator.draw();
 		
-		tessellator.addVertexWithUV(d10, d13, d14, minXOverlay, minYOverlay);
-		tessellator.addVertexWithUV(d10, d12, d14, minXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(d11, d12, d14, maxXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(d11, d13, d14, maxXOverlay, minYOverlay);
-		
-		tessellator.addVertexWithUV(d10, d13, d15, minXGlass, minYGlass);
-		tessellator.addVertexWithUV(d10, d12, d15, minXGlass, maxYGlass);
-		tessellator.addVertexWithUV(d11, d12, d15, maxXGlass, maxYGlass);
-		tessellator.addVertexWithUV(d11, d13, d15, maxXGlass, minYGlass);
-		
-		tessellator.addVertexWithUV(d10, d13, d15, minXOverlay, minYOverlay);
-		tessellator.addVertexWithUV(d10, d12, d15, minXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(d11, d12, d15, maxXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(d11, d13, d15, maxXOverlay, minYOverlay);
+        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 	}
 	
 	@Override
@@ -257,7 +263,7 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 	@Override
 	public boolean shouldRender3DInInventory()
 	{
-		return false;
+		return true;
 	}
 	
 	@Override

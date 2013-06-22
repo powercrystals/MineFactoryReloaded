@@ -67,6 +67,11 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 	{
 		return 1;
 	}
+	
+	public Icon getBlockOverlayTexture()
+	{
+		return new IconOverlay(_overlay, 8, 8, false, false, false, false, false, false, false, false);
+	}
 
 	public Icon getBlockOverlayTexture(IBlockAccess world, int x, int y, int z, int side)
 	{
