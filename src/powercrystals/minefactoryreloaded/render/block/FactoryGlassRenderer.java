@@ -165,7 +165,7 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 		boolean renderAll = renderer.renderAllFaces;
 		
 		boolean[] renderSide = {
-			renderAll || y == 0 || block.shouldSideBeRendered(blockAccess, x, y - 1, z, 0),
+			renderAll || y <= 0 || block.shouldSideBeRendered(blockAccess, x, y - 1, z, 0),
 			renderAll || y >= worldHeight || block.shouldSideBeRendered(blockAccess, x, y + 1, z, 1),
 			renderAll || block.shouldSideBeRendered(blockAccess, x, y, z - 1, 2),
 			renderAll || block.shouldSideBeRendered(blockAccess, x, y, z + 1, 3),
