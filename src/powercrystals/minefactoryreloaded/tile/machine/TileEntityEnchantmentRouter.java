@@ -5,6 +5,7 @@ import java.util.Map;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import powercrystals.minefactoryreloaded.gui.client.GuiEnchantmentRouter;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerEnchantmentRouter;
@@ -100,5 +101,19 @@ public class TileEntityEnchantmentRouter extends TileEntityItemRouter
 	public void setMatchLevels(boolean newMatchLevelsSetting)
 	{
 		_matchLevels = newMatchLevelsSetting;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		_matchLevels = nbttagcompound.getBoolean("matchLevels");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setBoolean("matchLevels", _matchLevels);
 	}
 }

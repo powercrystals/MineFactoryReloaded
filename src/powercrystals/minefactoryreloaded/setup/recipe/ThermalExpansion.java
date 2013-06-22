@@ -23,8 +23,6 @@ public class ThermalExpansion extends Vanilla
 		try
 		{
 			ItemStack conduitLiquid = ItemRegistry.getItem("conduitLiquid", 1);
-			ItemStack gearTin = ItemRegistry.getItem("gearTin", 1);
-			ItemStack gearInvar = ItemRegistry.getItem("gearInvar", 1);
 			ItemStack lamp = ItemRegistry.getItem("lamp", 1);
 			ItemStack hardenedGlass = ItemRegistry.getItem("hardenedGlass", 1);
 			ItemStack machineFrame = ItemRegistry.getItem("machineFrame", 1);
@@ -150,7 +148,7 @@ public class ThermalExpansion extends Vanilla
 					"SFS",
 					"OCO",
 					'P', "sheetPlastic",
-					'T', gearInvar,
+					'T', "gearInvar",
 					'S', Item.pickaxeIron,
 					'F', machineFrame,
 					'O', "ingotIron",
@@ -244,7 +242,7 @@ public class ThermalExpansion extends Vanilla
 					"OCO",
 					'P', "sheetPlastic",
 					'T', Item.swordGold,
-					'S', gearTin,
+					'S', "gearTin",
 					'F', machineFrame,
 					'O', Item.book,
 					'C', powerCoilGold
@@ -501,7 +499,7 @@ public class ThermalExpansion extends Vanilla
 					'G', "sheetPlastic",
 					'S', Item.swordGold,
 					'X', Item.axeGold,
-					'I', gearInvar,
+					'I', "gearInvar",
 					'F', machineFrame,
 					'C', powerCoilGold
 						} ));
