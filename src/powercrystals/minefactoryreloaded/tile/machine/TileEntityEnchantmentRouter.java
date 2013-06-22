@@ -101,4 +101,18 @@ public class TileEntityEnchantmentRouter extends TileEntityItemRouter
 	{
 		_matchLevels = newMatchLevelsSetting;
 	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readFromNBT(nbttagcompound);
+		_matchLevels = nbttagcompound.getBoolean("matchLevels");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setBoolean("matchLevels", _matchLevels);
+	}
 }
