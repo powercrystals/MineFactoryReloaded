@@ -20,6 +20,7 @@ public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 		setUnlocalizedName("thinGlass");
 	}
 	
+	@Override
 	public Icon getBlockOverlayTexture(IBlockAccess world, int x, int y, int z, int side)
 	{
 		return new IconOverlay(BlockFactoryGlassPane._overlay, 8, 8, true, true, true, true, true, true, true, true);

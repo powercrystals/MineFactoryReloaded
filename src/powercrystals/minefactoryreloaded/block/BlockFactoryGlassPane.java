@@ -111,6 +111,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 				(blockId == Block.thinGlass.blockID && MFRConfig.vanillaOverrideGlassPane.getBoolean(true));
 	}
 	
+	@Override
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)
     {
         int blockId = world.getBlockId(x, y, z);
