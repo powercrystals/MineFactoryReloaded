@@ -284,6 +284,7 @@ circuit.mfr.fanout = Fanout
 circuit.mfr.flipflop.jk = JK-FlipFlop
 circuit.mfr.flipflop.t = T-FlipFlop
 circuit.mfr.inverter = Inverter
+circuit.mfr.latch.d.clocked = D-Latch (Clocked)
 circuit.mfr.latch.d.gated = D-Latch (Gated)
 circuit.mfr.latch.sr = SR-Latch
 circuit.mfr.latch.sr.gated = SR-Latch (Gated)
