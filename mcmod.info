@@ -77,25 +77,6 @@
         "description": "Compatibility addon for BackTools"
     }, 
     {
-        "name": "MFR Compat: Biomes O' Plenty", 
-        "parent": "MineFactoryReloaded", 
-        "url": "http://www.minecraftforum.net/topic/1629898-", 
-        "logoFile": "", 
-        "updateUrl": "", 
-        "credits": "All the contributors", 
-        "version": "2.7.0B1", 
-        "modid": "MineFactoryReloaded|CompatBiomesOPlenty", 
-        "authors": [
-            "PowerCrystals"
-        ], 
-        "mcversion": "1.5.1", 
-        "screenshots": [], 
-        "dependencies": [
-            "MineFactoryReloaded"
-        ], 
-        "description": "Compatibility addon for Biomes O' Plenty"
-    }, 
-    {
         "name": "MFR Compat: Chococraft", 
         "parent": "MineFactoryReloaded", 
         "url": "http://www.minecraftforum.net/topic/1629898-", 
