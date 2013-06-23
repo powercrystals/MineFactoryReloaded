@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -13,7 +12,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryFruit;
 public class FruitForestryPod implements IFactoryFruit {
 
     private int _id;
-    public static Class TileFruitPod;
+    public static Class<?> TileFruitPod;
     // Returns a boolean. 
     private static Method _canMature;
     private static Method _getDrops;
