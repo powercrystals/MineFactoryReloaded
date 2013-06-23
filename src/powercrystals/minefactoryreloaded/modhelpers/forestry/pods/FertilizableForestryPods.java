@@ -10,17 +10,17 @@ import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 
 public class FertilizableForestryPods implements IFactoryFertilizable
 {
-	private int _id;
+	private int _blockId;
 	
-	public FertilizableForestryPods(int id)
+	public FertilizableForestryPods(int blockId)
 	{
-		_id = id;
+		_blockId = blockId;
 	}
 	
 	@Override
 	public int getFertilizableBlockId()
 	{
-		return _id;
+		return _blockId;
 	}
 	
 	@Override
