@@ -96,10 +96,18 @@ public class Multipulse implements IRedNetLogicCircuit
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
+		_pulsesCompleted = tag.getInteger("pulsesCompleted");
+		_ticksCompleted = tag.getInteger("ticksCompleted");
+		_isActive = tag.getBoolean("isActive");
+		_lastClockState = tag.getBoolean("lastClockState");
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
+		tag.setInteger("pulsesCompleted", _pulsesCompleted);
+		tag.setInteger("ticksCompleted", _ticksCompleted);
+		tag.setBoolean("isActive", _isActive);
+		tag.setBoolean("lastClockState", _lastClockState);
 	}
 }
