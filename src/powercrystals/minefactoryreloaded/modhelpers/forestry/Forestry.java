@@ -25,6 +25,8 @@ import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import powercrystals.minefactoryreloaded.modhelpers.forestry.pods.FertilizableForestryPods;
+import powercrystals.minefactoryreloaded.modhelpers.forestry.pods.FruitForestryPod;
 
 @Mod(modid = "MineFactoryReloaded|CompatForestry", name = "MFR Compat: Forestry", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:Forestry")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
@@ -67,8 +69,15 @@ public class Forestry
 						FarmingRegistry.registerFertilizable(new FertilizableForestryLeaves(leaves.blockID));
 					}
 				}
+				else if (f.getName().contains("pods")) {
+                       		 	Block pods = ((Block) f.get(null));
+                        		if (pods != null) {
+                            			FarmingRegistry.registerFruit(new FruitForestryPod(pods.blockID));
+                            			FarmingRegistry.registerFertilizable(new FertilizableForestryPods(pods.blockID));
+					}
+                        	}
 			}
-			FarmingRegistry.registerFertilizer(new FertilizerForestry(ForestryUtils.getItem("fertilizerBio")));
+			FarmingRegistry.registerFertilizer(new FertilizerForestry(ForestryUtils.getItem("fertilizerCompound")));
 		}
 		catch(Exception x)
 		{
