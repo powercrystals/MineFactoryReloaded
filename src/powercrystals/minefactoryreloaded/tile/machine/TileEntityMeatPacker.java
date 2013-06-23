@@ -118,6 +118,10 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 		}
 		else
 		{
+			if(_tank.getLiquid() != null && _tank.getLiquid().amount == 1)
+			{
+				_tank.drain(1, true);
+			}
 			return _tank.fill(resource, doFill);
 		}
 	}
