@@ -48,7 +48,7 @@ public class Forestry
 				Item peat = (Item)forestryItems.getField("peat").get(null);
 				MFRRegistry.registerSludgeDrop(5, new ItemStack(peat));
 			}
-
+			
 			for(Field f : Class.forName("forestry.core.config.ForestryBlock").getDeclaredFields())
 			{
 				if(f.getName().contains("log"))
@@ -69,13 +69,15 @@ public class Forestry
 						FarmingRegistry.registerFertilizable(new FertilizableForestryLeaves(leaves.blockID));
 					}
 				}
-				else if (f.getName().contains("pods")) {
-                       		 	Block pods = ((Block) f.get(null));
-                        		if (pods != null) {
-                            			FarmingRegistry.registerFruit(new FruitForestryPod(pods.blockID));
-                            			FarmingRegistry.registerFertilizable(new FertilizableForestryPods(pods.blockID));
+				else if(f.getName().contains("pods"))
+				{
+					Block pods = ((Block)f.get(null));
+					if(pods != null)
+					{
+						FarmingRegistry.registerFruit(new FruitForestryPod(pods.blockID));
+						FarmingRegistry.registerFertilizable(new FertilizableForestryPods(pods.blockID));
 					}
-                        	}
+				}
 			}
 			FarmingRegistry.registerFertilizer(new FertilizerForestry(ForestryUtils.getItem("fertilizerCompound")));
 		}
