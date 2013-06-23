@@ -153,6 +153,8 @@ tile.mfr.liquid.pinkslime.still.name = \ubd84\ud64d \uc2ac\ub77c\uc784
 tile.mfr.liquid.chocolatemilk.still.name = \ucd08\ucf5c\ub9bf \uc6b0\uc720
 tile.mfr.liquid.mushroomsoup.still.name = \ubc84\uc12f \uc218\ud504
 
+entity.MineFactoryReloaded.mfrEntityPinkSlime.name = \ubd84\ud64d \uc2ac\ub77c\uc784
+
 item.mfr.bucket.milk.name = \uc6b0\uc720 \uc591\ub3d9\uc774
 item.mfr.bucket.sewage.name = \ud558\uc218 \uc591\ub3d9\uc774
 item.mfr.bucket.sludge.name = \ucc0c\uaebc\uae30 \uc591\ub3d9\uc774
@@ -162,6 +164,10 @@ item.mfr.bucket.meat.name = \uace0\uae30 \uc591\ub3d9\uc774
 item.mfr.bucket.pinkslime.name = \ubd84\ud64d \uc2ac\ub77c\uc784 \uc591\ub3d9\uc774
 item.mfr.bucket.chocolatemilk.name = \ucd08\ucf5c\ub9bf \uc6b0\uc720 \uc591\ub3d9\uc774
 item.mfr.bucket.mushroomsoup.name = \ubc84\uc12f \uc218\ud504 \uc591\ub3d9\uc774
+
+item.mfr.bucket.plasticcup.name = \ud50c\ub77c\uc2a4\ud2f1 \ucef5
+item.mfr.bucket.plasticcup.prefix.name =
+item.mfr.bucket.plasticcup.suffix.name = \ucef5
 
 item.mfr.hammer.name = \uc815\ubc00\ud55c \ub300\ud615 \ub9dd\uce58
 item.mfr.fertilizer.name = \uc0b0\uc5c5 \ube44\ub8cc
@@ -245,6 +251,15 @@ item.mfr.upgrade.radius.emerald.name = \uc5c5\uadf8\ub808\uc774\ub4dc (\uc5d0\ub
 item.mfr.upgrade.logic.100.name = PRC LX-100 \ub85c\uc9c1 \ud655\uc7a5 \uce74\ub4dc
 item.mfr.upgrade.logic.300.name = PRC LX-300 \ub85c\uc9c1 \ud655\uc7a5 \uce74\ub4dc
 item.mfr.upgrade.logic.500.name = PRC LX-500 \ub85c\uc9c1 \ud655\uc7a5 \uce74\ub4dc
+
+item.mfr.needlegun.name = \uc18c\ucd1d
+item.mfr.needlegun.ammo.empty.name = \uc18c\ucd1d \ud0c4\ucc3d
+item.mfr.needlegun.ammo.standard.name = \uc18c\ucd1d \ud0c4\uc57d (\ubc14\ub298)
+item.mfr.needlegun.ammo.lava.name = \uc18c\ucd1d \ud0c4\uc57d (\uc6a9\uc554)
+item.mfr.needlegun.ammo.sludge.name = \uc18c\ucd1d \ud0c4\uc57d (\ucc0c\uaebc\uae30)
+item.mfr.needlegun.ammo.sewage.name = \uc18c\ucd1d \ud0c4\uc57d (\ud558\uc218)
+item.mfr.needlegun.ammo.fire.name = \uc18c\ucd1d \ud0c4\uc57d (\ubd88)
+item.mfr.needlegun.ammo.anvil.name = \uc18c\ucd1d \ud0c4\uc57d (\ubaa8\ub8e8)
 
 circuit.mfr.noop = \ub3d9\uc791 \uc548\ud568(No-Op)
 circuit.mfr.adder.analog = \uac00\uc0b0\uae30 (\uc544\ub0a0\ub85c\uadf8)

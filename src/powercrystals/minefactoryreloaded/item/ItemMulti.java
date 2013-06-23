@@ -32,7 +32,7 @@ public class ItemMulti extends ItemFactory
 	@Override
 	public Icon getIconFromDamage(int damage)
 	{
-		return _icons[Math.min(damage, _icons.length)];
+		return _icons[Math.min(damage, _icons.length - 1)];
 	}
 	
 	@Override

@@ -75,6 +75,7 @@ import powercrystals.minefactoryreloaded.circuits.logicboolean.Less;
 import powercrystals.minefactoryreloaded.circuits.logicboolean.LessOrEqual;
 import powercrystals.minefactoryreloaded.circuits.logicboolean.NotEqual;
 import powercrystals.minefactoryreloaded.circuits.timing.Delay;
+import powercrystals.minefactoryreloaded.circuits.timing.Multipulse;
 import powercrystals.minefactoryreloaded.circuits.timing.OneShot;
 import powercrystals.minefactoryreloaded.circuits.timing.PulseLengthener;
 import powercrystals.minefactoryreloaded.circuits.wave.SawtoothFalling;
@@ -280,6 +281,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new And4());
 		MFRRegistry.registerRedNetLogicCircuit(new Counter());
 		MFRRegistry.registerRedNetLogicCircuit(new DecomposeIntToDecimal());
+		MFRRegistry.registerRedNetLogicCircuit(new Delay());
 		MFRRegistry.registerRedNetLogicCircuit(new DeMux16Analog());
 		MFRRegistry.registerRedNetLogicCircuit(new DeMux4());
 		MFRRegistry.registerRedNetLogicCircuit(new Equal());
@@ -300,6 +302,7 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new Min2());
 		MFRRegistry.registerRedNetLogicCircuit(new Min3());
 		MFRRegistry.registerRedNetLogicCircuit(new Min4());
+		MFRRegistry.registerRedNetLogicCircuit(new Multipulse());
 		MFRRegistry.registerRedNetLogicCircuit(new Mux4());
 		MFRRegistry.registerRedNetLogicCircuit(new Nand2());
 		MFRRegistry.registerRedNetLogicCircuit(new Nand3());
@@ -335,7 +338,6 @@ public class Vanilla
 		MFRRegistry.registerRedNetLogicCircuit(new Xor2());
 		MFRRegistry.registerRedNetLogicCircuit(new Xor3());
 		MFRRegistry.registerRedNetLogicCircuit(new Xor4());
-		MFRRegistry.registerRedNetLogicCircuit(new Delay());
 		
 		MFRRegistry.registerLaserOre(175, new ItemStack(Block.oreCoal));
 		MFRRegistry.registerLaserOre(50, new ItemStack(Block.oreDiamond));
