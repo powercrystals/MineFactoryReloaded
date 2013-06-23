@@ -29,6 +29,7 @@ import powercrystals.minefactoryreloaded.gui.control.ListBoxElementCircuit;
 import powercrystals.minefactoryreloaded.gui.control.LogicButtonType;
 import powercrystals.minefactoryreloaded.net.Packets;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
+import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic.PinMapping;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiRedNetLogic extends GuiScreenBase
@@ -195,6 +196,16 @@ public class GuiRedNetLogic extends GuiScreenBase
 			_selectedCircuit = lastPage;
 		}
 		requestCircuit();
+	}
+	
+	public PinMapping getInputPin(int pinIndex)
+	{
+		return _logic.getInputPinMapping(_selectedCircuit, pinIndex);
+	}
+	
+	public PinMapping getOutputPin(int pinIndex)
+	{
+		return _logic.getOutputPinMapping(_selectedCircuit, pinIndex);
 	}
 	
 	private void requestCircuit()

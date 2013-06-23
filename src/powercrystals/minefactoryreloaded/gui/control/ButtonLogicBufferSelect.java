@@ -9,6 +9,7 @@ public class ButtonLogicBufferSelect extends ButtonOption
 	private GuiRedNetLogic _logicScreen;
 	private int _pinIndex;
 	private boolean _ignoreChanges;
+	private int _lastValue;
 	
 	public ButtonLogicBufferSelect(GuiRedNetLogic containerScreen, int x, int y, int pinIndex, LogicButtonType buttonType, int rotation)
 	{
@@ -60,6 +61,7 @@ public class ButtonLogicBufferSelect extends ButtonOption
 	{
 		_ignoreChanges = true;
 		setSelectedIndex(buffer);
+		_lastValue = buffer;
 		_ignoreChanges = false;
 	}
 	
@@ -72,12 +74,27 @@ public class ButtonLogicBufferSelect extends ButtonOption
 		}
 		if(_buttonType == LogicButtonType.Input)
 		{
-			_logicScreen.setInputPinMapping(_pinIndex, value, 0);
+			if(value < 6 && _lastValue < 6)
+			{
+				_logicScreen.setInputPinMapping(_pinIndex, value, _logicScreen.getInputPin(_pinIndex).pin);
+			}
+			else
+			{
+				_logicScreen.setInputPinMapping(_pinIndex, value, 0);
+			}
 		}
 		else
 		{
-			_logicScreen.setOutputPinMapping(_pinIndex, value, 0);
+			if(value < 6 && _lastValue < 6)
+			{
+				_logicScreen.setOutputPinMapping(_pinIndex, value, _logicScreen.getOutputPin(_pinIndex).pin);
+			}
+			else
+			{
+				_logicScreen.setOutputPinMapping(_pinIndex, value, 0);
+			}
 		}
+		_lastValue = value;
 	}
 	
 	@Override
