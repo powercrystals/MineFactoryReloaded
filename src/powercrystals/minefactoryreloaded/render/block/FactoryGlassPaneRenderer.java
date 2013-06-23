@@ -15,52 +15,6 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
 	{
-		BlockFactoryGlassPane pane = (BlockFactoryGlassPane)block;
-		
-		Tessellator tessellator = Tessellator.instance;
-		Icon iconFront, iconOverlay;
-		
-		if(renderer.hasOverrideBlockTexture())
-		{
-			iconFront = renderer.overrideBlockTexture;
-			iconOverlay = renderer.overrideBlockTexture;
-		}
-		else
-		{
-			iconFront = renderer.getBlockIconFromSideAndMetadata(pane, 0, metadata);
-			iconOverlay = pane.getBlockOverlayTexture();
-		}
-		
-		double minXGlass = iconFront.getMinU();
-		double maxXGlass = iconFront.getMaxU();
-		double minYGlass = iconFront.getMinV();
-		double maxYGlass = iconFront.getMaxV();
-		
-		double minXOverlay = iconOverlay.getMinU();
-		double maxXOverlay = iconOverlay.getMaxU();
-		double minYOverlay = iconOverlay.getMinV();
-		double maxYOverlay = iconOverlay.getMaxV();
-		
-		double xMin = 0;
-		double xMax = 1;
-		double yMin = 0;
-		double yMax = 1;
-		double zMin = 0;
-		double zMax = 0;
-
-        tessellator.startDrawingQuads();
-        
-		tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
-		tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
-		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
-		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, minYGlass);
-		
-		tessellator.addVertexWithUV(xMin, yMax, zMin, minXOverlay, minYOverlay);
-		tessellator.addVertexWithUV(xMin, yMin, zMin, minXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXOverlay, minYOverlay);
-		
-		tessellator.draw();
 	}
 	
 	@Override
@@ -396,7 +350,7 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 	@Override
 	public boolean shouldRender3DInInventory()
 	{
-		return true;
+		return false;
 	}
 	
 	@Override

@@ -262,6 +262,10 @@ public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
 	}
 	
 	private static int itemOffset;
+	public static int getItemOffset()
+	{
+		return itemOffset;
+	}
 
 	@PreInit
 	public void preInit(FMLPreInitializationEvent evt)

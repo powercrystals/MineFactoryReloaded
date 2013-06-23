@@ -18,10 +18,10 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 	public void renderInventoryBlock(Block tile, int metadata, int modelID, RenderBlocks renderer)
 	{
 		BlockFactoryGlass block = (BlockFactoryGlass)tile;
-		
+
 		Tessellator tessellator = Tessellator.instance;
 		Icon iconGlass, iconOverlay;
-		
+
 		if(renderer.hasOverrideBlockTexture())
 		{
 			iconGlass = renderer.overrideBlockTexture;
@@ -32,7 +32,7 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 			iconGlass = renderer.getBlockIconFromSideAndMetadata(block, 0, metadata);
 			iconOverlay = block.getBlockOverlayTexture();
 		}
-		
+
 		double minXGlass = iconGlass.getMinU();
 		double maxXGlass = iconGlass.getMaxU();
 		double minYGlass = iconGlass.getMinV();
@@ -42,65 +42,96 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 		double maxXOverlay = iconOverlay.getMaxU();
 		double minYOverlay = iconOverlay.getMinV();
 		double maxYOverlay = iconOverlay.getMaxV();
-		
+
 
 		double xMin = 0, xMax = 1;
 		double yMin = 0, yMax = 1;
 		double zMin = 0, zMax = 1;
 
-        GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
-        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+		GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+
 		tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, -1.0F, 0.0F);
+		tessellator.setNormal(0.0F, -1.0F, 0.0F);
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, minYGlass);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, minYGlass);
+
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXOverlay, minYOverlay);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, minXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, maxXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXOverlay, minYOverlay);
+		tessellator.draw();
+
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 1.0F, 0.0F);
 		tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
-		tessellator.draw();
 
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, 1.0F, 0.0F);
 		tessellator.addVertexWithUV(xMin, yMax, zMin, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXOverlay, maxYOverlay);
 		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXOverlay, maxYOverlay);
 		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXOverlay, minYOverlay);
 		tessellator.draw();
 
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, 0.0F, -1.0F);
-		tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
-		tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
-		tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, maxYGlass);
-		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, -1.0F);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, minXGlass, minYGlass);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, minXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, maxXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, maxXGlass, minYGlass);
+
+		tessellator.addVertexWithUV(xMax, yMax, zMin, minXOverlay, minYOverlay);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, minXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, maxXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, maxXOverlay, minYOverlay);
 		tessellator.draw();
-		
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, 0.0F, 1.0F);
-		tessellator.addVertexWithUV(xMin, yMax, zMin, minXOverlay, minYOverlay);
-		tessellator.addVertexWithUV(xMin, yMin, zMin, minXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(xMax, yMin, zMin, maxXOverlay, maxYOverlay);
-		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXOverlay, minYOverlay);
-        tessellator.draw();
-        
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(-1.0F, 0.0F, 0.0F);
+
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, 1.0F);
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, minYGlass);
 		tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, minYGlass);
-		tessellator.draw();
-		
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(1.0F, 0.0F, 0.0F);
+
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(xMin, yMin, zMax, minXOverlay, maxYOverlay);
 		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXOverlay, maxYOverlay);
 		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXOverlay, minYOverlay);
 		tessellator.draw();
-		
-        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(-1.0F, 0.0F, 0.0F);
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, minYGlass);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, maxXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, maxXGlass, minYGlass);
+
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXOverlay, minYOverlay);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, maxXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, maxXOverlay, minYOverlay);
+		tessellator.draw();
+
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(1.0F, 0.0F, 0.0F);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, minXGlass, minYGlass);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, minXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, minYGlass);
+
+		tessellator.addVertexWithUV(xMax, yMin, zMin, minXOverlay, minYOverlay);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, minXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXOverlay, maxYOverlay);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXOverlay, minYOverlay);
+		tessellator.draw();
+
+		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 	}
-	
+
 	@Override
 	public boolean renderWorldBlock(IBlockAccess blockAccess, int x, int y, int z,
 			Block tile, int modelId, RenderBlocks renderer)
@@ -114,7 +145,7 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 		float red = (color >> 16 & 255) / 255.0F;
 		float green = (color >> 8 & 255) / 255.0F;
 		float blue = (color & 255) / 255.0F;
-		
+
 		if (EntityRenderer.anaglyphEnable)
 		{
 			float anaglyphRed = (red * 30.0F + green * 59.0F + blue * 11.0F) / 100.0F;
@@ -124,10 +155,10 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 			green = anaglyphGreen;
 			blue = anaglyphBlue;
 		}
-		
+
 		tessellator.setColorOpaque_F(red, green, blue);
 		Icon iconGlass, iconOverlayTop, iconOverlaySouth, iconOverlayWest;
-		
+
 		if(renderer.hasOverrideBlockTexture())
 		{
 			iconGlass = renderer.overrideBlockTexture;
@@ -143,7 +174,7 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 			iconOverlaySouth = block.getBlockOverlayTexture(blockAccess, x, y, z, 2);
 			iconOverlayWest = block.getBlockOverlayTexture(blockAccess, x, y, z, 5);
 		}
-		
+
 		double minXGlass = iconGlass.getMinU();
 		double maxXGlass = iconGlass.getMaxU();
 		double minYGlass = iconGlass.getMinV();
@@ -163,33 +194,33 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 		double maxXTop = iconOverlayTop.getMaxU();
 		double minYTop = iconOverlayTop.getMinV();
 		double maxYTop = iconOverlayTop.getMaxV();
-		
+
 		double xMin = x, xMax = x + 1;
 		double yMin = y, yMax = y + 1;
 		double zMin = z, zMax = z + 1;
-		
+
 		boolean renderAll = renderer.renderAllFaces;
-		
+
 		boolean[] renderSide = {
-			renderAll || y <= 0 || block.shouldSideBeRendered(blockAccess, x, y - 1, z, 0),
-			renderAll || y >= worldHeight || block.shouldSideBeRendered(blockAccess, x, y + 1, z, 1),
-			renderAll || block.shouldSideBeRendered(blockAccess, x, y, z - 1, 2),
-			renderAll || block.shouldSideBeRendered(blockAccess, x, y, z + 1, 3),
-			renderAll || block.shouldSideBeRendered(blockAccess, x - 1, y, z, 4),
-			renderAll || block.shouldSideBeRendered(blockAccess, x + 1, y, z, 5),
+				renderAll || y <= 0 || block.shouldSideBeRendered(blockAccess, x, y - 1, z, 0),
+						renderAll || y >= worldHeight || block.shouldSideBeRendered(blockAccess, x, y + 1, z, 1),
+						renderAll || block.shouldSideBeRendered(blockAccess, x, y, z - 1, 2),
+						renderAll || block.shouldSideBeRendered(blockAccess, x, y, z + 1, 3),
+						renderAll || block.shouldSideBeRendered(blockAccess, x - 1, y, z, 4),
+						renderAll || block.shouldSideBeRendered(blockAccess, x + 1, y, z, 5),
 		};
 
 		if (renderSide[0])
 		{
-			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, maxYGlass);
-			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, minYGlass);
-			
-			tessellator.addVertexWithUV(xMin, yMin, zMin, minXTop, minYTop);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
+
 			tessellator.addVertexWithUV(xMin, yMin, zMax, minXTop, maxYTop);
-			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXTop, maxYTop);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXTop, minYTop);
 			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXTop, minYTop);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXTop, maxYTop);
 		}
 
 		if (renderSide[1])
@@ -198,74 +229,74 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 			tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
-			
+
 			tessellator.addVertexWithUV(xMin, yMax, zMin, minXTop, minYTop);
 			tessellator.addVertexWithUV(xMin, yMax, zMax, minXTop, maxYTop);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXTop, maxYTop);
 			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXTop, minYTop);
 		}
-		
+
 		if (renderSide[2])
 		{
-			tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
-			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
-			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
-			
-			tessellator.addVertexWithUV(xMin, yMax, zMin, minXSouth, minYSouth);
-			tessellator.addVertexWithUV(xMin, yMin, zMin, minXSouth, maxYSouth);
-			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXSouth, maxYSouth);
+			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, maxYGlass);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
+			tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
+
 			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXSouth, minYSouth);
+			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXSouth, maxYSouth);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXSouth, maxYSouth);
+			tessellator.addVertexWithUV(xMin, yMax, zMin, minXSouth, minYSouth);
 		}
 
 		if (renderSide[3])
 		{
-			tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, minYGlass);
-			tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, maxYGlass);
-			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
-			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, minYGlass);
-			
+			tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
+			tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, minYGlass);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, minYGlass);
+			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
+
 			tessellator.addVertexWithUV(xMin, yMax, zMax, minXSouth, minYSouth);
 			tessellator.addVertexWithUV(xMin, yMin, zMax, minXSouth, maxYSouth);
 			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXSouth, maxYSouth);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXSouth, minYSouth);
 		}
-		
+
 		if (renderSide[4])
 		{
-			tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
-			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMin, yMin, zMax, maxXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMin, yMax, zMax, maxXGlass, minYGlass);
-			
-			tessellator.addVertexWithUV(xMin, yMax, zMin, minXWest, minYWest);
-			tessellator.addVertexWithUV(xMin, yMin, zMin, minXWest, maxYWest);
+			tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
+
 			tessellator.addVertexWithUV(xMin, yMin, zMax, maxXWest, maxYWest);
 			tessellator.addVertexWithUV(xMin, yMax, zMax, maxXWest, minYWest);
+			tessellator.addVertexWithUV(xMin, yMax, zMin, minXWest, minYWest);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXWest, maxYWest);
 		}
 
 		if (renderSide[5])
 		{
-			tessellator.addVertexWithUV(xMax, yMax, zMin, minXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMax, yMin, zMin, minXGlass, maxYGlass);
-			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
+			tessellator.addVertexWithUV(xMax, yMax, zMin, minXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, minYGlass);
-			
-			tessellator.addVertexWithUV(xMax, yMax, zMin, minXWest, minYWest);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
+
 			tessellator.addVertexWithUV(xMax, yMin, zMin, minXWest, maxYWest);
-			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXWest, maxYWest);
+			tessellator.addVertexWithUV(xMax, yMax, zMin, minXWest, minYWest);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXWest, minYWest);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXWest, maxYWest);
 		}
 		
 		return true;
 	}
-	
+
 	@Override
 	public boolean shouldRender3DInInventory()
 	{
 		return true;
 	}
-	
+
 	@Override
 	public int getRenderId()
 	{
