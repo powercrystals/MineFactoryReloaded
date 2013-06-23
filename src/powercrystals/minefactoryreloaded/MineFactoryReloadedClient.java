@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.render.block.FactoryGlassRenderer;
 import powercrystals.minefactoryreloaded.render.block.VineScaffoldRenderer;
 import powercrystals.minefactoryreloaded.render.entity.EntityNeedleRenderer;
 import powercrystals.minefactoryreloaded.render.entity.EntitySafariNetRenderer;
+import powercrystals.minefactoryreloaded.render.item.FactoryGlassPaneItemRenderer;
 import powercrystals.minefactoryreloaded.render.item.NeedleGunItemRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillPrechargerRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillRenderer;
@@ -60,6 +61,7 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFluidClassic, new RenderBlockFluidClassic(MineFactoryReloadedCore.renderIdFluidClassic));
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdVineScaffold, new VineScaffoldRenderer());
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlass, new FactoryGlassRenderer());
+		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, new FactoryGlassPaneItemRenderer());
 		
 		RedstoneCableRenderer renderer = new RedstoneCableRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRedNetCable.class, renderer);

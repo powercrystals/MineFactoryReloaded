@@ -15,7 +15,51 @@ public class IconOverlay implements Icon {
 		this.overlayIcon = overlayIcon;
 		xSegments = subX;
 		ySegments = subY;
-		int value = toInt(sides);
+		int parts = toInt(sides) & 255;
+		int value = (parts & 15);
+		parts = parts >> 4;
+		int w;
+		switch (value) {
+		case 3: // bottom right connection
+			value ^= ((parts & 1) << 4); // bithack: add 16 if connection
+			break;
+		case 5: // top right connection
+			value ^= ((parts & 8) << 1); // bithack: add 16 if connection
+			break;
+		case 7: // left empty
+			w = parts & 9;
+			value ^= ((w & (w << 3)) << 1); // bithack: add 16 if both connections
+			if ((w == 1) | w == 8) // bottom right, top right
+				value = 32 | (w >> 3);
+			break;
+		case 10: // bottom left connection
+			value ^= ((parts & 2) << 3); // bithack: add 16 if connection
+			break;
+		case 11: // top empty
+			w = parts & 3;
+			value ^= ((w & (w << 1)) << 3); // bithack: add 16 if both connections
+			if ((w == 1) | w == 2) // bottom right, bottom left
+				value = 34 | (w >> 1);
+			break;
+		case 12: // top left connection
+			value ^= ((parts & 4) << 2); // bithack: add 16 if connection
+			break;
+		case 13: // bottom empty
+			w = parts & 12;
+			value ^= ((w & (w << 1)) << 1); // bithack: add 16 if both connections
+			if ((w == 4) | w == 8) // top left, top right
+				value = 36 | (w >> 3);
+			break;
+		case 14: // right empty
+			w = parts & 6;
+			value ^= ((w & (w << 1)) << 2); // bithack: add 16 if both connections
+			if ((w == 2) | w == 4) // bottom left, top left
+				value = 38 | (w >> 2);
+			break;
+		case 15: // all sides
+			value = 40 + parts;
+		default:
+		}
 		selectedSegmentX = value % subX;
 		selectedSegmentY = value / subX;
 	}
@@ -31,13 +75,13 @@ public class IconOverlay implements Icon {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getOriginX() {
-		return overlayIcon.getOriginX();
+		return (int)(this.getMinU() * overlayIcon.getSheetWidth());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getOriginY() {
-		return overlayIcon.getOriginY();
+		return (int)(this.getMinV() * overlayIcon.getSheetHeight());
 	}
 
 	@Override
@@ -71,6 +115,7 @@ public class IconOverlay implements Icon {
 	public float getMaxV() {
 		return overlayIcon.getInterpolatedV(((selectedSegmentY + 1) / ySegments) * 16f);
 	}
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getInterpolatedV(double d0) {

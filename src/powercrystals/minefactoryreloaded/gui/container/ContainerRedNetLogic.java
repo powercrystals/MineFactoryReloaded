@@ -7,8 +7,19 @@ import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 
 public class ContainerRedNetLogic extends Container
 {
+	private TileEntityRedNetLogic logic;
+	
 	public ContainerRedNetLogic(TileEntityRedNetLogic logic)
 	{
+		this.logic = logic;
+		logic.crafters++;
+	}
+	
+	@Override
+	public void onCraftGuiClosed(EntityPlayer entityplayer)
+	{
+		super.onCraftGuiClosed(entityplayer);
+		logic.crafters--;
 	}
 	
 	@Override

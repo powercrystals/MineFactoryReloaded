@@ -985,7 +985,6 @@ public class Vanilla
 				} );
 		
 		// meta-sensitive optional override in block code?
-		// TE pulveriser?
 		
 		/**
 		 * Large brick:
@@ -1080,7 +1079,6 @@ public class Vanilla
 			'D', Item.sugar,
 				} );
 		
-		// Railcraft Rock Crusher?
 		// FZ grinder?
 		
 		/**
@@ -1115,6 +1113,8 @@ public class Vanilla
 				new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 10));
 		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 1), 
 				new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 11));
+		
+		// TODO: add white/black sand?
 		
 		GameRegistry.addRecipe(new ItemStack(MineFactoryReloadedCore.factoryDecorativeBrickBlock, 1, 12), new Object[]
 				{

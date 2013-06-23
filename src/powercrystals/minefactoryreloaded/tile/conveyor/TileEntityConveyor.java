@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.conveyor;
 
-import buildcraft.core.IMachine;
+import buildcraft.api.gates.IAction;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
+import powercrystals.core.asm.relauncher.Implementable;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.core.util.Util;
@@ -20,7 +21,8 @@ import powercrystals.minefactoryreloaded.net.Packets;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-public class TileEntityConveyor extends TileEntity implements IRotateableTile, ISidedInventory, IMachine
+@Implementable("buildcraft.core.IMachine")
+public class TileEntityConveyor extends TileEntity implements IRotateableTile, ISidedInventory
 {
 	private int _dye = -1;
 	private boolean _isReversed = false;
@@ -422,28 +424,29 @@ public class TileEntityConveyor extends TileEntity implements IRotateableTile, I
     }
     
     //IMachine
-	@Override
 	public boolean isActive()
 	{
 		return false;
 	}
 	
-	@Override
 	public boolean manageLiquids()
 	{
 		return false;
 	}
 	
-	@Override
 	public boolean manageSolids()
 	{
 		return true;
 	}
 	
-	@Override
 	public boolean allowActions()
 	{
 		return false;
+	}
+	
+	public boolean allowAction(IAction _)
+	{
+		return this.allowActions();
 	}
 	
 	// RedNet

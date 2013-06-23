@@ -16,6 +16,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.api.rednet.IConnectableRedNet;
 import powercrystals.minefactoryreloaded.api.rednet.RedNetConnectionType;
@@ -93,6 +94,26 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 	}
 	
 	@Override
+	public boolean rotateBlock(World world, int x, int y, int z, ForgeDirection axis)
+	{
+        if (world.isRemote)
+        {
+            return false;
+        }
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te != null && te instanceof TileEntityRedNetLogic)
+		{
+			if (((TileEntityRedNetLogic)te).crafters > 0)
+			{
+				return false;
+			}
+		}
+		int nextMeta = (world.getBlockMetadata(x, y, z) + 1) & 3; // % 4
+		world.setBlockMetadataWithNotify(x, y, z, nextMeta, 3);
+		return true;
+	}
+	
+	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
 		TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
@@ -160,15 +181,13 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
 		
 		if(MFRUtil.isHoldingHammer(player))
 		{
-			int nextMeta = world.getBlockMetadata(x, y, z) + 1;
-			if(nextMeta > 3)
+			if (rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side)))
 			{
-				nextMeta = 0;
+				return true;
 			}
-			world.setBlockMetadataWithNotify(x, y, z, nextMeta, 3);
-			return true;
 		}
-		else if(MFRUtil.isHolding(player, ItemLogicUpgradeCard.class))
+		
+		if(MFRUtil.isHolding(player, ItemLogicUpgradeCard.class))
 		{
 			TileEntityRedNetLogic logic = (TileEntityRedNetLogic)world.getBlockTileEntity(x, y, z);
 			if(logic != null)

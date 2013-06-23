@@ -57,6 +57,8 @@ public class TileEntityRedNetLogic extends TileEntity
 	
 	private int[] _upgradeLevel = new int[6];
 	
+	public int crafters = 0; 
+	
 	public TileEntityRedNetLogic()
 	{	
 		// init I/O buffers

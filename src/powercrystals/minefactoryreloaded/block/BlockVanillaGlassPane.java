@@ -1,14 +1,16 @@
 package powercrystals.minefactoryreloaded.block;
 
+import powercrystals.minefactoryreloaded.render.block.IconOverlay;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 {
 	private Icon _iconPane;
-	private Icon _iconSide;
 	
 	public BlockVanillaGlassPane()
 	{
@@ -18,10 +20,9 @@ public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 		setUnlocalizedName("thinGlass");
 	}
 	
-	@Override
-	public Icon getBlockSideTextureFromMetadata(int meta)
+	public Icon getBlockOverlayTexture(IBlockAccess world, int x, int y, int z, int side)
 	{
-		return _iconSide;
+		return new IconOverlay(BlockFactoryGlassPane._overlay, 8, 8, true, true, true, true, true, true, true, true);
 	}
 	
 	@Override

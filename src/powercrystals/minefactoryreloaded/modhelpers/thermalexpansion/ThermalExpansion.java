@@ -39,6 +39,9 @@ public class ThermalExpansion
 			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bucketEmpty), new ItemStack(MineFactoryReloadedCore.chocolateMilkBucketItem), LiquidDictionary.getLiquid("chocolatemilk", LiquidContainerRegistry.BUCKET_VOLUME), true);
 			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bucketEmpty), new ItemStack(MineFactoryReloadedCore.mushroomSoupBucketItem), LiquidDictionary.getLiquid("mushroomsoup", LiquidContainerRegistry.BUCKET_VOLUME), true);
 			CraftingManagers.transposerManager.addFillRecipe(80, new ItemStack(Item.bowlEmpty), new ItemStack(Item.bowlSoup), LiquidDictionary.getLiquid("mushroomsoup", LiquidContainerRegistry.BUCKET_VOLUME), true);
+			
+			CraftingManagers.pulverizerManager.addRecipe(320, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 0), new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 2)); // Smooth Blackstone -> Cobble
+			CraftingManagers.pulverizerManager.addRecipe(320, new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 1), new ItemStack(MineFactoryReloadedCore.factoryDecorativeStoneBlock, 1, 3)); // Smooth Whitestone -> Cobble
 		}
 		catch (Exception x)
 		{
