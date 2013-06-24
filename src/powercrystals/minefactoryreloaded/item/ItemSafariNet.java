@@ -328,7 +328,7 @@ public class ItemSafariNet extends ItemFactory
 		{
 			return false;
 		}
-		else if(entity instanceof EntityLiving && !(entity instanceof EntityPlayer))
+		else if(!(entity instanceof EntityPlayer))
 		{
 			NBTTagCompound c = new NBTTagCompound();
 			
