@@ -21,6 +21,7 @@ import powercrystals.minefactoryreloaded.core.RemoteInventoryCrafting;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquiCrafter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquiCrafter;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -50,10 +51,16 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	
 	public TileEntityLiquiCrafter()
 	{
+		this(Machine.LiquiCrafter);
 		for(int i = 0; i < 9; i++)
 		{
 			_tanks[i] = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 10);
 		}
+	}
+	
+	protected TileEntityLiquiCrafter(Machine machine)
+	{
+		super(machine);
 	}
 	
 	@Override

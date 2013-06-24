@@ -14,14 +14,39 @@ import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.asm.relauncher.Implementable;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import buildcraft.api.gates.IAction; 
 
 @Implementable("buildcraft.core.IMachine")
 public abstract class TileEntityFactoryInventory extends TileEntityFactory implements IInventory, ISidedInventory
 {
-	protected TileEntityFactoryInventory()
+	protected Machine machine;
+	
+	protected String _invName;
+	protected boolean _hasInvName = false;
+	
+	protected TileEntityFactoryInventory(Machine machine)
 	{
 		_inventory = new ItemStack[getSizeInventory()];
+		this.machine = machine;
+	}
+	
+	@Override
+	public String getInvName()
+	{
+		return _hasInvName ? _invName : machine.getName();
+	}
+	
+	@Override
+	public boolean isInvNameLocalized()
+	{
+		return _hasInvName;
+	}
+	
+	public void setInvName(String name)
+	{
+		this._invName = name;
+		this._hasInvName = name != null && name.length() > 0;
 	}
 	
 	public ILiquidTank getTank()
@@ -122,12 +147,6 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	}
 	
 	@Override
-	public boolean isInvNameLocalized()
-	{
-		return false;
-	}
-	
-	@Override
 	public boolean isStackValidForSlot(int i, ItemStack itemstack)
 	{
 		return true;
@@ -183,6 +202,15 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 				_inventory[i] = null;
 			}
 		}
+		
+		if (nbttagcompound.hasKey("display"))
+		{
+			NBTTagCompound display = nbttagcompound.getCompoundTag("display");
+			if (display.hasKey("Name"))
+			{
+				this.setInvName(display.getString("Name"));
+			}
+		}
 	}
 	
 	@Override
@@ -205,6 +233,13 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 			nbttagcompound.setInteger("tankAmount", getTank().getLiquid().amount);
 			nbttagcompound.setInteger("tankItemId", getTank().getLiquid().itemID);
 			nbttagcompound.setInteger("tankMeta", getTank().getLiquid().itemMeta);
+		}
+		
+		if (this.isInvNameLocalized())
+		{
+			NBTTagCompound display = new NBTTagCompound();
+			display.setString("Name", this._invName);
+			nbttagcompound.setCompoundTag("display", display);
 		}
 		
 		nbttagcompound.setTag("Items", nbttaglist);

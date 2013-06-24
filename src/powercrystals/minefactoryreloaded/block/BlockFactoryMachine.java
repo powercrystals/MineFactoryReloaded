@@ -186,6 +186,14 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			{
 				((TileEntityFactory)te).rotateDirectlyTo(5);
 			}
+			
+			if (te instanceof TileEntityFactoryInventory)
+			{
+		        if (stack.hasDisplayName())
+		        {
+		            ((TileEntityFactoryInventory)te).setInvName(stack.getDisplayName());
+		        }
+			}
 		}
 	}
 	

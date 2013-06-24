@@ -4,6 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.power.PowerProviderAdvanced;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 
@@ -11,8 +12,9 @@ public abstract class TileEntityGenerator extends TileEntityFactoryInventory imp
 {
 	private IPowerProvider _powerProvider;
 	
-	protected TileEntityGenerator()
+	protected TileEntityGenerator(Machine machine)
 	{
+		super(machine);
 		_powerProvider = new PowerProviderAdvanced();
 		_powerProvider.configure(0, 0, 0, 0, 0);
 	}
