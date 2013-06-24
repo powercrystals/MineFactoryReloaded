@@ -51,16 +51,11 @@ public class TileEntityLiquiCrafter extends TileEntityFactoryInventory implement
 	
 	public TileEntityLiquiCrafter()
 	{
-		this(Machine.LiquiCrafter);
+		super(Machine.LiquiCrafter);
 		for(int i = 0; i < 9; i++)
 		{
 			_tanks[i] = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 10);
 		}
-	}
-	
-	protected TileEntityLiquiCrafter(Machine machine)
-	{
-		super(machine);
 	}
 	
 	@Override

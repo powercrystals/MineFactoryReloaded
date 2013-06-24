@@ -20,12 +20,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 {
 	public TileEntityDeepStorageUnit()
 	{
-		this(Machine.DeepStorageUnit);
-	}
-	
-	protected TileEntityDeepStorageUnit(Machine machine)
-	{
-		super(machine);
+		super(Machine.DeepStorageUnit);
 	}
 
 	private boolean[] _isSideOutput = new boolean[] { false, false, true, true, true, true };

@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import powercrystals.minefactoryreloaded.gui.client.GuiEnchantmentRouter;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerEnchantmentRouter;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,7 +19,7 @@ public class TileEntityEnchantmentRouter extends TileEntityItemRouter
 	
 	public TileEntityEnchantmentRouter()
 	{
-		super();
+		super(Machine.EnchantmentRouter);
 	}
 	
 	@Override

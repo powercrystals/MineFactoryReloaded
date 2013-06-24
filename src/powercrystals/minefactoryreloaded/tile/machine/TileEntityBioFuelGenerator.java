@@ -19,12 +19,7 @@ public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 	
 	public TileEntityBioFuelGenerator()
 	{
-		this(Machine.BioFuelGenerator, liquidConsumedPerTick, energyProducedPerConsumption, ticksBetweenConsumption);
-	}
-	
-	protected TileEntityBioFuelGenerator(Machine machine, int liquidConsumedPerTick, int powerProducedPerConsumption, int ticksBetweenConsumption)
-	{
-		super(machine, liquidConsumedPerTick, powerProducedPerConsumption, ticksBetweenConsumption);
+		super(Machine.BioFuelGenerator, liquidConsumedPerTick, energyProducedPerConsumption, ticksBetweenConsumption);
 	}
 	
 	@Override

@@ -26,17 +26,12 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 	
 	public TileEntityLiquidRouter()
 	{
-		this(Machine.LiquidRouter);
+		super(Machine.LiquidRouter);
 		for(int i = 0; i < 6; i++)
 		{
 			_bufferTanks[i] = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME);
 			_bufferTanks[i].setTankPressure(-1);
 		}
-	}
-	
-	protected TileEntityLiquidRouter(Machine machine)
-	{
-		super(machine);
 	}
 	
 	@Override

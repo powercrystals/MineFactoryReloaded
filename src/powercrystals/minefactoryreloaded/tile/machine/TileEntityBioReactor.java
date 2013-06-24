@@ -35,13 +35,8 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	
 	public TileEntityBioReactor()
 	{
-		this(Machine.BioReactor);
+		super(Machine.BioReactor);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
-	}
-	
-	protected TileEntityBioReactor(Machine machine)
-	{
-		super(machine);
 	}
 	
 	public int getBurnTime()

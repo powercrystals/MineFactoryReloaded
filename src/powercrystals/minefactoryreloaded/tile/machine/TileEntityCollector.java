@@ -12,12 +12,7 @@ public class TileEntityCollector extends TileEntityFactoryInventory
 {
 	public TileEntityCollector()
 	{
-		this(Machine.ItemCollector);
-	}
-	
-	protected TileEntityCollector(Machine machine)
-	{
-		super(machine);
+		super(Machine.ItemCollector);
 	}
 
 	public void addToChests(EntityItem i)

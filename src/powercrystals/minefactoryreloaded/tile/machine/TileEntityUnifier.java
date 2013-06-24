@@ -34,15 +34,10 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	
 	public TileEntityUnifier()
 	{
-		this(Machine.Unifier);
+		super(Machine.Unifier);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 		_biofuel = LiquidDictionary.getLiquid("biofuel", 1);
 		_ethanol = LiquidDictionary.getLiquid("ethanol", 1);
-	}
-	
-	protected TileEntityUnifier(Machine machine)
-	{
-		super(machine);
 	}
 	
 	@Override

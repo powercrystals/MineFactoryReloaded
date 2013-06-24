@@ -44,13 +44,8 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 	
 	public TileEntityLaserDrill()
 	{
-		this(Machine.LaserDrill);
+		super(Machine.LaserDrill);
 		_rand = new Random();
-	}
-	
-	protected TileEntityLaserDrill(Machine machine)
-	{
-		super(machine);
 	}
 	
 	@Override

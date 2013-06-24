@@ -18,10 +18,10 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 {
 	public TileEntityItemRouter()
 	{
-		this(Machine.ItemRouter);
+		super(Machine.ItemRouter);
 	}
-	
-	protected TileEntityItemRouter(Machine machine)
+
+	public TileEntityItemRouter(Machine machine)
 	{
 		super(machine);
 	}
