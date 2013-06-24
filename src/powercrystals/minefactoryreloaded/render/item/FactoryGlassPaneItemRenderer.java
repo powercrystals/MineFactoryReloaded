@@ -196,11 +196,11 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 		tessellator.addVertexWithUV(0, 0, -thickness, minXOverlay, minYOverlay);
 		tessellator.draw();
 
-		double iconWidth = (double)sheetWidth * (maxXIcon - minXIcon);
-		double iconHeight = (double)sheetHeight * (minYIcon - maxYIcon);
+		double iconWidth = sheetWidth * (maxXIcon - minXIcon);
+		double iconHeight = sheetHeight * (minYIcon - maxYIcon);
 
-		double overlayWidth = (double)sheetWidth * (maxXOverlay - minXOverlay);
-		double overlayHeight = (double)sheetHeight * (minYOverlay - maxYOverlay);
+		double overlayWidth = sheetWidth * (maxXOverlay - minXOverlay);
+		double overlayHeight = sheetHeight * (minYOverlay - maxYOverlay);
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(-1.0F, 0.0F, 0.0F);
@@ -209,17 +209,17 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 		double f7;
 		double f8;
 
-		for (k = 0; (double)k < iconWidth; ++k)
+		for (k = 0; k < iconWidth; ++k)
 		{
-			f7 = (double)k / iconWidth;
-			f8 = maxXIcon + (minXIcon - maxXIcon) * f7 - 0.5D / (double)sheetWidth;
+			f7 = k / iconWidth;
+			f8 = maxXIcon + (minXIcon - maxXIcon) * f7 - 0.5D / sheetWidth;
 			tessellator.addVertexWithUV(f7, 0, -thickness, f8, minYIcon);
 			tessellator.addVertexWithUV(f7, 0,          0, f8, minYIcon);
 			tessellator.addVertexWithUV(f7, 1,          0, f8, maxYIcon);
 			tessellator.addVertexWithUV(f7, 1, -thickness, f8, maxYIcon);
 
-			f7 = (double)k / overlayWidth;
-			f8 = maxXOverlay + (minXOverlay - maxXOverlay) * f7 - 0.5D / (double)sheetWidth;
+			f7 = k / overlayWidth;
+			f8 = maxXOverlay + (minXOverlay - maxXOverlay) * f7 - 0.5D / sheetWidth;
 			tessellator.addVertexWithUV(f7, 0, -thickness, f8, minYOverlay);
 			tessellator.addVertexWithUV(f7, 0,          0, f8, minYOverlay);
 			tessellator.addVertexWithUV(f7, 1,          0, f8, maxYOverlay);
@@ -231,19 +231,19 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 		tessellator.setNormal(1.0F, 0.0F, 0.0F);
 		double f9;
 
-		for (k = 0; (double)k < iconWidth; ++k)
+		for (k = 0; k < iconWidth; ++k)
 		{
-			f7 = (double)k / iconWidth;
+			f7 = k / iconWidth;
 			f9 = f7 + 1 / iconWidth;
-			f8 = maxXIcon + (minXIcon - maxXIcon) * f7 - 0.5D / (double)sheetWidth;
+			f8 = maxXIcon + (minXIcon - maxXIcon) * f7 - 0.5D / sheetWidth;
 			tessellator.addVertexWithUV(f9, 1, -thickness, f8, maxYIcon);
 			tessellator.addVertexWithUV(f9, 1,          0, f8, maxYIcon);
 			tessellator.addVertexWithUV(f9, 0,          0, f8, minYIcon);
 			tessellator.addVertexWithUV(f9, 0, -thickness, f8, minYIcon);
 
-			f7 = (double)k / overlayWidth;
+			f7 = k / overlayWidth;
 			f9 = f7 + 1 / overlayWidth;
-			f8 = maxXOverlay + (minXOverlay - maxXOverlay) * f7 - 0.5D / (double)sheetWidth;
+			f8 = maxXOverlay + (minXOverlay - maxXOverlay) * f7 - 0.5D / sheetWidth;
 			tessellator.addVertexWithUV(f9, 1, -thickness, f8, maxYOverlay);
 			tessellator.addVertexWithUV(f9, 1,          0, f8, maxYOverlay);
 			tessellator.addVertexWithUV(f9, 0,          0, f8, minYOverlay);
@@ -254,19 +254,19 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0F, 1.0F, 0.0F);
 
-		for (k = 0; (double)k < iconHeight; ++k)
+		for (k = 0; k < iconHeight; ++k)
 		{
-			f7 = (double)k / overlayHeight;
+			f7 = k / overlayHeight;
 			f9 = f7 + 1 / overlayHeight;
-			f8 = minYIcon + (maxYIcon - minYIcon) * f7 - 0.5D / (double)sheetHeight;
+			f8 = minYIcon + (maxYIcon - minYIcon) * f7 - 0.5D / sheetHeight;
 			tessellator.addVertexWithUV(0, f9,          0, minXIcon, f8);
 			tessellator.addVertexWithUV(1, f9,          0, maxXIcon, f8);
 			tessellator.addVertexWithUV(1, f9, -thickness, maxXIcon, f8);
 			tessellator.addVertexWithUV(0, f9, -thickness, minXIcon, f8);
 
-			f7 = (double)k / overlayHeight;
+			f7 = k / overlayHeight;
 			f9 = f7 + 1 / overlayHeight;
-			f8 = minYOverlay + (maxYOverlay - minYOverlay) * f7 - 0.5D / (double)sheetHeight;
+			f8 = minYOverlay + (maxYOverlay - minYOverlay) * f7 - 0.5D / sheetHeight;
 			tessellator.addVertexWithUV(0, f9,          0, minXOverlay, f8);
 			tessellator.addVertexWithUV(1, f9,          0, maxXOverlay, f8);
 			tessellator.addVertexWithUV(1, f9, -thickness, maxXOverlay, f8);
@@ -277,17 +277,17 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0F, -1.0F, 0.0F);
 
-		for (k = 0; (double)k < iconHeight; ++k)
+		for (k = 0; k < iconHeight; ++k)
 		{
-			f7 = (double)k / iconHeight;
-			f8 = minYIcon + (maxYIcon - minYIcon) * f7 - 0.5D / (double)sheetHeight;
+			f7 = k / iconHeight;
+			f8 = minYIcon + (maxYIcon - minYIcon) * f7 - 0.5D / sheetHeight;
 			tessellator.addVertexWithUV(1, f7,          0, maxXIcon, f8);
 			tessellator.addVertexWithUV(0, f7,          0, minXIcon, f8);
 			tessellator.addVertexWithUV(0, f7, -thickness, minXIcon, f8);
 			tessellator.addVertexWithUV(1, f7, -thickness, maxXIcon, f8);
 
-			f7 = (double)k / overlayHeight;
-			f8 = minYOverlay + (maxYOverlay - minYOverlay) * f7 - 0.5D / (double)sheetHeight;
+			f7 = k / overlayHeight;
+			f8 = minYOverlay + (maxYOverlay - minYOverlay) * f7 - 0.5D / sheetHeight;
 			tessellator.addVertexWithUV(1, f7,          0, maxXOverlay, f8);
 			tessellator.addVertexWithUV(0, f7,          0, minXOverlay, f8);
 			tessellator.addVertexWithUV(0, f7, -thickness, minXOverlay, f8);

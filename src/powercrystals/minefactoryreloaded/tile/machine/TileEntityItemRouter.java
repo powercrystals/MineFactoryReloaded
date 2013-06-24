@@ -223,7 +223,7 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	@SideOnly(Side.CLIENT)
 	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
-		return new GuiItemRouter((ContainerItemRouter)getContainer(inventoryPlayer), this);
+		return new GuiItemRouter(getContainer(inventoryPlayer), this);
 	}
 	
 	@Override

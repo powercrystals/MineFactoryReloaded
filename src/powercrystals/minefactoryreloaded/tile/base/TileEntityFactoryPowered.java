@@ -249,7 +249,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int powerRequest(ForgeDirection from)
 	{
-		return (int)Math.max((getEnergyStoredMax() - getEnergyStored()) / energyPerMJ, 0);
+		return Math.max((getEnergyStoredMax() - getEnergyStored()) / energyPerMJ, 0);
 	}
 	
 	@Override

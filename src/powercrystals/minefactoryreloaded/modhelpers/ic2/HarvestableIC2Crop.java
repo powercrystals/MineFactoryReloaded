@@ -109,12 +109,9 @@ public class HarvestableIC2Crop implements IFactoryHarvestable
 			
 			tec.setSize(crop.getSizeAfterHarvest(tec));
 			_dirtyField.setBoolean(tec, true);
-			if(cropDrops != null)
+			for(ItemStack s : cropDrops)
 			{
-				for(ItemStack s : cropDrops)
-				{
-					drops.add(s);
-				}
+				drops.add(s);
 			}
 		}
 		catch(Exception e)

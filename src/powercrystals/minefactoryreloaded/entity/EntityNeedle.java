@@ -45,15 +45,15 @@ public class EntityNeedle extends Entity implements IProjectile
 		_owner = owner;
 		_ammoItemId = ammoSource.itemID;
 		
-		this.setLocationAndAngles(owner.posX, owner.posY + (double)owner.getEyeHeight(), owner.posZ, owner.rotationYaw, owner.rotationPitch);
-		this.posX -= (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
+		this.setLocationAndAngles(owner.posX, owner.posY + owner.getEyeHeight(), owner.posZ, owner.rotationYaw, owner.rotationPitch);
+		this.posX -= (MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
 		this.posY -= 0.1D;
-		this.posZ -= (double)(MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
+		this.posZ -= (MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.yOffset = 0.0F;
-		this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
+		this.motionX = (-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
+		this.motionZ = (MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
+		this.motionY = (-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
 		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, 1.5F, spread);
 	}
 	
@@ -70,18 +70,18 @@ public class EntityNeedle extends Entity implements IProjectile
 		x /= normal;
 		y /= normal;
 		z /= normal;
-		x += this.rand.nextGaussian() * (double)(this.rand.nextBoolean() ? -1 : 1) * 0.0075D * (double)spreadConst;
-		y += this.rand.nextGaussian() * (double)(this.rand.nextBoolean() ? -1 : 1) * 0.0075D * (double)spreadConst;
-		z += this.rand.nextGaussian() * (double)(this.rand.nextBoolean() ? -1 : 1) * 0.0075D * (double)spreadConst;
-		x *= (double)speedMult;
-		y *= (double)speedMult;
-		z *= (double)speedMult;
+		x += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1D : 1D) * 0.0075D * spreadConst;
+		y += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1D : 1D) * 0.0075D * spreadConst;
+		z += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1D : 1D) * 0.0075D * spreadConst;
+		x *= speedMult;
+		y *= speedMult;
+		z *= speedMult;
 		this.motionX = x;
 		this.motionY = y;
 		this.motionZ = z;
 		float horizSpeed = MathHelper.sqrt_double(x * x + z * z);
 		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(x, z) * 180.0D / Math.PI);
-		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(y, (double)horizSpeed) * 180.0D / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(y, horizSpeed) * 180.0D / Math.PI);
 	}
 	
 	@Override
@@ -104,7 +104,7 @@ public class EntityNeedle extends Entity implements IProjectile
 		{
 			float f = MathHelper.sqrt_double(x * x + z * z);
 			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(x, z) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(y, (double)f) * 180.0D / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(y, f) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch;
 			this.prevRotationYaw = this.rotationYaw;
 			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -120,7 +120,7 @@ public class EntityNeedle extends Entity implements IProjectile
 		{
 			float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(this.motionY, (double)f) * 180.0D / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(this.motionY, f) * 180.0D / Math.PI);
 		}
 		
 		++this.ticksInAir;
@@ -138,7 +138,7 @@ public class EntityNeedle extends Entity implements IProjectile
 		Entity entityHit = null;
 		List<?> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,	this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 		double closestRange = 0.0D;
-		float collisionRange = 0.3F;
+		double collisionRange = 0.3D;
 		
 		for(int l = 0; l < list.size(); ++l)
 		{
@@ -146,7 +146,7 @@ public class EntityNeedle extends Entity implements IProjectile
 			
 			if(e.canBeCollidedWith() && (e != _owner || this.ticksInAir >= 5))
 			{
-				AxisAlignedBB entitybb = e.boundingBox.expand((double)collisionRange, (double)collisionRange, (double)collisionRange);
+				AxisAlignedBB entitybb = e.boundingBox.expand(collisionRange, collisionRange, collisionRange);
 				MovingObjectPosition entityHitPos = entitybb.calculateIntercept(pos, nextPos);
 				
 				if(entityHitPos != null)
@@ -171,8 +171,7 @@ public class EntityNeedle extends Entity implements IProjectile
 		{
 			EntityPlayer entityplayer = (EntityPlayer)hit.entityHit;
 			
-			if(entityplayer.capabilities.disableDamage || _owner instanceof EntityPlayer
-					&& !((EntityPlayer)_owner).func_96122_a(entityplayer))
+			if(entityplayer.capabilities.disableDamage || !_owner.func_96122_a(entityplayer))
 			{
 				hit = null;
 			}
@@ -200,7 +199,7 @@ public class EntityNeedle extends Entity implements IProjectile
 		speed = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 		
-		for(this.rotationPitch = (float)(Math.atan2(this.motionY, (double)speed) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+		for(this.rotationPitch = (float)(Math.atan2(this.motionY, speed) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
 		{
 			;
 		}
@@ -227,18 +226,18 @@ public class EntityNeedle extends Entity implements IProjectile
 		
 		if(this.isInWater())
 		{
+			double particleOffset = 0.25D;
 			for(int i = 0; i < 4; ++i)
 			{
-				float particleOffset = 0.25F;
-				this.worldObj.spawnParticle("bubble", this.posX - this.motionX * (double)particleOffset, this.posY - this.motionY * (double)particleOffset, this.posZ - this.motionZ * (double)particleOffset, this.motionX, this.motionY, this.motionZ);
+				this.worldObj.spawnParticle("bubble", this.posX - this.motionX * particleOffset, this.posY - this.motionY * particleOffset, this.posZ - this.motionZ * particleOffset, this.motionX, this.motionY, this.motionZ);
 			}
 			
 			speedDropoff = 0.8F;
 		}
 		
-		this.motionX *= (double)speedDropoff;
-		this.motionY *= (double)speedDropoff;
-		this.motionZ *= (double)speedDropoff;
+		this.motionX *= speedDropoff;
+		this.motionY *= speedDropoff;
+		this.motionZ *= speedDropoff;
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.doBlockCollisions();
 	}
