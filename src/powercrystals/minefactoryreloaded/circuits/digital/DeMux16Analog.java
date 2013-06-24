@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits.digital;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class DeMux16Analog extends StatelessCircuit implements IRedNetLogicCircuit
+public class DeMux16Analog extends StatelessCircuit
 {
 	@Override
 	public int getInputCount()

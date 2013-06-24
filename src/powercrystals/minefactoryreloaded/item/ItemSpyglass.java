@@ -92,8 +92,8 @@ public class ItemSpyglass extends ItemFactory
 			
 			if(entity.canBeCollidedWith())
 			{
-				float entitySize = entity.getCollisionBorderSize();
-				AxisAlignedBB axisalignedbb = entity.boundingBox.expand((double)entitySize, (double)entitySize, (double)entitySize);
+				double entitySize = entity.getCollisionBorderSize();
+				AxisAlignedBB axisalignedbb = entity.boundingBox.expand(entitySize, entitySize, entitySize);
 				MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(playerPos, playerLookRel);
 				
 				if(axisalignedbb.isVecInside(playerPos))

@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits.logic;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Xnor2 extends StatelessCircuit implements IRedNetLogicCircuit
+public class Xnor2 extends StatelessCircuit
 {
 	@Override
 	public int getInputCount()

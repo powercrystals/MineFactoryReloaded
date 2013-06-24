@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits.digital;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Mux4 extends StatelessCircuit implements IRedNetLogicCircuit
+public class Mux4 extends StatelessCircuit
 {
 	private static String[] _inputPinNames = new String[] { "I0", "I1", "I2", "I3", "S0", "S1" };
 	

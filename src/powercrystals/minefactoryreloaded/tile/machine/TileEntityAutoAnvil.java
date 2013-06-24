@@ -338,7 +338,7 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 				repairCost = Math.max(1, repairCost / 2);
 			}
 			
-			if(enchantingWithBook && outputItem != null && !Item.itemsList[outputItem.itemID].isBookEnchantable(outputItem, addedItem))
+			if(enchantingWithBook && !Item.itemsList[outputItem.itemID].isBookEnchantable(outputItem, addedItem))
 			{
 				outputItem = null;
 			}

@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits.analog;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Max3 extends StatelessCircuit implements IRedNetLogicCircuit
+public class Max3 extends StatelessCircuit
 {
 	@Override
 	public int getInputCount()

@@ -27,7 +27,6 @@ import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import powercrystals.core.mod.BaseMod;
-import powercrystals.core.updater.IUpdateableMod;
 import powercrystals.core.updater.UpdateManager;
 import powercrystals.minefactoryreloaded.block.BlockConveyor;
 import powercrystals.minefactoryreloaded.block.BlockDecorativeStone;
@@ -136,7 +135,7 @@ dependencies = "after:BuildCraft|Core;after:BuildCraft|Factory;after:BuildCraft|
 clientPacketHandlerSpec = @SidedPacketHandler(channels = { MineFactoryReloadedCore.modNetworkChannel }, packetHandler = ClientPacketHandler.class),
 serverPacketHandlerSpec = @SidedPacketHandler(channels = { MineFactoryReloadedCore.modNetworkChannel }, packetHandler = ServerPacketHandler.class),
 connectionHandler = ConnectionHandler.class)
-public class MineFactoryReloadedCore extends BaseMod implements IUpdateableMod
+public class MineFactoryReloadedCore extends BaseMod
 {
 	@SidedProxy(clientSide = "powercrystals.minefactoryreloaded.net.ClientProxy", serverSide = "powercrystals.minefactoryreloaded.net.CommonProxy")
 	public static IMFRProxy proxy;

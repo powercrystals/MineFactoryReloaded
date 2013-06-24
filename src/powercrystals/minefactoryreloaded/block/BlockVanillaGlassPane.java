@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.block;
 
-import powercrystals.minefactoryreloaded.render.block.IconOverlay;
+import powercrystals.minefactoryreloaded.render.IconOverlay;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;

@@ -6,9 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
-public class HarvestableWood extends HarvestableStandard implements IFactoryHarvestable
+public class HarvestableWood extends HarvestableStandard
 {
 	public HarvestableWood()
 	{

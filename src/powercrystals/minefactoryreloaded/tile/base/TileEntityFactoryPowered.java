@@ -4,11 +4,8 @@ import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
 import powercrystals.core.power.PowerProviderAdvanced;
@@ -250,7 +247,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int powerRequest(ForgeDirection from)
 	{
-		return (int)Math.max((getEnergyStoredMax() - getEnergyStored()) / energyPerMJ, 0);
+		return Math.max((getEnergyStoredMax() - getEnergyStored()) / energyPerMJ, 0);
 	}
 	
 	@Override

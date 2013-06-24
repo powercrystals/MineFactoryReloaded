@@ -3,10 +3,9 @@ package powercrystals.minefactoryreloaded.circuits.timing;
 import java.util.ArrayList;
 
 import net.minecraft.nbt.NBTTagCompound;
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Delay extends StatelessCircuit implements IRedNetLogicCircuit
+public class Delay extends StatelessCircuit
 {
 	private int delayTime;
 	private ArrayList<Integer> history = new ArrayList<Integer>();

@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits.analog;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Scaler extends StatelessCircuit implements IRedNetLogicCircuit
+public class Scaler extends StatelessCircuit
 {
 	private static String[] _inputPinNames = new String[] { "I", "IMn", "IMx", "OMn", "OMx" };
 	

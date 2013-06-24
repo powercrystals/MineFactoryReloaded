@@ -5,9 +5,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
-import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
-public class PlantableCropPlant extends PlantableStandard implements IFactoryPlantable
+public class PlantableCropPlant extends PlantableStandard
 {
 	public PlantableCropPlant(int seedItemID, int plantBlockID)
 	{

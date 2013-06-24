@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.nbt.NBTTagCompound;
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Delay8ch extends StatelessCircuit implements IRedNetLogicCircuit
+public class Delay8ch extends StatelessCircuit
 {
 	private int delayTime;
 	private Map<Integer, List<Integer>> history = new HashMap<Integer, List<Integer>>();
