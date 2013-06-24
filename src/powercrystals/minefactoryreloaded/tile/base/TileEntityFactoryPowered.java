@@ -4,8 +4,11 @@ import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
 import powercrystals.core.power.PowerProviderAdvanced;
@@ -60,11 +63,12 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	protected TileEntityFactoryPowered(Machine machine)
 	{
-		this(machine.getActivationEnergyMJ());
+		this(machine, machine.getActivationEnergyMJ());
 	}
 	
-	protected TileEntityFactoryPowered(int activationCostMJ)
+	protected TileEntityFactoryPowered(Machine machine, int activationCostMJ)
 	{
+		super(machine);
 		this._energyActivation = activationCostMJ * energyPerMJ;
 		_powerProvider = new PowerProviderAdvanced();
 		_powerProvider.configure(25, 10, 10, 1, 1000);
@@ -72,9 +76,6 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	}
 	
 	// local methods
-	
-	@Override
-	public abstract String getInvName();
 	
 	@Override
 	public void updateEntity()

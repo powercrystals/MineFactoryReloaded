@@ -18,6 +18,7 @@ import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiUnifier;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUnifier;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,6 +34,7 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	
 	public TileEntityUnifier()
 	{
+		super(Machine.Unifier);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 		_biofuel = LiquidDictionary.getLiquid("biofuel", 1);
 		_ethanol = LiquidDictionary.getLiquid("ethanol", 1);

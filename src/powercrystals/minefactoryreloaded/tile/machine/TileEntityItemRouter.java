@@ -9,12 +9,23 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiItemRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerItemRouter;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityItemRouter extends TileEntityFactoryInventory
 {
+	public TileEntityItemRouter()
+	{
+		super(Machine.ItemRouter);
+	}
+
+	public TileEntityItemRouter(Machine machine)
+	{
+		super(machine);
+	}
+
 	protected static final int[] _invOffsets = new int[] { 0, 0, 9, 18, 36, 27 };
 	protected static final ForgeDirection[] _outputDirections = new ForgeDirection[]
 			{ ForgeDirection.DOWN, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };

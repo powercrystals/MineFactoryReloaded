@@ -22,50 +22,55 @@ public class AutoEnchantmentHelper extends EnchantmentHelper
 	@SuppressWarnings("unchecked")
 	public static ItemStack addRandomEnchantment(Random rand, ItemStack stack, int level)
 	{
-		List<EnchantmentData> enchantments = buildEnchantmentList(rand, stack, level);
+		if (stack == null)
+		{
+			return null;
+		}
+		ItemStack output = stack.splitStack(1);
+		
+		List<EnchantmentData> enchantments = buildEnchantmentList(rand, output, level);
 		if(enchantments == null)
 		{
-			return stack;
+			return output;
 		}
 		
-		Map<Integer, Integer> existingEnchants = getEnchantments(stack);
+		Map<Integer, Integer> existingEnchants = getEnchantments(output);
 		
-		boolean isBook = stack.itemID == Item.book.itemID;
+		boolean isBook = output.itemID == Item.book.itemID;
+		
 		
 		if(isBook)
 		{
-			stack.itemID = Item.enchantedBook.itemID;
+			output.itemID = Item.enchantedBook.itemID;
 		}
 		
 		Collections.shuffle(enchantments);
-		if(enchantments != null)
+		
+		outerlist:	for(EnchantmentData newEnchant : enchantments)
 		{
-			outerlist:	for(EnchantmentData newEnchant : enchantments)
+			if(isBook)
 			{
-				if(isBook)
+				Item.enchantedBook.func_92115_a(output, newEnchant);
+				return output;
+			}
+			else
+			{
+				for(Entry<Integer, Integer> oldEnchant : existingEnchants.entrySet())
 				{
-					Item.enchantedBook.func_92115_a(stack, newEnchant);
-					return stack;
-				}
-				else
-				{
-					for(Entry<Integer, Integer> oldEnchant : existingEnchants.entrySet())
+					if(oldEnchant.getKey() == newEnchant.enchantmentobj.effectId)
 					{
-						if(oldEnchant.getKey() == newEnchant.enchantmentobj.effectId)
+						if(oldEnchant.getValue() <= newEnchant.enchantmentLevel)
 						{
-							if(oldEnchant.getValue() <= newEnchant.enchantmentLevel)
-							{
-								updateEnchantment(stack, oldEnchant.getKey(), (short)newEnchant.enchantmentLevel);
-							}
-							continue outerlist;
+							updateEnchantment(output, oldEnchant.getKey(), (short)newEnchant.enchantmentLevel);
 						}
+						continue outerlist;
 					}
-					stack.addEnchantment(newEnchant.enchantmentobj, newEnchant.enchantmentLevel);
 				}
+				output.addEnchantment(newEnchant.enchantmentobj, newEnchant.enchantmentLevel);
 			}
 		}
 		
-		return stack;
+		return output;
 	}
 	
 	private static void updateEnchantment(ItemStack stack, int enchantId, short newLevel)
@@ -158,7 +163,7 @@ public class AutoEnchantmentHelper extends EnchantmentHelper
 		{
 			Enchantment enchantment = Enchantment.enchantmentsList[var7];
 			
-			if(enchantment != null && (enchantment.canApplyAtEnchantingTable(stack) || isBook))
+			if(enchantment != null && (isBook || enchantment.canApplyAtEnchantingTable(stack)))
 			{
 				for(int enchLevel = enchantment.getMinLevel(); enchLevel <= enchantment.getMaxLevel(); ++enchLevel)
 				{

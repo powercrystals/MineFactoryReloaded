@@ -123,32 +123,101 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	protected boolean activateMachine()
 	{
-		ItemStack s = getStackInSlot(0);
-		if(s == null)
+		if (worldObj.isRemote)
+		{
+			return false;
+		}
+		ItemStack input = getStackInSlot(0);
+		ItemStack output = getStackInSlot(1);
+		if(input == null)
 		{
 			setWorkDone(0);
 			return false;
 		}
-		if((s.getItem().getItemEnchantability() == 0 && s.itemID != Item.glassBottle.itemID) || s.itemID == Item.enchantedBook.itemID)
+		if (input.stackSize <= 0)
 		{
 			setInventorySlotContents(0, null);
-			setInventorySlotContents(1, s);
+			setWorkDone(0);
+			return false;
+		}
+		if (output != null)
+		{
+			if (output.stackSize >= output.getMaxStackSize() || output.stackSize >= getInventoryStackLimit())
+			{
+				setWorkDone(0);
+				return false;
+			}
+			if (output.stackSize <= 0)
+			{
+				setInventorySlotContents(1, null);
+				output = null;
+			}
+		}
+		if((input.getItem().getItemEnchantability() == 0 && input.itemID != Item.glassBottle.itemID) || input.itemID == Item.enchantedBook.itemID)
+		{
+			if (output == null)
+			{
+				setInventorySlotContents(0, null);
+				setInventorySlotContents(1, input);
+			}
+			else if (input.isItemEqual(output) && ItemStack.areItemStackTagsEqual(input, output))
+			{
+				int amountToCopy = Math.min(output.getMaxStackSize() - output.stackSize, input.stackSize);
+				amountToCopy = Math.min(getInventoryStackLimit() - output.stackSize, amountToCopy);
+				if (amountToCopy <= 0)
+				{
+					setWorkDone(0);
+					return false;
+				}
+				output.stackSize += amountToCopy;
+				input.stackSize -= amountToCopy;
+				if (input.stackSize <= 0)
+				{
+					setInventorySlotContents(0, null);
+				}
+			}
+			else
+			{
+				setWorkDone(0);
+				return false;
+			}
 			setWorkDone(0);
 			return true;
 		}
 		else if(getWorkDone() >= getWorkMax())
 		{
-			if(s.itemID == Item.glassBottle.itemID)
+			if(input.itemID == Item.glassBottle.itemID)
 			{
-				setInventorySlotContents(0, null);
-				setInventorySlotContents(1, new ItemStack(Item.expBottle));
+				if (output == null)
+				{
+					output = new ItemStack(Item.expBottle, 0, 0);
+				}
+				if (output.itemID != Item.expBottle.itemID)
+				{
+					setWorkDone(0);
+					return false;
+				}
+				if (--input.stackSize <= 0)
+				{
+					setInventorySlotContents(0, null);
+				}
+				output.stackSize++;
+				setInventorySlotContents(1, output);
+				setWorkDone(0);
+			}
+			else if (output == null)
+			{
+				output = AutoEnchantmentHelper.addRandomEnchantment(this._rand, input, _targetLevel);
+				if (input.stackSize <= 0)
+				{
+					setInventorySlotContents(0, null);
+				}
+				setInventorySlotContents(1, output);
+				setWorkDone(0);
 			}
 			else
 			{
-				AutoEnchantmentHelper.addRandomEnchantment(this._rand, s, _targetLevel);
-				setInventorySlotContents(0, null);
-				setInventorySlotContents(1, s);
-				setWorkDone(0);
+				return false;
 			}
 			return true;
 		}
@@ -179,7 +248,7 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	@Override
 	public int getInventoryStackLimit()
 	{
-		return 1;
+		return 64;
 	}
 	
 	@Override
@@ -189,9 +258,15 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	}
 	
 	@Override
-	public boolean canInsertItem(int slot, ItemStack stack, int sideordinal)
+	public boolean canInsertItem(int slot, ItemStack input, int sideordinal)
 	{
-		if(slot == 0) return _inventory[0] == null;
+		if(slot == 0)
+		{
+			ItemStack contents = this.getStackInSlot(0);
+			// TODO: limit input to glass bottles and items with an enchantability > 0
+			return contents == null || (contents.stackSize < getInventoryStackLimit() &&
+					input.isItemEqual(contents) && ItemStack.areItemStackTagsEqual(input, contents));
+		}
 		return false;
 	}
 	

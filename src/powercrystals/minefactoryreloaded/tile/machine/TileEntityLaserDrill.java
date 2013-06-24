@@ -22,6 +22,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiLaserDrill;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLaserDrill;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -43,6 +44,7 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 	
 	public TileEntityLaserDrill()
 	{
+		super(Machine.LaserDrill);
 		_rand = new Random();
 	}
 	

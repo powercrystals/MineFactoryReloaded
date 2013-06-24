@@ -23,12 +23,13 @@ public abstract class TileEntityLiquidGenerator extends TileEntityGenerator impl
 	
 	private LiquidTank _tank;
 	
-	public TileEntityLiquidGenerator(int liquidConsumedPerTick, int powerProducedPerConsumption, int ticksBetweenConsumption)
+	public TileEntityLiquidGenerator(Machine machine, int liquidConsumedPerTick, int powerProducedPerConsumption, int ticksBetweenConsumption)
 	{
+		super(machine);
 		_liquidConsumedPerTick = liquidConsumedPerTick;
 		_powerProducedPerConsumption = powerProducedPerConsumption;
 		_ticksBetweenConsumption = ticksBetweenConsumption;
-		_outputPulseSize = Machine.BioFuelGenerator.getActivationEnergyMJ() * TileEntityFactoryPowered.energyPerMJ;
+		_outputPulseSize = machine.getActivationEnergyMJ() * TileEntityFactoryPowered.energyPerMJ;
 		
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 	}

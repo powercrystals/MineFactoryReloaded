@@ -17,6 +17,7 @@ import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiBioReactor;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioReactor;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -34,6 +35,7 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	
 	public TileEntityBioReactor()
 	{
+		super(Machine.BioReactor);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
 	}
 	
