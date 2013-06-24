@@ -35,14 +35,14 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 	{
 		RenderEngine renderEngine = Minecraft.getMinecraft().renderEngine;
 		RenderBlocks renderer = (RenderBlocks)data[0];
-		
+
 		BlockFactoryGlassPane pane = (BlockFactoryGlassPane)Block.blocksList[((ItemBlock)item.getItem()).getBlockID()];
-		
+
 		Icon iconFront, iconOverlay;
-		
+
 		iconFront = renderer.getBlockIconFromSideAndMetadata(pane, 0, item.getItemDamage());
 		iconOverlay = pane.getBlockOverlayTexture();
-		
+
 		GL11.glPushMatrix();
 
 		if (item.getItemSpriteNumber() == 0)
@@ -51,24 +51,24 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 			renderEngine.bindTexture("/gui/items.png");
 
 		Tessellator tessellator = Tessellator.instance;
-		
+
 		double minXGlass = iconFront.getMinU();
 		double maxXGlass = iconFront.getMaxU();
 		double minYGlass = iconFront.getMinV();
 		double maxYGlass = iconFront.getMaxV();
-		
+
 		double minXOverlay = iconOverlay.getMinU();
 		double maxXOverlay = iconOverlay.getMaxU();
 		double minYOverlay = iconOverlay.getMinV();
 		double maxYOverlay = iconOverlay.getMaxV();
-		
+
 		double xMin = 0;
 		double xMax = 16;
 		double yMin = 0;
 		double yMax = 16;
 		double zMin = 0;
 		double zMax = 0;
-		
+
 		if(type == ItemRenderType.INVENTORY)
 		{
 			GL11.glDisable(GL11.GL_LIGHTING);
@@ -77,7 +77,7 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 			tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, minYGlass);
-			
+
 			tessellator.addVertexWithUV(xMin, yMin, zMin, minXOverlay, minYOverlay);
 			tessellator.addVertexWithUV(xMin, yMax, zMin, minXOverlay, maxYOverlay);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXOverlay, maxYOverlay);
@@ -169,131 +169,131 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 	}
 
 	private static void renderItemIn2D(Tessellator tessellator, double maxXIcon, double maxYIcon, double minXIcon, double minYIcon, double maxXOverlay, double maxYOverlay, double minXOverlay, double minYOverlay, int sheetWidth, int sheetHeight, double thickness)
-    {
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, 0.0F, 1.0F);
-        tessellator.addVertexWithUV(0, 0, 0, minXIcon, minYIcon);
-        tessellator.addVertexWithUV(1, 0, 0, maxXIcon, minYIcon);
-        tessellator.addVertexWithUV(1, 1, 0, maxXIcon, maxYIcon);
-        tessellator.addVertexWithUV(0, 1, 0, minXIcon, maxYIcon);
-        
+	{
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, 1.0F);
+		tessellator.addVertexWithUV(0, 0, 0, minXIcon, minYIcon);
+		tessellator.addVertexWithUV(1, 0, 0, maxXIcon, minYIcon);
+		tessellator.addVertexWithUV(1, 1, 0, maxXIcon, maxYIcon);
+		tessellator.addVertexWithUV(0, 1, 0, minXIcon, maxYIcon);
+
 		tessellator.addVertexWithUV(0, 0, 0, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(1, 0, 0, maxXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(1, 1, 0, maxXOverlay, maxYOverlay);
 		tessellator.addVertexWithUV(0, 1, 0, minXOverlay, maxYOverlay);
-        tessellator.draw();
-        
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, 0.0F, -1.0F);
-        tessellator.addVertexWithUV(0, 1, -thickness, minXIcon, maxYIcon);
-        tessellator.addVertexWithUV(1, 1, -thickness, maxXIcon, maxYIcon);
-        tessellator.addVertexWithUV(1, 0, -thickness, maxXIcon, minYIcon);
-        tessellator.addVertexWithUV(0, 0, -thickness, minXIcon, minYIcon);
-        
+		tessellator.draw();
+
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, -1.0F);
+		tessellator.addVertexWithUV(0, 1, -thickness, minXIcon, maxYIcon);
+		tessellator.addVertexWithUV(1, 1, -thickness, maxXIcon, maxYIcon);
+		tessellator.addVertexWithUV(1, 0, -thickness, maxXIcon, minYIcon);
+		tessellator.addVertexWithUV(0, 0, -thickness, minXIcon, minYIcon);
+
 		tessellator.addVertexWithUV(0, 1, -thickness, minXOverlay, maxYOverlay);
 		tessellator.addVertexWithUV(1, 1, -thickness, maxXOverlay, maxYOverlay);
 		tessellator.addVertexWithUV(1, 0, -thickness, maxXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(0, 0, -thickness, minXOverlay, minYOverlay);
-        tessellator.draw();
-        
-        double iconWidth = (double)sheetWidth * (maxXIcon - minXIcon);
-        double iconHeight = (double)sheetHeight * (minYIcon - maxYIcon);
-        
-        double overlayWidth = (double)sheetWidth * (maxXOverlay - minXOverlay);
-        double overlayHeight = (double)sheetHeight * (minYOverlay - maxYOverlay);
-        
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(-1.0F, 0.0F, 0.0F);
-        
-        int k;
-        double f7;
-        double f8;
+		tessellator.draw();
 
-        for (k = 0; (double)k < iconWidth; ++k)
-        {
-            f7 = (double)k / iconWidth;
-            f8 = maxXIcon + (minXIcon - maxXIcon) * f7 - 0.5D / (double)sheetWidth;
-            tessellator.addVertexWithUV(f7, 0, -thickness, f8, minYIcon);
-            tessellator.addVertexWithUV(f7, 0,          0, f8, minYIcon);
-            tessellator.addVertexWithUV(f7, 1,          0, f8, maxYIcon);
-            tessellator.addVertexWithUV(f7, 1, -thickness, f8, maxYIcon);
+		double iconWidth = (double)sheetWidth * (maxXIcon - minXIcon);
+		double iconHeight = (double)sheetHeight * (minYIcon - maxYIcon);
 
-            f7 = (double)k / overlayWidth;
-            f8 = maxXOverlay + (minXOverlay - maxXOverlay) * f7 - 0.5D / (double)sheetWidth;
-            tessellator.addVertexWithUV(f7, 0, -thickness, f8, minYOverlay);
-            tessellator.addVertexWithUV(f7, 0,          0, f8, minYOverlay);
-            tessellator.addVertexWithUV(f7, 1,          0, f8, maxYOverlay);
-            tessellator.addVertexWithUV(f7, 1, -thickness, f8, maxYOverlay);
-        }
+		double overlayWidth = (double)sheetWidth * (maxXOverlay - minXOverlay);
+		double overlayHeight = (double)sheetHeight * (minYOverlay - maxYOverlay);
 
-        tessellator.draw();
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(1.0F, 0.0F, 0.0F);
-        double f9;
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(-1.0F, 0.0F, 0.0F);
 
-        for (k = 0; (double)k < iconWidth; ++k)
-        {
-            f7 = (double)k / iconWidth;
-            f9 = f7 + 1 / iconWidth;
-            f8 = maxXIcon + (minXIcon - maxXIcon) * f7 - 0.5D / (double)sheetWidth;
-            tessellator.addVertexWithUV(f9, 1, -thickness, f8, maxYIcon);
-            tessellator.addVertexWithUV(f9, 1,          0, f8, maxYIcon);
-            tessellator.addVertexWithUV(f9, 0,          0, f8, minYIcon);
-            tessellator.addVertexWithUV(f9, 0, -thickness, f8, minYIcon);
+		int k;
+		double f7;
+		double f8;
 
-            f7 = (double)k / overlayWidth;
-            f9 = f7 + 1 / overlayWidth;
-            f8 = maxXOverlay + (minXOverlay - maxXOverlay) * f7 - 0.5D / (double)sheetWidth;
-            tessellator.addVertexWithUV(f9, 1, -thickness, f8, maxYOverlay);
-            tessellator.addVertexWithUV(f9, 1,          0, f8, maxYOverlay);
-            tessellator.addVertexWithUV(f9, 0,          0, f8, minYOverlay);
-            tessellator.addVertexWithUV(f9, 0, -thickness, f8, minYOverlay);
-        }
+		for (k = 0; (double)k < iconWidth; ++k)
+		{
+			f7 = (double)k / iconWidth;
+			f8 = maxXIcon + (minXIcon - maxXIcon) * f7 - 0.5D / (double)sheetWidth;
+			tessellator.addVertexWithUV(f7, 0, -thickness, f8, minYIcon);
+			tessellator.addVertexWithUV(f7, 0,          0, f8, minYIcon);
+			tessellator.addVertexWithUV(f7, 1,          0, f8, maxYIcon);
+			tessellator.addVertexWithUV(f7, 1, -thickness, f8, maxYIcon);
 
-        tessellator.draw();
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, 1.0F, 0.0F);
+			f7 = (double)k / overlayWidth;
+			f8 = maxXOverlay + (minXOverlay - maxXOverlay) * f7 - 0.5D / (double)sheetWidth;
+			tessellator.addVertexWithUV(f7, 0, -thickness, f8, minYOverlay);
+			tessellator.addVertexWithUV(f7, 0,          0, f8, minYOverlay);
+			tessellator.addVertexWithUV(f7, 1,          0, f8, maxYOverlay);
+			tessellator.addVertexWithUV(f7, 1, -thickness, f8, maxYOverlay);
+		}
 
-        for (k = 0; (double)k < iconHeight; ++k)
-        {
-            f7 = (double)k / overlayHeight;
-            f9 = f7 + 1 / overlayHeight;
-            f8 = minYIcon + (maxYIcon - minYIcon) * f7 - 0.5D / (double)sheetHeight;
-            tessellator.addVertexWithUV(0, f9,          0, minXIcon, f8);
-            tessellator.addVertexWithUV(1, f9,          0, maxXIcon, f8);
-            tessellator.addVertexWithUV(1, f9, -thickness, maxXIcon, f8);
-            tessellator.addVertexWithUV(0, f9, -thickness, minXIcon, f8);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(1.0F, 0.0F, 0.0F);
+		double f9;
 
-            f7 = (double)k / overlayHeight;
-            f9 = f7 + 1 / overlayHeight;
-            f8 = minYOverlay + (maxYOverlay - minYOverlay) * f7 - 0.5D / (double)sheetHeight;
-            tessellator.addVertexWithUV(0, f9,          0, minXOverlay, f8);
-            tessellator.addVertexWithUV(1, f9,          0, maxXOverlay, f8);
-            tessellator.addVertexWithUV(1, f9, -thickness, maxXOverlay, f8);
-            tessellator.addVertexWithUV(0, f9, -thickness, minXOverlay, f8);
-        }
+		for (k = 0; (double)k < iconWidth; ++k)
+		{
+			f7 = (double)k / iconWidth;
+			f9 = f7 + 1 / iconWidth;
+			f8 = maxXIcon + (minXIcon - maxXIcon) * f7 - 0.5D / (double)sheetWidth;
+			tessellator.addVertexWithUV(f9, 1, -thickness, f8, maxYIcon);
+			tessellator.addVertexWithUV(f9, 1,          0, f8, maxYIcon);
+			tessellator.addVertexWithUV(f9, 0,          0, f8, minYIcon);
+			tessellator.addVertexWithUV(f9, 0, -thickness, f8, minYIcon);
 
-        tessellator.draw();
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, -1.0F, 0.0F);
+			f7 = (double)k / overlayWidth;
+			f9 = f7 + 1 / overlayWidth;
+			f8 = maxXOverlay + (minXOverlay - maxXOverlay) * f7 - 0.5D / (double)sheetWidth;
+			tessellator.addVertexWithUV(f9, 1, -thickness, f8, maxYOverlay);
+			tessellator.addVertexWithUV(f9, 1,          0, f8, maxYOverlay);
+			tessellator.addVertexWithUV(f9, 0,          0, f8, minYOverlay);
+			tessellator.addVertexWithUV(f9, 0, -thickness, f8, minYOverlay);
+		}
 
-        for (k = 0; (double)k < iconHeight; ++k)
-        {
-            f7 = (double)k / iconHeight;
-            f8 = minYIcon + (maxYIcon - minYIcon) * f7 - 0.5D / (double)sheetHeight;
-            tessellator.addVertexWithUV(1, f7,          0, maxXIcon, f8);
-            tessellator.addVertexWithUV(0, f7,          0, minXIcon, f8);
-            tessellator.addVertexWithUV(0, f7, -thickness, minXIcon, f8);
-            tessellator.addVertexWithUV(1, f7, -thickness, maxXIcon, f8);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 1.0F, 0.0F);
 
-            f7 = (double)k / overlayHeight;
-            f8 = minYOverlay + (maxYOverlay - minYOverlay) * f7 - 0.5D / (double)sheetHeight;
-            tessellator.addVertexWithUV(1, f7,          0, maxXOverlay, f8);
-            tessellator.addVertexWithUV(0, f7,          0, minXOverlay, f8);
-            tessellator.addVertexWithUV(0, f7, -thickness, minXOverlay, f8);
-            tessellator.addVertexWithUV(1, f7, -thickness, maxXOverlay, f8);
-        }
+		for (k = 0; (double)k < iconHeight; ++k)
+		{
+			f7 = (double)k / overlayHeight;
+			f9 = f7 + 1 / overlayHeight;
+			f8 = minYIcon + (maxYIcon - minYIcon) * f7 - 0.5D / (double)sheetHeight;
+			tessellator.addVertexWithUV(0, f9,          0, minXIcon, f8);
+			tessellator.addVertexWithUV(1, f9,          0, maxXIcon, f8);
+			tessellator.addVertexWithUV(1, f9, -thickness, maxXIcon, f8);
+			tessellator.addVertexWithUV(0, f9, -thickness, minXIcon, f8);
 
-        tessellator.draw();
-    }
+			f7 = (double)k / overlayHeight;
+			f9 = f7 + 1 / overlayHeight;
+			f8 = minYOverlay + (maxYOverlay - minYOverlay) * f7 - 0.5D / (double)sheetHeight;
+			tessellator.addVertexWithUV(0, f9,          0, minXOverlay, f8);
+			tessellator.addVertexWithUV(1, f9,          0, maxXOverlay, f8);
+			tessellator.addVertexWithUV(1, f9, -thickness, maxXOverlay, f8);
+			tessellator.addVertexWithUV(0, f9, -thickness, minXOverlay, f8);
+		}
+
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, -1.0F, 0.0F);
+
+		for (k = 0; (double)k < iconHeight; ++k)
+		{
+			f7 = (double)k / iconHeight;
+			f8 = minYIcon + (maxYIcon - minYIcon) * f7 - 0.5D / (double)sheetHeight;
+			tessellator.addVertexWithUV(1, f7,          0, maxXIcon, f8);
+			tessellator.addVertexWithUV(0, f7,          0, minXIcon, f8);
+			tessellator.addVertexWithUV(0, f7, -thickness, minXIcon, f8);
+			tessellator.addVertexWithUV(1, f7, -thickness, maxXIcon, f8);
+
+			f7 = (double)k / overlayHeight;
+			f8 = minYOverlay + (maxYOverlay - minYOverlay) * f7 - 0.5D / (double)sheetHeight;
+			tessellator.addVertexWithUV(1, f7,          0, maxXOverlay, f8);
+			tessellator.addVertexWithUV(0, f7,          0, minXOverlay, f8);
+			tessellator.addVertexWithUV(0, f7, -thickness, minXOverlay, f8);
+			tessellator.addVertexWithUV(1, f7, -thickness, maxXOverlay, f8);
+		}
+
+		tessellator.draw();
+	}
 }
