@@ -1,4 +1,4 @@
-package powercrystals.minefactoryreloaded.render.block;
+package powercrystals.minefactoryreloaded.render;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
