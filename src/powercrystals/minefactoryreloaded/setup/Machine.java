@@ -171,7 +171,10 @@ public class Machine
 	}
 	
 	
-	
+	public String getName()
+	{
+		return _name;
+	}
 	
 	public String getInternalName()
 	{

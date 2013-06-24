@@ -5,10 +5,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.core.MFRUtil;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 
 public class TileEntityCollector extends TileEntityFactoryInventory
 {
+	public TileEntityCollector()
+	{
+		super(Machine.ItemCollector);
+	}
+
 	public void addToChests(EntityItem i)
 	{
 		if(i.isDead)

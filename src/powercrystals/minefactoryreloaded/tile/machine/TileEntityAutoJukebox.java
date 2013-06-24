@@ -11,6 +11,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiAutoJukebox;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoJukebox;
 import powercrystals.minefactoryreloaded.net.Packets;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
@@ -18,6 +19,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAutoJukebox extends TileEntityFactoryInventory
 {
+	public TileEntityAutoJukebox()
+	{
+		super(Machine.AutoJukebox);
+	}
+
 	private boolean _lastRedstoneState;
 	private boolean _canCopy;
 	private boolean _canPlay;

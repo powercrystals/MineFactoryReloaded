@@ -40,6 +40,7 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 	
 	public TileEntitySewer()
 	{
+		super(Machine.Sewer);
 		_tank = new LiquidTank(1 * LiquidContainerRegistry.BUCKET_VOLUME);
 		_areaManager = new HarvestAreaManager(this, 0, 1, 0);
 		_areaManager.setOverrideDirection(ForgeDirection.UP);

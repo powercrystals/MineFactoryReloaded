@@ -6,6 +6,7 @@ import net.minecraftforge.liquids.LiquidStack;
 import powercrystals.minefactoryreloaded.gui.client.GuiBioFuelGenerator;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBioFuelGenerator;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityLiquidGenerator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +19,7 @@ public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 	
 	public TileEntityBioFuelGenerator()
 	{
-		super(liquidConsumedPerTick, energyProducedPerConsumption, ticksBetweenConsumption);
+		super(Machine.BioFuelGenerator, liquidConsumedPerTick, energyProducedPerConsumption, ticksBetweenConsumption);
 	}
 	
 	@Override

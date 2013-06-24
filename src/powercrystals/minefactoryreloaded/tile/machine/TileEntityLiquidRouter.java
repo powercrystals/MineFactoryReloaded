@@ -13,6 +13,7 @@ import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiLiquidRouter;
 import powercrystals.minefactoryreloaded.gui.container.ContainerLiquidRouter;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,6 +26,7 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 	
 	public TileEntityLiquidRouter()
 	{
+		super(Machine.LiquidRouter);
 		for(int i = 0; i < 6; i++)
 		{
 			_bufferTanks[i] = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME);

@@ -17,7 +17,7 @@ public abstract class TileEntityLiquidFabricator extends TileEntityFactoryPowere
 	
 	protected TileEntityLiquidFabricator(int liquidId, int liquidFabPerTick, Machine machine)
 	{
-		super(machine.getActivationEnergyMJ() * liquidFabPerTick);
+		super(machine, machine.getActivationEnergyMJ() * liquidFabPerTick);
 		_liquidId = liquidId;
 		_liquidFabPerTick = liquidFabPerTick;
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME);

@@ -11,12 +11,18 @@ import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
+import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implements IDeepStorageUnit
 {
+	public TileEntityDeepStorageUnit()
+	{
+		super(Machine.DeepStorageUnit);
+	}
+
 	private boolean[] _isSideOutput = new boolean[] { false, false, true, true, true, true };
 	
 	private int _storedQuantity;
