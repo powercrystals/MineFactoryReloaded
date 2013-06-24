@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class PassthroughGated extends StatelessCircuit implements IRedNetLogicCircuit
+public class PassthroughGated extends StatelessCircuit
 {
 	@Override
 	public int getInputCount()

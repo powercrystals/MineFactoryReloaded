@@ -2,10 +2,9 @@ package powercrystals.minefactoryreloaded.circuits.digital;
 
 import java.util.Random;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class RandomizerDigital extends StatelessCircuit implements IRedNetLogicCircuit
+public class RandomizerDigital extends StatelessCircuit
 {
 	private Random _rand;
 	

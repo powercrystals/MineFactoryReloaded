@@ -1,7 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,7 @@ import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import buildcraft.api.gates.IAction; 
 
 @Implementable("buildcraft.core.IMachine")
-public abstract class TileEntityFactoryInventory extends TileEntityFactory implements IInventory, ISidedInventory
+public abstract class TileEntityFactoryInventory extends TileEntityFactory implements ISidedInventory
 {
 	protected TileEntityFactoryInventory()
 	{

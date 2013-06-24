@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits.wave;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Sine extends StatelessCircuit implements IRedNetLogicCircuit
+public class Sine extends StatelessCircuit
 {
 	@Override
 	public int getInputCount()

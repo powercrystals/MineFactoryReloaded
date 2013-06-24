@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits.digital;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class AdderDigitalHalf extends StatelessCircuit implements IRedNetLogicCircuit
+public class AdderDigitalHalf extends StatelessCircuit
 {
 	@Override
 	public int getInputCount()

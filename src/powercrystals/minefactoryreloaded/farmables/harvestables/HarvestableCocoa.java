@@ -10,9 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
-public class HarvestableCocoa extends HarvestableStandard implements IFactoryHarvestable
+public class HarvestableCocoa extends HarvestableStandard
 {
 	public HarvestableCocoa()
 	{

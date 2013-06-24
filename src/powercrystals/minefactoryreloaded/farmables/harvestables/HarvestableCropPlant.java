@@ -4,9 +4,8 @@ import java.util.Map;
 
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
-public class HarvestableCropPlant extends HarvestableStandard implements IFactoryHarvestable
+public class HarvestableCropPlant extends HarvestableStandard
 {
 	private int _targetMeta;
 	

@@ -1,9 +1,8 @@
 package powercrystals.minefactoryreloaded.circuits.analog;
 
-import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
 import powercrystals.minefactoryreloaded.circuits.base.StatelessCircuit;
 
-public class Negator extends StatelessCircuit implements IRedNetLogicCircuit
+public class Negator extends StatelessCircuit
 {
 	@Override
 	public int getInputCount()
