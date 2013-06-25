@@ -127,11 +127,11 @@ public class BlockVineScaffold extends Block
 			for(int i = y + 1, e = world.getActualHeight(); i < e; ++i)
 			{
 				int blockId = world.getBlockId(x, i, z);
-				if(world.isAirBlock(x, i, z))
+				Block block = Block.blocksList[blockId];
+				if(block == null || world.isAirBlock(x, i, z) || block.isBlockReplaceable(world, x, i, z))
 				{
 					if (world.setBlock(x, i, z, blockID, 0, 3))
 					{
-						player.swingItem();
 						player.inventory.mainInventory[player.inventory.currentItem].stackSize--;
 						if(player.inventory.mainInventory[player.inventory.currentItem].stackSize == 0)
 						{
