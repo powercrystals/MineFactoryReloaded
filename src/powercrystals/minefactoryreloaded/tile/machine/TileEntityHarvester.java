@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Random;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
@@ -48,6 +50,8 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	private BlockPosition _lastTree;
 	
 	private LiquidTank _tank;
+	
+	private List<ItemStack> failedDrops = null;
 	
 	public TileEntityHarvester()
 	{
@@ -114,7 +118,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int getIdleTicksMax()
 	{
-		return 5;
+		return failedDrops != null ? /*40*/ 5 : 5;
 	}
 	
 	@Override
@@ -126,8 +130,20 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public boolean activateMachine()
 	{
-		int harvestedBlockId = 0;
-		int harvestedBlockMetadata = 0;
+		if (worldObj.isRemote)
+		{
+			return false;
+		}
+		
+		if (failedDrops != null)
+		{
+			if (!doDrop(failedDrops))
+			{
+				setIdleTicks(getIdleTicksMax());
+				return false;
+			}
+			failedDrops = null;
+		}
 		
 		BlockPosition targetCoords = getNextHarvest();
 		
@@ -137,8 +153,8 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			return false;
 		}
 		
-		harvestedBlockId = worldObj.getBlockId(targetCoords.x, targetCoords.y, targetCoords.z);
-		harvestedBlockMetadata = worldObj.getBlockMetadata(targetCoords.x, targetCoords.y, targetCoords.z);
+		int harvestedBlockId = worldObj.getBlockId(targetCoords.x, targetCoords.y, targetCoords.z);
+		int harvestedBlockMetadata = worldObj.getBlockMetadata(targetCoords.x, targetCoords.y, targetCoords.z);
 		
 		IFactoryHarvestable harvestable = MFRRegistry.getHarvestables().get(new Integer(harvestedBlockId));
 		
@@ -146,12 +162,9 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		harvestable.preHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
-		if(drops != null)
+		if(drops != null && drops.size() > 0)
 		{
-			for(ItemStack dropStack : drops)
-			{
-				UtilInventory.dropStack(this, dropStack, this.getDropDirection());
-			}
+			doDrop(drops);
 		}
 		
 		if(harvestable.breakBlock())
@@ -166,6 +179,32 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		harvestable.postHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
 		_tank.fill(LiquidDictionary.getLiquid("sludge", 10), true);
+		
+		return true;
+	}
+	
+	private boolean doDrop(List<ItemStack> drops)
+	{
+		for (int i = drops.size(); i --> 0; )
+		{
+			ItemStack dropStack = drops.get(i);
+			dropStack = UtilInventory.dropStack(this, dropStack, this.getDropDirection());
+			if (dropStack == null || dropStack.stackSize <= 0)
+			{
+				drops.remove(i);
+			}
+		}
+		
+		if (drops.size() != 0)
+		{
+			if (drops != failedDrops)
+			{
+				failedDrops = new ArrayList<ItemStack>();
+				failedDrops.addAll(drops);
+				drops.clear();
+			}
+			return false;
+		}
 		
 		return true;
 	}
@@ -350,6 +389,18 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			list.setByte(setting.getKey(), (byte)(setting.getValue() ? 1 : 0));
 		}
 		nbttagcompound.setTag("harvesterSettings", list);
+		
+		if (failedDrops != null)
+		{
+			NBTTagList nbttaglist = new NBTTagList();
+			for (ItemStack item : failedDrops)
+			{
+				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+				item.writeToNBT(nbttagcompound1);
+				nbttaglist.appendTag(nbttagcompound1);
+			}
+			nbttagcompound.setTag("DropItems", nbttaglist);
+		}
 	}
 	
 	@Override
@@ -365,6 +416,31 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 				if(b == 1)
 				{
 					_settings.put(s, true);
+				}
+			}
+		}
+		if (nbttagcompound.hasKey("DropItems"))
+		{
+			List<ItemStack> drops = new ArrayList<ItemStack>();
+			NBTTagList nbttaglist = nbttagcompound.getTagList("DropItems");
+			for (int i = nbttaglist.tagCount(); i --> 0; )
+			{
+				NBTTagCompound nbttagcompound1 = (NBTTagCompound)nbttaglist.tagAt(i);
+				ItemStack item = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				if (item != null && item.stackSize > 0)
+				{
+					drops.add(item);
+				}
+			}
+			if (drops.size() != 0)
+			{
+				failedDrops = drops;
+			}
+			else
+			{
+				if (getIdleTicks() > getIdleTicksMax())
+				{
+					setIdleTicks(getIdleTicksMax());
 				}
 			}
 		}
