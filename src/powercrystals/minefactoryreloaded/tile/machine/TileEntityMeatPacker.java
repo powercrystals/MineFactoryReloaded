@@ -9,7 +9,6 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
@@ -69,14 +68,18 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 			
 			if(getWorkDone() >= getWorkMax())
 			{
+				ItemStack item;
 				if(_tank.getLiquid().itemID == LiquidDictionary.getCanonicalLiquid("meat").itemID)
 				{
-					UtilInventory.dropStack(this, new ItemStack(MineFactoryReloadedCore.meatIngotRawItem), this.getDropDirection());
+					item = new ItemStack(MineFactoryReloadedCore.meatIngotRawItem);
 				}
 				else
 				{
-					UtilInventory.dropStack(this, new ItemStack(MineFactoryReloadedCore.meatNuggetRawItem), this.getDropDirection());
+					item = new ItemStack(MineFactoryReloadedCore.meatNuggetRawItem);
 				}
+				
+				doDrop(item);
+				
 				setWorkDone(0);
 			}
 			_tank.drain(2, true);

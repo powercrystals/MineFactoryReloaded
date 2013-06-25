@@ -17,7 +17,6 @@ import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
@@ -114,7 +113,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int getIdleTicksMax()
 	{
-		return 5;
+		return failedDrops != null ? /*40*/ 5 : 5;
 	}
 	
 	@Override
@@ -126,9 +125,6 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public boolean activateMachine()
 	{
-		int harvestedBlockId = 0;
-		int harvestedBlockMetadata = 0;
-		
 		BlockPosition targetCoords = getNextHarvest();
 		
 		if(targetCoords == null)
@@ -137,8 +133,8 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 			return false;
 		}
 		
-		harvestedBlockId = worldObj.getBlockId(targetCoords.x, targetCoords.y, targetCoords.z);
-		harvestedBlockMetadata = worldObj.getBlockMetadata(targetCoords.x, targetCoords.y, targetCoords.z);
+		int harvestedBlockId = worldObj.getBlockId(targetCoords.x, targetCoords.y, targetCoords.z);
+		int harvestedBlockMetadata = worldObj.getBlockMetadata(targetCoords.x, targetCoords.y, targetCoords.z);
 		
 		IFactoryHarvestable harvestable = MFRRegistry.getHarvestables().get(new Integer(harvestedBlockId));
 		
@@ -146,13 +142,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 		
 		harvestable.preHarvest(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
-		if(drops != null)
-		{
-			for(ItemStack dropStack : drops)
-			{
-				UtilInventory.dropStack(this, dropStack, this.getDropDirection());
-			}
-		}
+		doDrop(drops);
 		
 		if(harvestable.breakBlock())
 		{

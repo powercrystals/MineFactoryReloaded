@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryFruit;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
@@ -94,13 +93,7 @@ public class TileEntityFruitPicker extends TileEntityFactoryPowered
 		
 		harvestable.prePick(worldObj, targetCoords.x, targetCoords.y, targetCoords.z);
 		
-		if(drops != null)
-		{
-			for(ItemStack dropStack : drops)
-			{
-				UtilInventory.dropStack(this, dropStack, this.getDropDirection());
-			}
-		}
+		doDrop(drops);
 		
 		if(replacement == null)
 		{

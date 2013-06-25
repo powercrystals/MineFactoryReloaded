@@ -3,7 +3,6 @@ package powercrystals.minefactoryreloaded.tile.machine;
 import java.util.List;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
@@ -11,7 +10,6 @@ import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
@@ -97,15 +95,6 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 		
 		for(Object o : entities)
 		{
-			if(!(o instanceof EntityLiving))
-			{
-				if (o instanceof EntityItem)
-				{
-					UtilInventory.dropStack(this, ((EntityItem)o).getEntityItem(), this.getDropDirection());
-				}
-				continue;
-			}
-			
 			EntityLiving e = (EntityLiving)o;
 			if(MFRRegistry.getRanchables().containsKey(e.getClass()))
 			{
@@ -117,12 +106,12 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 					{
 						if(LiquidContainerRegistry.isLiquid(s))
 						{
-							_tank.fill(new LiquidStack(s.itemID, 1000, s.getItemDamage()), true);
+							_tank.fill(new LiquidStack(s.itemID, LiquidContainerRegistry.BUCKET_VOLUME, s.getItemDamage()), true);
 							didDrop = true;
 							continue;
 						}
 						
-						UtilInventory.dropStack(this, s, this.getDropDirection());
+						doDrop(s);
 						didDrop = true;
 					}
 					if(didDrop)

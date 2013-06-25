@@ -7,23 +7,22 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import powercrystals.core.util.UtilInventory;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 
 import skyboy.core.world.WorldProxy;
 
 public class GrindingWorld extends WorldProxy implements IGrindingWorld
 {
-	protected TileEntityFactoryInventory grinder;
+	protected TileEntityFactoryPowered grinder;
 	protected boolean allowSpawns;
 	protected ArrayList<Entity> entitiesToGrind = new ArrayList<Entity>();
 	
-	public GrindingWorld(World world, TileEntityFactoryInventory grinder)
+	public GrindingWorld(World world, TileEntityFactoryPowered grinder)
 	{
 		this(world, grinder, false);
 	}
 	
-	public GrindingWorld(World world, TileEntityFactoryInventory grinder, boolean allowSpawns)
+	public GrindingWorld(World world, TileEntityFactoryPowered grinder, boolean allowSpawns)
 	{
 		super(world);
 		this.grinder = grinder;
@@ -44,7 +43,7 @@ public class GrindingWorld extends WorldProxy implements IGrindingWorld
 			if(grinder.manageSolids())
 			{
 				ItemStack drop = ((EntityItem)entity).getEntityItem();
-				if(drop != null) UtilInventory.dropStack(grinder, drop, grinder.getDropDirection());
+				if(drop != null) grinder.doDrop(drop);
 			}
 		}
 		else if(allowSpawns)

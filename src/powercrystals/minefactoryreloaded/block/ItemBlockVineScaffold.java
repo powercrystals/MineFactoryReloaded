@@ -18,6 +18,7 @@ public class ItemBlockVineScaffold extends ItemBlock
 	{
 		if(!player.isSneaking() && world.getBlockId(x, y, z) == MineFactoryReloadedCore.vineScaffoldBlock.blockID)
 		{
+			player.swingItem();
 			return false;
 		}
 		return super.onItemUse(stack, player, world, x, y, z, side, xOffset, yOffset, zOffset);
