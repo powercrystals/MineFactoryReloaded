@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.util.Util;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
@@ -30,10 +29,8 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 		if(b != null && !b.isAirBlock(worldObj, bp.x, bp.y, bp.z) && !Util.isBlockUnbreakable(worldObj, bp.x, bp.y, bp.z) && b.getBlockHardness(worldObj, bp.x, bp.y, bp.z) >= 0)
 		{
 			List<ItemStack> drops = b.getBlockDropped(worldObj, bp.x, bp.y, bp.z, blockMeta, 0);
-			for(ItemStack s : drops)
-			{
-				UtilInventory.dropStack(this, s, this.getDropDirection());
-			}
+			
+			doDrop(drops);
 			
 			if(MFRConfig.playSounds.getBoolean(true))
 			{

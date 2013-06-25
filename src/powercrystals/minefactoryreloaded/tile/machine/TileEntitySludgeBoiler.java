@@ -19,7 +19,6 @@ import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.random.WeightedRandomItemStack;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -99,10 +98,9 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 			if(getWorkDone() >= getWorkMax())
 			{
 				ItemStack s = ((WeightedRandomItemStack)WeightedRandom.getRandomItem(_rand, MFRRegistry.getSludgeDrops())).getStack();
-				if(s != null)
-				{
-					UtilInventory.dropStack(this, s, this.getDropDirection());
-				}
+				
+				doDrop(s);
+				
 				setWorkDone(0);
 			}
 			

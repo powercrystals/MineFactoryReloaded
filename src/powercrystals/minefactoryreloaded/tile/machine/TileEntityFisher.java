@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -61,7 +60,7 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 		
 		if(getWorkDone() > getWorkMax())
 		{
-			UtilInventory.dropStack(this, new ItemStack(Item.fishRaw), this.getDropDirection());
+			doDrop(new ItemStack(Item.fishRaw));
 			setWorkDone(0);
 		}
 		return true;

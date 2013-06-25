@@ -1,15 +1,21 @@
 package powercrystals.minefactoryreloaded.tile.base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
 import powercrystals.core.power.PowerProviderAdvanced;
 import powercrystals.core.util.Util;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import universalelectricity.core.block.IConnector;
 import universalelectricity.core.block.IVoltage;
@@ -42,6 +48,11 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	private int _workDone;
 	
 	private int _idleTicks;
+	
+	protected List<ItemStack> failedDrops = null;
+	
+	protected int _failedDropTicksMax = 20;
+	private int _failedDropTicks = 0;
 	
 	// buildcraft-related fields
 	
@@ -118,6 +129,21 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		
 		setIsActive(_energyStored >= _energyActivation * 2);
 		
+		if (failedDrops != null)
+		{
+			if (_failedDropTicks < _failedDropTicksMax)
+			{
+				_failedDropTicks++;
+				return;
+			}
+			if (!doDrop(failedDrops))
+			{
+				setIdleTicks(getIdleTicksMax());
+				return;
+			}
+			failedDrops = null;
+		}
+		
 		if(Util.isRedstonePowered(this))
 		{
 			setIdleTicks(getIdleTicksMax());
@@ -133,6 +159,53 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 				_energyStored -= _energyActivation;
 			}
 		}
+	}
+
+	public boolean doDrop(ItemStack drop)
+	{
+		drop = UtilInventory.dropStack(this, drop, this.getDropDirection());
+		if (drop != null && drop.stackSize > 0)
+		{
+			if (failedDrops == null)
+			{
+				failedDrops = new ArrayList<ItemStack>();
+			}
+			failedDrops.add(drop);
+		}
+		return true;
+	}
+	
+	public boolean doDrop(List<ItemStack> drops)
+	{
+		if (drops == null || drops.size() <= 0)
+		{
+			return true;
+		}
+		for (int i = drops.size(); i --> 0; )
+		{
+			ItemStack dropStack = drops.get(i);
+			dropStack = UtilInventory.dropStack(this, dropStack, this.getDropDirection());
+			if (dropStack == null || dropStack.stackSize <= 0)
+			{
+				drops.remove(i);
+			}
+		}
+		
+		if (drops.size() != 0)
+		{
+			if (drops != failedDrops)
+			{
+				if (failedDrops == null)
+				{
+					failedDrops = new ArrayList<ItemStack>();
+				}
+				failedDrops.addAll(drops);
+				drops.clear();
+			}
+			return false;
+		}
+		
+		return true;
 	}
 	
 	@Override
@@ -216,6 +289,18 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		nbttagcompound.setInteger("workDone", _workDone);
 		nbttagcompound.setInteger("ueBuffer", _ueBuffer);
 		_powerProvider.writeToNBT(nbttagcompound);
+		
+		if (failedDrops != null)
+		{
+			NBTTagList nbttaglist = new NBTTagList();
+			for (ItemStack item : failedDrops)
+			{
+				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+				item.writeToNBT(nbttagcompound1);
+				nbttaglist.appendTag(nbttagcompound1);
+			}
+			nbttagcompound.setTag("DropItems", nbttaglist);
+		}
 	}
 	
 	@Override
@@ -228,6 +313,25 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		_ueBuffer = nbttagcompound.getInteger("ueBuffer");
 		_powerProvider.readFromNBT(nbttagcompound);
 		_powerProvider.configure(25, 10, 10, 1, 1000);
+
+		if (nbttagcompound.hasKey("DropItems"))
+		{
+			List<ItemStack> drops = new ArrayList<ItemStack>();
+			NBTTagList nbttaglist = nbttagcompound.getTagList("DropItems");
+			for (int i = nbttaglist.tagCount(); i --> 0; )
+			{
+				NBTTagCompound nbttagcompound1 = (NBTTagCompound)nbttaglist.tagAt(i);
+				ItemStack item = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				if (item != null && item.stackSize > 0)
+				{
+					drops.add(item);
+				}
+			}
+			if (drops.size() != 0)
+			{
+				failedDrops = drops;
+			}
+		}
 	}
 	
 	// BC methods

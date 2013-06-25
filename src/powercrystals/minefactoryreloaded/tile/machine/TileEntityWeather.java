@@ -10,7 +10,6 @@ import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -106,7 +105,7 @@ public class TileEntityWeather extends TileEntityFactoryPowered implements ITank
 				}
 				else
 				{
-					UtilInventory.dropStack(this, new ItemStack(Item.snowball), this.getDropDirection());
+					doDrop(new ItemStack(Item.snowball));
 					setWorkDone(0);
 				}
 			}
