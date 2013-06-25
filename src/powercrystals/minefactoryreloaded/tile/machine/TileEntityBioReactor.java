@@ -30,8 +30,8 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	private static final int _bioFuelPerTick = 1;
 	private static final int _burnTimeDecreasePerTick = 1;
 	
-	// start at 80, +20 for each slot after the first
-	private static final int[] _outputValues = { 0, 80, 180, 300, 440, 600, 780, 980, 1200, 1440 };
+	// start at 0 for 0 slots; increase by 5, then an additional 10 each time (upward-sloping curve)
+	private static final int[] _outputValues = { 0, 5, 25, 70, 150, 275, 455, 700, 1020, 1425 };
 	
 	public TileEntityBioReactor()
 	{
