@@ -182,7 +182,8 @@ public class BlockVineScaffold extends Block
 	}
 	
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
+	public void updateTick(World world, int x, int y, int z, Random rand)
+	{
 		onNeighborBlockChange(world, x, y, z, ForgeDirection.UNKNOWN.ordinal());
 	}
 	
