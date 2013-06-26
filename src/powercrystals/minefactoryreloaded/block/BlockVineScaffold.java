@@ -1,5 +1,7 @@
 package powercrystals.minefactoryreloaded.block;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -32,6 +34,7 @@ public class BlockVineScaffold extends Block
 		setStepSound(soundGrassFootstep);
 		setHardness(0.1F);
 		setBlockBounds(0F, 0.01F, 0F, 1F, 0.99F, 1F);
+		setTickRandomly(true);
 	}
 	
 	@Override
@@ -176,6 +179,11 @@ public class BlockVineScaffold extends Block
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		onNeighborBlockChange(world, x, y, z, ForgeDirection.UNKNOWN.ordinal());
 	}
 	
 	@Override
