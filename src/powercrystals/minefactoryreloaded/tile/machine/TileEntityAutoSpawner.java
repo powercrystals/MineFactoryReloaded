@@ -113,7 +113,6 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			}
 			
 			EntityLiving spawnedLiving = (EntityLiving)spawnedEntity;
-			spawnedLiving.initCreature();
 			
 			if(_spawnExact)
 			{
@@ -137,6 +136,11 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 					(!this.worldObj.isAnyLiquid(spawnedLiving.boundingBox) && spawnedLiving instanceof EntityWaterMob))
 			{
 				return false;
+			}
+			
+			if (!_spawnExact)
+			{
+				spawnedLiving.initCreature();
 			}
 			
 			worldObj.spawnEntityInWorld(spawnedLiving);
