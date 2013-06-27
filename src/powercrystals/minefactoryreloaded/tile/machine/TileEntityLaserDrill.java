@@ -24,12 +24,13 @@ import powercrystals.minefactoryreloaded.gui.container.ContainerLaserDrill;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
+import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityLaserDrill extends TileEntityFactoryInventory
 {
-	private static final int _energyPerWork = 8000;
+	private static final int _energyPerWork = Machine.LaserDrillPrecharger.getActivationEnergyMJ() * TileEntityFactoryPowered.energyPerMJ;
 	private static final int _energyDrawMax = 10000;
 	
 	private static final int _energyStoredMax = 1000000;
