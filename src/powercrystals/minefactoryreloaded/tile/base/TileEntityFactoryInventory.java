@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.asm.relauncher.Implementable;
@@ -180,17 +181,38 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		}
 		onFactoryInventoryChanged();
 		
-		int tankItemId = nbttagcompound.getInteger("tankItemId");
-		int tankItemMeta = nbttagcompound.getInteger("tankItemMeta");
-		int tankAmount = nbttagcompound.getInteger("tankAmount");
+		boolean foundLiquid = false;
+		ILiquidTank tank = getTank();
 		
-		if(getTank() != null && Item.itemsList[tankItemId] != null && LiquidContainerRegistry.isLiquid(new ItemStack(tankItemId, 1, tankItemMeta)))
+		int tankAmount = nbttagcompound.getInteger("tankAmount");
+		if (tank != null && nbttagcompound.hasKey("tankFluidName"))
 		{
-			((LiquidTank)getTank()).setLiquid(new LiquidStack(tankItemId, tankAmount, tankItemMeta));
-			
-			if(getTank().getLiquid() != null && getTank().getLiquid().amount > getTank().getCapacity())
+			LiquidStack fluid = LiquidDictionary.getLiquid(nbttagcompound.getString("tankFluidName"), tankAmount);
+			if (fluid != null)
 			{
-				getTank().getLiquid().amount = getTank().getCapacity();
+				if(fluid.amount > tank.getCapacity())
+				{
+					fluid.amount = tank.getCapacity();
+				}
+				
+				((LiquidTank)tank).setLiquid(fluid);
+				
+				foundLiquid = true;
+			}
+		}
+		if (!foundLiquid)
+		{
+			int tankItemId = nbttagcompound.getInteger("tankItemId");
+			int tankItemMeta = nbttagcompound.getInteger("tankItemMeta");
+			
+			if(tank != null && Item.itemsList[tankItemId] != null && LiquidContainerRegistry.isLiquid(new ItemStack(tankItemId, 1, tankItemMeta)))
+			{
+				((LiquidTank)tank).setLiquid(new LiquidStack(tankItemId, tankAmount, tankItemMeta));
+				
+				if(tank.getLiquid() != null && tank.getLiquid().amount > tank.getCapacity())
+				{
+					tank.getLiquid().amount = tank.getCapacity();
+				}
 			}
 		}
 		
@@ -229,7 +251,13 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		}
 		if(getTank() != null && getTank().getLiquid() != null)
 		{
-			nbttagcompound.setInteger("tankAmount", getTank().getLiquid().amount);
+			LiquidStack fluid = getTank().getLiquid();
+			nbttagcompound.setInteger("tankAmount", fluid.amount);
+			String name = LiquidDictionary.findLiquidName(fluid);
+			if (name != null)
+			{
+				nbttagcompound.setString("tankFluidName", name);
+			}
 			nbttagcompound.setInteger("tankItemId", getTank().getLiquid().itemID);
 			nbttagcompound.setInteger("tankMeta", getTank().getLiquid().itemMeta);
 		}

@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.modhelpers.ic2;
 
 import ic2.api.item.Items;
 import ic2.api.recipe.Recipes;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -52,6 +53,8 @@ public class IC2
 			if(rubberWood != null)
 			{
 				MFRRegistry.registerHarvestable(new HarvestableIC2RubberWood(rubberWood.itemID, HarvestType.Tree, stickyResin.itemID));
+				MFRRegistry.registerFruitLogBlockId(((ItemBlock)rubberWood.getItem()).getBlockID());
+				MFRRegistry.registerFruit(new FruitIC2Resin(rubberWood, stickyResin));
 			}
 			
 			ItemStack fertilizer = Items.getItem("fertilizer");

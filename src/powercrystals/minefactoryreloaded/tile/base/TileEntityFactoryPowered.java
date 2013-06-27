@@ -136,6 +136,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 				_failedDropTicks++;
 				return;
 			}
+			_failedDropTicks = 0;
 			if (!doDrop(failedDrops))
 			{
 				setIdleTicks(getIdleTicksMax());
