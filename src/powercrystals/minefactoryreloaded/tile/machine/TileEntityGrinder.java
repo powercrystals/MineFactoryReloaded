@@ -26,7 +26,6 @@ import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 
-import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable2;
 import powercrystals.minefactoryreloaded.api.MobDrop;
