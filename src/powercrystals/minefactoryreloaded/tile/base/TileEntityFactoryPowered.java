@@ -52,6 +52,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	private int _idleTicks;
 	
 	protected List<ItemStack> failedDrops = null;
+	private List<ItemStack> missedDrops = new ArrayList<ItemStack>();
 	
 	protected int _failedDropTicksMax = 20;
 	private int _failedDropTicks = 0;
@@ -197,17 +198,19 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		{
 			return true;
 		}
+		List<ItemStack> missed = missedDrops;
+		missed.clear();
 		for (int i = drops.size(); i --> 0; )
 		{
 			ItemStack dropStack = drops.get(i);
 			dropStack = UtilInventory.dropStack(this, dropStack, this.getDropDirection());
-			if (dropStack == null || dropStack.stackSize <= 0)
+			if (dropStack != null && dropStack.stackSize > 0)
 			{
-				drops.remove(i);
+				missed.add(dropStack);
 			}
 		}
 		
-		if (drops.size() != 0)
+		if (missed.size() != 0)
 		{
 			if (drops != failedDrops)
 			{
