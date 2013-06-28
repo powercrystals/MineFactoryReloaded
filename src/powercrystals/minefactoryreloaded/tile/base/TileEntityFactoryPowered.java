@@ -111,31 +111,34 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		
 		int energyRequired = Math.min(getEnergyStoredMax() - getEnergyStored(), getMaxEnergyPerTick());
 		
-		IPowerProvider pp = getPowerProvider(); 
-		bcpower: if(pp != null)
+		if (energyRequired > 0)
 		{
-			int mjRequired = energyRequired / energyPerMJ;
-			pp.configure(pp.getLatency(), pp.getMinEnergyReceived(), mjRequired, pp.getActivationEnergy(), pp.getMaxEnergyStored());
-			if (mjRequired <= 0) break bcpower;
-			
-			pp.update(this);
-			
-			if(_energyStored < getEnergyStoredMax() && getPowerProvider().useEnergy(1, mjRequired, false) > 0)
+			IPowerProvider pp = getPowerProvider(); 
+			bcpower: if(pp != null)
 			{
-				int mjGained = (int)(getPowerProvider().useEnergy(1, mjRequired, true) * energyPerMJ);
-				_energyStored += mjGained;
-				energyRequired -= mjGained;
+				int mjRequired = energyRequired / energyPerMJ;
+				pp.configure(pp.getLatency(), pp.getMinEnergyReceived(), mjRequired, pp.getActivationEnergy(), pp.getMaxEnergyStored());
+				if (mjRequired <= 0) break bcpower;
+				
+				pp.update(this);
+				
+				if(getPowerProvider().useEnergy(1, mjRequired, false) > 0)
+				{
+					int mjGained = (int)(getPowerProvider().useEnergy(1, mjRequired, true) * energyPerMJ);
+					_energyStored += mjGained;
+					energyRequired -= mjGained;
+				}
 			}
+			
+			ElectricityPack powerRequested = new ElectricityPack(energyRequired * wPerEnergy / getVoltage(), getVoltage());
+			ElectricityPack powerPack = ElectricityNetworkHelper.consumeFromMultipleSides(this, powerRequested);
+			_ueBuffer += powerPack.getWatts();
+			
+			int energyFromUE = Math.min(_ueBuffer / wPerEnergy, energyRequired);
+			_energyStored += energyFromUE;
+			energyRequired -= energyFromUE;
+			_ueBuffer -= (energyFromUE * wPerEnergy);
 		}
-		
-		ElectricityPack powerRequested = new ElectricityPack(energyRequired * wPerEnergy / getVoltage(), getVoltage());
-		ElectricityPack powerPack = ElectricityNetworkHelper.consumeFromMultipleSides(this, powerRequested);
-		_ueBuffer += powerPack.getWatts();
-		
-		int energyFromUE = Math.min(_ueBuffer / wPerEnergy, energyRequired);
-		_energyStored += energyFromUE;
-		energyRequired -= energyFromUE;
-		_ueBuffer -= (energyFromUE * wPerEnergy);
 		
 		_energyRequiredThisTick = energyRequired;
 		
