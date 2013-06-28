@@ -262,7 +262,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	public int getMaxEnergyPerTick()
 	{
-		return this.machine.getActivationEnergyMJ();
+		return this.machine.getActivationEnergyMJ() * energyPerMJ;
 	}
 	
 	public int getEnergyStored()
