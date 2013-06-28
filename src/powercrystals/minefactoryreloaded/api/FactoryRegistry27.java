@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
  * these will be rolled back into this class.
  * 
  */
-public class FarmingRegistry27
+public class FactoryRegistry27
 {
 	/**
 	 * Registers a grindable entity with the Grinder using the new grinder interface. This method will be renamed to the standard "registerGrindable"
