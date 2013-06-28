@@ -76,12 +76,6 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 	}
 	
 	@Override
-	public int getMaxEnergyPerTick()
-	{
-		return 500 * energyPerMJ;
-	}
-	
-	@Override
 	public int getEnergyStoredMax()
 	{
 		return 16000;
