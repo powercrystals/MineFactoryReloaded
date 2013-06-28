@@ -120,6 +120,13 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 		return null;
 	}
 	
+
+	@Override
+	public int getMaxSafeInput()
+	{
+		return 2048;
+	}
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getRenderBoundingBox()
