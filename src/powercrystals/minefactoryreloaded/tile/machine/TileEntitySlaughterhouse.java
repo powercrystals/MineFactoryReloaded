@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.liquids.LiquidDictionary;
@@ -53,18 +52,14 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 		_grindingWorld.cleanReferences();
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 		
-		for(Object o : entities)
+		entityList: for(Object o : entities)
 		{
-			if(o instanceof EntityPlayer)
-			{
-				continue;
-			}
 			EntityLiving e = (EntityLiving)o;
 			for(Class<?> t : MFRRegistry.getSlaughterhouseBlacklist())
 			{
 				if(t.isInstance(e))
 				{
-					continue;
+					continue entityList;
 				}
 			}
 			if((e instanceof EntityAgeable && ((EntityAgeable)e).getGrowingAge() < 0) || e.isEntityInvulnerable() || e.getHealth() <= 0
