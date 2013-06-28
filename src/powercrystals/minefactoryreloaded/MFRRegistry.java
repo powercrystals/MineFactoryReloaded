@@ -8,6 +8,7 @@ import java.util.Map;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomItem;
 
+import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
@@ -50,7 +51,7 @@ public abstract class MFRRegistry
 	private static List<String> _autoSpawnerBlacklist = new ArrayList<String>();
 	private static List<Class<?>> _slaughterhouseBlacklist = new ArrayList<Class<?>>();
 
-	private static ItemStack[] _laserPreferredOres = new ItemStack[16];
+	private static Map<Integer, List<ItemStack>> _laserPreferredOres = new HashMap<Integer, List<ItemStack>>(16);
 
 	public static void registerPlantable(IFactoryPlantable plantable)
 	{
@@ -276,15 +277,41 @@ public abstract class MFRRegistry
 	{
 		return _autoSpawnerBlacklist;
 	}
-
+	
+	@Deprecated
 	public static void setLaserPreferredOre(int color, ItemStack ore)
 	{
-		_laserPreferredOres[color] = ore;
+		addLaserPreferredOre(color, ore);
 	}
 
-	public static ItemStack getLaserPreferredOre(int color)
+	public static void addLaserPreferredOre(int color, ItemStack ore)
 	{
-		return _laserPreferredOres[color];
+		if(color < 0 || 16 <= color) return;
+		
+		List<ItemStack> oresForColor = _laserPreferredOres.get(color);
+		
+		if(oresForColor == null)
+		{
+			List<ItemStack> oresList = new ArrayList<ItemStack>();
+			oresList.add(ore);
+			_laserPreferredOres.put(color, oresList);
+		}
+		else
+		{	
+			for(ItemStack registeredOre : oresForColor)
+			{
+				if(InventoryManager.stacksEqual(registeredOre, ore))
+				{
+					return;
+				}
+			}
+			oresForColor.add(ore);
+		}
+	}
+
+	public static List<ItemStack> getLaserPreferredOres(int color)
+	{
+		return _laserPreferredOres.get(color);
 	}
 	
 	public static void registerNeedleAmmoType(Integer itemId, INeedleAmmo ammo)

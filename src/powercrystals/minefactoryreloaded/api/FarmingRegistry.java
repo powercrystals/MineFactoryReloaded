@@ -384,9 +384,12 @@ public class FarmingRegistry
 	 * Used by MFR itself for vanilla: Black (Coal), Light Blue (Diamond), Lime (Emerald), Yellow (Gold), Brown (Iron), Blue (Lapis),
 	 * Red (Redstone), and White (nether quartz).
 	 * 
+	 * In 2.7 this will be replaced by addLaserPreferredOre, because it'll no longer overwrite existing ore preferences.
+	 * 
 	 * @param color The color that the preferred ore is being set for. White is 0.
 	 * @param ore The ore that will be preferred by the drill when a focus with the specified color is present.
 	 */
+	@Deprecated
 	public static void setLaserPreferredOre(int color, ItemStack ore)
 	{
 		try

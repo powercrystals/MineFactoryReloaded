@@ -190,9 +190,12 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 				{
 					continue;
 				}
-				if(InventoryManager.stacksEqual(newStack.getStack(), MFRRegistry.getLaserPreferredOre(s.getItemDamage())))
+				for(ItemStack preferredOre : MFRRegistry.getLaserPreferredOres(s.getItemDamage()))
 				{
-					newStack.itemWeight += boost;
+					if(InventoryManager.stacksEqual(newStack.getStack(), preferredOre))
+					{
+						newStack.itemWeight += boost;
+					}
 				}
 			}
 		}
