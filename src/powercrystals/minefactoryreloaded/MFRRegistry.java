@@ -8,8 +8,8 @@ import java.util.Map;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomItem;
 
-import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.random.WeightedRandomItemStack;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
 import powercrystals.minefactoryreloaded.api.IFactoryFruit;
@@ -300,7 +300,7 @@ public abstract class MFRRegistry
 		{	
 			for(ItemStack registeredOre : oresForColor)
 			{
-				if(InventoryManager.stacksEqual(registeredOre, ore))
+				if(UtilInventory.stacksEqual(registeredOre, ore))
 				{
 					return;
 				}

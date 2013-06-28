@@ -12,7 +12,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.WeightedRandomItem;
 import net.minecraftforge.common.ForgeDirection;
-import powercrystals.core.inventory.InventoryManager;
 import powercrystals.core.random.WeightedRandomItemStack;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -192,7 +191,7 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 				}
 				for(ItemStack preferredOre : MFRRegistry.getLaserPreferredOres(s.getItemDamage()))
 				{
-					if(InventoryManager.stacksEqual(newStack.getStack(), preferredOre))
+					if(UtilInventory.stacksEqual(newStack.getStack(), preferredOre))
 					{
 						newStack.itemWeight += boost;
 					}
