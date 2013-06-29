@@ -53,11 +53,10 @@ public class ItemRuler extends ItemFactory
 					
 					double distAll = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2) + Math.pow(distZ, 2));
 					
-					player.sendChatToPlayer("Distance:");
-					player.sendChatToPlayer("X: " + distX);
-					player.sendChatToPlayer("Y: " + distY);
-					player.sendChatToPlayer("Z: " + distZ);
-					player.sendChatToPlayer(String.format("Total: %.1f", distAll));
+					player.sendChatToPlayer("X: distance: " + distX + ", count: " + (distX + 1));
+					player.sendChatToPlayer("Y: distance: " + distY + ", count: " + (distY + 1));
+					player.sendChatToPlayer("Z: distance: " + distZ + ", count: " + (distZ + 1));
+					player.sendChatToPlayer(String.format("Total distance: %.1f", distAll));
 				}
 			}
 		}
