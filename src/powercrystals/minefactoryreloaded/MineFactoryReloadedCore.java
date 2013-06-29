@@ -456,6 +456,7 @@ public class MineFactoryReloadedCore extends BaseMod
 		OreDictionary.registerOre("nuggetMeat", MineFactoryReloadedCore.meatNuggetCookedItem);
 		OreDictionary.registerOre("nuggetMeatRaw", MineFactoryReloadedCore.meatNuggetRawItem);
 		OreDictionary.registerOre("itemCharcoalSugar", MineFactoryReloadedCore.sugarCharcoalItem);
+		OreDictionary.registerOre("cableRedNet", MineFactoryReloadedCore.rednetCableBlock);
 				
 		GameRegistry.registerFuelHandler(new MineFactoryReloadedFuelHandler());
 		
