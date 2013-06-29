@@ -171,7 +171,7 @@ public class EntityNeedle extends Entity implements IProjectile
 		{
 			EntityPlayer entityplayer = (EntityPlayer)hit.entityHit;
 			
-			if(entityplayer.capabilities.disableDamage || !_owner.func_96122_a(entityplayer))
+			if(entityplayer.capabilities.disableDamage || (_owner != null && !_owner.func_96122_a(entityplayer)))
 			{
 				hit = null;
 			}
