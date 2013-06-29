@@ -54,7 +54,7 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 	@Override
 	public int getEnergyStoredMax()
 	{
-		return 32000;
+		return 16000;
 	}
 	
 	@Override
