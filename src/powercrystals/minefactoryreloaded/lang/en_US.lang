@@ -39,6 +39,7 @@ tile.mfr.machine.blocksmasher.name = Block Smasher
 tile.mfr.machine.rednote.name = RedNote Block
 tile.mfr.machine.autobrewer.name = Auto-Brewer
 tile.mfr.machine.fruitpicker.name = Fruit Picker
+tile.mfr.machine.blockplacer.name = Block Placer
 
 tile.mfr.conveyor.default.name = Conveyor Belt
 tile.mfr.conveyor.white.name = Conveyor Belt (White)
