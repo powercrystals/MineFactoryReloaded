@@ -8,6 +8,8 @@ import buildcraft.api.transport.FacadeManager;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.dispenser.DispenserBehaviors;
+import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -464,8 +466,20 @@ public class MineFactoryReloadedCore extends BaseMod
 		
 		NetworkRegistry.instance().registerGuiHandler(this, new MFRGUIHandler());
 		
-		BlockDispenser.dispenseBehaviorRegistry.putObject(safariNetItem, new BehaviorDispenseSafariNet());
-		BlockDispenser.dispenseBehaviorRegistry.putObject(safariNetSingleItem, new BehaviorDispenseSafariNet());
+		IBehaviorDispenseItem behavior = new BehaviorDispenseSafariNet();
+		BlockDispenser.dispenseBehaviorRegistry.putObject(safariNetItem, behavior);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(safariNetSingleItem, behavior);
+		
+		DispenserBehaviors.func_96467_a(); // Work around to make the below behavior actually /exist/ before the server starts.
+		behavior = (IBehaviorDispenseItem)BlockDispenser.dispenseBehaviorRegistry.func_82594_a(Item.bucketWater);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(sewageBucketItem, behavior);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(sludgeBucketItem, behavior);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(mobEssenceBucketItem, behavior);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(bioFuelBucketItem, behavior);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(meatBucketItem, behavior);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(pinkSlimeBucketItem, behavior);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(chocolateMilkBucketItem, behavior);
+		BlockDispenser.dispenseBehaviorRegistry.putObject(mushroomSoupBucketItem, behavior);
 		
 		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 1, 1, 25));
 		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(safariNetSingleItem), 1, 1, 25));
