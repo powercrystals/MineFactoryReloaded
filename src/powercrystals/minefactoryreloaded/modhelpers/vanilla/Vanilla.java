@@ -354,14 +354,14 @@ public class Vanilla
 		
 		MFRRegistry.registerAutoSpawnerBlacklist("VillagerGolem");
 		
-		MFRRegistry.setLaserPreferredOre(15, new ItemStack(Block.oreCoal));
-		MFRRegistry.setLaserPreferredOre(3, new ItemStack(Block.oreDiamond));
-		MFRRegistry.setLaserPreferredOre(5, new ItemStack(Block.oreEmerald));
-		MFRRegistry.setLaserPreferredOre(4, new ItemStack(Block.oreGold));
-		MFRRegistry.setLaserPreferredOre(12, new ItemStack(Block.oreIron));
-		MFRRegistry.setLaserPreferredOre(11, new ItemStack(Block.oreLapis));
-		MFRRegistry.setLaserPreferredOre(14, new ItemStack(Block.oreRedstone));
-		MFRRegistry.setLaserPreferredOre(0, new ItemStack(Block.oreNetherQuartz));
+		MFRRegistry.addLaserPreferredOre(15, new ItemStack(Block.oreCoal));
+		MFRRegistry.addLaserPreferredOre(3, new ItemStack(Block.oreDiamond));
+		MFRRegistry.addLaserPreferredOre(5, new ItemStack(Block.oreEmerald));
+		MFRRegistry.addLaserPreferredOre(4, new ItemStack(Block.oreGold));
+		MFRRegistry.addLaserPreferredOre(12, new ItemStack(Block.oreIron));
+		MFRRegistry.addLaserPreferredOre(11, new ItemStack(Block.oreLapis));
+		MFRRegistry.addLaserPreferredOre(14, new ItemStack(Block.oreRedstone));
+		MFRRegistry.addLaserPreferredOre(0, new ItemStack(Block.oreNetherQuartz));
 		
 		MFRRegistry.registerNeedleAmmoType(MineFactoryReloadedCore.needlegunAmmoStandardItem.itemID, (INeedleAmmo)MineFactoryReloadedCore.needlegunAmmoStandardItem);
 		MFRRegistry.registerNeedleAmmoType(MineFactoryReloadedCore.needlegunAmmoLavaItem.itemID, (INeedleAmmo)MineFactoryReloadedCore.needlegunAmmoLavaItem);

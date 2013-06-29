@@ -11,7 +11,7 @@ import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
-import powercrystals.core.inventory.InventoryManager;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiBlockSmasher;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -75,7 +75,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 			setWorkDone(0);
 			return false;
 		}
-		if(_lastInput == null || !InventoryManager.stacksEqual(_lastInput, _inventory[0]))
+		if(_lastInput == null || !UtilInventory.stacksEqual(_lastInput, _inventory[0]))
 		{
 			_lastInput = _inventory[0];
 			_lastOutput = getOutput(_lastInput);
@@ -89,7 +89,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 		{
 			return false;
 		}
-		if(_inventory[1] != null && !InventoryManager.stacksEqual(_lastOutput, _inventory[1]))
+		if(_inventory[1] != null && !UtilInventory.stacksEqual(_lastOutput, _inventory[1]))
 		{
 			setWorkDone(0);
 			return false;

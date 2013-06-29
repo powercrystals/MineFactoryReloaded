@@ -12,8 +12,10 @@ import powercrystals.minefactoryreloaded.api.rednet.IRedNetLogicCircuit;
  * Class used to register plants and other farming-related things with MFR. Will do nothing if MFR does not exist, but your mod should be set to load
  * after MFR or things may not work properly.
  * 
- * To avoid breaking the API, additional FarmingRegistry##s will appear on major MFR versions that contain API additions. On a Minecraft version change, 
+ * To avoid breaking the API, additional FactoryRegistry##s will appear on major MFR versions that contain API additions. On a Minecraft version change, 
  * these will be rolled back into this class.
+ * 
+ * This class will be replaced by FactoryRegistry in 1.6.
  * 
  */
 public class FarmingRegistry
@@ -384,9 +386,12 @@ public class FarmingRegistry
 	 * Used by MFR itself for vanilla: Black (Coal), Light Blue (Diamond), Lime (Emerald), Yellow (Gold), Brown (Iron), Blue (Lapis),
 	 * Red (Redstone), and White (nether quartz).
 	 * 
+	 * In 2.7 this will be replaced by addLaserPreferredOre, because it'll no longer overwrite existing ore preferences.
+	 * 
 	 * @param color The color that the preferred ore is being set for. White is 0.
 	 * @param ore The ore that will be preferred by the drill when a focus with the specified color is present.
 	 */
+	@Deprecated
 	public static void setLaserPreferredOre(int color, ItemStack ore)
 	{
 		try

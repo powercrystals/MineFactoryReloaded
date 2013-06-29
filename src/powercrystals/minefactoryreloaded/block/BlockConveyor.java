@@ -431,7 +431,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	private void specialRoute(World world, int x, int y, int z, EntityItem entityitem)
 	{
 		TileEntity teBelow = world.getBlockTileEntity(x, y - 1, z);
-		if(teBelow == null)
+		if(teBelow == null || entityitem.isDead)
 		{
 			return;
 		}

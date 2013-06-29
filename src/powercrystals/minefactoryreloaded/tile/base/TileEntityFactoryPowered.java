@@ -45,11 +45,14 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	private int _energyStored;
 	protected int _energyActivation;
 	
+	protected int _energyRequiredThisTick = 0;
+	
 	private int _workDone;
 	
 	private int _idleTicks;
 	
 	protected List<ItemStack> failedDrops = null;
+	private List<ItemStack> missedDrops = new ArrayList<ItemStack>();
 	
 	protected int _failedDropTicksMax = 20;
 	private int _failedDropTicks = 0;
@@ -79,7 +82,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		super(machine);
 		this._energyActivation = activationCostMJ * energyPerMJ;
 		_powerProvider = new PowerProviderAdvanced();
-		_powerProvider.configure(25, 10, 10, 1, 1000);
+		_powerProvider.configure(25, 1, 1000, 1, 1000);
 		setIsActive(false);
 	}
 	
@@ -107,25 +110,38 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 			_isAddedToIC2EnergyNet = true;
 		}
 		
-		if(getPowerProvider() != null)
+		int energyRequired = Math.min(getEnergyStoredMax() - getEnergyStored(), getMaxEnergyPerTick());
+		
+		if (energyRequired > 0)
 		{
-			getPowerProvider().update(this);
-			
-			int mjRequired = Math.min((getEnergyStoredMax() - getEnergyStored()) / energyPerMJ, 100);
-			if(_energyStored < getEnergyStoredMax() && getPowerProvider().useEnergy(1, mjRequired, false) > 0)
+			IPowerProvider pp = getPowerProvider(); 
+			bcpower: if(pp != null)
 			{
-				int mjGained = (int)(getPowerProvider().useEnergy(1, mjRequired, true));
-				_energyStored += mjGained * energyPerMJ;
+				int mjRequired = energyRequired / energyPerMJ;
+				pp.configure(pp.getLatency(), pp.getMinEnergyReceived(), mjRequired, pp.getActivationEnergy(), pp.getMaxEnergyStored());
+				if (mjRequired <= 0) break bcpower;
+				
+				pp.update(this);
+				
+				if(getPowerProvider().useEnergy(1, mjRequired, false) > 0)
+				{
+					int mjGained = (int)(getPowerProvider().useEnergy(1, mjRequired, true) * energyPerMJ);
+					_energyStored += mjGained;
+					energyRequired -= mjGained;
+				}
 			}
+			
+			ElectricityPack powerRequested = new ElectricityPack(energyRequired * wPerEnergy / getVoltage(), getVoltage());
+			ElectricityPack powerPack = ElectricityNetworkHelper.consumeFromMultipleSides(this, powerRequested);
+			_ueBuffer += powerPack.getWatts();
+			
+			int energyFromUE = Math.min(_ueBuffer / wPerEnergy, energyRequired);
+			_energyStored += energyFromUE;
+			energyRequired -= energyFromUE;
+			_ueBuffer -= (energyFromUE * wPerEnergy);
 		}
 		
-		ElectricityPack powerRequested = new ElectricityPack((getEnergyStoredMax() - getEnergyStored()) * wPerEnergy / getVoltage(), getVoltage());
-		ElectricityPack powerPack = ElectricityNetworkHelper.consumeFromMultipleSides(this, powerRequested);
-		_ueBuffer += powerPack.getWatts();
-		
-		int energyFromUE = Math.min(_ueBuffer / wPerEnergy, getEnergyStoredMax() - getEnergyStored());
-		_energyStored += energyFromUE;
-		_ueBuffer -= (energyFromUE * wPerEnergy);
+		_energyRequiredThisTick = energyRequired;
 		
 		setIsActive(_energyStored >= _energyActivation * 2);
 		
@@ -182,17 +198,19 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		{
 			return true;
 		}
+		List<ItemStack> missed = missedDrops;
+		missed.clear();
 		for (int i = drops.size(); i --> 0; )
 		{
 			ItemStack dropStack = drops.get(i);
 			dropStack = UtilInventory.dropStack(this, dropStack, this.getDropDirection());
-			if (dropStack == null || dropStack.stackSize <= 0)
+			if (dropStack != null && dropStack.stackSize > 0)
 			{
-				drops.remove(i);
+				missed.add(dropStack);
 			}
 		}
 		
-		if (drops.size() != 0)
+		if (missed.size() != 0)
 		{
 			if (drops != failedDrops)
 			{
@@ -243,6 +261,11 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 			_isAddedToIC2EnergyNet = false;
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 		}
+	}
+	
+	public int getMaxEnergyPerTick()
+	{
+		return this.machine.getActivationEnergyMJ() * energyPerMJ;
 	}
 	
 	public int getEnergyStored()
@@ -352,7 +375,8 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int powerRequest(ForgeDirection from)
 	{
-		return Math.max((getEnergyStoredMax() - getEnergyStored()) / energyPerMJ, 0);
+		int energyRequired = Math.min(getEnergyStoredMax() - getEnergyStored(), _energyRequiredThisTick);
+		return Math.max(energyRequired / energyPerMJ, 0);
 	}
 	
 	@Override
@@ -362,19 +386,20 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	// IC2 methods
 	
-	
 	@Override
 	public int demandsEnergy()
 	{
-		return ((getEnergyStoredMax() - getEnergyStored()) / energyPerEU);
+		int energyRequired = Math.min(getEnergyStoredMax() - getEnergyStored(), _energyRequiredThisTick);
+		return Math.max(energyRequired / energyPerEU, 0);
 	}
-	
 	
 	@Override
 	public int injectEnergy(Direction directionFrom, int amount)
 	{
-		int euInjected = Math.min(demandsEnergy(), amount);
-		_energyStored += euInjected * energyPerEU;
+		int euInjected = Math.max(Math.min(demandsEnergy(), amount), 0);
+		int energyInjected = euInjected * energyPerEU;
+		_energyStored += energyInjected;
+		_energyRequiredThisTick -= energyInjected;
 		return amount - euInjected;
 	}
 	

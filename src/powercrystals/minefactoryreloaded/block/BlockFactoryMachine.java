@@ -132,7 +132,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			return;
 		}
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityItemRouter && entity instanceof EntityItem)
+		if(te != null && te instanceof TileEntityItemRouter && entity instanceof EntityItem && !entity.isDead)
 		{
 			ItemStack s = ((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()); 
 			if(s == null)
@@ -144,7 +144,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 				((EntityItem)entity).setEntityItemStack(s);
 			}
 		}
-		else if(te != null && te instanceof TileEntityCollector && entity instanceof EntityItem)
+		else if(te != null && te instanceof TileEntityCollector && entity instanceof EntityItem && !entity.isDead)
 		{
 			((TileEntityCollector)te).addToChests((EntityItem)entity);
 		}

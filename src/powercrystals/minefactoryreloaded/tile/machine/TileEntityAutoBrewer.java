@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
-import powercrystals.core.inventory.InventoryManager;
+import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiAutoBrewer;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoBrewer;
@@ -128,7 +128,7 @@ public class TileEntityAutoBrewer extends TileEntityFactoryPowered
 			
 				for(int i = 0; i < 3; i++)
 				{
-					if(!InventoryManager.stacksEqual(_inventory[getResourceSlot(row, i)], ingredient))
+					if(!UtilInventory.stacksEqual(_inventory[getResourceSlot(row, i)], ingredient))
 					{
 						continue;
 					}
@@ -163,7 +163,7 @@ public class TileEntityAutoBrewer extends TileEntityFactoryPowered
 		boolean hasIngredients = false;
 		for(int i = 0; i < 3; i++)
 		{
-			if(InventoryManager.stacksEqual(_inventory[getTemplateSlot(row)], _inventory[getResourceSlot(row, i)]))
+			if(UtilInventory.stacksEqual(_inventory[getTemplateSlot(row)], _inventory[getResourceSlot(row, i)]))
 			{
 				hasIngredients = true;
 				break;
@@ -240,7 +240,7 @@ public class TileEntityAutoBrewer extends TileEntityFactoryPowered
 		if(row == 6) return false;
 		if(column == 1) return false;
 		if(column == 0) return _inventory[getTemplateSlot(row)] != null && Item.itemsList[itemstack.itemID] instanceof ItemPotion && (row == 0 || _inventory[getTemplateSlot(row - 1)] == null);
-		return InventoryManager.stacksEqual(_inventory[getTemplateSlot(row)], itemstack);
+		return UtilInventory.stacksEqual(_inventory[getTemplateSlot(row)], itemstack);
 	}
 	
 	@Override
@@ -252,7 +252,7 @@ public class TileEntityAutoBrewer extends TileEntityFactoryPowered
 		if(row == 6) return true;
 		if(column == 1) return false;
 		if(column == 0) return _inventory[getTemplateSlot(row)] == null;
-		return !InventoryManager.stacksEqual(_inventory[getTemplateSlot(row)], itemstack);
+		return !UtilInventory.stacksEqual(_inventory[getTemplateSlot(row)], itemstack);
 	}
 	
 	@Override
