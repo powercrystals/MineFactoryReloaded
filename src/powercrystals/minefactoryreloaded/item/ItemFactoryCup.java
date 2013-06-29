@@ -124,7 +124,7 @@ public class ItemFactoryCup extends ItemFactory
 	@Override
 	public int fill(ItemStack stack, FluidStack resource, boolean doFill)
 	{
-		if (resource == null)
+		if (resource == null || resource.isGaseous())
 			return 0;
 		int fillAmount = 0, capacity = getCapacity(stack);
 		NBTTagCompound tag = stack.stackTagCompound, fluidTag = null;

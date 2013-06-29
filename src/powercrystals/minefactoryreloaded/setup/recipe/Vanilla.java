@@ -1355,6 +1355,8 @@ public class Vanilla
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.chocolateMilkBucketItem), Item.bucketMilk, Item.bucketEmpty, new ItemStack(Item.dyePowder, 1, 3));
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(MineFactoryReloadedCore.pinkSlimeBucketItem), Item.bucketMilk, MineFactoryReloadedCore.meatBucketItem, Item.bucketEmpty, new ItemStack(Item.dyePowder, 1, 1));
+		
 		/*GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.emptyPlasticCup, 16), new Object[]
 				{
 			" P ",
