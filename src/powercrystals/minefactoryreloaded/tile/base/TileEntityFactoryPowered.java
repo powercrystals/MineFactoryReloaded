@@ -80,13 +80,20 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	protected TileEntityFactoryPowered(Machine machine, int activationCostMJ)
 	{
 		super(machine);
-		this._energyActivation = activationCostMJ * energyPerMJ;
+		_energyActivation = activationCostMJ * energyPerMJ;
 		_powerProvider = new PowerProviderAdvanced();
-		_powerProvider.configure(25, 1, 1000, 1, 1000);
+		configurePowerProvider();
 		setIsActive(false);
 	}
 	
 	// local methods
+	
+	private void configurePowerProvider()
+	{ // TODO: inline into constructor in 2.8
+		int activation = getMaxEnergyPerTick() / energyPerMJ;
+		int maxReceived = Math.min(activation * getWorkMax(), 1000);
+		_powerProvider.configure(0, activation < 10 ? 1 : 10, maxReceived, 1, 1000);
+	}
 	
 	@Override
 	public void updateEntity()
@@ -118,14 +125,13 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 			bcpower: if(pp != null)
 			{
 				int mjRequired = energyRequired / energyPerMJ;
-				pp.configure(pp.getLatency(), pp.getMinEnergyReceived(), mjRequired, pp.getActivationEnergy(), pp.getMaxEnergyStored());
 				if (mjRequired <= 0) break bcpower;
 				
 				pp.update(this);
 				
-				if(getPowerProvider().useEnergy(1, mjRequired, false) > 0)
+				if(pp.useEnergy(1, mjRequired, false) > 0)
 				{
-					int mjGained = (int)(getPowerProvider().useEnergy(1, mjRequired, true) * energyPerMJ);
+					int mjGained = (int)(pp.useEnergy(1, mjRequired, true) * energyPerMJ);
 					_energyStored += mjGained;
 					energyRequired -= mjGained;
 				}
@@ -265,7 +271,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	public int getMaxEnergyPerTick()
 	{
-		return this.machine.getActivationEnergyMJ() * energyPerMJ;
+		return _energyActivation;
 	}
 	
 	public int getEnergyStored()
@@ -305,14 +311,16 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound nbttagcompound)
+	public void writeToNBT(NBTTagCompound tag)
 	{
-		super.writeToNBT(nbttagcompound);
+		super.writeToNBT(tag);
 		
-		nbttagcompound.setInteger("energyStored", _energyStored);
-		nbttagcompound.setInteger("workDone", _workDone);
-		nbttagcompound.setInteger("ueBuffer", _ueBuffer);
-		_powerProvider.writeToNBT(nbttagcompound);
+		tag.setInteger("energyStored", _energyStored);
+		tag.setInteger("workDone", _workDone);
+		tag.setInteger("ueBuffer", _ueBuffer);
+		NBTTagCompound pp = new NBTTagCompound();
+		_powerProvider.writeToNBT(pp);
+		tag.setCompoundTag("powerProvider", pp);
 		
 		if (failedDrops != null)
 		{
@@ -323,25 +331,38 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 				item.writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
-			nbttagcompound.setTag("DropItems", nbttaglist);
+			tag.setTag("DropItems", nbttaglist);
 		}
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound nbttagcompound)
+	public void readFromNBT(NBTTagCompound tag)
 	{
-		super.readFromNBT(nbttagcompound);
+		super.readFromNBT(tag);
 		
-		_energyStored = Math.min(nbttagcompound.getInteger("energyStored"), getEnergyStoredMax());
-		_workDone = Math.min(nbttagcompound.getInteger("workDone"), getWorkMax());
-		_ueBuffer = nbttagcompound.getInteger("ueBuffer");
-		_powerProvider.readFromNBT(nbttagcompound);
-		_powerProvider.configure(25, 10, 10, 1, 1000);
+		_energyStored = Math.min(tag.getInteger("energyStored"), getEnergyStoredMax());
+		_workDone = Math.min(tag.getInteger("workDone"), getWorkMax());
+		_ueBuffer = tag.getInteger("ueBuffer");
+		if (tag.hasKey("powerProvider"))
+		{
+			_powerProvider.readFromNBT(tag.getCompoundTag("powerProvider"));
+		}
+		else // TODO: remove legacy code (below) in 2.8, losses from upgrades 2.6 or below acceptable
+		{
+			_powerProvider.readFromNBT(tag);
+			configurePowerProvider();
+			tag.removeTag("latency");
+			tag.removeTag("minEnergyReceived");
+			tag.removeTag("maxEnergyReceived");
+			tag.removeTag("maxStoreEnergy");
+			tag.removeTag("minActivationEnergy");
+			tag.removeTag("storedEnergy");
+		}
 
-		if (nbttagcompound.hasKey("DropItems"))
+		if (tag.hasKey("DropItems"))
 		{
 			List<ItemStack> drops = new ArrayList<ItemStack>();
-			NBTTagList nbttaglist = nbttagcompound.getTagList("DropItems");
+			NBTTagList nbttaglist = tag.getTagList("DropItems");
 			for (int i = nbttaglist.tagCount(); i --> 0; )
 			{
 				NBTTagCompound nbttagcompound1 = (NBTTagCompound)nbttaglist.tagAt(i);
@@ -356,6 +377,11 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 				failedDrops = drops;
 			}
 		}
+	}
+	
+	public int getEnergyRequired()
+	{
+		return Math.min(getEnergyStoredMax() - getEnergyStored(), _energyRequiredThisTick);
 	}
 	
 	// BC methods
@@ -375,8 +401,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int powerRequest(ForgeDirection from)
 	{
-		int energyRequired = Math.min(getEnergyStoredMax() - getEnergyStored(), _energyRequiredThisTick);
-		return Math.max(energyRequired / energyPerMJ, 0);
+		return Math.max(getEnergyRequired() / energyPerMJ, 0);
 	}
 	
 	@Override
@@ -389,8 +414,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int demandsEnergy()
 	{
-		int energyRequired = Math.min(getEnergyStoredMax() - getEnergyStored(), _energyRequiredThisTick);
-		return Math.max(energyRequired / energyPerEU, 0);
+		return Math.max(getEnergyRequired() / energyPerEU, 0);
 	}
 	
 	@Override
