@@ -379,6 +379,11 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 		}
 	}
 	
+	public int getEnergyRequired()
+	{
+		return Math.min(getEnergyStoredMax() - getEnergyStored(), _energyRequiredThisTick);
+	}
+	
 	// BC methods
 	
 	@Override
@@ -396,8 +401,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int powerRequest(ForgeDirection from)
 	{
-		int energyRequired = Math.min(getEnergyStoredMax() - getEnergyStored(), _energyRequiredThisTick);
-		return Math.max(energyRequired / energyPerMJ, 0);
+		return Math.max(getEnergyRequired() / energyPerMJ, 0);
 	}
 	
 	@Override
@@ -410,8 +414,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int demandsEnergy()
 	{
-		int energyRequired = Math.min(getEnergyStoredMax() - getEnergyStored(), _energyRequiredThisTick);
-		return Math.max(energyRequired / energyPerEU, 0);
+		return Math.max(getEnergyRequired() / energyPerEU, 0);
 	}
 	
 	@Override
