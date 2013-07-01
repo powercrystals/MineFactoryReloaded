@@ -268,7 +268,6 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 				hasInventory = true;
 				invPercent = inv.getComparatorOutput(side);
 			}
-			FMLLog.severe("hasTank:%s, hasInv:%s; %s %s", hasTank, hasInventory, tankPercent, invPercent);
 			float mult = hasTank & hasInventory ? (tankPercent + invPercent) / 2 : hasTank ? tankPercent : hasInventory ? invPercent : 0f;
 			ret = (int)Math.ceil(15 * mult);
 		}
