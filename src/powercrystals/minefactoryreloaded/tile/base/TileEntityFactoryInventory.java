@@ -331,7 +331,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 				ItemStack stack = getStackInSlot(slots[i]);
 				if (stack != null)
 				{
-					int maxStack = Math.min(stack.getMaxStackSize(), getInventoryStackLimit()); 
+					float maxStack = Math.min(stack.getMaxStackSize(), getInventoryStackLimit()); 
 					ret += Math.max(Math.min(stack.stackSize / maxStack, 1), 0);
 				}
 				++len;
