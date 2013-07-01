@@ -319,7 +319,8 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		return true;
 	}
 
-	public float getComparatorOutput(int side) {
+	public float getComparatorOutput(int side)
+	{
 		int[] slots = getAccessibleSlotsFromSide(side);
 		int len = 0;
 		float ret = 0;
