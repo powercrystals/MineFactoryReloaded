@@ -185,11 +185,14 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 			drops.add(newStack);
 			for(ItemStack s : _inventory)
 			{
-				if(s == null || s.itemID != MineFactoryReloadedCore.laserFocusItem.itemID)
+				if(s == null || s.itemID != MineFactoryReloadedCore.laserFocusItem.itemID || MFRRegistry.getLaserPreferredOres(s.getItemDamage()) == null)
 				{
 					continue;
 				}
-				for(ItemStack preferredOre : MFRRegistry.getLaserPreferredOres(s.getItemDamage()))
+				
+				List<ItemStack> preferredOres = MFRRegistry.getLaserPreferredOres(s.getItemDamage());
+				
+				for(ItemStack preferredOre : preferredOres)
 				{
 					if(UtilInventory.stacksEqual(newStack.getStack(), preferredOre))
 					{
