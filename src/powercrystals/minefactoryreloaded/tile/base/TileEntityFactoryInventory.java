@@ -318,6 +318,26 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	{
 		return true;
 	}
+
+	public float getComparatorOutput(int side) {
+		int[] slots = getAccessibleSlotsFromSide(side);
+		int len = 0;
+		float ret = 0;
+		for (int i = slots.length; i --> 0; )
+		{
+			if (canInsertItem(slots[i], null, side))
+			{
+				ItemStack stack = getStackInSlot(slots[i]);
+				if (stack != null)
+				{
+					int maxStack = Math.min(stack.getMaxStackSize(), getInventoryStackLimit()); 
+					ret += Math.max(Math.min(stack.stackSize / maxStack, 1), 0);
+				}
+				++len;
+			}
+		}
+		return ret / len;
+	}
 	
 	public boolean isActive()
 	{
