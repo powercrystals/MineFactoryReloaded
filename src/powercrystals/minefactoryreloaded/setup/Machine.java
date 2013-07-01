@@ -100,7 +100,7 @@ public class Machine
 	public static Machine RedNote = new Machine(2, 4, "RedNote", TileEntityRedNote.class, "factoryRedNote", 0);
 	public static Machine AutoBrewer = new Machine(2, 5, "AutoBrewer", TileEntityAutoBrewer.class, "factoryAutoBrewer", 4);
 	public static Machine FruitPicker = new Machine(2, 6, "FruitPicker", TileEntityFruitPicker.class, "factoryFruitPicker", 32);
-	public static Machine BlockPlacer = new Machine(2, 6, "BlockPlacer", TileEntityBlockPlacer.class, "factoryBlockPlacer", 1);
+	public static Machine BlockPlacer = new Machine(2, 7, "BlockPlacer", TileEntityBlockPlacer.class, "factoryBlockPlacer", 1);
 	
 	private static List<Machine> _machines;
 	private static Map<Integer, Machine> _machineMappingss;
