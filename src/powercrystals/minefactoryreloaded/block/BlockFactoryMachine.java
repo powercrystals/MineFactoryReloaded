@@ -22,6 +22,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -41,6 +42,7 @@ import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityItemRouter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -233,6 +235,43 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean hasComparatorInputOverride()
+	{
+		return true;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, int x, int y, int z, int side)
+	{
+		int ret = 0;
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if (te instanceof TileEntityFactoryInventory)
+		{
+			TileEntityFactoryInventory inv = (TileEntityFactoryInventory)te;
+			ILiquidTank tank = inv.getTank();
+			float tankPercent = 0, invPercent = 0;
+			boolean hasTank = false, hasInventory = false;
+			if (tank != null)
+			{
+				hasTank = true;
+				if (tank.getLiquid() != null)
+				{
+					tankPercent = ((float)tank.getLiquid().amount) / tank.getCapacity();
+				}
+			}
+			int[] accSlots = inv.getAccessibleSlotsFromSide(side);
+			if (accSlots.length > 0)
+			{
+				hasInventory = true;
+				invPercent = inv.getComparatorOutput(side);
+			}
+			float mult = hasTank & hasInventory ? (tankPercent + invPercent) / 2 : hasTank ? tankPercent : hasInventory ? invPercent : 0f;
+			ret = (int)Math.ceil(15 * mult);
+		}
+		return ret;
 	}
 	
 	@Override
