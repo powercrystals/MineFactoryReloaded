@@ -92,9 +92,9 @@ public class WorldGenRubberTree extends WorldGenerator
 
 								block = Block.blocksList[blockId];
 
-								if((block != null &&
-										(!block.isAirBlock(world, xOffset, yOffset, zOffset) ||
-												!block.isLeaves(world, xOffset, yOffset, zOffset))))
+								if(block != null && !(block.isLeaves(world, xOffset, yOffset, zOffset) ||
+										block.isAirBlock(world, xOffset, yOffset, zOffset) ||
+										block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
 								{
 									return false;
 								}
@@ -131,10 +131,12 @@ public class WorldGenRubberTree extends WorldGenerator
 
 							if(((xPos != center | zPos != center) ||
 									rand.nextInt(2) != 0 && var12 != 0) &&
-									(block == null || block.isAirBlock(world, xOffset, yOffset, zOffset) ||
+									(block == null || block.isLeaves(world, xOffset, yOffset, zOffset) ||
+									block.isAirBlock(world, xOffset, yOffset, zOffset) ||
 									block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
 							{
-								this.setBlockAndMetadata(world, xOffset, yOffset, zOffset, MineFactoryReloadedCore.rubberLeavesBlock.blockID, 0);
+								this.setBlockAndMetadata(world, xOffset, yOffset, zOffset,
+										MineFactoryReloadedCore.rubberLeavesBlock.blockID, 0);
 							}
 						}
 					}
@@ -149,7 +151,8 @@ public class WorldGenRubberTree extends WorldGenerator
 					if(block == null || block.isAirBlock(world, x, y + yOffset, z)  ||
 							block.isLeaves(world, x, y + yOffset, z))
 					{
-						this.setBlockAndMetadata(world, x, y + yOffset, z, MineFactoryReloadedCore.rubberWoodBlock.blockID, 1);
+						this.setBlockAndMetadata(world, x, y + yOffset, z,
+								MineFactoryReloadedCore.rubberWoodBlock.blockID, 1);
 					}
 				}
 
