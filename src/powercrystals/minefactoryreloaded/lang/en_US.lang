@@ -331,5 +331,9 @@ circuit.mfr.xor.2 = Xor (2-Input)
 circuit.mfr.xor.3 = Xor (3-Input)
 circuit.mfr.xor.4 = Xor (4-Input)
 
-death.attack.mfr.slaughterhouse=%1$s was turned into Liquid Meat
+death.attack.mfr.slaughterhouse=%1$s was processed into Liquid Meat
+death.attack.mfr.slaughterhouse.player=%1$s was doomed to be processed into Liquid Meat by %2$s
+death.attack.mfr.slaughterhouse.1=%1$s was processed into meat sauce
+death.attack.mfr.slaughterhouse.1.player=%1$s was doomed to be processed into meat sauce by %2$s
 death.attack.mfr.grinder=%1$s was ground to bits
+death.attack.mfr.grinder.player=%2$s ensured %1$s was ground to bits
