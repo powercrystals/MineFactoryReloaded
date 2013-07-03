@@ -18,7 +18,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	public TileEntitySlaughterhouse()
 	{
 		super(Machine.Slaughterhouse);
-		_damageSource = new GrindingDamage("mfr.slaughterhouse");
+		_damageSource = new GrindingDamage("mfr.slaughterhouse", 2);
 	}
 	
 	@Override
