@@ -15,157 +15,147 @@ public class WorldGenRubberTree extends WorldGenerator
 	{
 		super();
 	}
-	
+
 	public WorldGenRubberTree(boolean doNotify)
 	{
 		super(doNotify);
 	}
-	
+
 	@Override
 	public boolean generate(World world, Random rand, int x, int retries, int z)
 	{
 		for(int c = 0; c < retries; c++)
 		{
 			int y = world.getActualHeight() - 1;
-			while(world.getBlockId(x, y, z) == 0 && y > 0)
+			Block block = Block.blocksList[world.getBlockId(x, y, z)];
+			while((block == null || block.isAirBlock(world, x, y, z)) && y > 0)
 			{
 				y--;
 			}
-			
+
 			if(!growTree(world, rand, x, y + 1, z))
 			{
 				retries--;
 			}
-			
+
 			x += rand.nextInt(16) - 8;
 			z += rand.nextInt(16) - 8;
 		}
-		
+
 		return true;
 	}
-	
+
 	public boolean growTree(World world, Random rand, int x, int y, int z)
 	{
 		int treeHeight = rand.nextInt(3) + 5,
-			worldHeight = world.getHeight();
-		boolean canGrow = true;
-		
+				worldHeight = world.getHeight();
+		Block block;
+
 		if(y >= 1 && y + treeHeight + 1 <= worldHeight)
 		{
-			int var8;
-			int var10;
-			int var11;
-			int var12;
+			int blockId;
+			int xOffset;
+			int yOffset;
+			int zOffset;
+
+			blockId = world.getBlockId(x, y - 1, z);
+			block = Block.blocksList[blockId];
 			
-			for(var8 = y; var8 <= y + 1 + treeHeight; ++var8)
+			boolean isGrass = blockId == Block.grass.blockID;
+
+			if((block != null && ((isGrass | blockId == Block.dirt.blockID) ||
+					block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP,
+							((BlockSapling)MineFactoryReloadedCore.rubberSaplingBlock)))) &&
+							y < worldHeight - treeHeight - 1)
 			{
-				byte var9 = 1;
-				
-				if(var8 == y)
+				for(yOffset = y; yOffset <= y + 1 + treeHeight; ++yOffset)
 				{
-					var9 = 0;
-				}
-				
-				if(var8 >= y + 1 + treeHeight - 2)
-				{
-					var9 = 2;
-				}
-				
-				for(var10 = x - var9; var10 <= x + var9 && canGrow; ++var10)
-				{
-					for(var11 = z - var9; var11 <= z + var9 && canGrow; ++var11)
+					byte radius = 1;
+
+					if(yOffset == y)
 					{
-						if(var8 >= 0 && var8 < worldHeight)
-						{
-							var12 = world.getBlockId(var10, var8, var11);
-							
-							Block block = Block.blocksList[var12];
-							
-							if((block != null &&
-									(!block.isAirBlock(world, var10, var8, var11) ||
-											!block.isLeaves(world, var10, var8, var11))))
-							{
-								canGrow = false;
-							}
-						}
-						else
-						{
-							canGrow = false;
-						}
+						radius = 0;
 					}
-				}
-			}
-			
-			if(!canGrow)
-			{
-				return false;
-			}
-			else
-			{
-				var8 = world.getBlockId(x, y - 1, z);
-				
-				if((Block.blocksList[var8] != null && (var8 == Block.grass.blockID ||
-						var8 == Block.dirt.blockID ||
-						Block.blocksList[var8].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP,
-								((BlockSapling)MineFactoryReloadedCore.rubberSaplingBlock)))) &&
-						y < worldHeight - treeHeight - 1)
-				{
-					if (var8 == Block.grass.blockID)
+
+					if(yOffset >= y + 1 + treeHeight - 2)
 					{
-						this.setBlock(world, x, y - 1, z, Block.dirt.blockID);
+						radius = 2;
 					}
-					int yOffset;
-					
-					for(yOffset = y - 3 + treeHeight; yOffset <= y + treeHeight; ++yOffset)
+
+					if(yOffset >= 0 & yOffset < worldHeight)
 					{
-						var10 = yOffset - (y + treeHeight);
-						var11 = 1 - var10 / 2;
-						
-						for(var12 = x - var11; var12 <= x + var11; ++var12)
+						for(xOffset = x - radius; xOffset <= x + radius; ++xOffset)
 						{
-							int var13 = var12 - x;
-							
-							for(int var14 = z - var11; var14 <= z + var11; ++var14)
+							for(zOffset = z - radius; zOffset <= z + radius; ++zOffset)
 							{
-								int var15 = var14 - z;
-								
-								Block block = Block.blocksList[world.getBlockId(var12, yOffset, var14)];
-								
-								if((Math.abs(var13) != var11 || Math.abs(var15) != var11 ||
-										rand.nextInt(2) != 0 && var10 != 0) &&
-										(block == null || block.isAirBlock(world, var12, yOffset, var14) ||
-											block.canBeReplacedByLeaves(world, var12, yOffset, var14)))
+								blockId = world.getBlockId(xOffset, yOffset, zOffset);
+
+								block = Block.blocksList[blockId];
+
+								if((block != null &&
+										(!block.isAirBlock(world, xOffset, yOffset, zOffset) ||
+												!block.isLeaves(world, xOffset, yOffset, zOffset))))
 								{
-									this.setBlockAndMetadata(world, var12, yOffset, var14, MineFactoryReloadedCore.rubberLeavesBlock.blockID, 0);
+									return false;
 								}
 							}
 						}
 					}
-					
-					for(yOffset = 0; yOffset < treeHeight; ++yOffset)
+					else
 					{
-						var10 = world.getBlockId(x, y + yOffset, z);
-						
-						Block block = Block.blocksList[var10];
-						
-						if(block == null || block.isAirBlock(world, x, y + yOffset, z)  ||
-								block.isLeaves(world, x, y + yOffset, z))
+						return false;
+					}
+				}
+
+				if (isGrass)
+				{
+					this.setBlock(world, x, y - 1, z, Block.dirt.blockID);
+				}
+
+				for(yOffset = y - 3 + treeHeight; yOffset <= y + treeHeight; ++yOffset)
+				{
+					int var12 = yOffset - (y + treeHeight),
+							center = 1 - var12 / 2;
+
+					for(xOffset = x - center; xOffset <= x + center; ++xOffset)
+					{
+						int xPos = xOffset - x, t = xPos >> 31;
+						xPos = (xPos + t) ^ t;
+
+						for(zOffset = z - center; zOffset <= z + center; ++zOffset)
 						{
-							this.setBlockAndMetadata(world, x, y + yOffset, z, MineFactoryReloadedCore.rubberWoodBlock.blockID, 1);
+							int zPos = zOffset - z;
+							zPos = (zPos + (t = zPos >> 31)) ^ t;
+
+							block = Block.blocksList[world.getBlockId(xOffset, yOffset, zOffset)];
+
+							if(((xPos != center | zPos != center) ||
+									rand.nextInt(2) != 0 && var12 != 0) &&
+									(block == null || block.isAirBlock(world, xOffset, yOffset, zOffset) ||
+									block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
+							{
+								this.setBlockAndMetadata(world, xOffset, yOffset, zOffset, MineFactoryReloadedCore.rubberLeavesBlock.blockID, 0);
+							}
 						}
 					}
-					
-					return true;
 				}
-				else
+
+				for(yOffset = 0; yOffset < treeHeight; ++yOffset)
 				{
-					return false;
+					xOffset = world.getBlockId(x, y + yOffset, z);
+
+					block = Block.blocksList[xOffset];
+
+					if(block == null || block.isAirBlock(world, x, y + yOffset, z)  ||
+							block.isLeaves(world, x, y + yOffset, z))
+					{
+						this.setBlockAndMetadata(world, x, y + yOffset, z, MineFactoryReloadedCore.rubberWoodBlock.blockID, 1);
+					}
 				}
+
+				return true;
 			}
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 }
