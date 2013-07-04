@@ -23,7 +23,11 @@ public class EntityLivingHandler implements ISafariNetHandler
 		NBTTagCompound tag = safariNetStack.getTagCompound();
 		if (tag.hasKey("CustomName"))
 		{
-			infoList.add("Name: " + tag.getString("CustomName"));
+			String name = tag.getString("CustomName");
+			if (name != null && !name.isEmpty())
+			{
+				infoList.add("Name: " + name);
+			}
 		}
 		infoList.add("Health: " + (tag.getShort("Health")));
 	}
