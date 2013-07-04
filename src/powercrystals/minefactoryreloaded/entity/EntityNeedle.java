@@ -251,7 +251,7 @@ public class EntityNeedle extends Entity implements IProjectile
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		nbttagcompound.setInteger("ammoItemId", _ammoItemId);
-		nbttagcompound.setDouble("", _xStart);
+		nbttagcompound.setDouble("xStart", _xStart);
 		nbttagcompound.setDouble("yStart", _yStart);
 		nbttagcompound.setDouble("zStart", _zStart);
 	}
