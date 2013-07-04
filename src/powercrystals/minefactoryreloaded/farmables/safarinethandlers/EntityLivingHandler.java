@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import powercrystals.minefactoryreloaded.api.ISafariNetHandler;
 
 public class EntityLivingHandler implements ISafariNetHandler
@@ -19,6 +20,11 @@ public class EntityLivingHandler implements ISafariNetHandler
 	@Override
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips)
 	{
-		infoList.add("Health: " + (safariNetStack.getTagCompound().getShort("Health")));
+		NBTTagCompound tag = safariNetStack.getTagCompound();
+		if (tag.hasKey("CustomName"))
+		{
+			infoList.add("Name: " + tag.getString("CustomName"));
+		}
+		infoList.add("Health: " + (tag.getShort("Health")));
 	}
 }
