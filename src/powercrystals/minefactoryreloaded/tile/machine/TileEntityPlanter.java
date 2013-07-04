@@ -102,9 +102,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	{
 		return "Planter";
 	}
-	
-	@SuppressWarnings("null")
-	// eclipse doesn't understand boolean | and warns about impossible potential NPE 
+	 
 	private boolean stacksEqual(ItemStack a, ItemStack b)
 	{
 		if (a == null | b == null ||
