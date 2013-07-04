@@ -22,7 +22,7 @@ public class MFRUtil
 			return false;
 		}
 		Item currentItem = Item.itemsList[player.inventory.getCurrentItem().itemID];
-		if(currentItem != null && currentItem instanceof IToolHammerAdvanced)
+		if(currentItem instanceof IToolHammerAdvanced)
 		{
 			return ((IToolHammerAdvanced)currentItem).isActive(player.inventory.getCurrentItem());
 		}

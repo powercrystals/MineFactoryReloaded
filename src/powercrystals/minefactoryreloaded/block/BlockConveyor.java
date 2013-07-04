@@ -67,7 +67,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side)
 	{
 		TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityConveyor)
+		if(te instanceof TileEntityConveyor)
 		{
 			int dyeColor = ((TileEntityConveyor)te).getDyeColor();
 			if(dyeColor == -1) dyeColor = 16;
@@ -119,7 +119,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		}
 		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityConveyor)
+		if(te instanceof TileEntityConveyor)
 		{
 			((TileEntityConveyor)te).setDyeColor(stack.getItemDamage() == 16 ? -1 : stack.getItemDamage());
 		}
@@ -145,7 +145,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		}
 		
 		TileEntity conveyor = world.getBlockTileEntity(x, y, z);
-		if(!(conveyor != null && conveyor instanceof TileEntityConveyor && ((TileEntityConveyor)conveyor).getConveyorActive()))
+		if(!(conveyor instanceof TileEntityConveyor && ((TileEntityConveyor)conveyor).getConveyorActive()))
 		{
 			return;
 		}
@@ -313,7 +313,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
             return false;
         }
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof IRotateableTile)
+		if(te instanceof IRotateableTile)
 		{
 			IRotateableTile tile = ((IRotateableTile)te);
 			if (tile.canRotate())
@@ -331,7 +331,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 		if(MFRUtil.isHoldingHammer(entityplayer))
 		{
 			TileEntity te = world.getBlockTileEntity(x, y, z);
-			if(te != null && te instanceof IRotateableTile)
+			if(te instanceof IRotateableTile)
 			{
 				((IRotateableTile)te).rotate();
 			}
@@ -344,7 +344,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborId)
 	{
 		TileEntity tec = world.getBlockTileEntity(x, y, z);
-		if(tec != null && tec instanceof TileEntityConveyor)
+		if(tec instanceof TileEntityConveyor)
 		{
 			((TileEntityConveyor)tec).updateConveyorActive();
 		}
@@ -378,7 +378,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		int dyeColor = 16;
-		if(te != null && te instanceof TileEntityConveyor)
+		if(te instanceof TileEntityConveyor)
 		{
 			dyeColor = ((TileEntityConveyor)te).getDyeColor();
 			if(dyeColor == -1) dyeColor = 16;
@@ -422,7 +422,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityConveyor)
+		if(te instanceof TileEntityConveyor)
 		{
 			((TileEntityConveyor)te).onRedNetChanged(inputValue);
 		}

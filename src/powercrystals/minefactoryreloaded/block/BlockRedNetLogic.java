@@ -100,7 +100,7 @@ public class BlockRedNetLogic extends BlockContainer implements IConnectableRedN
             return false;
         }
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetLogic)
+		if(te instanceof TileEntityRedNetLogic)
 		{
 			if (((TileEntityRedNetLogic)te).crafters > 0)
 			{
