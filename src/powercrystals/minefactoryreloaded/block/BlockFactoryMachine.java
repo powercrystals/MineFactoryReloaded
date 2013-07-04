@@ -113,7 +113,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && (te instanceof TileEntityItemRouter || te instanceof TileEntityCollector))
+		if(te instanceof TileEntityItemRouter || te instanceof TileEntityCollector)
 		{
 			float shrinkAmount = 0.125F;
 			return AxisAlignedBB.getBoundingBox(x + shrinkAmount, y + shrinkAmount, z + shrinkAmount,
@@ -133,7 +133,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			return;
 		}
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityItemRouter && entity instanceof EntityItem && !entity.isDead)
+		if(te instanceof TileEntityItemRouter && entity instanceof EntityItem && !entity.isDead)
 		{
 			ItemStack s = ((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()); 
 			if(s == null)
@@ -145,7 +145,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 				((EntityItem)entity).setEntityItemStack(s);
 			}
 		}
-		else if(te != null && te instanceof TileEntityCollector && entity instanceof EntityItem && !entity.isDead)
+		else if(te instanceof TileEntityCollector && entity instanceof EntityItem && !entity.isDead)
 		{
 			((TileEntityCollector)te).addToChests((EntityItem)entity);
 		}
@@ -224,7 +224,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
             return false;
         }
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof IRotateableTile)
+		if(te instanceof IRotateableTile)
 		{
 			IRotateableTile tile = ((IRotateableTile)te);
 			if (tile.canRotate())
@@ -370,12 +370,12 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			BlockNBTManager.setForBlock(te);
 		}
 		
-		if(te != null && te instanceof TileEntityFactoryPowered)
+		if(te instanceof TileEntityFactoryPowered)
 		{
 			((TileEntityFactoryPowered)te).onBlockBroken();
 		}
 		
-		if(te != null && te instanceof TileEntityAutoJukebox)
+		if(te instanceof TileEntityAutoJukebox)
 		{
 			((TileEntityAutoJukebox)te).stopRecord();
 		}

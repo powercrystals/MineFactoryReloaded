@@ -90,7 +90,7 @@ public abstract class MFRLiquidMover
 			for(BlockPosition adj : new BlockPosition(from).getAdjacent(true))
 			{
 				TileEntity tile = from.worldObj.getBlockTileEntity(adj.x, adj.y, adj.z);
-				if(tile != null && tile instanceof ITankContainer)
+				if(tile instanceof ITankContainer)
 				{
 					int filled = ((ITankContainer)tile).fill(adj.orientation.getOpposite(), l, true);
 					tank.drain(filled, true);

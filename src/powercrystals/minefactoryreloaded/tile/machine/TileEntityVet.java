@@ -118,7 +118,7 @@ public class TileEntityVet extends TileEntityFactoryPowered
 	@Override
 	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
 	{
-		return itemstack != null && itemstack.getItem() != null && itemstack.getItem() instanceof ISyringe;
+		return itemstack != null && itemstack.getItem() instanceof ISyringe;
 	}
 	
 	@Override
