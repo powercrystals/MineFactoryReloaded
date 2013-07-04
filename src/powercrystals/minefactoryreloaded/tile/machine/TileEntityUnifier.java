@@ -27,8 +27,11 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 {
 	private LiquidTank _tank;
 	
-	private LiquidStack _biofuel;
-	private LiquidStack _ethanol;
+	private static LiquidStack _biofuel;
+	private static LiquidStack _ethanol;
+	private static LiquidStack _essence;
+	private static LiquidStack _liquidxp;
+	private int _roundingCompensation;
 	
 	private Map<String, ItemStack> _preferredOutputs = new HashMap<String, ItemStack>();
 	
@@ -36,8 +39,15 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	{
 		super(Machine.Unifier);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
+		_roundingCompensation = 1;
+	}
+
+	public static void updateUnifierLiquids()
+	{
 		_biofuel = LiquidDictionary.getLiquid("biofuel", 1);
 		_ethanol = LiquidDictionary.getLiquid("ethanol", 1);
+		_essence = LiquidDictionary.getLiquid("mobEssence", 1);
+		_liquidxp = LiquidDictionary.getLiquid("immibis.liquidxp", 1);
 	}
 	
 	@Override
@@ -213,20 +223,52 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	@Override
 	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill)
 	{
-		if(_biofuel == null || _ethanol == null || resource == null)
+		if(resource == null || resource.amount == 0) return 0;
+		
+		LiquidStack converted = unifierTransformLiquid(resource, doFill);
+		
+		if(converted == null || converted.amount == 0) return 0;
+		
+		int filled = _tank.fill(converted, doFill);
+		
+		if(filled == converted.amount)
 		{
-			return 0;
+			return resource.amount;
+		}
+		else
+		{
+			return filled * resource.amount / converted.amount + (resource.amount & _roundingCompensation);
+		}
+	}
+	
+	private LiquidStack unifierTransformLiquid(LiquidStack resource, boolean doFill)
+	{
+		if(_ethanol != null && _biofuel != null &&
+				resource.itemID == _ethanol.itemID && resource.itemMeta == _ethanol.itemMeta)
+		{
+			return new LiquidStack(_biofuel.itemID, resource.amount, _biofuel.itemMeta);
+		}
+		else if(_ethanol != null && _biofuel != null &&
+				resource.itemID == _biofuel.itemID && resource.itemMeta == _biofuel.itemMeta)
+		{
+			return new LiquidStack(_ethanol.itemID, resource.amount, _ethanol.itemMeta);
+		}
+		else if(_essence != null && _liquidxp != null &&
+				resource.itemID == _essence.itemID && resource.itemMeta == _essence.itemMeta)
+		{
+			return new LiquidStack(_liquidxp.itemID, resource.amount * 2, _liquidxp.itemMeta);
+		}
+		else if(_essence != null && _liquidxp != null &&
+				resource.itemID == _liquidxp.itemID && resource.itemMeta == _liquidxp.itemMeta)
+		{
+			if(doFill)
+			{
+				_roundingCompensation ^= (resource.amount & 1);
+			}
+			return new LiquidStack(_essence.itemID, resource.amount / 2 + (resource.amount & _roundingCompensation), _essence.itemMeta);
 		}
 		
-		if(resource.itemID == _ethanol.itemID && resource.itemMeta == _ethanol.itemMeta)
-		{
-			return _tank.fill(new LiquidStack(_biofuel.itemID, resource.amount, _biofuel.itemMeta), doFill);
-		}
-		else if(resource.itemID == _biofuel.itemID && resource.itemMeta == _biofuel.itemMeta)
-		{
-			return _tank.fill(new LiquidStack(_ethanol.itemID, resource.amount, _ethanol.itemMeta), doFill);
-		}
-		return 0;
+		return null;
 	}
 	
 	@Override
