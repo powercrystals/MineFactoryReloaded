@@ -262,9 +262,9 @@ public class EntityNeedle extends Entity implements IProjectile
 		if(nbttagcompound.hasKey("ammoItemId"))
 		{
 			_ammoItemId = nbttagcompound.getInteger("ammoItemId");
-			_xStart = nbttagcompound.getInteger("xStart");
-			_yStart = nbttagcompound.getInteger("yStart");
-			_zStart = nbttagcompound.getInteger("zStart");
+			_xStart = nbttagcompound.getDouble("xStart");
+			_yStart = nbttagcompound.getDouble("yStart");
+			_zStart = nbttagcompound.getDouble("zStart");
 		}
 	}
 	
