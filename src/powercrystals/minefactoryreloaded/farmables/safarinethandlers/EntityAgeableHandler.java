@@ -19,7 +19,7 @@ public class EntityAgeableHandler implements ISafariNetHandler
 	@Override
 	public void addInformation(ItemStack safariNetStack, EntityPlayer player, List infoList, boolean advancedTooltips)
 	{
-		if(safariNetStack.getTagCompound().getInteger("Age") != 0)
+		if(safariNetStack.getTagCompound().getInteger("Age") < 0)
 		{
 			infoList.add("Baby");
 		}
