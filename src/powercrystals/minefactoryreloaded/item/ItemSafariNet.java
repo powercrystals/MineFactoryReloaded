@@ -211,6 +211,12 @@ public class ItemSafariNet extends ItemFactory
 		
 		if(spawnedCreature != null)
 		{
+			if ((spawnedCreature instanceof EntityLiving) &&
+					itemstack.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID &&
+					itemstack.hasDisplayName())
+			{
+				((EntityLiving)spawnedCreature).func_94058_c(itemstack.getDisplayName());
+			}
 			if(isSingleUse(itemstack))
 			{
 				itemstack.stackSize--;
