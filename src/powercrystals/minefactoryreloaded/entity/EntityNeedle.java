@@ -235,6 +235,11 @@ public class EntityNeedle extends Entity implements IProjectile
 			speedDropoff = 0.8F;
 		}
 		
+		if (this.motionY < 0.05)
+		{
+			this.motionY -= 0.01;
+		}
+		
 		this.motionX *= speedDropoff;
 		this.motionY *= speedDropoff;
 		this.motionZ *= speedDropoff;
