@@ -370,6 +370,11 @@ public class ItemSafariNet extends ItemFactory
 		return s != null && (s.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID || s.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID);
 	}
 	
+	public static boolean isSafariNet(ItemStack s)
+	{
+		return s != null && (s.getItem() instanceof ItemSafariNet);
+	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes)

@@ -81,14 +81,17 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	@Override
 	protected boolean activateMachine()
 	{
-		if(_inventory[0] == null ||
-				!(_inventory[0].getItem() instanceof ItemSafariNet) ||
-				_inventory[0].getTagCompound() == null ||
-				ItemSafariNet.isSingleUse(_inventory[0]) ||
-				MFRRegistry.getAutoSpawnerBlacklist().contains(_inventory[0].getTagCompound().getString("id")))
+		ItemStack item = getStackInSlot(0);
+		if(!isStackValidForSlot(0, item))
 		{
 			setWorkDone(0);
-			return false;	
+			return false;
+		}
+		NBTTagCompound itemTag = item.getTagCompound();
+		if (MFRRegistry.getAutoSpawnerBlacklist().contains(itemTag.getString("id")))
+		{
+			setWorkDone(0);
+			return false;
 		}
 		if(getWorkDone() < getWorkMax())
 		{
@@ -105,7 +108,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 		}
 		else
 		{
-			Entity spawnedEntity = EntityList.createEntityByName(_inventory[0].getTagCompound().getString("id"), worldObj);
+			Entity spawnedEntity = EntityList.createEntityByName(itemTag.getString("id"), worldObj);
 			
 			if(!(spawnedEntity instanceof EntityLiving))
 			{
@@ -116,7 +119,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			
 			if(_spawnExact)
 			{
-				NBTTagCompound tag = (NBTTagCompound)_inventory[0].getTagCompound().copy();
+				NBTTagCompound tag = (NBTTagCompound)itemTag.copy();
 				spawnedLiving.readEntityFromNBT(tag);
 				for (int i = 0; i < 5; ++i)
 				{
@@ -130,10 +133,9 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			
 			spawnedLiving.setLocationAndAngles(x, y, z, worldObj.rand.nextFloat() * 360.0F, 0.0F);
 			
-			if(!this.worldObj.checkNoEntityCollision(spawnedLiving.boundingBox) ||
-					!this.worldObj.getCollidingBoundingBoxes(spawnedLiving, spawnedLiving.boundingBox).isEmpty() ||
-					(this.worldObj.isAnyLiquid(spawnedLiving.boundingBox) && !(spawnedLiving instanceof EntityWaterMob)) ||
-					(!this.worldObj.isAnyLiquid(spawnedLiving.boundingBox) && spawnedLiving instanceof EntityWaterMob))
+			if(!worldObj.checkNoEntityCollision(spawnedLiving.boundingBox) ||
+					!worldObj.getCollidingBoundingBoxes(spawnedLiving, spawnedLiving.boundingBox).isEmpty() ||
+					(worldObj.isAnyLiquid(spawnedLiving.boundingBox) != (spawnedLiving instanceof EntityWaterMob)))
 			{
 				return false;
 			}
@@ -225,7 +227,15 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	@Override
 	public boolean canInsertItem(int slot, ItemStack itemstack, int side)
 	{
-		return !ItemSafariNet.isSingleUse(itemstack) && !ItemSafariNet.isEmpty(itemstack);
+		return isStackValidForSlot(slot, itemstack);
+	}
+
+	@Override
+	public boolean isStackValidForSlot(int i, ItemStack itemstack)
+	{
+		return ItemSafariNet.isSafariNet(itemstack) &&
+				!ItemSafariNet.isSingleUse(itemstack) &&
+				!ItemSafariNet.isEmpty(itemstack);
 	}
 	
 	@Override
