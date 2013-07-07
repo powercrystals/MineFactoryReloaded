@@ -50,6 +50,21 @@ public class HarvestAreaManager
 		return _harvestArea;
 	}
 	
+	public int getOriginX()
+	{
+		return _originX;
+	}
+	
+	public int getOriginY()
+	{
+		return _originY;
+	}
+	
+	public int getOriginZ()
+	{
+		return _originZ;
+	}
+	
 	public int getRadius()
 	{
 		return _radius + _upgradeLevel;

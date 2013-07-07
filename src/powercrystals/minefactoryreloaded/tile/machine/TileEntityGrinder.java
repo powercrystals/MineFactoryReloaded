@@ -30,6 +30,7 @@ import powercrystals.minefactoryreloaded.api.IFactoryGrindable2;
 import powercrystals.minefactoryreloaded.api.MobDrop;
 import powercrystals.minefactoryreloaded.core.GrindingDamage;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
@@ -40,7 +41,7 @@ import powercrystals.minefactoryreloaded.world.GrindingWorld;
 import powercrystals.minefactoryreloaded.world.GrindingWorldServer;
 import powercrystals.minefactoryreloaded.world.IGrindingWorld;
 
-public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable
+public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable, IHarvestAreaContainer
 {
 	protected HarvestAreaManager _areaManager;
 	protected LiquidTank _tank;
@@ -56,6 +57,20 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		q.add("recentlyHit");
 		q.addAll(Arrays.asList(ObfuscationReflectionHelper.remapFieldNames("net.minecraft.entity.EntityLiving", new String[] { "field_70718_bc" })));
 		recentlyHit = ReflectionHelper.findField(EntityLiving.class, q.toArray(new String[q.size()]));
+	}
+	
+	protected TileEntityGrinder(Machine machine)
+	{
+		super(machine);
+		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
+		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
+		_rand = new Random();
+	}
+	
+	public TileEntityGrinder()
+	{
+		this(Machine.Grinder);
+		_damageSource = new GrindingDamage();
 	}
 	
 	@Override
@@ -75,20 +90,6 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	public ContainerFactoryPowered getContainer(InventoryPlayer inventoryPlayer)
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
-	}
-	
-	protected TileEntityGrinder(Machine machine)
-	{
-		super(machine);
-		_areaManager = new HarvestAreaManager(this, 2, 2, 1);
-		_tank = new LiquidTank(4 * LiquidContainerRegistry.BUCKET_VOLUME);
-		_rand = new Random();
-	}
-	
-	public TileEntityGrinder()
-	{
-		this(Machine.Grinder);
-		_damageSource = new GrindingDamage();
 	}
 	
 	@Override
@@ -135,6 +136,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	public ILiquidTank getTank()
 	{
 		return _tank;
+	}
+	
+	@Override
+	public HarvestAreaManager getHAM()
+	{
+		return _areaManager;
 	}
 	
 	@Override

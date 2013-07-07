@@ -10,10 +10,12 @@ import net.minecraftforge.liquids.LiquidDictionary;
 
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.GrindingDamage;
+import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 
-public class TileEntitySlaughterhouse extends TileEntityGrinder
+public class TileEntitySlaughterhouse extends TileEntityGrinder implements IHarvestAreaContainer
 {
 	public TileEntitySlaughterhouse()
 	{
@@ -44,6 +46,12 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder
 	public ContainerFactoryPowered getContainer(InventoryPlayer inventoryPlayer)
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
+	}
+	
+	@Override
+	public HarvestAreaManager getHAM()
+	{
+		return _areaManager;
 	}
 	
 	@Override

@@ -13,6 +13,7 @@ import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryRanchable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
@@ -23,7 +24,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityRancher extends TileEntityFactoryPowered implements ITankContainerBucketable
+public class TileEntityRancher extends TileEntityFactoryPowered implements ITankContainerBucketable, IHarvestAreaContainer
 {
 	private HarvestAreaManager _areaManager;
 	private LiquidTank _tank;
@@ -82,6 +83,12 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 	public int getIdleTicksMax()
 	{
 		return 200;
+	}
+	
+	@Override
+	public HarvestAreaManager getHAM()
+	{
+		return _areaManager;
 	}
 	
 	@Override

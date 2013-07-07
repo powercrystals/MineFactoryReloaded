@@ -21,6 +21,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.core.ITankContainerBucketable;
 import powercrystals.minefactoryreloaded.core.TreeHarvestManager;
 import powercrystals.minefactoryreloaded.core.TreeHarvestMode;
@@ -36,7 +37,7 @@ import com.google.common.collect.ImmutableMap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityHarvester extends TileEntityFactoryPowered implements ITankContainerBucketable
+public class TileEntityHarvester extends TileEntityFactoryPowered implements ITankContainerBucketable, IHarvestAreaContainer
 {
 	private Map<String, Boolean> _settings;
 	
@@ -120,6 +121,12 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	protected void onFactoryInventoryChanged()
 	{
 		_areaManager.updateUpgradeLevel(_inventory[0]);
+	}
+	
+	@Override
+	public HarvestAreaManager getHAM()
+	{
+		return _areaManager;
 	}
 	
 	@Override

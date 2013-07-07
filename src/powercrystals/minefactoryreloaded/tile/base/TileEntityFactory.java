@@ -8,7 +8,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.core.position.IRotateableTile;
+import powercrystals.minefactoryreloaded.MineFactoryReloadedClient;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryInventory;
 import powercrystals.minefactoryreloaded.net.Packets;
@@ -38,6 +40,24 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	protected TileEntityFactory()
 	{
 		_forwardDirection = ForgeDirection.NORTH;
+	}
+	
+	@Override
+	public void validate()
+	{
+		if(worldObj.isRemote && this instanceof IHarvestAreaContainer)
+		{
+			MineFactoryReloadedClient.addTileToAreaList((IHarvestAreaContainer)this);
+		}
+	}
+	
+	@Override
+	public void invalidate()
+	{
+		if(worldObj.isRemote && this instanceof IHarvestAreaContainer)
+		{
+			MineFactoryReloadedClient.removeTileFromAreaList((IHarvestAreaContainer)this);
+		}
 	}
 	
 	@Override

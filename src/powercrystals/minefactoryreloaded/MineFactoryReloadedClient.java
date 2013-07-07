@@ -2,19 +2,28 @@ package powercrystals.minefactoryreloaded;
 
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+
+import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.render.RenderBlockFluidClassic;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.entity.EntityNeedle;
 import powercrystals.minefactoryreloaded.entity.EntityRocket;
 import powercrystals.minefactoryreloaded.item.ItemRocketLauncher;
@@ -49,7 +58,9 @@ import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class MineFactoryReloadedClient implements IScheduledTickHandler
 {
 	public static MineFactoryReloadedClient instance;
@@ -61,6 +72,8 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 	private Entity _lastEntityOver = null;
 	
 	public static HashMap<BlockPosition, Integer> prcPages = new HashMap<BlockPosition, Integer>();
+	
+	private static List<IHarvestAreaContainer> _areaTileEntities = new LinkedList<IHarvestAreaContainer>();
 	
 	public static void init()
 	{
@@ -109,6 +122,8 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		
 		TickRegistry.registerScheduledTickHandler(instance, Side.CLIENT);
 		TickRegistry.registerTickHandler(new RenderTickHandler(), Side.CLIENT);
+		
+		MinecraftForge.EVENT_BUS.register(instance);
 	}
 	
 	@Override
@@ -203,6 +218,48 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		return 0;
 	}
 	
+	@ForgeSubscribe
+	public void renderWorldLast(RenderWorldLastEvent e)
+	{
+		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		if(player.inventory.getCurrentItem() == null || player.inventory.getCurrentItem().itemID != MineFactoryReloadedCore.factoryHammerItem.itemID)
+		{
+			return;
+		}
+		
+		float playerOffsetX = -(float)(player.lastTickPosX + (player.posX - player.lastTickPosX) * e.partialTicks);
+		float playerOffsetY = -(float)(player.lastTickPosY + (player.posY - player.lastTickPosY) * e.partialTicks);
+		float playerOffsetZ = -(float)(player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * e.partialTicks);
+		
+		for(IHarvestAreaContainer c : _areaTileEntities)
+		{
+			float r = (Math.abs(c.getHAM().getOriginX()) % 16) / 16.0F;
+			float g = (Math.abs(c.getHAM().getOriginY()) % 16) / 16.0F;
+			float b = (Math.abs(c.getHAM().getOriginZ()) % 16) / 16.0F;
+			
+			GL11.glPushMatrix();
+			GL11.glDisable(GL11.GL_CULL_FACE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glColor4f(r, g, b, 0.4F);
+			GL11.glTranslatef(playerOffsetX, playerOffsetY, playerOffsetZ);
+			renderAABB(c.getHAM().getHarvestArea().toAxisAlignedBB());
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			GL11.glPopMatrix();
+		}
+	}
+	
+	public static void addTileToAreaList(IHarvestAreaContainer tile)
+	{
+		_areaTileEntities.add(tile);
+	}
+	
+	public static void removeTileFromAreaList(IHarvestAreaContainer tile)
+	{
+		_areaTileEntities.remove(tile);
+	}
+	
 	public int getLockedEntity()
 	{
 		if(_lastEntityOver != null && _lockonTicks >= _lockonMax)
@@ -279,5 +336,38 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 			return pointedEntity;
 		}
 		return null;
+	}
+	
+	private static void renderAABB(AxisAlignedBB par0AxisAlignedBB)
+	{
+		double eps = 0.01;
+		
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.minX + eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.minZ + eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.maxY - eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.addVertex(par0AxisAlignedBB.maxX - eps, par0AxisAlignedBB.minY + eps, par0AxisAlignedBB.maxZ - eps);
+		tessellator.draw();
 	}
 }

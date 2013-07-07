@@ -4,10 +4,11 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
-public class TileEntityMobCounter extends TileEntityFactory
+public class TileEntityMobCounter extends TileEntityFactory implements IHarvestAreaContainer
 {
 	private HarvestAreaManager _ham;
 	private int _lastMobCount;
@@ -21,6 +22,12 @@ public class TileEntityMobCounter extends TileEntityFactory
 	public boolean canRotate()
 	{
 		return true;
+	}
+	
+	@Override
+	public HarvestAreaManager getHAM()
+	{
+		return _ham;
 	}
 	
 	@Override

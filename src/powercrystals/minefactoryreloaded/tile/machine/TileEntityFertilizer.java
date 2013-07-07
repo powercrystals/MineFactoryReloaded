@@ -10,6 +10,7 @@ import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
 import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiUpgradable;
 import powercrystals.minefactoryreloaded.gui.container.ContainerUpgradable;
@@ -18,7 +19,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityFertilizer extends TileEntityFactoryPowered
+public class TileEntityFertilizer extends TileEntityFactoryPowered implements IHarvestAreaContainer
 {
 	private Random _rand;
 	
@@ -54,6 +55,12 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered
 	public ContainerUpgradable getContainer(InventoryPlayer inventoryPlayer)
 	{
 		return new ContainerUpgradable(this, inventoryPlayer);
+	}
+	
+	@Override
+	public HarvestAreaManager getHAM()
+	{
+		return _areaManager;
 	}
 	
 	@Override
