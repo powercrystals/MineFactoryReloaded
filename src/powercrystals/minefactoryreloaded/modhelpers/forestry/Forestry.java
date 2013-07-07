@@ -16,6 +16,7 @@ import powercrystals.minefactoryreloaded.modhelpers.forestry.fertilizer.Fertiliz
 import powercrystals.minefactoryreloaded.modhelpers.forestry.leaves.FertilizableForestryLeaves;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.leaves.FruitForestry;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.trees.HarvestableForestryTree;
+import powercrystals.minefactoryreloaded.modhelpers.forestry.trees.PlantableForestryTree;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.utils.ForestryUtils;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -48,6 +49,8 @@ public class Forestry
 				Item peat = (Item)forestryItems.getField("peat").get(null);
 				MFRRegistry.registerSludgeDrop(5, new ItemStack(peat));
 			}
+			
+			FarmingRegistry.registerPlantable(new PlantableForestryTree());
 			
 			for(Field f : Class.forName("forestry.core.config.ForestryBlock").getDeclaredFields())
 			{
