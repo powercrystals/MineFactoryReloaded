@@ -107,8 +107,9 @@ public class MFRConfig
 	public static Property needlegunAmmoSewageItemId;
 	public static Property needlegunAmmoFireItemId;
 	public static Property needlegunAmmoAnvilItemId;
-	
 	public static Property plasticCupItemId;
+	public static Property rocketLauncherItemId;
+	public static Property rocketItemId;
 	
 	public static Property zoolologistEntityId;
 	
@@ -263,6 +264,8 @@ public class MFRConfig
 		needlegunAmmoFireItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Fire", 12042);
 		needlegunAmmoAnvilItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.NeedleGun.Ammo.Anvil", 12043);
 		plasticCupItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.PlasticCup", 12044);
+		rocketLauncherItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.RocketLauncher", 12045);
+		rocketItemId = c.getItem(Configuration.CATEGORY_ITEM, "ID.Rocket", 12046);
 		
 		zoolologistEntityId = c.get("Entity", "ID.Zoologist", 330);
 		

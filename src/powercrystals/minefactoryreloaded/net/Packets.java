@@ -21,4 +21,5 @@ public final class Packets
 	public static final int RouterButton = 17;
 	public static final int HistorianValueChanged = 18;
 	public static final int FakeSlotChange = 19;
+	public static final int RocketLaunchWithLock = 20;
 }

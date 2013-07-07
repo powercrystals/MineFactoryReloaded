@@ -202,6 +202,8 @@ item.mfr.meat.ingot.cooked.name = Cooked Meat Ingot
 item.mfr.meat.nugget.raw.name = Raw "Meat" Nugget
 item.mfr.meat.nugget.cooked.name = Cooked "Meat" Nugget
 item.mfr.pinkslimeball.name = Pink Slimeball
+item.mfr.rocket.name = Self-Propelled Anti Materiel Rocket
+item.mfr.rocketlauncher.name = SPAMR Launcher
 
 item.mfr.ceramicdye.white.name = Ceramic Dye (White)
 item.mfr.ceramicdye.orange.name = Ceramic Dye (Orange)
