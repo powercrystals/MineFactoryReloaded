@@ -25,7 +25,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class Atum
 {
-	private static final String lastUpdated = "Atum 0.3.5A, current release as of May 20 2013";
+	private static final String lastUpdated = "Atum 0.4.3B, current release as of Jul 3 2013";
 	
 	@SuppressWarnings("rawtypes")
 	@Init
@@ -38,25 +38,26 @@ public class Atum
 		}
 		try
 		{
-			Class Atum = Class.forName("rebelkeithy.mods.atum.Atum");
+			Class AtumItems = Class.forName("rebelkeithy.mods.atum.AtumItems");
+			Class AtumBlocks = Class.forName("rebelkeithy.mods.atum.AtumBlocks");
 			
 			String entityprefix = "rebelkeithy.mods.atum.entities.Entity";
 			
 			Class banditWarlord = Class.forName(entityprefix + "BanditWarlord");
 			Class pharaoh = Class.forName(entityprefix + "Pharaoh");
 			
-			int flaxSeedsId = ((Item)Atum.getField("itemFlaxSeeds").get(null)).itemID;
+			int atumLogId = ((Block)AtumBlocks.getField("log").get(null)).blockID;
+			int atumLeavesId = ((Block)AtumBlocks.getField("leaves").get(null)).blockID;
+			int atumSaplingId = ((Block)AtumBlocks.getField("palmSapling").get(null)).blockID;
 			
-			int atumLogId = ((Block)Atum.getField("atumLog").get(null)).blockID;
-			int atumLeavesId = ((Block)Atum.getField("atumLeaves").get(null)).blockID;
-			int atumSaplingId = ((Block)Atum.getField("atumLog").get(null)).blockID;
+			int flaxSeedsId = ((Item)AtumItems.getField("flaxSeeds").get(null)).itemID;
 			
-			int flaxId = ((Block)Atum.getField("atumFlax").get(null)).blockID;
-			int papyrusId = ((Block)Atum.getField("atumPapyrus").get(null)).blockID;
-			int shrubId = ((Block)Atum.getField("atumShrub").get(null)).blockID;
-			int weedId = ((Block)Atum.getField("atumWeed").get(null)).blockID;
+			int flaxId = ((Block)AtumBlocks.getField("flax").get(null)).blockID;
+			int papyrusId = ((Block)AtumBlocks.getField("papyrus").get(null)).blockID;
+			int shrubId = ((Block)AtumBlocks.getField("shrub").get(null)).blockID;
+			int weedId = ((Block)AtumBlocks.getField("weed").get(null)).blockID;
 			
-			Method atumSaplingGrowTree = Class.forName("rebelkeithy.mods.atum.blocks.BlockAtumSapling").getMethod("growTree", World.class, int.class, int.class, int.class, Random.class);
+			Method atumSaplingGrowTree = Class.forName("rebelkeithy.mods.atum.blocks.BlockPalmSapling").getMethod("growTree", World.class, int.class, int.class, int.class, Random.class);
 			Method atumFlaxFertilize = Class.forName("rebelkeithy.mods.atum.blocks.BlockFlax").getMethod("fertilize", World.class, int.class, int.class, int.class);
 			
 			MFRRegistry.registerSafariNetBlacklist(banditWarlord);

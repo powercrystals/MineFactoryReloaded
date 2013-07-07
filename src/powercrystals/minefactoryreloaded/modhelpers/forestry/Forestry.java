@@ -28,6 +28,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.pods.FertilizableForestryPods;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.pods.FruitForestryPod;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityUnifier;
 
 @Mod(modid = "MineFactoryReloaded|CompatForestry", name = "MFR Compat: Forestry", version = MineFactoryReloadedCore.version, dependencies = "after:MineFactoryReloaded;after:Forestry")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
@@ -115,5 +116,7 @@ public class Forestry
 		
 		MineFactoryReloadedCore.proxy.onPostTextureStitch(null);
 		ForestryUtils.setTreeRoot();
+		
+		TileEntityUnifier.updateUnifierLiquids();
 	}
 }

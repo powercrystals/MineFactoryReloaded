@@ -3,13 +3,17 @@ package powercrystals.minefactoryreloaded.net;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import powercrystals.core.net.PacketWrapper;
+import powercrystals.minefactoryreloaded.entity.EntityRocket;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
@@ -195,6 +199,25 @@ public class ServerPacketHandler implements IPacketHandler
 					playerStack.stackSize = 1;
 					((IInventory)te).setInventorySlotContents(slotNumber, playerStack);
 				}
+			}
+		}
+		else if(packetType == Packets.RocketLaunchWithLock)
+		{
+			Class[] decodeAs = { Integer.class, Integer.class };
+			Object[] packetReadout = PacketWrapper.readPacketData(data, decodeAs);
+			
+			World world = ((EntityPlayer)player).worldObj;
+			Entity owner = world.getEntityByID((Integer)packetReadout[0]);
+			Entity target = null;
+			if(((Integer)packetReadout[1]) != Integer.MIN_VALUE)
+			{
+				target = world.getEntityByID((Integer)packetReadout[1]);
+			}
+			
+			if(owner instanceof EntityLiving)
+			{
+				EntityRocket r = new EntityRocket(world, ((EntityLiving)owner), target);
+				world.spawnEntityInWorld(r);
 			}
 		}
 	}
