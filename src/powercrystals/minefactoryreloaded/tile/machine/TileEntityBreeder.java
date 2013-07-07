@@ -84,7 +84,7 @@ public class TileEntityBreeder extends TileEntityFactoryPowered
 		
 		for(Object o : entities)
 		{
-			if(o != null && o instanceof EntityAnimal)
+			if(o instanceof EntityAnimal)
 			{
 				EntityAnimal a = ((EntityAnimal)o);
 				

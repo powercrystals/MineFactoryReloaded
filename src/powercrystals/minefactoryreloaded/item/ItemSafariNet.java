@@ -211,6 +211,12 @@ public class ItemSafariNet extends ItemFactory
 		
 		if(spawnedCreature != null)
 		{
+			if ((spawnedCreature instanceof EntityLiving) &&
+					itemstack.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID &&
+					itemstack.hasDisplayName())
+			{
+				((EntityLiving)spawnedCreature).func_94058_c(itemstack.getDisplayName());
+			}
 			if(isSingleUse(itemstack))
 			{
 				itemstack.stackSize--;
@@ -356,7 +362,7 @@ public class ItemSafariNet extends ItemFactory
 	
 	public static boolean isEmpty(ItemStack s)
 	{
-		return s == null || (s.getItemDamage() == 0 && s.getTagCompound() == null);
+		return s == null || (s.getItemDamage() == 0 && (s.getTagCompound() == null || !s.getTagCompound().hasKey("id")));
 	}
 	
 	public static boolean isSingleUse(ItemStack s)

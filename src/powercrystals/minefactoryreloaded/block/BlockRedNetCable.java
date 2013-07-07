@@ -137,7 +137,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 		}
 		
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable)
+		if(te instanceof TileEntityRedNetCable)
 		{
 			TileEntityRedNetCable cable = (TileEntityRedNetCable)te;
 			
@@ -313,7 +313,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	public void breakBlock(World world, int x, int y, int z, int id, int meta)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
+		if(te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
 		{
 			((TileEntityRedNetCable)te).getNetwork().setInvalid();
 		}
@@ -333,7 +333,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	{
 		int power = 0;
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable)
+		if(te instanceof TileEntityRedNetCable)
 		{
 			TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
 			if(cable.getNetwork() == null || cable.getConnectionState(ForgeDirection.VALID_DIRECTIONS[side].getOpposite()) == RedNetConnectionType.None)
@@ -353,7 +353,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	{
 		int power = 0;
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable)
+		if(te instanceof TileEntityRedNetCable)
 		{
 			TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
 			if(cable.getNetwork() == null || cable.getConnectionState(ForgeDirection.VALID_DIRECTIONS[side].getOpposite()) == RedNetConnectionType.None)
@@ -415,7 +415,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	public void updateNetwork(World world, int x, int y, int z)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
+		if(te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
 		{
 			((TileEntityRedNetCable)te).getNetwork().updatePowerLevels();
 		}
@@ -425,7 +425,7 @@ public class BlockRedNetCable extends BlockContainer implements IRedNetNetworkCo
 	public void updateNetwork(World world, int x, int y, int z, int subnet)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
+		if(te instanceof TileEntityRedNetCable && ((TileEntityRedNetCable)te).getNetwork() != null)
 		{
 			((TileEntityRedNetCable)te).getNetwork().updatePowerLevels(subnet);
 		}

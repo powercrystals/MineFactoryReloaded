@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.minefactoryreloaded.MFRRegistry;
@@ -68,8 +69,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 			//skip planting attempt if there's no stack in that slot, or if there's a template item that's not matched
 			if(availableStack == null ||
 					(match != null &&
-					(match.itemID != availableStack.itemID ||
-					match.getItemDamage() != availableStack.getItemDamage())))
+					!stacksEqual(match, availableStack)))
 			{
 				continue;
 			}
@@ -101,6 +101,27 @@ public class TileEntityPlanter extends TileEntityFactoryPowered
 	public String getInvName()
 	{
 		return "Planter";
+	}
+	 
+	private boolean stacksEqual(ItemStack a, ItemStack b)
+	{
+		if (a == null | b == null ||
+				(a.itemID != b.itemID) ||
+				(a.getItemDamage() != b.getItemDamage()) ||
+				a.hasTagCompound() != b.hasTagCompound())
+		{
+			return false;
+		}
+		if (!a.hasTagCompound())
+		{
+			return true;
+		}
+		NBTTagCompound tagA = (NBTTagCompound)a.getTagCompound().copy(),
+				tagB = (NBTTagCompound)b.getTagCompound().copy();
+		tagA.removeTag("display"); tagB.removeTag("display");
+		tagA.removeTag("ench"); tagB.removeTag("ench");
+		tagA.removeTag("RepairCost"); tagB.removeTag("RepairCost");
+		return tagA.equals(tagB);
 	}
 	
 	//assumes a 3x3 grid in inventory slots 0-8

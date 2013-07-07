@@ -235,6 +235,11 @@ public class EntityNeedle extends Entity implements IProjectile
 			speedDropoff = 0.8F;
 		}
 		
+		if (this.motionY < 0.05)
+		{
+			this.motionY -= 0.01;
+		}
+		
 		this.motionX *= speedDropoff;
 		this.motionY *= speedDropoff;
 		this.motionZ *= speedDropoff;
@@ -246,7 +251,7 @@ public class EntityNeedle extends Entity implements IProjectile
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		nbttagcompound.setInteger("ammoItemId", _ammoItemId);
-		nbttagcompound.setDouble("", _xStart);
+		nbttagcompound.setDouble("xStart", _xStart);
 		nbttagcompound.setDouble("yStart", _yStart);
 		nbttagcompound.setDouble("zStart", _zStart);
 	}
@@ -257,9 +262,9 @@ public class EntityNeedle extends Entity implements IProjectile
 		if(nbttagcompound.hasKey("ammoItemId"))
 		{
 			_ammoItemId = nbttagcompound.getInteger("ammoItemId");
-			_xStart = nbttagcompound.getInteger("xStart");
-			_yStart = nbttagcompound.getInteger("yStart");
-			_zStart = nbttagcompound.getInteger("zStart");
+			_xStart = nbttagcompound.getDouble("xStart");
+			_yStart = nbttagcompound.getDouble("yStart");
+			_zStart = nbttagcompound.getDouble("zStart");
 		}
 	}
 	

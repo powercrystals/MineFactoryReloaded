@@ -22,6 +22,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import powercrystals.core.position.IRotateableTile;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
@@ -112,7 +113,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && (te instanceof TileEntityItemRouter || te instanceof TileEntityCollector))
+		if(te instanceof TileEntityItemRouter || te instanceof TileEntityCollector)
 		{
 			float shrinkAmount = 0.125F;
 			return AxisAlignedBB.getBoundingBox(x + shrinkAmount, y + shrinkAmount, z + shrinkAmount,
@@ -132,7 +133,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			return;
 		}
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntityItemRouter && entity instanceof EntityItem && !entity.isDead)
+		if(te instanceof TileEntityItemRouter && entity instanceof EntityItem && !entity.isDead)
 		{
 			ItemStack s = ((TileEntityItemRouter)te).routeItem(((EntityItem)entity).getEntityItem()); 
 			if(s == null)
@@ -144,7 +145,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 				((EntityItem)entity).setEntityItemStack(s);
 			}
 		}
-		else if(te != null && te instanceof TileEntityCollector && entity instanceof EntityItem && !entity.isDead)
+		else if(te instanceof TileEntityCollector && entity instanceof EntityItem && !entity.isDead)
 		{
 			((TileEntityCollector)te).addToChests((EntityItem)entity);
 		}
@@ -223,7 +224,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
             return false;
         }
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te != null && te instanceof IRotateableTile)
+		if(te instanceof IRotateableTile)
 		{
 			IRotateableTile tile = ((IRotateableTile)te);
 			if (tile.canRotate())
@@ -233,6 +234,43 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean hasComparatorInputOverride()
+	{
+		return true;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, int x, int y, int z, int side)
+	{
+		int ret = 0;
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if (te instanceof TileEntityFactoryInventory)
+		{
+			TileEntityFactoryInventory inv = (TileEntityFactoryInventory)te;
+			ILiquidTank tank = inv.getTank();
+			float tankPercent = 0, invPercent = 0;
+			boolean hasTank = false, hasInventory = false;
+			if (tank != null)
+			{
+				hasTank = true;
+				if (tank.getLiquid() != null)
+				{
+					tankPercent = ((float)tank.getLiquid().amount) / tank.getCapacity();
+				}
+			}
+			int[] accSlots = inv.getAccessibleSlotsFromSide(side);
+			if (accSlots.length > 0)
+			{
+				hasInventory = true;
+				invPercent = inv.getComparatorOutput(side);
+			}
+			float mult = hasTank & hasInventory ? (tankPercent + invPercent) / 2 : hasTank ? tankPercent : hasInventory ? invPercent : 0f;
+			ret = (int)Math.ceil(15 * mult);
+		}
+		return ret;
 	}
 	
 	@Override
@@ -332,12 +370,12 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 			BlockNBTManager.setForBlock(te);
 		}
 		
-		if(te != null && te instanceof TileEntityFactoryPowered)
+		if(te instanceof TileEntityFactoryPowered)
 		{
 			((TileEntityFactoryPowered)te).onBlockBroken();
 		}
 		
-		if(te != null && te instanceof TileEntityAutoJukebox)
+		if(te instanceof TileEntityAutoJukebox)
 		{
 			((TileEntityAutoJukebox)te).stopRecord();
 		}

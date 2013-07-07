@@ -110,11 +110,11 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 				List<?> entities = worldObj.getEntitiesWithinAABB(EntityLiving.class, a.toAxisAlignedBB());
 				for(Object o : entities)
 				{
-					if(o != null && o instanceof EntityPlayer)
+					if(o instanceof EntityPlayer)
 					{
 						((EntityPlayer)o).addPotionEffect(new PotionEffect(Potion.hunger.id, 20 * 20, 0));
 					}
-					if(o != null && o instanceof EntityPlayer)
+					if(o instanceof EntityPlayer)
 					{
 						((EntityPlayer)o).addPotionEffect(new PotionEffect(Potion.poison.id, 6 * 20, 0));
 					}

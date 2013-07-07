@@ -113,6 +113,7 @@ import powercrystals.minefactoryreloaded.setup.recipe.Vanilla;
 import powercrystals.minefactoryreloaded.setup.village.VillageCreationHandler;
 import powercrystals.minefactoryreloaded.setup.village.VillageTradeHandler;
 import powercrystals.minefactoryreloaded.tile.conveyor.TileEntityConveyor;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityUnifier;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetHistorian;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetLogic;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetCable;
@@ -147,7 +148,7 @@ public class MineFactoryReloadedCore extends BaseMod
 	
 	public static final String modId = "MineFactoryReloaded";
 	public static final String modNetworkChannel = "MFReloaded";
-	public static final String version = "1.5.1R2.7.0B5";
+	public static final String version = "1.5.1R2.7.0B6";
 	public static final String modName = "Minefactory Reloaded";
 	
 	public static final String guiFolder = "/powercrystals/minefactoryreloaded/textures/gui/";
@@ -516,6 +517,8 @@ public class MineFactoryReloadedCore extends BaseMod
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mushroomsoup", new LiquidStack(mushroomSoupLiquid, LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(mushroomSoupBucketItem), new ItemStack(Item.bucketEmpty)));
 		
 		LiquidContainerRegistry.registerLiquid(new LiquidContainerData(LiquidDictionary.getOrCreateLiquid("mushroomsoup", new LiquidStack(mushroomSoupLiquid, LiquidContainerRegistry.BUCKET_VOLUME)), new ItemStack(Item.bowlSoup), new ItemStack(Item.bowlEmpty)));
+		
+		TileEntityUnifier.updateUnifierLiquids();
 		
 		for(ItemStack s : OreDictionary.getOres("itemRubber"))
 		{

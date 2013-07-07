@@ -204,7 +204,7 @@ public class TileEntityRedNetCable extends TileEntity implements INeighboorUpdat
 			for(BlockPosition bp : ourbp.getAdjacent(true))
 			{
 				TileEntity te = bp.getTileEntity(worldObj);
-				if(te != null && te instanceof TileEntityRedNetCable)
+				if(te instanceof TileEntityRedNetCable)
 				{
 					TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
 					if(cable.getNetwork() != null && !cable.getNetwork().isInvalid())
@@ -223,7 +223,7 @@ public class TileEntityRedNetCable extends TileEntity implements INeighboorUpdat
 		for(BlockPosition bp : ourbp.getAdjacent(true))
 		{
 			TileEntity te = bp.getTileEntity(worldObj);
-			if(te != null && te instanceof TileEntityRedNetCable)
+			if(te instanceof TileEntityRedNetCable)
 			{
 				TileEntityRedNetCable cable = ((TileEntityRedNetCable)te);
 				if(cable.getNetwork() == null)
