@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -233,6 +234,11 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		
 		for(IHarvestAreaContainer c : _areaTileEntities)
 		{
+			if(((TileEntity)c).isInvalid())
+			{
+				continue;
+			}
+			
 			float r = (Math.abs(c.getHAM().getOriginX()) % 16) / 16.0F;
 			float g = (Math.abs(c.getHAM().getOriginY()) % 16) / 16.0F;
 			float b = (Math.abs(c.getHAM().getOriginZ()) % 16) / 16.0F;

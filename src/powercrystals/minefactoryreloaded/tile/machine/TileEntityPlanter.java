@@ -28,6 +28,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements IHarv
 		super(Machine.Planter);
 		_areaManager = new HarvestAreaManager(this, 1, 0, 0);
 		_areaManager.setOverrideDirection(ForgeDirection.UP);
+		_areaManager.setOriginOffset(0, 1, 0);
 	}
 	
 	@Override
@@ -64,8 +65,7 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements IHarv
 	@Override
 	public boolean activateMachine()
 	{
-		BlockPosition bp = _areaManager.getNextBlock().copy();
-		bp.y += 1;
+		BlockPosition bp = _areaManager.getNextBlock();
 		
 		ItemStack match = _inventory[getPlanterSlotIdFromBp(bp)];
 		

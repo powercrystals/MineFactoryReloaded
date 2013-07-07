@@ -25,6 +25,10 @@ public class HarvestAreaManager
 	private int _areaUp;
 	private int _areaDown;
 	
+	private int _originOffsetX;
+	private int _originOffsetY;
+	private int _originOffsetZ;
+	
 	private List<BlockPosition> _harvestedBlocks;
 	private int _currentBlock;
 	
@@ -42,6 +46,14 @@ public class HarvestAreaManager
 		_originY = ((TileEntity)owner).yCoord;
 		_originZ = ((TileEntity)owner).zCoord;
 		_originOrientation = owner.getDirectionFacing();
+	}
+	
+	public void setOriginOffset(int x, int y, int z)
+	{
+		_originOffsetX = x;
+		_originOffsetY = y;
+		_originOffsetZ = z;
+		checkRecalculate();
 	}
 	
 	public Area getHarvestArea()
@@ -121,9 +133,9 @@ public class HarvestAreaManager
 		
 		if(		(_overrideDirection != ForgeDirection.UNKNOWN && _originOrientation != _overrideDirection)
 				|| (_overrideDirection == ForgeDirection.UNKNOWN && _originOrientation != _owner.getDirectionFacing())
-				|| _originX != ((TileEntity)_owner).xCoord
-				|| _originY != ((TileEntity)_owner).yCoord
-				|| _originZ != ((TileEntity)_owner).zCoord)
+				|| _originX != ((TileEntity)_owner).xCoord + _originOffsetX
+				|| _originY != ((TileEntity)_owner).yCoord + _originOffsetY
+				|| _originZ != ((TileEntity)_owner).zCoord + _originOffsetZ)
 		{
 			recalculateArea();
 		}
@@ -137,9 +149,9 @@ public class HarvestAreaManager
 			ourpos.orientation = _overrideDirection;
 		}
 		
-		_originX = ourpos.x;
-		_originY = ourpos.y;
-		_originZ = ourpos.z;
+		_originX = ourpos.x + _originOffsetX;
+		_originY = ourpos.y + _originOffsetY;
+		_originZ = ourpos.z + _originOffsetZ;
 		_originOrientation = ourpos.orientation;
 		
 		int radius = _radius + _upgradeLevel;
@@ -152,6 +164,10 @@ public class HarvestAreaManager
 		{
 			ourpos.moveForwards(radius + 1);
 		}
+		
+		ourpos.x += _originOffsetX;
+		ourpos.y += _originOffsetY;
+		ourpos.z += _originOffsetZ;
 		
 		_harvestArea = new Area(ourpos, radius, _areaDown, _areaUp);
 		_harvestedBlocks = _harvestArea.getPositionsBottomFirst();
