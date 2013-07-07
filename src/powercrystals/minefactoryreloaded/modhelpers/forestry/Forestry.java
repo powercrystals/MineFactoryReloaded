@@ -15,6 +15,7 @@ import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.fertilizer.FertilizerForestry;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.leaves.FertilizableForestryLeaves;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.leaves.FruitForestry;
+import powercrystals.minefactoryreloaded.modhelpers.forestry.trees.FertilizableForestryTree;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.trees.HarvestableForestryTree;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.trees.PlantableForestryTree;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.utils.ForestryUtils;
@@ -51,6 +52,7 @@ public class Forestry
 			}
 			
 			FarmingRegistry.registerPlantable(new PlantableForestryTree());
+			FarmingRegistry.registerFertilizable(new FertilizableForestryTree());
 			
 			for(Field f : Class.forName("forestry.core.config.ForestryBlock").getDeclaredFields())
 			{
