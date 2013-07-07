@@ -114,5 +114,6 @@ public class Forestry
 				new ItemStack(Item.bucketEmpty)));
 		
 		MineFactoryReloadedCore.proxy.onPostTextureStitch(null);
+		ForestryUtils.setTreeRoot();
 	}
 }
