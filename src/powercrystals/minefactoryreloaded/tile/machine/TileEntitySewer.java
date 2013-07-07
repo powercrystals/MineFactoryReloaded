@@ -2,7 +2,9 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.List;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -127,7 +129,43 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 					massFound += Math.pow(((EntityLiving)o).boundingBox.getAverageEdgeLength(), 2);
 				}
 			}
-			_tank.fill(LiquidDictionary.getLiquid("sewage", (int)(25 * massFound)), true);
+			if (massFound > 0)
+			{
+				_tank.fill(LiquidDictionary.getLiquid("sewage", (int)(25 * massFound)), true);
+			}/* TODO: make EntityXPOrb.xpValue public from PCC and uncomment
+			else if (_tank.getLiquid() == null || _tank.getLiquid().isLiquidEqual(LiquidDictionary.getLiquid("mobEssence", 1)))
+			{
+				int maxAmount = Math.max(_tank.getCapacity() - _tank.getLiquid().amount, 0);
+				if (maxAmount < 0)
+				{
+					return;
+				}
+				entities = worldObj.getEntitiesWithinAABB(EntityXPOrb.class, _areaManager.getHarvestArea().toAxisAlignedBB());
+				for (Object o : entities)
+				{
+					Entity e = (Entity)o;
+					if (e != null & e instanceof EntityXPOrb && !e.isDead)
+					{
+						EntityXPOrb orb = (EntityXPOrb)o;
+						int found = Math.min(orb.xpValue, maxAmount);
+						orb.xpValue -= found;
+						if (orb.xpValue <= 0)
+						{
+							orb.setDead();
+							found = Math.max(found, 0);
+						}
+						if (found > 0)
+						{
+							maxAmount -= found;
+							_tank.fill(LiquidDictionary.getLiquid("mobEssence", found * 100), true);
+							if (maxAmount <= 0)
+							{
+								break;
+							}
+						}
+					}
+				}
+			}//*/
 		}
 	}
 	
