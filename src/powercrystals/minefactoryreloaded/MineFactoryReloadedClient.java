@@ -2,22 +2,35 @@ package powercrystals.minefactoryreloaded;
 
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraftforge.client.MinecraftForgeClient;
 import powercrystals.core.position.BlockPosition;
 import powercrystals.core.render.RenderBlockFluidClassic;
 import powercrystals.minefactoryreloaded.entity.EntityNeedle;
+import powercrystals.minefactoryreloaded.entity.EntityRocket;
+import powercrystals.minefactoryreloaded.item.ItemRocketLauncher;
 import powercrystals.minefactoryreloaded.entity.EntitySafariNet;
+import powercrystals.minefactoryreloaded.render.RenderTickHandler;
 import powercrystals.minefactoryreloaded.render.block.ConveyorRenderer;
 import powercrystals.minefactoryreloaded.render.block.FactoryGlassPaneRenderer;
 import powercrystals.minefactoryreloaded.render.block.FactoryGlassRenderer;
 import powercrystals.minefactoryreloaded.render.block.VineScaffoldRenderer;
 import powercrystals.minefactoryreloaded.render.entity.EntityNeedleRenderer;
+import powercrystals.minefactoryreloaded.render.entity.EntityRocketRenderer;
 import powercrystals.minefactoryreloaded.render.entity.EntitySafariNetRenderer;
 import powercrystals.minefactoryreloaded.render.item.FactoryGlassPaneItemRenderer;
 import powercrystals.minefactoryreloaded.render.item.NeedleGunItemRenderer;
+import powercrystals.minefactoryreloaded.render.item.RocketItemRenderer;
+import powercrystals.minefactoryreloaded.render.item.RocketLauncherItemRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillPrechargerRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.LaserDrillRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedNetCardItemRenderer;
@@ -39,13 +52,19 @@ import cpw.mods.fml.relauncher.Side;
 
 public class MineFactoryReloadedClient implements IScheduledTickHandler
 {
-	private static MineFactoryReloadedClient _instance;
+	public static MineFactoryReloadedClient instance;
+	
+	private static final int _lockonMax = 30;
+	private static final int _lockonLostMax = 60;
+	private int _lockonTicks = 0;
+	private int _lockonLostTicks = 0;
+	private Entity _lastEntityOver = null;
 	
 	public static HashMap<BlockPosition, Integer> prcPages = new HashMap<BlockPosition, Integer>();
 	
 	public static void init()
 	{
-		_instance = new MineFactoryReloadedClient();
+		instance = new MineFactoryReloadedClient();
 		
 		MineFactoryReloadedCore.renderIdConveyor = RenderingRegistry.getNextAvailableRenderId();
 		MineFactoryReloadedCore.renderIdFactoryGlassPane = RenderingRegistry.getNextAvailableRenderId();
@@ -57,8 +76,9 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdConveyor, new ConveyorRenderer());
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlassPane, new FactoryGlassPaneRenderer());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySafariNet.class, new EntitySafariNetRenderer());	
-		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFluidClassic, new RenderBlockFluidClassic(MineFactoryReloadedCore.renderIdFluidClassic));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySafariNet.class, new EntitySafariNetRenderer());
+		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFluidClassic, new RenderBlockFluidClassic(
+				MineFactoryReloadedCore.renderIdFluidClassic));
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdVineScaffold, new VineScaffoldRenderer());
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlass, new FactoryGlassRenderer());
 		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, new FactoryGlassPaneItemRenderer());
@@ -81,12 +101,16 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaserDrillPrecharger.class, new LaserDrillPrechargerRenderer());
 		
 		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.needlegunItem.itemID, new NeedleGunItemRenderer());
+		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.rocketItem.itemID, new RocketItemRenderer());
+		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.rocketLauncherItem.itemID, new RocketLauncherItemRenderer());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityNeedle.class, new EntityNeedleRenderer());
+		RenderingRegistry.registerEntityRenderingHandler(EntityRocket.class, new EntityRocketRenderer());
 		
-		TickRegistry.registerScheduledTickHandler(_instance, Side.CLIENT);
+		TickRegistry.registerScheduledTickHandler(instance, Side.CLIENT);
+		TickRegistry.registerTickHandler(new RenderTickHandler(), Side.CLIENT);
 	}
-
+	
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData)
 	{
@@ -115,28 +139,145 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 				player.motionY = -0.15D;
 			}
 		}
+		
+		ItemStack equipped = player.inventory.getCurrentItem();
+		if(equipped != null && equipped.getItem() instanceof ItemRocketLauncher)
+		{
+			Entity e = rayTrace();
+			if(_lastEntityOver != null && _lastEntityOver.isDead)
+			{
+				_lastEntityOver = null;
+				_lockonTicks = 0;
+			}
+			else if((e == null || e != _lastEntityOver) && _lockonLostTicks > 0)
+			{
+				_lockonLostTicks--;
+			}
+			else if(e == null && _lockonLostTicks == 0)
+			{
+				if(_lockonTicks > 0)
+				{
+					_lockonTicks--;
+				}
+				_lastEntityOver = null;
+			}
+			else if(_lastEntityOver == null)
+			{
+				_lastEntityOver = e;
+			}
+			else if(_lockonTicks < _lockonMax)
+			{
+				_lockonTicks++;
+				if(_lockonTicks >= _lockonMax)
+				{
+					_lockonLostTicks = _lockonLostMax;
+				}
+			}
+			else if(e != null && e == _lastEntityOver)
+			{
+				_lockonLostTicks = _lockonLostMax;
+			}
+		}
 	}
-
+	
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData)
 	{
 	}
-
+	
 	@Override
 	public EnumSet<TickType> ticks()
 	{
 		return EnumSet.of(TickType.PLAYER);
 	}
-
+	
 	@Override
 	public String getLabel()
 	{
 		return MineFactoryReloadedCore.modId + ".client";
 	}
-
+	
 	@Override
 	public int nextTickSpacing()
 	{
 		return 0;
+	}
+	
+	public int getLockedEntity()
+	{
+		if(_lastEntityOver != null && _lockonTicks >= _lockonMax)
+		{
+			return _lastEntityOver.entityId;
+		}
+		
+		return Integer.MIN_VALUE;
+	}
+	
+	public int getLockTimeRemaining()
+	{
+		if(_lastEntityOver != null && _lockonTicks >= _lockonMax)
+		{
+			return _lockonLostMax - _lockonLostTicks;
+		}
+		else
+		{
+			return (_lockonMax - _lockonTicks) * 2;
+		}
+	}
+	
+	private Entity rayTrace()
+	{
+		if(Minecraft.getMinecraft().renderViewEntity == null || Minecraft.getMinecraft().theWorld == null)
+		{
+			return null;
+		}
+		
+		double range = 64;
+		Vec3 playerPos = Minecraft.getMinecraft().renderViewEntity.getPosition(1.0F);
+		
+		Vec3 playerLook = Minecraft.getMinecraft().renderViewEntity.getLook(1.0F);
+		Vec3 playerLookRel = playerPos.addVector(playerLook.xCoord * range, playerLook.yCoord * range, playerLook.zCoord * range);
+		List<?> list = Minecraft.getMinecraft().theWorld.getEntitiesWithinAABBExcludingEntity(Minecraft.getMinecraft().renderViewEntity,
+				Minecraft.getMinecraft().renderViewEntity.boundingBox.addCoord(playerLook.xCoord * range, playerLook.yCoord * range, playerLook.zCoord * range)
+						.expand(1, 1, 1));
+		
+		double entityDistTotal = range;
+		Entity pointedEntity = null;
+		for(int i = 0; i < list.size(); ++i)
+		{
+			Entity entity = (Entity)list.get(i);
+			
+			if(entity.canBeCollidedWith())
+			{
+				double entitySize = entity.getCollisionBorderSize();
+				AxisAlignedBB axisalignedbb = entity.boundingBox.expand(entitySize, entitySize, entitySize);
+				MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(playerPos, playerLookRel);
+				
+				if(axisalignedbb.isVecInside(playerPos))
+				{
+					if(0.0D < entityDistTotal || entityDistTotal == 0.0D)
+					{
+						pointedEntity = entity;
+						entityDistTotal = 0.0D;
+					}
+				}
+				else if(movingobjectposition != null)
+				{
+					double entityDist = playerPos.distanceTo(movingobjectposition.hitVec);
+					
+					if(entityDist < entityDistTotal || entityDistTotal == 0.0D)
+					{
+						pointedEntity = entity;
+						entityDistTotal = entityDist;
+					}
+				}
+			}
+		}
+		
+		if(pointedEntity != null)
+		{
+			return pointedEntity;
+		}
+		return null;
 	}
 }
