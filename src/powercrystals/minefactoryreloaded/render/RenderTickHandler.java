@@ -24,7 +24,7 @@ public class RenderTickHandler implements ITickHandler
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData)
 	{
-		renderHUD((float)tickData[0]);
+		renderHUD((Float)tickData[0]);
 	}
 
 	@Override
