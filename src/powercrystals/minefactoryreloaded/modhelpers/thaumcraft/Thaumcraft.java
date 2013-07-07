@@ -30,6 +30,7 @@ public class Thaumcraft
 			Block tcSapling = (Block)Class.forName("thaumcraft.common.Config").getField("blockCustomPlant").get(null);
 			Block tcLog = (Block)Class.forName("thaumcraft.common.Config").getField("blockMagicalLog").get(null);
 			Block tcLeaves = (Block)Class.forName("thaumcraft.common.Config").getField("blockMagicalLeaves").get(null);
+			Class<?> golem = Class.forName("thaumcraft.common.entities.golems.EntityGolemBase");
 			
 			MFRRegistry.registerHarvestable(new HarvestableStandard(tcLog.blockID, HarvestType.Tree));
 			MFRRegistry.registerHarvestable(new HarvestableThaumcraftLeaves(tcLeaves.blockID, tcSapling.blockID));
@@ -37,7 +38,12 @@ public class Thaumcraft
 			
 			MFRRegistry.registerPlantable(new PlantableThaumcraftTree(tcSapling.blockID, tcSapling.blockID));
 			
-			// TODO: blacklist golems, redo wisp?
+			// TODO: add autospawner class blacklist
+			//MFRRegistry.registerAutoSpawnerBlacklistClass((String)EntityList.classToStringMapping.get(golem));
+			
+			MFRRegistry.registerGrinderBlacklist(golem);
+			
+			// TODO: redo/remove wisp?
 			
 			MFRRegistry.registerGrindable(new GrindableWisp());
 		}

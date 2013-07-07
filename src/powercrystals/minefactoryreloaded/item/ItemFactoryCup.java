@@ -1,12 +1,15 @@
 package powercrystals.minefactoryreloaded.item;
 
+import java.util.Properties;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
@@ -39,7 +42,8 @@ public class ItemFactoryCup extends ItemFactory
 
 	public String getLocalizedName(String str)
 	{
-		return StatCollector.translateToLocal(getUnlocalizedName() + "." + str);
+		Properties translator = StringTranslate.getInstance().translateTable;
+		return translator.getProperty(getUnlocalizedName() + "." + str);
 	}
 
 	@Override
@@ -49,8 +53,8 @@ public class ItemFactoryCup extends ItemFactory
 		if (id != 0)
 		{
 			String ret = getFluidName(item), t = getLocalizedName(ret);
-			if (t != null)
-				return "\u00a7r"+t+"\u00a7r";
+			if (t != null && !t.isEmpty())
+				return EnumChatFormatting.RESET + t + EnumChatFormatting.RESET;
 			if (ret == null)
 			{
 				item.setItemDamage(0);
