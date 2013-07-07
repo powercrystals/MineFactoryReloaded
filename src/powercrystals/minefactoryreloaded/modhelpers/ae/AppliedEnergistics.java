@@ -28,6 +28,7 @@ public class AppliedEnergistics
 		{
 			ItemStack quartzOre = (ItemStack)Class.forName("appeng.api.Blocks").getField("blkQuartzOre").get(null);
 			MFRRegistry.registerLaserOre(60, quartzOre);
+			MFRRegistry.addLaserPreferredOre(0, quartzOre);
 		}
 		catch (Exception x)
 		{
