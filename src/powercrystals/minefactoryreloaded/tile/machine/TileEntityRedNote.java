@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import net.minecraftforge.common.ForgeDirection;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 
 public class TileEntityRedNote extends TileEntityFactory
@@ -8,7 +9,7 @@ public class TileEntityRedNote extends TileEntityFactory
 	private boolean _playedLastChange = true;
 	
 	@Override
-	public void onRedNetChanged(int value)
+	public void onRedNetChanged(ForgeDirection side, int value)
 	{
 		if(value < 0 || value > 119)
 		{

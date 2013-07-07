@@ -414,7 +414,18 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 	@Override
 	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side)
 	{
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te instanceof TileEntityFactory)
+		{
+			return ((TileEntityFactory)te).getRedNetOutput(ForgeDirection.getOrientation(side));
+		}
 		return 0;
+	}
+	
+	@Override
+	public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side)
+	{
+		return isProvidingWeakPower(world, x, y, z, side);
 	}
 	
 	@Override
@@ -446,7 +457,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if(te instanceof TileEntityFactory)
 		{
-			((TileEntityFactory)te).onRedNetChanged(inputValue);
+			((TileEntityFactory)te).onRedNetChanged(side, inputValue);
 			onNeighborBlockChange(world, x, y, z, MineFactoryReloadedCore.rednetCableBlock.blockID);
 		}
 	}

@@ -180,8 +180,13 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 		
 	}
 	
-	public void onRedNetChanged(int value)
+	public void onRedNetChanged(ForgeDirection side, int value)
 	{
 		_rednetState = value;
+	}
+	
+	public int getRedNetOutput(ForgeDirection side)
+	{
+		return 0;
 	}
 }
