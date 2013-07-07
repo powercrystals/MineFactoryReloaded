@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.position.Area;
 import powercrystals.core.position.BlockPosition;
+import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
+import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
@@ -15,11 +17,15 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityFisher extends TileEntityFactoryPowered
+public class TileEntityFisher extends TileEntityFactoryPowered implements IHarvestAreaContainer
 {
+	private HarvestAreaManager _ham;
+	private boolean _isJammed;
+	
 	public TileEntityFisher()
 	{
 		super(Machine.Fisher);
+		_ham = new HarvestAreaManager(this, 1, 0, 0);
 	}
 	
 	@Override
@@ -42,19 +48,35 @@ public class TileEntityFisher extends TileEntityFactoryPowered
 	}
 	
 	@Override
+	public HarvestAreaManager getHAM()
+	{
+		return _ham;
+	}
+	
+	@Override
+	public ForgeDirection getDirectionFacing()
+	{
+		return ForgeDirection.DOWN;
+	}
+	
+	@Override
 	public boolean activateMachine()
 	{
-		BlockPosition fishCenter = BlockPosition.fromFactoryTile(this);
-		fishCenter.moveDown(1);
-		Area fishingHole = new Area(fishCenter, 1, 0, 0);
-		for(BlockPosition bp: fishingHole.getPositionsBottomFirst())
+		if(_isJammed || worldObj.getWorldTime() % 137 == 0)
 		{
-			if(worldObj.getBlockId(bp.x, bp.y, bp.z) != Block.waterStill.blockID)
+			Area fishingHole = _ham.getHarvestArea();
+			for(BlockPosition bp: fishingHole.getPositionsBottomFirst())
 			{
-				setIdleTicks(getIdleTicksMax());
-				return false;
+				if(worldObj.getBlockId(bp.x, bp.y, bp.z) != Block.waterStill.blockID)
+				{
+					_isJammed = true;
+					setIdleTicks(getIdleTicksMax());
+					return false;
+				}
 			}
 		}
+		
+		_isJammed = false;
 		
 		setWorkDone(getWorkDone() + 1);
 		
