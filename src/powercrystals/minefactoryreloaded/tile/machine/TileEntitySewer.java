@@ -156,7 +156,7 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 						}
 						if (found > 0)
 						{
-							found *= 100;
+							found = (int)(found * 66.66666667f);
 							maxAmount -= found;
 							_tank.fill(LiquidDictionary.getLiquid("mobEssence", found), true);
 							if (maxAmount <= 0)
