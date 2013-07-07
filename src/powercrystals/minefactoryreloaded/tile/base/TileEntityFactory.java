@@ -18,6 +18,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class TileEntityFactory extends TileEntity implements IRotateableTile
 {
+	// first index is rotation, second is side
+	private static final int[][] _textureSelection = new int[][]
+			{
+				{ 0, 1, 2, 3, 4, 5 }, // 0 D (unused)
+				{ 0, 1, 2, 3, 4, 5 }, // 1 U (unused)
+				{ 0, 1, 2, 3, 4, 5 }, // 2 N
+				{ 0, 1, 3, 2, 5, 4 }, // 3 S
+				{ 0, 1, 5, 4, 2, 3 }, // 4 W
+				{ 0, 1, 4, 5, 3, 2 }, // 5 E
+			};
+	
 	private ForgeDirection _forwardDirection;
 	
 	private boolean _isActive;
@@ -83,38 +94,7 @@ public abstract class TileEntityFactory extends TileEntity implements IRotateabl
 	
 	public int getRotatedSide(int side)
 	{
-		if(side < 2)
-		{
-			return side;
-		}
-		else if(_forwardDirection == ForgeDirection.EAST)
-		{
-			return addToSide(side, 1);
-		}
-		else if(_forwardDirection == ForgeDirection.SOUTH)
-		{
-			return addToSide(side, 2);
-		}
-		else if(_forwardDirection == ForgeDirection.WEST)
-		{
-			return addToSide(side, 3);
-		}
-		return side;
-	}
-	
-	private int addToSide(int side, int shift)
-	{
-		int shiftsRemaining = shift;
-		int out = side;
-		while(shiftsRemaining > 0)
-		{
-			if(out == 2) out = 4;
-			else if(out == 4) out = 3;
-			else if(out == 3) out = 5;
-			else if(out == 5) out = 2;
-			shiftsRemaining--;
-		}
-		return out;
+		return _textureSelection[_forwardDirection.ordinal()][side];
 	}
 	
 	public ForgeDirection getDropDirection()
