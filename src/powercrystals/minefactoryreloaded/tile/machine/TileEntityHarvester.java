@@ -113,7 +113,7 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	@Override
 	public int getIdleTicksMax()
 	{
-		return failedDrops != null ? /*40*/ 5 : 5;
+		return 5;
 	}
 	
 	@Override

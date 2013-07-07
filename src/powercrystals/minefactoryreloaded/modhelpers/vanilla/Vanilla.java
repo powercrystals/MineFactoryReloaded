@@ -130,6 +130,7 @@ import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableSquid;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityAgeableHandler;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.EntityLivingHandler;
 import powercrystals.minefactoryreloaded.farmables.safarinethandlers.SheepHandler;
+import powercrystals.minefactoryreloaded.farmables.safarinethandlers.SlimeHandler;
 import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -243,6 +244,7 @@ public class Vanilla
 		MFRRegistry.registerSafariNetHandler(new EntityLivingHandler());
 		MFRRegistry.registerSafariNetHandler(new EntityAgeableHandler());
 		MFRRegistry.registerSafariNetHandler(new SheepHandler());
+		MFRRegistry.registerSafariNetHandler(new SlimeHandler());
 		
 		MFRRegistry.registerMobEggHandler(new VanillaEggHandler());
 		

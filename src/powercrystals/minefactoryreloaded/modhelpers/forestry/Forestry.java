@@ -11,11 +11,12 @@ import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.MineFactoryReloadedCore;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.fertilizer.FertilizerForestry;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.leaves.FertilizableForestryLeaves;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.leaves.FruitForestry;
+import powercrystals.minefactoryreloaded.modhelpers.forestry.trees.FertilizableForestryTree;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.trees.HarvestableForestryTree;
+import powercrystals.minefactoryreloaded.modhelpers.forestry.trees.PlantableForestryTree;
 import powercrystals.minefactoryreloaded.modhelpers.forestry.utils.ForestryUtils;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -50,6 +51,9 @@ public class Forestry
 				MFRRegistry.registerSludgeDrop(5, new ItemStack(peat));
 			}
 			
+			MFRRegistry.registerPlantable(new PlantableForestryTree());
+			MFRRegistry.registerFertilizable(new FertilizableForestryTree());
+			
 			for(Field f : Class.forName("forestry.core.config.ForestryBlock").getDeclaredFields())
 			{
 				if(f.getName().contains("log"))
@@ -57,8 +61,8 @@ public class Forestry
 					Block log = ((Block)f.get(null));
 					if(log != null)
 					{
-						FarmingRegistry.registerHarvestable(new HarvestableForestryTree(log.blockID));
-						FarmingRegistry.registerFruitLogBlockId(log.blockID);
+						MFRRegistry.registerHarvestable(new HarvestableForestryTree(log.blockID));
+						MFRRegistry.registerFruitLogBlockId(log.blockID);
 					}
 				}
 				else if(f.getName().contains("leaves"))
@@ -66,8 +70,8 @@ public class Forestry
 					Block leaves = ((Block)f.get(null));
 					if(leaves != null)
 					{
-						FarmingRegistry.registerFruit(new FruitForestry(leaves.blockID));
-						FarmingRegistry.registerFertilizable(new FertilizableForestryLeaves(leaves.blockID));
+						MFRRegistry.registerFruit(new FruitForestry(leaves.blockID));
+						MFRRegistry.registerFertilizable(new FertilizableForestryLeaves(leaves.blockID));
 					}
 				}
 				else if(f.getName().contains("pods"))
@@ -75,12 +79,12 @@ public class Forestry
 					Block pods = ((Block)f.get(null));
 					if(pods != null)
 					{
-						FarmingRegistry.registerFruit(new FruitForestryPod(pods.blockID));
-						FarmingRegistry.registerFertilizable(new FertilizableForestryPods(pods.blockID));
+						MFRRegistry.registerFruit(new FruitForestryPod(pods.blockID));
+						MFRRegistry.registerFertilizable(new FertilizableForestryPods(pods.blockID));
 					}
 				}
 			}
-			FarmingRegistry.registerFertilizer(new FertilizerForestry(ForestryUtils.getItem("fertilizerCompound")));
+			MFRRegistry.registerFertilizer(new FertilizerForestry(ForestryUtils.getItem("fertilizerCompound")));
 		}
 		catch(Exception x)
 		{
@@ -111,6 +115,7 @@ public class Forestry
 				new ItemStack(Item.bucketEmpty)));
 		
 		MineFactoryReloadedCore.proxy.onPostTextureStitch(null);
+		ForestryUtils.setTreeRoot();
 		
 		TileEntityUnifier.updateUnifierLiquids();
 	}

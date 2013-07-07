@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
@@ -206,7 +207,7 @@ public class ItemSafariNet extends ItemFactory
 		}
 		else
 		{
-			spawnedCreature = spawnCreature(world, itemstack.getTagCompound(), x + 0.5D, y + spawnOffsetY, z + 0.5D);
+			spawnedCreature = spawnCreature(world, itemstack.getTagCompound(), x + 0.5D, y + spawnOffsetY, z + 0.5D, side);
 		}
 		
 		if(spawnedCreature != null)
@@ -217,6 +218,7 @@ public class ItemSafariNet extends ItemFactory
 			{
 				((EntityLiving)spawnedCreature).func_94058_c(itemstack.getDisplayName());
 			}
+			
 			if(isSingleUse(itemstack))
 			{
 				itemstack.stackSize--;
@@ -234,7 +236,7 @@ public class ItemSafariNet extends ItemFactory
 		return spawnedCreature;
 	}
 
-	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z)
+	private static Entity spawnCreature(World world, NBTTagCompound mobTag, double x, double y, double z, int side)
 	{
 		Entity e;
 		if(mobTag.getBoolean("hide"))
@@ -256,17 +258,29 @@ public class ItemSafariNet extends ItemFactory
 			((NBTTagDouble)pos.tagAt(2)).data = z;
 			
 			e = EntityList.createEntityFromNBT(mobTag, world);
-			if(e instanceof EntityLiving)
+			if (e != null)
 			{
-				((EntityLiving)e).initCreature();
+				if(e instanceof EntityLiving)
+				{
+					((EntityLiving)e).initCreature();
+				}
+				
+				e.readFromNBT(mobTag);
 			}
-			
-			e.readFromNBT(mobTag);
 		}
 		
 		if(e != null)
 		{
-			e.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360.0F, 0.0F);
+
+			int offsetX = Facing.offsetsXForSide[side];
+			int offsetY = side == 0 ? -1 : 0;
+			int offsetZ = Facing.offsetsZForSide[side];
+			AxisAlignedBB bb =  e.boundingBox;
+			
+			e.setLocationAndAngles(x + (bb.maxX - bb.minX) * 0.5 * offsetX,
+					y + (bb.maxY - bb.minY) * 0.5 * offsetY,
+					z + (bb.maxZ - bb.minZ) * 0.5 * offsetZ,
+					world.rand.nextFloat() * 360.0F, 0.0F);
 			
 			world.spawnEntityInWorld(e);
 			if(e instanceof EntityLiving)
@@ -368,6 +382,11 @@ public class ItemSafariNet extends ItemFactory
 	public static boolean isSingleUse(ItemStack s)
 	{
 		return s != null && (s.itemID == MineFactoryReloadedCore.safariNetSingleItem.itemID || s.itemID == MineFactoryReloadedCore.safariNetJailerItem.itemID);
+	}
+	
+	public static boolean isSafariNet(ItemStack s)
+	{
+		return s != null && (s.getItem() instanceof ItemSafariNet);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

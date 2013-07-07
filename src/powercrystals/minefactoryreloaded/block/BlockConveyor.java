@@ -133,6 +133,7 @@ public class BlockConveyor extends BlockContainer implements IConnectableRedNet
 			return;
 		}
 		
+		// TODO: add conveyer entity blacklist: these two cases will be covered conditionally elsewhere
 		if(entity.getClass().getName().contains("thaumcraft.common.entities.golems") && MFRConfig.conveyorNeverCapturesTCGolems.getBoolean(false))
 		{
 			return;

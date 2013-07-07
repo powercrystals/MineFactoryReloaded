@@ -20,6 +20,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockRubberSapling extends BlockSapling implements IConnectableRedNet
 {
+	private static WorldGenRubberTree treeGen = new WorldGenRubberTree(true);
+			
 	public BlockRubberSapling(int id)
 	{
 		super(id);
@@ -45,11 +47,14 @@ public class BlockRubberSapling extends BlockSapling implements IConnectableRedN
 	@Override
 	public void growTree(World world, int x, int y, int z, Random rand)
 	{
-		WorldGenRubberTree wg = new WorldGenRubberTree(true);
+		if (world.isRemote)
+		{
+			return;
+		}
 		
 		world.setBlockToAir(x, y, z);
 		
-		if(!wg.growTree(world, rand, x, y, z))
+		if(!treeGen.growTree(world, rand, x, y, z))
 		{
 			world.setBlock(x, y, z, blockID, 0, 4);
 		}
