@@ -353,16 +353,11 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	@Override
 	public void setStoredItemCount(int amount)
 	{
-		if(_storedStack == null && _inventory[2] == null) return;
-
-		if(_storedStack == null && _inventory[2] != null)
-		{
-			_storedStack = _inventory[2].copy();
-		}
+		if(_storedStack == null) return;
 		
 		for(int i = 0; i < getSizeInventory(); i++)
 		{
-			if(UtilInventory.stacksEqual(_storedStack, _inventory[i]))
+			if(_inventory[i] != null && UtilInventory.stacksEqual(_storedStack, _inventory[i]))
 			{
 				if(amount == 0)
 				{
@@ -379,15 +374,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 				}
 			}
 		}
-		
-		if(amount > 0)
-		{
-			_storedStack.stackSize = amount;
-		}
-		else
-		{
-			_storedStack = null;
-		}
+		_storedStack.stackSize = amount;
 		_canUpdate = true;
 	}
 	
