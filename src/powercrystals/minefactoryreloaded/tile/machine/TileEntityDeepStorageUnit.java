@@ -25,7 +25,9 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 
 	private boolean[] _isSideOutput = new boolean[] { false, false, true, true, true, true };
 	
-	private ItemStack _storedStack;
+	private int _storedQuantity;
+	private int _storedId;
+	private int _storedMeta;
 	
 	private boolean _canUpdate = true;
 	
@@ -60,22 +62,22 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	
 	public int getQuantity()
 	{
-		return _storedStack != null ? _storedStack.stackSize : 0;
+		return _storedQuantity;
 	}
 	
 	public int getQuantityAdjusted()
 	{
-		int quantity = 0;
-		if(_storedStack != null)
-		{
-			quantity = _storedStack.stackSize;
-		}
+		int quantity = _storedQuantity;
 		
 		for(int i = 0; i < getSizeInventory(); i++)
 		{
-			if(_inventory[i] != null && (_storedStack == null || UtilInventory.stacksEqual(_storedStack, _inventory[i])))
+			if(_inventory[i] != null && _storedQuantity == 0)
 			{
 				quantity += _inventory[i].stackSize;				
+			}
+			else if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
+			{
+				quantity += _inventory[i].stackSize;
 			}
 		}
 		
@@ -84,10 +86,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	
 	public void setQuantity(int quantity)
 	{
-		if(_storedStack != null)
-		{
-			_storedStack.stackSize = quantity;
-		}
+		_storedQuantity = quantity;
 	}
 	
 	public void clearSlots()
@@ -100,38 +99,36 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	
 	public int getId()
 	{
-		if(_storedStack != null)
-		{
-			return _storedStack.itemID;
-		}
-		else if(_inventory[2] != null)
+		if(_storedQuantity == 0 && _inventory[2] != null)
 		{
 			return _inventory[2].itemID;
 		}
-		return 0;
+		else
+		{
+			return _storedId;			
+		}
 	}
 	
 	public void setId(int id)
 	{
-		//remove no-op
+		_storedId = id;
 	}
 	
 	public int getMeta()
 	{
-		if(_storedStack != null)
-		{
-			return _storedStack.getItemDamage();
-		}
-		else if(_inventory[2] != null)
+		if(_storedQuantity == 0 && _inventory[2] != null)
 		{
 			return _inventory[2].getItemDamage();
 		}
-		return 0;
+		else
+		{
+			return _storedMeta;			
+		}
 	}
 	
 	public void setMeta(int meta)
 	{
-		//remove no-op
+		_storedMeta = meta;
 	}
 	
 	@Override
@@ -148,17 +145,16 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		{
 			return;
 		}
-		if(_inventory[2] == null && _storedStack != null)
+		if((_inventory[2] == null) && _storedQuantity > 0)
 		{
-			_inventory[2] = _storedStack.copy();
-			_inventory[2].stackSize = Math.min(_storedStack.stackSize, _storedStack.getMaxStackSize());
-			_storedStack.stackSize -= _inventory[2].stackSize;
+			_inventory[2] = new ItemStack(_storedId, Math.min(_storedQuantity, new ItemStack(_storedId, 1, _storedMeta).getMaxStackSize()), _storedMeta);
+			_storedQuantity -= _inventory[2].stackSize;
 		}
-		else if(_inventory[2] != null && _inventory[2].stackSize < _inventory[2].getMaxStackSize() && UtilInventory.stacksEqual(_storedStack, _inventory[2]))
+		else if(_inventory[2] != null && _inventory[2].stackSize < _inventory[2].getMaxStackSize() && _inventory[2].itemID == _storedId && _inventory[2].getItemDamage() == _storedMeta  && _storedQuantity > 0)
 		{
-			int amount = Math.min(_inventory[2].getMaxStackSize() - _inventory[2].stackSize, _storedStack.stackSize);
+			int amount = Math.min(_inventory[2].getMaxStackSize() - _inventory[2].stackSize, _storedQuantity);
 			_inventory[2].stackSize += amount;
-			_storedStack.stackSize -= amount;
+			_storedQuantity -= amount;
 		}
 		checkInput(0);
 		checkInput(1);
@@ -167,33 +163,30 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		{
 			_canUpdate = false;
 		}
-		
-		if(_storedStack.stackSize == 0)
-		{
-			_storedStack = null;
-		}
 	}
 	
 	private void checkInput(int slot)
 	{
 		if(_inventory[slot] != null)
 		{
-			if(_storedStack == null &&
+			if(_storedQuantity == 0 &&
 					(_inventory[2] == null ||
-					UtilInventory.stacksEqual(_inventory[2], _inventory[slot])))
+					(_inventory[2].itemID == _inventory[slot].itemID &&	_inventory[2].getItemDamage() == _inventory[slot].getItemDamage()))
+					&& _inventory[slot].getTagCompound() == null)
 			{
-				_storedStack = _inventory[slot].copy();
+				_storedId = _inventory[slot].itemID;
+				_storedMeta = _inventory[slot].getItemDamage();
+				_storedQuantity = _inventory[slot].stackSize;
 				_inventory[slot] = null;
 			}
-			else if(UtilInventory.stacksEqual(_inventory[slot], _storedStack) && (Integer.MAX_VALUE - 64) - _inventory[slot].stackSize > _storedStack.stackSize)
+			else if(_inventory[slot].itemID == _storedId && _inventory[slot].getItemDamage() == _storedMeta && _inventory[slot].getTagCompound() == null && (Integer.MAX_VALUE - 66) - _inventory[slot].stackSize > _storedQuantity)
 			{
-				_storedStack.stackSize += _inventory[slot].stackSize;
+				_storedQuantity += _inventory[slot].stackSize;
 				_inventory[slot] = null;
 			}
 			// boot improperly typed items from the input slots
-			else if(!UtilInventory.stacksEqual(_inventory[slot], _storedStack))
+			else if(_inventory[slot].itemID != _storedId || _inventory[slot].getItemDamage() != _storedMeta || _inventory[slot].getTagCompound() != null)
 			{
-				//move doDrop from TEPowered to TEInventory and use it for this? Or just remove this?
 				_inventory[slot] = UtilInventory.dropStack(this, _inventory[slot], this.getDropDirection());
 			}
 		}
@@ -246,8 +239,12 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		if(sideordinal > 5) return false;
 		if(!_isSideOutput[sideordinal])
 		{
-			ItemStack stored = (_storedStack == null && _inventory[2] != null) ? _inventory[2] : _storedStack;
-			return UtilInventory.stacksEqual(stored, stack);
+			ItemStack stored = getStoredItemType();
+			if(stored == null && _inventory[2] != null)
+			{
+				stored = _inventory[2];
+			}
+			return (!stack.hasTagCompound() && (stored == null || stack.isItemEqual(stored)));
 		}
 		return false;
 	}
@@ -267,12 +264,9 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	{
 		super.writeToNBT(nbttagcompound);
 		
-		if(_storedStack != null)
-		{
-			NBTTagCompound storedstacktag = new NBTTagCompound();
-			_storedStack.writeToNBT(storedstacktag);
-			nbttagcompound.setTag("storedStack", storedstacktag);
-		}
+		nbttagcompound.setInteger("storedId", _storedId);
+		nbttagcompound.setInteger("storedMeta", _storedMeta);
+		nbttagcompound.setInteger("storedQuantity", _storedQuantity);
 		
 		nbttagcompound.setBoolean("side0output", _isSideOutput[0]);
 		nbttagcompound.setBoolean("side1output", _isSideOutput[1]);
@@ -287,21 +281,9 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	{
 		super.readFromNBT(nbttagcompound);
 		
-		if(nbttagcompound.hasKey("storedStack"))
-		{
-			_storedStack = new ItemStack(0, 0, 0);
-			_storedStack.readFromNBT((NBTTagCompound)nbttagcompound.getTag("storedStack"));
-		}
-		else
-		{
-			int _storedId = nbttagcompound.getInteger("storedId");
-			int _storedMeta = nbttagcompound.getInteger("storedMeta");
-			int _storedQuantity = nbttagcompound.getInteger("storedQuantity");
-			if(_storedId != 0 && _storedQuantity != 0)
-			{
-				_storedStack = new ItemStack(_storedId, _storedQuantity, _storedMeta);
-			}
-		}
+		_storedId = nbttagcompound.getInteger("storedId");
+		_storedMeta = nbttagcompound.getInteger("storedMeta");
+		_storedQuantity = nbttagcompound.getInteger("storedQuantity");
 		
 		_isSideOutput[0] = nbttagcompound.getBoolean("side0output");
 		_isSideOutput[1] = nbttagcompound.getBoolean("side1output");
@@ -310,40 +292,28 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		_isSideOutput[4] = nbttagcompound.getBoolean("side4output");
 		_isSideOutput[5] = nbttagcompound.getBoolean("side5output");
 		
-		// not entirely sure this check is still helpful, with the switch to internal stack-based storage
-		if(_storedStack != null && Item.itemsList[_storedStack.itemID] == null)
+		if(Item.itemsList[_storedId] == null && _storedQuantity > 0)
 		{
-			_storedStack = null;
+			_storedQuantity = 0;
 		}
 	}
 	
 	@Override
 	public ItemStack getStoredItemType()
 	{
-		ItemStack returnstack = null;
-		if(_storedStack != null)
+		if(_storedQuantity > 0 || _inventory[2] != null)
 		{
-			returnstack = _storedStack.copy();
-			if(UtilInventory.stacksEqual(_storedStack, _inventory[2]))
-			{
-				returnstack.stackSize += _inventory[2].stackSize;
-			}
+			return new ItemStack(_storedId, getQuantityAdjusted(), _storedMeta);
 		}
-		else if(_inventory[2] != null)
-		{
-			returnstack = _inventory[2].copy();
-		}
-		return returnstack;
+		return null;
 	}
 	
 	@Override
 	public void setStoredItemCount(int amount)
 	{
-		if(_storedStack == null) return;
-		
 		for(int i = 0; i < getSizeInventory(); i++)
 		{
-			if(_inventory[i] != null && UtilInventory.stacksEqual(_storedStack, _inventory[i]))
+			if(_inventory[i] != null && _inventory[i].itemID == _storedId && _inventory[i].getItemDamage() == _storedMeta)
 			{
 				if(amount == 0)
 				{
@@ -360,19 +330,18 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 				}
 			}
 		}
-		_storedStack.stackSize = amount;
+		_storedQuantity = amount;
 		_canUpdate = true;
 	}
 	
 	@Override
 	public void setStoredItemType(int itemID, int meta, int Count)
 	{
-		//remove no-op
-	}
-	
-	public void setStoredItemType(ItemStack storedStack)
-	{
-		_storedStack = storedStack.copy();
+		clearSlots();
+		_storedId = itemID;
+		_storedMeta = meta;
+		_storedQuantity = Count;
+		_canUpdate = true;
 	}
 	
 	@Override
