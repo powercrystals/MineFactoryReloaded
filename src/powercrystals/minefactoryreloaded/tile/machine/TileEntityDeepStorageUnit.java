@@ -89,6 +89,10 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		{
 			_storedStack.stackSize = quantity;
 		}
+		else if(worldObj.isRemote)
+		{
+			_storedStack = new ItemStack(0, quantity, 0);
+		}
 	}
 	
 	public void clearSlots()
@@ -263,6 +267,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			NBTTagCompound storedstacktag = new NBTTagCompound();
 			_storedStack.writeToNBT(storedstacktag);
 			nbttagcompound.setTag("storedStack", storedstacktag);
+			nbttagcompound.setInteger("storedQuantity", _storedStack.stackSize);
 		}
 		
 		nbttagcompound.setBoolean("side0output", _isSideOutput[0]);
@@ -281,7 +286,8 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		if(nbttagcompound.hasKey("storedStack"))
 		{
 			_storedStack = new ItemStack(0, 0, 0);
-			_storedStack.readFromNBT((NBTTagCompound)nbttagcompound.getTag("storedStack"));
+			_storedStack = ItemStack.loadItemStackFromNBT((NBTTagCompound)nbttagcompound.getTag("storedStack"));
+			_storedStack.stackSize = nbttagcompound.getInteger("storedQuantity");
 		}
 		else
 		{
@@ -302,7 +308,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		_isSideOutput[5] = nbttagcompound.getBoolean("side5output");
 		
 		// not entirely sure this check is still helpful, with the switch to internal stack-based storage
-		if(_storedStack != null && Item.itemsList[_storedStack.itemID] == null)
+		if(_storedStack != null && (Item.itemsList[_storedStack.itemID] == null || _storedStack.stackSize <= 0))
 		{
 			_storedStack = null;
 		}
