@@ -8,7 +8,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
-import powercrystals.minefactoryreloaded.api.IDeepStorageUnit27;
 import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
@@ -17,7 +16,7 @@ import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implements IDeepStorageUnit, IDeepStorageUnit27
+public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implements IDeepStorageUnit
 {
 	public TileEntityDeepStorageUnit()
 	{
@@ -364,7 +363,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		_canUpdate = true;
 	}
 	
-	@Override
 	public void setStoredItemType(ItemStack storedStack)
 	{
 		clearSlots();
