@@ -281,8 +281,19 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	{
 		super.readFromNBT(nbttagcompound);
 		
-		_storedId = nbttagcompound.getInteger("storedId");
-		_storedMeta = nbttagcompound.getInteger("storedMeta");
+		if(nbttagcompound.hasKey("storedStack"))
+		{
+			ItemStack _storedStack = new ItemStack(0, 0, 0);
+			_storedStack.readFromNBT((NBTTagCompound)nbttagcompound.getTag("storedStack"));
+			_storedId = _storedStack.itemID;
+			_storedMeta = _storedStack.getItemDamage();
+		}
+		else
+		{
+			_storedId = nbttagcompound.getInteger("storedId");
+			_storedMeta = nbttagcompound.getInteger("storedMeta");
+		}
+		
 		_storedQuantity = nbttagcompound.getInteger("storedQuantity");
 		
 		_isSideOutput[0] = nbttagcompound.getBoolean("side0output");
