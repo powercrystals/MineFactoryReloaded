@@ -111,6 +111,11 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		return 0;
 	}
 	
+	public void setId(int id)
+	{
+		//remove no-op
+	}
+	
 	public int getMeta()
 	{
 		if(_storedStack != null)
@@ -122,6 +127,11 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			return _inventory[2].getItemDamage();
 		}
 		return 0;
+	}
+	
+	public void setMeta(int meta)
+	{
+		//remove no-op
 	}
 	
 	@Override
@@ -355,19 +365,14 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	}
 	
 	@Override
-	@Deprecated
 	public void setStoredItemType(int itemID, int meta, int Count)
 	{
-		clearSlots();
-		_storedStack = new ItemStack(itemID, Count, meta);
-		_canUpdate = true;
+		//remove no-op
 	}
 	
 	public void setStoredItemType(ItemStack storedStack)
 	{
-		clearSlots();
 		_storedStack = storedStack.copy();
-		_canUpdate = true;
 	}
 	
 	@Override

@@ -2,12 +2,6 @@ package powercrystals.minefactoryreloaded.api;
 
 import net.minecraft.item.ItemStack;
 
-/**
- * This class will be replaced by IDeepStorageUnit27 in MC 1.6.
- * The only difference is that setStoredItemType takes an ItemStack in the newer one.
- */
-
-@Deprecated
 public interface IDeepStorageUnit
 {
 	/**
