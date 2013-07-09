@@ -38,8 +38,7 @@ public class Thaumcraft
 			
 			MFRRegistry.registerPlantable(new PlantableThaumcraftTree(tcSapling.blockID, tcSapling.blockID));
 			
-			// TODO: add autospawner class blacklist
-			//MFRRegistry.registerAutoSpawnerBlacklistClass((String)EntityList.classToStringMapping.get(golem));
+			MFRRegistry.registerAutoSpawnerBlacklistClass(golem);
 			
 			MFRRegistry.registerGrinderBlacklist(golem);
 			

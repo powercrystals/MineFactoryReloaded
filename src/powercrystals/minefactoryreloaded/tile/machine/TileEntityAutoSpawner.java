@@ -88,7 +88,26 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 			return false;
 		}
 		NBTTagCompound itemTag = item.getTagCompound();
-		if (MFRRegistry.getAutoSpawnerBlacklist().contains(itemTag.getString("id")))
+		String entityID = itemTag.getString("id");
+		boolean isBlackListed = MFRRegistry.getAutoSpawnerBlacklist().contains(entityID);
+		blackList: if (!isBlackListed)
+		{
+			Class<?> e = (Class<?>)EntityList.stringToClassMapping.get(entityID);
+			if (e == null)
+			{
+				isBlackListed = true;
+				break blackList;
+			}
+			for (Class<?> t : MFRRegistry.getAutoSpawnerClassBlacklist())
+			{
+				if(t.isAssignableFrom(e))
+				{
+					isBlackListed = true;
+					break blackList;
+				}
+			}
+		}
+		if (isBlackListed)
 		{
 			setWorkDone(0);
 			return false;
@@ -108,7 +127,7 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 		}
 		else
 		{
-			Entity spawnedEntity = EntityList.createEntityByName(itemTag.getString("id"), worldObj);
+			Entity spawnedEntity = EntityList.createEntityByName(entityID, worldObj);
 			
 			if(!(spawnedEntity instanceof EntityLiving))
 			{

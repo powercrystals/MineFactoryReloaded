@@ -49,6 +49,7 @@ public abstract class MFRRegistry
 	private static List<WeightedRandomItem> _laserOres  = new ArrayList<WeightedRandomItem>();
 	private static List<Class<?>> _grindableBlacklist = new ArrayList<Class<?>>();
 	private static List<String> _autoSpawnerBlacklist = new ArrayList<String>();
+	private static List<Class<?>> _autoSpawnerClassBlacklist = new ArrayList<Class<?>>();
 	private static List<Class<?>> _slaughterhouseBlacklist = new ArrayList<Class<?>>();
 
 	private static Map<Integer, List<ItemStack>> _laserPreferredOres = new HashMap<Integer, List<ItemStack>>(16);
@@ -266,6 +267,16 @@ public abstract class MFRRegistry
 	public static Map<Integer, IFactoryFruit> getFruits()
 	{
 		return _fruitBlocks;
+	}
+	
+	public static void registerAutoSpawnerBlacklistClass(Class<?> entityClass)
+	{
+		_autoSpawnerClassBlacklist.add(entityClass);
+	}
+
+	public static List<Class<?>> getAutoSpawnerClassBlacklist()
+	{
+		return _autoSpawnerClassBlacklist;
 	}
 
 	public static void registerAutoSpawnerBlacklist(String entityString)
