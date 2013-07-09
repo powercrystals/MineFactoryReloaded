@@ -260,6 +260,21 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
 	{
+		//attempt to fold inventory contents into storage before writing to NBT
+		for(int i = 2; i >= 0; i--)
+		{
+			if(_storedStack == null && _inventory[i] != null)
+			{
+				_storedStack = _inventory[i].copy();
+				_inventory[i] = null;
+			}
+			else if(UtilInventory.stacksEqual(_inventory[i], _storedStack) && Integer.MAX_VALUE - _inventory[i].stackSize > _storedStack.stackSize)
+			{
+				_storedStack.stackSize += _inventory[i].stackSize;
+				_inventory[i] = null;
+			}
+		}
+		
 		super.writeToNBT(nbttagcompound);
 		
 		if(_storedStack != null)
@@ -312,6 +327,8 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		{
 			_storedStack = null;
 		}
+		
+		_canUpdate = true;
 	}
 	
 	@Override
