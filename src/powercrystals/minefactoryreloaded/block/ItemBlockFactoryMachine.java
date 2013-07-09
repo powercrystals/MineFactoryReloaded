@@ -45,20 +45,10 @@ public class ItemBlockFactoryMachine extends ItemBlockFactory
 		NBTTagCompound c = stack.getTagCompound();
 		if(getBlockID() == Machine.DeepStorageUnit.getBlockId() && stack.getItemDamage() == Machine.DeepStorageUnit.getMeta() && c != null)
 		{
-			ItemStack storedItem;
 			int storedId = c.getInteger("storedId");
 			int storedMeta = c.getInteger("storedMeta");
-			int storedQuantity = c.getInteger("storedQuantity");
-			if(storedId != 0 && storedQuantity > 0)
-			{
-				storedItem = new ItemStack(storedId, storedQuantity, storedMeta);
-			}
-			else
-			{
-				storedItem = new ItemStack(0, 0, 0);
-				storedItem.readFromNBT((NBTTagCompound)c.getTag("storedStack"));
-			}
-			info.add("Contains " + storedItem.stackSize + " " + Item.itemsList[storedItem.itemID].getItemDisplayName(storedItem) + " (" + storedItem.itemID + ":" + storedItem.itemID + ")");
+			ItemStack storedItem = new ItemStack(storedId, 1, storedMeta);
+			info.add("Contains " + c.getInteger("storedQuantity") + " " + Item.itemsList[storedId].getItemDisplayName(storedItem) + " (" + storedId + ":" + storedMeta + ")");
 		}
 		else if(getBlockID() == Machine.BioFuelGenerator.getBlockId() && stack.getItemDamage() == Machine.BioFuelGenerator.getMeta())
 		{
