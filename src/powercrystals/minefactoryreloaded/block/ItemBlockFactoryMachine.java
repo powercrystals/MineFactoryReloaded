@@ -57,9 +57,8 @@ public class ItemBlockFactoryMachine extends ItemBlockFactory
 			{
 				storedItem = new ItemStack(0, 0, 0);
 				storedItem.readFromNBT((NBTTagCompound)c.getTag("storedStack"));
-				storedItem.stackSize = storedQuantity;
 			}
-			info.add("Contains " + storedItem.stackSize + " " + Item.itemsList[storedItem.itemID].getItemDisplayName(storedItem) + " (" + storedItem.itemID + ":" + storedItem.getItemDamage() + ")");
+			info.add("Contains " + storedItem.stackSize + " " + Item.itemsList[storedItem.itemID].getItemDisplayName(storedItem) + " (" + storedItem.itemID + ":" + storedItem.itemID + ")");
 		}
 		else if(getBlockID() == Machine.BioFuelGenerator.getBlockId() && stack.getItemDamage() == Machine.BioFuelGenerator.getMeta())
 		{
