@@ -159,7 +159,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			_canUpdate = false;
 		}
 		
-		if(_storedStack != null && _storedStack.stackSize == 0)
+		if(_storedStack.stackSize == 0)
 		{
 			_storedStack = null;
 		}
