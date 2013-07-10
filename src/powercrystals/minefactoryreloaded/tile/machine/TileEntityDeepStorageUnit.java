@@ -362,25 +362,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			_storedStack = _inventory[2].copy();
 		}
 		
-		for(int i = 0; i < getSizeInventory(); i++)
-		{
-			if(UtilInventory.stacksEqual(_storedStack, _inventory[i]))
-			{
-				if(amount == 0)
-				{
-					_inventory[i] = null;
-				}
-				else if(amount >= _inventory[i].stackSize)
-				{
-					amount -= _inventory[i].stackSize;					
-				}
-				else if(amount < _inventory[i].stackSize)
-				{
-					_inventory[i].stackSize = amount;
-					amount = 0;
-				}
-			}
-		}
+		clearSlots();
 		
 		if(amount > 0)
 		{
