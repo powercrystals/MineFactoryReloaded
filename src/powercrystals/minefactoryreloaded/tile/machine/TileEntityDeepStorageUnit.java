@@ -279,10 +279,12 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		
 		if(_storedStack != null)
 		{
+			nbttagcompound.setInteger("storedQuantity", _storedStack.stackSize);
+			_storedStack.stackSize = 1;
+			
 			NBTTagCompound storedstacktag = new NBTTagCompound();
 			_storedStack.writeToNBT(storedstacktag);
 			nbttagcompound.setTag("storedStack", storedstacktag);
-			nbttagcompound.setInteger("storedQuantity", _storedStack.stackSize);
 		}
 		
 		nbttagcompound.setBoolean("side0output", _isSideOutput[0]);
@@ -301,7 +303,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		if(nbttagcompound.hasKey("storedStack"))
 		{
 			_storedStack = new ItemStack(0, 0, 0);
-			_storedStack = ItemStack.loadItemStackFromNBT((NBTTagCompound)nbttagcompound.getTag("storedStack"));
+			_storedStack.readFromNBT(((NBTTagCompound)nbttagcompound.getTag("storedStack")));
 			_storedStack.stackSize = nbttagcompound.getInteger("storedQuantity");
 		}
 		else
@@ -309,7 +311,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 			int _storedId = nbttagcompound.getInteger("storedId");
 			int _storedMeta = nbttagcompound.getInteger("storedMeta");
 			int _storedQuantity = nbttagcompound.getInteger("storedQuantity");
-			if(_storedId != 0 && _storedQuantity != 0)
+			if(_storedId != 0 && _storedQuantity > 0)
 			{
 				_storedStack = new ItemStack(_storedId, _storedQuantity, _storedMeta);
 			}
@@ -323,7 +325,7 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		_isSideOutput[5] = nbttagcompound.getBoolean("side5output");
 		
 		// not entirely sure this check is still helpful, with the switch to internal stack-based storage
-		if(_storedStack != null && (Item.itemsList[_storedStack.itemID] == null || _storedStack.stackSize <= 0))
+		if(_storedStack != null && _storedStack.getItem() == null)
 		{
 			_storedStack = null;
 		}
