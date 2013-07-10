@@ -279,11 +279,12 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 		
 		if(_storedStack != null)
 		{
-			nbttagcompound.setInteger("storedQuantity", _storedStack.stackSize);
-			_storedStack.stackSize = 1;
+			ItemStack toStore = _storedStack.copy();
+			nbttagcompound.setInteger("storedQuantity", toStore.stackSize);
+			toStore.stackSize = 1;
 			
 			NBTTagCompound storedstacktag = new NBTTagCompound();
-			_storedStack.writeToNBT(storedstacktag);
+			toStore.writeToNBT(storedstacktag);
 			nbttagcompound.setTag("storedStack", storedstacktag);
 		}
 		
