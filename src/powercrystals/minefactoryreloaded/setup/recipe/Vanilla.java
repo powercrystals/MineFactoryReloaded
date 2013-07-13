@@ -625,6 +625,34 @@ public class Vanilla
 				'M', MineFactoryReloadedCore.machineBaseItem,
 					} ));
 		}
+		
+		if(Machine.BlockPlacer.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 6), new Object[]
+					{
+				"GGG",
+				"DDD",
+				" M ",
+				'G', "sheetPlastic",
+				'D', Block.dropper,
+				'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
+		
+		if(Machine.MobCounter.getIsRecipeEnabled())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MineFactoryReloadedCore.machineBlocks.get(2), 1, 6), new Object[]
+					{
+				"GGG",
+				"RCR",
+				"SMS",
+				'G', "sheetPlastic",
+				'R', Item.redstoneRepeater,
+				'C', Item.comparator,
+				'S', MineFactoryReloadedCore.spyglassItem,
+				'M', MineFactoryReloadedCore.machineBaseItem,
+					} ));
+		}
 	}
 	
 	protected void registerMachineUpgrades()
