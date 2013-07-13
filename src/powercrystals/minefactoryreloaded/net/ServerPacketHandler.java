@@ -14,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import powercrystals.core.net.PacketWrapper;
 import powercrystals.minefactoryreloaded.entity.EntityRocket;
+import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoDisenchanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoEnchanter;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoSpawner;
@@ -49,6 +50,11 @@ public class ServerPacketHandler implements IPacketHandler
 			else if(te instanceof TileEntityBlockSmasher)
 			{
 				((TileEntityBlockSmasher)te).setFortune(((TileEntityBlockSmasher)te).getFortune() + (Integer)packetReadout[3]);
+			}
+			else if(te instanceof TileEntityAutoDisenchanter)
+			{
+				Integer v = (Integer)packetReadout[3];
+				((TileEntityAutoDisenchanter)te).setRepeatDisenchant(v == 1 ? true : false);
 			}
 		}
 		else if(packetType == Packets.HarvesterButton) // client -> server: harvester setting

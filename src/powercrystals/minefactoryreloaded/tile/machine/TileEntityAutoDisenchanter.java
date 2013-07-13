@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
+import powercrystals.minefactoryreloaded.gui.client.GuiAutoDisenchanter;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
-import powercrystals.minefactoryreloaded.gui.client.GuiFactoryPowered;
 import powercrystals.minefactoryreloaded.gui.container.ContainerAutoDisenchanter;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
@@ -16,6 +16,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 {
+	private boolean _repeatDisenchant;
+	
 	public TileEntityAutoDisenchanter()
 	{
 		super(Machine.AutoDisenchanter);
@@ -31,13 +33,23 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 	@SideOnly(Side.CLIENT)
 	public GuiFactoryInventory getGui(InventoryPlayer inventoryPlayer)
 	{
-		return new GuiFactoryPowered(getContainer(inventoryPlayer), this);
+		return new GuiAutoDisenchanter(getContainer(inventoryPlayer), this);
 	}
 	
 	@Override
 	public ContainerAutoDisenchanter getContainer(InventoryPlayer inventoryPlayer)
 	{
 		return new ContainerAutoDisenchanter(this, inventoryPlayer);
+	}
+	
+	public boolean getRepeatDisenchant()
+	{
+		return _repeatDisenchant;
+	}
+	
+	public void setRepeatDisenchant(boolean repeatDisenchant)
+	{
+		_repeatDisenchant = repeatDisenchant;
 	}
 	
 	@Override
@@ -92,49 +104,54 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 		{
 			if(getWorkDone() >= getWorkMax())
 			{
-				_inventory[2] = _inventory[0];
-				_inventory[0] = null;
-				_inventory[3] = new ItemStack(Item.enchantedBook, 1);
 				decrStackSize(1, 1);
 				
 				NBTTagCompound enchTag;
-				if(_inventory[2].itemID == Item.enchantedBook.itemID)
+				if(_inventory[0].itemID == Item.enchantedBook.itemID)
 				{
-					if((NBTTagList)_inventory[2].getTagCompound().getTag("ench") != null)
+					if((NBTTagList)_inventory[0].getTagCompound().getTag("ench") != null)
 					{
-						enchTag = (NBTTagCompound)((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagAt(0);
-						_inventory[2] = new ItemStack(Item.book);
+						enchTag = (NBTTagCompound)((NBTTagList)_inventory[0].getTagCompound().getTag("ench")).tagAt(0);
+						_inventory[0] = new ItemStack(Item.book);
 					}
 					else
 					{
-						enchTag = (NBTTagCompound)((NBTTagList)_inventory[2].getTagCompound().getTag("StoredEnchantments")).tagAt(0);
+						enchTag = (NBTTagCompound)((NBTTagList)_inventory[0].getTagCompound().getTag("StoredEnchantments")).tagAt(0);
 					}
 				}
 				else
 				{
-					int enchIndex = worldObj.rand.nextInt(((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagCount());
-					enchTag = (NBTTagCompound)((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagAt(enchIndex);
+					int enchIndex = worldObj.rand.nextInt(((NBTTagList)_inventory[0].getTagCompound().getTag("ench")).tagCount());
+					enchTag = (NBTTagCompound)((NBTTagList)_inventory[0].getTagCompound().getTag("ench")).tagAt(enchIndex);
 					
-					((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).removeTag(enchIndex);
-					if(((NBTTagList)_inventory[2].getTagCompound().getTag("ench")).tagCount() == 0)
+					((NBTTagList)_inventory[0].getTagCompound().getTag("ench")).removeTag(enchIndex);
+					if(((NBTTagList)_inventory[0].getTagCompound().getTag("ench")).tagCount() == 0)
 					{
-						_inventory[2].getTagCompound().removeTag("ench");
-						if(_inventory[2].getTagCompound().hasNoTags())
+						_inventory[0].getTagCompound().removeTag("ench");
+						if(_inventory[0].getTagCompound().hasNoTags())
 						{
-							_inventory[2].setTagCompound(null);
+							_inventory[0].setTagCompound(null);
 						}
 					}
 					
-					int damage = worldObj.rand.nextInt((int)(_inventory[2].getMaxDamage() * 0.25)) + (int)(_inventory[2].getMaxDamage() * 0.1);
-					if(_inventory[2].isItemStackDamageable())
+					int damage = worldObj.rand.nextInt((int)(_inventory[0].getMaxDamage() * 0.25)) + (int)(_inventory[0].getMaxDamage() * 0.1);
+					if(_inventory[0].isItemStackDamageable())
 					{
-						_inventory[2].setItemDamage(_inventory[2].getItemDamage() + damage);
-						if(_inventory[2].getItemDamage() >= _inventory[2].getMaxDamage())
+						_inventory[0].setItemDamage(_inventory[0].getItemDamage() + damage);
+						if(_inventory[0].getItemDamage() >= _inventory[0].getMaxDamage())
 						{
-							_inventory[2] = null;
+							_inventory[0] = null;
 						}
 					}
 				}
+				
+				if(_inventory[0].getTagCompound() == null || _inventory[0].getTagCompound().getTag("ench") == null || !_repeatDisenchant)
+				{
+					_inventory[2] = _inventory[0];
+					_inventory[0] = null;
+				}
+				
+				_inventory[3] = new ItemStack(Item.enchantedBook, 1);
 				
 				NBTTagCompound baseTag = new NBTTagCompound();
 				NBTTagList enchList = new NBTTagList();
@@ -189,4 +206,17 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 		return 1;
 	}
 	
+	@Override
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		super.writeToNBT(tag);
+		tag.setBoolean("repeatDisenchant", _repeatDisenchant);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		super.readFromNBT(tag);
+		_repeatDisenchant = tag.getBoolean("repeatDisenchant");
+	}
 }
