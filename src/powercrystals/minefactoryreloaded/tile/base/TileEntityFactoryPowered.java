@@ -224,8 +224,12 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 				{
 					failedDrops = new ArrayList<ItemStack>();
 				}
-				failedDrops.addAll(drops);
-				drops.clear();
+				failedDrops.addAll(missed);
+			}
+			else
+			{
+				failedDrops.clear();
+				failedDrops.addAll(missed);
 			}
 			return false;
 		}

@@ -45,6 +45,7 @@ tile.mfr.machine.rednote.name = \u7ea2\u77f3\u97f3\u7b26\u76d2
 tile.mfr.machine.autobrewer.name = \u81ea\u52a8\u917f\u9020\u53f0
 tile.mfr.machine.fruitpicker.name = \u679c\u5b9e\u91c7\u6458\u5668
 tile.mfr.machine.blockplacer.name = \u65b9\u5757\u653e\u7f6e\u5668
+tile.mfr.machine.mobcounter.name = \u751f\u7269\u8ba1\u6570\u5668
 
 tile.mfr.conveyor.default.name = \u4f20\u9001\u5e26
 tile.mfr.conveyor.white.name = \u767d\u8272\u4f20\u9001\u5e26
@@ -211,6 +212,8 @@ item.mfr.meat.ingot.raw.name = \u751f\u8089\u952d
 item.mfr.meat.ingot.cooked.name = \u70e4\u8089\u952d
 item.mfr.meat.nugget.raw.name = \u751f\u8089\u7c92
 item.mfr.meat.nugget.cooked.name = \u70e4\u8089\u7c92
+item.mfr.rocket.name = \u81ea\u63a8\u8fdb\u53cd\u7269\u8d28\u706b\u7bad
+item.mfr.rocketlauncher.name = \u81ea\u63a8\u8fdb\u53cd\u7269\u8d28\u706b\u7bad\u53d1\u5c04\u7b52
 
 item.mfr.ceramicdye.white.name = \u9676\u74f7\u989c\u6599(\u767d\u8272)
 item.mfr.ceramicdye.orange.name = \u9676\u74f7\u989c\u6599(\u6a59\u8272)
@@ -340,5 +343,9 @@ circuit.mfr.xor.2 = \u5f02\u6216(2-\u8f93\u5165)
 circuit.mfr.xor.3 = \u5f02\u6216(3-\u8f93\u5165)
 circuit.mfr.xor.4 = \u5f02\u6216(4-\u8f93\u5165)
 
-death.attack.mfr.slaughterhouse=%1$s\u88ab\u52a0\u5de5\u6210\u8089\u9171\u4e86
-death.attack.mfr.grinder=%1$s\u88ab\u78e8\u788e\u6210\u4e86\u6e23\u6e23
+death.attack.mfr.slaughterhouse=%1$s\u88ab\u52a0\u5de5\u6210\u4e86\u8089\u6c64\u3002
+death.attack.mfr.slaughterhouse.player=%1$s\u88ab%2$s\u52a0\u5de5\u6210\u4e86\u8089\u6c64\u3002 
+death.attack.mfr.slaughterhouse.1=%1$s\u88ab\u52a0\u5de5\u6210\u4e86\u8089\u9171\u3002
+death.attack.mfr.slaughterhouse.1.player=%1$s\u88ab%2$s\u52a0\u5de5\u6210\u4e86\u8089\u9171\u3002
+death.attack.mfr.grinder=%1$s\u88ab\u78e8\u788e\u6210\u4e86\u6e23\u6e23\u3002
+death.attack.mfr.grinder.player=%2$s\u786e\u4fe1%1$s\u5df2\u7ecf\u88ab\u78e8\u788e\u6210\u4e86\u6e23\u6e23\u3002
