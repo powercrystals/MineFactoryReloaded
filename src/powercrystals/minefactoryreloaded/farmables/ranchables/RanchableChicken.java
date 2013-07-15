@@ -33,14 +33,15 @@ public class RanchableChicken implements IFactoryRanchable
 		{
 			chicken.playSound("mob.chicken.plop", 1.0F, (chicken.rand.nextFloat() - chicken.rand.nextFloat()) * 0.2F + 1.0F);
 			chicken.attackEntityFrom(DamageSource.generic, 0);
+			chicken.setRevengeTarget(chicken); // panic
 			chicken.timeUntilNextEgg = chicken.rand.nextInt(6000) + 6200;
-			if (rand.nextBoolean())
+			if (rand.nextInt(4) != 0)
 			{
 				drops.add(new ItemStack(Item.egg));
 			}
 			else
 			{
-				int k = chicken.rand.nextInt(6) + 1;
+				int k = chicken.rand.nextInt(4) + 1;
 				drops.add(new ItemStack(Item.feather, k));
 			}
 		}
