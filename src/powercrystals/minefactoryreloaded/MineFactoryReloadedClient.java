@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.Tessellator;
@@ -47,6 +48,7 @@ import powercrystals.minefactoryreloaded.render.tileentity.RedNetCardItemRendere
 import powercrystals.minefactoryreloaded.render.tileentity.RedNetHistorianRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedNetLogicRenderer;
 import powercrystals.minefactoryreloaded.render.tileentity.RedstoneCableRenderer;
+import powercrystals.minefactoryreloaded.setup.MFRConfig;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrill;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityLaserDrillPrecharger;
 import powercrystals.minefactoryreloaded.tile.rednet.TileEntityRedNetHistorian;
@@ -95,7 +97,12 @@ public class MineFactoryReloadedClient implements IScheduledTickHandler
 				MineFactoryReloadedCore.renderIdFluidClassic));
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdVineScaffold, new VineScaffoldRenderer());
 		RenderingRegistry.registerBlockHandler(MineFactoryReloadedCore.renderIdFactoryGlass, new FactoryGlassRenderer());
+		
 		MinecraftForgeClient.registerItemRenderer(MineFactoryReloadedCore.factoryGlassPaneBlock.blockID, new FactoryGlassPaneItemRenderer());
+		if (MFRConfig.vanillaOverrideGlassPane.getBoolean(true))
+		{
+			MinecraftForgeClient.registerItemRenderer(Block.thinGlass.blockID, new FactoryGlassPaneItemRenderer());			
+		}
 		
 		RedstoneCableRenderer renderer = new RedstoneCableRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRedNetCable.class, renderer);

@@ -10,6 +10,14 @@ public class IconOverlay implements Icon {
 	private Icon overlayIcon;
 	private float xSegments, ySegments;
 	private float selectedSegmentX, selectedSegmentY;
+	
+	public IconOverlay(Icon overlayIcon, int subX, int subY, int selectedX, int selectedY) {
+		this.overlayIcon = overlayIcon;
+		xSegments = subX;
+		ySegments = subY;
+		selectedSegmentX = selectedX;
+		selectedSegmentY = selectedY;
+	}
 
 	public IconOverlay(Icon overlayIcon, int subX, int subY, boolean ...sides) {
 		this.overlayIcon = overlayIcon;
@@ -64,8 +72,7 @@ public class IconOverlay implements Icon {
 		selectedSegmentY = value / subX;
 	}
 	
-	private static int toInt(boolean ...flags)
-	{
+	private static int toInt(boolean ...flags) {
 		int ret = 0;
 		for (int i = flags.length; i --> 0;)
 			ret |= (flags[i] ? 1 : 0) << i;

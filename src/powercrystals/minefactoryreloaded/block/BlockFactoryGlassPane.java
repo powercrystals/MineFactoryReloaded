@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemDye;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -25,11 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedNet
 {
-	private String[] _names = new String []
-			{ "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
-	private Icon[] _icons = new Icon[_names.length];
 	protected Icon _iconSide;
-	static Icon _overlay;
 	
 	public BlockFactoryGlassPane(int blockId)
 	{
@@ -45,21 +42,22 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 	}
 	
 	@Override
+	public int damageDropped(int par1)
+    {
+        return par1;
+    }
+	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister ir)
 	{
-		for(int i = 0; i < _names.length; i++)
-		{
-			_icons[i] = ir.registerIcon("powercrystals/minefactoryreloaded/tile.mfr.stainedglass." + _names[i]);
-		}
 		_iconSide = ir.registerIcon("powercrystals/minefactoryreloaded/tile.mfr.stainedglass.pane.side");
-		_overlay = ir.registerIcon("powercrystals/minefactoryreloaded/tile.mfr.stainedglass.border");
 	}
-	
+
 	@Override
 	public Icon getIcon(int side, int meta)
 	{
-		return _icons[Math.min(meta, _icons.length - 1)];
+		return new IconOverlay(BlockFactoryGlass._texture, 8, 8, meta > 15 ? 6 : 7, 7);
 	}
 	
 	@Override
@@ -67,10 +65,16 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 	{
 		return 1;
 	}
+
+	@Override
+    public int getRenderColor(int meta)
+	{
+		return ItemDye.dyeColors[15 - Math.min(Math.max(meta, 0), 15)];
+	}
 	
 	public Icon getBlockOverlayTexture()
 	{
-		return new IconOverlay(_overlay, 8, 8, false, false, false, false, false, false, false, false);
+		return new IconOverlay(BlockFactoryGlass._texture, 8, 8, 0, 0);
 	}
 
 	public Icon getBlockOverlayTexture(IBlockAccess world, int x, int y, int z, int side)
@@ -93,7 +97,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 		sides[2] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
 		bp.moveRight(1);
 		sides[7] = world.getBlockId(bp.x,bp.y,bp.z) == blockID;
-		return new IconOverlay(_overlay, 8, 8, sides);
+		return new IconOverlay(BlockFactoryGlass._texture, 8, 8, sides);
 	}
 	
 	@Override
