@@ -123,6 +123,7 @@ import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCocoa;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableCropPlant;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableNetherWart;
 import powercrystals.minefactoryreloaded.farmables.plantables.PlantableStandard;
+import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableChicken;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableCow;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableMooshroom;
 import powercrystals.minefactoryreloaded.farmables.ranchables.RanchableSheep;
@@ -206,6 +207,7 @@ public class Vanilla
 		MFRRegistry.registerRanchable(new RanchableMooshroom());
 		MFRRegistry.registerRanchable(new RanchableSheep());
 		MFRRegistry.registerRanchable(new RanchableSquid());
+		MFRRegistry.registerRanchable(new RanchableChicken());
 
 		MFRRegistry.registerGrinderBlacklist(EntityPlayer.class);
 		MFRRegistry.registerGrinderBlacklist(EntityDragon.class);
