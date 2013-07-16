@@ -92,6 +92,7 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 		tessellator.draw();
 
 		tessellator.startDrawingQuads();
+		tessellator.setColorOpaque_F(1, 1, 1);
 		tessellator.addVertexWithUV(xMin, yMax, negSideXOffset, minXSide, minYSide);
 		tessellator.addVertexWithUV(xMin, yMin, negSideXOffset, minXSide, maxYSide);
 		tessellator.addVertexWithUV(xMin, yMin, posSideXOffset, maxXSide, maxYSide);
@@ -99,6 +100,7 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 		tessellator.draw();
 
 		tessellator.startDrawingQuads();
+		tessellator.setColorOpaque_F(1, 1, 1);
 		tessellator.addVertexWithUV(xMax, yMax, negSideXOffset, minXSide, minYSide);
 		tessellator.addVertexWithUV(xMax, yMin, negSideXOffset, minXSide, maxYSide);
 		tessellator.addVertexWithUV(xMax, yMin, posSideXOffset, maxXSide, maxYSide);
@@ -106,7 +108,7 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 		tessellator.draw();
 
 		tessellator.startDrawingQuads();
-		tessellator.setNormal(0, 1, 0);
+		tessellator.setColorOpaque_F(1, 1, 1);
 		tessellator.addVertexWithUV(xMin, yMax + offset, posSideXOffset, maxXSide, maxYSide);
 		tessellator.addVertexWithUV(xMax, yMax + offset, posSideXOffset, maxXSide, minYSide);
 		tessellator.addVertexWithUV(xMax, yMax + offset, negSideXOffset, minXSide, minYSide);
@@ -114,6 +116,7 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 		tessellator.draw();
 
 		tessellator.startDrawingQuads();
+		tessellator.setColorOpaque_F(1, 1, 1);
 		tessellator.addVertexWithUV(xMin, yMin - offset, posSideXOffset, maxXSide, maxYSide);
 		tessellator.addVertexWithUV(xMax, yMin - offset, posSideXOffset, maxXSide, minYSide);
 		tessellator.addVertexWithUV(xMax, yMin - offset, negSideXOffset, minXSide, minYSide);
@@ -124,7 +127,8 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess blockAccess, int x, int y, int z, Block tile, int modelId, RenderBlocks renderer)
+	public boolean renderWorldBlock(IBlockAccess blockAccess, int x, int y, int z,
+			Block tile, int modelId, RenderBlocks renderer)
 	{
 		BlockFactoryGlassPane block = (BlockFactoryGlassPane)tile;
 
@@ -149,11 +153,20 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 
 		Icon iconGlass, iconStreaks, iconSide, iconOverlaySouth, iconOverlayWest;
 
-		iconGlass = block.getIcon(0, metadata);
-		iconStreaks = block.getIcon(0, 16 | metadata);
-		iconSide = block.getSideTextureIndex();
-		iconOverlaySouth = block.getBlockOverlayTexture(blockAccess, x, y, z, 2);
-		iconOverlayWest = block.getBlockOverlayTexture(blockAccess, x, y, z, 5);
+		if (renderer.hasOverrideBlockTexture())
+		{
+			iconGlass = iconStreaks = iconSide = 
+			iconOverlaySouth = iconOverlayWest =
+					renderer.overrideBlockTexture;
+		}
+		else
+		{
+			iconGlass = block.getIcon(0, metadata);
+			iconStreaks = block.getIcon(0, 16 | metadata);
+			iconSide = block.getSideTextureIndex();
+			iconOverlaySouth = block.getBlockOverlayTexture(blockAccess, x, y, z, 2);
+			iconOverlayWest = block.getBlockOverlayTexture(blockAccess, x, y, z, 5);
+		}
 
 		double minXGlass = iconGlass.getMinU();
 		double midXGlass = iconGlass.getInterpolatedU(8.0D);
@@ -478,7 +491,7 @@ public class FactoryGlassPaneRenderer implements ISimpleBlockRenderingHandler
 				tessellator.addVertexWithUV(negSideZOffset, yMax + vertSideZOffset, zMin, minXSide, minYSide);
 				tessellator.addVertexWithUV(negSideZOffset, yMax + vertSideZOffset, zMax, minXSide, maxYSide);
 			}
-
+			// TODO: fix slightly awkward rendering when pane on top/bottom doesn't connect on both sides
 			if (renderBottom)
 			{
 				tessellator.addVertexWithUV(posSideZOffset, yMin - vertSideZOffset, zMax, maxXSide, maxYSide);

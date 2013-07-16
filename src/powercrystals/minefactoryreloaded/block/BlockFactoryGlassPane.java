@@ -51,7 +51,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister ir)
 	{
-		_iconSide = ir.registerIcon("powercrystals/minefactoryreloaded/tile.mfr.stainedglass.pane.side");
+		//_iconSide = ir.registerIcon("powercrystals/minefactoryreloaded/tile.mfr.stainedglass.pane.side");
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class BlockFactoryGlassPane extends BlockPane implements IConnectableRedN
 	@Override
 	public Icon getSideTextureIndex()
 	{
-		return _iconSide;
+		return new IconOverlay(BlockFactoryGlass._texture, 8, 8, 5, 7);
 	}
 	
 	public boolean canThisFactoryPaneConnectToThisBlockID(int blockId)

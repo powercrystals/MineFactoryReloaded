@@ -10,7 +10,6 @@ import org.lwjgl.opengl.GL12;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderEngine;
 import net.minecraft.client.renderer.Tessellator;
@@ -52,17 +51,15 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 			GL11.glScalef(16f, 16f, 16f);
 			GL11.glTranslatef(0.5f, 0.5f, 0.5f);
 
-			RenderingRegistry.instance().renderInventoryBlock(renderer, Block.blocksList[item.itemID], item.getItemDamage(), MineFactoryReloadedCore.renderIdFactoryGlassPane);
+			RenderingRegistry.instance().renderInventoryBlock(renderer, pane, item.getItemDamage(), MineFactoryReloadedCore.renderIdFactoryGlassPane);
 
 			GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
 			GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
-			GL11.glEnable(GL11.GL_CULL_FACE);
-			GL11.glEnable(GL11.GL_LIGHTING);
 
 			if (item.hasEffect())
 			{
+				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glDepthFunc(GL11.GL_GREATER);
-				GL11.glDisable(GL11.GL_LIGHTING);
 				GL11.glDepthMask(false);
 				renderEngine.bindTexture("%blur%/misc/glint.png");
 				GL11.glEnable(GL11.GL_BLEND);
@@ -90,9 +87,9 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 				tessellator.draw();
 				GL11.glDisable(GL11.GL_BLEND);
 				GL11.glDepthMask(true);
-				GL11.glEnable(GL11.GL_LIGHTING);
 				GL11.glDepthFunc(GL11.GL_LEQUAL);
 			}
+			GL11.glEnable(GL11.GL_LIGHTING);
 		}
 		else
 		{
@@ -100,14 +97,13 @@ public class FactoryGlassPaneItemRenderer implements IItemRenderer
 			
 			switch (type)
 			{
+			case EQUIPPED_FIRST_PERSON:
+			case EQUIPPED:
+				GL11.glTranslatef(10 / 16f, 7 / 16f, 0f);
+				break;
 			case ENTITY:
 				GL11.glScalef(0.75f, 0.75f, 0.75f);
-				break;
-			case EQUIPPED:
-				// TODO: pane renders backwards here
-				break;
-			case EQUIPPED_FIRST_PERSON:
-				// TODO: pane renders too close here
+	            GL11.glTranslatef(0f, 4 / 16f, 0f);
 				break;
 			default:
 			}

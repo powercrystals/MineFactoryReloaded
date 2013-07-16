@@ -38,6 +38,12 @@ public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 		return _iconPane;
 	}
 	
+	@Override
+	public Icon getSideTextureIndex()
+	{
+		return _iconSide;
+	}
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IconRegister ir)
