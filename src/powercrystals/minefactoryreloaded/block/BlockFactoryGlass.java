@@ -23,7 +23,7 @@ public class BlockFactoryGlass extends BlockGlass implements IConnectableRedNet
 	static String[] _names = new String []
 			{ "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
 	static Icon _texture;
-	
+
 	public BlockFactoryGlass(int blockId)
 	{
 		super(blockId, Material.glass, false);
@@ -33,38 +33,38 @@ public class BlockFactoryGlass extends BlockGlass implements IConnectableRedNet
 		setStepSound(soundGlassFootstep);
 		setCreativeTab(MFRCreativeTab.tab);
 	}
-	
+
 	@Override
 	public int damageDropped(int par1)
-    {
-        return par1;
-    }
-	
+	{
+		return par1;
+	}
+
 	@Override
 	public int getRenderBlockPass()
 	{
 		return 1;
 	}
-	
+
 	@Override
-    public int getRenderColor(int meta)
+	public int getRenderColor(int meta)
 	{
 		return ItemDye.dyeColors[15 - Math.min(Math.max(meta, 0), 15)];
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister ir)
 	{
 		_texture = ir.registerIcon("powercrystals/minefactoryreloaded/tile.mfr.stainedglass");
 	}
-	
+
 	@Override
 	public Icon getIcon(int side, int meta)
 	{
 		return new IconOverlay(_texture, 8, 8, meta > 15 ? 6 : 7, 7);
 	}
-	
+
 	public Icon getBlockOverlayTexture()
 	{
 		return new IconOverlay(_texture, 8, 8, 0, 0);
@@ -116,36 +116,36 @@ public class BlockFactoryGlass extends BlockGlass implements IConnectableRedNet
 		}
 		return new IconOverlay(_texture, 8, 8, sides);
 	}
-	
+
 	@Override
 	public int getRenderType()
 	{
 		return MineFactoryReloadedCore.renderIdFactoryGlass;
 	}
-	
+
 	@Override
 	public RedNetConnectionType getConnectionType(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return RedNetConnectionType.None;
 	}
-	
+
 	@Override
 	public int[] getOutputValues(World world, int x, int y, int z, ForgeDirection side)
 	{
 		return null;
 	}
-	
+
 	@Override
 	public int getOutputValue(World world, int x, int y, int z, ForgeDirection side, int subnet)
 	{
 		return 0;
 	}
-	
+
 	@Override
 	public void onInputsChanged(World world, int x, int y, int z, ForgeDirection side, int[] inputValues)
 	{
 	}
-	
+
 	@Override
 	public void onInputChanged(World world, int x, int y, int z, ForgeDirection side, int inputValue)
 	{
