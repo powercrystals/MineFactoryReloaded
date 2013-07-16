@@ -20,8 +20,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFactoryGlass extends BlockGlass implements IConnectableRedNet
 {
-	static String[] _names = new String []
-			{ "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
 	static Icon _texture;
 
 	public BlockFactoryGlass(int blockId)
