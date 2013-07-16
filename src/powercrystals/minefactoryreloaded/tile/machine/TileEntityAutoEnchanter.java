@@ -234,12 +234,6 @@ public class TileEntityAutoEnchanter extends TileEntityFactoryPowered implements
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Enchanter";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 2;

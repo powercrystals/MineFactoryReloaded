@@ -135,12 +135,6 @@ public class TileEntityRancher extends TileEntityFactoryPowered implements ITank
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Rancher";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 9;

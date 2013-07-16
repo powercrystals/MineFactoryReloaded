@@ -64,12 +64,6 @@ public class TileEntityFruitPicker extends TileEntityFactoryPowered
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Fruit Picker";
-	}
-	
-	@Override
 	protected boolean activateMachine()
 	{
 		int harvestedBlockId = 0;

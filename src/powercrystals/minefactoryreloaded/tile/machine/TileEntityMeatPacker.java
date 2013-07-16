@@ -35,12 +35,6 @@ public class TileEntityMeatPacker extends TileEntityFactoryPowered implements IT
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Meat Packer";
-	}
-	
-	@Override
 	public String getGuiBackground()
 	{
 		return "meatpacker.png";

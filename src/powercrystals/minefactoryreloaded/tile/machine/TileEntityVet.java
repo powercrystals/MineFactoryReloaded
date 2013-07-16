@@ -105,12 +105,6 @@ public class TileEntityVet extends TileEntityFactoryPowered implements IHarvestA
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Veterinary";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 9;

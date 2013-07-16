@@ -62,12 +62,6 @@ public class TileEntityBlockBreaker extends TileEntityFactoryPowered
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Block Breaker";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 0;

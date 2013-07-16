@@ -66,12 +66,6 @@ public class TileEntityAutoAnvil extends TileEntityFactoryPowered implements ITa
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Auto-Anvil";
-	}
-	
-	@Override
 	public String getGuiBackground()
 	{
 		return "autoanvil.png";

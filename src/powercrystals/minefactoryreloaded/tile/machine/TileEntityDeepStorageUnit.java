@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import powercrystals.core.util.UtilInventory;
 import powercrystals.minefactoryreloaded.api.IDeepStorageUnit;
+import powercrystals.minefactoryreloaded.core.BlockNBTManager;
 import powercrystals.minefactoryreloaded.gui.client.GuiDeepStorageUnit;
 import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerDeepStorageUnit;
@@ -35,6 +36,15 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	public String getGuiBackground()
 	{
 		return "dsu.png";
+	}
+	
+	@Override
+	public void onBlockBroken()
+	{
+		if (getQuantityAdjusted() > 0 || isInvNameLocalized())
+		{
+			BlockNBTManager.setForBlock(this);
+		}
 	}
 	
 	@Override
@@ -196,12 +206,6 @@ public class TileEntityDeepStorageUnit extends TileEntityFactoryInventory implem
 	public int getSizeInventory()
 	{
 		return 3;
-	}
-	
-	@Override
-	public String getInvName()
-	{
-		return "Deep Storage Unit";
 	}
 	
 	@Override

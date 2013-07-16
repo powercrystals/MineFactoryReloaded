@@ -103,12 +103,6 @@ public class TileEntityPlanter extends TileEntityFactoryPowered implements IHarv
 		setIdleTicks(getIdleTicksMax());
 		return false;
 	}
-	
-	@Override
-	public String getInvName()
-	{
-		return "Planter";
-	}
 	 
 	private boolean stacksEqual(ItemStack a, ItemStack b)
 	{

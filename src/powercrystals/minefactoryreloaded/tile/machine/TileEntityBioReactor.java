@@ -193,12 +193,6 @@ public class TileEntityBioReactor extends TileEntityFactoryInventory implements 
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Bio Reactor";
-	}
-	
-	@Override
 	public int getStartInventorySide(ForgeDirection side)
 	{
 		return 0;

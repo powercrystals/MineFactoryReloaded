@@ -36,7 +36,6 @@ import powercrystals.minefactoryreloaded.gui.MFRCreativeTab;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactory;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryInventory;
-import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityAutoJukebox;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityCollector;
 import powercrystals.minefactoryreloaded.tile.machine.TileEntityDeepStorageUnit;
@@ -325,7 +324,7 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 		if(te instanceof IInventory && !(te instanceof TileEntityDeepStorageUnit))
 		{
 			IInventory inventory = ((IInventory)te);
-			inv:		for(int i = 0; i < inventory.getSizeInventory(); i++)
+			inv: for(int i = 0; i < inventory.getSizeInventory(); i++)
 			{
 				if(te instanceof TileEntityFactoryInventory && !((TileEntityFactoryInventory)te).shouldDropSlotWhenBroken(i))
 				{
@@ -365,14 +364,10 @@ public class BlockFactoryMachine extends BlockContainer implements IConnectableR
 				} while(true);
 			}
 		}
-		else if(te instanceof TileEntityDeepStorageUnit && ((TileEntityDeepStorageUnit)te).getQuantityAdjusted() > 0)
-		{
-			BlockNBTManager.setForBlock(te);
-		}
 		
-		if(te instanceof TileEntityFactoryPowered)
+		if(te instanceof TileEntityFactoryInventory)
 		{
-			((TileEntityFactoryPowered)te).onBlockBroken();
+			((TileEntityFactoryInventory)te).onBlockBroken();
 		}
 		
 		if(te instanceof TileEntityAutoJukebox)

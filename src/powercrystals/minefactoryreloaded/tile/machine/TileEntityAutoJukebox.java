@@ -136,12 +136,6 @@ public class TileEntityAutoJukebox extends TileEntityFactoryInventory
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Auto Jukebox";
-	}
-	
-	@Override
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 1;

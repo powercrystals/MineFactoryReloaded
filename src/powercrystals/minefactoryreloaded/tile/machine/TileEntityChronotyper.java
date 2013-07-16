@@ -53,12 +53,6 @@ public class TileEntityChronotyper extends TileEntityFactoryPowered implements I
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Chronotyper";
-	}
-	
-	@Override
 	public HarvestAreaManager getHAM()
 	{
 		return _areaManager;

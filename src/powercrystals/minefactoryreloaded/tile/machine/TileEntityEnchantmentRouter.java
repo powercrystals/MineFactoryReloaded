@@ -69,12 +69,6 @@ public class TileEntityEnchantmentRouter extends TileEntityItemRouter
 		return routeWeights;
 	}
 	
-	@Override
-	public String getInvName()
-	{
-		return "Enchantment Router";
-	}
-	
 	public boolean getMatchLevels()
 	{
 		return _matchLevels;

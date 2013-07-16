@@ -51,12 +51,6 @@ public class TileEntityLaserDrillPrecharger extends TileEntityFactoryPowered
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Laser Drill Precharger";
-	}
-	
-	@Override
 	protected boolean activateMachine()
 	{
 		TileEntityLaserDrill drill = getDrill();

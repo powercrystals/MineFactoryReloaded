@@ -43,12 +43,6 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Block Smasher";
-	}
-	
-	@Override
 	public String getGuiBackground()
 	{
 		return "blocksmasher.png";

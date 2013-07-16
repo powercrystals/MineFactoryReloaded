@@ -264,8 +264,10 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	
 	protected abstract boolean activateMachine();
 	
+	@Override
 	public void onBlockBroken()
 	{
+		super.onBlockBroken();
 		if(_isAddedToIC2EnergyNet)
 		{
 			_isAddedToIC2EnergyNet = false;

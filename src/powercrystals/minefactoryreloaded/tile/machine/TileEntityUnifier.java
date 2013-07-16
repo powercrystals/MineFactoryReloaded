@@ -177,12 +177,6 @@ public class TileEntityUnifier extends TileEntityFactoryInventory implements ITa
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Unifier";
-	}
-	
-	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;

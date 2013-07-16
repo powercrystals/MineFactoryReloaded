@@ -237,12 +237,6 @@ public class TileEntityLaserDrill extends TileEntityFactoryInventory
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Laser Drill";
-	}
-	
-	@Override
 	public int getInventoryStackLimit()
 	{
 		return 1;

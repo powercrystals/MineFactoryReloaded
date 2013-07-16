@@ -36,11 +36,4 @@ public class TileEntityOilFabricator extends TileEntityLiquidFabricator
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-	
-	@Override
-	public String getInvName()
-	{
-		return "Oil Fabricator";
-	}
-	
 }

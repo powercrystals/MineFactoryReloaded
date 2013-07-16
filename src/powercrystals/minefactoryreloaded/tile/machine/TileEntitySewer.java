@@ -222,10 +222,4 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 	{
 		return 1;
 	}
-	
-	@Override
-	public String getInvName()
-	{
-		return "Sewer";
-	}
 }

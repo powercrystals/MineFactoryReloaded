@@ -113,12 +113,6 @@ public class TileEntityFisher extends TileEntityFactoryPowered implements IHarve
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Fisher";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 0;

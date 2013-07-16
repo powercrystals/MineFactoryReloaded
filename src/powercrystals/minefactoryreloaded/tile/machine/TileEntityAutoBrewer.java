@@ -38,12 +38,6 @@ public class TileEntityAutoBrewer extends TileEntityFactoryPowered
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Auto-Brewer";
-	}
-	
-	@Override
 	public String getGuiBackground()
 	{
 		return "autobrewer.png";
