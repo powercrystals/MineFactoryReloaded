@@ -21,15 +21,27 @@ public class BlockVanillaGlassPane extends BlockFactoryGlassPane
 	}
 	
 	@Override
+	public Icon getBlockOverlayTexture()
+	{
+		return new IconOverlay(BlockFactoryGlass._texture, 8, 8, 0, 7);
+	}
+	
+	@Override
 	public Icon getBlockOverlayTexture(IBlockAccess world, int x, int y, int z, int side)
 	{
-		return new IconOverlay(BlockFactoryGlassPane._overlay, 8, 8, true, true, true, true, true, true, true, true);
+		return getBlockOverlayTexture();
 	}
 	
 	@Override
 	public Icon getIcon(int side, int meta)
 	{
 		return _iconPane;
+	}
+	
+	@Override
+	public Icon getSideTextureIndex()
+	{
+		return _iconSide;
 	}
 	
 	@SideOnly(Side.CLIENT)

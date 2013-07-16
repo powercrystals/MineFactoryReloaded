@@ -20,23 +20,35 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 		BlockFactoryGlass block = (BlockFactoryGlass)tile;
 
 		Tessellator tessellator = Tessellator.instance;
-		Icon iconGlass, iconOverlay;
+		int color = block.getRenderColor(metadata);
+		float red = (color >> 16 & 255) / 255.0F;
+		float green = (color >> 8 & 255) / 255.0F;
+		float blue = (color & 255) / 255.0F;
 
-		if(renderer.hasOverrideBlockTexture())
+		if (EntityRenderer.anaglyphEnable)
 		{
-			iconGlass = renderer.overrideBlockTexture;
-			iconOverlay = renderer.overrideBlockTexture;
+			float anaglyphRed = (red * 30.0F + green * 59.0F + blue * 11.0F) / 100.0F;
+			float anaglyphGreen = (red * 30.0F + green * 70.0F) / 100.0F;
+			float anaglyphBlue = (red * 30.0F + blue * 70.0F) / 100.0F;
+			red = anaglyphRed;
+			green = anaglyphGreen;
+			blue = anaglyphBlue;
 		}
-		else
-		{
-			iconGlass = renderer.getBlockIconFromSideAndMetadata(block, 0, metadata);
-			iconOverlay = block.getBlockOverlayTexture();
-		}
+		Icon iconGlass, iconStreaks, iconOverlay;
+
+		iconGlass = block.getIcon(0, metadata);
+		iconStreaks = block.getIcon(0, 16 | metadata);
+		iconOverlay = block.getBlockOverlayTexture();
 
 		double minXGlass = iconGlass.getMinU();
 		double maxXGlass = iconGlass.getMaxU();
 		double minYGlass = iconGlass.getMinV();
 		double maxYGlass = iconGlass.getMaxV();
+
+		double minXStreaks = iconStreaks.getMinU();
+		double maxXStreaks = iconStreaks.getMaxU();
+		double minYStreaks = iconStreaks.getMinV();
+		double maxYStreaks = iconStreaks.getMaxV();
 
 		double minXOverlay = iconOverlay.getMinU();
 		double maxXOverlay = iconOverlay.getMaxU();
@@ -53,10 +65,17 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0F, -1.0F, 0.0F);
+		tessellator.setColorOpaque_F(red, green, blue);
 		tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, minYGlass);
 		tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, minYGlass);
+
+		tessellator.setColorOpaque_F(1, 1, 1);
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXStreaks, minYStreaks);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, minXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, maxXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXStreaks, minYStreaks);
 
 		tessellator.addVertexWithUV(xMin, yMin, zMax, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(xMin, yMin, zMin, minXOverlay, maxYOverlay);
@@ -66,10 +85,17 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0F, 1.0F, 0.0F);
+		tessellator.setColorOpaque_F(red, green, blue);
 		tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
+
+		tessellator.setColorOpaque_F(1, 1, 1);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, minXStreaks, minYStreaks);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, maxXStreaks, minYStreaks);
 
 		tessellator.addVertexWithUV(xMin, yMax, zMin, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXOverlay, maxYOverlay);
@@ -79,10 +105,17 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0F, 0.0F, -1.0F);
+		tessellator.setColorOpaque_F(red, green, blue);
 		tessellator.addVertexWithUV(xMax, yMax, zMin, minXGlass, minYGlass);
 		tessellator.addVertexWithUV(xMax, yMin, zMin, minXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMin, yMin, zMin, maxXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMin, yMax, zMin, maxXGlass, minYGlass);
+
+		tessellator.setColorOpaque_F(1, 1, 1);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, minXStreaks, minYStreaks);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, minXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, maxXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, maxXStreaks, minYStreaks);
 
 		tessellator.addVertexWithUV(xMax, yMax, zMin, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(xMax, yMin, zMin, minXOverlay, maxYOverlay);
@@ -92,10 +125,17 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0F, 0.0F, 1.0F);
+		tessellator.setColorOpaque_F(red, green, blue);
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, minYGlass);
 		tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, minYGlass);
+
+		tessellator.setColorOpaque_F(1, 1, 1);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXStreaks, minYStreaks);
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXStreaks, minYStreaks);
 
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(xMin, yMin, zMax, minXOverlay, maxYOverlay);
@@ -105,10 +145,17 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(-1.0F, 0.0F, 0.0F);
+		tessellator.setColorOpaque_F(red, green, blue);
 		tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, minYGlass);
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMin, yMax, zMin, maxXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMin, yMin, zMin, maxXGlass, minYGlass);
+
+		tessellator.setColorOpaque_F(1, 1, 1);
+		tessellator.addVertexWithUV(xMin, yMin, zMax, minXStreaks, minYStreaks);
+		tessellator.addVertexWithUV(xMin, yMax, zMax, minXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMin, yMax, zMin, maxXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMin, yMin, zMin, maxXStreaks, minYStreaks);
 
 		tessellator.addVertexWithUV(xMin, yMin, zMax, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(xMin, yMax, zMax, minXOverlay, maxYOverlay);
@@ -118,10 +165,17 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(1.0F, 0.0F, 0.0F);
+		tessellator.setColorOpaque_F(red, green, blue);
 		tessellator.addVertexWithUV(xMax, yMin, zMin, minXGlass, minYGlass);
 		tessellator.addVertexWithUV(xMax, yMax, zMin, minXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
 		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, minYGlass);
+
+		tessellator.setColorOpaque_F(1, 1, 1);
+		tessellator.addVertexWithUV(xMax, yMin, zMin, minXStreaks, minYStreaks);
+		tessellator.addVertexWithUV(xMax, yMax, zMin, minXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMax, yMax, zMax, maxXStreaks, maxYStreaks);
+		tessellator.addVertexWithUV(xMax, yMin, zMax, maxXStreaks, minYStreaks);
 
 		tessellator.addVertexWithUV(xMax, yMin, zMin, minXOverlay, minYOverlay);
 		tessellator.addVertexWithUV(xMax, yMax, zMin, minXOverlay, maxYOverlay);
@@ -136,12 +190,23 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 	public boolean renderWorldBlock(IBlockAccess blockAccess, int x, int y, int z,
 			Block tile, int modelId, RenderBlocks renderer)
 	{
+		if (renderer.hasOverrideBlockTexture())
+		{ // usually: block is being broken
+			renderer.renderFaceYNeg(tile, x, y, z, null);
+			renderer.renderFaceYPos(tile, x, y, z, null);
+			renderer.renderFaceZNeg(tile, x, y, z, null);
+			renderer.renderFaceZPos(tile, x, y, z, null);
+			renderer.renderFaceXNeg(tile, x, y, z, null);
+			renderer.renderFaceXPos(tile, x, y, z, null);
+			return true;
+		}
 		BlockFactoryGlass block = (BlockFactoryGlass)tile;
 
 		int worldHeight = blockAccess.getHeight();
+		int metadata = blockAccess.getBlockMetadata(x, y, z);
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(blockAccess, x, y, z));
-		int color = block.colorMultiplier(blockAccess, x, y, z);
+		int color = block.getRenderColor(metadata);
 		float red = (color >> 16 & 255) / 255.0F;
 		float green = (color >> 8 & 255) / 255.0F;
 		float blue = (color & 255) / 255.0F;
@@ -156,29 +221,23 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 			blue = anaglyphBlue;
 		}
 
-		tessellator.setColorOpaque_F(red, green, blue);
-		Icon iconGlass, iconOverlayTop, iconOverlaySouth, iconOverlayWest;
+		Icon iconGlass, iconStreaks, iconOverlayTop, iconOverlaySouth, iconOverlayWest;
 
-		if(renderer.hasOverrideBlockTexture())
-		{
-			iconGlass = renderer.overrideBlockTexture;
-			iconOverlayTop = renderer.overrideBlockTexture;
-			iconOverlaySouth = renderer.overrideBlockTexture;
-			iconOverlayWest = renderer.overrideBlockTexture;
-		}
-		else
-		{
-			int metadata = blockAccess.getBlockMetadata(x, y, z);
-			iconGlass = renderer.getBlockIconFromSideAndMetadata(block, 0, metadata);
-			iconOverlayTop = block.getBlockOverlayTexture(blockAccess, x, y, z, 1);
-			iconOverlaySouth = block.getBlockOverlayTexture(blockAccess, x, y, z, 2);
-			iconOverlayWest = block.getBlockOverlayTexture(blockAccess, x, y, z, 5);
-		}
+		iconGlass = block.getIcon(0, metadata);
+		iconStreaks = block.getIcon(0, 16 | metadata);
+		iconOverlayTop = block.getBlockOverlayTexture(blockAccess, x, y, z, 1);
+		iconOverlaySouth = block.getBlockOverlayTexture(blockAccess, x, y, z, 2);
+		iconOverlayWest = block.getBlockOverlayTexture(blockAccess, x, y, z, 5);
 
 		double minXGlass = iconGlass.getMinU();
 		double maxXGlass = iconGlass.getMaxU();
 		double minYGlass = iconGlass.getMinV();
 		double maxYGlass = iconGlass.getMaxV();
+
+		double minXStreaks = iconStreaks.getMinU();
+		double maxXStreaks = iconStreaks.getMaxU();
+		double minYStreaks = iconStreaks.getMinV();
+		double maxYStreaks = iconStreaks.getMaxV();
 
 		double minXSouth = iconOverlaySouth.getMinU();
 		double maxXSouth = iconOverlaySouth.getMaxU();
@@ -210,25 +269,19 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 						renderAll || block.shouldSideBeRendered(blockAccess, x + 1, y, z, 5),
 		};
 
-		if (renderSide[0])
-		{
-			tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, maxYGlass);
-			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, minYGlass);
-			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, minYGlass);
-			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
-
-			tessellator.addVertexWithUV(xMin, yMin, zMax, minXTop, maxYTop);
-			tessellator.addVertexWithUV(xMin, yMin, zMin, minXTop, minYTop);
-			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXTop, minYTop);
-			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXTop, maxYTop);
-		}
-
 		if (renderSide[1])
-		{
+		{ // UP
+			tessellator.setColorOpaque_F(red, green, blue);
 			tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
+
+			tessellator.setColorOpaque_F(1, 1, 1);
+			tessellator.addVertexWithUV(xMin, yMax, zMin, minXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMin, yMax, zMax, minXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXStreaks, minYStreaks);
 
 			tessellator.addVertexWithUV(xMin, yMax, zMin, minXTop, minYTop);
 			tessellator.addVertexWithUV(xMin, yMax, zMax, minXTop, maxYTop);
@@ -236,12 +289,39 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXTop, minYTop);
 		}
 
+		if (renderSide[0])
+		{ // DOWN
+			tessellator.setColorOpaque_F(red, green, blue);
+			tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, maxYGlass);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, minYGlass);
+			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, minYGlass);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
+
+			tessellator.setColorOpaque_F(1, 1, 1);
+			tessellator.addVertexWithUV(xMin, yMin, zMax, minXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXStreaks, maxYStreaks);
+
+			tessellator.addVertexWithUV(xMin, yMin, zMax, minXTop, maxYTop);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXTop, minYTop);
+			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXTop, minYTop);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXTop, maxYTop);
+		}
+
 		if (renderSide[2])
 		{
+			tessellator.setColorOpaque_F(red, green, blue);
 			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
+
+			tessellator.setColorOpaque_F(1, 1, 1);
+			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMin, yMax, zMin, minXStreaks, minYStreaks);
 
 			tessellator.addVertexWithUV(xMax, yMax, zMin, maxXSouth, minYSouth);
 			tessellator.addVertexWithUV(xMax, yMin, zMin, maxXSouth, maxYSouth);
@@ -251,10 +331,17 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		if (renderSide[3])
 		{
-			tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, maxYGlass);
-			tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, minYGlass);
-			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, minYGlass);
-			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, maxYGlass);
+			tessellator.setColorOpaque_F(red, green, blue);
+			tessellator.addVertexWithUV(xMin, yMax, zMax, minXGlass, minYGlass);
+			tessellator.addVertexWithUV(xMin, yMin, zMax, minXGlass, maxYGlass);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
+			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, minYGlass);
+
+			tessellator.setColorOpaque_F(1, 1, 1);
+			tessellator.addVertexWithUV(xMin, yMax, zMax, minXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMin, yMin, zMax, minXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXStreaks, minYStreaks);
 
 			tessellator.addVertexWithUV(xMin, yMax, zMax, minXSouth, minYSouth);
 			tessellator.addVertexWithUV(xMin, yMin, zMax, minXSouth, maxYSouth);
@@ -264,10 +351,17 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		if (renderSide[4])
 		{
+			tessellator.setColorOpaque_F(red, green, blue);
 			tessellator.addVertexWithUV(xMin, yMin, zMax, maxXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMin, yMax, zMax, maxXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMin, yMax, zMin, minXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMin, yMin, zMin, minXGlass, maxYGlass);
+
+			tessellator.setColorOpaque_F(1, 1, 1);
+			tessellator.addVertexWithUV(xMin, yMin, zMax, maxXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMin, yMax, zMax, maxXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMin, yMax, zMin, minXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMin, yMin, zMin, minXStreaks, maxYStreaks);
 
 			tessellator.addVertexWithUV(xMin, yMin, zMax, maxXWest, maxYWest);
 			tessellator.addVertexWithUV(xMin, yMax, zMax, maxXWest, minYWest);
@@ -277,17 +371,24 @@ public class FactoryGlassRenderer implements ISimpleBlockRenderingHandler
 
 		if (renderSide[5])
 		{
+			tessellator.setColorOpaque_F(red, green, blue);
 			tessellator.addVertexWithUV(xMax, yMin, zMin, minXGlass, maxYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMin, minXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXGlass, minYGlass);
 			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXGlass, maxYGlass);
+
+			tessellator.setColorOpaque_F(1, 1, 1);
+			tessellator.addVertexWithUV(xMax, yMin, zMin, minXStreaks, maxYStreaks);
+			tessellator.addVertexWithUV(xMax, yMax, zMin, minXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXStreaks, minYStreaks);
+			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXStreaks, maxYStreaks);
 
 			tessellator.addVertexWithUV(xMax, yMin, zMin, minXWest, maxYWest);
 			tessellator.addVertexWithUV(xMax, yMax, zMin, minXWest, minYWest);
 			tessellator.addVertexWithUV(xMax, yMax, zMax, maxXWest, minYWest);
 			tessellator.addVertexWithUV(xMax, yMin, zMax, maxXWest, maxYWest);
 		}
-		
+
 		return true;
 	}
 
