@@ -73,12 +73,6 @@ public class TileEntityAutoSpawner extends TileEntityFactoryPowered implements I
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Auto-Spawner";
-	}
-	
-	@Override
 	protected boolean activateMachine()
 	{
 		ItemStack item = getStackInSlot(0);

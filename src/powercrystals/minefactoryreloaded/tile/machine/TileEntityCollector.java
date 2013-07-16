@@ -45,12 +45,6 @@ public class TileEntityCollector extends TileEntityFactoryInventory
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Item Collector";
-	}
-	
-	@Override
 	public boolean manageSolids()
 	{
 		return true;

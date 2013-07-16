@@ -368,12 +368,6 @@ public class TileEntityHarvester extends TileEntityFactoryPowered implements ITa
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Harvester";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 1;

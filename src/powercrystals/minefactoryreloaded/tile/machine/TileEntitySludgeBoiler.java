@@ -184,13 +184,6 @@ public class TileEntitySludgeBoiler extends TileEntityFactoryPowered implements 
 		}
 		return null;
 	}
-	
-	@Override
-	public String getInvName()
-	{
-		return "Sludge Boiler";
-	}
-	
 	@Override
 	public int getSizeInventory()
 	{

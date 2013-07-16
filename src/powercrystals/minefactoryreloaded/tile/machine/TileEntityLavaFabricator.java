@@ -35,10 +35,4 @@ public class TileEntityLavaFabricator extends TileEntityLiquidFabricator
 	{
 		return new ContainerFactoryPowered(this, inventoryPlayer);
 	}
-	
-	@Override
-	public String getInvName()
-	{
-		return "Lava Fabricator";
-	}
 }

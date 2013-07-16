@@ -35,12 +35,6 @@ public class TileEntityBioFuelGenerator extends TileEntityLiquidGenerator
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "BioFuel Generator";
-	}
-	
-	@Override
 	public String getGuiBackground()
 	{
 		return "biofuelgenerator.png";

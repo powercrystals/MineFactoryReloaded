@@ -141,12 +141,6 @@ public class TileEntityBreeder extends TileEntityFactoryPowered implements IHarv
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Breeder";
-	}
-	
-	@Override
 	public boolean canRotate()
 	{
 		return true;

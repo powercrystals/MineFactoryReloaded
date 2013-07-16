@@ -47,8 +47,16 @@ public class ItemBlockFactoryMachine extends ItemBlockFactory
 		{
 			int storedId = c.getInteger("storedId");
 			int storedMeta = c.getInteger("storedMeta");
-			ItemStack storedItem = new ItemStack(storedId, 1, storedMeta);
-			info.add("Contains " + c.getInteger("storedQuantity") + " " + Item.itemsList[storedId].getItemDisplayName(storedItem) + " (" + storedId + ":" + storedMeta + ")");
+			int storedQuantity = c.getInteger("storedQuantity");
+			if (storedId > 0 & storedQuantity > 0)
+			{
+				ItemStack storedItem = new ItemStack(storedId, 1, storedMeta);
+				info.add("Contains " + storedQuantity + " " + Item.itemsList[storedId].getItemDisplayName(storedItem) + " (" + storedId + ":" + storedMeta + ")");
+			}
+			else
+			{
+				// info.add("Empty");
+			}
 		}
 		else if(getBlockID() == Machine.BioFuelGenerator.getBlockId() && stack.getItemDamage() == Machine.BioFuelGenerator.getMeta())
 		{

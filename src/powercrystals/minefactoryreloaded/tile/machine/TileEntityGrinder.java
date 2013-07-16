@@ -251,12 +251,6 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Mob Grinder";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 0;

@@ -219,12 +219,6 @@ public class TileEntityItemRouter extends TileEntityFactoryInventory
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Item Router";
-	}
-	
-	@Override
 	public String getGuiBackground()
 	{
 		return "itemrouter.png";

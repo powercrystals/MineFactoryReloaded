@@ -296,12 +296,6 @@ inv:	for(int i = 0; i < 9; i++)
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "LiquiCrafter";
-	}
-	
-	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;

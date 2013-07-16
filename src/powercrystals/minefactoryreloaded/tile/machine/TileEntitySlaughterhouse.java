@@ -31,12 +31,6 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder implements IHarv
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Slaughterhouse";
-	}
-	
-	@Override
 	public String getGuiBackground()
 	{
 		return "slaughterhouse.png";

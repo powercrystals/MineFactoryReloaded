@@ -86,12 +86,6 @@ public class TileEntityAutoDisenchanter extends TileEntityFactoryPowered
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Auto-Disenchanter";
-	}
-	
-	@Override
 	protected boolean activateMachine()
 	{
 		if(_inventory[0] != null && _inventory[0].getEnchantmentTagList() == null && _inventory[2] == null)

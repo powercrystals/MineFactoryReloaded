@@ -225,12 +225,6 @@ public class TileEntityLiquidRouter extends TileEntityFactoryInventory implement
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Liquid Router";
-	}
-	
-	@Override
 	public String getGuiBackground()
 	{
 		return "liquidrouter.png";

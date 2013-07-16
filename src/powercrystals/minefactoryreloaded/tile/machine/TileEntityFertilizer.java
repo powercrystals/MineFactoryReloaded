@@ -109,12 +109,6 @@ public class TileEntityFertilizer extends TileEntityFactoryPowered implements IH
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Fertilizer";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 10;

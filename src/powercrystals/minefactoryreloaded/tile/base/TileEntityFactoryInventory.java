@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.StringTranslate;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
@@ -13,6 +14,8 @@ import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import net.minecraftforge.liquids.LiquidTank;
 import powercrystals.core.asm.relauncher.Implementable;
+import powercrystals.core.position.BlockPosition;
+import powercrystals.minefactoryreloaded.core.BlockNBTManager;
 import powercrystals.minefactoryreloaded.core.MFRLiquidMover;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import buildcraft.api.gates.IAction; 
@@ -34,7 +37,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	@Override
 	public String getInvName()
 	{
-		return _hasInvName ? _invName : machine.getName();
+		return _hasInvName ? _invName : StringTranslate.getInstance().translateNamedKey(machine.getInternalName());
 	}
 	
 	@Override
@@ -47,6 +50,18 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 	{
 		this._invName = name;
 		this._hasInvName = name != null && name.length() > 0;
+	}
+	
+	public void onBlockBroken()
+	{
+		if (isInvNameLocalized())
+		{
+			NBTTagCompound tag = new NBTTagCompound();
+			NBTTagCompound name = new NBTTagCompound();
+			name.setString("Name", getInvName());
+			tag.setTag("display", name);
+			BlockNBTManager.setForBlock(new BlockPosition(xCoord, yCoord, zCoord), tag);
+		}
 	}
 	
 	public ILiquidTank getTank()
@@ -265,7 +280,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		if (this.isInvNameLocalized())
 		{
 			NBTTagCompound display = new NBTTagCompound();
-			display.setString("Name", this._invName);
+			display.setString("Name", getInvName());
 			nbttagcompound.setCompoundTag("display", display);
 		}
 		

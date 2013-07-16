@@ -149,12 +149,6 @@ public class TileEntityComposter extends TileEntityFactoryPowered implements ITa
 	}
 	
 	@Override
-	public String getInvName()
-	{
-		return "Composter";
-	}
-	
-	@Override
 	public int getSizeInventory()
 	{
 		return 0;
