@@ -316,7 +316,7 @@
 			</classpath>
 		</taskdef>
 		<echo message="Downloading forge... " />
-		<get url="${forge.url}" dest="${download.dir}/minecraftforge-src-${forge.version}.zip" />
+		<get src="${forge.url}" dest="${download.dir}/minecraftforge-src-${forge.version}.zip" />
 	</target>
 	
 	<target name="download-core" unless="forge-exists">
