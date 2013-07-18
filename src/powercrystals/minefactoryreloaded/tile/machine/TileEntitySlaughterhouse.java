@@ -4,18 +4,14 @@ import java.util.List;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.liquids.LiquidDictionary;
 
 import powercrystals.minefactoryreloaded.MFRRegistry;
 import powercrystals.minefactoryreloaded.core.GrindingDamage;
-import powercrystals.minefactoryreloaded.core.HarvestAreaManager;
-import powercrystals.minefactoryreloaded.core.IHarvestAreaContainer;
-import powercrystals.minefactoryreloaded.gui.container.ContainerFactoryPowered;
 import powercrystals.minefactoryreloaded.setup.Machine;
 
-public class TileEntitySlaughterhouse extends TileEntityGrinder implements IHarvestAreaContainer
+public class TileEntitySlaughterhouse extends TileEntityGrinder
 {
 	public TileEntitySlaughterhouse()
 	{
@@ -34,18 +30,6 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder implements IHarv
 	public String getGuiBackground()
 	{
 		return "slaughterhouse.png";
-	}
-	
-	@Override
-	public ContainerFactoryPowered getContainer(InventoryPlayer inventoryPlayer)
-	{
-		return new ContainerFactoryPowered(this, inventoryPlayer);
-	}
-	
-	@Override
-	public HarvestAreaManager getHAM()
-	{
-		return _areaManager;
 	}
 	
 	@Override
@@ -90,7 +74,7 @@ public class TileEntitySlaughterhouse extends TileEntityGrinder implements IHarv
 	protected void damageEntity(EntityLiving entity)
 	{
 		setRecentlyHit(entity, 0);
-		entity.attackEntityFrom(_damageSource, 500000);
+		entity.attackEntityFrom(_damageSource, DAMAGE);
 	}
 	
 	@Override
