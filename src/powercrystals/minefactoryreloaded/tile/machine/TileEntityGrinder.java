@@ -43,12 +43,7 @@ import powercrystals.minefactoryreloaded.world.IGrindingWorld;
 
 public class TileEntityGrinder extends TileEntityFactoryPowered implements ITankContainerBucketable, IHarvestAreaContainer
 {
-	protected HarvestAreaManager _areaManager;
-	protected LiquidTank _tank;
-	protected Random _rand;
-	protected IGrindingWorld _grindingWorld;
-	protected GrindingDamage _damageSource;
-	
+	public static final int DAMAGE = 500000; 
 	private static Field recentlyHit;
 	
 	static
@@ -58,6 +53,12 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 		q.addAll(Arrays.asList(ObfuscationReflectionHelper.remapFieldNames("net.minecraft.entity.EntityLiving", new String[] { "field_70718_bc" })));
 		recentlyHit = ReflectionHelper.findField(EntityLiving.class, q.toArray(new String[q.size()]));
 	}
+	
+	protected HarvestAreaManager _areaManager;
+	protected LiquidTank _tank;
+	protected Random _rand;
+	protected IGrindingWorld _grindingWorld;
+	protected GrindingDamage _damageSource;
 	
 	protected TileEntityGrinder(Machine machine)
 	{
@@ -247,7 +248,7 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	protected void damageEntity(EntityLiving entity)
 	{
 		setRecentlyHit(entity, 100);
-		entity.attackEntityFrom(_damageSource, 500000);
+		entity.attackEntityFrom(_damageSource, DAMAGE);
 	}
 	
 	@Override

@@ -43,9 +43,9 @@ public class EntityRocket extends Entity
 	
 	private void recalculateVelocity()
 	{
-		motionX = (double)(-MathHelper.sin(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI));
-		motionZ = (double)(MathHelper.cos(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI));
-		motionY = (double)(-MathHelper.sin(rotationPitch / 180.0F * (float)Math.PI));
+		motionX = -MathHelper.sin(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI);
+		motionZ = MathHelper.cos(rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(rotationPitch / 180.0F * (float)Math.PI);
+		motionY = (-MathHelper.sin(rotationPitch / 180.0F * (float)Math.PI));
 	}
 	
 	@Override
@@ -91,7 +91,7 @@ public class EntityRocket extends Entity
 			double closestRange = 0.0D;
 			double collisionRange = 0.3D;
 			
-			for(int i = 0; i < list.size(); ++i)
+			for(int i = 0, end = list.size(); i < end; ++i)
 			{
 				Entity e = (Entity)list.get(i);
 				
@@ -104,7 +104,7 @@ public class EntityRocket extends Entity
 					{
 						double range = pos.distanceTo(entityHitPos.hitVec);
 						
-						if(range < closestRange || closestRange == 0.0D)
+						if((range < closestRange) | closestRange == 0D)
 						{
 							entityHit = e;
 							closestRange = range;
@@ -131,7 +131,7 @@ public class EntityRocket extends Entity
 			if(hit != null && !worldObj.isRemote)
 			{
 				if(hit.entityHit != null)
-				{
+				{ // why not spawn explosion at nextPos x/y/z?
 					worldObj.newExplosion(this, hit.entityHit.posX, hit.entityHit.posY, hit.entityHit.posZ, 4.0F, true, true);
 				}
 				else
@@ -189,11 +189,11 @@ public class EntityRocket extends Entity
 			angle %= 360F;
 		}
 		else
-		{
+		{ // pretty sure that negativeValue % postiveValue has the same result
 			angle = -(-angle % 360);
 		}
 		
-		if(angle < 0 && !allowNegative)
+		if(angle < 0 & !allowNegative)
 		{
 			angle += 360;
 		}
@@ -216,9 +216,9 @@ public class EntityRocket extends Entity
 		
 		if(prevRotationPitch == 0.0F && prevRotationYaw == 0.0F)
 		{
-			float f = MathHelper.sqrt_double(x * x + z * z);
+			double f = MathHelper.sqrt_double(x * x + z * z);
 			prevRotationYaw = rotationYaw = (float)(Math.atan2(x, z) * 180.0D / Math.PI);
-			prevRotationPitch = rotationPitch = (float)(Math.atan2(y, (double)f) * 180.0D / Math.PI);
+			prevRotationPitch = rotationPitch = (float)(Math.atan2(y, f) * 180.0D / Math.PI);
 			setLocationAndAngles(posX, posY, posZ, rotationYaw, rotationPitch);
 		}
 	}
