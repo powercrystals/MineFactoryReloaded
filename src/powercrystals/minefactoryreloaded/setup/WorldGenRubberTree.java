@@ -60,13 +60,10 @@ public class WorldGenRubberTree extends WorldGenerator
 
 			blockId = world.getBlockId(x, y - 1, z);
 			block = Block.blocksList[blockId];
-			
-			boolean isGrass = blockId == Block.grass.blockID;
 
-			if((block != null && ((isGrass | blockId == Block.dirt.blockID) ||
-					block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP,
-							((BlockSapling)MineFactoryReloadedCore.rubberSaplingBlock)))) &&
-							y < worldHeight - treeHeight - 1)
+			if((block != null && block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP,
+					((BlockSapling)MineFactoryReloadedCore.rubberSaplingBlock))) &&
+					y < worldHeight - treeHeight - 1)
 			{
 				for(yOffset = y; yOffset <= y + 1 + treeHeight; ++yOffset)
 				{
@@ -107,10 +104,7 @@ public class WorldGenRubberTree extends WorldGenerator
 					}
 				}
 
-				if (isGrass)
-				{
-					this.setBlock(world, x, y - 1, z, Block.dirt.blockID);
-				}
+				Block.blocksList[world.getBlockId(x, y - 1, z)].onPlantGrow(world, x, y - 1, z, x, y, z);
 
 				for(yOffset = y - 3 + treeHeight; yOffset <= y + treeHeight; ++yOffset)
 				{
@@ -144,12 +138,13 @@ public class WorldGenRubberTree extends WorldGenerator
 
 				for(yOffset = 0; yOffset < treeHeight; ++yOffset)
 				{
-					xOffset = world.getBlockId(x, y + yOffset, z);
+					blockId = world.getBlockId(x, y + yOffset, z);
 
-					block = Block.blocksList[xOffset];
+					block = Block.blocksList[blockId];
 
 					if(block == null || block.isAirBlock(world, x, y + yOffset, z)  ||
-							block.isLeaves(world, x, y + yOffset, z))
+							block.isLeaves(world, x, y + yOffset, z) ||
+							block.isBlockReplaceable(world, x, y + yOffset, z)) // replace snow
 					{
 						this.setBlockAndMetadata(world, x, y + yOffset, z,
 								MineFactoryReloadedCore.rubberWoodBlock.blockID, 1);
