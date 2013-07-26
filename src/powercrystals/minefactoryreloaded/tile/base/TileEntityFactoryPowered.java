@@ -91,7 +91,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	private void configurePowerProvider()
 	{ // TODO: inline into constructor in 2.8
 		int activation = getMaxEnergyPerTick() / energyPerMJ;
-		int maxReceived = Math.min(activation * getWorkMax(), 1000);
+		int maxReceived = Math.min(activation * 20, 1000);
 		_powerProvider.configure(0, activation < 10 ? 1 : 10, maxReceived, 1, 1000);
 	}
 	
@@ -129,9 +129,9 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 				
 				pp.update(this);
 				
-				if(pp.useEnergy(1, mjRequired, false) > 0)
+				if(pp.useEnergy(0, mjRequired, false) > 0)
 				{
-					int mjGained = (int)(pp.useEnergy(1, mjRequired, true) * energyPerMJ);
+					int mjGained = (int)(pp.useEnergy(0, mjRequired, true) * energyPerMJ);
 					_energyStored += mjGained;
 					energyRequired -= mjGained;
 				}
@@ -407,7 +407,8 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	@Override
 	public int powerRequest(ForgeDirection from)
 	{
-		return Math.max(getEnergyRequired() / energyPerMJ, 0);
+		int powerProviderPower = (int)Math.min(_powerProvider.getMaxEnergyStored() - _powerProvider.getEnergyStored(), _powerProvider.getMaxEnergyReceived());
+		return Math.max(Math.max(getEnergyRequired() / energyPerMJ, powerProviderPower), 0);
 	}
 	
 	@Override
