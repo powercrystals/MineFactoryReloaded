@@ -1,10 +1,14 @@
 package powercrystals.minefactoryreloaded.tile.machine;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.liquids.ILiquidTank;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
@@ -18,6 +22,7 @@ import powercrystals.minefactoryreloaded.gui.client.GuiFactoryInventory;
 import powercrystals.minefactoryreloaded.gui.container.ContainerBlockSmasher;
 import powercrystals.minefactoryreloaded.setup.Machine;
 import powercrystals.minefactoryreloaded.tile.base.TileEntityFactoryPowered;
+import powercrystals.minefactoryreloaded.world.SmashingWorld;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,10 +35,20 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 	private ItemStack _lastInput;
 	private ItemStack _lastOutput;
 	
+	private SmashingWorld _smashingWorld; 
+	private Random _rand = new Random();
+	
 	public TileEntityBlockSmasher()
 	{
 		super(Machine.BlockSmasher);
 		_tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME * 4);
+	}
+	
+	@Override
+	public void setWorldObj(World world)
+	{
+		super.setWorldObj(world);
+		_smashingWorld = new SmashingWorld(this.worldObj);
 	}
 	
 	@Override
@@ -124,18 +139,20 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 		{
 			return null;
 		}
-		Block b = Block.blocksList[((ItemBlock)input.getItem()).getBlockID()];
+		int blockId = ((ItemBlock)input.getItem()).getBlockID();
+		Block b = Block.blocksList[blockId];
 		if(b == null)
 		{
 			return null;
 		}
 		
-		int id = b.idDropped(input.getItemDamage(), worldObj.rand, _fortune);
-		int meta = b.damageDropped(input.getItemDamage());
-		int quantity = b.quantityDropped(input.getItemDamage(), _fortune, worldObj.rand);
-		if(quantity > 0 && id > 0 && id != input.itemID && meta != input.getItemDamage())
+		@SuppressWarnings("rawtypes")
+		ArrayList drops = _smashingWorld.smashBlock(b, blockId, input.getItemDamage(), _fortune);
+		// TODO: support multiple-output
+		if (drops != null && drops.size() > 0)
 		{
-			return new ItemStack(id, quantity, meta);
+			// HACK: randomly return one of the drops
+			return (ItemStack)drops.get(drops.size() > 1 ? _rand.nextInt(drops.size()) : 0);
 		}
 		return null;
 	}

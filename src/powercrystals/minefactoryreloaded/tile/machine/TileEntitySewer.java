@@ -143,7 +143,7 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 			// TODO: add a second tank to the sewer for essence
 			else if (_tank.getLiquid() == null || _tank.getLiquid().isLiquidEqual(LiquidDictionary.getLiquid("mobEssence", 1)))
 			{
-				int maxAmount = Math.max(_tank.getCapacity() - _tank.getLiquid().amount, 0);
+				int maxAmount = Math.max(_tank.getCapacity() - (_tank.getLiquid() != null ? _tank.getLiquid().amount : 0), 0);
 				if (maxAmount < 0)
 				{
 					return;
