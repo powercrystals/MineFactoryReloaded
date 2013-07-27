@@ -124,7 +124,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 		{
 			return null;
 		}
-		Block b = Block.blocksList[input.itemID];
+		Block b = Block.blocksList[((ItemBlock)input.getItem()).getBlockID()];
 		if(b == null)
 		{
 			return null;
@@ -133,7 +133,7 @@ public class TileEntityBlockSmasher extends TileEntityFactoryPowered implements 
 		int id = b.idDropped(input.getItemDamage(), worldObj.rand, _fortune);
 		int meta = b.damageDropped(input.getItemDamage());
 		int quantity = b.quantityDropped(input.getItemDamage(), _fortune, worldObj.rand);
-		if(quantity > 0 && id > 0)
+		if(quantity > 0 && id > 0 && id != input.itemID && meta != input.getItemDamage())
 		{
 			return new ItemStack(id, quantity, meta);
 		}

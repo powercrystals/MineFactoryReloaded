@@ -408,7 +408,7 @@ public abstract class TileEntityFactoryPowered extends TileEntityFactoryInventor
 	public int powerRequest(ForgeDirection from)
 	{
 		int powerProviderPower = (int)Math.min(_powerProvider.getMaxEnergyStored() - _powerProvider.getEnergyStored(), _powerProvider.getMaxEnergyReceived());
-		return Math.max(Math.max(getEnergyRequired() / energyPerMJ, powerProviderPower), 0);
+		return Math.max(powerProviderPower, 0);
 	}
 	
 	@Override
