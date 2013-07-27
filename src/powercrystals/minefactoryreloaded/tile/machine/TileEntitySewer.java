@@ -2,7 +2,9 @@ package powercrystals.minefactoryreloaded.tile.machine;
 
 import java.util.List;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -137,7 +139,8 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 			if (massFound > 0)
 			{
 				_tank.fill(LiquidDictionary.getLiquid("sewage", (int)(25 * massFound)), true);
-			}/* TODO: make EntityXPOrb.xpValue public from PCC and uncomment
+			}
+			// TODO: add a second tank to the sewer for essence
 			else if (_tank.getLiquid() == null || _tank.getLiquid().isLiquidEqual(LiquidDictionary.getLiquid("mobEssence", 1)))
 			{
 				int maxAmount = Math.max(_tank.getCapacity() - _tank.getLiquid().amount, 0);
@@ -171,7 +174,7 @@ public class TileEntitySewer extends TileEntityFactoryInventory implements ITank
 						}
 					}
 				}
-			}//*/
+			}
 		}
 	}
 	
