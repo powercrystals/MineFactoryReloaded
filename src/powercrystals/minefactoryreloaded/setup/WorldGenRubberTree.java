@@ -103,7 +103,13 @@ public class WorldGenRubberTree extends WorldGenerator
 					}
 				}
 
-				Block.blocksList[world.getBlockId(x, y - 1, z)].onPlantGrow(world, x, y - 1, z, x, y, z);
+				blockId = world.getBlockId(x, y - 1, z);
+				block = Block.blocksList[blockId];
+				if (block == null)
+				{ // this HAPPENS. wtf?
+					return false; // abort, something went weird
+				}
+				block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
 				for(yOffset = y - 3 + treeHeight; yOffset <= y + treeHeight; ++yOffset)
 				{
