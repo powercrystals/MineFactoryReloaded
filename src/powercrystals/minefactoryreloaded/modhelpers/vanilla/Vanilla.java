@@ -352,6 +352,7 @@ public class Vanilla
 		MFRRegistry.registerLaserOre(100, new ItemStack(Block.oreRedstone));
 		MFRRegistry.registerLaserOre(50, new ItemStack(Block.oreNetherQuartz));
 		MFRRegistry.registerLaserOre(80, new ItemStack(Block.glowStone));
+		MFRRegistry.registerLaserOre(80, new ItemStack(Item.clay));
 		
 		MFRRegistry.registerFruitLogBlockId(Block.wood.blockID);
 		MFRRegistry.registerFruit(new FruitCocoa());
