@@ -3,7 +3,10 @@ package powercrystals.minefactoryreloaded.gui.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
@@ -113,6 +116,16 @@ public class GuiFactoryInventory extends GuiContainer
 			return;
 		}
 		
+		ItemStack itemStack = stack.asItemStack();
+		
+		Icon icon = stack.getRenderingIcon();
+		if (icon == null)
+		{
+			icon = itemStack.getIconIndex();
+			if (icon == null)
+				icon = Block.lavaMoving.getIcon(0, 0);
+		}
+		
 		int vertOffset = 0;
 		
 		while(level > 0)
@@ -131,7 +144,7 @@ public class GuiFactoryInventory extends GuiContainer
 			}
 			
 			mc.renderEngine.bindTexture(stack.getTextureSheet());
-			drawTexturedModelRectFromIcon(xOffset, yOffset - texHeight - vertOffset, stack.getRenderingIcon(), 16, texHeight);
+			drawTexturedModelRectFromIcon(xOffset, yOffset - texHeight - vertOffset, icon, 16, texHeight);
 			vertOffset = vertOffset + 16;
 		}
 		
