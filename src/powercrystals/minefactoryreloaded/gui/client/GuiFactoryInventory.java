@@ -121,7 +121,11 @@ public class GuiFactoryInventory extends GuiContainer
 		Icon icon = stack.getRenderingIcon();
 		if (icon == null)
 		{
-			icon = itemStack.getIconIndex();
+			try
+			{
+				icon = itemStack.getIconIndex();
+			}
+			catch (Throwable _) {}
 			if (icon == null)
 				icon = Block.lavaMoving.getIcon(0, 0);
 		}
